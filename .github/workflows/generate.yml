@@ -38,9 +38,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install httpx
           if [ -n "${{ inputs.litellm_version }}" ]; then
-            pip install "litellm==${{ inputs.litellm_version }}"
+            pip install "litellm[proxy]==${{ inputs.litellm_version }}"
           else
-            pip install litellm
+            pip install "litellm[proxy]"
           fi
 
       - name: Get LiteLLM version
