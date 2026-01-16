@@ -93,7 +93,7 @@ jobs:
           path: dist/
 
       - name: Create GitHub Release
-        if: ${{ inputs.publish == 'true' || github.event_name == 'schedule' }}
+        if: ${{ inputs.publish || github.event_name == 'schedule' }}
         uses: softprops/action-gh-release@v1
         with:
           tag_name: v${{ steps.litellm-version.outputs.version }}
@@ -122,7 +122,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Commit generated files
-        if: ${{ inputs.publish == 'true' || github.event_name == 'schedule' }}
+        if: ${{ inputs.publish || github.event_name == 'schedule' }}
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
