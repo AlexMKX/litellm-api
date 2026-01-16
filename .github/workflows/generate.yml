@@ -1,0 +1,131 @@
+name: Generate and Publish LiteLLM API Client
+
+on:
+  workflow_dispatch:
+    inputs:
+      litellm_version:
+        description: 'LiteLLM version (leave empty for latest)'
+        required: false
+        default: ''
+      publish:
+        description: 'Publish to GitHub Releases'
+        required: false
+        default: 'true'
+        type: boolean
+  schedule:
+    # Run weekly on Monday at 00:00 UTC
+    - cron: '0 0 * * 1'
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install httpx
+          if [ -n "${{ inputs.litellm_version }}" ]; then
+            pip install "litellm==${{ inputs.litellm_version }}"
+          else
+            pip install litellm
+          fi
+
+      - name: Get LiteLLM version
+        id: litellm-version
+        run: |
+          VERSION=$(python -c "import litellm; print(litellm.version)")
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "LiteLLM version: $VERSION"
+
+      - name: Extract OpenAPI spec from LiteLLM proxy
+        run: python scripts/extract_openapi.py
+        timeout-minutes: 5
+
+      - name: Install openapi-python-client
+        run: pip install openapi-python-client
+
+      - name: Generate Python client
+        run: |
+          rm -rf src/litellm_api
+          openapi-python-client generate \
+            --path openapi.json \
+            --output-path generated-client \
+            --config openapi-generator-config.yaml \
+            --meta none
+          
+          # Move generated code to src/litellm_api
+          mkdir -p src/litellm_api
+          mv generated-client/litellm_api_client/* src/litellm_api/ || mv generated-client/* src/litellm_api/
+
+      - name: Update version in generated code
+        run: |
+          VERSION="${{ steps.litellm-version.outputs.version }}"
+          # Update __init__.py
+          echo "__version__ = \"${VERSION}\"" > src/litellm_api/__init__.py
+          echo "from .client import *" >> src/litellm_api/__init__.py
+          
+          # Update pyproject.toml version
+          sed -i "s/^version = .*/version = \"${VERSION}\"/" pyproject.toml
+
+      - name: Install build tools
+        run: pip install build
+
+      - name: Build package
+        run: python -m build
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Create GitHub Release
+        if: ${{ inputs.publish == 'true' || github.event_name == 'schedule' }}
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ steps.litellm-version.outputs.version }}
+          name: LiteLLM API Client v${{ steps.litellm-version.outputs.version }}
+          body: |
+            Auto-generated Python API client for LiteLLM Proxy v${{ steps.litellm-version.outputs.version }}
+            
+            ## Installation
+            
+            ```bash
+            pip install litellm-api
+            ```
+            
+            Or download wheel from assets below.
+            
+            ## Generated from
+            - LiteLLM version: ${{ steps.litellm-version.outputs.version }}
+            - Generated: ${{ github.run_id }}
+          files: |
+            dist/*.whl
+            dist/*.tar.gz
+            openapi.json
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit generated files
+        if: ${{ inputs.publish == 'true' || github.event_name == 'schedule' }}
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add src/ pyproject.toml
+          git diff --staged --quiet || git commit -m "chore: update generated client for LiteLLM v${{ steps.litellm-version.outputs.version }}"
+          git push
