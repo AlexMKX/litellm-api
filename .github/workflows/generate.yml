@@ -46,7 +46,7 @@ jobs:
       - name: Get LiteLLM version
         id: litellm-version
         run: |
-          VERSION=$(python -c "import litellm; print(litellm.version)")
+          VERSION=$(python -c "from importlib.metadata import version; print(version('litellm'))")
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "LiteLLM version: $VERSION"
 
