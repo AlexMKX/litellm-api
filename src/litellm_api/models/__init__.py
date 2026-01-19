@@ -174,6 +174,7 @@ from .default_team_settings_response_field_schema import DefaultTeamSettingsResp
 from .default_team_settings_response_values import DefaultTeamSettingsResponseValues
 from .default_team_sso_params import DefaultTeamSSOParams
 from .delete_customer_request import DeleteCustomerRequest
+from .delete_fallback_fallback_model_delete_fallback_type import DeleteFallbackFallbackModelDeleteFallbackType
 from .delete_model_group_response import DeleteModelGroupResponse
 from .delete_organization_request import DeleteOrganizationRequest
 from .delete_skill_response import DeleteSkillResponse
@@ -198,7 +199,13 @@ from .embeddings_v1_embeddings_post_body_custom_llm_provider_type_1 import Embed
 from .embeddings_v1_embeddings_post_body_litellm_logging_obj_type_0 import EmbeddingsV1EmbeddingsPostBodyLitellmLoggingObjType0
 from .error_response import ErrorResponse
 from .error_response_detail import ErrorResponseDetail
+from .fallback_create_request import FallbackCreateRequest
+from .fallback_create_request_fallback_type import FallbackCreateRequestFallbackType
+from .fallback_delete_response import FallbackDeleteResponse
+from .fallback_get_response import FallbackGetResponse
+from .fallback_response import FallbackResponse
 from .function_call import FunctionCall
+from .get_fallback_fallback_model_get_fallback_type import GetFallbackFallbackModelGetFallbackType
 from .get_global_spend_report_global_spend_report_get_group_by_type_0 import GetGlobalSpendReportGlobalSpendReportGetGroupByType0
 from .get_team_member_permissions_response import GetTeamMemberPermissionsResponse
 from .gray_swan_guardrail_config_model_optional_params import GraySwanGuardrailConfigModelOptionalParams
@@ -241,6 +248,18 @@ from .list_skills_response import ListSkillsResponse
 from .list_tool_rest_api_mcp_rest_tools_list_get_response_list_tool_rest_api_mcp_rest_tools_list_get import ListToolRestApiMcpRestToolsListGetResponseListToolRestApiMcpRestToolsListGet
 from .lite_llm_budget_table import LiteLLMBudgetTable
 from .lite_llm_budget_table_model_max_budget_type_0 import LiteLLMBudgetTableModelMaxBudgetType0
+from .lite_llm_deleted_team_table import LiteLLMDeletedTeamTable
+from .lite_llm_deleted_team_table_metadata_type_0 import LiteLLMDeletedTeamTableMetadataType0
+from .lite_llm_deleted_team_table_router_settings_type_0 import LiteLLMDeletedTeamTableRouterSettingsType0
+from .lite_llm_deleted_verification_token import LiteLLMDeletedVerificationToken
+from .lite_llm_deleted_verification_token_aliases import LiteLLMDeletedVerificationTokenAliases
+from .lite_llm_deleted_verification_token_config import LiteLLMDeletedVerificationTokenConfig
+from .lite_llm_deleted_verification_token_litellm_budget_table_type_0 import LiteLLMDeletedVerificationTokenLitellmBudgetTableType0
+from .lite_llm_deleted_verification_token_metadata import LiteLLMDeletedVerificationTokenMetadata
+from .lite_llm_deleted_verification_token_model_max_budget import LiteLLMDeletedVerificationTokenModelMaxBudget
+from .lite_llm_deleted_verification_token_model_spend import LiteLLMDeletedVerificationTokenModelSpend
+from .lite_llm_deleted_verification_token_permissions import LiteLLMDeletedVerificationTokenPermissions
+from .lite_llm_deleted_verification_token_router_settings_type_0 import LiteLLMDeletedVerificationTokenRouterSettingsType0
 from .lite_llm_end_user_table import LiteLLMEndUserTable
 from .lite_llm_end_user_table_allowed_model_region_type_0 import LiteLLMEndUserTableAllowedModelRegionType0
 from .lite_llm_fine_tuning_job_create import LiteLLMFineTuningJobCreate
@@ -744,6 +763,7 @@ __all__ = (
     "DefaultTeamSettingsResponseValues",
     "DefaultTeamSSOParams",
     "DeleteCustomerRequest",
+    "DeleteFallbackFallbackModelDeleteFallbackType",
     "DeleteModelGroupResponse",
     "DeleteOrganizationRequest",
     "DeleteSkillResponse",
@@ -768,7 +788,13 @@ __all__ = (
     "EmbeddingsV1EmbeddingsPostBodyLitellmLoggingObjType0",
     "ErrorResponse",
     "ErrorResponseDetail",
+    "FallbackCreateRequest",
+    "FallbackCreateRequestFallbackType",
+    "FallbackDeleteResponse",
+    "FallbackGetResponse",
+    "FallbackResponse",
     "FunctionCall",
+    "GetFallbackFallbackModelGetFallbackType",
     "GetGlobalSpendReportGlobalSpendReportGetGroupByType0",
     "GetTeamMemberPermissionsResponse",
     "GraySwanGuardrailConfigModelOptionalParams",
@@ -811,6 +837,18 @@ __all__ = (
     "ListToolRestApiMcpRestToolsListGetResponseListToolRestApiMcpRestToolsListGet",
     "LiteLLMBudgetTable",
     "LiteLLMBudgetTableModelMaxBudgetType0",
+    "LiteLLMDeletedTeamTable",
+    "LiteLLMDeletedTeamTableMetadataType0",
+    "LiteLLMDeletedTeamTableRouterSettingsType0",
+    "LiteLLMDeletedVerificationToken",
+    "LiteLLMDeletedVerificationTokenAliases",
+    "LiteLLMDeletedVerificationTokenConfig",
+    "LiteLLMDeletedVerificationTokenLitellmBudgetTableType0",
+    "LiteLLMDeletedVerificationTokenMetadata",
+    "LiteLLMDeletedVerificationTokenModelMaxBudget",
+    "LiteLLMDeletedVerificationTokenModelSpend",
+    "LiteLLMDeletedVerificationTokenPermissions",
+    "LiteLLMDeletedVerificationTokenRouterSettingsType0",
     "LiteLLMEndUserTable",
     "LiteLLMEndUserTableAllowedModelRegionType0",
     "LiteLLMFineTuningJobCreate",

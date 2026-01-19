@@ -40,8 +40,8 @@ class DefaultTeamSettingsResponse:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.default_team_settings_response_values import DefaultTeamSettingsResponseValues
         from ..models.default_team_settings_response_field_schema import DefaultTeamSettingsResponseFieldSchema
+        from ..models.default_team_settings_response_values import DefaultTeamSettingsResponseValues
         values = self.values.to_dict()
 
         field_schema = self.field_schema.to_dict()

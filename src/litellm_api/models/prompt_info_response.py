@@ -40,8 +40,8 @@ class PromptInfoResponse:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.prompt_template_base import PromptTemplateBase
         from ..models.prompt_spec import PromptSpec
+        from ..models.prompt_template_base import PromptTemplateBase
         prompt_spec = self.prompt_spec.to_dict()
 
         raw_prompt_template: dict[str, Any] | None | Unset

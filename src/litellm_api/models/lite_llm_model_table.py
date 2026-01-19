@@ -46,8 +46,8 @@ class LiteLLMModelTable:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.lite_llm_team_table import LiteLLMTeamTable
         from ..models.lite_llm_model_table_model_aliases_type_0 import LiteLLMModelTableModelAliasesType0
+        from ..models.lite_llm_team_table import LiteLLMTeamTable
         created_by = self.created_by
 
         updated_by = self.updated_by

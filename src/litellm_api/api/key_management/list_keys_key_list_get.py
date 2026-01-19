@@ -30,6 +30,7 @@ def _get_kwargs(
     sort_by: None | str | Unset = UNSET,
     sort_order: str | Unset = 'desc',
     expand: list[str] | None | Unset = UNSET,
+    status: None | str | Unset = UNSET,
 
 ) -> dict[str, Any]:
     
@@ -103,6 +104,13 @@ def _get_kwargs(
         json_expand = expand
     params["expand"] = json_expand
 
+    json_status: None | str | Unset
+    if isinstance(status, Unset):
+        json_status = UNSET
+    else:
+        json_status = status
+    params["status"] = json_status
+
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
@@ -164,6 +172,7 @@ def sync_detailed(
     sort_by: None | str | Unset = UNSET,
     sort_order: str | Unset = 'desc',
     expand: list[str] | None | Unset = UNSET,
+    status: None | str | Unset = UNSET,
 
 ) -> Response[HTTPValidationError | KeyListResponseObject]:
     r""" List Keys
@@ -172,6 +181,7 @@ def sync_detailed(
 
     Parameters:
         expand: Optional[List[str]] - Expand related objects (e.g. 'user' to include user information)
+        status: Optional[str] - Filter by status. Currently supports \"deleted\" to query deleted keys.
 
     Returns:
         {
@@ -201,6 +211,7 @@ def sync_detailed(
         sort_by (None | str | Unset): Column to sort by (e.g. 'user_id', 'created_at', 'spend')
         sort_order (str | Unset): Sort order ('asc' or 'desc') Default: 'desc'.
         expand (list[str] | None | Unset): Expand related objects (e.g. 'user')
+        status (None | str | Unset): Filter by status (e.g. 'deleted')
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -225,6 +236,7 @@ include_created_by_keys=include_created_by_keys,
 sort_by=sort_by,
 sort_order=sort_order,
 expand=expand,
+status=status,
 
     )
 
@@ -250,6 +262,7 @@ def sync(
     sort_by: None | str | Unset = UNSET,
     sort_order: str | Unset = 'desc',
     expand: list[str] | None | Unset = UNSET,
+    status: None | str | Unset = UNSET,
 
 ) -> HTTPValidationError | KeyListResponseObject | None:
     r""" List Keys
@@ -258,6 +271,7 @@ def sync(
 
     Parameters:
         expand: Optional[List[str]] - Expand related objects (e.g. 'user' to include user information)
+        status: Optional[str] - Filter by status. Currently supports \"deleted\" to query deleted keys.
 
     Returns:
         {
@@ -287,6 +301,7 @@ def sync(
         sort_by (None | str | Unset): Column to sort by (e.g. 'user_id', 'created_at', 'spend')
         sort_order (str | Unset): Sort order ('asc' or 'desc') Default: 'desc'.
         expand (list[str] | None | Unset): Expand related objects (e.g. 'user')
+        status (None | str | Unset): Filter by status (e.g. 'deleted')
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -312,6 +327,7 @@ include_created_by_keys=include_created_by_keys,
 sort_by=sort_by,
 sort_order=sort_order,
 expand=expand,
+status=status,
 
     ).parsed
 
@@ -331,6 +347,7 @@ async def asyncio_detailed(
     sort_by: None | str | Unset = UNSET,
     sort_order: str | Unset = 'desc',
     expand: list[str] | None | Unset = UNSET,
+    status: None | str | Unset = UNSET,
 
 ) -> Response[HTTPValidationError | KeyListResponseObject]:
     r""" List Keys
@@ -339,6 +356,7 @@ async def asyncio_detailed(
 
     Parameters:
         expand: Optional[List[str]] - Expand related objects (e.g. 'user' to include user information)
+        status: Optional[str] - Filter by status. Currently supports \"deleted\" to query deleted keys.
 
     Returns:
         {
@@ -368,6 +386,7 @@ async def asyncio_detailed(
         sort_by (None | str | Unset): Column to sort by (e.g. 'user_id', 'created_at', 'spend')
         sort_order (str | Unset): Sort order ('asc' or 'desc') Default: 'desc'.
         expand (list[str] | None | Unset): Expand related objects (e.g. 'user')
+        status (None | str | Unset): Filter by status (e.g. 'deleted')
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -392,6 +411,7 @@ include_created_by_keys=include_created_by_keys,
 sort_by=sort_by,
 sort_order=sort_order,
 expand=expand,
+status=status,
 
     )
 
@@ -417,6 +437,7 @@ async def asyncio(
     sort_by: None | str | Unset = UNSET,
     sort_order: str | Unset = 'desc',
     expand: list[str] | None | Unset = UNSET,
+    status: None | str | Unset = UNSET,
 
 ) -> HTTPValidationError | KeyListResponseObject | None:
     r""" List Keys
@@ -425,6 +446,7 @@ async def asyncio(
 
     Parameters:
         expand: Optional[List[str]] - Expand related objects (e.g. 'user' to include user information)
+        status: Optional[str] - Filter by status. Currently supports \"deleted\" to query deleted keys.
 
     Returns:
         {
@@ -454,6 +476,7 @@ async def asyncio(
         sort_by (None | str | Unset): Column to sort by (e.g. 'user_id', 'created_at', 'spend')
         sort_order (str | Unset): Sort order ('asc' or 'desc') Default: 'desc'.
         expand (list[str] | None | Unset): Expand related objects (e.g. 'user')
+        status (None | str | Unset): Filter by status (e.g. 'deleted')
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -479,5 +502,6 @@ include_created_by_keys=include_created_by_keys,
 sort_by=sort_by,
 sort_order=sort_order,
 expand=expand,
+status=status,
 
     )).parsed

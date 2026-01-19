@@ -8,6 +8,7 @@ class CallTypes(str, Enum):
     ACREATE_CONTAINER = "acreate_container"
     ACREATE_FILE = "acreate_file"
     ACREATE_FINE_TUNING_JOB = "acreate_fine_tuning_job"
+    ACREATE_SKILL = "acreate_skill"
     ACREATE_THREAD = "acreate_thread"
     ACREATE_VIDEO = "acreate_video"
     ADD_MESSAGE = "add_message"

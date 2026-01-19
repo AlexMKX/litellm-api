@@ -42,8 +42,8 @@ class PatchGuardrailRequest:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.base_litellm_params import BaseLitellmParams
         from ..models.patch_guardrail_request_guardrail_info_type_0 import PatchGuardrailRequestGuardrailInfoType0
+        from ..models.base_litellm_params import BaseLitellmParams
         guardrail_name: None | str | Unset
         if isinstance(self.guardrail_name, Unset):
             guardrail_name = UNSET

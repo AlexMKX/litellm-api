@@ -44,8 +44,8 @@ class DailySpendData:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.breakdown_metrics import BreakdownMetrics
         from ..models.spend_metrics import SpendMetrics
+        from ..models.breakdown_metrics import BreakdownMetrics
         date = self.date.isoformat()
 
         metrics = self.metrics.to_dict()

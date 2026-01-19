@@ -11,6 +11,7 @@ from ..types import UNSET, Unset
 from typing import cast
 
 if TYPE_CHECKING:
+  from ..models.lite_llm_deleted_team_table import LiteLLMDeletedTeamTable
   from ..models.lite_llm_team_table import LiteLLMTeamTable
 
 
@@ -26,14 +27,14 @@ class TeamListResponse:
     """ Response to get the list of teams
 
         Attributes:
-            teams (list[LiteLLMTeamTable]):
+            teams (list[LiteLLMDeletedTeamTable | LiteLLMTeamTable]):
             total (int):
             page (int):
             page_size (int):
             total_pages (int):
      """
 
-    teams: list[LiteLLMTeamTable]
+    teams: list[LiteLLMDeletedTeamTable | LiteLLMTeamTable]
     total: int
     page: int
     page_size: int
@@ -46,9 +47,15 @@ class TeamListResponse:
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.lite_llm_team_table import LiteLLMTeamTable
+        from ..models.lite_llm_deleted_team_table import LiteLLMDeletedTeamTable
         teams = []
         for teams_item_data in self.teams:
-            teams_item = teams_item_data.to_dict()
+            teams_item: dict[str, Any]
+            if isinstance(teams_item_data, LiteLLMTeamTable):
+                teams_item = teams_item_data.to_dict()
+            else:
+                teams_item = teams_item_data.to_dict()
+
             teams.append(teams_item)
 
 
@@ -78,14 +85,32 @@ class TeamListResponse:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.lite_llm_deleted_team_table import LiteLLMDeletedTeamTable
         from ..models.lite_llm_team_table import LiteLLMTeamTable
         d = dict(src_dict)
         teams = []
         _teams = d.pop("teams")
         for teams_item_data in (_teams):
-            teams_item = LiteLLMTeamTable.from_dict(teams_item_data)
+            def _parse_teams_item(data: object) -> LiteLLMDeletedTeamTable | LiteLLMTeamTable:
+                try:
+                    if not isinstance(data, dict):
+                        raise TypeError()
+                    teams_item_type_0 = LiteLLMTeamTable.from_dict(data)
 
 
+
+                    return teams_item_type_0
+                except (TypeError, ValueError, AttributeError, KeyError):
+                    pass
+                if not isinstance(data, dict):
+                    raise TypeError()
+                teams_item_type_1 = LiteLLMDeletedTeamTable.from_dict(data)
+
+
+
+                return teams_item_type_1
+
+            teams_item = _parse_teams_item(teams_item_data)
 
             teams.append(teams_item)
 

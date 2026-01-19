@@ -50,8 +50,8 @@ class PromptSpec:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.prompt_info import PromptInfo
         from ..models.prompt_lite_llm_params import PromptLiteLLMParams
+        from ..models.prompt_info import PromptInfo
         prompt_id = self.prompt_id
 
         litellm_params = self.litellm_params.to_dict()

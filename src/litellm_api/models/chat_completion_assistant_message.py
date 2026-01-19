@@ -57,11 +57,11 @@ class ChatCompletionAssistantMessage:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.chat_completion_cached_content import ChatCompletionCachedContent
-        from ..models.chat_completion_assistant_tool_call import ChatCompletionAssistantToolCall
-        from ..models.chat_completion_thinking_block import ChatCompletionThinkingBlock
         from ..models.chat_completion_text_object import ChatCompletionTextObject
+        from ..models.chat_completion_thinking_block import ChatCompletionThinkingBlock
         from ..models.chat_completion_redacted_thinking_block import ChatCompletionRedactedThinkingBlock
+        from ..models.chat_completion_assistant_tool_call import ChatCompletionAssistantToolCall
+        from ..models.chat_completion_cached_content import ChatCompletionCachedContent
         from ..models.chat_completion_tool_call_function_chunk import ChatCompletionToolCallFunctionChunk
         role = self.role
 

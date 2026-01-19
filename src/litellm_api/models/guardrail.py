@@ -50,8 +50,8 @@ class Guardrail:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.guardrail_guardrail_info_type_0 import GuardrailGuardrailInfoType0
         from ..models.litellm_params import LitellmParams
+        from ..models.guardrail_guardrail_info_type_0 import GuardrailGuardrailInfoType0
         guardrail_name = self.guardrail_name
 
         litellm_params = self.litellm_params.to_dict()

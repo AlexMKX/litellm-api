@@ -44,8 +44,8 @@ class RawRequestTypedDict:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.raw_request_typed_dict_raw_request_body_type_0 import RawRequestTypedDictRawRequestBodyType0
         from ..models.raw_request_typed_dict_raw_request_headers_type_0 import RawRequestTypedDictRawRequestHeadersType0
+        from ..models.raw_request_typed_dict_raw_request_body_type_0 import RawRequestTypedDictRawRequestBodyType0
         raw_request_api_base: None | str | Unset
         if isinstance(self.raw_request_api_base, Unset):
             raw_request_api_base = UNSET

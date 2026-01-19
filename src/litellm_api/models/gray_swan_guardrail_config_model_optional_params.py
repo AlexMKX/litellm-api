@@ -37,6 +37,10 @@ class GraySwanGuardrailConfigModelOptionalParams:
             policy_id (None | str | Unset): Gray Swan policy identifier to apply during monitoring.
             categories (GraySwanGuardrailConfigModelOptionalParamsCategoriesType0 | None | Unset): Default Gray Swan
                 category definitions to send with each request.
+            fail_open (bool | None | Unset): If true (default), errors contacting Gray Swan are logged and the request
+                proceeds. If false, errors propagate and block the request. Default: True.
+            guardrail_timeout (float | None | Unset): Timeout in seconds for calling the Gray Swan guardrail service.
+                Default: 30.0.
      """
 
     on_flagged_action: None | str | Unset = 'passthrough'
@@ -44,6 +48,8 @@ class GraySwanGuardrailConfigModelOptionalParams:
     reasoning_mode: None | str | Unset = UNSET
     policy_id: None | str | Unset = UNSET
     categories: GraySwanGuardrailConfigModelOptionalParamsCategoriesType0 | None | Unset = UNSET
+    fail_open: bool | None | Unset = True
+    guardrail_timeout: float | None | Unset = 30.0
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -84,6 +90,18 @@ class GraySwanGuardrailConfigModelOptionalParams:
         else:
             categories = self.categories
 
+        fail_open: bool | None | Unset
+        if isinstance(self.fail_open, Unset):
+            fail_open = UNSET
+        else:
+            fail_open = self.fail_open
+
+        guardrail_timeout: float | None | Unset
+        if isinstance(self.guardrail_timeout, Unset):
+            guardrail_timeout = UNSET
+        else:
+            guardrail_timeout = self.guardrail_timeout
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -99,6 +117,10 @@ class GraySwanGuardrailConfigModelOptionalParams:
             field_dict["policy_id"] = policy_id
         if categories is not UNSET:
             field_dict["categories"] = categories
+        if fail_open is not UNSET:
+            field_dict["fail_open"] = fail_open
+        if guardrail_timeout is not UNSET:
+            field_dict["guardrail_timeout"] = guardrail_timeout
 
         return field_dict
 
@@ -168,12 +190,34 @@ class GraySwanGuardrailConfigModelOptionalParams:
         categories = _parse_categories(d.pop("categories", UNSET))
 
 
+        def _parse_fail_open(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        fail_open = _parse_fail_open(d.pop("fail_open", UNSET))
+
+
+        def _parse_guardrail_timeout(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        guardrail_timeout = _parse_guardrail_timeout(d.pop("guardrail_timeout", UNSET))
+
+
         gray_swan_guardrail_config_model_optional_params = cls(
             on_flagged_action=on_flagged_action,
             violation_threshold=violation_threshold,
             reasoning_mode=reasoning_mode,
             policy_id=policy_id,
             categories=categories,
+            fail_open=fail_open,
+            guardrail_timeout=guardrail_timeout,
         )
 
 

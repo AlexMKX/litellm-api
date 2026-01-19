@@ -12,6 +12,7 @@ from ..types import UNSET, Unset
 from typing import cast
 
 if TYPE_CHECKING:
+  from ..models.lite_llm_deleted_verification_token import LiteLLMDeletedVerificationToken
   from ..models.user_api_key_auth import UserAPIKeyAuth
 
 
@@ -26,13 +27,13 @@ T = TypeVar("T", bound="KeyListResponseObject")
 class KeyListResponseObject:
     """ 
         Attributes:
-            keys (list[str | UserAPIKeyAuth] | Unset):
+            keys (list[LiteLLMDeletedVerificationToken | str | UserAPIKeyAuth] | Unset):
             total_count (int | None | Unset):
             current_page (int | None | Unset):
             total_pages (int | None | Unset):
      """
 
-    keys: list[str | UserAPIKeyAuth] | Unset = UNSET
+    keys: list[LiteLLMDeletedVerificationToken | str | UserAPIKeyAuth] | Unset = UNSET
     total_count: int | None | Unset = UNSET
     current_page: int | None | Unset = UNSET
     total_pages: int | None | Unset = UNSET
@@ -43,6 +44,7 @@ class KeyListResponseObject:
 
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.lite_llm_deleted_verification_token import LiteLLMDeletedVerificationToken
         from ..models.user_api_key_auth import UserAPIKeyAuth
         keys: list[dict[str, Any] | str] | Unset = UNSET
         if not isinstance(self.keys, Unset):
@@ -50,6 +52,8 @@ class KeyListResponseObject:
             for keys_item_data in self.keys:
                 keys_item: dict[str, Any] | str
                 if isinstance(keys_item_data, UserAPIKeyAuth):
+                    keys_item = keys_item_data.to_dict()
+                elif isinstance(keys_item_data, LiteLLMDeletedVerificationToken):
                     keys_item = keys_item_data.to_dict()
                 else:
                     keys_item = keys_item_data
@@ -95,14 +99,15 @@ class KeyListResponseObject:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.lite_llm_deleted_verification_token import LiteLLMDeletedVerificationToken
         from ..models.user_api_key_auth import UserAPIKeyAuth
         d = dict(src_dict)
         _keys = d.pop("keys", UNSET)
-        keys: list[str | UserAPIKeyAuth] | Unset = UNSET
+        keys: list[LiteLLMDeletedVerificationToken | str | UserAPIKeyAuth] | Unset = UNSET
         if _keys is not UNSET:
             keys = []
             for keys_item_data in _keys:
-                def _parse_keys_item(data: object) -> str | UserAPIKeyAuth:
+                def _parse_keys_item(data: object) -> LiteLLMDeletedVerificationToken | str | UserAPIKeyAuth:
                     try:
                         if not isinstance(data, dict):
                             raise TypeError()
@@ -113,7 +118,17 @@ class KeyListResponseObject:
                         return keys_item_type_1
                     except (TypeError, ValueError, AttributeError, KeyError):
                         pass
-                    return cast(str | UserAPIKeyAuth, data)
+                    try:
+                        if not isinstance(data, dict):
+                            raise TypeError()
+                        keys_item_type_2 = LiteLLMDeletedVerificationToken.from_dict(data)
+
+
+
+                        return keys_item_type_2
+                    except (TypeError, ValueError, AttributeError, KeyError):
+                        pass
+                    return cast(LiteLLMDeletedVerificationToken | str | UserAPIKeyAuth, data)
 
                 keys_item = _parse_keys_item(keys_item_data)
 

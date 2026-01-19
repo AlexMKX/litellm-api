@@ -47,10 +47,10 @@ class OAuthFlows:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.o_auth_flows_authorization_code_type_0 import OAuthFlowsAuthorizationCodeType0
         from ..models.o_auth_flows_implicit_type_0 import OAuthFlowsImplicitType0
-        from ..models.o_auth_flows_password_type_0 import OAuthFlowsPasswordType0
         from ..models.o_auth_flows_client_credentials_type_0 import OAuthFlowsClientCredentialsType0
+        from ..models.o_auth_flows_password_type_0 import OAuthFlowsPasswordType0
+        from ..models.o_auth_flows_authorization_code_type_0 import OAuthFlowsAuthorizationCodeType0
         authorization_code: dict[str, Any] | None | Unset
         if isinstance(self.authorization_code, Unset):
             authorization_code = UNSET

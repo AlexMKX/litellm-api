@@ -109,12 +109,12 @@ class UpdateTeamRequest:
     def to_dict(self) -> dict[str, Any]:
         from ..models.allowed_vector_store_index_item import AllowedVectorStoreIndexItem
         from ..models.update_team_request_secret_manager_settings_type_0 import UpdateTeamRequestSecretManagerSettingsType0
-        from ..models.update_team_request_router_settings_type_0 import UpdateTeamRequestRouterSettingsType0
-        from ..models.update_team_request_metadata_type_0 import UpdateTeamRequestMetadataType0
         from ..models.update_team_request_model_rpm_limit_type_0 import UpdateTeamRequestModelRpmLimitType0
-        from ..models.lite_llm_object_permission_base import LiteLLMObjectPermissionBase
-        from ..models.update_team_request_model_aliases_type_0 import UpdateTeamRequestModelAliasesType0
+        from ..models.update_team_request_metadata_type_0 import UpdateTeamRequestMetadataType0
         from ..models.update_team_request_model_tpm_limit_type_0 import UpdateTeamRequestModelTpmLimitType0
+        from ..models.update_team_request_model_aliases_type_0 import UpdateTeamRequestModelAliasesType0
+        from ..models.update_team_request_router_settings_type_0 import UpdateTeamRequestRouterSettingsType0
+        from ..models.lite_llm_object_permission_base import LiteLLMObjectPermissionBase
         team_id = self.team_id
 
         team_alias: None | str | Unset

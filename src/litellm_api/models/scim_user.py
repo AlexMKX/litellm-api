@@ -58,10 +58,10 @@ class SCIMUser:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.scim_user_name import SCIMUserName
         from ..models.scim_user_group import SCIMUserGroup
-        from ..models.scim_user_email import SCIMUserEmail
+        from ..models.scim_user_name import SCIMUserName
         from ..models.scim_user_meta_type_0 import SCIMUserMetaType0
+        from ..models.scim_user_email import SCIMUserEmail
         schemas = self.schemas
 
 

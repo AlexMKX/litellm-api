@@ -38,9 +38,9 @@ class AgentCardSecuritySchemesType0:
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.mutual_tls_security_scheme import MutualTLSSecurityScheme
-        from ..models.http_auth_security_scheme import HTTPAuthSecurityScheme
         from ..models.api_key_security_scheme import APIKeySecurityScheme
         from ..models.o_auth_2_security_scheme import OAuth2SecurityScheme
+        from ..models.http_auth_security_scheme import HTTPAuthSecurityScheme
         from ..models.open_id_connect_security_scheme import OpenIdConnectSecurityScheme
         
         field_dict: dict[str, Any] = {}

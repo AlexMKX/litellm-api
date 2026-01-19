@@ -218,12 +218,12 @@ class UpdateLiteLLMParams:
 
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.update_lite_llm_params_model_info_type_0 import UpdateLiteLLMParamsModelInfoType0
+        from ..models.update_lite_llm_params_tiered_pricing_type_0_item import UpdateLiteLLMParamsTieredPricingType0Item
+        from ..models.configurable_clientside_params_custom_auth import ConfigurableClientsideParamsCustomAuth
         from ..models.model_response import ModelResponse
         from ..models.update_lite_llm_params_vertex_credentials_type_1 import UpdateLiteLLMParamsVertexCredentialsType1
-        from ..models.update_lite_llm_params_tiered_pricing_type_0_item import UpdateLiteLLMParamsTieredPricingType0Item
         from ..models.update_lite_llm_params_search_context_cost_per_query_type_0 import UpdateLiteLLMParamsSearchContextCostPerQueryType0
-        from ..models.configurable_clientside_params_custom_auth import ConfigurableClientsideParamsCustomAuth
-        from ..models.update_lite_llm_params_model_info_type_0 import UpdateLiteLLMParamsModelInfoType0
         input_cost_per_token: float | None | Unset
         if isinstance(self.input_cost_per_token, Unset):
             input_cost_per_token = UNSET

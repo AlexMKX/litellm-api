@@ -89,11 +89,11 @@ class LiteLLMTeamTable:
 
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.member import Member
+        from ..models.lite_llm_model_table import LiteLLMModelTable
+        from ..models.lite_llm_team_table_router_settings_type_0 import LiteLLMTeamTableRouterSettingsType0
         from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
         from ..models.lite_llm_team_table_metadata_type_0 import LiteLLMTeamTableMetadataType0
-        from ..models.lite_llm_model_table import LiteLLMModelTable
-        from ..models.member import Member
-        from ..models.lite_llm_team_table_router_settings_type_0 import LiteLLMTeamTableRouterSettingsType0
         team_id = self.team_id
 
         team_alias: None | str | Unset

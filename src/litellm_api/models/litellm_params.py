@@ -277,20 +277,20 @@ class LitellmParams:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.lakera_category_thresholds import LakeraCategoryThresholds
-        from ..models.litellm_params_additional_provider_specific_params_type_0 import LitellmParamsAdditionalProviderSpecificParamsType0
-        from ..models.litellm_params_presidio_score_thresholds_type_0 import LitellmParamsPresidioScoreThresholdsType0
-        from ..models.content_filter_pattern import ContentFilterPattern
-        from ..models.litellm_params_config_type_0 import LitellmParamsConfigType0
-        from ..models.litellm_params_metadata_type_0 import LitellmParamsMetadataType0
-        from ..models.litellm_params_mock_redacted_text_type_0 import LitellmParamsMockRedactedTextType0
-        from ..models.litellm_params_pii_entities_config_type_0 import LitellmParamsPiiEntitiesConfigType0
-        from ..models.litellm_params_detectors_type_0 import LitellmParamsDetectorsType0
-        from ..models.mode import Mode
-        from ..models.gray_swan_guardrail_config_model_optional_params import GraySwanGuardrailConfigModelOptionalParams
-        from ..models.tool_permission_rule import ToolPermissionRule
-        from ..models.litellm_params_detect_secrets_config_type_0 import LitellmParamsDetectSecretsConfigType0
         from ..models.blocked_word import BlockedWord
+        from ..models.lakera_category_thresholds import LakeraCategoryThresholds
+        from ..models.litellm_params_mock_redacted_text_type_0 import LitellmParamsMockRedactedTextType0
+        from ..models.mode import Mode
+        from ..models.litellm_params_config_type_0 import LitellmParamsConfigType0
+        from ..models.litellm_params_additional_provider_specific_params_type_0 import LitellmParamsAdditionalProviderSpecificParamsType0
+        from ..models.content_filter_pattern import ContentFilterPattern
+        from ..models.litellm_params_detectors_type_0 import LitellmParamsDetectorsType0
+        from ..models.litellm_params_detect_secrets_config_type_0 import LitellmParamsDetectSecretsConfigType0
+        from ..models.tool_permission_rule import ToolPermissionRule
+        from ..models.litellm_params_metadata_type_0 import LitellmParamsMetadataType0
+        from ..models.litellm_params_pii_entities_config_type_0 import LitellmParamsPiiEntitiesConfigType0
+        from ..models.gray_swan_guardrail_config_model_optional_params import GraySwanGuardrailConfigModelOptionalParams
+        from ..models.litellm_params_presidio_score_thresholds_type_0 import LitellmParamsPresidioScoreThresholdsType0
         guardrail = self.guardrail
 
         mode: dict[str, Any] | list[str] | str

@@ -31,6 +31,9 @@ class TokenCountResponse:
             model_used (str):
             tokenizer_type (str):
             original_response (None | TokenCountResponseOriginalResponseType0 | Unset):
+            error (bool | Unset):  Default: False.
+            error_message (None | str | Unset):
+            status_code (int | None | Unset):
      """
 
     total_tokens: int
@@ -38,6 +41,9 @@ class TokenCountResponse:
     model_used: str
     tokenizer_type: str
     original_response: None | TokenCountResponseOriginalResponseType0 | Unset = UNSET
+    error: bool | Unset = False
+    error_message: None | str | Unset = UNSET
+    status_code: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -62,6 +68,20 @@ class TokenCountResponse:
         else:
             original_response = self.original_response
 
+        error = self.error
+
+        error_message: None | str | Unset
+        if isinstance(self.error_message, Unset):
+            error_message = UNSET
+        else:
+            error_message = self.error_message
+
+        status_code: int | None | Unset
+        if isinstance(self.status_code, Unset):
+            status_code = UNSET
+        else:
+            status_code = self.status_code
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -73,6 +93,12 @@ class TokenCountResponse:
         })
         if original_response is not UNSET:
             field_dict["original_response"] = original_response
+        if error is not UNSET:
+            field_dict["error"] = error
+        if error_message is not UNSET:
+            field_dict["error_message"] = error_message
+        if status_code is not UNSET:
+            field_dict["status_code"] = status_code
 
         return field_dict
 
@@ -110,12 +136,37 @@ class TokenCountResponse:
         original_response = _parse_original_response(d.pop("original_response", UNSET))
 
 
+        error = d.pop("error", UNSET)
+
+        def _parse_error_message(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        error_message = _parse_error_message(d.pop("error_message", UNSET))
+
+
+        def _parse_status_code(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        status_code = _parse_status_code(d.pop("status_code", UNSET))
+
+
         token_count_response = cls(
             total_tokens=total_tokens,
             request_model=request_model,
             model_used=model_used,
             tokenizer_type=tokenizer_type,
             original_response=original_response,
+            error=error,
+            error_message=error_message,
+            status_code=status_code,
         )
 
 

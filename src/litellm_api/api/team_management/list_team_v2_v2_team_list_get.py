@@ -25,6 +25,7 @@ def _get_kwargs(
     page_size: int | Unset = 10,
     sort_by: None | str | Unset = UNSET,
     sort_order: str | Unset = 'asc',
+    status: None | str | Unset = UNSET,
 
 ) -> dict[str, Any]:
     
@@ -73,6 +74,13 @@ def _get_kwargs(
     params["sort_by"] = json_sort_by
 
     params["sort_order"] = sort_order
+
+    json_status: None | str | Unset
+    if isinstance(status, Unset):
+        json_status = UNSET
+    else:
+        json_status = status
+    params["status"] = json_status
 
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
@@ -130,9 +138,10 @@ def sync_detailed(
     page_size: int | Unset = 10,
     sort_by: None | str | Unset = UNSET,
     sort_order: str | Unset = 'asc',
+    status: None | str | Unset = UNSET,
 
 ) -> Response[HTTPValidationError | TeamListResponse]:
-    """ List Team V2
+    r""" List Team V2
 
      Get a paginated list of teams with filtering and sorting options.
 
@@ -153,6 +162,8 @@ def sync_detailed(
             Column to sort by (e.g. 'team_id', 'team_alias', 'created_at')
         sort_order: str
             Sort order ('asc' or 'desc')
+        status: Optional[str]
+            Filter by status. Currently supports \"deleted\" to query deleted teams.
 
     Args:
         user_id (None | str | Unset): Only return teams which this 'user_id' belongs to
@@ -166,6 +177,7 @@ def sync_detailed(
         sort_by (None | str | Unset): Column to sort by (e.g. 'team_id', 'team_alias',
             'created_at')
         sort_order (str | Unset): Sort order ('asc' or 'desc') Default: 'asc'.
+        status (None | str | Unset): Filter by status (e.g. 'deleted')
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -185,6 +197,7 @@ page=page,
 page_size=page_size,
 sort_by=sort_by,
 sort_order=sort_order,
+status=status,
 
     )
 
@@ -205,9 +218,10 @@ def sync(
     page_size: int | Unset = 10,
     sort_by: None | str | Unset = UNSET,
     sort_order: str | Unset = 'asc',
+    status: None | str | Unset = UNSET,
 
 ) -> HTTPValidationError | TeamListResponse | None:
-    """ List Team V2
+    r""" List Team V2
 
      Get a paginated list of teams with filtering and sorting options.
 
@@ -228,6 +242,8 @@ def sync(
             Column to sort by (e.g. 'team_id', 'team_alias', 'created_at')
         sort_order: str
             Sort order ('asc' or 'desc')
+        status: Optional[str]
+            Filter by status. Currently supports \"deleted\" to query deleted teams.
 
     Args:
         user_id (None | str | Unset): Only return teams which this 'user_id' belongs to
@@ -241,6 +257,7 @@ def sync(
         sort_by (None | str | Unset): Column to sort by (e.g. 'team_id', 'team_alias',
             'created_at')
         sort_order (str | Unset): Sort order ('asc' or 'desc') Default: 'asc'.
+        status (None | str | Unset): Filter by status (e.g. 'deleted')
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -261,6 +278,7 @@ page=page,
 page_size=page_size,
 sort_by=sort_by,
 sort_order=sort_order,
+status=status,
 
     ).parsed
 
@@ -275,9 +293,10 @@ async def asyncio_detailed(
     page_size: int | Unset = 10,
     sort_by: None | str | Unset = UNSET,
     sort_order: str | Unset = 'asc',
+    status: None | str | Unset = UNSET,
 
 ) -> Response[HTTPValidationError | TeamListResponse]:
-    """ List Team V2
+    r""" List Team V2
 
      Get a paginated list of teams with filtering and sorting options.
 
@@ -298,6 +317,8 @@ async def asyncio_detailed(
             Column to sort by (e.g. 'team_id', 'team_alias', 'created_at')
         sort_order: str
             Sort order ('asc' or 'desc')
+        status: Optional[str]
+            Filter by status. Currently supports \"deleted\" to query deleted teams.
 
     Args:
         user_id (None | str | Unset): Only return teams which this 'user_id' belongs to
@@ -311,6 +332,7 @@ async def asyncio_detailed(
         sort_by (None | str | Unset): Column to sort by (e.g. 'team_id', 'team_alias',
             'created_at')
         sort_order (str | Unset): Sort order ('asc' or 'desc') Default: 'asc'.
+        status (None | str | Unset): Filter by status (e.g. 'deleted')
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -330,6 +352,7 @@ page=page,
 page_size=page_size,
 sort_by=sort_by,
 sort_order=sort_order,
+status=status,
 
     )
 
@@ -350,9 +373,10 @@ async def asyncio(
     page_size: int | Unset = 10,
     sort_by: None | str | Unset = UNSET,
     sort_order: str | Unset = 'asc',
+    status: None | str | Unset = UNSET,
 
 ) -> HTTPValidationError | TeamListResponse | None:
-    """ List Team V2
+    r""" List Team V2
 
      Get a paginated list of teams with filtering and sorting options.
 
@@ -373,6 +397,8 @@ async def asyncio(
             Column to sort by (e.g. 'team_id', 'team_alias', 'created_at')
         sort_order: str
             Sort order ('asc' or 'desc')
+        status: Optional[str]
+            Filter by status. Currently supports \"deleted\" to query deleted teams.
 
     Args:
         user_id (None | str | Unset): Only return teams which this 'user_id' belongs to
@@ -386,6 +412,7 @@ async def asyncio(
         sort_by (None | str | Unset): Column to sort by (e.g. 'team_id', 'team_alias',
             'created_at')
         sort_order (str | Unset): Sort order ('asc' or 'desc') Default: 'asc'.
+        status (None | str | Unset): Filter by status (e.g. 'deleted')
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -406,5 +433,6 @@ page=page,
 page_size=page_size,
 sort_by=sort_by,
 sort_order=sort_order,
+status=status,
 
     )).parsed

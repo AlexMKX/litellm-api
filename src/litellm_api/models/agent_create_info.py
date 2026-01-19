@@ -50,8 +50,8 @@ class AgentCreateInfo:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.agent_create_info_litellm_params_template_type_0 import AgentCreateInfoLitellmParamsTemplateType0
         from ..models.agent_credential_field import AgentCredentialField
+        from ..models.agent_create_info_litellm_params_template_type_0 import AgentCreateInfoLitellmParamsTemplateType0
         agent_type = self.agent_type
 
         agent_type_display_name = self.agent_type_display_name

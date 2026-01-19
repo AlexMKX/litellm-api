@@ -40,8 +40,8 @@ class SSOSettingsResponse:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.sso_settings_response_values import SSOSettingsResponseValues
         from ..models.sso_settings_response_field_schema import SSOSettingsResponseFieldSchema
+        from ..models.sso_settings_response_values import SSOSettingsResponseValues
         values = self.values.to_dict()
 
         field_schema = self.field_schema.to_dict()

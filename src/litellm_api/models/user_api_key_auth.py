@@ -116,6 +116,8 @@ class UserAPIKeyAuth:
             user_tpm_limit (int | None | Unset):
             user_rpm_limit (int | None | Unset):
             user_email (None | str | Unset):
+            user_spend (float | None | Unset):
+            user_max_budget (float | None | Unset):
             request_route (None | str | Unset):
             user (Any | None | Unset):
      """
@@ -191,6 +193,8 @@ class UserAPIKeyAuth:
     user_tpm_limit: int | None | Unset = UNSET
     user_rpm_limit: int | None | Unset = UNSET
     user_email: None | str | Unset = UNSET
+    user_spend: float | None | Unset = UNSET
+    user_max_budget: float | None | Unset = UNSET
     request_route: None | str | Unset = UNSET
     user: Any | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -200,21 +204,21 @@ class UserAPIKeyAuth:
 
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.member import Member
+        from ..models.user_api_key_auth_tpm_limit_per_model_type_0 import UserAPIKeyAuthTpmLimitPerModelType0
+        from ..models.user_api_key_auth_model_spend import UserAPIKeyAuthModelSpend
+        from ..models.user_api_key_auth_team_metadata_type_0 import UserAPIKeyAuthTeamMetadataType0
+        from ..models.user_api_key_auth_team_model_aliases_type_0 import UserAPIKeyAuthTeamModelAliasesType0
+        from ..models.user_api_key_auth_model_max_budget import UserAPIKeyAuthModelMaxBudget
         from ..models.user_api_key_auth_litellm_budget_table_type_0 import UserAPIKeyAuthLitellmBudgetTableType0
+        from ..models.user_api_key_auth_organization_metadata_type_0 import UserAPIKeyAuthOrganizationMetadataType0
+        from ..models.user_api_key_auth_metadata import UserAPIKeyAuthMetadata
+        from ..models.user_api_key_auth_permissions import UserAPIKeyAuthPermissions
+        from ..models.user_api_key_auth_aliases import UserAPIKeyAuthAliases
         from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
         from ..models.user_api_key_auth_router_settings_type_0 import UserAPIKeyAuthRouterSettingsType0
-        from ..models.user_api_key_auth_rpm_limit_per_model_type_0 import UserAPIKeyAuthRpmLimitPerModelType0
-        from ..models.user_api_key_auth_team_model_aliases_type_0 import UserAPIKeyAuthTeamModelAliasesType0
-        from ..models.user_api_key_auth_aliases import UserAPIKeyAuthAliases
-        from ..models.user_api_key_auth_team_metadata_type_0 import UserAPIKeyAuthTeamMetadataType0
-        from ..models.user_api_key_auth_model_spend import UserAPIKeyAuthModelSpend
-        from ..models.user_api_key_auth_model_max_budget import UserAPIKeyAuthModelMaxBudget
-        from ..models.user_api_key_auth_metadata import UserAPIKeyAuthMetadata
-        from ..models.member import Member
         from ..models.user_api_key_auth_config import UserAPIKeyAuthConfig
-        from ..models.user_api_key_auth_permissions import UserAPIKeyAuthPermissions
-        from ..models.user_api_key_auth_tpm_limit_per_model_type_0 import UserAPIKeyAuthTpmLimitPerModelType0
-        from ..models.user_api_key_auth_organization_metadata_type_0 import UserAPIKeyAuthOrganizationMetadataType0
+        from ..models.user_api_key_auth_rpm_limit_per_model_type_0 import UserAPIKeyAuthRpmLimitPerModelType0
         token: None | str | Unset
         if isinstance(self.token, Unset):
             token = UNSET
@@ -659,6 +663,18 @@ class UserAPIKeyAuth:
         else:
             user_email = self.user_email
 
+        user_spend: float | None | Unset
+        if isinstance(self.user_spend, Unset):
+            user_spend = UNSET
+        else:
+            user_spend = self.user_spend
+
+        user_max_budget: float | None | Unset
+        if isinstance(self.user_max_budget, Unset):
+            user_max_budget = UNSET
+        else:
+            user_max_budget = self.user_max_budget
+
         request_route: None | str | Unset
         if isinstance(self.request_route, Unset):
             request_route = UNSET
@@ -818,6 +834,10 @@ class UserAPIKeyAuth:
             field_dict["user_rpm_limit"] = user_rpm_limit
         if user_email is not UNSET:
             field_dict["user_email"] = user_email
+        if user_spend is not UNSET:
+            field_dict["user_spend"] = user_spend
+        if user_max_budget is not UNSET:
+            field_dict["user_max_budget"] = user_max_budget
         if request_route is not UNSET:
             field_dict["request_route"] = request_route
         if user is not UNSET:
@@ -1703,6 +1723,26 @@ class UserAPIKeyAuth:
         user_email = _parse_user_email(d.pop("user_email", UNSET))
 
 
+        def _parse_user_spend(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        user_spend = _parse_user_spend(d.pop("user_spend", UNSET))
+
+
+        def _parse_user_max_budget(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        user_max_budget = _parse_user_max_budget(d.pop("user_max_budget", UNSET))
+
+
         def _parse_request_route(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -1795,6 +1835,8 @@ class UserAPIKeyAuth:
             user_tpm_limit=user_tpm_limit,
             user_rpm_limit=user_rpm_limit,
             user_email=user_email,
+            user_spend=user_spend,
+            user_max_budget=user_max_budget,
             request_route=request_route,
             user=user,
         )

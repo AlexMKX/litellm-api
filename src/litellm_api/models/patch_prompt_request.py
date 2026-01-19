@@ -40,8 +40,8 @@ class PatchPromptRequest:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.prompt_info import PromptInfo
         from ..models.prompt_lite_llm_params import PromptLiteLLMParams
+        from ..models.prompt_info import PromptInfo
         litellm_params: dict[str, Any] | None | Unset
         if isinstance(self.litellm_params, Unset):
             litellm_params = UNSET

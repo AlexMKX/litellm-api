@@ -46,8 +46,8 @@ class SCIMListResponse:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.scim_group import SCIMGroup
         from ..models.scim_user import SCIMUser
+        from ..models.scim_group import SCIMGroup
         total_results = self.total_results
 
         resources: list[dict[str, Any]]
