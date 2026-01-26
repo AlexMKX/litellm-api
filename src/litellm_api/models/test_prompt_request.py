@@ -42,8 +42,8 @@ class TestPromptRequest:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.test_prompt_request_prompt_variables_type_0 import TestPromptRequestPromptVariablesType0
         from ..models.test_prompt_request_conversation_history_type_0_item import TestPromptRequestConversationHistoryType0Item
+        from ..models.test_prompt_request_prompt_variables_type_0 import TestPromptRequestPromptVariablesType0
         dotprompt_content = self.dotprompt_content
 
         prompt_variables: dict[str, Any] | None | Unset

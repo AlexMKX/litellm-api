@@ -219,12 +219,12 @@ class LiteLLMParams:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.lite_llm_params_search_context_cost_per_query_type_0 import LiteLLMParamsSearchContextCostPerQueryType0
         from ..models.lite_llm_params_model_info_type_0 import LiteLLMParamsModelInfoType0
         from ..models.lite_llm_params_vertex_credentials_type_1 import LiteLLMParamsVertexCredentialsType1
-        from ..models.lite_llm_params_tiered_pricing_type_0_item import LiteLLMParamsTieredPricingType0Item
         from ..models.configurable_clientside_params_custom_auth import ConfigurableClientsideParamsCustomAuth
+        from ..models.lite_llm_params_search_context_cost_per_query_type_0 import LiteLLMParamsSearchContextCostPerQueryType0
         from ..models.model_response import ModelResponse
+        from ..models.lite_llm_params_tiered_pricing_type_0_item import LiteLLMParamsTieredPricingType0Item
         model = self.model
 
         input_cost_per_token: float | None | Unset

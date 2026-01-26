@@ -87,6 +87,8 @@ def sync_detailed(
 
      List all available vector stores with optional filtering and pagination.
     Combines both in-memory vector stores and those stored in the database.
+    Database is the source of truth - deleted stores are removed from memory, updated stores sync to
+    memory.
 
     Parameters:
     - page: int - Page number for pagination (default: 1)
@@ -128,6 +130,8 @@ def sync(
 
      List all available vector stores with optional filtering and pagination.
     Combines both in-memory vector stores and those stored in the database.
+    Database is the source of truth - deleted stores are removed from memory, updated stores sync to
+    memory.
 
     Parameters:
     - page: int - Page number for pagination (default: 1)
@@ -164,6 +168,8 @@ async def asyncio_detailed(
 
      List all available vector stores with optional filtering and pagination.
     Combines both in-memory vector stores and those stored in the database.
+    Database is the source of truth - deleted stores are removed from memory, updated stores sync to
+    memory.
 
     Parameters:
     - page: int - Page number for pagination (default: 1)
@@ -205,6 +211,8 @@ async def asyncio(
 
      List all available vector stores with optional filtering and pagination.
     Combines both in-memory vector stores and those stored in the database.
+    Database is the source of truth - deleted stores are removed from memory, updated stores sync to
+    memory.
 
     Parameters:
     - page: int - Page number for pagination (default: 1)

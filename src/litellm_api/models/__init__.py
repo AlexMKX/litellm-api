@@ -111,6 +111,7 @@ from .chat_completion_developer_message import ChatCompletionDeveloperMessage
 from .chat_completion_document_object import ChatCompletionDocumentObject
 from .chat_completion_file_object import ChatCompletionFileObject
 from .chat_completion_file_object_file import ChatCompletionFileObjectFile
+from .chat_completion_file_object_file_video_metadata import ChatCompletionFileObjectFileVideoMetadata
 from .chat_completion_function_message import ChatCompletionFunctionMessage
 from .chat_completion_image_object import ChatCompletionImageObject
 from .chat_completion_image_url_object import ChatCompletionImageUrlObject
@@ -140,6 +141,7 @@ from .chat_completion_video_object import ChatCompletionVideoObject
 from .chat_completion_video_url_object import ChatCompletionVideoUrlObject
 from .choice_logprobs import ChoiceLogprobs
 from .choices import Choices
+from .choices_finish_reason import ChoicesFinishReason
 from .choices_provider_specific_fields_type_0 import ChoicesProviderSpecificFieldsType0
 from .citations_object import CitationsObject
 from .cloud_zero_export_request import CloudZeroExportRequest
@@ -221,6 +223,7 @@ from .http_validation_error import HTTPValidationError
 from .hyperparameters import Hyperparameters
 from .image_url_list_item import ImageURLListItem
 from .image_url_object import ImageURLObject
+from .in_product_nudge_response import InProductNudgeResponse
 from .index_create_lite_llm_params import IndexCreateLiteLLMParams
 from .index_create_request import IndexCreateRequest
 from .index_create_request_index_info_type_0 import IndexCreateRequestIndexInfoType0
@@ -242,6 +245,7 @@ from .list_access_groups_response import ListAccessGroupsResponse
 from .list_fine_tuning_jobs_fine_tuning_jobs_get_custom_llm_provider_type_0 import ListFineTuningJobsFineTuningJobsGetCustomLlmProviderType0
 from .list_fine_tuning_jobs_v1_fine_tuning_jobs_get_custom_llm_provider_type_0 import ListFineTuningJobsV1FineTuningJobsGetCustomLlmProviderType0
 from .list_guardrails_response import ListGuardrailsResponse
+from .list_plugins_response import ListPluginsResponse
 from .list_prompts_response import ListPromptsResponse
 from .list_search_tools_response import ListSearchToolsResponse
 from .list_skills_response import ListSkillsResponse
@@ -406,6 +410,31 @@ from .per_user_analytics_response import PerUserAnalyticsResponse
 from .per_user_metrics import PerUserMetrics
 from .pii_action import PiiAction
 from .pii_entity_type import PiiEntityType
+from .plugin_author import PluginAuthor
+from .plugin_list_item import PluginListItem
+from .plugin_list_item_source import PluginListItemSource
+from .policy_attachment_create_request import PolicyAttachmentCreateRequest
+from .policy_attachment_db_response import PolicyAttachmentDBResponse
+from .policy_attachment_list_response import PolicyAttachmentListResponse
+from .policy_condition_request import PolicyConditionRequest
+from .policy_create_request import PolicyCreateRequest
+from .policy_db_response import PolicyDBResponse
+from .policy_db_response_condition_type_0 import PolicyDBResponseConditionType0
+from .policy_guardrails_response import PolicyGuardrailsResponse
+from .policy_info_response import PolicyInfoResponse
+from .policy_list_db_response import PolicyListDBResponse
+from .policy_list_response import PolicyListResponse
+from .policy_list_response_policies import PolicyListResponsePolicies
+from .policy_match_context import PolicyMatchContext
+from .policy_scope_response import PolicyScopeResponse
+from .policy_summary_item import PolicySummaryItem
+from .policy_test_response import PolicyTestResponse
+from .policy_update_request import PolicyUpdateRequest
+from .policy_validate_request import PolicyValidateRequest
+from .policy_validate_request_policies import PolicyValidateRequestPolicies
+from .policy_validation_error import PolicyValidationError
+from .policy_validation_error_type import PolicyValidationErrorType
+from .policy_validation_response import PolicyValidationResponse
 from .prompt import Prompt
 from .prompt_info import PromptInfo
 from .prompt_info_prompt_type import PromptInfoPromptType
@@ -439,6 +468,8 @@ from .public_model_hub_info_useful_links_type_0_additional_property_type_1 impor
 from .raw_request_typed_dict import RawRequestTypedDict
 from .raw_request_typed_dict_raw_request_body_type_0 import RawRequestTypedDictRawRequestBodyType0
 from .raw_request_typed_dict_raw_request_headers_type_0 import RawRequestTypedDictRawRequestHeadersType0
+from .register_plugin_request import RegisterPluginRequest
+from .register_plugin_request_source import RegisterPluginRequestSource
 from .response_lite_llm_managed_vector_store import ResponseLiteLLMManagedVectorStore
 from .retrieve_fine_tuning_job_fine_tuning_jobs_fine_tuning_job_id_get_custom_llm_provider_type_0 import RetrieveFineTuningJobFineTuningJobsFineTuningJobIdGetCustomLlmProviderType0
 from .retrieve_fine_tuning_job_v1_fine_tuning_jobs_fine_tuning_job_id_get_custom_llm_provider_type_0 import RetrieveFineTuningJobV1FineTuningJobsFineTuningJobIdGetCustomLlmProviderType0
@@ -700,6 +731,7 @@ __all__ = (
     "ChatCompletionDocumentObject",
     "ChatCompletionFileObject",
     "ChatCompletionFileObjectFile",
+    "ChatCompletionFileObjectFileVideoMetadata",
     "ChatCompletionFunctionMessage",
     "ChatCompletionImageObject",
     "ChatCompletionImageUrlObject",
@@ -729,6 +761,7 @@ __all__ = (
     "ChatCompletionVideoUrlObject",
     "ChoiceLogprobs",
     "Choices",
+    "ChoicesFinishReason",
     "ChoicesProviderSpecificFieldsType0",
     "CitationsObject",
     "CloudZeroExportRequest",
@@ -813,6 +846,7 @@ __all__ = (
     "IndexCreateLiteLLMParams",
     "IndexCreateRequest",
     "IndexCreateRequestIndexInfoType0",
+    "InProductNudgeResponse",
     "InputAudio",
     "InputAudioFormat",
     "InternalUserSettingsResponse",
@@ -831,6 +865,7 @@ __all__ = (
     "ListFineTuningJobsFineTuningJobsGetCustomLlmProviderType0",
     "ListFineTuningJobsV1FineTuningJobsGetCustomLlmProviderType0",
     "ListGuardrailsResponse",
+    "ListPluginsResponse",
     "ListPromptsResponse",
     "ListSearchToolsResponse",
     "ListSkillsResponse",
@@ -995,6 +1030,31 @@ __all__ = (
     "PerUserMetrics",
     "PiiAction",
     "PiiEntityType",
+    "PluginAuthor",
+    "PluginListItem",
+    "PluginListItemSource",
+    "PolicyAttachmentCreateRequest",
+    "PolicyAttachmentDBResponse",
+    "PolicyAttachmentListResponse",
+    "PolicyConditionRequest",
+    "PolicyCreateRequest",
+    "PolicyDBResponse",
+    "PolicyDBResponseConditionType0",
+    "PolicyGuardrailsResponse",
+    "PolicyInfoResponse",
+    "PolicyListDBResponse",
+    "PolicyListResponse",
+    "PolicyListResponsePolicies",
+    "PolicyMatchContext",
+    "PolicyScopeResponse",
+    "PolicySummaryItem",
+    "PolicyTestResponse",
+    "PolicyUpdateRequest",
+    "PolicyValidateRequest",
+    "PolicyValidateRequestPolicies",
+    "PolicyValidationError",
+    "PolicyValidationErrorType",
+    "PolicyValidationResponse",
     "Prompt",
     "PromptInfo",
     "PromptInfoPromptType",
@@ -1028,6 +1088,8 @@ __all__ = (
     "RawRequestTypedDict",
     "RawRequestTypedDictRawRequestBodyType0",
     "RawRequestTypedDictRawRequestHeadersType0",
+    "RegisterPluginRequest",
+    "RegisterPluginRequestSource",
     "ResponseLiteLLMManagedVectorStore",
     "RetrieveFineTuningJobFineTuningJobsFineTuningJobIdGetCustomLlmProviderType0",
     "RetrieveFineTuningJobV1FineTuningJobsFineTuningJobIdGetCustomLlmProviderType0",

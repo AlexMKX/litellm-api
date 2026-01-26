@@ -22,6 +22,7 @@ def _get_kwargs(
     only_model_access_groups: bool | None | Unset = False,
     include_metadata: bool | None | Unset = False,
     fallback_type: None | str | Unset = UNSET,
+    scope: None | str | Unset = UNSET,
 
 ) -> dict[str, Any]:
     
@@ -71,6 +72,13 @@ def _get_kwargs(
     else:
         json_fallback_type = fallback_type
     params["fallback_type"] = json_fallback_type
+
+    json_scope: None | str | Unset
+    if isinstance(scope, Unset):
+        json_scope = UNSET
+    else:
+        json_scope = scope
+    params["scope"] = json_scope
 
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
@@ -123,6 +131,7 @@ def sync_detailed(
     only_model_access_groups: bool | None | Unset = False,
     include_metadata: bool | None | Unset = False,
     fallback_type: None | str | Unset = UNSET,
+    scope: None | str | Unset = UNSET,
 
 ) -> Response[Any | HTTPValidationError]:
     r""" Model List
@@ -135,6 +144,9 @@ def sync_detailed(
     - include_metadata: Include additional metadata in the response with fallback information
     - fallback_type: Type of fallbacks to include (\"general\", \"context_window\", \"content_policy\")
                     Defaults to \"general\" when include_metadata=true
+    - scope: Optional scope parameter. Currently only accepts \"expand\".
+             When scope=expand is passed, proxy admins, team admins, and org admins
+             will receive all proxy models as if they are a proxy admin.
 
     Args:
         return_wildcard_routes (bool | None | Unset):  Default: False.
@@ -143,6 +155,7 @@ def sync_detailed(
         only_model_access_groups (bool | None | Unset):  Default: False.
         include_metadata (bool | None | Unset):  Default: False.
         fallback_type (None | str | Unset):
+        scope (None | str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -160,6 +173,7 @@ include_model_access_groups=include_model_access_groups,
 only_model_access_groups=only_model_access_groups,
 include_metadata=include_metadata,
 fallback_type=fallback_type,
+scope=scope,
 
     )
 
@@ -178,6 +192,7 @@ def sync(
     only_model_access_groups: bool | None | Unset = False,
     include_metadata: bool | None | Unset = False,
     fallback_type: None | str | Unset = UNSET,
+    scope: None | str | Unset = UNSET,
 
 ) -> Any | HTTPValidationError | None:
     r""" Model List
@@ -190,6 +205,9 @@ def sync(
     - include_metadata: Include additional metadata in the response with fallback information
     - fallback_type: Type of fallbacks to include (\"general\", \"context_window\", \"content_policy\")
                     Defaults to \"general\" when include_metadata=true
+    - scope: Optional scope parameter. Currently only accepts \"expand\".
+             When scope=expand is passed, proxy admins, team admins, and org admins
+             will receive all proxy models as if they are a proxy admin.
 
     Args:
         return_wildcard_routes (bool | None | Unset):  Default: False.
@@ -198,6 +216,7 @@ def sync(
         only_model_access_groups (bool | None | Unset):  Default: False.
         include_metadata (bool | None | Unset):  Default: False.
         fallback_type (None | str | Unset):
+        scope (None | str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -216,6 +235,7 @@ include_model_access_groups=include_model_access_groups,
 only_model_access_groups=only_model_access_groups,
 include_metadata=include_metadata,
 fallback_type=fallback_type,
+scope=scope,
 
     ).parsed
 
@@ -228,6 +248,7 @@ async def asyncio_detailed(
     only_model_access_groups: bool | None | Unset = False,
     include_metadata: bool | None | Unset = False,
     fallback_type: None | str | Unset = UNSET,
+    scope: None | str | Unset = UNSET,
 
 ) -> Response[Any | HTTPValidationError]:
     r""" Model List
@@ -240,6 +261,9 @@ async def asyncio_detailed(
     - include_metadata: Include additional metadata in the response with fallback information
     - fallback_type: Type of fallbacks to include (\"general\", \"context_window\", \"content_policy\")
                     Defaults to \"general\" when include_metadata=true
+    - scope: Optional scope parameter. Currently only accepts \"expand\".
+             When scope=expand is passed, proxy admins, team admins, and org admins
+             will receive all proxy models as if they are a proxy admin.
 
     Args:
         return_wildcard_routes (bool | None | Unset):  Default: False.
@@ -248,6 +272,7 @@ async def asyncio_detailed(
         only_model_access_groups (bool | None | Unset):  Default: False.
         include_metadata (bool | None | Unset):  Default: False.
         fallback_type (None | str | Unset):
+        scope (None | str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -265,6 +290,7 @@ include_model_access_groups=include_model_access_groups,
 only_model_access_groups=only_model_access_groups,
 include_metadata=include_metadata,
 fallback_type=fallback_type,
+scope=scope,
 
     )
 
@@ -283,6 +309,7 @@ async def asyncio(
     only_model_access_groups: bool | None | Unset = False,
     include_metadata: bool | None | Unset = False,
     fallback_type: None | str | Unset = UNSET,
+    scope: None | str | Unset = UNSET,
 
 ) -> Any | HTTPValidationError | None:
     r""" Model List
@@ -295,6 +322,9 @@ async def asyncio(
     - include_metadata: Include additional metadata in the response with fallback information
     - fallback_type: Type of fallbacks to include (\"general\", \"context_window\", \"content_policy\")
                     Defaults to \"general\" when include_metadata=true
+    - scope: Optional scope parameter. Currently only accepts \"expand\".
+             When scope=expand is passed, proxy admins, team admins, and org admins
+             will receive all proxy models as if they are a proxy admin.
 
     Args:
         return_wildcard_routes (bool | None | Unset):  Default: False.
@@ -303,6 +333,7 @@ async def asyncio(
         only_model_access_groups (bool | None | Unset):  Default: False.
         include_metadata (bool | None | Unset):  Default: False.
         fallback_type (None | str | Unset):
+        scope (None | str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -321,5 +352,6 @@ include_model_access_groups=include_model_access_groups,
 only_model_access_groups=only_model_access_groups,
 include_metadata=include_metadata,
 fallback_type=fallback_type,
+scope=scope,
 
     )).parsed

@@ -9,7 +9,10 @@ from attrs import field as _attrs_field
 from ..types import UNSET, Unset
 
 from ..types import UNSET, Unset
+from typing import cast
 
+if TYPE_CHECKING:
+  from ..models.chat_completion_file_object_file_video_metadata import ChatCompletionFileObjectFileVideoMetadata
 
 
 
@@ -27,12 +30,16 @@ class ChatCompletionFileObjectFile:
             file_id (str | Unset):
             filename (str | Unset):
             format_ (str | Unset):
+            detail (str | Unset):
+            video_metadata (ChatCompletionFileObjectFileVideoMetadata | Unset):
      """
 
     file_data: str | Unset = UNSET
     file_id: str | Unset = UNSET
     filename: str | Unset = UNSET
     format_: str | Unset = UNSET
+    detail: str | Unset = UNSET
+    video_metadata: ChatCompletionFileObjectFileVideoMetadata | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -40,6 +47,7 @@ class ChatCompletionFileObjectFile:
 
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.chat_completion_file_object_file_video_metadata import ChatCompletionFileObjectFileVideoMetadata
         file_data = self.file_data
 
         file_id = self.file_id
@@ -47,6 +55,12 @@ class ChatCompletionFileObjectFile:
         filename = self.filename
 
         format_ = self.format_
+
+        detail = self.detail
+
+        video_metadata: dict[str, Any] | Unset = UNSET
+        if not isinstance(self.video_metadata, Unset):
+            video_metadata = self.video_metadata.to_dict()
 
 
         field_dict: dict[str, Any] = {}
@@ -61,6 +75,10 @@ class ChatCompletionFileObjectFile:
             field_dict["filename"] = filename
         if format_ is not UNSET:
             field_dict["format"] = format_
+        if detail is not UNSET:
+            field_dict["detail"] = detail
+        if video_metadata is not UNSET:
+            field_dict["video_metadata"] = video_metadata
 
         return field_dict
 
@@ -68,6 +86,7 @@ class ChatCompletionFileObjectFile:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.chat_completion_file_object_file_video_metadata import ChatCompletionFileObjectFileVideoMetadata
         d = dict(src_dict)
         file_data = d.pop("file_data", UNSET)
 
@@ -77,11 +96,25 @@ class ChatCompletionFileObjectFile:
 
         format_ = d.pop("format", UNSET)
 
+        detail = d.pop("detail", UNSET)
+
+        _video_metadata = d.pop("video_metadata", UNSET)
+        video_metadata: ChatCompletionFileObjectFileVideoMetadata | Unset
+        if isinstance(_video_metadata,  Unset):
+            video_metadata = UNSET
+        else:
+            video_metadata = ChatCompletionFileObjectFileVideoMetadata.from_dict(_video_metadata)
+
+
+
+
         chat_completion_file_object_file = cls(
             file_data=file_data,
             file_id=file_id,
             filename=filename,
             format_=format_,
+            detail=detail,
+            video_metadata=video_metadata,
         )
 
 

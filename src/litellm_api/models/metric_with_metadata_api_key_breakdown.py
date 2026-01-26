@@ -52,8 +52,8 @@ class MetricWithMetadataApiKeyBreakdown:
         )
 
 
-        from ..models.key_metadata import KeyMetadata
         from ..models.spend_metrics import SpendMetrics
+        from ..models.key_metadata import KeyMetadata
         additional_properties = {}
         for prop_name, prop_dict in d.items():
             additional_property = KeyMetricWithMetadata.from_dict(prop_dict)

@@ -81,12 +81,12 @@ class AgentCard:
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.agent_card_security_type_0_item import AgentCardSecurityType0Item
-        from ..models.agent_skill import AgentSkill
         from ..models.agent_interface import AgentInterface
-        from ..models.agent_provider import AgentProvider
         from ..models.agent_card_security_schemes_type_0 import AgentCardSecuritySchemesType0
-        from ..models.agent_card_signature import AgentCardSignature
+        from ..models.agent_skill import AgentSkill
+        from ..models.agent_provider import AgentProvider
         from ..models.agent_capabilities import AgentCapabilities
+        from ..models.agent_card_signature import AgentCardSignature
         protocol_version = self.protocol_version
 
         name = self.name

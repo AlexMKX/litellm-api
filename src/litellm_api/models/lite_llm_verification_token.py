@@ -122,14 +122,14 @@ class LiteLLMVerificationToken:
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.lite_llm_verification_token_litellm_budget_table_type_0 import LiteLLMVerificationTokenLitellmBudgetTableType0
-        from ..models.lite_llm_verification_token_model_max_budget import LiteLLMVerificationTokenModelMaxBudget
-        from ..models.lite_llm_verification_token_model_spend import LiteLLMVerificationTokenModelSpend
-        from ..models.lite_llm_verification_token_config import LiteLLMVerificationTokenConfig
         from ..models.lite_llm_verification_token_metadata import LiteLLMVerificationTokenMetadata
+        from ..models.lite_llm_verification_token_aliases import LiteLLMVerificationTokenAliases
         from ..models.lite_llm_verification_token_permissions import LiteLLMVerificationTokenPermissions
         from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
-        from ..models.lite_llm_verification_token_aliases import LiteLLMVerificationTokenAliases
+        from ..models.lite_llm_verification_token_model_spend import LiteLLMVerificationTokenModelSpend
         from ..models.lite_llm_verification_token_router_settings_type_0 import LiteLLMVerificationTokenRouterSettingsType0
+        from ..models.lite_llm_verification_token_config import LiteLLMVerificationTokenConfig
+        from ..models.lite_llm_verification_token_model_max_budget import LiteLLMVerificationTokenModelMaxBudget
         token: None | str | Unset
         if isinstance(self.token, Unset):
             token = UNSET

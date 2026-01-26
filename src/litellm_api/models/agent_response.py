@@ -54,8 +54,8 @@ class AgentResponse:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.agent_response_agent_card_params import AgentResponseAgentCardParams
         from ..models.agent_response_litellm_params_type_0 import AgentResponseLitellmParamsType0
+        from ..models.agent_response_agent_card_params import AgentResponseAgentCardParams
         agent_id = self.agent_id
 
         agent_name = self.agent_name

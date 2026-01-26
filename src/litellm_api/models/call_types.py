@@ -89,6 +89,7 @@ class CallTypes(str, Enum):
     LIST_CONTAINERS = "list_containers"
     LIST_CONTAINER_FILES = "list_container_files"
     LIST_FINE_TUNING_JOBS = "list_fine_tuning_jobs"
+    LIST_MCP_TOOLS = "list_mcp_tools"
     LLM_PASSTHROUGH_ROUTE = "llm_passthrough_route"
     MODERATION = "moderation"
     OCR = "ocr"

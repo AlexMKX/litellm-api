@@ -8,6 +8,7 @@ from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..models.choices_finish_reason import ChoicesFinishReason
 from ..types import UNSET, Unset
 from typing import cast
 
@@ -28,14 +29,14 @@ T = TypeVar("T", bound="Choices")
 class Choices:
     """ 
         Attributes:
-            finish_reason (str):
+            finish_reason (ChoicesFinishReason):
             index (int):
             message (Message):
             logprobs (Any | ChoiceLogprobs | None | Unset):
             provider_specific_fields (ChoicesProviderSpecificFieldsType0 | None | Unset):
      """
 
-    finish_reason: str
+    finish_reason: ChoicesFinishReason
     index: int
     message: Message
     logprobs: Any | ChoiceLogprobs | None | Unset = UNSET
@@ -48,9 +49,9 @@ class Choices:
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.message import Message
-        from ..models.choices_provider_specific_fields_type_0 import ChoicesProviderSpecificFieldsType0
         from ..models.choice_logprobs import ChoiceLogprobs
-        finish_reason = self.finish_reason
+        from ..models.choices_provider_specific_fields_type_0 import ChoicesProviderSpecificFieldsType0
+        finish_reason = self.finish_reason.value
 
         index = self.index
 
@@ -95,7 +96,10 @@ class Choices:
         from ..models.choices_provider_specific_fields_type_0 import ChoicesProviderSpecificFieldsType0
         from ..models.message import Message
         d = dict(src_dict)
-        finish_reason = d.pop("finish_reason")
+        finish_reason = ChoicesFinishReason(d.pop("finish_reason"))
+
+
+
 
         index = d.pop("index")
 

@@ -204,21 +204,21 @@ class UserAPIKeyAuth:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.member import Member
-        from ..models.user_api_key_auth_tpm_limit_per_model_type_0 import UserAPIKeyAuthTpmLimitPerModelType0
-        from ..models.user_api_key_auth_model_spend import UserAPIKeyAuthModelSpend
-        from ..models.user_api_key_auth_team_metadata_type_0 import UserAPIKeyAuthTeamMetadataType0
-        from ..models.user_api_key_auth_team_model_aliases_type_0 import UserAPIKeyAuthTeamModelAliasesType0
-        from ..models.user_api_key_auth_model_max_budget import UserAPIKeyAuthModelMaxBudget
-        from ..models.user_api_key_auth_litellm_budget_table_type_0 import UserAPIKeyAuthLitellmBudgetTableType0
-        from ..models.user_api_key_auth_organization_metadata_type_0 import UserAPIKeyAuthOrganizationMetadataType0
-        from ..models.user_api_key_auth_metadata import UserAPIKeyAuthMetadata
-        from ..models.user_api_key_auth_permissions import UserAPIKeyAuthPermissions
         from ..models.user_api_key_auth_aliases import UserAPIKeyAuthAliases
-        from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
-        from ..models.user_api_key_auth_router_settings_type_0 import UserAPIKeyAuthRouterSettingsType0
-        from ..models.user_api_key_auth_config import UserAPIKeyAuthConfig
+        from ..models.user_api_key_auth_organization_metadata_type_0 import UserAPIKeyAuthOrganizationMetadataType0
+        from ..models.member import Member
+        from ..models.user_api_key_auth_team_model_aliases_type_0 import UserAPIKeyAuthTeamModelAliasesType0
+        from ..models.user_api_key_auth_tpm_limit_per_model_type_0 import UserAPIKeyAuthTpmLimitPerModelType0
+        from ..models.user_api_key_auth_permissions import UserAPIKeyAuthPermissions
+        from ..models.user_api_key_auth_model_spend import UserAPIKeyAuthModelSpend
+        from ..models.user_api_key_auth_litellm_budget_table_type_0 import UserAPIKeyAuthLitellmBudgetTableType0
         from ..models.user_api_key_auth_rpm_limit_per_model_type_0 import UserAPIKeyAuthRpmLimitPerModelType0
+        from ..models.user_api_key_auth_config import UserAPIKeyAuthConfig
+        from ..models.user_api_key_auth_model_max_budget import UserAPIKeyAuthModelMaxBudget
+        from ..models.user_api_key_auth_team_metadata_type_0 import UserAPIKeyAuthTeamMetadataType0
+        from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
+        from ..models.user_api_key_auth_metadata import UserAPIKeyAuthMetadata
+        from ..models.user_api_key_auth_router_settings_type_0 import UserAPIKeyAuthRouterSettingsType0
         token: None | str | Unset
         if isinstance(self.token, Unset):
             token = UNSET

@@ -43,8 +43,8 @@ class MetricWithMetadata:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.metric_with_metadata_api_key_breakdown import MetricWithMetadataApiKeyBreakdown
         from ..models.spend_metrics import SpendMetrics
+        from ..models.metric_with_metadata_api_key_breakdown import MetricWithMetadataApiKeyBreakdown
         from ..models.metric_with_metadata_metadata import MetricWithMetadataMetadata
         metrics = self.metrics.to_dict()
 

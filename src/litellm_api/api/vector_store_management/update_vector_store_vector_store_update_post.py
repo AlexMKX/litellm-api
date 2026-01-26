@@ -76,7 +76,8 @@ def sync_detailed(
 ) -> Response[Any | HTTPValidationError]:
     """ Update Vector Store
 
-     Update vector store details
+     Update vector store details in both database and in-memory registry.
+    The updated data is immediately synchronized to the in-memory registry.
 
     Args:
         body (VectorStoreUpdateRequest):
@@ -109,7 +110,8 @@ def sync(
 ) -> Any | HTTPValidationError | None:
     """ Update Vector Store
 
-     Update vector store details
+     Update vector store details in both database and in-memory registry.
+    The updated data is immediately synchronized to the in-memory registry.
 
     Args:
         body (VectorStoreUpdateRequest):
@@ -137,7 +139,8 @@ async def asyncio_detailed(
 ) -> Response[Any | HTTPValidationError]:
     """ Update Vector Store
 
-     Update vector store details
+     Update vector store details in both database and in-memory registry.
+    The updated data is immediately synchronized to the in-memory registry.
 
     Args:
         body (VectorStoreUpdateRequest):
@@ -170,7 +173,8 @@ async def asyncio(
 ) -> Any | HTTPValidationError | None:
     """ Update Vector Store
 
-     Update vector store details
+     Update vector store details in both database and in-memory registry.
+    The updated data is immediately synchronized to the in-memory registry.
 
     Args:
         body (VectorStoreUpdateRequest):

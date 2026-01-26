@@ -83,8 +83,8 @@ class BaseLitellmParams:
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.base_litellm_params_detect_secrets_config_type_0 import BaseLitellmParamsDetectSecretsConfigType0
-        from ..models.lakera_category_thresholds import LakeraCategoryThresholds
         from ..models.base_litellm_params_additional_provider_specific_params_type_0 import BaseLitellmParamsAdditionalProviderSpecificParamsType0
+        from ..models.lakera_category_thresholds import LakeraCategoryThresholds
         api_key: None | str | Unset
         if isinstance(self.api_key, Unset):
             api_key = UNSET

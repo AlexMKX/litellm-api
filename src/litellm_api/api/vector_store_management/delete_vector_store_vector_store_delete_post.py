@@ -76,7 +76,7 @@ def sync_detailed(
 ) -> Response[Any | HTTPValidationError]:
     """ Delete Vector Store
 
-     Delete a vector store.
+     Delete a vector store from both database and in-memory registry.
 
     Parameters:
     - vector_store_id: str - ID of the vector store to delete
@@ -112,7 +112,7 @@ def sync(
 ) -> Any | HTTPValidationError | None:
     """ Delete Vector Store
 
-     Delete a vector store.
+     Delete a vector store from both database and in-memory registry.
 
     Parameters:
     - vector_store_id: str - ID of the vector store to delete
@@ -143,7 +143,7 @@ async def asyncio_detailed(
 ) -> Response[Any | HTTPValidationError]:
     """ Delete Vector Store
 
-     Delete a vector store.
+     Delete a vector store from both database and in-memory registry.
 
     Parameters:
     - vector_store_id: str - ID of the vector store to delete
@@ -179,7 +179,7 @@ async def asyncio(
 ) -> Any | HTTPValidationError | None:
     """ Delete Vector Store
 
-     Delete a vector store.
+     Delete a vector store from both database and in-memory registry.
 
     Parameters:
     - vector_store_id: str - ID of the vector store to delete

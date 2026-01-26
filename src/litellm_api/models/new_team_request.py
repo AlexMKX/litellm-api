@@ -54,6 +54,7 @@ class NewTeamRequest:
             model_aliases (NewTeamRequestModelAliasesType0 | None | Unset):
             tags (list[Any] | None | Unset):
             guardrails (list[str] | None | Unset):
+            policies (list[str] | None | Unset):
             prompts (list[str] | None | Unset):
             object_permission (LiteLLMObjectPermissionBase | None | Unset):
             allowed_passthrough_routes (list[Any] | None | Unset):
@@ -87,6 +88,7 @@ class NewTeamRequest:
     model_aliases: NewTeamRequestModelAliasesType0 | None | Unset = UNSET
     tags: list[Any] | None | Unset = UNSET
     guardrails: list[str] | None | Unset = UNSET
+    policies: list[str] | None | Unset = UNSET
     prompts: list[str] | None | Unset = UNSET
     object_permission: LiteLLMObjectPermissionBase | None | Unset = UNSET
     allowed_passthrough_routes: list[Any] | None | Unset = UNSET
@@ -107,15 +109,15 @@ class NewTeamRequest:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.member import Member
-        from ..models.allowed_vector_store_index_item import AllowedVectorStoreIndexItem
         from ..models.new_team_request_router_settings_type_0 import NewTeamRequestRouterSettingsType0
-        from ..models.new_team_request_model_rpm_limit_type_0 import NewTeamRequestModelRpmLimitType0
-        from ..models.new_team_request_model_tpm_limit_type_0 import NewTeamRequestModelTpmLimitType0
-        from ..models.new_team_request_secret_manager_settings_type_0 import NewTeamRequestSecretManagerSettingsType0
-        from ..models.new_team_request_model_aliases_type_0 import NewTeamRequestModelAliasesType0
-        from ..models.new_team_request_metadata_type_0 import NewTeamRequestMetadataType0
         from ..models.lite_llm_object_permission_base import LiteLLMObjectPermissionBase
+        from ..models.new_team_request_secret_manager_settings_type_0 import NewTeamRequestSecretManagerSettingsType0
+        from ..models.new_team_request_model_tpm_limit_type_0 import NewTeamRequestModelTpmLimitType0
+        from ..models.new_team_request_model_rpm_limit_type_0 import NewTeamRequestModelRpmLimitType0
+        from ..models.new_team_request_metadata_type_0 import NewTeamRequestMetadataType0
+        from ..models.new_team_request_model_aliases_type_0 import NewTeamRequestModelAliasesType0
+        from ..models.allowed_vector_store_index_item import AllowedVectorStoreIndexItem
+        from ..models.member import Member
         team_alias: None | str | Unset
         if isinstance(self.team_alias, Unset):
             team_alias = UNSET
@@ -240,6 +242,16 @@ class NewTeamRequest:
 
         else:
             guardrails = self.guardrails
+
+        policies: list[str] | None | Unset
+        if isinstance(self.policies, Unset):
+            policies = UNSET
+        elif isinstance(self.policies, list):
+            policies = self.policies
+
+
+        else:
+            policies = self.policies
 
         prompts: list[str] | None | Unset
         if isinstance(self.prompts, Unset):
@@ -387,6 +399,8 @@ class NewTeamRequest:
             field_dict["tags"] = tags
         if guardrails is not UNSET:
             field_dict["guardrails"] = guardrails
+        if policies is not UNSET:
+            field_dict["policies"] = policies
         if prompts is not UNSET:
             field_dict["prompts"] = prompts
         if object_permission is not UNSET:
@@ -637,6 +651,24 @@ class NewTeamRequest:
         guardrails = _parse_guardrails(d.pop("guardrails", UNSET))
 
 
+        def _parse_policies(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                policies_type_0 = cast(list[str], data)
+
+                return policies_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        policies = _parse_policies(d.pop("policies", UNSET))
+
+
         def _parse_prompts(data: object) -> list[str] | None | Unset:
             if data is None:
                 return data
@@ -877,6 +909,7 @@ class NewTeamRequest:
             model_aliases=model_aliases,
             tags=tags,
             guardrails=guardrails,
+            policies=policies,
             prompts=prompts,
             object_permission=object_permission,
             allowed_passthrough_routes=allowed_passthrough_routes,

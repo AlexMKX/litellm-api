@@ -53,8 +53,8 @@ class GuardrailInfoResponse:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.guardrail_info_response_guardrail_info_type_0 import GuardrailInfoResponseGuardrailInfoType0
         from ..models.base_litellm_params import BaseLitellmParams
+        from ..models.guardrail_info_response_guardrail_info_type_0 import GuardrailInfoResponseGuardrailInfoType0
         guardrail_name = self.guardrail_name
 
         guardrail_id: None | str | Unset

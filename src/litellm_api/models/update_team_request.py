@@ -44,6 +44,7 @@ class UpdateTeamRequest:
     blocked: Optional[bool] = None
     budget_duration: Optional[str] = None
     guardrails: Optional[List[str]] = None
+    policies: Optional[List[str]] = None
 
         Attributes:
             team_id (str):
@@ -59,6 +60,7 @@ class UpdateTeamRequest:
             tags (list[Any] | None | Unset):
             model_aliases (None | Unset | UpdateTeamRequestModelAliasesType0):
             guardrails (list[str] | None | Unset):
+            policies (list[str] | None | Unset):
             object_permission (LiteLLMObjectPermissionBase | None | Unset):
             team_member_budget (float | None | Unset):
             team_member_budget_duration (None | str | Unset):
@@ -87,6 +89,7 @@ class UpdateTeamRequest:
     tags: list[Any] | None | Unset = UNSET
     model_aliases: None | Unset | UpdateTeamRequestModelAliasesType0 = UNSET
     guardrails: list[str] | None | Unset = UNSET
+    policies: list[str] | None | Unset = UNSET
     object_permission: LiteLLMObjectPermissionBase | None | Unset = UNSET
     team_member_budget: float | None | Unset = UNSET
     team_member_budget_duration: None | str | Unset = UNSET
@@ -107,14 +110,14 @@ class UpdateTeamRequest:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.allowed_vector_store_index_item import AllowedVectorStoreIndexItem
-        from ..models.update_team_request_secret_manager_settings_type_0 import UpdateTeamRequestSecretManagerSettingsType0
-        from ..models.update_team_request_model_rpm_limit_type_0 import UpdateTeamRequestModelRpmLimitType0
-        from ..models.update_team_request_metadata_type_0 import UpdateTeamRequestMetadataType0
-        from ..models.update_team_request_model_tpm_limit_type_0 import UpdateTeamRequestModelTpmLimitType0
-        from ..models.update_team_request_model_aliases_type_0 import UpdateTeamRequestModelAliasesType0
-        from ..models.update_team_request_router_settings_type_0 import UpdateTeamRequestRouterSettingsType0
         from ..models.lite_llm_object_permission_base import LiteLLMObjectPermissionBase
+        from ..models.update_team_request_model_aliases_type_0 import UpdateTeamRequestModelAliasesType0
+        from ..models.update_team_request_metadata_type_0 import UpdateTeamRequestMetadataType0
+        from ..models.update_team_request_secret_manager_settings_type_0 import UpdateTeamRequestSecretManagerSettingsType0
+        from ..models.update_team_request_router_settings_type_0 import UpdateTeamRequestRouterSettingsType0
+        from ..models.update_team_request_model_rpm_limit_type_0 import UpdateTeamRequestModelRpmLimitType0
+        from ..models.allowed_vector_store_index_item import AllowedVectorStoreIndexItem
+        from ..models.update_team_request_model_tpm_limit_type_0 import UpdateTeamRequestModelTpmLimitType0
         team_id = self.team_id
 
         team_alias: None | str | Unset
@@ -204,6 +207,16 @@ class UpdateTeamRequest:
 
         else:
             guardrails = self.guardrails
+
+        policies: list[str] | None | Unset
+        if isinstance(self.policies, Unset):
+            policies = UNSET
+        elif isinstance(self.policies, list):
+            policies = self.policies
+
+
+        else:
+            policies = self.policies
 
         object_permission: dict[str, Any] | None | Unset
         if isinstance(self.object_permission, Unset):
@@ -338,6 +351,8 @@ class UpdateTeamRequest:
             field_dict["model_aliases"] = model_aliases
         if guardrails is not UNSET:
             field_dict["guardrails"] = guardrails
+        if policies is not UNSET:
+            field_dict["policies"] = policies
         if object_permission is not UNSET:
             field_dict["object_permission"] = object_permission
         if team_member_budget is not UNSET:
@@ -544,6 +559,24 @@ class UpdateTeamRequest:
             return cast(list[str] | None | Unset, data)
 
         guardrails = _parse_guardrails(d.pop("guardrails", UNSET))
+
+
+        def _parse_policies(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                policies_type_0 = cast(list[str], data)
+
+                return policies_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        policies = _parse_policies(d.pop("policies", UNSET))
 
 
         def _parse_object_permission(data: object) -> LiteLLMObjectPermissionBase | None | Unset:
@@ -771,6 +804,7 @@ class UpdateTeamRequest:
             tags=tags,
             model_aliases=model_aliases,
             guardrails=guardrails,
+            policies=policies,
             object_permission=object_permission,
             team_member_budget=team_member_budget,
             team_member_budget_duration=team_member_budget_duration,

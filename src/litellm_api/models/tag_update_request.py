@@ -60,8 +60,8 @@ class TagUpdateRequest:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.tag_update_request_model_max_budget_type_0 import TagUpdateRequestModelMaxBudgetType0
         from ..models.tag_update_request_model_info_type_0 import TagUpdateRequestModelInfoType0
+        from ..models.tag_update_request_model_max_budget_type_0 import TagUpdateRequestModelMaxBudgetType0
         name = self.name
 
         description: None | str | Unset

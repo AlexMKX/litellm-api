@@ -49,8 +49,8 @@ class SearchToolInfoResponse:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.search_tool_info_response_litellm_params import SearchToolInfoResponseLitellmParams
         from ..models.search_tool_info_response_search_tool_info_type_0 import SearchToolInfoResponseSearchToolInfoType0
+        from ..models.search_tool_info_response_litellm_params import SearchToolInfoResponseLitellmParams
         search_tool_id: None | str | Unset
         if isinstance(self.search_tool_id, Unset):
             search_tool_id = UNSET
