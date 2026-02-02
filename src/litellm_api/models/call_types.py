@@ -1,6 +1,7 @@
 from enum import Enum
 
 class CallTypes(str, Enum):
+    ACANCEL_BATCH = "acancel_batch"
     ACANCEL_FINE_TUNING_JOB = "acancel_fine_tuning_job"
     ACOMPLETION = "acompletion"
     ACREATE_ASSISTANTS = "acreate_assistants"
@@ -63,6 +64,7 @@ class CallTypes(str, Enum):
     AVIDEO_RETRIEVE_JOB = "avideo_retrieve_job"
     A_ADD_MESSAGE = "a_add_message"
     CALL_MCP_TOOL = "call_mcp_tool"
+    CANCEL_BATCH = "cancel_batch"
     CANCEL_FINE_TUNING_JOB = "cancel_fine_tuning_job"
     COMPLETION = "completion"
     CREATE_ASSISTANTS = "create_assistants"

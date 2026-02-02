@@ -32,6 +32,7 @@ def _get_kwargs(
     key_alias: None | str | Unset = UNSET,
     end_user: None | str | Unset = UNSET,
     error_code: None | str | Unset = UNSET,
+    error_message: None | str | Unset = UNSET,
 
 ) -> dict[str, Any]:
     
@@ -135,6 +136,13 @@ def _get_kwargs(
         json_error_code = error_code
     params["error_code"] = json_error_code
 
+    json_error_message: None | str | Unset
+    if isinstance(error_message, Unset):
+        json_error_message = UNSET
+    else:
+        json_error_message = error_message
+    params["error_message"] = json_error_message
+
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
@@ -198,6 +206,7 @@ def sync_detailed(
     key_alias: None | str | Unset = UNSET,
     end_user: None | str | Unset = UNSET,
     error_code: None | str | Unset = UNSET,
+    error_message: None | str | Unset = UNSET,
 
 ) -> Response[HTTPValidationError | UiViewSpendLogsSpendLogsV2GetResponse200UiViewSpendLogsSpendLogsV2Get]:
     r""" Ui View Spend Logs
@@ -230,6 +239,7 @@ def sync_detailed(
         key_alias (None | str | Unset): Filter logs by key alias
         end_user (None | str | Unset): Filter logs by end user
         error_code (None | str | Unset): Filter logs by error code (e.g., '404', '500')
+        error_message (None | str | Unset): Filter logs by error message (partial string match)
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -256,6 +266,7 @@ model=model,
 key_alias=key_alias,
 end_user=end_user,
 error_code=error_code,
+error_message=error_message,
 
     )
 
@@ -283,6 +294,7 @@ def sync(
     key_alias: None | str | Unset = UNSET,
     end_user: None | str | Unset = UNSET,
     error_code: None | str | Unset = UNSET,
+    error_message: None | str | Unset = UNSET,
 
 ) -> HTTPValidationError | UiViewSpendLogsSpendLogsV2GetResponse200UiViewSpendLogsSpendLogsV2Get | None:
     r""" Ui View Spend Logs
@@ -315,6 +327,7 @@ def sync(
         key_alias (None | str | Unset): Filter logs by key alias
         end_user (None | str | Unset): Filter logs by end user
         error_code (None | str | Unset): Filter logs by error code (e.g., '404', '500')
+        error_message (None | str | Unset): Filter logs by error message (partial string match)
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -342,6 +355,7 @@ model=model,
 key_alias=key_alias,
 end_user=end_user,
 error_code=error_code,
+error_message=error_message,
 
     ).parsed
 
@@ -363,6 +377,7 @@ async def asyncio_detailed(
     key_alias: None | str | Unset = UNSET,
     end_user: None | str | Unset = UNSET,
     error_code: None | str | Unset = UNSET,
+    error_message: None | str | Unset = UNSET,
 
 ) -> Response[HTTPValidationError | UiViewSpendLogsSpendLogsV2GetResponse200UiViewSpendLogsSpendLogsV2Get]:
     r""" Ui View Spend Logs
@@ -395,6 +410,7 @@ async def asyncio_detailed(
         key_alias (None | str | Unset): Filter logs by key alias
         end_user (None | str | Unset): Filter logs by end user
         error_code (None | str | Unset): Filter logs by error code (e.g., '404', '500')
+        error_message (None | str | Unset): Filter logs by error message (partial string match)
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -421,6 +437,7 @@ model=model,
 key_alias=key_alias,
 end_user=end_user,
 error_code=error_code,
+error_message=error_message,
 
     )
 
@@ -448,6 +465,7 @@ async def asyncio(
     key_alias: None | str | Unset = UNSET,
     end_user: None | str | Unset = UNSET,
     error_code: None | str | Unset = UNSET,
+    error_message: None | str | Unset = UNSET,
 
 ) -> HTTPValidationError | UiViewSpendLogsSpendLogsV2GetResponse200UiViewSpendLogsSpendLogsV2Get | None:
     r""" Ui View Spend Logs
@@ -480,6 +498,7 @@ async def asyncio(
         key_alias (None | str | Unset): Filter logs by key alias
         end_user (None | str | Unset): Filter logs by end user
         error_code (None | str | Unset): Filter logs by error code (e.g., '404', '500')
+        error_message (None | str | Unset): Filter logs by error message (partial string match)
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -507,5 +526,6 @@ model=model,
 key_alias=key_alias,
 end_user=end_user,
 error_code=error_code,
+error_message=error_message,
 
     )).parsed

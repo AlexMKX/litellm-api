@@ -80,8 +80,8 @@ class NewMCPServerRequest:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.new_mcp_server_request_mcp_info_type_0 import NewMCPServerRequestMcpInfoType0
         from ..models.mcp_credentials import MCPCredentials
+        from ..models.new_mcp_server_request_mcp_info_type_0 import NewMCPServerRequestMcpInfoType0
         from ..models.new_mcp_server_request_env import NewMCPServerRequestEnv
         from ..models.new_mcp_server_request_static_headers_type_0 import NewMCPServerRequestStaticHeadersType0
         server_id: None | str | Unset

@@ -22,7 +22,6 @@ if TYPE_CHECKING:
   from ..models.lite_llm_verification_token_model_max_budget import LiteLLMVerificationTokenModelMaxBudget
   from ..models.lite_llm_verification_token_model_spend import LiteLLMVerificationTokenModelSpend
   from ..models.lite_llm_verification_token_permissions import LiteLLMVerificationTokenPermissions
-  from ..models.lite_llm_verification_token_router_settings_type_0 import LiteLLMVerificationTokenRouterSettingsType0
 
 
 
@@ -73,7 +72,6 @@ class LiteLLMVerificationToken:
             rotation_interval (None | str | Unset):
             last_rotation_at (datetime.datetime | None | Unset):
             key_rotation_at (datetime.datetime | None | Unset):
-            router_settings (LiteLLMVerificationTokenRouterSettingsType0 | None | Unset):
      """
 
     token: None | str | Unset = UNSET
@@ -113,7 +111,6 @@ class LiteLLMVerificationToken:
     rotation_interval: None | str | Unset = UNSET
     last_rotation_at: datetime.datetime | None | Unset = UNSET
     key_rotation_at: datetime.datetime | None | Unset = UNSET
-    router_settings: LiteLLMVerificationTokenRouterSettingsType0 | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -121,15 +118,14 @@ class LiteLLMVerificationToken:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.lite_llm_verification_token_litellm_budget_table_type_0 import LiteLLMVerificationTokenLitellmBudgetTableType0
-        from ..models.lite_llm_verification_token_metadata import LiteLLMVerificationTokenMetadata
-        from ..models.lite_llm_verification_token_aliases import LiteLLMVerificationTokenAliases
         from ..models.lite_llm_verification_token_permissions import LiteLLMVerificationTokenPermissions
-        from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
+        from ..models.lite_llm_verification_token_aliases import LiteLLMVerificationTokenAliases
         from ..models.lite_llm_verification_token_model_spend import LiteLLMVerificationTokenModelSpend
-        from ..models.lite_llm_verification_token_router_settings_type_0 import LiteLLMVerificationTokenRouterSettingsType0
         from ..models.lite_llm_verification_token_config import LiteLLMVerificationTokenConfig
+        from ..models.lite_llm_verification_token_metadata import LiteLLMVerificationTokenMetadata
+        from ..models.lite_llm_verification_token_litellm_budget_table_type_0 import LiteLLMVerificationTokenLitellmBudgetTableType0
         from ..models.lite_llm_verification_token_model_max_budget import LiteLLMVerificationTokenModelMaxBudget
+        from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
         token: None | str | Unset
         if isinstance(self.token, Unset):
             token = UNSET
@@ -356,14 +352,6 @@ class LiteLLMVerificationToken:
         else:
             key_rotation_at = self.key_rotation_at
 
-        router_settings: dict[str, Any] | None | Unset
-        if isinstance(self.router_settings, Unset):
-            router_settings = UNSET
-        elif isinstance(self.router_settings, LiteLLMVerificationTokenRouterSettingsType0):
-            router_settings = self.router_settings.to_dict()
-        else:
-            router_settings = self.router_settings
-
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -443,8 +431,6 @@ class LiteLLMVerificationToken:
             field_dict["last_rotation_at"] = last_rotation_at
         if key_rotation_at is not UNSET:
             field_dict["key_rotation_at"] = key_rotation_at
-        if router_settings is not UNSET:
-            field_dict["router_settings"] = router_settings
 
         return field_dict
 
@@ -460,7 +446,6 @@ class LiteLLMVerificationToken:
         from ..models.lite_llm_verification_token_model_max_budget import LiteLLMVerificationTokenModelMaxBudget
         from ..models.lite_llm_verification_token_model_spend import LiteLLMVerificationTokenModelSpend
         from ..models.lite_llm_verification_token_permissions import LiteLLMVerificationTokenPermissions
-        from ..models.lite_llm_verification_token_router_settings_type_0 import LiteLLMVerificationTokenRouterSettingsType0
         d = dict(src_dict)
         def _parse_token(data: object) -> None | str | Unset:
             if data is None:
@@ -905,26 +890,6 @@ class LiteLLMVerificationToken:
         key_rotation_at = _parse_key_rotation_at(d.pop("key_rotation_at", UNSET))
 
 
-        def _parse_router_settings(data: object) -> LiteLLMVerificationTokenRouterSettingsType0 | None | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            try:
-                if not isinstance(data, dict):
-                    raise TypeError()
-                router_settings_type_0 = LiteLLMVerificationTokenRouterSettingsType0.from_dict(data)
-
-
-
-                return router_settings_type_0
-            except (TypeError, ValueError, AttributeError, KeyError):
-                pass
-            return cast(LiteLLMVerificationTokenRouterSettingsType0 | None | Unset, data)
-
-        router_settings = _parse_router_settings(d.pop("router_settings", UNSET))
-
-
         lite_llm_verification_token = cls(
             token=token,
             key_name=key_name,
@@ -963,7 +928,6 @@ class LiteLLMVerificationToken:
             rotation_interval=rotation_interval,
             last_rotation_at=last_rotation_at,
             key_rotation_at=key_rotation_at,
-            router_settings=router_settings,
         )
 
 

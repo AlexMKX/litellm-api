@@ -110,21 +110,21 @@ class ChatCompletionV1ChatCompletionsPostBody:
 
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.chat_completion_v1_chat_completions_post_body_stream_options_type_0 import ChatCompletionV1ChatCompletionsPostBodyStreamOptionsType0
+        from ..models.chat_completion_function_message import ChatCompletionFunctionMessage
+        from ..models.chat_completion_v1_chat_completions_post_body_tools_type_0_item import ChatCompletionV1ChatCompletionsPostBodyToolsType0Item
         from ..models.chat_completion_v1_chat_completions_post_body_context_window_fallback_dict_type_0 import ChatCompletionV1ChatCompletionsPostBodyContextWindowFallbackDictType0
-        from ..models.chat_completion_v1_chat_completions_post_body_logit_bias_type_0 import ChatCompletionV1ChatCompletionsPostBodyLogitBiasType0
-        from ..models.chat_completion_v1_chat_completions_post_body_metadata_type_0 import ChatCompletionV1ChatCompletionsPostBodyMetadataType0
         from ..models.chat_completion_tool_message import ChatCompletionToolMessage
-        from ..models.chat_completion_system_message import ChatCompletionSystemMessage
-        from ..models.chat_completion_user_message import ChatCompletionUserMessage
         from ..models.chat_completion_v1_chat_completions_post_body_response_format_type_0 import ChatCompletionV1ChatCompletionsPostBodyResponseFormatType0
         from ..models.chat_completion_developer_message import ChatCompletionDeveloperMessage
-        from ..models.chat_completion_v1_chat_completions_post_body_stream_options_type_0 import ChatCompletionV1ChatCompletionsPostBodyStreamOptionsType0
+        from ..models.chat_completion_user_message import ChatCompletionUserMessage
         from ..models.chat_completion_v1_chat_completions_post_body_tool_choice_type_1 import ChatCompletionV1ChatCompletionsPostBodyToolChoiceType1
-        from ..models.chat_completion_v1_chat_completions_post_body_function_call_type_1 import ChatCompletionV1ChatCompletionsPostBodyFunctionCallType1
-        from ..models.chat_completion_function_message import ChatCompletionFunctionMessage
+        from ..models.chat_completion_v1_chat_completions_post_body_logit_bias_type_0 import ChatCompletionV1ChatCompletionsPostBodyLogitBiasType0
+        from ..models.chat_completion_v1_chat_completions_post_body_metadata_type_0 import ChatCompletionV1ChatCompletionsPostBodyMetadataType0
         from ..models.chat_completion_assistant_message import ChatCompletionAssistantMessage
         from ..models.chat_completion_v1_chat_completions_post_body_functions_type_0_item import ChatCompletionV1ChatCompletionsPostBodyFunctionsType0Item
-        from ..models.chat_completion_v1_chat_completions_post_body_tools_type_0_item import ChatCompletionV1ChatCompletionsPostBodyToolsType0Item
+        from ..models.chat_completion_system_message import ChatCompletionSystemMessage
+        from ..models.chat_completion_v1_chat_completions_post_body_function_call_type_1 import ChatCompletionV1ChatCompletionsPostBodyFunctionCallType1
         model = self.model
 
         messages = []

@@ -80,10 +80,10 @@ class UpdateMCPServerRequest:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.update_mcp_server_request_mcp_info_type_0 import UpdateMCPServerRequestMcpInfoType0
-        from ..models.update_mcp_server_request_env import UpdateMCPServerRequestEnv
         from ..models.mcp_credentials import MCPCredentials
+        from ..models.update_mcp_server_request_mcp_info_type_0 import UpdateMCPServerRequestMcpInfoType0
         from ..models.update_mcp_server_request_static_headers_type_0 import UpdateMCPServerRequestStaticHeadersType0
+        from ..models.update_mcp_server_request_env import UpdateMCPServerRequestEnv
         server_id = self.server_id
 
         server_name: None | str | Unset

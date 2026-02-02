@@ -26,7 +26,6 @@ if TYPE_CHECKING:
   from ..models.user_api_key_auth_model_spend import UserAPIKeyAuthModelSpend
   from ..models.user_api_key_auth_organization_metadata_type_0 import UserAPIKeyAuthOrganizationMetadataType0
   from ..models.user_api_key_auth_permissions import UserAPIKeyAuthPermissions
-  from ..models.user_api_key_auth_router_settings_type_0 import UserAPIKeyAuthRouterSettingsType0
   from ..models.user_api_key_auth_rpm_limit_per_model_type_0 import UserAPIKeyAuthRpmLimitPerModelType0
   from ..models.user_api_key_auth_team_metadata_type_0 import UserAPIKeyAuthTeamMetadataType0
   from ..models.user_api_key_auth_team_model_aliases_type_0 import UserAPIKeyAuthTeamModelAliasesType0
@@ -82,7 +81,6 @@ class UserAPIKeyAuth:
             rotation_interval (None | str | Unset):
             last_rotation_at (datetime.datetime | None | Unset):
             key_rotation_at (datetime.datetime | None | Unset):
-            router_settings (None | Unset | UserAPIKeyAuthRouterSettingsType0):
             team_spend (float | None | Unset):
             team_alias (None | str | Unset):
             team_tpm_limit (int | None | Unset):
@@ -159,7 +157,6 @@ class UserAPIKeyAuth:
     rotation_interval: None | str | Unset = UNSET
     last_rotation_at: datetime.datetime | None | Unset = UNSET
     key_rotation_at: datetime.datetime | None | Unset = UNSET
-    router_settings: None | Unset | UserAPIKeyAuthRouterSettingsType0 = UNSET
     team_spend: float | None | Unset = UNSET
     team_alias: None | str | Unset = UNSET
     team_tpm_limit: int | None | Unset = UNSET
@@ -204,21 +201,20 @@ class UserAPIKeyAuth:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.user_api_key_auth_aliases import UserAPIKeyAuthAliases
-        from ..models.user_api_key_auth_organization_metadata_type_0 import UserAPIKeyAuthOrganizationMetadataType0
-        from ..models.member import Member
         from ..models.user_api_key_auth_team_model_aliases_type_0 import UserAPIKeyAuthTeamModelAliasesType0
-        from ..models.user_api_key_auth_tpm_limit_per_model_type_0 import UserAPIKeyAuthTpmLimitPerModelType0
-        from ..models.user_api_key_auth_permissions import UserAPIKeyAuthPermissions
-        from ..models.user_api_key_auth_model_spend import UserAPIKeyAuthModelSpend
-        from ..models.user_api_key_auth_litellm_budget_table_type_0 import UserAPIKeyAuthLitellmBudgetTableType0
-        from ..models.user_api_key_auth_rpm_limit_per_model_type_0 import UserAPIKeyAuthRpmLimitPerModelType0
-        from ..models.user_api_key_auth_config import UserAPIKeyAuthConfig
-        from ..models.user_api_key_auth_model_max_budget import UserAPIKeyAuthModelMaxBudget
         from ..models.user_api_key_auth_team_metadata_type_0 import UserAPIKeyAuthTeamMetadataType0
-        from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
+        from ..models.user_api_key_auth_model_spend import UserAPIKeyAuthModelSpend
+        from ..models.user_api_key_auth_organization_metadata_type_0 import UserAPIKeyAuthOrganizationMetadataType0
+        from ..models.user_api_key_auth_permissions import UserAPIKeyAuthPermissions
+        from ..models.user_api_key_auth_litellm_budget_table_type_0 import UserAPIKeyAuthLitellmBudgetTableType0
+        from ..models.user_api_key_auth_aliases import UserAPIKeyAuthAliases
         from ..models.user_api_key_auth_metadata import UserAPIKeyAuthMetadata
-        from ..models.user_api_key_auth_router_settings_type_0 import UserAPIKeyAuthRouterSettingsType0
+        from ..models.user_api_key_auth_config import UserAPIKeyAuthConfig
+        from ..models.user_api_key_auth_tpm_limit_per_model_type_0 import UserAPIKeyAuthTpmLimitPerModelType0
+        from ..models.user_api_key_auth_model_max_budget import UserAPIKeyAuthModelMaxBudget
+        from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
+        from ..models.member import Member
+        from ..models.user_api_key_auth_rpm_limit_per_model_type_0 import UserAPIKeyAuthRpmLimitPerModelType0
         token: None | str | Unset
         if isinstance(self.token, Unset):
             token = UNSET
@@ -444,14 +440,6 @@ class UserAPIKeyAuth:
             key_rotation_at = self.key_rotation_at.isoformat()
         else:
             key_rotation_at = self.key_rotation_at
-
-        router_settings: dict[str, Any] | None | Unset
-        if isinstance(self.router_settings, Unset):
-            router_settings = UNSET
-        elif isinstance(self.router_settings, UserAPIKeyAuthRouterSettingsType0):
-            router_settings = self.router_settings.to_dict()
-        else:
-            router_settings = self.router_settings
 
         team_spend: float | None | Unset
         if isinstance(self.team_spend, Unset):
@@ -766,8 +754,6 @@ class UserAPIKeyAuth:
             field_dict["last_rotation_at"] = last_rotation_at
         if key_rotation_at is not UNSET:
             field_dict["key_rotation_at"] = key_rotation_at
-        if router_settings is not UNSET:
-            field_dict["router_settings"] = router_settings
         if team_spend is not UNSET:
             field_dict["team_spend"] = team_spend
         if team_alias is not UNSET:
@@ -859,7 +845,6 @@ class UserAPIKeyAuth:
         from ..models.user_api_key_auth_model_spend import UserAPIKeyAuthModelSpend
         from ..models.user_api_key_auth_organization_metadata_type_0 import UserAPIKeyAuthOrganizationMetadataType0
         from ..models.user_api_key_auth_permissions import UserAPIKeyAuthPermissions
-        from ..models.user_api_key_auth_router_settings_type_0 import UserAPIKeyAuthRouterSettingsType0
         from ..models.user_api_key_auth_rpm_limit_per_model_type_0 import UserAPIKeyAuthRpmLimitPerModelType0
         from ..models.user_api_key_auth_team_metadata_type_0 import UserAPIKeyAuthTeamMetadataType0
         from ..models.user_api_key_auth_team_model_aliases_type_0 import UserAPIKeyAuthTeamModelAliasesType0
@@ -1306,26 +1291,6 @@ class UserAPIKeyAuth:
             return cast(datetime.datetime | None | Unset, data)
 
         key_rotation_at = _parse_key_rotation_at(d.pop("key_rotation_at", UNSET))
-
-
-        def _parse_router_settings(data: object) -> None | Unset | UserAPIKeyAuthRouterSettingsType0:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            try:
-                if not isinstance(data, dict):
-                    raise TypeError()
-                router_settings_type_0 = UserAPIKeyAuthRouterSettingsType0.from_dict(data)
-
-
-
-                return router_settings_type_0
-            except (TypeError, ValueError, AttributeError, KeyError):
-                pass
-            return cast(None | Unset | UserAPIKeyAuthRouterSettingsType0, data)
-
-        router_settings = _parse_router_settings(d.pop("router_settings", UNSET))
 
 
         def _parse_team_spend(data: object) -> float | None | Unset:
@@ -1801,7 +1766,6 @@ class UserAPIKeyAuth:
             rotation_interval=rotation_interval,
             last_rotation_at=last_rotation_at,
             key_rotation_at=key_rotation_at,
-            router_settings=router_settings,
             team_spend=team_spend,
             team_alias=team_alias,
             team_tpm_limit=team_tpm_limit,

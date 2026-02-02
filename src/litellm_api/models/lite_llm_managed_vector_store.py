@@ -39,6 +39,8 @@ class LiteLLMManagedVectorStore:
             updated_at (datetime.datetime | None | Unset):
             litellm_credential_name (None | str | Unset):
             litellm_params (LiteLLMManagedVectorStoreLitellmParamsType0 | None | Unset):
+            team_id (None | str | Unset):
+            user_id (None | str | Unset):
      """
 
     vector_store_id: str | Unset = UNSET
@@ -50,6 +52,8 @@ class LiteLLMManagedVectorStore:
     updated_at: datetime.datetime | None | Unset = UNSET
     litellm_credential_name: None | str | Unset = UNSET
     litellm_params: LiteLLMManagedVectorStoreLitellmParamsType0 | None | Unset = UNSET
+    team_id: None | str | Unset = UNSET
+    user_id: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -113,6 +117,18 @@ class LiteLLMManagedVectorStore:
         else:
             litellm_params = self.litellm_params
 
+        team_id: None | str | Unset
+        if isinstance(self.team_id, Unset):
+            team_id = UNSET
+        else:
+            team_id = self.team_id
+
+        user_id: None | str | Unset
+        if isinstance(self.user_id, Unset):
+            user_id = UNSET
+        else:
+            user_id = self.user_id
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -136,6 +152,10 @@ class LiteLLMManagedVectorStore:
             field_dict["litellm_credential_name"] = litellm_credential_name
         if litellm_params is not UNSET:
             field_dict["litellm_params"] = litellm_params
+        if team_id is not UNSET:
+            field_dict["team_id"] = team_id
+        if user_id is not UNSET:
+            field_dict["user_id"] = user_id
 
         return field_dict
 
@@ -260,6 +280,26 @@ class LiteLLMManagedVectorStore:
         litellm_params = _parse_litellm_params(d.pop("litellm_params", UNSET))
 
 
+        def _parse_team_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        team_id = _parse_team_id(d.pop("team_id", UNSET))
+
+
+        def _parse_user_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        user_id = _parse_user_id(d.pop("user_id", UNSET))
+
+
         lite_llm_managed_vector_store = cls(
             vector_store_id=vector_store_id,
             custom_llm_provider=custom_llm_provider,
@@ -270,6 +310,8 @@ class LiteLLMManagedVectorStore:
             updated_at=updated_at,
             litellm_credential_name=litellm_credential_name,
             litellm_params=litellm_params,
+            team_id=team_id,
+            user_id=user_id,
         )
 
 

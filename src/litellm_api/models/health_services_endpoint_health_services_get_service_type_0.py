@@ -4,6 +4,7 @@ class HealthServicesEndpointHealthServicesGetServiceType0(str, Enum):
     ARIZE = "arize"
     BRAINTRUST = "braintrust"
     DATADOG = "datadog"
+    DATADOG_LLM_OBSERVABILITY = "datadog_llm_observability"
     EMAIL = "email"
     GENERIC_API = "generic_api"
     LANGFUSE = "langfuse"

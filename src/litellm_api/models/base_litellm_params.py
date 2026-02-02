@@ -14,6 +14,9 @@ from typing import cast
 if TYPE_CHECKING:
   from ..models.base_litellm_params_additional_provider_specific_params_type_0 import BaseLitellmParamsAdditionalProviderSpecificParamsType0
   from ..models.base_litellm_params_detect_secrets_config_type_0 import BaseLitellmParamsDetectSecretsConfigType0
+  from ..models.blocked_word import BlockedWord
+  from ..models.content_filter_category_config import ContentFilterCategoryConfig
+  from ..models.content_filter_pattern import ContentFilterPattern
   from ..models.lakera_category_thresholds import LakeraCategoryThresholds
 
 
@@ -28,6 +31,15 @@ T = TypeVar("T", bound="BaseLitellmParams")
 class BaseLitellmParams:
     """ 
         Attributes:
+            patterns (list[ContentFilterPattern] | None | Unset): List of patterns (prebuilt or custom regex) to detect
+            blocked_words (list[BlockedWord] | None | Unset): List of blocked words with individual actions
+            blocked_words_file (None | str | Unset): Path to YAML file containing blocked_words list
+            categories (list[ContentFilterCategoryConfig] | None | Unset): List of prebuilt categories to enable (harmful_*,
+                bias_*)
+            severity_threshold (None | str | Unset): Minimum severity to block (high, medium, low)
+            pattern_redaction_format (None | str | Unset): Format string for pattern redaction (use {pattern_name}
+                placeholder)
+            keyword_redaction_tag (None | str | Unset): Tag to use for keyword redaction
             api_key (None | str | Unset): API key for the guardrail service
             api_base (None | str | Unset): Base URL for the guardrail service API
             experimental_use_latest_role_message_only (bool | None | Unset): When True, guardrails only receive the latest
@@ -56,6 +68,13 @@ class BaseLitellmParams:
                 Additional provider-specific parameters for generic guardrail APIs
      """
 
+    patterns: list[ContentFilterPattern] | None | Unset = UNSET
+    blocked_words: list[BlockedWord] | None | Unset = UNSET
+    blocked_words_file: None | str | Unset = UNSET
+    categories: list[ContentFilterCategoryConfig] | None | Unset = UNSET
+    severity_threshold: None | str | Unset = UNSET
+    pattern_redaction_format: None | str | Unset = UNSET
+    keyword_redaction_tag: None | str | Unset = UNSET
     api_key: None | str | Unset = UNSET
     api_base: None | str | Unset = UNSET
     experimental_use_latest_role_message_only: bool | None | Unset = False
@@ -82,9 +101,75 @@ class BaseLitellmParams:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.base_litellm_params_detect_secrets_config_type_0 import BaseLitellmParamsDetectSecretsConfigType0
         from ..models.base_litellm_params_additional_provider_specific_params_type_0 import BaseLitellmParamsAdditionalProviderSpecificParamsType0
+        from ..models.blocked_word import BlockedWord
         from ..models.lakera_category_thresholds import LakeraCategoryThresholds
+        from ..models.content_filter_pattern import ContentFilterPattern
+        from ..models.content_filter_category_config import ContentFilterCategoryConfig
+        from ..models.base_litellm_params_detect_secrets_config_type_0 import BaseLitellmParamsDetectSecretsConfigType0
+        patterns: list[dict[str, Any]] | None | Unset
+        if isinstance(self.patterns, Unset):
+            patterns = UNSET
+        elif isinstance(self.patterns, list):
+            patterns = []
+            for patterns_type_0_item_data in self.patterns:
+                patterns_type_0_item = patterns_type_0_item_data.to_dict()
+                patterns.append(patterns_type_0_item)
+
+
+        else:
+            patterns = self.patterns
+
+        blocked_words: list[dict[str, Any]] | None | Unset
+        if isinstance(self.blocked_words, Unset):
+            blocked_words = UNSET
+        elif isinstance(self.blocked_words, list):
+            blocked_words = []
+            for blocked_words_type_0_item_data in self.blocked_words:
+                blocked_words_type_0_item = blocked_words_type_0_item_data.to_dict()
+                blocked_words.append(blocked_words_type_0_item)
+
+
+        else:
+            blocked_words = self.blocked_words
+
+        blocked_words_file: None | str | Unset
+        if isinstance(self.blocked_words_file, Unset):
+            blocked_words_file = UNSET
+        else:
+            blocked_words_file = self.blocked_words_file
+
+        categories: list[dict[str, Any]] | None | Unset
+        if isinstance(self.categories, Unset):
+            categories = UNSET
+        elif isinstance(self.categories, list):
+            categories = []
+            for categories_type_0_item_data in self.categories:
+                categories_type_0_item = categories_type_0_item_data.to_dict()
+                categories.append(categories_type_0_item)
+
+
+        else:
+            categories = self.categories
+
+        severity_threshold: None | str | Unset
+        if isinstance(self.severity_threshold, Unset):
+            severity_threshold = UNSET
+        else:
+            severity_threshold = self.severity_threshold
+
+        pattern_redaction_format: None | str | Unset
+        if isinstance(self.pattern_redaction_format, Unset):
+            pattern_redaction_format = UNSET
+        else:
+            pattern_redaction_format = self.pattern_redaction_format
+
+        keyword_redaction_tag: None | str | Unset
+        if isinstance(self.keyword_redaction_tag, Unset):
+            keyword_redaction_tag = UNSET
+        else:
+            keyword_redaction_tag = self.keyword_redaction_tag
+
         api_key: None | str | Unset
         if isinstance(self.api_key, Unset):
             api_key = UNSET
@@ -210,6 +295,20 @@ class BaseLitellmParams:
         field_dict.update(self.additional_properties)
         field_dict.update({
         })
+        if patterns is not UNSET:
+            field_dict["patterns"] = patterns
+        if blocked_words is not UNSET:
+            field_dict["blocked_words"] = blocked_words
+        if blocked_words_file is not UNSET:
+            field_dict["blocked_words_file"] = blocked_words_file
+        if categories is not UNSET:
+            field_dict["categories"] = categories
+        if severity_threshold is not UNSET:
+            field_dict["severity_threshold"] = severity_threshold
+        if pattern_redaction_format is not UNSET:
+            field_dict["pattern_redaction_format"] = pattern_redaction_format
+        if keyword_redaction_tag is not UNSET:
+            field_dict["keyword_redaction_tag"] = keyword_redaction_tag
         if api_key is not UNSET:
             field_dict["api_key"] = api_key
         if api_base is not UNSET:
@@ -257,8 +356,126 @@ class BaseLitellmParams:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.base_litellm_params_additional_provider_specific_params_type_0 import BaseLitellmParamsAdditionalProviderSpecificParamsType0
         from ..models.base_litellm_params_detect_secrets_config_type_0 import BaseLitellmParamsDetectSecretsConfigType0
+        from ..models.blocked_word import BlockedWord
+        from ..models.content_filter_category_config import ContentFilterCategoryConfig
+        from ..models.content_filter_pattern import ContentFilterPattern
         from ..models.lakera_category_thresholds import LakeraCategoryThresholds
         d = dict(src_dict)
+        def _parse_patterns(data: object) -> list[ContentFilterPattern] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                patterns_type_0 = []
+                _patterns_type_0 = data
+                for patterns_type_0_item_data in (_patterns_type_0):
+                    patterns_type_0_item = ContentFilterPattern.from_dict(patterns_type_0_item_data)
+
+
+
+                    patterns_type_0.append(patterns_type_0_item)
+
+                return patterns_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[ContentFilterPattern] | None | Unset, data)
+
+        patterns = _parse_patterns(d.pop("patterns", UNSET))
+
+
+        def _parse_blocked_words(data: object) -> list[BlockedWord] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                blocked_words_type_0 = []
+                _blocked_words_type_0 = data
+                for blocked_words_type_0_item_data in (_blocked_words_type_0):
+                    blocked_words_type_0_item = BlockedWord.from_dict(blocked_words_type_0_item_data)
+
+
+
+                    blocked_words_type_0.append(blocked_words_type_0_item)
+
+                return blocked_words_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[BlockedWord] | None | Unset, data)
+
+        blocked_words = _parse_blocked_words(d.pop("blocked_words", UNSET))
+
+
+        def _parse_blocked_words_file(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        blocked_words_file = _parse_blocked_words_file(d.pop("blocked_words_file", UNSET))
+
+
+        def _parse_categories(data: object) -> list[ContentFilterCategoryConfig] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                categories_type_0 = []
+                _categories_type_0 = data
+                for categories_type_0_item_data in (_categories_type_0):
+                    categories_type_0_item = ContentFilterCategoryConfig.from_dict(categories_type_0_item_data)
+
+
+
+                    categories_type_0.append(categories_type_0_item)
+
+                return categories_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[ContentFilterCategoryConfig] | None | Unset, data)
+
+        categories = _parse_categories(d.pop("categories", UNSET))
+
+
+        def _parse_severity_threshold(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        severity_threshold = _parse_severity_threshold(d.pop("severity_threshold", UNSET))
+
+
+        def _parse_pattern_redaction_format(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        pattern_redaction_format = _parse_pattern_redaction_format(d.pop("pattern_redaction_format", UNSET))
+
+
+        def _parse_keyword_redaction_tag(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        keyword_redaction_tag = _parse_keyword_redaction_tag(d.pop("keyword_redaction_tag", UNSET))
+
+
         def _parse_api_key(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -480,6 +697,13 @@ class BaseLitellmParams:
 
 
         base_litellm_params = cls(
+            patterns=patterns,
+            blocked_words=blocked_words,
+            blocked_words_file=blocked_words_file,
+            categories=categories,
+            severity_threshold=severity_threshold,
+            pattern_redaction_format=pattern_redaction_format,
+            keyword_redaction_tag=keyword_redaction_tag,
             api_key=api_key,
             api_base=api_base,
             experimental_use_latest_role_message_only=experimental_use_latest_role_message_only,

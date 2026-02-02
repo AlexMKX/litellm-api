@@ -37,11 +37,11 @@ class AgentCardSecuritySchemesType0:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.open_id_connect_security_scheme import OpenIdConnectSecurityScheme
         from ..models.http_auth_security_scheme import HTTPAuthSecurityScheme
         from ..models.api_key_security_scheme import APIKeySecurityScheme
-        from ..models.mutual_tls_security_scheme import MutualTLSSecurityScheme
         from ..models.o_auth_2_security_scheme import OAuth2SecurityScheme
+        from ..models.mutual_tls_security_scheme import MutualTLSSecurityScheme
+        from ..models.open_id_connect_security_scheme import OpenIdConnectSecurityScheme
         
         field_dict: dict[str, Any] = {}
         for prop_name, prop in self.additional_properties.items():

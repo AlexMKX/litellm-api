@@ -62,8 +62,8 @@ class EmbeddingsV1EmbeddingsPostBody:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.embeddings_v1_embeddings_post_body_custom_llm_provider_type_1 import EmbeddingsV1EmbeddingsPostBodyCustomLlmProviderType1
         from ..models.embeddings_v1_embeddings_post_body_litellm_logging_obj_type_0 import EmbeddingsV1EmbeddingsPostBodyLitellmLoggingObjType0
+        from ..models.embeddings_v1_embeddings_post_body_custom_llm_provider_type_1 import EmbeddingsV1EmbeddingsPostBodyCustomLlmProviderType1
         model = self.model
 
         input_: list[str] | Unset = UNSET

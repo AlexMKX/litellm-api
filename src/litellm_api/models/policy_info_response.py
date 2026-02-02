@@ -49,8 +49,8 @@ class PolicyInfoResponse:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.policy_scope_response import PolicyScopeResponse
         from ..models.policy_guardrails_response import PolicyGuardrailsResponse
+        from ..models.policy_scope_response import PolicyScopeResponse
         policy_name = self.policy_name
 
         scope = self.scope.to_dict()

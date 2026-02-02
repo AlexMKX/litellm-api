@@ -40,8 +40,8 @@ class UIThemeSettingsResponse:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.ui_theme_settings_response_values import UIThemeSettingsResponseValues
         from ..models.ui_theme_settings_response_field_schema import UIThemeSettingsResponseFieldSchema
+        from ..models.ui_theme_settings_response_values import UIThemeSettingsResponseValues
         values = self.values.to_dict()
 
         field_schema = self.field_schema.to_dict()

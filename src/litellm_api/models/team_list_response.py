@@ -46,8 +46,8 @@ class TeamListResponse:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.lite_llm_team_table import LiteLLMTeamTable
         from ..models.lite_llm_deleted_team_table import LiteLLMDeletedTeamTable
+        from ..models.lite_llm_team_table import LiteLLMTeamTable
         teams = []
         for teams_item_data in self.teams:
             teams_item: dict[str, Any]

@@ -70,6 +70,10 @@ def sync_detailed(
 
      Get the agent card for an agent (A2A discovery endpoint).
 
+    Supports both standard paths:
+    - /.well-known/agent-card.json
+    - /.well-known/agent.json
+
     The URL in the agent card is rewritten to point to the LiteLLM proxy,
     so all subsequent A2A calls go through LiteLLM for logging and cost tracking.
 
@@ -106,6 +110,10 @@ def sync(
 
      Get the agent card for an agent (A2A discovery endpoint).
 
+    Supports both standard paths:
+    - /.well-known/agent-card.json
+    - /.well-known/agent.json
+
     The URL in the agent card is rewritten to point to the LiteLLM proxy,
     so all subsequent A2A calls go through LiteLLM for logging and cost tracking.
 
@@ -136,6 +144,10 @@ async def asyncio_detailed(
     """ Get Agent Card
 
      Get the agent card for an agent (A2A discovery endpoint).
+
+    Supports both standard paths:
+    - /.well-known/agent-card.json
+    - /.well-known/agent.json
 
     The URL in the agent card is rewritten to point to the LiteLLM proxy,
     so all subsequent A2A calls go through LiteLLM for logging and cost tracking.
@@ -172,6 +184,10 @@ async def asyncio(
     """ Get Agent Card
 
      Get the agent card for an agent (A2A discovery endpoint).
+
+    Supports both standard paths:
+    - /.well-known/agent-card.json
+    - /.well-known/agent.json
 
     The URL in the agent card is rewritten to point to the LiteLLM proxy,
     so all subsequent A2A calls go through LiteLLM for logging and cost tracking.

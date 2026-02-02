@@ -21,7 +21,6 @@ if TYPE_CHECKING:
   from ..models.lite_llm_deleted_verification_token_model_max_budget import LiteLLMDeletedVerificationTokenModelMaxBudget
   from ..models.lite_llm_deleted_verification_token_model_spend import LiteLLMDeletedVerificationTokenModelSpend
   from ..models.lite_llm_deleted_verification_token_permissions import LiteLLMDeletedVerificationTokenPermissions
-  from ..models.lite_llm_deleted_verification_token_router_settings_type_0 import LiteLLMDeletedVerificationTokenRouterSettingsType0
   from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
 
 
@@ -75,7 +74,6 @@ class LiteLLMDeletedVerificationToken:
             rotation_interval (None | str | Unset):
             last_rotation_at (datetime.datetime | None | Unset):
             key_rotation_at (datetime.datetime | None | Unset):
-            router_settings (LiteLLMDeletedVerificationTokenRouterSettingsType0 | None | Unset):
             id (None | str | Unset):
             deleted_at (datetime.datetime | None | Unset):
             deleted_by (None | str | Unset):
@@ -120,7 +118,6 @@ class LiteLLMDeletedVerificationToken:
     rotation_interval: None | str | Unset = UNSET
     last_rotation_at: datetime.datetime | None | Unset = UNSET
     key_rotation_at: datetime.datetime | None | Unset = UNSET
-    router_settings: LiteLLMDeletedVerificationTokenRouterSettingsType0 | None | Unset = UNSET
     id: None | str | Unset = UNSET
     deleted_at: datetime.datetime | None | Unset = UNSET
     deleted_by: None | str | Unset = UNSET
@@ -133,15 +130,14 @@ class LiteLLMDeletedVerificationToken:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.lite_llm_deleted_verification_token_permissions import LiteLLMDeletedVerificationTokenPermissions
+        from ..models.lite_llm_deleted_verification_token_aliases import LiteLLMDeletedVerificationTokenAliases
         from ..models.lite_llm_deleted_verification_token_metadata import LiteLLMDeletedVerificationTokenMetadata
-        from ..models.lite_llm_deleted_verification_token_model_max_budget import LiteLLMDeletedVerificationTokenModelMaxBudget
-        from ..models.lite_llm_deleted_verification_token_router_settings_type_0 import LiteLLMDeletedVerificationTokenRouterSettingsType0
-        from ..models.lite_llm_deleted_verification_token_config import LiteLLMDeletedVerificationTokenConfig
         from ..models.lite_llm_deleted_verification_token_model_spend import LiteLLMDeletedVerificationTokenModelSpend
+        from ..models.lite_llm_deleted_verification_token_config import LiteLLMDeletedVerificationTokenConfig
+        from ..models.lite_llm_deleted_verification_token_permissions import LiteLLMDeletedVerificationTokenPermissions
+        from ..models.lite_llm_deleted_verification_token_model_max_budget import LiteLLMDeletedVerificationTokenModelMaxBudget
         from ..models.lite_llm_deleted_verification_token_litellm_budget_table_type_0 import LiteLLMDeletedVerificationTokenLitellmBudgetTableType0
         from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
-        from ..models.lite_llm_deleted_verification_token_aliases import LiteLLMDeletedVerificationTokenAliases
         token: None | str | Unset
         if isinstance(self.token, Unset):
             token = UNSET
@@ -368,14 +364,6 @@ class LiteLLMDeletedVerificationToken:
         else:
             key_rotation_at = self.key_rotation_at
 
-        router_settings: dict[str, Any] | None | Unset
-        if isinstance(self.router_settings, Unset):
-            router_settings = UNSET
-        elif isinstance(self.router_settings, LiteLLMDeletedVerificationTokenRouterSettingsType0):
-            router_settings = self.router_settings.to_dict()
-        else:
-            router_settings = self.router_settings
-
         id: None | str | Unset
         if isinstance(self.id, Unset):
             id = UNSET
@@ -487,8 +475,6 @@ class LiteLLMDeletedVerificationToken:
             field_dict["last_rotation_at"] = last_rotation_at
         if key_rotation_at is not UNSET:
             field_dict["key_rotation_at"] = key_rotation_at
-        if router_settings is not UNSET:
-            field_dict["router_settings"] = router_settings
         if id is not UNSET:
             field_dict["id"] = id
         if deleted_at is not UNSET:
@@ -513,7 +499,6 @@ class LiteLLMDeletedVerificationToken:
         from ..models.lite_llm_deleted_verification_token_model_max_budget import LiteLLMDeletedVerificationTokenModelMaxBudget
         from ..models.lite_llm_deleted_verification_token_model_spend import LiteLLMDeletedVerificationTokenModelSpend
         from ..models.lite_llm_deleted_verification_token_permissions import LiteLLMDeletedVerificationTokenPermissions
-        from ..models.lite_llm_deleted_verification_token_router_settings_type_0 import LiteLLMDeletedVerificationTokenRouterSettingsType0
         from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
         d = dict(src_dict)
         def _parse_token(data: object) -> None | str | Unset:
@@ -959,26 +944,6 @@ class LiteLLMDeletedVerificationToken:
         key_rotation_at = _parse_key_rotation_at(d.pop("key_rotation_at", UNSET))
 
 
-        def _parse_router_settings(data: object) -> LiteLLMDeletedVerificationTokenRouterSettingsType0 | None | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            try:
-                if not isinstance(data, dict):
-                    raise TypeError()
-                router_settings_type_0 = LiteLLMDeletedVerificationTokenRouterSettingsType0.from_dict(data)
-
-
-
-                return router_settings_type_0
-            except (TypeError, ValueError, AttributeError, KeyError):
-                pass
-            return cast(LiteLLMDeletedVerificationTokenRouterSettingsType0 | None | Unset, data)
-
-        router_settings = _parse_router_settings(d.pop("router_settings", UNSET))
-
-
         def _parse_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -1077,7 +1042,6 @@ class LiteLLMDeletedVerificationToken:
             rotation_interval=rotation_interval,
             last_rotation_at=last_rotation_at,
             key_rotation_at=key_rotation_at,
-            router_settings=router_settings,
             id=id,
             deleted_at=deleted_at,
             deleted_by=deleted_by,

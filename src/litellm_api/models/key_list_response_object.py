@@ -44,8 +44,8 @@ class KeyListResponseObject:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.user_api_key_auth import UserAPIKeyAuth
         from ..models.lite_llm_deleted_verification_token import LiteLLMDeletedVerificationToken
+        from ..models.user_api_key_auth import UserAPIKeyAuth
         keys: list[dict[str, Any] | str] | Unset = UNSET
         if not isinstance(self.keys, Unset):
             keys = []

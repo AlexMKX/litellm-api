@@ -25,7 +25,7 @@ def _get_kwargs(
 
     _kwargs: dict[str, Any] = {
         "method": "patch",
-        "url": "/openai/{endpoint}".format(endpoint=quote(str(endpoint), safe=""),),
+        "url": "/openai_passthrough/{endpoint}".format(endpoint=quote(str(endpoint), safe=""),),
     }
 
 
@@ -68,7 +68,27 @@ def sync_detailed(
 ) -> Response[Any | HTTPValidationError]:
     """ Openai Proxy Route
 
-     Simple pass-through for OpenAI. Use this if you want to directly send a request to OpenAI.
+     Pass-through endpoint for OpenAI API calls.
+
+    Available on both routes:
+    - /openai/{endpoint:path} - Standard OpenAI passthrough route
+    - /openai_passthrough/{endpoint:path} - Dedicated passthrough route (recommended for Responses API)
+
+    Use /openai_passthrough/* when you need guaranteed passthrough to OpenAI without conflicts
+    with LiteLLM's native implementations (e.g., for the Responses API at /v1/responses).
+
+    Examples:
+        Standard route:
+        - /openai/v1/chat/completions
+        - /openai/v1/assistants
+        - /openai/v1/threads
+
+        Dedicated passthrough (for Responses API):
+        - /openai_passthrough/v1/responses
+        - /openai_passthrough/v1/responses/{response_id}
+        - /openai_passthrough/v1/responses/{response_id}/input_items
+
+    [Docs](https://docs.litellm.ai/docs/pass_through/openai_passthrough)
 
     Args:
         endpoint (str):
@@ -101,7 +121,27 @@ def sync(
 ) -> Any | HTTPValidationError | None:
     """ Openai Proxy Route
 
-     Simple pass-through for OpenAI. Use this if you want to directly send a request to OpenAI.
+     Pass-through endpoint for OpenAI API calls.
+
+    Available on both routes:
+    - /openai/{endpoint:path} - Standard OpenAI passthrough route
+    - /openai_passthrough/{endpoint:path} - Dedicated passthrough route (recommended for Responses API)
+
+    Use /openai_passthrough/* when you need guaranteed passthrough to OpenAI without conflicts
+    with LiteLLM's native implementations (e.g., for the Responses API at /v1/responses).
+
+    Examples:
+        Standard route:
+        - /openai/v1/chat/completions
+        - /openai/v1/assistants
+        - /openai/v1/threads
+
+        Dedicated passthrough (for Responses API):
+        - /openai_passthrough/v1/responses
+        - /openai_passthrough/v1/responses/{response_id}
+        - /openai_passthrough/v1/responses/{response_id}/input_items
+
+    [Docs](https://docs.litellm.ai/docs/pass_through/openai_passthrough)
 
     Args:
         endpoint (str):
@@ -129,7 +169,27 @@ async def asyncio_detailed(
 ) -> Response[Any | HTTPValidationError]:
     """ Openai Proxy Route
 
-     Simple pass-through for OpenAI. Use this if you want to directly send a request to OpenAI.
+     Pass-through endpoint for OpenAI API calls.
+
+    Available on both routes:
+    - /openai/{endpoint:path} - Standard OpenAI passthrough route
+    - /openai_passthrough/{endpoint:path} - Dedicated passthrough route (recommended for Responses API)
+
+    Use /openai_passthrough/* when you need guaranteed passthrough to OpenAI without conflicts
+    with LiteLLM's native implementations (e.g., for the Responses API at /v1/responses).
+
+    Examples:
+        Standard route:
+        - /openai/v1/chat/completions
+        - /openai/v1/assistants
+        - /openai/v1/threads
+
+        Dedicated passthrough (for Responses API):
+        - /openai_passthrough/v1/responses
+        - /openai_passthrough/v1/responses/{response_id}
+        - /openai_passthrough/v1/responses/{response_id}/input_items
+
+    [Docs](https://docs.litellm.ai/docs/pass_through/openai_passthrough)
 
     Args:
         endpoint (str):
@@ -162,7 +222,27 @@ async def asyncio(
 ) -> Any | HTTPValidationError | None:
     """ Openai Proxy Route
 
-     Simple pass-through for OpenAI. Use this if you want to directly send a request to OpenAI.
+     Pass-through endpoint for OpenAI API calls.
+
+    Available on both routes:
+    - /openai/{endpoint:path} - Standard OpenAI passthrough route
+    - /openai_passthrough/{endpoint:path} - Dedicated passthrough route (recommended for Responses API)
+
+    Use /openai_passthrough/* when you need guaranteed passthrough to OpenAI without conflicts
+    with LiteLLM's native implementations (e.g., for the Responses API at /v1/responses).
+
+    Examples:
+        Standard route:
+        - /openai/v1/chat/completions
+        - /openai/v1/assistants
+        - /openai/v1/threads
+
+        Dedicated passthrough (for Responses API):
+        - /openai_passthrough/v1/responses
+        - /openai_passthrough/v1/responses/{response_id}
+        - /openai_passthrough/v1/responses/{response_id}/input_items
+
+    [Docs](https://docs.litellm.ai/docs/pass_through/openai_passthrough)
 
     Args:
         endpoint (str):

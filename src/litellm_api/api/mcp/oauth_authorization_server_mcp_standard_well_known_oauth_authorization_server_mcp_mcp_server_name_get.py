@@ -9,37 +9,23 @@ from ...types import Response, UNSET
 from ... import errors
 
 from ...models.http_validation_error import HTTPValidationError
-from ...types import UNSET, Unset
 from typing import cast
 
 
 
 def _get_kwargs(
-    *,
-    mcp_server_name: None | str | Unset = UNSET,
+    mcp_server_name: str,
 
 ) -> dict[str, Any]:
     
 
     
 
-    params: dict[str, Any] = {}
-
-    json_mcp_server_name: None | str | Unset
-    if isinstance(mcp_server_name, Unset):
-        json_mcp_server_name = UNSET
-    else:
-        json_mcp_server_name = mcp_server_name
-    params["mcp_server_name"] = json_mcp_server_name
-
-
-    params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
-
+    
 
     _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": "/.well-known/oauth-authorization-server",
-        "params": params,
+        "url": "/.well-known/oauth-authorization-server/mcp/{mcp_server_name}".format(mcp_server_name=quote(str(mcp_server_name), safe=""),),
     }
 
 
@@ -75,15 +61,20 @@ def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Res
 
 
 def sync_detailed(
+    mcp_server_name: str,
     *,
     client: AuthenticatedClient | Client,
-    mcp_server_name: None | str | Unset = UNSET,
 
 ) -> Response[Any | HTTPValidationError]:
-    """ Oauth Authorization Server Root
+    """ Oauth Authorization Server Mcp Standard
+
+     OAuth authorization server discovery endpoint using standard MCP URL pattern.
+
+    Standard pattern: /mcp/{server_name}
+    Discovery path: /.well-known/oauth-authorization-server/mcp/{server_name}
 
     Args:
-        mcp_server_name (None | str | Unset):
+        mcp_server_name (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -106,15 +97,20 @@ def sync_detailed(
     return _build_response(client=client, response=response)
 
 def sync(
+    mcp_server_name: str,
     *,
     client: AuthenticatedClient | Client,
-    mcp_server_name: None | str | Unset = UNSET,
 
 ) -> Any | HTTPValidationError | None:
-    """ Oauth Authorization Server Root
+    """ Oauth Authorization Server Mcp Standard
+
+     OAuth authorization server discovery endpoint using standard MCP URL pattern.
+
+    Standard pattern: /mcp/{server_name}
+    Discovery path: /.well-known/oauth-authorization-server/mcp/{server_name}
 
     Args:
-        mcp_server_name (None | str | Unset):
+        mcp_server_name (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -126,21 +122,26 @@ def sync(
 
 
     return sync_detailed(
-        client=client,
-mcp_server_name=mcp_server_name,
+        mcp_server_name=mcp_server_name,
+client=client,
 
     ).parsed
 
 async def asyncio_detailed(
+    mcp_server_name: str,
     *,
     client: AuthenticatedClient | Client,
-    mcp_server_name: None | str | Unset = UNSET,
 
 ) -> Response[Any | HTTPValidationError]:
-    """ Oauth Authorization Server Root
+    """ Oauth Authorization Server Mcp Standard
+
+     OAuth authorization server discovery endpoint using standard MCP URL pattern.
+
+    Standard pattern: /mcp/{server_name}
+    Discovery path: /.well-known/oauth-authorization-server/mcp/{server_name}
 
     Args:
-        mcp_server_name (None | str | Unset):
+        mcp_server_name (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -163,15 +164,20 @@ async def asyncio_detailed(
     return _build_response(client=client, response=response)
 
 async def asyncio(
+    mcp_server_name: str,
     *,
     client: AuthenticatedClient | Client,
-    mcp_server_name: None | str | Unset = UNSET,
 
 ) -> Any | HTTPValidationError | None:
-    """ Oauth Authorization Server Root
+    """ Oauth Authorization Server Mcp Standard
+
+     OAuth authorization server discovery endpoint using standard MCP URL pattern.
+
+    Standard pattern: /mcp/{server_name}
+    Discovery path: /.well-known/oauth-authorization-server/mcp/{server_name}
 
     Args:
-        mcp_server_name (None | str | Unset):
+        mcp_server_name (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -183,7 +189,7 @@ async def asyncio(
 
 
     return (await asyncio_detailed(
-        client=client,
-mcp_server_name=mcp_server_name,
+        mcp_server_name=mcp_server_name,
+client=client,
 
     )).parsed

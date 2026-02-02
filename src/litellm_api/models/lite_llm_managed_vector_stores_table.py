@@ -37,6 +37,8 @@ class LiteLLMManagedVectorStoresTable:
             updated_at (datetime.datetime | None):
             litellm_credential_name (None | str):
             litellm_params (LiteLLMManagedVectorStoresTableLitellmParamsType0 | None):
+            team_id (None | str):
+            user_id (None | str):
      """
 
     vector_store_id: str
@@ -48,6 +50,8 @@ class LiteLLMManagedVectorStoresTable:
     updated_at: datetime.datetime | None
     litellm_credential_name: None | str
     litellm_params: LiteLLMManagedVectorStoresTableLitellmParamsType0 | None
+    team_id: None | str
+    user_id: None | str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -55,8 +59,8 @@ class LiteLLMManagedVectorStoresTable:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.lite_llm_managed_vector_stores_table_vector_store_metadata_type_0 import LiteLLMManagedVectorStoresTableVectorStoreMetadataType0
         from ..models.lite_llm_managed_vector_stores_table_litellm_params_type_0 import LiteLLMManagedVectorStoresTableLitellmParamsType0
+        from ..models.lite_llm_managed_vector_stores_table_vector_store_metadata_type_0 import LiteLLMManagedVectorStoresTableVectorStoreMetadataType0
         vector_store_id = self.vector_store_id
 
         custom_llm_provider = self.custom_llm_provider
@@ -94,6 +98,12 @@ class LiteLLMManagedVectorStoresTable:
         else:
             litellm_params = self.litellm_params
 
+        team_id: None | str
+        team_id = self.team_id
+
+        user_id: None | str
+        user_id = self.user_id
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -107,6 +117,8 @@ class LiteLLMManagedVectorStoresTable:
             "updated_at": updated_at,
             "litellm_credential_name": litellm_credential_name,
             "litellm_params": litellm_params,
+            "team_id": team_id,
+            "user_id": user_id,
         })
 
         return field_dict
@@ -218,6 +230,22 @@ class LiteLLMManagedVectorStoresTable:
         litellm_params = _parse_litellm_params(d.pop("litellm_params"))
 
 
+        def _parse_team_id(data: object) -> None | str:
+            if data is None:
+                return data
+            return cast(None | str, data)
+
+        team_id = _parse_team_id(d.pop("team_id"))
+
+
+        def _parse_user_id(data: object) -> None | str:
+            if data is None:
+                return data
+            return cast(None | str, data)
+
+        user_id = _parse_user_id(d.pop("user_id"))
+
+
         lite_llm_managed_vector_stores_table = cls(
             vector_store_id=vector_store_id,
             custom_llm_provider=custom_llm_provider,
@@ -228,6 +256,8 @@ class LiteLLMManagedVectorStoresTable:
             updated_at=updated_at,
             litellm_credential_name=litellm_credential_name,
             litellm_params=litellm_params,
+            team_id=team_id,
+            user_id=user_id,
         )
 
 

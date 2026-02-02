@@ -8,27 +8,21 @@ from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from typing import cast
-
-if TYPE_CHECKING:
-  from ..models.guardrail_info_response import GuardrailInfoResponse
 
 
 
 
 
-T = TypeVar("T", bound="ListGuardrailsResponse")
+
+T = TypeVar("T", bound="FailedKeyUpdateKeyInfoType0")
 
 
 
 @_attrs_define
-class ListGuardrailsResponse:
+class FailedKeyUpdateKeyInfoType0:
     """ 
-        Attributes:
-            guardrails (list[GuardrailInfoResponse]):
      """
 
-    guardrails: list[GuardrailInfoResponse]
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -36,20 +30,9 @@ class ListGuardrailsResponse:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.guardrail_info_response import GuardrailInfoResponse
-        guardrails = []
-        for guardrails_item_data in self.guardrails:
-            guardrails_item = guardrails_item_data.to_dict()
-            guardrails.append(guardrails_item)
-
-
-
-
+        
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "guardrails": guardrails,
-        })
 
         return field_dict
 
@@ -57,25 +40,13 @@ class ListGuardrailsResponse:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.guardrail_info_response import GuardrailInfoResponse
         d = dict(src_dict)
-        guardrails = []
-        _guardrails = d.pop("guardrails")
-        for guardrails_item_data in (_guardrails):
-            guardrails_item = GuardrailInfoResponse.from_dict(guardrails_item_data)
-
-
-
-            guardrails.append(guardrails_item)
-
-
-        list_guardrails_response = cls(
-            guardrails=guardrails,
+        failed_key_update_key_info_type_0 = cls(
         )
 
 
-        list_guardrails_response.additional_properties = d
-        return list_guardrails_response
+        failed_key_update_key_info_type_0.additional_properties = d
+        return failed_key_update_key_info_type_0
 
     @property
     def additional_keys(self) -> list[str]:

@@ -8,21 +8,30 @@ from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from typing import cast
+
+if TYPE_CHECKING:
+  from ..models.successful_key_update_key_info import SuccessfulKeyUpdateKeyInfo
 
 
 
 
 
-
-T = TypeVar("T", bound="LiteLLMVerificationTokenRouterSettingsType0")
+T = TypeVar("T", bound="SuccessfulKeyUpdate")
 
 
 
 @_attrs_define
-class LiteLLMVerificationTokenRouterSettingsType0:
-    """ 
+class SuccessfulKeyUpdate:
+    """ Successfully updated key with its updated information
+
+        Attributes:
+            key (str):
+            key_info (SuccessfulKeyUpdateKeyInfo):
      """
 
+    key: str
+    key_info: SuccessfulKeyUpdateKeyInfo
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -30,9 +39,18 @@ class LiteLLMVerificationTokenRouterSettingsType0:
 
 
     def to_dict(self) -> dict[str, Any]:
-        
+        from ..models.successful_key_update_key_info import SuccessfulKeyUpdateKeyInfo
+        key = self.key
+
+        key_info = self.key_info.to_dict()
+
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
+        field_dict.update({
+            "key": key,
+            "key_info": key_info,
+        })
 
         return field_dict
 
@@ -40,13 +58,23 @@ class LiteLLMVerificationTokenRouterSettingsType0:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.successful_key_update_key_info import SuccessfulKeyUpdateKeyInfo
         d = dict(src_dict)
-        lite_llm_verification_token_router_settings_type_0 = cls(
+        key = d.pop("key")
+
+        key_info = SuccessfulKeyUpdateKeyInfo.from_dict(d.pop("key_info"))
+
+
+
+
+        successful_key_update = cls(
+            key=key,
+            key_info=key_info,
         )
 
 
-        lite_llm_verification_token_router_settings_type_0.additional_properties = d
-        return lite_llm_verification_token_router_settings_type_0
+        successful_key_update.additional_properties = d
+        return successful_key_update
 
     @property
     def additional_keys(self) -> list[str]:

@@ -55,9 +55,9 @@ class SCIMServiceProviderConfig:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.scim_service_provider_config_authentication_schemes_type_0_item import SCIMServiceProviderConfigAuthenticationSchemesType0Item
-        from ..models.scim_feature import SCIMFeature
         from ..models.scim_service_provider_config_meta_type_0 import SCIMServiceProviderConfigMetaType0
+        from ..models.scim_feature import SCIMFeature
+        from ..models.scim_service_provider_config_authentication_schemes_type_0_item import SCIMServiceProviderConfigAuthenticationSchemesType0Item
         schemas: list[str] | Unset = UNSET
         if not isinstance(self.schemas, Unset):
             schemas = self.schemas

@@ -101,11 +101,11 @@ class LiteLLMDeletedTeamTable:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.lite_llm_deleted_team_table_metadata_type_0 import LiteLLMDeletedTeamTableMetadataType0
         from ..models.lite_llm_deleted_team_table_router_settings_type_0 import LiteLLMDeletedTeamTableRouterSettingsType0
-        from ..models.member import Member
-        from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
         from ..models.lite_llm_model_table import LiteLLMModelTable
+        from ..models.lite_llm_deleted_team_table_metadata_type_0 import LiteLLMDeletedTeamTableMetadataType0
+        from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
+        from ..models.member import Member
         team_id = self.team_id
 
         team_alias: None | str | Unset

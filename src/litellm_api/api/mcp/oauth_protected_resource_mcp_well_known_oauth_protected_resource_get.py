@@ -82,6 +82,14 @@ def sync_detailed(
 ) -> Response[Any | HTTPValidationError]:
     """ Oauth Protected Resource Mcp
 
+     OAuth protected resource discovery endpoint using LiteLLM legacy URL pattern.
+
+    Legacy pattern: /{server_name}/mcp
+    Discovery path: /.well-known/oauth-protected-resource/{server_name}/mcp
+
+    This endpoint is kept for backward compatibility. New integrations should
+    use the standard MCP pattern (/mcp/{server_name}) instead.
+
     Args:
         mcp_server_name (None | str | Unset):
 
@@ -113,6 +121,14 @@ def sync(
 ) -> Any | HTTPValidationError | None:
     """ Oauth Protected Resource Mcp
 
+     OAuth protected resource discovery endpoint using LiteLLM legacy URL pattern.
+
+    Legacy pattern: /{server_name}/mcp
+    Discovery path: /.well-known/oauth-protected-resource/{server_name}/mcp
+
+    This endpoint is kept for backward compatibility. New integrations should
+    use the standard MCP pattern (/mcp/{server_name}) instead.
+
     Args:
         mcp_server_name (None | str | Unset):
 
@@ -138,6 +154,14 @@ async def asyncio_detailed(
 
 ) -> Response[Any | HTTPValidationError]:
     """ Oauth Protected Resource Mcp
+
+     OAuth protected resource discovery endpoint using LiteLLM legacy URL pattern.
+
+    Legacy pattern: /{server_name}/mcp
+    Discovery path: /.well-known/oauth-protected-resource/{server_name}/mcp
+
+    This endpoint is kept for backward compatibility. New integrations should
+    use the standard MCP pattern (/mcp/{server_name}) instead.
 
     Args:
         mcp_server_name (None | str | Unset):
@@ -169,6 +193,14 @@ async def asyncio(
 
 ) -> Any | HTTPValidationError | None:
     """ Oauth Protected Resource Mcp
+
+     OAuth protected resource discovery endpoint using LiteLLM legacy URL pattern.
+
+    Legacy pattern: /{server_name}/mcp
+    Discovery path: /.well-known/oauth-protected-resource/{server_name}/mcp
+
+    This endpoint is kept for backward compatibility. New integrations should
+    use the standard MCP pattern (/mcp/{server_name}) instead.
 
     Args:
         mcp_server_name (None | str | Unset):

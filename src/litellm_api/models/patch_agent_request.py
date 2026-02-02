@@ -44,8 +44,8 @@ class PatchAgentRequest:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.agent_card import AgentCard
         from ..models.patch_agent_request_litellm_params import PatchAgentRequestLitellmParams
+        from ..models.agent_card import AgentCard
         agent_name = self.agent_name
 
         agent_card_params: dict[str, Any] | Unset = UNSET

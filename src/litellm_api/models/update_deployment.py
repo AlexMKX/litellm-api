@@ -42,8 +42,8 @@ class UpdateDeployment:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.model_info import ModelInfo
         from ..models.update_lite_llm_params import UpdateLiteLLMParams
+        from ..models.model_info import ModelInfo
         model_name: None | str | Unset
         if isinstance(self.model_name, Unset):
             model_name = UNSET

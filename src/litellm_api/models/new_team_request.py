@@ -110,13 +110,13 @@ class NewTeamRequest:
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.new_team_request_router_settings_type_0 import NewTeamRequestRouterSettingsType0
-        from ..models.lite_llm_object_permission_base import LiteLLMObjectPermissionBase
-        from ..models.new_team_request_secret_manager_settings_type_0 import NewTeamRequestSecretManagerSettingsType0
         from ..models.new_team_request_model_tpm_limit_type_0 import NewTeamRequestModelTpmLimitType0
+        from ..models.new_team_request_secret_manager_settings_type_0 import NewTeamRequestSecretManagerSettingsType0
         from ..models.new_team_request_model_rpm_limit_type_0 import NewTeamRequestModelRpmLimitType0
         from ..models.new_team_request_metadata_type_0 import NewTeamRequestMetadataType0
-        from ..models.new_team_request_model_aliases_type_0 import NewTeamRequestModelAliasesType0
+        from ..models.lite_llm_object_permission_base import LiteLLMObjectPermissionBase
         from ..models.allowed_vector_store_index_item import AllowedVectorStoreIndexItem
+        from ..models.new_team_request_model_aliases_type_0 import NewTeamRequestModelAliasesType0
         from ..models.member import Member
         team_alias: None | str | Unset
         if isinstance(self.team_alias, Unset):

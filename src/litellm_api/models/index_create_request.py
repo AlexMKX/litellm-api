@@ -42,8 +42,8 @@ class IndexCreateRequest:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.index_create_lite_llm_params import IndexCreateLiteLLMParams
         from ..models.index_create_request_index_info_type_0 import IndexCreateRequestIndexInfoType0
+        from ..models.index_create_lite_llm_params import IndexCreateLiteLLMParams
         index_name = self.index_name
 
         litellm_params = self.litellm_params.to_dict()

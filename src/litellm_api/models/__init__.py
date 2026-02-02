@@ -75,6 +75,9 @@ from .budget_request import BudgetRequest
 from .bulk_team_member_add_request import BulkTeamMemberAddRequest
 from .bulk_team_member_add_response import BulkTeamMemberAddResponse
 from .bulk_team_member_add_response_updated_team_type_0 import BulkTeamMemberAddResponseUpdatedTeamType0
+from .bulk_update_key_request import BulkUpdateKeyRequest
+from .bulk_update_key_request_item import BulkUpdateKeyRequestItem
+from .bulk_update_key_response import BulkUpdateKeyResponse
 from .bulk_update_user_request import BulkUpdateUserRequest
 from .bulk_update_user_response import BulkUpdateUserResponse
 from .cache_ping_response import CachePingResponse
@@ -154,6 +157,9 @@ from .cloud_zero_settings_update import CloudZeroSettingsUpdate
 from .cloud_zero_settings_view import CloudZeroSettingsView
 from .configurable_clientside_params_custom_auth import ConfigurableClientsideParamsCustomAuth
 from .content_filter_action import ContentFilterAction
+from .content_filter_category_config import ContentFilterCategoryConfig
+from .content_filter_category_config_action import ContentFilterCategoryConfigAction
+from .content_filter_category_config_severity_threshold import ContentFilterCategoryConfigSeverityThreshold
 from .content_filter_pattern import ContentFilterPattern
 from .content_filter_pattern_pattern_type import ContentFilterPatternPatternType
 from .convert_prompt_file_to_json_utils_dotprompt_json_converter_post_response_convert_prompt_file_to_json_utils_dotprompt_json_converter_post import ConvertPromptFileToJsonUtilsDotpromptJsonConverterPostResponseConvertPromptFileToJsonUtilsDotpromptJsonConverterPost
@@ -201,6 +207,8 @@ from .embeddings_v1_embeddings_post_body_custom_llm_provider_type_1 import Embed
 from .embeddings_v1_embeddings_post_body_litellm_logging_obj_type_0 import EmbeddingsV1EmbeddingsPostBodyLitellmLoggingObjType0
 from .error_response import ErrorResponse
 from .error_response_detail import ErrorResponseDetail
+from .failed_key_update import FailedKeyUpdate
+from .failed_key_update_key_info_type_0 import FailedKeyUpdateKeyInfoType0
 from .fallback_create_request import FallbackCreateRequest
 from .fallback_create_request_fallback_type import FallbackCreateRequestFallbackType
 from .fallback_delete_response import FallbackDeleteResponse
@@ -214,8 +222,6 @@ from .gray_swan_guardrail_config_model_optional_params import GraySwanGuardrailC
 from .gray_swan_guardrail_config_model_optional_params_categories_type_0 import GraySwanGuardrailConfigModelOptionalParamsCategoriesType0
 from .guardrail import Guardrail
 from .guardrail_guardrail_info_type_0 import GuardrailGuardrailInfoType0
-from .guardrail_info_response import GuardrailInfoResponse
-from .guardrail_info_response_guardrail_info_type_0 import GuardrailInfoResponseGuardrailInfoType0
 from .guardraildefinitionlocation import GUARDRAILDEFINITIONLOCATION
 from .health_services_endpoint_health_services_get_service_type_0 import HealthServicesEndpointHealthServicesGetServiceType0
 from .http_auth_security_scheme import HTTPAuthSecurityScheme
@@ -244,7 +250,6 @@ from .lakera_category_thresholds import LakeraCategoryThresholds
 from .list_access_groups_response import ListAccessGroupsResponse
 from .list_fine_tuning_jobs_fine_tuning_jobs_get_custom_llm_provider_type_0 import ListFineTuningJobsFineTuningJobsGetCustomLlmProviderType0
 from .list_fine_tuning_jobs_v1_fine_tuning_jobs_get_custom_llm_provider_type_0 import ListFineTuningJobsV1FineTuningJobsGetCustomLlmProviderType0
-from .list_guardrails_response import ListGuardrailsResponse
 from .list_plugins_response import ListPluginsResponse
 from .list_prompts_response import ListPromptsResponse
 from .list_search_tools_response import ListSearchToolsResponse
@@ -263,7 +268,6 @@ from .lite_llm_deleted_verification_token_metadata import LiteLLMDeletedVerifica
 from .lite_llm_deleted_verification_token_model_max_budget import LiteLLMDeletedVerificationTokenModelMaxBudget
 from .lite_llm_deleted_verification_token_model_spend import LiteLLMDeletedVerificationTokenModelSpend
 from .lite_llm_deleted_verification_token_permissions import LiteLLMDeletedVerificationTokenPermissions
-from .lite_llm_deleted_verification_token_router_settings_type_0 import LiteLLMDeletedVerificationTokenRouterSettingsType0
 from .lite_llm_end_user_table import LiteLLMEndUserTable
 from .lite_llm_end_user_table_allowed_model_region_type_0 import LiteLLMEndUserTableAllowedModelRegionType0
 from .lite_llm_fine_tuning_job_create import LiteLLMFineTuningJobCreate
@@ -305,7 +309,6 @@ from .lite_llm_verification_token_metadata import LiteLLMVerificationTokenMetada
 from .lite_llm_verification_token_model_max_budget import LiteLLMVerificationTokenModelMaxBudget
 from .lite_llm_verification_token_model_spend import LiteLLMVerificationTokenModelSpend
 from .lite_llm_verification_token_permissions import LiteLLMVerificationTokenPermissions
-from .lite_llm_verification_token_router_settings_type_0 import LiteLLMVerificationTokenRouterSettingsType0
 from .lite_llmmcp_server_table import LiteLLMMCPServerTable
 from .lite_llmmcp_server_table_auth_type_type_0 import LiteLLMMCPServerTableAuthTypeType0
 from .lite_llmmcp_server_table_env import LiteLLMMCPServerTableEnv
@@ -512,6 +515,8 @@ from .sso_settings_response import SSOSettingsResponse
 from .sso_settings_response_field_schema import SSOSettingsResponseFieldSchema
 from .sso_settings_response_values import SSOSettingsResponseValues
 from .streaming_choices import StreamingChoices
+from .successful_key_update import SuccessfulKeyUpdate
+from .successful_key_update_key_info import SuccessfulKeyUpdateKeyInfo
 from .tag_active_users_response import TagActiveUsersResponse
 from .tag_delete_request import TagDeleteRequest
 from .tag_info_request import TagInfoRequest
@@ -605,7 +610,6 @@ from .user_api_key_auth_model_max_budget import UserAPIKeyAuthModelMaxBudget
 from .user_api_key_auth_model_spend import UserAPIKeyAuthModelSpend
 from .user_api_key_auth_organization_metadata_type_0 import UserAPIKeyAuthOrganizationMetadataType0
 from .user_api_key_auth_permissions import UserAPIKeyAuthPermissions
-from .user_api_key_auth_router_settings_type_0 import UserAPIKeyAuthRouterSettingsType0
 from .user_api_key_auth_rpm_limit_per_model_type_0 import UserAPIKeyAuthRpmLimitPerModelType0
 from .user_api_key_auth_team_metadata_type_0 import UserAPIKeyAuthTeamMetadataType0
 from .user_api_key_auth_team_model_aliases_type_0 import UserAPIKeyAuthTeamModelAliasesType0
@@ -695,6 +699,9 @@ __all__ = (
     "BulkTeamMemberAddRequest",
     "BulkTeamMemberAddResponse",
     "BulkTeamMemberAddResponseUpdatedTeamType0",
+    "BulkUpdateKeyRequest",
+    "BulkUpdateKeyRequestItem",
+    "BulkUpdateKeyResponse",
     "BulkUpdateUserRequest",
     "BulkUpdateUserResponse",
     "CachePingResponse",
@@ -774,6 +781,9 @@ __all__ = (
     "CloudZeroSettingsView",
     "ConfigurableClientsideParamsCustomAuth",
     "ContentFilterAction",
+    "ContentFilterCategoryConfig",
+    "ContentFilterCategoryConfigAction",
+    "ContentFilterCategoryConfigSeverityThreshold",
     "ContentFilterPattern",
     "ContentFilterPatternPatternType",
     "ConvertPromptFileToJsonUtilsDotpromptJsonConverterPostResponseConvertPromptFileToJsonUtilsDotpromptJsonConverterPost",
@@ -821,6 +831,8 @@ __all__ = (
     "EmbeddingsV1EmbeddingsPostBodyLitellmLoggingObjType0",
     "ErrorResponse",
     "ErrorResponseDetail",
+    "FailedKeyUpdate",
+    "FailedKeyUpdateKeyInfoType0",
     "FallbackCreateRequest",
     "FallbackCreateRequestFallbackType",
     "FallbackDeleteResponse",
@@ -835,8 +847,6 @@ __all__ = (
     "Guardrail",
     "GUARDRAILDEFINITIONLOCATION",
     "GuardrailGuardrailInfoType0",
-    "GuardrailInfoResponse",
-    "GuardrailInfoResponseGuardrailInfoType0",
     "HealthServicesEndpointHealthServicesGetServiceType0",
     "HTTPAuthSecurityScheme",
     "HTTPValidationError",
@@ -864,7 +874,6 @@ __all__ = (
     "ListAccessGroupsResponse",
     "ListFineTuningJobsFineTuningJobsGetCustomLlmProviderType0",
     "ListFineTuningJobsV1FineTuningJobsGetCustomLlmProviderType0",
-    "ListGuardrailsResponse",
     "ListPluginsResponse",
     "ListPromptsResponse",
     "ListSearchToolsResponse",
@@ -883,7 +892,6 @@ __all__ = (
     "LiteLLMDeletedVerificationTokenModelMaxBudget",
     "LiteLLMDeletedVerificationTokenModelSpend",
     "LiteLLMDeletedVerificationTokenPermissions",
-    "LiteLLMDeletedVerificationTokenRouterSettingsType0",
     "LiteLLMEndUserTable",
     "LiteLLMEndUserTableAllowedModelRegionType0",
     "LiteLLMFineTuningJobCreate",
@@ -948,7 +956,6 @@ __all__ = (
     "LiteLLMVerificationTokenModelMaxBudget",
     "LiteLLMVerificationTokenModelSpend",
     "LiteLLMVerificationTokenPermissions",
-    "LiteLLMVerificationTokenRouterSettingsType0",
     "LoggingCallbackStatus",
     "LoggingCallbackStatusStatus",
     "MakeAgentsPublicRequest",
@@ -1132,6 +1139,8 @@ __all__ = (
     "SSOSettingsResponseFieldSchema",
     "SSOSettingsResponseValues",
     "StreamingChoices",
+    "SuccessfulKeyUpdate",
+    "SuccessfulKeyUpdateKeyInfo",
     "TagActiveUsersResponse",
     "TagDeleteRequest",
     "TagInfoRequest",
@@ -1225,7 +1234,6 @@ __all__ = (
     "UserAPIKeyAuthModelSpend",
     "UserAPIKeyAuthOrganizationMetadataType0",
     "UserAPIKeyAuthPermissions",
-    "UserAPIKeyAuthRouterSettingsType0",
     "UserAPIKeyAuthRpmLimitPerModelType0",
     "UserAPIKeyAuthTeamMetadataType0",
     "UserAPIKeyAuthTeamModelAliasesType0",

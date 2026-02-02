@@ -14,12 +14,12 @@ from ..types import UNSET, Unset
 
 
 
-T = TypeVar("T", bound="UserAPIKeyAuthRouterSettingsType0")
+T = TypeVar("T", bound="SuccessfulKeyUpdateKeyInfo")
 
 
 
 @_attrs_define
-class UserAPIKeyAuthRouterSettingsType0:
+class SuccessfulKeyUpdateKeyInfo:
     """ 
      """
 
@@ -41,12 +41,12 @@ class UserAPIKeyAuthRouterSettingsType0:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        user_api_key_auth_router_settings_type_0 = cls(
+        successful_key_update_key_info = cls(
         )
 
 
-        user_api_key_auth_router_settings_type_0.additional_properties = d
-        return user_api_key_auth_router_settings_type_0
+        successful_key_update_key_info.additional_properties = d
+        return successful_key_update_key_info
 
     @property
     def additional_keys(self) -> list[str]:

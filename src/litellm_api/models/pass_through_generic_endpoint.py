@@ -60,8 +60,8 @@ class PassThroughGenericEndpoint:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.pass_through_generic_endpoint_guardrails_type_0 import PassThroughGenericEndpointGuardrailsType0
         from ..models.pass_through_generic_endpoint_headers import PassThroughGenericEndpointHeaders
+        from ..models.pass_through_generic_endpoint_guardrails_type_0 import PassThroughGenericEndpointGuardrailsType0
         path = self.path
 
         target = self.target
