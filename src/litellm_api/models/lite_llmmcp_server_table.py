@@ -65,6 +65,7 @@ class LiteLLMMCPServerTable:
             token_url (None | str | Unset):
             registration_url (None | str | Unset):
             allow_all_keys (bool | Unset):  Default: False.
+            available_on_public_internet (bool | Unset):  Default: False.
      """
 
     server_id: str
@@ -95,6 +96,7 @@ class LiteLLMMCPServerTable:
     token_url: None | str | Unset = UNSET
     registration_url: None | str | Unset = UNSET
     allow_all_keys: bool | Unset = False
+    available_on_public_internet: bool | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -105,8 +107,8 @@ class LiteLLMMCPServerTable:
         from ..models.lite_llmmcp_server_table_mcp_info_type_0 import LiteLLMMCPServerTableMcpInfoType0
         from ..models.mcp_credentials import MCPCredentials
         from ..models.lite_llmmcp_server_table_env import LiteLLMMCPServerTableEnv
-        from ..models.lite_llmmcp_server_table_teams_item import LiteLLMMCPServerTableTeamsItem
         from ..models.lite_llmmcp_server_table_static_headers_type_0 import LiteLLMMCPServerTableStaticHeadersType0
+        from ..models.lite_llmmcp_server_table_teams_item import LiteLLMMCPServerTableTeamsItem
         server_id = self.server_id
 
         transport = self.transport.value
@@ -280,6 +282,8 @@ class LiteLLMMCPServerTable:
 
         allow_all_keys = self.allow_all_keys
 
+        available_on_public_internet = self.available_on_public_internet
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -339,6 +343,8 @@ class LiteLLMMCPServerTable:
             field_dict["registration_url"] = registration_url
         if allow_all_keys is not UNSET:
             field_dict["allow_all_keys"] = allow_all_keys
+        if available_on_public_internet is not UNSET:
+            field_dict["available_on_public_internet"] = available_on_public_internet
 
         return field_dict
 
@@ -665,6 +671,8 @@ class LiteLLMMCPServerTable:
 
         allow_all_keys = d.pop("allow_all_keys", UNSET)
 
+        available_on_public_internet = d.pop("available_on_public_internet", UNSET)
+
         lite_llmmcp_server_table = cls(
             server_id=server_id,
             transport=transport,
@@ -694,6 +702,7 @@ class LiteLLMMCPServerTable:
             token_url=token_url,
             registration_url=registration_url,
             allow_all_keys=allow_all_keys,
+            available_on_public_internet=available_on_public_internet,
         )
 
 

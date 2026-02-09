@@ -8,34 +8,21 @@ from ...client import AuthenticatedClient, Client
 from ...types import Response, UNSET
 from ... import errors
 
-from ...types import UNSET, Unset
 
 
 
 def _get_kwargs(
-    *,
-    model: str,
-    intent: str | Unset = UNSET,
-
+    
 ) -> dict[str, Any]:
     
 
     
 
-    params: dict[str, Any] = {}
-
-    params["model"] = model
-
-    params["intent"] = intent
-
-
-    params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
-
+    
 
     _kwargs: dict[str, Any] = {
         "method": "get",
         "url": "/v1/realtime",
-        "params": params,
     }
 
 
@@ -65,17 +52,11 @@ def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Res
 def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
-    model: str,
-    intent: str | Unset = UNSET,
 
 ) -> Response[Any]:
     """ WebSocket: realtime_websocket_endpoint
 
      WebSocket connection endpoint
-
-    Args:
-        model (str):
-        intent (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -87,9 +68,7 @@ def sync_detailed(
 
 
     kwargs = _get_kwargs(
-        model=model,
-intent=intent,
-
+        
     )
 
     response = client.get_httpx_client().request(
@@ -102,17 +81,11 @@ intent=intent,
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
-    model: str,
-    intent: str | Unset = UNSET,
 
 ) -> Response[Any]:
     """ WebSocket: realtime_websocket_endpoint
 
      WebSocket connection endpoint
-
-    Args:
-        model (str):
-        intent (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -124,9 +97,7 @@ async def asyncio_detailed(
 
 
     kwargs = _get_kwargs(
-        model=model,
-intent=intent,
-
+        
     )
 
     response = await client.get_async_httpx_client().request(

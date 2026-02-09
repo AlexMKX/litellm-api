@@ -8,37 +8,21 @@ from ...client import AuthenticatedClient, Client
 from ...types import Response, UNSET
 from ... import errors
 
-from ...types import UNSET, Unset
 
 
 
 def _get_kwargs(
-    *,
-    model: str | Unset = UNSET,
-    vertex_project: str | Unset = UNSET,
-    vertex_location: str | Unset = UNSET,
-
+    
 ) -> dict[str, Any]:
     
 
     
 
-    params: dict[str, Any] = {}
-
-    params["model"] = model
-
-    params["vertex_project"] = vertex_project
-
-    params["vertex_location"] = vertex_location
-
-
-    params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
-
+    
 
     _kwargs: dict[str, Any] = {
         "method": "get",
         "url": "/vertex_ai/live",
-        "params": params,
     }
 
 
@@ -68,19 +52,11 @@ def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Res
 def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
-    model: str | Unset = UNSET,
-    vertex_project: str | Unset = UNSET,
-    vertex_location: str | Unset = UNSET,
 
 ) -> Response[Any]:
     """ WebSocket: vertex_ai_live_passthrough_endpoint
 
      WebSocket connection endpoint
-
-    Args:
-        model (str | Unset):
-        vertex_project (str | Unset):
-        vertex_location (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -92,10 +68,7 @@ def sync_detailed(
 
 
     kwargs = _get_kwargs(
-        model=model,
-vertex_project=vertex_project,
-vertex_location=vertex_location,
-
+        
     )
 
     response = client.get_httpx_client().request(
@@ -108,19 +81,11 @@ vertex_location=vertex_location,
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
-    model: str | Unset = UNSET,
-    vertex_project: str | Unset = UNSET,
-    vertex_location: str | Unset = UNSET,
 
 ) -> Response[Any]:
     """ WebSocket: vertex_ai_live_passthrough_endpoint
 
      WebSocket connection endpoint
-
-    Args:
-        model (str | Unset):
-        vertex_project (str | Unset):
-        vertex_location (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -132,10 +97,7 @@ async def asyncio_detailed(
 
 
     kwargs = _get_kwargs(
-        model=model,
-vertex_project=vertex_project,
-vertex_location=vertex_location,
-
+        
     )
 
     response = await client.get_async_httpx_client().request(

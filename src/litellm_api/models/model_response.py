@@ -48,8 +48,8 @@ class ModelResponse:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.streaming_choices import StreamingChoices
         from ..models.choices import Choices
+        from ..models.streaming_choices import StreamingChoices
         id = self.id
 
         created = self.created

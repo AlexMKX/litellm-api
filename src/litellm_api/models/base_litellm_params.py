@@ -66,6 +66,8 @@ class BaseLitellmParams:
                 True.
             additional_provider_specific_params (BaseLitellmParamsAdditionalProviderSpecificParamsType0 | None | Unset):
                 Additional provider-specific parameters for generic guardrail APIs
+            custom_code (None | str | Unset): Python-like code containing the apply_guardrail function for custom guardrail
+                logic
      """
 
     patterns: list[ContentFilterPattern] | None | Unset = UNSET
@@ -94,6 +96,7 @@ class BaseLitellmParams:
     api_endpoint: None | str | Unset = UNSET
     fail_on_error: bool | None | Unset = True
     additional_provider_specific_params: BaseLitellmParamsAdditionalProviderSpecificParamsType0 | None | Unset = UNSET
+    custom_code: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -101,12 +104,12 @@ class BaseLitellmParams:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.base_litellm_params_additional_provider_specific_params_type_0 import BaseLitellmParamsAdditionalProviderSpecificParamsType0
-        from ..models.blocked_word import BlockedWord
         from ..models.lakera_category_thresholds import LakeraCategoryThresholds
-        from ..models.content_filter_pattern import ContentFilterPattern
+        from ..models.blocked_word import BlockedWord
         from ..models.content_filter_category_config import ContentFilterCategoryConfig
         from ..models.base_litellm_params_detect_secrets_config_type_0 import BaseLitellmParamsDetectSecretsConfigType0
+        from ..models.base_litellm_params_additional_provider_specific_params_type_0 import BaseLitellmParamsAdditionalProviderSpecificParamsType0
+        from ..models.content_filter_pattern import ContentFilterPattern
         patterns: list[dict[str, Any]] | None | Unset
         if isinstance(self.patterns, Unset):
             patterns = UNSET
@@ -290,6 +293,12 @@ class BaseLitellmParams:
         else:
             additional_provider_specific_params = self.additional_provider_specific_params
 
+        custom_code: None | str | Unset
+        if isinstance(self.custom_code, Unset):
+            custom_code = UNSET
+        else:
+            custom_code = self.custom_code
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -347,6 +356,8 @@ class BaseLitellmParams:
             field_dict["fail_on_error"] = fail_on_error
         if additional_provider_specific_params is not UNSET:
             field_dict["additional_provider_specific_params"] = additional_provider_specific_params
+        if custom_code is not UNSET:
+            field_dict["custom_code"] = custom_code
 
         return field_dict
 
@@ -696,6 +707,16 @@ class BaseLitellmParams:
         additional_provider_specific_params = _parse_additional_provider_specific_params(d.pop("additional_provider_specific_params", UNSET))
 
 
+        def _parse_custom_code(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        custom_code = _parse_custom_code(d.pop("custom_code", UNSET))
+
+
         base_litellm_params = cls(
             patterns=patterns,
             blocked_words=blocked_words,
@@ -723,6 +744,7 @@ class BaseLitellmParams:
             api_endpoint=api_endpoint,
             fail_on_error=fail_on_error,
             additional_provider_specific_params=additional_provider_specific_params,
+            custom_code=custom_code,
         )
 
 

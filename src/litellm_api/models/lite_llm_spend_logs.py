@@ -76,8 +76,8 @@ class LiteLLMSpendLogs:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.lite_llm_spend_logs_messages_type_2 import LiteLLMSpendLogsMessagesType2
         from ..models.lite_llm_spend_logs_response_type_2 import LiteLLMSpendLogsResponseType2
+        from ..models.lite_llm_spend_logs_messages_type_2 import LiteLLMSpendLogsMessagesType2
         request_id = self.request_id
 
         api_key = self.api_key

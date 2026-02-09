@@ -57,8 +57,8 @@ class AuditLogResponse:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.audit_log_response_before_value_type_0 import AuditLogResponseBeforeValueType0
         from ..models.audit_log_response_updated_values_type_0 import AuditLogResponseUpdatedValuesType0
+        from ..models.audit_log_response_before_value_type_0 import AuditLogResponseBeforeValueType0
         id = self.id
 
         updated_at = self.updated_at.isoformat()

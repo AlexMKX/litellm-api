@@ -61,8 +61,8 @@ class LiteLLMManagedVectorStore:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.lite_llm_managed_vector_store_vector_store_metadata_type_0 import LiteLLMManagedVectorStoreVectorStoreMetadataType0
         from ..models.lite_llm_managed_vector_store_litellm_params_type_0 import LiteLLMManagedVectorStoreLitellmParamsType0
+        from ..models.lite_llm_managed_vector_store_vector_store_metadata_type_0 import LiteLLMManagedVectorStoreVectorStoreMetadataType0
         vector_store_id = self.vector_store_id
 
         custom_llm_provider = self.custom_llm_provider

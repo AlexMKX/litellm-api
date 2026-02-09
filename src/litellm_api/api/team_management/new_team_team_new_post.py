@@ -116,6 +116,9 @@ def sync_detailed(
     TPM, or \"best_effort_throughput\" for best effort enforcement.
     - max_budget: Optional[float] - The maximum budget allocated to the team - all keys for this team_id
     will have at max this max_budget
+    - soft_budget: Optional[float] - The soft budget threshold for the team. If max_budget is set,
+    soft_budget must be strictly lower than max_budget. Can be set independently if max_budget is not
+    set.
     - budget_duration: Optional[str] - The duration of the budget for the team. Doc
     [here](https://docs.litellm.ai/docs/proxy/team_budgets)
     - models: Optional[list] - A list of models associated with the team - all keys for this team_id
@@ -250,6 +253,9 @@ def sync(
     TPM, or \"best_effort_throughput\" for best effort enforcement.
     - max_budget: Optional[float] - The maximum budget allocated to the team - all keys for this team_id
     will have at max this max_budget
+    - soft_budget: Optional[float] - The soft budget threshold for the team. If max_budget is set,
+    soft_budget must be strictly lower than max_budget. Can be set independently if max_budget is not
+    set.
     - budget_duration: Optional[str] - The duration of the budget for the team. Doc
     [here](https://docs.litellm.ai/docs/proxy/team_budgets)
     - models: Optional[list] - A list of models associated with the team - all keys for this team_id
@@ -379,6 +385,9 @@ async def asyncio_detailed(
     TPM, or \"best_effort_throughput\" for best effort enforcement.
     - max_budget: Optional[float] - The maximum budget allocated to the team - all keys for this team_id
     will have at max this max_budget
+    - soft_budget: Optional[float] - The soft budget threshold for the team. If max_budget is set,
+    soft_budget must be strictly lower than max_budget. Can be set independently if max_budget is not
+    set.
     - budget_duration: Optional[str] - The duration of the budget for the team. Doc
     [here](https://docs.litellm.ai/docs/proxy/team_budgets)
     - models: Optional[list] - A list of models associated with the team - all keys for this team_id
@@ -513,6 +522,9 @@ async def asyncio(
     TPM, or \"best_effort_throughput\" for best effort enforcement.
     - max_budget: Optional[float] - The maximum budget allocated to the team - all keys for this team_id
     will have at max this max_budget
+    - soft_budget: Optional[float] - The soft budget threshold for the team. If max_budget is set,
+    soft_budget must be strictly lower than max_budget. Can be set independently if max_budget is not
+    set.
     - budget_duration: Optional[str] - The duration of the budget for the team. Doc
     [here](https://docs.litellm.ai/docs/proxy/team_budgets)
     - models: Optional[list] - A list of models associated with the team - all keys for this team_id

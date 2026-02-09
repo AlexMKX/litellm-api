@@ -11,7 +11,7 @@ from ..types import UNSET, Unset
 from ..models.litellm_params_default_action import LitellmParamsDefaultAction
 from ..models.litellm_params_on_disallowed_action import LitellmParamsOnDisallowedAction
 from ..models.litellm_params_on_flagged_type_0 import LitellmParamsOnFlaggedType0
-from ..models.litellm_params_presidio_filter_scope import LitellmParamsPresidioFilterScope
+from ..models.litellm_params_presidio_filter_scope_type_0 import LitellmParamsPresidioFilterScopeType0
 from ..models.litellm_params_presidio_run_on_type_0 import LitellmParamsPresidioRunOnType0
 from ..types import UNSET, Unset
 from typing import cast
@@ -114,6 +114,8 @@ class LitellmParams:
                 True.
             additional_provider_specific_params (LitellmParamsAdditionalProviderSpecificParamsType0 | None | Unset):
                 Additional provider-specific parameters for generic guardrail APIs
+            custom_code (None | str | Unset): Python-like code containing the apply_guardrail function for custom guardrail
+                logic
             api_version (None | str | Unset): API version for Javelin service Default: 'v1'.
             metadata (LitellmParamsMetadataType0 | None | Unset): Additional metadata to include in the request
             application (None | str | Unset): Application name for Javelin service
@@ -167,9 +169,8 @@ class LitellmParams:
             aws_bedrock_runtime_endpoint (None | str | Unset): AWS Bedrock runtime endpoint URL
             presidio_analyzer_api_base (None | str | Unset): Base URL for the Presidio analyzer API
             presidio_anonymizer_api_base (None | str | Unset): Base URL for the Presidio anonymizer API
-            presidio_filter_scope (LitellmParamsPresidioFilterScope | Unset): Where to apply Presidio checks: 'input' runs
-                on user → model traffic, 'output' runs on model → user traffic, and 'both' applies to both. Default:
-                LitellmParamsPresidioFilterScope.BOTH.
+            presidio_filter_scope (LitellmParamsPresidioFilterScopeType0 | None | Unset): Where to apply Presidio checks:
+                'input' (user -> model), 'output' (model -> user), or 'both' (default).
             output_parse_pii (bool | None | Unset): When True, LiteLLM will replace the masked text with the original text
                 in the response
             presidio_language (None | str | Unset): Language code for Presidio PII analysis (e.g., 'en', 'de', 'es', 'fr')
@@ -231,6 +232,7 @@ class LitellmParams:
     api_endpoint: None | str | Unset = UNSET
     fail_on_error: bool | None | Unset = True
     additional_provider_specific_params: LitellmParamsAdditionalProviderSpecificParamsType0 | None | Unset = UNSET
+    custom_code: None | str | Unset = UNSET
     api_version: None | str | Unset = 'v1'
     metadata: LitellmParamsMetadataType0 | None | Unset = UNSET
     application: None | str | Unset = UNSET
@@ -273,7 +275,7 @@ class LitellmParams:
     aws_bedrock_runtime_endpoint: None | str | Unset = UNSET
     presidio_analyzer_api_base: None | str | Unset = UNSET
     presidio_anonymizer_api_base: None | str | Unset = UNSET
-    presidio_filter_scope: LitellmParamsPresidioFilterScope | Unset = LitellmParamsPresidioFilterScope.BOTH
+    presidio_filter_scope: LitellmParamsPresidioFilterScopeType0 | None | Unset = UNSET
     output_parse_pii: bool | None | Unset = UNSET
     presidio_language: None | str | Unset = 'en'
     presidio_run_on: LitellmParamsPresidioRunOnType0 | None | Unset = UNSET
@@ -288,21 +290,21 @@ class LitellmParams:
 
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.lakera_category_thresholds import LakeraCategoryThresholds
         from ..models.litellm_params_mock_redacted_text_type_0 import LitellmParamsMockRedactedTextType0
+        from ..models.litellm_params_metadata_type_0 import LitellmParamsMetadataType0
+        from ..models.blocked_word import BlockedWord
+        from ..models.content_filter_category_config import ContentFilterCategoryConfig
+        from ..models.litellm_params_detect_secrets_config_type_0 import LitellmParamsDetectSecretsConfigType0
+        from ..models.litellm_params_config_type_0 import LitellmParamsConfigType0
+        from ..models.litellm_params_detectors_type_0 import LitellmParamsDetectorsType0
+        from ..models.litellm_params_additional_provider_specific_params_type_0 import LitellmParamsAdditionalProviderSpecificParamsType0
         from ..models.tool_permission_rule import ToolPermissionRule
         from ..models.litellm_params_presidio_score_thresholds_type_0 import LitellmParamsPresidioScoreThresholdsType0
-        from ..models.litellm_params_detect_secrets_config_type_0 import LitellmParamsDetectSecretsConfigType0
-        from ..models.blocked_word import BlockedWord
-        from ..models.lakera_category_thresholds import LakeraCategoryThresholds
-        from ..models.content_filter_pattern import ContentFilterPattern
-        from ..models.content_filter_category_config import ContentFilterCategoryConfig
-        from ..models.litellm_params_additional_provider_specific_params_type_0 import LitellmParamsAdditionalProviderSpecificParamsType0
-        from ..models.gray_swan_guardrail_config_model_optional_params import GraySwanGuardrailConfigModelOptionalParams
-        from ..models.litellm_params_metadata_type_0 import LitellmParamsMetadataType0
-        from ..models.litellm_params_detectors_type_0 import LitellmParamsDetectorsType0
         from ..models.mode import Mode
-        from ..models.litellm_params_config_type_0 import LitellmParamsConfigType0
         from ..models.litellm_params_pii_entities_config_type_0 import LitellmParamsPiiEntitiesConfigType0
+        from ..models.content_filter_pattern import ContentFilterPattern
+        from ..models.gray_swan_guardrail_config_model_optional_params import GraySwanGuardrailConfigModelOptionalParams
         guardrail = self.guardrail
 
         mode: dict[str, Any] | list[str] | str
@@ -622,6 +624,12 @@ class LitellmParams:
         else:
             additional_provider_specific_params = self.additional_provider_specific_params
 
+        custom_code: None | str | Unset
+        if isinstance(self.custom_code, Unset):
+            custom_code = UNSET
+        else:
+            custom_code = self.custom_code
+
         api_version: None | str | Unset
         if isinstance(self.api_version, Unset):
             api_version = UNSET
@@ -883,10 +891,13 @@ class LitellmParams:
         else:
             presidio_anonymizer_api_base = self.presidio_anonymizer_api_base
 
-        presidio_filter_scope: str | Unset = UNSET
-        if not isinstance(self.presidio_filter_scope, Unset):
+        presidio_filter_scope: None | str | Unset
+        if isinstance(self.presidio_filter_scope, Unset):
+            presidio_filter_scope = UNSET
+        elif isinstance(self.presidio_filter_scope, LitellmParamsPresidioFilterScopeType0):
             presidio_filter_scope = self.presidio_filter_scope.value
-
+        else:
+            presidio_filter_scope = self.presidio_filter_scope
 
         output_parse_pii: bool | None | Unset
         if isinstance(self.output_parse_pii, Unset):
@@ -1035,6 +1046,8 @@ class LitellmParams:
             field_dict["fail_on_error"] = fail_on_error
         if additional_provider_specific_params is not UNSET:
             field_dict["additional_provider_specific_params"] = additional_provider_specific_params
+        if custom_code is not UNSET:
+            field_dict["custom_code"] = custom_code
         if api_version is not UNSET:
             field_dict["api_version"] = api_version
         if metadata is not UNSET:
@@ -1747,6 +1760,16 @@ class LitellmParams:
         additional_provider_specific_params = _parse_additional_provider_specific_params(d.pop("additional_provider_specific_params", UNSET))
 
 
+        def _parse_custom_code(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        custom_code = _parse_custom_code(d.pop("custom_code", UNSET))
+
+
         def _parse_api_version(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -2202,14 +2225,24 @@ class LitellmParams:
         presidio_anonymizer_api_base = _parse_presidio_anonymizer_api_base(d.pop("presidio_anonymizer_api_base", UNSET))
 
 
-        _presidio_filter_scope = d.pop("presidio_filter_scope", UNSET)
-        presidio_filter_scope: LitellmParamsPresidioFilterScope | Unset
-        if isinstance(_presidio_filter_scope,  Unset):
-            presidio_filter_scope = UNSET
-        else:
-            presidio_filter_scope = LitellmParamsPresidioFilterScope(_presidio_filter_scope)
+        def _parse_presidio_filter_scope(data: object) -> LitellmParamsPresidioFilterScopeType0 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                presidio_filter_scope_type_0 = LitellmParamsPresidioFilterScopeType0(data)
 
 
+
+                return presidio_filter_scope_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(LitellmParamsPresidioFilterScopeType0 | None | Unset, data)
+
+        presidio_filter_scope = _parse_presidio_filter_scope(d.pop("presidio_filter_scope", UNSET))
 
 
         def _parse_output_parse_pii(data: object) -> bool | None | Unset:
@@ -2370,6 +2403,7 @@ class LitellmParams:
             api_endpoint=api_endpoint,
             fail_on_error=fail_on_error,
             additional_provider_specific_params=additional_provider_specific_params,
+            custom_code=custom_code,
             api_version=api_version,
             metadata=metadata,
             application=application,

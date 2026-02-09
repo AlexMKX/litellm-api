@@ -69,11 +69,11 @@ class NewOrganizationRequest:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.new_organization_request_metadata_type_0 import NewOrganizationRequestMetadataType0
-        from ..models.new_organization_request_model_rpm_limit_type_0 import NewOrganizationRequestModelRpmLimitType0
-        from ..models.lite_llm_object_permission_base import LiteLLMObjectPermissionBase
-        from ..models.new_organization_request_model_tpm_limit_type_0 import NewOrganizationRequestModelTpmLimitType0
         from ..models.new_organization_request_model_max_budget_type_0 import NewOrganizationRequestModelMaxBudgetType0
+        from ..models.lite_llm_object_permission_base import LiteLLMObjectPermissionBase
+        from ..models.new_organization_request_metadata_type_0 import NewOrganizationRequestMetadataType0
+        from ..models.new_organization_request_model_tpm_limit_type_0 import NewOrganizationRequestModelTpmLimitType0
+        from ..models.new_organization_request_model_rpm_limit_type_0 import NewOrganizationRequestModelRpmLimitType0
         organization_alias = self.organization_alias
 
         budget_id: None | str | Unset

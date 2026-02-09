@@ -45,6 +45,7 @@ class LiteLLMDeletedTeamTable:
             tpm_limit (int | None | Unset):
             rpm_limit (int | None | Unset):
             max_budget (float | None | Unset):
+            soft_budget (float | None | Unset):
             budget_duration (None | str | Unset):
             models (list[Any] | Unset):
             blocked (bool | Unset):  Default: False.
@@ -76,6 +77,7 @@ class LiteLLMDeletedTeamTable:
     tpm_limit: int | None | Unset = UNSET
     rpm_limit: int | None | Unset = UNSET
     max_budget: float | None | Unset = UNSET
+    soft_budget: float | None | Unset = UNSET
     budget_duration: None | str | Unset = UNSET
     models: list[Any] | Unset = UNSET
     blocked: bool | Unset = False
@@ -101,11 +103,11 @@ class LiteLLMDeletedTeamTable:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.lite_llm_deleted_team_table_router_settings_type_0 import LiteLLMDeletedTeamTableRouterSettingsType0
         from ..models.lite_llm_model_table import LiteLLMModelTable
         from ..models.lite_llm_deleted_team_table_metadata_type_0 import LiteLLMDeletedTeamTableMetadataType0
-        from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
         from ..models.member import Member
+        from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
+        from ..models.lite_llm_deleted_team_table_router_settings_type_0 import LiteLLMDeletedTeamTableRouterSettingsType0
         team_id = self.team_id
 
         team_alias: None | str | Unset
@@ -176,6 +178,12 @@ class LiteLLMDeletedTeamTable:
             max_budget = UNSET
         else:
             max_budget = self.max_budget
+
+        soft_budget: float | None | Unset
+        if isinstance(self.soft_budget, Unset):
+            soft_budget = UNSET
+        else:
+            soft_budget = self.soft_budget
 
         budget_duration: None | str | Unset
         if isinstance(self.budget_duration, Unset):
@@ -321,6 +329,8 @@ class LiteLLMDeletedTeamTable:
             field_dict["rpm_limit"] = rpm_limit
         if max_budget is not UNSET:
             field_dict["max_budget"] = max_budget
+        if soft_budget is not UNSET:
+            field_dict["soft_budget"] = soft_budget
         if budget_duration is not UNSET:
             field_dict["budget_duration"] = budget_duration
         if models is not UNSET:
@@ -476,6 +486,16 @@ class LiteLLMDeletedTeamTable:
             return cast(float | None | Unset, data)
 
         max_budget = _parse_max_budget(d.pop("max_budget", UNSET))
+
+
+        def _parse_soft_budget(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        soft_budget = _parse_soft_budget(d.pop("soft_budget", UNSET))
 
 
         def _parse_budget_duration(data: object) -> None | str | Unset:
@@ -725,6 +745,7 @@ class LiteLLMDeletedTeamTable:
             tpm_limit=tpm_limit,
             rpm_limit=rpm_limit,
             max_budget=max_budget,
+            soft_budget=soft_budget,
             budget_duration=budget_duration,
             models=models,
             blocked=blocked,

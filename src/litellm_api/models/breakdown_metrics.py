@@ -56,13 +56,13 @@ class BreakdownMetrics:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.breakdown_metrics_endpoints import BreakdownMetricsEndpoints
-        from ..models.breakdown_metrics_providers import BreakdownMetricsProviders
         from ..models.breakdown_metrics_entities import BreakdownMetricsEntities
         from ..models.breakdown_metrics_mcp_servers import BreakdownMetricsMcpServers
+        from ..models.breakdown_metrics_providers import BreakdownMetricsProviders
+        from ..models.breakdown_metrics_endpoints import BreakdownMetricsEndpoints
+        from ..models.breakdown_metrics_api_keys import BreakdownMetricsApiKeys
         from ..models.breakdown_metrics_models import BreakdownMetricsModels
         from ..models.breakdown_metrics_model_groups import BreakdownMetricsModelGroups
-        from ..models.breakdown_metrics_api_keys import BreakdownMetricsApiKeys
         mcp_servers: dict[str, Any] | Unset = UNSET
         if not isinstance(self.mcp_servers, Unset):
             mcp_servers = self.mcp_servers.to_dict()

@@ -54,6 +54,7 @@ class UpdateTeamRequest:
             tpm_limit (int | None | Unset):
             rpm_limit (int | None | Unset):
             max_budget (float | None | Unset):
+            soft_budget (float | None | Unset):
             models (list[Any] | None | Unset):
             blocked (bool | None | Unset):
             budget_duration (None | str | Unset):
@@ -83,6 +84,7 @@ class UpdateTeamRequest:
     tpm_limit: int | None | Unset = UNSET
     rpm_limit: int | None | Unset = UNSET
     max_budget: float | None | Unset = UNSET
+    soft_budget: float | None | Unset = UNSET
     models: list[Any] | None | Unset = UNSET
     blocked: bool | None | Unset = UNSET
     budget_duration: None | str | Unset = UNSET
@@ -110,14 +112,14 @@ class UpdateTeamRequest:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.update_team_request_model_tpm_limit_type_0 import UpdateTeamRequestModelTpmLimitType0
-        from ..models.update_team_request_metadata_type_0 import UpdateTeamRequestMetadataType0
-        from ..models.update_team_request_secret_manager_settings_type_0 import UpdateTeamRequestSecretManagerSettingsType0
-        from ..models.allowed_vector_store_index_item import AllowedVectorStoreIndexItem
         from ..models.lite_llm_object_permission_base import LiteLLMObjectPermissionBase
-        from ..models.update_team_request_router_settings_type_0 import UpdateTeamRequestRouterSettingsType0
+        from ..models.update_team_request_metadata_type_0 import UpdateTeamRequestMetadataType0
         from ..models.update_team_request_model_aliases_type_0 import UpdateTeamRequestModelAliasesType0
         from ..models.update_team_request_model_rpm_limit_type_0 import UpdateTeamRequestModelRpmLimitType0
+        from ..models.update_team_request_router_settings_type_0 import UpdateTeamRequestRouterSettingsType0
+        from ..models.update_team_request_secret_manager_settings_type_0 import UpdateTeamRequestSecretManagerSettingsType0
+        from ..models.allowed_vector_store_index_item import AllowedVectorStoreIndexItem
+        from ..models.update_team_request_model_tpm_limit_type_0 import UpdateTeamRequestModelTpmLimitType0
         team_id = self.team_id
 
         team_alias: None | str | Unset
@@ -157,6 +159,12 @@ class UpdateTeamRequest:
             max_budget = UNSET
         else:
             max_budget = self.max_budget
+
+        soft_budget: float | None | Unset
+        if isinstance(self.soft_budget, Unset):
+            soft_budget = UNSET
+        else:
+            soft_budget = self.soft_budget
 
         models: list[Any] | None | Unset
         if isinstance(self.models, Unset):
@@ -339,6 +347,8 @@ class UpdateTeamRequest:
             field_dict["rpm_limit"] = rpm_limit
         if max_budget is not UNSET:
             field_dict["max_budget"] = max_budget
+        if soft_budget is not UNSET:
+            field_dict["soft_budget"] = soft_budget
         if models is not UNSET:
             field_dict["models"] = models
         if blocked is not UNSET:
@@ -465,6 +475,16 @@ class UpdateTeamRequest:
             return cast(float | None | Unset, data)
 
         max_budget = _parse_max_budget(d.pop("max_budget", UNSET))
+
+
+        def _parse_soft_budget(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        soft_budget = _parse_soft_budget(d.pop("soft_budget", UNSET))
 
 
         def _parse_models(data: object) -> list[Any] | None | Unset:
@@ -798,6 +818,7 @@ class UpdateTeamRequest:
             tpm_limit=tpm_limit,
             rpm_limit=rpm_limit,
             max_budget=max_budget,
+            soft_budget=soft_budget,
             models=models,
             blocked=blocked,
             budget_duration=budget_duration,

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class LitellmParamsPresidioFilterScope(str, Enum):
+class LitellmParamsPresidioFilterScopeType0(str, Enum):
     BOTH = "both"
     INPUT = "input"
     OUTPUT = "output"

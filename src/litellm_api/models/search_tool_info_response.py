@@ -34,6 +34,7 @@ class SearchToolInfoResponse:
             search_tool_info (None | SearchToolInfoResponseSearchToolInfoType0 | Unset):
             created_at (None | str | Unset):
             updated_at (None | str | Unset):
+            is_from_config (bool | None | Unset):
      """
 
     search_tool_id: None | str | Unset = UNSET
@@ -42,6 +43,7 @@ class SearchToolInfoResponse:
     search_tool_info: None | SearchToolInfoResponseSearchToolInfoType0 | Unset = UNSET
     created_at: None | str | Unset = UNSET
     updated_at: None | str | Unset = UNSET
+    is_from_config: bool | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -49,8 +51,8 @@ class SearchToolInfoResponse:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.search_tool_info_response_search_tool_info_type_0 import SearchToolInfoResponseSearchToolInfoType0
         from ..models.search_tool_info_response_litellm_params import SearchToolInfoResponseLitellmParams
+        from ..models.search_tool_info_response_search_tool_info_type_0 import SearchToolInfoResponseSearchToolInfoType0
         search_tool_id: None | str | Unset
         if isinstance(self.search_tool_id, Unset):
             search_tool_id = UNSET
@@ -83,6 +85,12 @@ class SearchToolInfoResponse:
         else:
             updated_at = self.updated_at
 
+        is_from_config: bool | None | Unset
+        if isinstance(self.is_from_config, Unset):
+            is_from_config = UNSET
+        else:
+            is_from_config = self.is_from_config
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -100,6 +108,8 @@ class SearchToolInfoResponse:
             field_dict["created_at"] = created_at
         if updated_at is not UNSET:
             field_dict["updated_at"] = updated_at
+        if is_from_config is not UNSET:
+            field_dict["is_from_config"] = is_from_config
 
         return field_dict
 
@@ -172,6 +182,16 @@ class SearchToolInfoResponse:
         updated_at = _parse_updated_at(d.pop("updated_at", UNSET))
 
 
+        def _parse_is_from_config(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        is_from_config = _parse_is_from_config(d.pop("is_from_config", UNSET))
+
+
         search_tool_info_response = cls(
             search_tool_id=search_tool_id,
             search_tool_name=search_tool_name,
@@ -179,6 +199,7 @@ class SearchToolInfoResponse:
             search_tool_info=search_tool_info,
             created_at=created_at,
             updated_at=updated_at,
+            is_from_config=is_from_config,
         )
 
 

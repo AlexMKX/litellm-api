@@ -40,8 +40,8 @@ class InternalUserSettingsResponse:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.internal_user_settings_response_values import InternalUserSettingsResponseValues
         from ..models.internal_user_settings_response_field_schema import InternalUserSettingsResponseFieldSchema
+        from ..models.internal_user_settings_response_values import InternalUserSettingsResponseValues
         values = self.values.to_dict()
 
         field_schema = self.field_schema.to_dict()

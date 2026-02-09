@@ -268,6 +268,7 @@ from .lite_llm_deleted_verification_token_metadata import LiteLLMDeletedVerifica
 from .lite_llm_deleted_verification_token_model_max_budget import LiteLLMDeletedVerificationTokenModelMaxBudget
 from .lite_llm_deleted_verification_token_model_spend import LiteLLMDeletedVerificationTokenModelSpend
 from .lite_llm_deleted_verification_token_permissions import LiteLLMDeletedVerificationTokenPermissions
+from .lite_llm_deleted_verification_token_router_settings_type_0 import LiteLLMDeletedVerificationTokenRouterSettingsType0
 from .lite_llm_end_user_table import LiteLLMEndUserTable
 from .lite_llm_end_user_table_allowed_model_region_type_0 import LiteLLMEndUserTableAllowedModelRegionType0
 from .lite_llm_fine_tuning_job_create import LiteLLMFineTuningJobCreate
@@ -309,6 +310,7 @@ from .lite_llm_verification_token_metadata import LiteLLMVerificationTokenMetada
 from .lite_llm_verification_token_model_max_budget import LiteLLMVerificationTokenModelMaxBudget
 from .lite_llm_verification_token_model_spend import LiteLLMVerificationTokenModelSpend
 from .lite_llm_verification_token_permissions import LiteLLMVerificationTokenPermissions
+from .lite_llm_verification_token_router_settings_type_0 import LiteLLMVerificationTokenRouterSettingsType0
 from .lite_llmmcp_server_table import LiteLLMMCPServerTable
 from .lite_llmmcp_server_table_auth_type_type_0 import LiteLLMMCPServerTableAuthTypeType0
 from .lite_llmmcp_server_table_env import LiteLLMMCPServerTableEnv
@@ -328,7 +330,7 @@ from .litellm_params_mock_redacted_text_type_0 import LitellmParamsMockRedactedT
 from .litellm_params_on_disallowed_action import LitellmParamsOnDisallowedAction
 from .litellm_params_on_flagged_type_0 import LitellmParamsOnFlaggedType0
 from .litellm_params_pii_entities_config_type_0 import LitellmParamsPiiEntitiesConfigType0
-from .litellm_params_presidio_filter_scope import LitellmParamsPresidioFilterScope
+from .litellm_params_presidio_filter_scope_type_0 import LitellmParamsPresidioFilterScopeType0
 from .litellm_params_presidio_run_on_type_0 import LitellmParamsPresidioRunOnType0
 from .litellm_params_presidio_score_thresholds_type_0 import LitellmParamsPresidioScoreThresholdsType0
 from .litellm_user_roles import LitellmUserRoles
@@ -341,6 +343,10 @@ from .mcp_public_server import MCPPublicServer
 from .mcp_public_server_auth_type_type_0 import MCPPublicServerAuthTypeType0
 from .mcp_public_server_mcp_info_type_0 import MCPPublicServerMcpInfoType0
 from .mcp_public_server_transport import MCPPublicServerTransport
+from .mcp_semantic_filter_settings import MCPSemanticFilterSettings
+from .mcp_semantic_filter_settings_response import MCPSemanticFilterSettingsResponse
+from .mcp_semantic_filter_settings_response_field_schema import MCPSemanticFilterSettingsResponseFieldSchema
+from .mcp_semantic_filter_settings_response_values import MCPSemanticFilterSettingsResponseValues
 from .member import Member
 from .member_role import MemberRole
 from .message import Message
@@ -473,6 +479,8 @@ from .raw_request_typed_dict_raw_request_body_type_0 import RawRequestTypedDictR
 from .raw_request_typed_dict_raw_request_headers_type_0 import RawRequestTypedDictRawRequestHeadersType0
 from .register_plugin_request import RegisterPluginRequest
 from .register_plugin_request_source import RegisterPluginRequestSource
+from .reset_key_spend_fn_key_key_reset_spend_post_response_reset_key_spend_fn_key_key_reset_spend_post import ResetKeySpendFnKeyKeyResetSpendPostResponseResetKeySpendFnKeyKeyResetSpendPost
+from .reset_spend_request import ResetSpendRequest
 from .response_lite_llm_managed_vector_store import ResponseLiteLLMManagedVectorStore
 from .retrieve_fine_tuning_job_fine_tuning_jobs_fine_tuning_job_id_get_custom_llm_provider_type_0 import RetrieveFineTuningJobFineTuningJobsFineTuningJobIdGetCustomLlmProviderType0
 from .retrieve_fine_tuning_job_v1_fine_tuning_jobs_fine_tuning_job_id_get_custom_llm_provider_type_0 import RetrieveFineTuningJobV1FineTuningJobsFineTuningJobIdGetCustomLlmProviderType0
@@ -531,6 +539,7 @@ from .tag_update_request_model_max_budget_type_0 import TagUpdateRequestModelMax
 from .team_add_member_response_metadata_type_0 import TeamAddMemberResponseMetadataType0
 from .team_add_member_response_router_settings_type_0 import TeamAddMemberResponseRouterSettingsType0
 from .team_list_response import TeamListResponse
+from .team_mappings import TeamMappings
 from .team_member_add_request import TeamMemberAddRequest
 from .team_member_add_result import TeamMemberAddResult
 from .team_member_add_result_updated_team_membership_type_0 import TeamMemberAddResultUpdatedTeamMembershipType0
@@ -541,6 +550,11 @@ from .team_member_update_request_role_type_0 import TeamMemberUpdateRequestRoleT
 from .team_member_update_response import TeamMemberUpdateResponse
 from .team_model_add_request import TeamModelAddRequest
 from .team_model_delete_request import TeamModelDeleteRequest
+from .test_custom_code_guardrail_request import TestCustomCodeGuardrailRequest
+from .test_custom_code_guardrail_request_request_data_type_0 import TestCustomCodeGuardrailRequestRequestDataType0
+from .test_custom_code_guardrail_request_test_input import TestCustomCodeGuardrailRequestTestInput
+from .test_custom_code_guardrail_response import TestCustomCodeGuardrailResponse
+from .test_custom_code_guardrail_response_result_type_0 import TestCustomCodeGuardrailResponseResultType0
 from .test_prompt_request import TestPromptRequest
 from .test_prompt_request_conversation_history_type_0_item import TestPromptRequestConversationHistoryType0Item
 from .test_prompt_request_prompt_variables_type_0 import TestPromptRequestPromptVariablesType0
@@ -610,6 +624,7 @@ from .user_api_key_auth_model_max_budget import UserAPIKeyAuthModelMaxBudget
 from .user_api_key_auth_model_spend import UserAPIKeyAuthModelSpend
 from .user_api_key_auth_organization_metadata_type_0 import UserAPIKeyAuthOrganizationMetadataType0
 from .user_api_key_auth_permissions import UserAPIKeyAuthPermissions
+from .user_api_key_auth_router_settings_type_0 import UserAPIKeyAuthRouterSettingsType0
 from .user_api_key_auth_rpm_limit_per_model_type_0 import UserAPIKeyAuthRpmLimitPerModelType0
 from .user_api_key_auth_team_metadata_type_0 import UserAPIKeyAuthTeamMetadataType0
 from .user_api_key_auth_team_model_aliases_type_0 import UserAPIKeyAuthTeamModelAliasesType0
@@ -618,6 +633,7 @@ from .user_update_result import UserUpdateResult
 from .user_update_result_updated_user_type_0 import UserUpdateResultUpdatedUserType0
 from .validate_blocked_words_file_guardrails_validate_blocked_words_file_post_request import ValidateBlockedWordsFileGuardrailsValidateBlockedWordsFilePostRequest
 from .validation_error import ValidationError
+from .validation_error_context import ValidationErrorContext
 from .vector_store_delete_request import VectorStoreDeleteRequest
 from .vector_store_info_request import VectorStoreInfoRequest
 from .vector_store_update_request import VectorStoreUpdateRequest
@@ -892,6 +908,7 @@ __all__ = (
     "LiteLLMDeletedVerificationTokenModelMaxBudget",
     "LiteLLMDeletedVerificationTokenModelSpend",
     "LiteLLMDeletedVerificationTokenPermissions",
+    "LiteLLMDeletedVerificationTokenRouterSettingsType0",
     "LiteLLMEndUserTable",
     "LiteLLMEndUserTableAllowedModelRegionType0",
     "LiteLLMFineTuningJobCreate",
@@ -934,7 +951,7 @@ __all__ = (
     "LitellmParamsOnDisallowedAction",
     "LitellmParamsOnFlaggedType0",
     "LitellmParamsPiiEntitiesConfigType0",
-    "LitellmParamsPresidioFilterScope",
+    "LitellmParamsPresidioFilterScopeType0",
     "LitellmParamsPresidioRunOnType0",
     "LitellmParamsPresidioScoreThresholdsType0",
     "LiteLLMParamsSearchContextCostPerQueryType0",
@@ -956,6 +973,7 @@ __all__ = (
     "LiteLLMVerificationTokenModelMaxBudget",
     "LiteLLMVerificationTokenModelSpend",
     "LiteLLMVerificationTokenPermissions",
+    "LiteLLMVerificationTokenRouterSettingsType0",
     "LoggingCallbackStatus",
     "LoggingCallbackStatusStatus",
     "MakeAgentsPublicRequest",
@@ -965,6 +983,10 @@ __all__ = (
     "MCPPublicServerAuthTypeType0",
     "MCPPublicServerMcpInfoType0",
     "MCPPublicServerTransport",
+    "MCPSemanticFilterSettings",
+    "MCPSemanticFilterSettingsResponse",
+    "MCPSemanticFilterSettingsResponseFieldSchema",
+    "MCPSemanticFilterSettingsResponseValues",
     "Member",
     "MemberRole",
     "Message",
@@ -1097,6 +1119,8 @@ __all__ = (
     "RawRequestTypedDictRawRequestHeadersType0",
     "RegisterPluginRequest",
     "RegisterPluginRequestSource",
+    "ResetKeySpendFnKeyKeyResetSpendPostResponseResetKeySpendFnKeyKeyResetSpendPost",
+    "ResetSpendRequest",
     "ResponseLiteLLMManagedVectorStore",
     "RetrieveFineTuningJobFineTuningJobsFineTuningJobIdGetCustomLlmProviderType0",
     "RetrieveFineTuningJobV1FineTuningJobsFineTuningJobIdGetCustomLlmProviderType0",
@@ -1155,6 +1179,7 @@ __all__ = (
     "TeamAddMemberResponseMetadataType0",
     "TeamAddMemberResponseRouterSettingsType0",
     "TeamListResponse",
+    "TeamMappings",
     "TeamMemberAddRequest",
     "TeamMemberAddResult",
     "TeamMemberAddResultUpdatedTeamMembershipType0",
@@ -1165,6 +1190,11 @@ __all__ = (
     "TeamMemberUpdateResponse",
     "TeamModelAddRequest",
     "TeamModelDeleteRequest",
+    "TestCustomCodeGuardrailRequest",
+    "TestCustomCodeGuardrailRequestRequestDataType0",
+    "TestCustomCodeGuardrailRequestTestInput",
+    "TestCustomCodeGuardrailResponse",
+    "TestCustomCodeGuardrailResponseResultType0",
     "TestPromptRequest",
     "TestPromptRequestConversationHistoryType0Item",
     "TestPromptRequestPromptVariablesType0",
@@ -1234,6 +1264,7 @@ __all__ = (
     "UserAPIKeyAuthModelSpend",
     "UserAPIKeyAuthOrganizationMetadataType0",
     "UserAPIKeyAuthPermissions",
+    "UserAPIKeyAuthRouterSettingsType0",
     "UserAPIKeyAuthRpmLimitPerModelType0",
     "UserAPIKeyAuthTeamMetadataType0",
     "UserAPIKeyAuthTeamModelAliasesType0",
@@ -1242,6 +1273,7 @@ __all__ = (
     "UserUpdateResultUpdatedUserType0",
     "ValidateBlockedWordsFileGuardrailsValidateBlockedWordsFilePostRequest",
     "ValidationError",
+    "ValidationErrorContext",
     "VectorStoreDeleteRequest",
     "VectorStoreInfoRequest",
     "VectorStoreUpdateRequest",

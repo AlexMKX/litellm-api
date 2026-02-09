@@ -21,6 +21,7 @@ def _get_kwargs(
     end_date: None | str | Unset = UNSET,
     model: None | str | Unset = UNSET,
     api_key: None | str | Unset = UNSET,
+    timezone: int | None | Unset = UNSET,
 
 ) -> dict[str, Any]:
     
@@ -56,6 +57,13 @@ def _get_kwargs(
     else:
         json_api_key = api_key
     params["api_key"] = json_api_key
+
+    json_timezone: int | None | Unset
+    if isinstance(timezone, Unset):
+        json_timezone = UNSET
+    else:
+        json_timezone = timezone
+    params["timezone"] = json_timezone
 
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
@@ -109,6 +117,7 @@ def sync_detailed(
     end_date: None | str | Unset = UNSET,
     model: None | str | Unset = UNSET,
     api_key: None | str | Unset = UNSET,
+    timezone: int | None | Unset = UNSET,
 
 ) -> Response[HTTPValidationError | SpendAnalyticsPaginatedResponse]:
     """ Get User Daily Activity Aggregated
@@ -121,6 +130,8 @@ def sync_detailed(
         end_date (None | str | Unset): End date in YYYY-MM-DD format
         model (None | str | Unset): Filter by specific model
         api_key (None | str | Unset): Filter by specific API key
+        timezone (int | None | Unset): Timezone offset in minutes from UTC (e.g., 480 for PST).
+            Matches JavaScript's Date.getTimezoneOffset() convention.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -136,6 +147,7 @@ def sync_detailed(
 end_date=end_date,
 model=model,
 api_key=api_key,
+timezone=timezone,
 
     )
 
@@ -152,6 +164,7 @@ def sync(
     end_date: None | str | Unset = UNSET,
     model: None | str | Unset = UNSET,
     api_key: None | str | Unset = UNSET,
+    timezone: int | None | Unset = UNSET,
 
 ) -> HTTPValidationError | SpendAnalyticsPaginatedResponse | None:
     """ Get User Daily Activity Aggregated
@@ -164,6 +177,8 @@ def sync(
         end_date (None | str | Unset): End date in YYYY-MM-DD format
         model (None | str | Unset): Filter by specific model
         api_key (None | str | Unset): Filter by specific API key
+        timezone (int | None | Unset): Timezone offset in minutes from UTC (e.g., 480 for PST).
+            Matches JavaScript's Date.getTimezoneOffset() convention.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -180,6 +195,7 @@ start_date=start_date,
 end_date=end_date,
 model=model,
 api_key=api_key,
+timezone=timezone,
 
     ).parsed
 
@@ -190,6 +206,7 @@ async def asyncio_detailed(
     end_date: None | str | Unset = UNSET,
     model: None | str | Unset = UNSET,
     api_key: None | str | Unset = UNSET,
+    timezone: int | None | Unset = UNSET,
 
 ) -> Response[HTTPValidationError | SpendAnalyticsPaginatedResponse]:
     """ Get User Daily Activity Aggregated
@@ -202,6 +219,8 @@ async def asyncio_detailed(
         end_date (None | str | Unset): End date in YYYY-MM-DD format
         model (None | str | Unset): Filter by specific model
         api_key (None | str | Unset): Filter by specific API key
+        timezone (int | None | Unset): Timezone offset in minutes from UTC (e.g., 480 for PST).
+            Matches JavaScript's Date.getTimezoneOffset() convention.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -217,6 +236,7 @@ async def asyncio_detailed(
 end_date=end_date,
 model=model,
 api_key=api_key,
+timezone=timezone,
 
     )
 
@@ -233,6 +253,7 @@ async def asyncio(
     end_date: None | str | Unset = UNSET,
     model: None | str | Unset = UNSET,
     api_key: None | str | Unset = UNSET,
+    timezone: int | None | Unset = UNSET,
 
 ) -> HTTPValidationError | SpendAnalyticsPaginatedResponse | None:
     """ Get User Daily Activity Aggregated
@@ -245,6 +266,8 @@ async def asyncio(
         end_date (None | str | Unset): End date in YYYY-MM-DD format
         model (None | str | Unset): Filter by specific model
         api_key (None | str | Unset): Filter by specific API key
+        timezone (int | None | Unset): Timezone offset in minutes from UTC (e.g., 480 for PST).
+            Matches JavaScript's Date.getTimezoneOffset() convention.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -261,5 +284,6 @@ start_date=start_date,
 end_date=end_date,
 model=model,
 api_key=api_key,
+timezone=timezone,
 
     )).parsed

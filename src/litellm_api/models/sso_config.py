@@ -14,6 +14,7 @@ from typing import cast
 if TYPE_CHECKING:
   from ..models.access_control_ui_access_mode import AccessControlUIAccessMode
   from ..models.role_mappings import RoleMappings
+  from ..models.team_mappings import TeamMappings
 
 
 
@@ -44,6 +45,8 @@ class SSOConfig:
             ui_access_mode (AccessControlUIAccessMode | None | str | Unset): Access mode for the UI
             role_mappings (None | RoleMappings | Unset): Configuration for mapping SSO groups to LiteLLM roles based on
                 group claims in the SSO token
+            team_mappings (None | TeamMappings | Unset): Configuration for mapping SSO JWT fields to team IDs. Takes
+                precedence over config file settings.
      """
 
     google_client_id: None | str | Unset = UNSET
@@ -60,6 +63,7 @@ class SSOConfig:
     user_email: None | str | Unset = UNSET
     ui_access_mode: AccessControlUIAccessMode | None | str | Unset = UNSET
     role_mappings: None | RoleMappings | Unset = UNSET
+    team_mappings: None | TeamMappings | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -67,8 +71,9 @@ class SSOConfig:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.access_control_ui_access_mode import AccessControlUIAccessMode
+        from ..models.team_mappings import TeamMappings
         from ..models.role_mappings import RoleMappings
+        from ..models.access_control_ui_access_mode import AccessControlUIAccessMode
         google_client_id: None | str | Unset
         if isinstance(self.google_client_id, Unset):
             google_client_id = UNSET
@@ -157,6 +162,14 @@ class SSOConfig:
         else:
             role_mappings = self.role_mappings
 
+        team_mappings: dict[str, Any] | None | Unset
+        if isinstance(self.team_mappings, Unset):
+            team_mappings = UNSET
+        elif isinstance(self.team_mappings, TeamMappings):
+            team_mappings = self.team_mappings.to_dict()
+        else:
+            team_mappings = self.team_mappings
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -190,6 +203,8 @@ class SSOConfig:
             field_dict["ui_access_mode"] = ui_access_mode
         if role_mappings is not UNSET:
             field_dict["role_mappings"] = role_mappings
+        if team_mappings is not UNSET:
+            field_dict["team_mappings"] = team_mappings
 
         return field_dict
 
@@ -199,6 +214,7 @@ class SSOConfig:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.access_control_ui_access_mode import AccessControlUIAccessMode
         from ..models.role_mappings import RoleMappings
+        from ..models.team_mappings import TeamMappings
         d = dict(src_dict)
         def _parse_google_client_id(data: object) -> None | str | Unset:
             if data is None:
@@ -360,6 +376,26 @@ class SSOConfig:
         role_mappings = _parse_role_mappings(d.pop("role_mappings", UNSET))
 
 
+        def _parse_team_mappings(data: object) -> None | TeamMappings | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                team_mappings_type_0 = TeamMappings.from_dict(data)
+
+
+
+                return team_mappings_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | TeamMappings | Unset, data)
+
+        team_mappings = _parse_team_mappings(d.pop("team_mappings", UNSET))
+
+
         sso_config = cls(
             google_client_id=google_client_id,
             google_client_secret=google_client_secret,
@@ -375,6 +411,7 @@ class SSOConfig:
             user_email=user_email,
             ui_access_mode=ui_access_mode,
             role_mappings=role_mappings,
+            team_mappings=team_mappings,
         )
 
 

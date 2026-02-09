@@ -110,21 +110,21 @@ class ProxyChatCompletionRequest:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.proxy_chat_completion_request_function_call_type_1 import ProxyChatCompletionRequestFunctionCallType1
+        from ..models.proxy_chat_completion_request_context_window_fallback_dict_type_0 import ProxyChatCompletionRequestContextWindowFallbackDictType0
+        from ..models.proxy_chat_completion_request_response_format_type_0 import ProxyChatCompletionRequestResponseFormatType0
         from ..models.chat_completion_function_message import ChatCompletionFunctionMessage
-        from ..models.proxy_chat_completion_request_tool_choice_type_1 import ProxyChatCompletionRequestToolChoiceType1
-        from ..models.chat_completion_tool_message import ChatCompletionToolMessage
-        from ..models.proxy_chat_completion_request_metadata_type_0 import ProxyChatCompletionRequestMetadataType0
+        from ..models.chat_completion_system_message import ChatCompletionSystemMessage
+        from ..models.chat_completion_assistant_message import ChatCompletionAssistantMessage
         from ..models.chat_completion_developer_message import ChatCompletionDeveloperMessage
-        from ..models.chat_completion_user_message import ChatCompletionUserMessage
         from ..models.proxy_chat_completion_request_logit_bias_type_0 import ProxyChatCompletionRequestLogitBiasType0
         from ..models.proxy_chat_completion_request_stream_options_type_0 import ProxyChatCompletionRequestStreamOptionsType0
         from ..models.proxy_chat_completion_request_functions_type_0_item import ProxyChatCompletionRequestFunctionsType0Item
-        from ..models.proxy_chat_completion_request_context_window_fallback_dict_type_0 import ProxyChatCompletionRequestContextWindowFallbackDictType0
-        from ..models.chat_completion_assistant_message import ChatCompletionAssistantMessage
-        from ..models.proxy_chat_completion_request_response_format_type_0 import ProxyChatCompletionRequestResponseFormatType0
+        from ..models.chat_completion_user_message import ChatCompletionUserMessage
         from ..models.proxy_chat_completion_request_tools_type_0_item import ProxyChatCompletionRequestToolsType0Item
-        from ..models.chat_completion_system_message import ChatCompletionSystemMessage
+        from ..models.proxy_chat_completion_request_function_call_type_1 import ProxyChatCompletionRequestFunctionCallType1
+        from ..models.chat_completion_tool_message import ChatCompletionToolMessage
+        from ..models.proxy_chat_completion_request_metadata_type_0 import ProxyChatCompletionRequestMetadataType0
+        from ..models.proxy_chat_completion_request_tool_choice_type_1 import ProxyChatCompletionRequestToolChoiceType1
         model = self.model
 
         messages = []

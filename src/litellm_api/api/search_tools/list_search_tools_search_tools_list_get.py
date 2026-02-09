@@ -62,7 +62,7 @@ def sync_detailed(
 ) -> Response[ListSearchToolsResponse]:
     r""" List Search Tools
 
-     List all search tools that are available in the database.
+     List all search tools that are available in the database and config file.
 
     Example Request:
     ```bash
@@ -85,7 +85,16 @@ def sync_detailed(
                     \"description\": \"Perplexity search tool\"
                 },
                 \"created_at\": \"2023-11-09T12:34:56.789Z\",
-                \"updated_at\": \"2023-11-09T12:34:56.789Z\"
+                \"updated_at\": \"2023-11-09T12:34:56.789Z\",
+                \"is_from_config\": false
+            },
+            {
+                \"search_tool_name\": \"config-search-tool\",
+                \"litellm_params\": {
+                    \"search_provider\": \"tavily\",
+                    \"api_key\": \"tvly-***\"
+                },
+                \"is_from_config\": true
             }
         ]
     }
@@ -117,7 +126,7 @@ def sync(
 ) -> ListSearchToolsResponse | None:
     r""" List Search Tools
 
-     List all search tools that are available in the database.
+     List all search tools that are available in the database and config file.
 
     Example Request:
     ```bash
@@ -140,7 +149,16 @@ def sync(
                     \"description\": \"Perplexity search tool\"
                 },
                 \"created_at\": \"2023-11-09T12:34:56.789Z\",
-                \"updated_at\": \"2023-11-09T12:34:56.789Z\"
+                \"updated_at\": \"2023-11-09T12:34:56.789Z\",
+                \"is_from_config\": false
+            },
+            {
+                \"search_tool_name\": \"config-search-tool\",
+                \"litellm_params\": {
+                    \"search_provider\": \"tavily\",
+                    \"api_key\": \"tvly-***\"
+                },
+                \"is_from_config\": true
             }
         ]
     }
@@ -167,7 +185,7 @@ async def asyncio_detailed(
 ) -> Response[ListSearchToolsResponse]:
     r""" List Search Tools
 
-     List all search tools that are available in the database.
+     List all search tools that are available in the database and config file.
 
     Example Request:
     ```bash
@@ -190,7 +208,16 @@ async def asyncio_detailed(
                     \"description\": \"Perplexity search tool\"
                 },
                 \"created_at\": \"2023-11-09T12:34:56.789Z\",
-                \"updated_at\": \"2023-11-09T12:34:56.789Z\"
+                \"updated_at\": \"2023-11-09T12:34:56.789Z\",
+                \"is_from_config\": false
+            },
+            {
+                \"search_tool_name\": \"config-search-tool\",
+                \"litellm_params\": {
+                    \"search_provider\": \"tavily\",
+                    \"api_key\": \"tvly-***\"
+                },
+                \"is_from_config\": true
             }
         ]
     }
@@ -222,7 +249,7 @@ async def asyncio(
 ) -> ListSearchToolsResponse | None:
     r""" List Search Tools
 
-     List all search tools that are available in the database.
+     List all search tools that are available in the database and config file.
 
     Example Request:
     ```bash
@@ -245,7 +272,16 @@ async def asyncio(
                     \"description\": \"Perplexity search tool\"
                 },
                 \"created_at\": \"2023-11-09T12:34:56.789Z\",
-                \"updated_at\": \"2023-11-09T12:34:56.789Z\"
+                \"updated_at\": \"2023-11-09T12:34:56.789Z\",
+                \"is_from_config\": false
+            },
+            {
+                \"search_tool_name\": \"config-search-tool\",
+                \"litellm_params\": {
+                    \"search_provider\": \"tavily\",
+                    \"api_key\": \"tvly-***\"
+                },
+                \"is_from_config\": true
             }
         ]
     }

@@ -48,9 +48,9 @@ class Choices:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.choice_logprobs import ChoiceLogprobs
         from ..models.choices_provider_specific_fields_type_0 import ChoicesProviderSpecificFieldsType0
         from ..models.message import Message
+        from ..models.choice_logprobs import ChoiceLogprobs
         finish_reason = self.finish_reason.value
 
         index = self.index

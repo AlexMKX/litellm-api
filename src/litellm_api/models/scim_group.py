@@ -48,8 +48,8 @@ class SCIMGroup:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.scim_member import SCIMMember
         from ..models.scim_group_meta_type_0 import SCIMGroupMetaType0
+        from ..models.scim_member import SCIMMember
         schemas = self.schemas
 
 
