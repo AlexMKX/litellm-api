@@ -52,6 +52,7 @@ class NewTeamRequest:
             models (list[Any] | Unset):
             blocked (bool | Unset):  Default: False.
             router_settings (NewTeamRequestRouterSettingsType0 | None | Unset):
+            access_group_ids (list[str] | None | Unset):
             model_aliases (NewTeamRequestModelAliasesType0 | None | Unset):
             tags (list[Any] | None | Unset):
             guardrails (list[str] | None | Unset):
@@ -87,6 +88,7 @@ class NewTeamRequest:
     models: list[Any] | Unset = UNSET
     blocked: bool | Unset = False
     router_settings: NewTeamRequestRouterSettingsType0 | None | Unset = UNSET
+    access_group_ids: list[str] | None | Unset = UNSET
     model_aliases: NewTeamRequestModelAliasesType0 | None | Unset = UNSET
     tags: list[Any] | None | Unset = UNSET
     guardrails: list[str] | None | Unset = UNSET
@@ -111,14 +113,14 @@ class NewTeamRequest:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.new_team_request_secret_manager_settings_type_0 import NewTeamRequestSecretManagerSettingsType0
-        from ..models.member import Member
-        from ..models.lite_llm_object_permission_base import LiteLLMObjectPermissionBase
-        from ..models.new_team_request_model_aliases_type_0 import NewTeamRequestModelAliasesType0
-        from ..models.new_team_request_router_settings_type_0 import NewTeamRequestRouterSettingsType0
-        from ..models.new_team_request_model_rpm_limit_type_0 import NewTeamRequestModelRpmLimitType0
-        from ..models.new_team_request_metadata_type_0 import NewTeamRequestMetadataType0
         from ..models.new_team_request_model_tpm_limit_type_0 import NewTeamRequestModelTpmLimitType0
+        from ..models.lite_llm_object_permission_base import LiteLLMObjectPermissionBase
+        from ..models.new_team_request_router_settings_type_0 import NewTeamRequestRouterSettingsType0
+        from ..models.member import Member
+        from ..models.new_team_request_model_rpm_limit_type_0 import NewTeamRequestModelRpmLimitType0
+        from ..models.new_team_request_model_aliases_type_0 import NewTeamRequestModelAliasesType0
+        from ..models.new_team_request_secret_manager_settings_type_0 import NewTeamRequestSecretManagerSettingsType0
+        from ..models.new_team_request_metadata_type_0 import NewTeamRequestMetadataType0
         from ..models.allowed_vector_store_index_item import AllowedVectorStoreIndexItem
         team_alias: None | str | Unset
         if isinstance(self.team_alias, Unset):
@@ -222,6 +224,16 @@ class NewTeamRequest:
             router_settings = self.router_settings.to_dict()
         else:
             router_settings = self.router_settings
+
+        access_group_ids: list[str] | None | Unset
+        if isinstance(self.access_group_ids, Unset):
+            access_group_ids = UNSET
+        elif isinstance(self.access_group_ids, list):
+            access_group_ids = self.access_group_ids
+
+
+        else:
+            access_group_ids = self.access_group_ids
 
         model_aliases: dict[str, Any] | None | Unset
         if isinstance(self.model_aliases, Unset):
@@ -403,6 +415,8 @@ class NewTeamRequest:
             field_dict["blocked"] = blocked
         if router_settings is not UNSET:
             field_dict["router_settings"] = router_settings
+        if access_group_ids is not UNSET:
+            field_dict["access_group_ids"] = access_group_ids
         if model_aliases is not UNSET:
             field_dict["model_aliases"] = model_aliases
         if tags is not UNSET:
@@ -613,6 +627,24 @@ class NewTeamRequest:
             return cast(NewTeamRequestRouterSettingsType0 | None | Unset, data)
 
         router_settings = _parse_router_settings(d.pop("router_settings", UNSET))
+
+
+        def _parse_access_group_ids(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                access_group_ids_type_0 = cast(list[str], data)
+
+                return access_group_ids_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        access_group_ids = _parse_access_group_ids(d.pop("access_group_ids", UNSET))
 
 
         def _parse_model_aliases(data: object) -> NewTeamRequestModelAliasesType0 | None | Unset:
@@ -927,6 +959,7 @@ class NewTeamRequest:
             models=models,
             blocked=blocked,
             router_settings=router_settings,
+            access_group_ids=access_group_ids,
             model_aliases=model_aliases,
             tags=tags,
             guardrails=guardrails,

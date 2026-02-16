@@ -68,13 +68,13 @@ def sync_detailed(
 ) -> Response[Any | HTTPValidationError]:
     r""" Get Category Yaml
 
-     Get the YAML content for a specific content filter category.
+     Get the YAML or JSON content for a specific content filter category.
 
     Args:
         category_name: The name of the category (e.g., \"bias_gender\", \"harmful_self_harm\")
 
     Returns:
-        The raw YAML content of the category file
+        The raw YAML or JSON content of the category file with file type indicator
 
     Args:
         category_name (str):
@@ -107,13 +107,13 @@ def sync(
 ) -> Any | HTTPValidationError | None:
     r""" Get Category Yaml
 
-     Get the YAML content for a specific content filter category.
+     Get the YAML or JSON content for a specific content filter category.
 
     Args:
         category_name: The name of the category (e.g., \"bias_gender\", \"harmful_self_harm\")
 
     Returns:
-        The raw YAML content of the category file
+        The raw YAML or JSON content of the category file with file type indicator
 
     Args:
         category_name (str):
@@ -141,13 +141,13 @@ async def asyncio_detailed(
 ) -> Response[Any | HTTPValidationError]:
     r""" Get Category Yaml
 
-     Get the YAML content for a specific content filter category.
+     Get the YAML or JSON content for a specific content filter category.
 
     Args:
         category_name: The name of the category (e.g., \"bias_gender\", \"harmful_self_harm\")
 
     Returns:
-        The raw YAML content of the category file
+        The raw YAML or JSON content of the category file with file type indicator
 
     Args:
         category_name (str):
@@ -180,13 +180,13 @@ async def asyncio(
 ) -> Any | HTTPValidationError | None:
     r""" Get Category Yaml
 
-     Get the YAML content for a specific content filter category.
+     Get the YAML or JSON content for a specific content filter category.
 
     Args:
         category_name: The name of the category (e.g., \"bias_gender\", \"harmful_self_harm\")
 
     Returns:
-        The raw YAML content of the category file
+        The raw YAML or JSON content of the category file with file type indicator
 
     Args:
         category_name (str):

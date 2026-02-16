@@ -43,9 +43,9 @@ class RouterSettingsResponse:
 
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.router_settings_response_routing_strategy_descriptions import RouterSettingsResponseRoutingStrategyDescriptions
         from ..models.router_settings_field import RouterSettingsField
         from ..models.router_settings_response_current_values import RouterSettingsResponseCurrentValues
-        from ..models.router_settings_response_routing_strategy_descriptions import RouterSettingsResponseRoutingStrategyDescriptions
         fields = []
         for fields_item_data in self.fields:
             fields_item = fields_item_data.to_dict()

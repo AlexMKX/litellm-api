@@ -70,6 +70,7 @@ class LiteLLMDeletedVerificationToken:
             updated_by (None | str | Unset):
             object_permission_id (None | str | Unset):
             object_permission (LiteLLMObjectPermissionTable | None | Unset):
+            access_group_ids (list[str] | None | Unset):
             rotation_count (int | None | Unset):  Default: 0.
             auto_rotate (bool | None | Unset):  Default: False.
             rotation_interval (None | str | Unset):
@@ -115,6 +116,7 @@ class LiteLLMDeletedVerificationToken:
     updated_by: None | str | Unset = UNSET
     object_permission_id: None | str | Unset = UNSET
     object_permission: LiteLLMObjectPermissionTable | None | Unset = UNSET
+    access_group_ids: list[str] | None | Unset = UNSET
     rotation_count: int | None | Unset = 0
     auto_rotate: bool | None | Unset = False
     rotation_interval: None | str | Unset = UNSET
@@ -134,14 +136,14 @@ class LiteLLMDeletedVerificationToken:
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.lite_llm_deleted_verification_token_config import LiteLLMDeletedVerificationTokenConfig
-        from ..models.lite_llm_deleted_verification_token_router_settings_type_0 import LiteLLMDeletedVerificationTokenRouterSettingsType0
         from ..models.lite_llm_deleted_verification_token_litellm_budget_table_type_0 import LiteLLMDeletedVerificationTokenLitellmBudgetTableType0
+        from ..models.lite_llm_deleted_verification_token_model_max_budget import LiteLLMDeletedVerificationTokenModelMaxBudget
+        from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
         from ..models.lite_llm_deleted_verification_token_aliases import LiteLLMDeletedVerificationTokenAliases
         from ..models.lite_llm_deleted_verification_token_permissions import LiteLLMDeletedVerificationTokenPermissions
         from ..models.lite_llm_deleted_verification_token_model_spend import LiteLLMDeletedVerificationTokenModelSpend
-        from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
+        from ..models.lite_llm_deleted_verification_token_router_settings_type_0 import LiteLLMDeletedVerificationTokenRouterSettingsType0
         from ..models.lite_llm_deleted_verification_token_metadata import LiteLLMDeletedVerificationTokenMetadata
-        from ..models.lite_llm_deleted_verification_token_model_max_budget import LiteLLMDeletedVerificationTokenModelMaxBudget
         token: None | str | Unset
         if isinstance(self.token, Unset):
             token = UNSET
@@ -334,6 +336,16 @@ class LiteLLMDeletedVerificationToken:
         else:
             object_permission = self.object_permission
 
+        access_group_ids: list[str] | None | Unset
+        if isinstance(self.access_group_ids, Unset):
+            access_group_ids = UNSET
+        elif isinstance(self.access_group_ids, list):
+            access_group_ids = self.access_group_ids
+
+
+        else:
+            access_group_ids = self.access_group_ids
+
         rotation_count: int | None | Unset
         if isinstance(self.rotation_count, Unset):
             rotation_count = UNSET
@@ -477,6 +489,8 @@ class LiteLLMDeletedVerificationToken:
             field_dict["object_permission_id"] = object_permission_id
         if object_permission is not UNSET:
             field_dict["object_permission"] = object_permission
+        if access_group_ids is not UNSET:
+            field_dict["access_group_ids"] = access_group_ids
         if rotation_count is not UNSET:
             field_dict["rotation_count"] = rotation_count
         if auto_rotate is not UNSET:
@@ -889,6 +903,24 @@ class LiteLLMDeletedVerificationToken:
         object_permission = _parse_object_permission(d.pop("object_permission", UNSET))
 
 
+        def _parse_access_group_ids(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                access_group_ids_type_0 = cast(list[str], data)
+
+                return access_group_ids_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        access_group_ids = _parse_access_group_ids(d.pop("access_group_ids", UNSET))
+
+
         def _parse_rotation_count(data: object) -> int | None | Unset:
             if data is None:
                 return data
@@ -1072,6 +1104,7 @@ class LiteLLMDeletedVerificationToken:
             updated_by=updated_by,
             object_permission_id=object_permission_id,
             object_permission=object_permission,
+            access_group_ids=access_group_ids,
             rotation_count=rotation_count,
             auto_rotate=auto_rotate,
             rotation_interval=rotation_interval,

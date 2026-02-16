@@ -104,11 +104,11 @@ class LiteLLMMCPServerTable:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.lite_llmmcp_server_table_mcp_info_type_0 import LiteLLMMCPServerTableMcpInfoType0
         from ..models.mcp_credentials import MCPCredentials
+        from ..models.lite_llmmcp_server_table_mcp_info_type_0 import LiteLLMMCPServerTableMcpInfoType0
         from ..models.lite_llmmcp_server_table_env import LiteLLMMCPServerTableEnv
-        from ..models.lite_llmmcp_server_table_static_headers_type_0 import LiteLLMMCPServerTableStaticHeadersType0
         from ..models.lite_llmmcp_server_table_teams_item import LiteLLMMCPServerTableTeamsItem
+        from ..models.lite_llmmcp_server_table_static_headers_type_0 import LiteLLMMCPServerTableStaticHeadersType0
         server_id = self.server_id
 
         transport = self.transport.value

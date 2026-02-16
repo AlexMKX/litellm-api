@@ -15,6 +15,7 @@ import datetime
 
 if TYPE_CHECKING:
   from ..models.policy_db_response_condition_type_0 import PolicyDBResponseConditionType0
+  from ..models.policy_db_response_pipeline_type_0 import PolicyDBResponsePipelineType0
 
 
 
@@ -36,6 +37,7 @@ class PolicyDBResponse:
             guardrails_add (list[str] | Unset): Guardrails to add.
             guardrails_remove (list[str] | Unset): Guardrails to remove.
             condition (None | PolicyDBResponseConditionType0 | Unset): Policy condition.
+            pipeline (None | PolicyDBResponsePipelineType0 | Unset): Optional guardrail pipeline.
             created_at (datetime.datetime | None | Unset): When the policy was created.
             updated_at (datetime.datetime | None | Unset): When the policy was last updated.
             created_by (None | str | Unset): Who created the policy.
@@ -49,6 +51,7 @@ class PolicyDBResponse:
     guardrails_add: list[str] | Unset = UNSET
     guardrails_remove: list[str] | Unset = UNSET
     condition: None | PolicyDBResponseConditionType0 | Unset = UNSET
+    pipeline: None | PolicyDBResponsePipelineType0 | Unset = UNSET
     created_at: datetime.datetime | None | Unset = UNSET
     updated_at: datetime.datetime | None | Unset = UNSET
     created_by: None | str | Unset = UNSET
@@ -61,6 +64,7 @@ class PolicyDBResponse:
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.policy_db_response_condition_type_0 import PolicyDBResponseConditionType0
+        from ..models.policy_db_response_pipeline_type_0 import PolicyDBResponsePipelineType0
         policy_id = self.policy_id
 
         policy_name = self.policy_name
@@ -96,6 +100,14 @@ class PolicyDBResponse:
             condition = self.condition.to_dict()
         else:
             condition = self.condition
+
+        pipeline: dict[str, Any] | None | Unset
+        if isinstance(self.pipeline, Unset):
+            pipeline = UNSET
+        elif isinstance(self.pipeline, PolicyDBResponsePipelineType0):
+            pipeline = self.pipeline.to_dict()
+        else:
+            pipeline = self.pipeline
 
         created_at: None | str | Unset
         if isinstance(self.created_at, Unset):
@@ -142,6 +154,8 @@ class PolicyDBResponse:
             field_dict["guardrails_remove"] = guardrails_remove
         if condition is not UNSET:
             field_dict["condition"] = condition
+        if pipeline is not UNSET:
+            field_dict["pipeline"] = pipeline
         if created_at is not UNSET:
             field_dict["created_at"] = created_at
         if updated_at is not UNSET:
@@ -158,6 +172,7 @@ class PolicyDBResponse:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.policy_db_response_condition_type_0 import PolicyDBResponseConditionType0
+        from ..models.policy_db_response_pipeline_type_0 import PolicyDBResponsePipelineType0
         d = dict(src_dict)
         policy_id = d.pop("policy_id")
 
@@ -207,6 +222,26 @@ class PolicyDBResponse:
             return cast(None | PolicyDBResponseConditionType0 | Unset, data)
 
         condition = _parse_condition(d.pop("condition", UNSET))
+
+
+        def _parse_pipeline(data: object) -> None | PolicyDBResponsePipelineType0 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                pipeline_type_0 = PolicyDBResponsePipelineType0.from_dict(data)
+
+
+
+                return pipeline_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | PolicyDBResponsePipelineType0 | Unset, data)
+
+        pipeline = _parse_pipeline(d.pop("pipeline", UNSET))
 
 
         def _parse_created_at(data: object) -> datetime.datetime | None | Unset:
@@ -277,6 +312,7 @@ class PolicyDBResponse:
             guardrails_add=guardrails_add,
             guardrails_remove=guardrails_remove,
             condition=condition,
+            pipeline=pipeline,
             created_at=created_at,
             updated_at=updated_at,
             created_by=created_by,

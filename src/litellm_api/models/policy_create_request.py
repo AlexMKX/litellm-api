@@ -13,6 +13,7 @@ from typing import cast
 
 if TYPE_CHECKING:
   from ..models.policy_condition_request import PolicyConditionRequest
+  from ..models.policy_create_request_pipeline_type_0 import PolicyCreateRequestPipelineType0
 
 
 
@@ -33,6 +34,8 @@ class PolicyCreateRequest:
             guardrails_add (list[str] | None | Unset): List of guardrail names to add.
             guardrails_remove (list[str] | None | Unset): List of guardrail names to remove (from inherited).
             condition (None | PolicyConditionRequest | Unset): Condition for when this policy applies.
+            pipeline (None | PolicyCreateRequestPipelineType0 | Unset): Optional guardrail pipeline for ordered execution.
+                Contains 'mode' and 'steps'.
      """
 
     policy_name: str
@@ -41,6 +44,7 @@ class PolicyCreateRequest:
     guardrails_add: list[str] | None | Unset = UNSET
     guardrails_remove: list[str] | None | Unset = UNSET
     condition: None | PolicyConditionRequest | Unset = UNSET
+    pipeline: None | PolicyCreateRequestPipelineType0 | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -49,6 +53,7 @@ class PolicyCreateRequest:
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.policy_condition_request import PolicyConditionRequest
+        from ..models.policy_create_request_pipeline_type_0 import PolicyCreateRequestPipelineType0
         policy_name = self.policy_name
 
         inherit: None | str | Unset
@@ -91,6 +96,14 @@ class PolicyCreateRequest:
         else:
             condition = self.condition
 
+        pipeline: dict[str, Any] | None | Unset
+        if isinstance(self.pipeline, Unset):
+            pipeline = UNSET
+        elif isinstance(self.pipeline, PolicyCreateRequestPipelineType0):
+            pipeline = self.pipeline.to_dict()
+        else:
+            pipeline = self.pipeline
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -107,6 +120,8 @@ class PolicyCreateRequest:
             field_dict["guardrails_remove"] = guardrails_remove
         if condition is not UNSET:
             field_dict["condition"] = condition
+        if pipeline is not UNSET:
+            field_dict["pipeline"] = pipeline
 
         return field_dict
 
@@ -115,6 +130,7 @@ class PolicyCreateRequest:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.policy_condition_request import PolicyConditionRequest
+        from ..models.policy_create_request_pipeline_type_0 import PolicyCreateRequestPipelineType0
         d = dict(src_dict)
         policy_name = d.pop("policy_name")
 
@@ -194,6 +210,26 @@ class PolicyCreateRequest:
         condition = _parse_condition(d.pop("condition", UNSET))
 
 
+        def _parse_pipeline(data: object) -> None | PolicyCreateRequestPipelineType0 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                pipeline_type_0 = PolicyCreateRequestPipelineType0.from_dict(data)
+
+
+
+                return pipeline_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | PolicyCreateRequestPipelineType0 | Unset, data)
+
+        pipeline = _parse_pipeline(d.pop("pipeline", UNSET))
+
+
         policy_create_request = cls(
             policy_name=policy_name,
             inherit=inherit,
@@ -201,6 +237,7 @@ class PolicyCreateRequest:
             guardrails_add=guardrails_add,
             guardrails_remove=guardrails_remove,
             condition=condition,
+            pipeline=pipeline,
         )
 
 

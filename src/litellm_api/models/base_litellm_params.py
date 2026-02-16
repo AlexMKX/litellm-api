@@ -105,11 +105,11 @@ class BaseLitellmParams:
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.lakera_category_thresholds import LakeraCategoryThresholds
-        from ..models.blocked_word import BlockedWord
-        from ..models.content_filter_category_config import ContentFilterCategoryConfig
-        from ..models.base_litellm_params_detect_secrets_config_type_0 import BaseLitellmParamsDetectSecretsConfigType0
-        from ..models.base_litellm_params_additional_provider_specific_params_type_0 import BaseLitellmParamsAdditionalProviderSpecificParamsType0
         from ..models.content_filter_pattern import ContentFilterPattern
+        from ..models.base_litellm_params_detect_secrets_config_type_0 import BaseLitellmParamsDetectSecretsConfigType0
+        from ..models.content_filter_category_config import ContentFilterCategoryConfig
+        from ..models.blocked_word import BlockedWord
+        from ..models.base_litellm_params_additional_provider_specific_params_type_0 import BaseLitellmParamsAdditionalProviderSpecificParamsType0
         patterns: list[dict[str, Any]] | None | Unset
         if isinstance(self.patterns, Unset):
             patterns = UNSET

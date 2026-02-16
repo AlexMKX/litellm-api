@@ -28,11 +28,13 @@ class PolicyScopeResponse:
             teams (list[str] | Unset):
             keys (list[str] | Unset):
             models (list[str] | Unset):
+            tags (list[str] | Unset):
      """
 
     teams: list[str] | Unset = UNSET
     keys: list[str] | Unset = UNSET
     models: list[str] | Unset = UNSET
+    tags: list[str] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -58,6 +60,12 @@ class PolicyScopeResponse:
 
 
 
+        tags: list[str] | Unset = UNSET
+        if not isinstance(self.tags, Unset):
+            tags = self.tags
+
+
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -69,6 +77,8 @@ class PolicyScopeResponse:
             field_dict["keys"] = keys
         if models is not UNSET:
             field_dict["models"] = models
+        if tags is not UNSET:
+            field_dict["tags"] = tags
 
         return field_dict
 
@@ -86,10 +96,14 @@ class PolicyScopeResponse:
         models = cast(list[str], d.pop("models", UNSET))
 
 
+        tags = cast(list[str], d.pop("tags", UNSET))
+
+
         policy_scope_response = cls(
             teams=teams,
             keys=keys,
             models=models,
+            tags=tags,
         )
 
 

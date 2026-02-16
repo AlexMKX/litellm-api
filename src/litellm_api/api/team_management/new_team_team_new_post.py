@@ -159,6 +159,9 @@ def sync_detailed(
     [Docs](https://docs.litellm.ai/docs/secret_managers/overview)
     - router_settings: Optional[UpdateRouterConfig] - team-specific router settings. Example -
     {\"model_group_retry_policy\": {\"max_retries\": 5}}. IF null or {} then no router settings.
+    - access_group_ids: Optional[List[str]] - List of access group IDs to associate with the team.
+    Access groups define which models the team can access. Example - [\"access_group_1\",
+    \"access_group_2\"].
 
     Returns:
     - team_id: (str) Unique team id - used for tracking spend across multiple keys for same team id.
@@ -296,6 +299,9 @@ def sync(
     [Docs](https://docs.litellm.ai/docs/secret_managers/overview)
     - router_settings: Optional[UpdateRouterConfig] - team-specific router settings. Example -
     {\"model_group_retry_policy\": {\"max_retries\": 5}}. IF null or {} then no router settings.
+    - access_group_ids: Optional[List[str]] - List of access group IDs to associate with the team.
+    Access groups define which models the team can access. Example - [\"access_group_1\",
+    \"access_group_2\"].
 
     Returns:
     - team_id: (str) Unique team id - used for tracking spend across multiple keys for same team id.
@@ -428,6 +434,9 @@ async def asyncio_detailed(
     [Docs](https://docs.litellm.ai/docs/secret_managers/overview)
     - router_settings: Optional[UpdateRouterConfig] - team-specific router settings. Example -
     {\"model_group_retry_policy\": {\"max_retries\": 5}}. IF null or {} then no router settings.
+    - access_group_ids: Optional[List[str]] - List of access group IDs to associate with the team.
+    Access groups define which models the team can access. Example - [\"access_group_1\",
+    \"access_group_2\"].
 
     Returns:
     - team_id: (str) Unique team id - used for tracking spend across multiple keys for same team id.
@@ -565,6 +574,9 @@ async def asyncio(
     [Docs](https://docs.litellm.ai/docs/secret_managers/overview)
     - router_settings: Optional[UpdateRouterConfig] - team-specific router settings. Example -
     {\"model_group_retry_policy\": {\"max_retries\": 5}}. IF null or {} then no router settings.
+    - access_group_ids: Optional[List[str]] - List of access group IDs to associate with the team.
+    Access groups define which models the team can access. Example - [\"access_group_1\",
+    \"access_group_2\"].
 
     Returns:
     - team_id: (str) Unique team id - used for tracking spend across multiple keys for same team id.

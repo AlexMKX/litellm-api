@@ -54,12 +54,20 @@ def sync_detailed(
     client: AuthenticatedClient,
 
 ) -> Response[Any]:
-    """ Vector Store Create
+    r""" Vector Store Create
 
      Create a vector store.
 
     API Reference:
     https://platform.openai.com/docs/api-reference/vector-stores/create
+
+    Supports target_model_names parameter for creating vector stores across multiple models:
+    ```json
+    {
+        \"name\": \"my-vector-store\",
+        \"target_model_names\": \"gpt-4,gemini-2.0\"
+    }
+    ```
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -86,12 +94,20 @@ async def asyncio_detailed(
     client: AuthenticatedClient,
 
 ) -> Response[Any]:
-    """ Vector Store Create
+    r""" Vector Store Create
 
      Create a vector store.
 
     API Reference:
     https://platform.openai.com/docs/api-reference/vector-stores/create
+
+    Supports target_model_names parameter for creating vector stores across multiple models:
+    ```json
+    {
+        \"name\": \"my-vector-store\",
+        \"target_model_names\": \"gpt-4,gemini-2.0\"
+    }
+    ```
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.

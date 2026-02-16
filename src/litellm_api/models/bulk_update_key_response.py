@@ -42,8 +42,8 @@ class BulkUpdateKeyResponse:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.failed_key_update import FailedKeyUpdate
         from ..models.successful_key_update import SuccessfulKeyUpdate
+        from ..models.failed_key_update import FailedKeyUpdate
         total_requested = self.total_requested
 
         successful_updates = []

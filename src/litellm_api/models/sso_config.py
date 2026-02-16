@@ -71,8 +71,8 @@ class SSOConfig:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.team_mappings import TeamMappings
         from ..models.role_mappings import RoleMappings
+        from ..models.team_mappings import TeamMappings
         from ..models.access_control_ui_access_mode import AccessControlUIAccessMode
         google_client_id: None | str | Unset
         if isinstance(self.google_client_id, Unset):

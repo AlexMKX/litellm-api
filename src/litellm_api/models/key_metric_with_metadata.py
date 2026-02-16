@@ -41,8 +41,8 @@ class KeyMetricWithMetadata:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.key_metadata import KeyMetadata
         from ..models.spend_metrics import SpendMetrics
+        from ..models.key_metadata import KeyMetadata
         metrics = self.metrics.to_dict()
 
         metadata: dict[str, Any] | Unset = UNSET

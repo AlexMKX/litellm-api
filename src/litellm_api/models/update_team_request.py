@@ -75,6 +75,7 @@ class UpdateTeamRequest:
             model_tpm_limit (None | Unset | UpdateTeamRequestModelTpmLimitType0):
             allowed_vector_store_indexes (list[AllowedVectorStoreIndexItem] | None | Unset):
             router_settings (None | Unset | UpdateTeamRequestRouterSettingsType0):
+            access_group_ids (list[str] | None | Unset):
      """
 
     team_id: str
@@ -105,6 +106,7 @@ class UpdateTeamRequest:
     model_tpm_limit: None | Unset | UpdateTeamRequestModelTpmLimitType0 = UNSET
     allowed_vector_store_indexes: list[AllowedVectorStoreIndexItem] | None | Unset = UNSET
     router_settings: None | Unset | UpdateTeamRequestRouterSettingsType0 = UNSET
+    access_group_ids: list[str] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -112,14 +114,14 @@ class UpdateTeamRequest:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.lite_llm_object_permission_base import LiteLLMObjectPermissionBase
-        from ..models.update_team_request_metadata_type_0 import UpdateTeamRequestMetadataType0
-        from ..models.update_team_request_model_aliases_type_0 import UpdateTeamRequestModelAliasesType0
-        from ..models.update_team_request_model_rpm_limit_type_0 import UpdateTeamRequestModelRpmLimitType0
         from ..models.update_team_request_router_settings_type_0 import UpdateTeamRequestRouterSettingsType0
-        from ..models.update_team_request_secret_manager_settings_type_0 import UpdateTeamRequestSecretManagerSettingsType0
-        from ..models.allowed_vector_store_index_item import AllowedVectorStoreIndexItem
+        from ..models.lite_llm_object_permission_base import LiteLLMObjectPermissionBase
+        from ..models.update_team_request_model_rpm_limit_type_0 import UpdateTeamRequestModelRpmLimitType0
         from ..models.update_team_request_model_tpm_limit_type_0 import UpdateTeamRequestModelTpmLimitType0
+        from ..models.update_team_request_model_aliases_type_0 import UpdateTeamRequestModelAliasesType0
+        from ..models.update_team_request_metadata_type_0 import UpdateTeamRequestMetadataType0
+        from ..models.allowed_vector_store_index_item import AllowedVectorStoreIndexItem
+        from ..models.update_team_request_secret_manager_settings_type_0 import UpdateTeamRequestSecretManagerSettingsType0
         team_id = self.team_id
 
         team_alias: None | str | Unset
@@ -329,6 +331,16 @@ class UpdateTeamRequest:
         else:
             router_settings = self.router_settings
 
+        access_group_ids: list[str] | None | Unset
+        if isinstance(self.access_group_ids, Unset):
+            access_group_ids = UNSET
+        elif isinstance(self.access_group_ids, list):
+            access_group_ids = self.access_group_ids
+
+
+        else:
+            access_group_ids = self.access_group_ids
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -389,6 +401,8 @@ class UpdateTeamRequest:
             field_dict["allowed_vector_store_indexes"] = allowed_vector_store_indexes
         if router_settings is not UNSET:
             field_dict["router_settings"] = router_settings
+        if access_group_ids is not UNSET:
+            field_dict["access_group_ids"] = access_group_ids
 
         return field_dict
 
@@ -810,6 +824,24 @@ class UpdateTeamRequest:
         router_settings = _parse_router_settings(d.pop("router_settings", UNSET))
 
 
+        def _parse_access_group_ids(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                access_group_ids_type_0 = cast(list[str], data)
+
+                return access_group_ids_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        access_group_ids = _parse_access_group_ids(d.pop("access_group_ids", UNSET))
+
+
         update_team_request = cls(
             team_id=team_id,
             team_alias=team_alias,
@@ -839,6 +871,7 @@ class UpdateTeamRequest:
             model_tpm_limit=model_tpm_limit,
             allowed_vector_store_indexes=allowed_vector_store_indexes,
             router_settings=router_settings,
+            access_group_ids=access_group_ids,
         )
 
 

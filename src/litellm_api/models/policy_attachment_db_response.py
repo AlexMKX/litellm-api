@@ -33,6 +33,7 @@ class PolicyAttachmentDBResponse:
             teams (list[str] | Unset): Team patterns.
             keys (list[str] | Unset): Key patterns.
             models (list[str] | Unset): Model patterns.
+            tags (list[str] | Unset): Tag patterns.
             created_at (datetime.datetime | None | Unset): When the attachment was created.
             updated_at (datetime.datetime | None | Unset): When the attachment was last updated.
             created_by (None | str | Unset): Who created the attachment.
@@ -45,6 +46,7 @@ class PolicyAttachmentDBResponse:
     teams: list[str] | Unset = UNSET
     keys: list[str] | Unset = UNSET
     models: list[str] | Unset = UNSET
+    tags: list[str] | Unset = UNSET
     created_at: datetime.datetime | None | Unset = UNSET
     updated_at: datetime.datetime | None | Unset = UNSET
     created_by: None | str | Unset = UNSET
@@ -81,6 +83,12 @@ class PolicyAttachmentDBResponse:
         models: list[str] | Unset = UNSET
         if not isinstance(self.models, Unset):
             models = self.models
+
+
+
+        tags: list[str] | Unset = UNSET
+        if not isinstance(self.tags, Unset):
+            tags = self.tags
 
 
 
@@ -127,6 +135,8 @@ class PolicyAttachmentDBResponse:
             field_dict["keys"] = keys
         if models is not UNSET:
             field_dict["models"] = models
+        if tags is not UNSET:
+            field_dict["tags"] = tags
         if created_at is not UNSET:
             field_dict["created_at"] = created_at
         if updated_at is not UNSET:
@@ -164,6 +174,9 @@ class PolicyAttachmentDBResponse:
 
 
         models = cast(list[str], d.pop("models", UNSET))
+
+
+        tags = cast(list[str], d.pop("tags", UNSET))
 
 
         def _parse_created_at(data: object) -> datetime.datetime | None | Unset:
@@ -233,6 +246,7 @@ class PolicyAttachmentDBResponse:
             teams=teams,
             keys=keys,
             models=models,
+            tags=tags,
             created_at=created_at,
             updated_at=updated_at,
             created_by=created_by,

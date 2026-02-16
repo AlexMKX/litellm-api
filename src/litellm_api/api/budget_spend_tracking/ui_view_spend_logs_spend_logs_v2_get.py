@@ -29,10 +29,13 @@ def _get_kwargs(
     page_size: int | Unset = 50,
     status_filter: None | str | Unset = UNSET,
     model: None | str | Unset = UNSET,
+    model_id: None | str | Unset = UNSET,
     key_alias: None | str | Unset = UNSET,
     end_user: None | str | Unset = UNSET,
     error_code: None | str | Unset = UNSET,
     error_message: None | str | Unset = UNSET,
+    sort_by: str | Unset = 'startTime',
+    sort_order: None | str | Unset = 'desc',
 
 ) -> dict[str, Any]:
     
@@ -115,6 +118,13 @@ def _get_kwargs(
         json_model = model
     params["model"] = json_model
 
+    json_model_id: None | str | Unset
+    if isinstance(model_id, Unset):
+        json_model_id = UNSET
+    else:
+        json_model_id = model_id
+    params["model_id"] = json_model_id
+
     json_key_alias: None | str | Unset
     if isinstance(key_alias, Unset):
         json_key_alias = UNSET
@@ -142,6 +152,15 @@ def _get_kwargs(
     else:
         json_error_message = error_message
     params["error_message"] = json_error_message
+
+    params["sort_by"] = sort_by
+
+    json_sort_order: None | str | Unset
+    if isinstance(sort_order, Unset):
+        json_sort_order = UNSET
+    else:
+        json_sort_order = sort_order
+    params["sort_order"] = json_sort_order
 
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
@@ -203,10 +222,13 @@ def sync_detailed(
     page_size: int | Unset = 50,
     status_filter: None | str | Unset = UNSET,
     model: None | str | Unset = UNSET,
+    model_id: None | str | Unset = UNSET,
     key_alias: None | str | Unset = UNSET,
     end_user: None | str | Unset = UNSET,
     error_code: None | str | Unset = UNSET,
     error_message: None | str | Unset = UNSET,
+    sort_by: str | Unset = 'startTime',
+    sort_order: None | str | Unset = 'desc',
 
 ) -> Response[HTTPValidationError | UiViewSpendLogsSpendLogsV2GetResponse200UiViewSpendLogsSpendLogsV2Get]:
     r""" Ui View Spend Logs
@@ -236,10 +258,14 @@ def sync_detailed(
         page_size (int | Unset): Number of items per page Default: 50.
         status_filter (None | str | Unset): Filter logs by status (e.g., success, failure)
         model (None | str | Unset): Filter logs by model
+        model_id (None | str | Unset): Filter logs by model ID (litellm model deployment id)
         key_alias (None | str | Unset): Filter logs by key alias
         end_user (None | str | Unset): Filter logs by end user
         error_code (None | str | Unset): Filter logs by error code (e.g., '404', '500')
         error_message (None | str | Unset): Filter logs by error message (partial string match)
+        sort_by (str | Unset): Sort logs by field: spend, total_tokens, startTime, or endTime
+            Default: 'startTime'.
+        sort_order (None | str | Unset): Sort order: asc or desc Default: 'desc'.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -263,10 +289,13 @@ page=page,
 page_size=page_size,
 status_filter=status_filter,
 model=model,
+model_id=model_id,
 key_alias=key_alias,
 end_user=end_user,
 error_code=error_code,
 error_message=error_message,
+sort_by=sort_by,
+sort_order=sort_order,
 
     )
 
@@ -291,10 +320,13 @@ def sync(
     page_size: int | Unset = 50,
     status_filter: None | str | Unset = UNSET,
     model: None | str | Unset = UNSET,
+    model_id: None | str | Unset = UNSET,
     key_alias: None | str | Unset = UNSET,
     end_user: None | str | Unset = UNSET,
     error_code: None | str | Unset = UNSET,
     error_message: None | str | Unset = UNSET,
+    sort_by: str | Unset = 'startTime',
+    sort_order: None | str | Unset = 'desc',
 
 ) -> HTTPValidationError | UiViewSpendLogsSpendLogsV2GetResponse200UiViewSpendLogsSpendLogsV2Get | None:
     r""" Ui View Spend Logs
@@ -324,10 +356,14 @@ def sync(
         page_size (int | Unset): Number of items per page Default: 50.
         status_filter (None | str | Unset): Filter logs by status (e.g., success, failure)
         model (None | str | Unset): Filter logs by model
+        model_id (None | str | Unset): Filter logs by model ID (litellm model deployment id)
         key_alias (None | str | Unset): Filter logs by key alias
         end_user (None | str | Unset): Filter logs by end user
         error_code (None | str | Unset): Filter logs by error code (e.g., '404', '500')
         error_message (None | str | Unset): Filter logs by error message (partial string match)
+        sort_by (str | Unset): Sort logs by field: spend, total_tokens, startTime, or endTime
+            Default: 'startTime'.
+        sort_order (None | str | Unset): Sort order: asc or desc Default: 'desc'.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -352,10 +388,13 @@ page=page,
 page_size=page_size,
 status_filter=status_filter,
 model=model,
+model_id=model_id,
 key_alias=key_alias,
 end_user=end_user,
 error_code=error_code,
 error_message=error_message,
+sort_by=sort_by,
+sort_order=sort_order,
 
     ).parsed
 
@@ -374,10 +413,13 @@ async def asyncio_detailed(
     page_size: int | Unset = 50,
     status_filter: None | str | Unset = UNSET,
     model: None | str | Unset = UNSET,
+    model_id: None | str | Unset = UNSET,
     key_alias: None | str | Unset = UNSET,
     end_user: None | str | Unset = UNSET,
     error_code: None | str | Unset = UNSET,
     error_message: None | str | Unset = UNSET,
+    sort_by: str | Unset = 'startTime',
+    sort_order: None | str | Unset = 'desc',
 
 ) -> Response[HTTPValidationError | UiViewSpendLogsSpendLogsV2GetResponse200UiViewSpendLogsSpendLogsV2Get]:
     r""" Ui View Spend Logs
@@ -407,10 +449,14 @@ async def asyncio_detailed(
         page_size (int | Unset): Number of items per page Default: 50.
         status_filter (None | str | Unset): Filter logs by status (e.g., success, failure)
         model (None | str | Unset): Filter logs by model
+        model_id (None | str | Unset): Filter logs by model ID (litellm model deployment id)
         key_alias (None | str | Unset): Filter logs by key alias
         end_user (None | str | Unset): Filter logs by end user
         error_code (None | str | Unset): Filter logs by error code (e.g., '404', '500')
         error_message (None | str | Unset): Filter logs by error message (partial string match)
+        sort_by (str | Unset): Sort logs by field: spend, total_tokens, startTime, or endTime
+            Default: 'startTime'.
+        sort_order (None | str | Unset): Sort order: asc or desc Default: 'desc'.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -434,10 +480,13 @@ page=page,
 page_size=page_size,
 status_filter=status_filter,
 model=model,
+model_id=model_id,
 key_alias=key_alias,
 end_user=end_user,
 error_code=error_code,
 error_message=error_message,
+sort_by=sort_by,
+sort_order=sort_order,
 
     )
 
@@ -462,10 +511,13 @@ async def asyncio(
     page_size: int | Unset = 50,
     status_filter: None | str | Unset = UNSET,
     model: None | str | Unset = UNSET,
+    model_id: None | str | Unset = UNSET,
     key_alias: None | str | Unset = UNSET,
     end_user: None | str | Unset = UNSET,
     error_code: None | str | Unset = UNSET,
     error_message: None | str | Unset = UNSET,
+    sort_by: str | Unset = 'startTime',
+    sort_order: None | str | Unset = 'desc',
 
 ) -> HTTPValidationError | UiViewSpendLogsSpendLogsV2GetResponse200UiViewSpendLogsSpendLogsV2Get | None:
     r""" Ui View Spend Logs
@@ -495,10 +547,14 @@ async def asyncio(
         page_size (int | Unset): Number of items per page Default: 50.
         status_filter (None | str | Unset): Filter logs by status (e.g., success, failure)
         model (None | str | Unset): Filter logs by model
+        model_id (None | str | Unset): Filter logs by model ID (litellm model deployment id)
         key_alias (None | str | Unset): Filter logs by key alias
         end_user (None | str | Unset): Filter logs by end user
         error_code (None | str | Unset): Filter logs by error code (e.g., '404', '500')
         error_message (None | str | Unset): Filter logs by error message (partial string match)
+        sort_by (str | Unset): Sort logs by field: spend, total_tokens, startTime, or endTime
+            Default: 'startTime'.
+        sort_order (None | str | Unset): Sort order: asc or desc Default: 'desc'.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -523,9 +579,12 @@ page=page,
 page_size=page_size,
 status_filter=status_filter,
 model=model,
+model_id=model_id,
 key_alias=key_alias,
 end_user=end_user,
 error_code=error_code,
 error_message=error_message,
+sort_by=sort_by,
+sort_order=sort_order,
 
     )).parsed

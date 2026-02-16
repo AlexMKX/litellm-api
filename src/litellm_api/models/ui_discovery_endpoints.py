@@ -27,12 +27,14 @@ class UiDiscoveryEndpoints:
             proxy_base_url (None | str):
             auto_redirect_to_sso (bool):
             admin_ui_disabled (bool):
+            sso_configured (bool):
      """
 
     server_root_path: str
     proxy_base_url: None | str
     auto_redirect_to_sso: bool
     admin_ui_disabled: bool
+    sso_configured: bool
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -49,6 +51,8 @@ class UiDiscoveryEndpoints:
 
         admin_ui_disabled = self.admin_ui_disabled
 
+        sso_configured = self.sso_configured
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -57,6 +61,7 @@ class UiDiscoveryEndpoints:
             "proxy_base_url": proxy_base_url,
             "auto_redirect_to_sso": auto_redirect_to_sso,
             "admin_ui_disabled": admin_ui_disabled,
+            "sso_configured": sso_configured,
         })
 
         return field_dict
@@ -80,11 +85,14 @@ class UiDiscoveryEndpoints:
 
         admin_ui_disabled = d.pop("admin_ui_disabled")
 
+        sso_configured = d.pop("sso_configured")
+
         ui_discovery_endpoints = cls(
             server_root_path=server_root_path,
             proxy_base_url=proxy_base_url,
             auto_redirect_to_sso=auto_redirect_to_sso,
             admin_ui_disabled=admin_ui_disabled,
+            sso_configured=sso_configured,
         )
 
 

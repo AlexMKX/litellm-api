@@ -30,11 +30,13 @@ class PolicyMatchContext:
             team_alias (None | str | Unset): Team alias from the request.
             key_alias (None | str | Unset): API key alias from the request.
             model (None | str | Unset): Model name from the request.
+            tags (list[str] | None | Unset): Tags from key/team metadata.
      """
 
     team_alias: None | str | Unset = UNSET
     key_alias: None | str | Unset = UNSET
     model: None | str | Unset = UNSET
+    tags: list[str] | None | Unset = UNSET
 
 
 
@@ -59,6 +61,16 @@ class PolicyMatchContext:
         else:
             model = self.model
 
+        tags: list[str] | None | Unset
+        if isinstance(self.tags, Unset):
+            tags = UNSET
+        elif isinstance(self.tags, list):
+            tags = self.tags
+
+
+        else:
+            tags = self.tags
+
 
         field_dict: dict[str, Any] = {}
 
@@ -70,6 +82,8 @@ class PolicyMatchContext:
             field_dict["key_alias"] = key_alias
         if model is not UNSET:
             field_dict["model"] = model
+        if tags is not UNSET:
+            field_dict["tags"] = tags
 
         return field_dict
 
@@ -108,10 +122,29 @@ class PolicyMatchContext:
         model = _parse_model(d.pop("model", UNSET))
 
 
+        def _parse_tags(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                tags_type_0 = cast(list[str], data)
+
+                return tags_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        tags = _parse_tags(d.pop("tags", UNSET))
+
+
         policy_match_context = cls(
             team_alias=team_alias,
             key_alias=key_alias,
             model=model,
+            tags=tags,
         )
 
         return policy_match_context

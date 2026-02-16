@@ -45,8 +45,8 @@ class BodyTestModelConnectionHealthTestConnectionPost:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.body_test_model_connection_health_test_connection_post_model_info import BodyTestModelConnectionHealthTestConnectionPostModelInfo
         from ..models.body_test_model_connection_health_test_connection_post_litellm_params import BodyTestModelConnectionHealthTestConnectionPostLitellmParams
+        from ..models.body_test_model_connection_health_test_connection_post_model_info import BodyTestModelConnectionHealthTestConnectionPostModelInfo
         mode: None | str | Unset
         if isinstance(self.mode, Unset):
             mode = UNSET

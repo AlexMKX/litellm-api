@@ -43,6 +43,8 @@ class PassThroughGenericEndpoint:
             guardrails (None | PassThroughGenericEndpointGuardrailsType0 | Unset): Guardrails configuration for this
                 passthrough endpoint. Dict keys are guardrail names, values are optional settings for field targeting. When set,
                 all org/team/key level guardrails will also execute. Defaults to None (no guardrails execute).
+            is_from_config (bool | Unset): True if this endpoint is defined in the config file, False if from DB. Config-
+                defined endpoints cannot be edited via the UI. Default: False.
      """
 
     path: str
@@ -53,6 +55,7 @@ class PassThroughGenericEndpoint:
     cost_per_request: float | Unset = 0.0
     auth: bool | Unset = False
     guardrails: None | PassThroughGenericEndpointGuardrailsType0 | Unset = UNSET
+    is_from_config: bool | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -60,8 +63,8 @@ class PassThroughGenericEndpoint:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.pass_through_generic_endpoint_guardrails_type_0 import PassThroughGenericEndpointGuardrailsType0
         from ..models.pass_through_generic_endpoint_headers import PassThroughGenericEndpointHeaders
+        from ..models.pass_through_generic_endpoint_guardrails_type_0 import PassThroughGenericEndpointGuardrailsType0
         path = self.path
 
         target = self.target
@@ -90,6 +93,8 @@ class PassThroughGenericEndpoint:
         else:
             guardrails = self.guardrails
 
+        is_from_config = self.is_from_config
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -109,6 +114,8 @@ class PassThroughGenericEndpoint:
             field_dict["auth"] = auth
         if guardrails is not UNSET:
             field_dict["guardrails"] = guardrails
+        if is_from_config is not UNSET:
+            field_dict["is_from_config"] = is_from_config
 
         return field_dict
 
@@ -169,6 +176,8 @@ class PassThroughGenericEndpoint:
         guardrails = _parse_guardrails(d.pop("guardrails", UNSET))
 
 
+        is_from_config = d.pop("is_from_config", UNSET)
+
         pass_through_generic_endpoint = cls(
             path=path,
             target=target,
@@ -178,6 +187,7 @@ class PassThroughGenericEndpoint:
             cost_per_request=cost_per_request,
             auth=auth,
             guardrails=guardrails,
+            is_from_config=is_from_config,
         )
 
 

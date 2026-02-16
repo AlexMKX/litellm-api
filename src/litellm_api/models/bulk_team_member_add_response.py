@@ -49,8 +49,8 @@ class BulkTeamMemberAddResponse:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.bulk_team_member_add_response_updated_team_type_0 import BulkTeamMemberAddResponseUpdatedTeamType0
         from ..models.team_member_add_result import TeamMemberAddResult
+        from ..models.bulk_team_member_add_response_updated_team_type_0 import BulkTeamMemberAddResponseUpdatedTeamType0
         team_id = self.team_id
 
         results = []

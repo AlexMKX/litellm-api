@@ -50,6 +50,7 @@ class LiteLLMDeletedTeamTable:
             models (list[Any] | Unset):
             blocked (bool | Unset):  Default: False.
             router_settings (LiteLLMDeletedTeamTableRouterSettingsType0 | None | Unset):
+            access_group_ids (list[str] | None | Unset):
             spend (float | None | Unset):
             max_parallel_requests (int | None | Unset):
             budget_reset_at (datetime.datetime | None | Unset):
@@ -82,6 +83,7 @@ class LiteLLMDeletedTeamTable:
     models: list[Any] | Unset = UNSET
     blocked: bool | Unset = False
     router_settings: LiteLLMDeletedTeamTableRouterSettingsType0 | None | Unset = UNSET
+    access_group_ids: list[str] | None | Unset = UNSET
     spend: float | None | Unset = UNSET
     max_parallel_requests: int | None | Unset = UNSET
     budget_reset_at: datetime.datetime | None | Unset = UNSET
@@ -103,11 +105,11 @@ class LiteLLMDeletedTeamTable:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.lite_llm_model_table import LiteLLMModelTable
         from ..models.lite_llm_deleted_team_table_metadata_type_0 import LiteLLMDeletedTeamTableMetadataType0
+        from ..models.lite_llm_model_table import LiteLLMModelTable
+        from ..models.lite_llm_deleted_team_table_router_settings_type_0 import LiteLLMDeletedTeamTableRouterSettingsType0
         from ..models.member import Member
         from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
-        from ..models.lite_llm_deleted_team_table_router_settings_type_0 import LiteLLMDeletedTeamTableRouterSettingsType0
         team_id = self.team_id
 
         team_alias: None | str | Unset
@@ -206,6 +208,16 @@ class LiteLLMDeletedTeamTable:
             router_settings = self.router_settings.to_dict()
         else:
             router_settings = self.router_settings
+
+        access_group_ids: list[str] | None | Unset
+        if isinstance(self.access_group_ids, Unset):
+            access_group_ids = UNSET
+        elif isinstance(self.access_group_ids, list):
+            access_group_ids = self.access_group_ids
+
+
+        else:
+            access_group_ids = self.access_group_ids
 
         spend: float | None | Unset
         if isinstance(self.spend, Unset):
@@ -339,6 +351,8 @@ class LiteLLMDeletedTeamTable:
             field_dict["blocked"] = blocked
         if router_settings is not UNSET:
             field_dict["router_settings"] = router_settings
+        if access_group_ids is not UNSET:
+            field_dict["access_group_ids"] = access_group_ids
         if spend is not UNSET:
             field_dict["spend"] = spend
         if max_parallel_requests is not UNSET:
@@ -531,6 +545,24 @@ class LiteLLMDeletedTeamTable:
             return cast(LiteLLMDeletedTeamTableRouterSettingsType0 | None | Unset, data)
 
         router_settings = _parse_router_settings(d.pop("router_settings", UNSET))
+
+
+        def _parse_access_group_ids(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                access_group_ids_type_0 = cast(list[str], data)
+
+                return access_group_ids_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        access_group_ids = _parse_access_group_ids(d.pop("access_group_ids", UNSET))
 
 
         def _parse_spend(data: object) -> float | None | Unset:
@@ -750,6 +782,7 @@ class LiteLLMDeletedTeamTable:
             models=models,
             blocked=blocked,
             router_settings=router_settings,
+            access_group_ids=access_group_ids,
             spend=spend,
             max_parallel_requests=max_parallel_requests,
             budget_reset_at=budget_reset_at,

@@ -63,14 +63,14 @@ class Message:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.chat_completion_audio_response import ChatCompletionAudioResponse
-        from ..models.chat_completion_redacted_thinking_block import ChatCompletionRedactedThinkingBlock
-        from ..models.image_url_list_item import ImageURLListItem
-        from ..models.chat_completion_message_tool_call import ChatCompletionMessageToolCall
-        from ..models.function_call import FunctionCall
         from ..models.message_provider_specific_fields_type_0 import MessageProviderSpecificFieldsType0
-        from ..models.chat_completion_thinking_block import ChatCompletionThinkingBlock
+        from ..models.function_call import FunctionCall
+        from ..models.chat_completion_redacted_thinking_block import ChatCompletionRedactedThinkingBlock
         from ..models.chat_completion_annotation import ChatCompletionAnnotation
+        from ..models.chat_completion_thinking_block import ChatCompletionThinkingBlock
+        from ..models.chat_completion_audio_response import ChatCompletionAudioResponse
+        from ..models.chat_completion_message_tool_call import ChatCompletionMessageToolCall
+        from ..models.image_url_list_item import ImageURLListItem
         content: None | str
         content = self.content
 

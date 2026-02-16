@@ -51,11 +51,11 @@ class ChatCompletionUserMessage:
     def to_dict(self) -> dict[str, Any]:
         from ..models.chat_completion_text_object import ChatCompletionTextObject
         from ..models.chat_completion_image_object import ChatCompletionImageObject
-        from ..models.chat_completion_file_object import ChatCompletionFileObject
-        from ..models.chat_completion_document_object import ChatCompletionDocumentObject
-        from ..models.chat_completion_audio_object import ChatCompletionAudioObject
         from ..models.chat_completion_video_object import ChatCompletionVideoObject
         from ..models.chat_completion_cached_content import ChatCompletionCachedContent
+        from ..models.chat_completion_audio_object import ChatCompletionAudioObject
+        from ..models.chat_completion_file_object import ChatCompletionFileObject
+        from ..models.chat_completion_document_object import ChatCompletionDocumentObject
         role = self.role
 
         content: list[dict[str, Any]] | str

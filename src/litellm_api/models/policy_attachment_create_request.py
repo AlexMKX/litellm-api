@@ -30,6 +30,7 @@ class PolicyAttachmentCreateRequest:
             teams (list[str] | None | Unset): Team aliases or patterns this attachment applies to.
             keys (list[str] | None | Unset): Key aliases or patterns this attachment applies to.
             models (list[str] | None | Unset): Model names or patterns this attachment applies to.
+            tags (list[str] | None | Unset): Tag patterns this attachment applies to. Supports wildcards (e.g., health-*).
      """
 
     policy_name: str
@@ -37,6 +38,7 @@ class PolicyAttachmentCreateRequest:
     teams: list[str] | None | Unset = UNSET
     keys: list[str] | None | Unset = UNSET
     models: list[str] | None | Unset = UNSET
+    tags: list[str] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -82,6 +84,16 @@ class PolicyAttachmentCreateRequest:
         else:
             models = self.models
 
+        tags: list[str] | None | Unset
+        if isinstance(self.tags, Unset):
+            tags = UNSET
+        elif isinstance(self.tags, list):
+            tags = self.tags
+
+
+        else:
+            tags = self.tags
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -96,6 +108,8 @@ class PolicyAttachmentCreateRequest:
             field_dict["keys"] = keys
         if models is not UNSET:
             field_dict["models"] = models
+        if tags is not UNSET:
+            field_dict["tags"] = tags
 
         return field_dict
 
@@ -170,12 +184,31 @@ class PolicyAttachmentCreateRequest:
         models = _parse_models(d.pop("models", UNSET))
 
 
+        def _parse_tags(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                tags_type_0 = cast(list[str], data)
+
+                return tags_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        tags = _parse_tags(d.pop("tags", UNSET))
+
+
         policy_attachment_create_request = cls(
             policy_name=policy_name,
             scope=scope,
             teams=teams,
             keys=keys,
             models=models,
+            tags=tags,
         )
 
 
