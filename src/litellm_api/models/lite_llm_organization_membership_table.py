@@ -38,6 +38,7 @@ class LiteLLMOrganizationMembershipTable:
             budget_id (None | str | Unset):
             user (Any | None | Unset):
             litellm_budget_table (LiteLLMBudgetTable | None | Unset):
+            user_email (None | str | Unset):
      """
 
     user_id: str
@@ -49,6 +50,7 @@ class LiteLLMOrganizationMembershipTable:
     budget_id: None | str | Unset = UNSET
     user: Any | None | Unset = UNSET
     litellm_budget_table: LiteLLMBudgetTable | None | Unset = UNSET
+    user_email: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -93,6 +95,12 @@ class LiteLLMOrganizationMembershipTable:
         else:
             litellm_budget_table = self.litellm_budget_table
 
+        user_email: None | str | Unset
+        if isinstance(self.user_email, Unset):
+            user_email = UNSET
+        else:
+            user_email = self.user_email
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -112,6 +120,8 @@ class LiteLLMOrganizationMembershipTable:
             field_dict["user"] = user
         if litellm_budget_table is not UNSET:
             field_dict["litellm_budget_table"] = litellm_budget_table
+        if user_email is not UNSET:
+            field_dict["user_email"] = user_email
 
         return field_dict
 
@@ -187,6 +197,16 @@ class LiteLLMOrganizationMembershipTable:
         litellm_budget_table = _parse_litellm_budget_table(d.pop("litellm_budget_table", UNSET))
 
 
+        def _parse_user_email(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        user_email = _parse_user_email(d.pop("user_email", UNSET))
+
+
         lite_llm_organization_membership_table = cls(
             user_id=user_id,
             organization_id=organization_id,
@@ -197,6 +217,7 @@ class LiteLLMOrganizationMembershipTable:
             budget_id=budget_id,
             user=user,
             litellm_budget_table=litellm_budget_table,
+            user_email=user_email,
         )
 
 

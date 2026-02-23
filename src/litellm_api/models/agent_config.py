@@ -44,8 +44,8 @@ class AgentConfig:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.agent_config_litellm_params import AgentConfigLitellmParams
         from ..models.agent_card import AgentCard
+        from ..models.agent_config_litellm_params import AgentConfigLitellmParams
         agent_name = self.agent_name
 
         agent_card_params = self.agent_card_params.to_dict()

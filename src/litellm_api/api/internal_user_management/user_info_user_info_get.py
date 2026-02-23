@@ -9,6 +9,7 @@ from ...types import Response, UNSET
 from ... import errors
 
 from ...models.http_validation_error import HTTPValidationError
+from ...models.user_info_response import UserInfoResponse
 from ...types import UNSET, Unset
 from typing import cast
 
@@ -47,9 +48,12 @@ def _get_kwargs(
 
 
 
-def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Any | HTTPValidationError | None:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> HTTPValidationError | UserInfoResponse | None:
     if response.status_code == 200:
-        response_200 = response.json()
+        response_200 = UserInfoResponse.from_dict(response.json())
+
+
+
         return response_200
 
     if response.status_code == 422:
@@ -65,7 +69,7 @@ def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Res
         return None
 
 
-def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Any | HTTPValidationError]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[HTTPValidationError | UserInfoResponse]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -79,7 +83,7 @@ def sync_detailed(
     client: AuthenticatedClient,
     user_id: None | str | Unset = UNSET,
 
-) -> Response[Any | HTTPValidationError]:
+) -> Response[HTTPValidationError | UserInfoResponse]:
     """ User Info
 
      [10/07/2024]
@@ -102,7 +106,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | HTTPValidationError]
+        Response[HTTPValidationError | UserInfoResponse]
      """
 
 
@@ -122,7 +126,7 @@ def sync(
     client: AuthenticatedClient,
     user_id: None | str | Unset = UNSET,
 
-) -> Any | HTTPValidationError | None:
+) -> HTTPValidationError | UserInfoResponse | None:
     """ User Info
 
      [10/07/2024]
@@ -145,7 +149,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | HTTPValidationError
+        HTTPValidationError | UserInfoResponse
      """
 
 
@@ -160,7 +164,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient,
     user_id: None | str | Unset = UNSET,
 
-) -> Response[Any | HTTPValidationError]:
+) -> Response[HTTPValidationError | UserInfoResponse]:
     """ User Info
 
      [10/07/2024]
@@ -183,7 +187,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | HTTPValidationError]
+        Response[HTTPValidationError | UserInfoResponse]
      """
 
 
@@ -203,7 +207,7 @@ async def asyncio(
     client: AuthenticatedClient,
     user_id: None | str | Unset = UNSET,
 
-) -> Any | HTTPValidationError | None:
+) -> HTTPValidationError | UserInfoResponse | None:
     """ User Info
 
      [10/07/2024]
@@ -226,7 +230,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | HTTPValidationError
+        HTTPValidationError | UserInfoResponse
      """
 
 

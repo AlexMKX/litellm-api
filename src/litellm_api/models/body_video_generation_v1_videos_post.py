@@ -10,9 +10,7 @@ from .. import types
 
 from ..types import UNSET, Unset
 
-from ..types import File, FileTypes
 from ..types import UNSET, Unset
-from io import BytesIO
 from typing import cast
 
 
@@ -28,10 +26,10 @@ T = TypeVar("T", bound="BodyVideoGenerationV1VideosPost")
 class BodyVideoGenerationV1VideosPost:
     """ 
         Attributes:
-            input_reference (File | None | Unset):
+            input_reference (None | str | Unset):
      """
 
-    input_reference: File | None | Unset = UNSET
+    input_reference: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -39,12 +37,9 @@ class BodyVideoGenerationV1VideosPost:
 
 
     def to_dict(self) -> dict[str, Any]:
-        input_reference: FileTypes | None | Unset
+        input_reference: None | str | Unset
         if isinstance(self.input_reference, Unset):
             input_reference = UNSET
-        elif isinstance(self.input_reference, File):
-            input_reference = self.input_reference.to_tuple()
-
         else:
             input_reference = self.input_reference
 
@@ -63,9 +58,9 @@ class BodyVideoGenerationV1VideosPost:
         files: types.RequestFiles = []
 
         if not isinstance(self.input_reference, Unset):
-            if isinstance(self.input_reference, File):
+            if isinstance(self.input_reference, str):
 
-                files.append(("input_reference", self.input_reference.to_tuple()))
+                files.append(("input_reference", (None, str(self.input_reference).encode(), "text/plain")))
             else:
                 files.append(("input_reference", (None, str(self.input_reference).encode(), "text/plain")))
 
@@ -82,24 +77,12 @@ class BodyVideoGenerationV1VideosPost:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        def _parse_input_reference(data: object) -> File | None | Unset:
+        def _parse_input_reference(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            try:
-                if not isinstance(data, bytes):
-                    raise TypeError()
-                input_reference_type_0 = File(
-                     payload = BytesIO(data)
-                )
-
-
-
-                return input_reference_type_0
-            except (TypeError, ValueError, AttributeError, KeyError):
-                pass
-            return cast(File | None | Unset, data)
+            return cast(None | str | Unset, data)
 
         input_reference = _parse_input_reference(d.pop("input_reference", UNSET))
 

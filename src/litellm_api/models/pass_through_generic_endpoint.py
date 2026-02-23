@@ -12,6 +12,7 @@ from ..types import UNSET, Unset
 from typing import cast
 
 if TYPE_CHECKING:
+  from ..models.pass_through_generic_endpoint_default_query_params import PassThroughGenericEndpointDefaultQueryParams
   from ..models.pass_through_generic_endpoint_guardrails_type_0 import PassThroughGenericEndpointGuardrailsType0
   from ..models.pass_through_generic_endpoint_headers import PassThroughGenericEndpointHeaders
 
@@ -33,6 +34,9 @@ class PassThroughGenericEndpoint:
                 will be identified by path for backwards compatibility.
             headers (PassThroughGenericEndpointHeaders | Unset): Key-value pairs of headers to be forwarded with the
                 request. You can set any key value pair here and it will be forwarded to your target endpoint
+            default_query_params (PassThroughGenericEndpointDefaultQueryParams | Unset): Key-value pairs of default query
+                parameters to be sent with every request to this endpoint. These can be overridden by client-provided query
+                parameters. For example: {'key': 'default_value', 'api_version': '2023-01'}
             include_subpath (bool | Unset): If True, requests to subpaths of the path will be forwarded to the target
                 endpoint. For example, if the path is /bria and include_subpath is True, requests to /bria/v1/text-to-
                 image/base/2.3 will be forwarded to the target endpoint. Default: False.
@@ -45,17 +49,22 @@ class PassThroughGenericEndpoint:
                 all org/team/key level guardrails will also execute. Defaults to None (no guardrails execute).
             is_from_config (bool | Unset): True if this endpoint is defined in the config file, False if from DB. Config-
                 defined endpoints cannot be edited via the UI. Default: False.
+            methods (list[str] | None | Unset): List of HTTP methods this endpoint handles (e.g., ['GET', 'POST']). If None
+                or empty, all methods (GET, POST, PUT, DELETE, PATCH) are supported for backward compatibility. This allows the
+                same path to have different targets for different HTTP methods.
      """
 
     path: str
     target: str
     id: None | str | Unset = UNSET
     headers: PassThroughGenericEndpointHeaders | Unset = UNSET
+    default_query_params: PassThroughGenericEndpointDefaultQueryParams | Unset = UNSET
     include_subpath: bool | Unset = False
     cost_per_request: float | Unset = 0.0
     auth: bool | Unset = False
     guardrails: None | PassThroughGenericEndpointGuardrailsType0 | Unset = UNSET
     is_from_config: bool | Unset = False
+    methods: list[str] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -63,8 +72,9 @@ class PassThroughGenericEndpoint:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.pass_through_generic_endpoint_headers import PassThroughGenericEndpointHeaders
+        from ..models.pass_through_generic_endpoint_default_query_params import PassThroughGenericEndpointDefaultQueryParams
         from ..models.pass_through_generic_endpoint_guardrails_type_0 import PassThroughGenericEndpointGuardrailsType0
+        from ..models.pass_through_generic_endpoint_headers import PassThroughGenericEndpointHeaders
         path = self.path
 
         target = self.target
@@ -78,6 +88,10 @@ class PassThroughGenericEndpoint:
         headers: dict[str, Any] | Unset = UNSET
         if not isinstance(self.headers, Unset):
             headers = self.headers.to_dict()
+
+        default_query_params: dict[str, Any] | Unset = UNSET
+        if not isinstance(self.default_query_params, Unset):
+            default_query_params = self.default_query_params.to_dict()
 
         include_subpath = self.include_subpath
 
@@ -95,6 +109,16 @@ class PassThroughGenericEndpoint:
 
         is_from_config = self.is_from_config
 
+        methods: list[str] | None | Unset
+        if isinstance(self.methods, Unset):
+            methods = UNSET
+        elif isinstance(self.methods, list):
+            methods = self.methods
+
+
+        else:
+            methods = self.methods
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -106,6 +130,8 @@ class PassThroughGenericEndpoint:
             field_dict["id"] = id
         if headers is not UNSET:
             field_dict["headers"] = headers
+        if default_query_params is not UNSET:
+            field_dict["default_query_params"] = default_query_params
         if include_subpath is not UNSET:
             field_dict["include_subpath"] = include_subpath
         if cost_per_request is not UNSET:
@@ -116,6 +142,8 @@ class PassThroughGenericEndpoint:
             field_dict["guardrails"] = guardrails
         if is_from_config is not UNSET:
             field_dict["is_from_config"] = is_from_config
+        if methods is not UNSET:
+            field_dict["methods"] = methods
 
         return field_dict
 
@@ -123,6 +151,7 @@ class PassThroughGenericEndpoint:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.pass_through_generic_endpoint_default_query_params import PassThroughGenericEndpointDefaultQueryParams
         from ..models.pass_through_generic_endpoint_guardrails_type_0 import PassThroughGenericEndpointGuardrailsType0
         from ..models.pass_through_generic_endpoint_headers import PassThroughGenericEndpointHeaders
         d = dict(src_dict)
@@ -146,6 +175,16 @@ class PassThroughGenericEndpoint:
             headers = UNSET
         else:
             headers = PassThroughGenericEndpointHeaders.from_dict(_headers)
+
+
+
+
+        _default_query_params = d.pop("default_query_params", UNSET)
+        default_query_params: PassThroughGenericEndpointDefaultQueryParams | Unset
+        if isinstance(_default_query_params,  Unset):
+            default_query_params = UNSET
+        else:
+            default_query_params = PassThroughGenericEndpointDefaultQueryParams.from_dict(_default_query_params)
 
 
 
@@ -178,16 +217,36 @@ class PassThroughGenericEndpoint:
 
         is_from_config = d.pop("is_from_config", UNSET)
 
+        def _parse_methods(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                methods_type_0 = cast(list[str], data)
+
+                return methods_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        methods = _parse_methods(d.pop("methods", UNSET))
+
+
         pass_through_generic_endpoint = cls(
             path=path,
             target=target,
             id=id,
             headers=headers,
+            default_query_params=default_query_params,
             include_subpath=include_subpath,
             cost_per_request=cost_per_request,
             auth=auth,
             guardrails=guardrails,
             is_from_config=is_from_config,
+            methods=methods,
         )
 
 

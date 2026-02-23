@@ -42,6 +42,7 @@ class LiteLLMMCPServerTable:
             alias (None | str | Unset):
             description (None | str | Unset):
             url (None | str | Unset):
+            spec_path (None | str | Unset):
             auth_type (LiteLLMMCPServerTableAuthTypeType0 | None | Unset):
             credentials (MCPCredentials | None | Unset):
             created_at (datetime.datetime | None | Unset):
@@ -74,6 +75,7 @@ class LiteLLMMCPServerTable:
     alias: None | str | Unset = UNSET
     description: None | str | Unset = UNSET
     url: None | str | Unset = UNSET
+    spec_path: None | str | Unset = UNSET
     auth_type: LiteLLMMCPServerTableAuthTypeType0 | None | Unset = UNSET
     credentials: MCPCredentials | None | Unset = UNSET
     created_at: datetime.datetime | None | Unset = UNSET
@@ -104,11 +106,11 @@ class LiteLLMMCPServerTable:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.mcp_credentials import MCPCredentials
-        from ..models.lite_llmmcp_server_table_mcp_info_type_0 import LiteLLMMCPServerTableMcpInfoType0
         from ..models.lite_llmmcp_server_table_env import LiteLLMMCPServerTableEnv
-        from ..models.lite_llmmcp_server_table_teams_item import LiteLLMMCPServerTableTeamsItem
         from ..models.lite_llmmcp_server_table_static_headers_type_0 import LiteLLMMCPServerTableStaticHeadersType0
+        from ..models.lite_llmmcp_server_table_mcp_info_type_0 import LiteLLMMCPServerTableMcpInfoType0
+        from ..models.lite_llmmcp_server_table_teams_item import LiteLLMMCPServerTableTeamsItem
+        from ..models.mcp_credentials import MCPCredentials
         server_id = self.server_id
 
         transport = self.transport.value
@@ -136,6 +138,12 @@ class LiteLLMMCPServerTable:
             url = UNSET
         else:
             url = self.url
+
+        spec_path: None | str | Unset
+        if isinstance(self.spec_path, Unset):
+            spec_path = UNSET
+        else:
+            spec_path = self.spec_path
 
         auth_type: None | str | Unset
         if isinstance(self.auth_type, Unset):
@@ -299,6 +307,8 @@ class LiteLLMMCPServerTable:
             field_dict["description"] = description
         if url is not UNSET:
             field_dict["url"] = url
+        if spec_path is not UNSET:
+            field_dict["spec_path"] = spec_path
         if auth_type is not UNSET:
             field_dict["auth_type"] = auth_type
         if credentials is not UNSET:
@@ -403,6 +413,16 @@ class LiteLLMMCPServerTable:
             return cast(None | str | Unset, data)
 
         url = _parse_url(d.pop("url", UNSET))
+
+
+        def _parse_spec_path(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        spec_path = _parse_spec_path(d.pop("spec_path", UNSET))
 
 
         def _parse_auth_type(data: object) -> LiteLLMMCPServerTableAuthTypeType0 | None | Unset:
@@ -680,6 +700,7 @@ class LiteLLMMCPServerTable:
             alias=alias,
             description=description,
             url=url,
+            spec_path=spec_path,
             auth_type=auth_type,
             credentials=credentials,
             created_at=created_at,

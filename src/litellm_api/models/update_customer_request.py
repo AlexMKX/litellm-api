@@ -12,6 +12,8 @@ from ..models.update_customer_request_allowed_model_region_type_0 import UpdateC
 from ..types import UNSET, Unset
 from typing import cast
 
+if TYPE_CHECKING:
+  from ..models.lite_llm_object_permission_base import LiteLLMObjectPermissionBase
 
 
 
@@ -33,6 +35,7 @@ class UpdateCustomerRequest:
             budget_id (None | str | Unset):
             allowed_model_region (None | Unset | UpdateCustomerRequestAllowedModelRegionType0):
             default_model (None | str | Unset):
+            object_permission (LiteLLMObjectPermissionBase | None | Unset):
      """
 
     user_id: str
@@ -42,6 +45,7 @@ class UpdateCustomerRequest:
     budget_id: None | str | Unset = UNSET
     allowed_model_region: None | Unset | UpdateCustomerRequestAllowedModelRegionType0 = UNSET
     default_model: None | str | Unset = UNSET
+    object_permission: LiteLLMObjectPermissionBase | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -49,6 +53,7 @@ class UpdateCustomerRequest:
 
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.lite_llm_object_permission_base import LiteLLMObjectPermissionBase
         user_id = self.user_id
 
         alias: None | str | Unset
@@ -85,6 +90,14 @@ class UpdateCustomerRequest:
         else:
             default_model = self.default_model
 
+        object_permission: dict[str, Any] | None | Unset
+        if isinstance(self.object_permission, Unset):
+            object_permission = UNSET
+        elif isinstance(self.object_permission, LiteLLMObjectPermissionBase):
+            object_permission = self.object_permission.to_dict()
+        else:
+            object_permission = self.object_permission
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -103,6 +116,8 @@ class UpdateCustomerRequest:
             field_dict["allowed_model_region"] = allowed_model_region
         if default_model is not UNSET:
             field_dict["default_model"] = default_model
+        if object_permission is not UNSET:
+            field_dict["object_permission"] = object_permission
 
         return field_dict
 
@@ -110,6 +125,7 @@ class UpdateCustomerRequest:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.lite_llm_object_permission_base import LiteLLMObjectPermissionBase
         d = dict(src_dict)
         user_id = d.pop("user_id")
 
@@ -175,6 +191,26 @@ class UpdateCustomerRequest:
         default_model = _parse_default_model(d.pop("default_model", UNSET))
 
 
+        def _parse_object_permission(data: object) -> LiteLLMObjectPermissionBase | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                object_permission_type_0 = LiteLLMObjectPermissionBase.from_dict(data)
+
+
+
+                return object_permission_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(LiteLLMObjectPermissionBase | None | Unset, data)
+
+        object_permission = _parse_object_permission(d.pop("object_permission", UNSET))
+
+
         update_customer_request = cls(
             user_id=user_id,
             alias=alias,
@@ -183,6 +219,7 @@ class UpdateCustomerRequest:
             budget_id=budget_id,
             allowed_model_region=allowed_model_region,
             default_model=default_model,
+            object_permission=object_permission,
         )
 
 

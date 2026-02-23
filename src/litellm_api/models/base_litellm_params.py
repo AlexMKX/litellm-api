@@ -8,6 +8,7 @@ from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..models.base_litellm_params_unreachable_fallback import BaseLitellmParamsUnreachableFallback
 from ..types import UNSET, Unset
 from typing import cast
 
@@ -66,6 +67,10 @@ class BaseLitellmParams:
                 True.
             additional_provider_specific_params (BaseLitellmParamsAdditionalProviderSpecificParamsType0 | None | Unset):
                 Additional provider-specific parameters for generic guardrail APIs
+            unreachable_fallback (BaseLitellmParamsUnreachableFallback | Unset): Behavior when a guardrail endpoint is
+                unreachable due to network errors. NOTE: This is currently only implemented by
+                guardrail='generic_guardrail_api'. 'fail_closed' raises an error (default). 'fail_open' logs a critical error
+                and allows the request to proceed. Default: BaseLitellmParamsUnreachableFallback.FAIL_CLOSED.
             custom_code (None | str | Unset): Python-like code containing the apply_guardrail function for custom guardrail
                 logic
      """
@@ -96,6 +101,7 @@ class BaseLitellmParams:
     api_endpoint: None | str | Unset = UNSET
     fail_on_error: bool | None | Unset = True
     additional_provider_specific_params: BaseLitellmParamsAdditionalProviderSpecificParamsType0 | None | Unset = UNSET
+    unreachable_fallback: BaseLitellmParamsUnreachableFallback | Unset = BaseLitellmParamsUnreachableFallback.FAIL_CLOSED
     custom_code: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -104,11 +110,11 @@ class BaseLitellmParams:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.lakera_category_thresholds import LakeraCategoryThresholds
         from ..models.content_filter_pattern import ContentFilterPattern
         from ..models.base_litellm_params_detect_secrets_config_type_0 import BaseLitellmParamsDetectSecretsConfigType0
         from ..models.content_filter_category_config import ContentFilterCategoryConfig
         from ..models.blocked_word import BlockedWord
+        from ..models.lakera_category_thresholds import LakeraCategoryThresholds
         from ..models.base_litellm_params_additional_provider_specific_params_type_0 import BaseLitellmParamsAdditionalProviderSpecificParamsType0
         patterns: list[dict[str, Any]] | None | Unset
         if isinstance(self.patterns, Unset):
@@ -293,6 +299,11 @@ class BaseLitellmParams:
         else:
             additional_provider_specific_params = self.additional_provider_specific_params
 
+        unreachable_fallback: str | Unset = UNSET
+        if not isinstance(self.unreachable_fallback, Unset):
+            unreachable_fallback = self.unreachable_fallback.value
+
+
         custom_code: None | str | Unset
         if isinstance(self.custom_code, Unset):
             custom_code = UNSET
@@ -356,6 +367,8 @@ class BaseLitellmParams:
             field_dict["fail_on_error"] = fail_on_error
         if additional_provider_specific_params is not UNSET:
             field_dict["additional_provider_specific_params"] = additional_provider_specific_params
+        if unreachable_fallback is not UNSET:
+            field_dict["unreachable_fallback"] = unreachable_fallback
         if custom_code is not UNSET:
             field_dict["custom_code"] = custom_code
 
@@ -707,6 +720,16 @@ class BaseLitellmParams:
         additional_provider_specific_params = _parse_additional_provider_specific_params(d.pop("additional_provider_specific_params", UNSET))
 
 
+        _unreachable_fallback = d.pop("unreachable_fallback", UNSET)
+        unreachable_fallback: BaseLitellmParamsUnreachableFallback | Unset
+        if isinstance(_unreachable_fallback,  Unset):
+            unreachable_fallback = UNSET
+        else:
+            unreachable_fallback = BaseLitellmParamsUnreachableFallback(_unreachable_fallback)
+
+
+
+
         def _parse_custom_code(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -744,6 +767,7 @@ class BaseLitellmParams:
             api_endpoint=api_endpoint,
             fail_on_error=fail_on_error,
             additional_provider_specific_params=additional_provider_specific_params,
+            unreachable_fallback=unreachable_fallback,
             custom_code=custom_code,
         )
 

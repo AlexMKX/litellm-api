@@ -21,6 +21,7 @@ def _get_kwargs(
     end_date: None | str | Unset = UNSET,
     model: None | str | Unset = UNSET,
     api_key: None | str | Unset = UNSET,
+    user_id: None | str | Unset = UNSET,
     page: int | Unset = 1,
     page_size: int | Unset = 50,
     timezone: int | None | Unset = UNSET,
@@ -59,6 +60,13 @@ def _get_kwargs(
     else:
         json_api_key = api_key
     params["api_key"] = json_api_key
+
+    json_user_id: None | str | Unset
+    if isinstance(user_id, Unset):
+        json_user_id = UNSET
+    else:
+        json_user_id = user_id
+    params["user_id"] = json_user_id
 
     params["page"] = page
 
@@ -123,6 +131,7 @@ def sync_detailed(
     end_date: None | str | Unset = UNSET,
     model: None | str | Unset = UNSET,
     api_key: None | str | Unset = UNSET,
+    user_id: None | str | Unset = UNSET,
     page: int | Unset = 1,
     page_size: int | Unset = 50,
     timezone: int | None | Unset = UNSET,
@@ -150,6 +159,8 @@ def sync_detailed(
         end_date (None | str | Unset): End date in YYYY-MM-DD format
         model (None | str | Unset): Filter by specific model
         api_key (None | str | Unset): Filter by specific API key
+        user_id (None | str | Unset): Filter by specific user ID. Admins can filter by any user or
+            omit for global view. Non-admins must provide their own user_id.
         page (int | Unset): Page number for pagination Default: 1.
         page_size (int | Unset): Items per page Default: 50.
         timezone (int | None | Unset): Timezone offset in minutes from UTC (e.g., 480 for PST).
@@ -169,6 +180,7 @@ def sync_detailed(
 end_date=end_date,
 model=model,
 api_key=api_key,
+user_id=user_id,
 page=page,
 page_size=page_size,
 timezone=timezone,
@@ -188,6 +200,7 @@ def sync(
     end_date: None | str | Unset = UNSET,
     model: None | str | Unset = UNSET,
     api_key: None | str | Unset = UNSET,
+    user_id: None | str | Unset = UNSET,
     page: int | Unset = 1,
     page_size: int | Unset = 50,
     timezone: int | None | Unset = UNSET,
@@ -215,6 +228,8 @@ def sync(
         end_date (None | str | Unset): End date in YYYY-MM-DD format
         model (None | str | Unset): Filter by specific model
         api_key (None | str | Unset): Filter by specific API key
+        user_id (None | str | Unset): Filter by specific user ID. Admins can filter by any user or
+            omit for global view. Non-admins must provide their own user_id.
         page (int | Unset): Page number for pagination Default: 1.
         page_size (int | Unset): Items per page Default: 50.
         timezone (int | None | Unset): Timezone offset in minutes from UTC (e.g., 480 for PST).
@@ -235,6 +250,7 @@ start_date=start_date,
 end_date=end_date,
 model=model,
 api_key=api_key,
+user_id=user_id,
 page=page,
 page_size=page_size,
 timezone=timezone,
@@ -248,6 +264,7 @@ async def asyncio_detailed(
     end_date: None | str | Unset = UNSET,
     model: None | str | Unset = UNSET,
     api_key: None | str | Unset = UNSET,
+    user_id: None | str | Unset = UNSET,
     page: int | Unset = 1,
     page_size: int | Unset = 50,
     timezone: int | None | Unset = UNSET,
@@ -275,6 +292,8 @@ async def asyncio_detailed(
         end_date (None | str | Unset): End date in YYYY-MM-DD format
         model (None | str | Unset): Filter by specific model
         api_key (None | str | Unset): Filter by specific API key
+        user_id (None | str | Unset): Filter by specific user ID. Admins can filter by any user or
+            omit for global view. Non-admins must provide their own user_id.
         page (int | Unset): Page number for pagination Default: 1.
         page_size (int | Unset): Items per page Default: 50.
         timezone (int | None | Unset): Timezone offset in minutes from UTC (e.g., 480 for PST).
@@ -294,6 +313,7 @@ async def asyncio_detailed(
 end_date=end_date,
 model=model,
 api_key=api_key,
+user_id=user_id,
 page=page,
 page_size=page_size,
 timezone=timezone,
@@ -313,6 +333,7 @@ async def asyncio(
     end_date: None | str | Unset = UNSET,
     model: None | str | Unset = UNSET,
     api_key: None | str | Unset = UNSET,
+    user_id: None | str | Unset = UNSET,
     page: int | Unset = 1,
     page_size: int | Unset = 50,
     timezone: int | None | Unset = UNSET,
@@ -340,6 +361,8 @@ async def asyncio(
         end_date (None | str | Unset): End date in YYYY-MM-DD format
         model (None | str | Unset): Filter by specific model
         api_key (None | str | Unset): Filter by specific API key
+        user_id (None | str | Unset): Filter by specific user ID. Admins can filter by any user or
+            omit for global view. Non-admins must provide their own user_id.
         page (int | Unset): Page number for pagination Default: 1.
         page_size (int | Unset): Items per page Default: 50.
         timezone (int | None | Unset): Timezone offset in minutes from UTC (e.g., 480 for PST).
@@ -360,6 +383,7 @@ start_date=start_date,
 end_date=end_date,
 model=model,
 api_key=api_key,
+user_id=user_id,
 page=page,
 page_size=page_size,
 timezone=timezone,

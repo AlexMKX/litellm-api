@@ -60,8 +60,8 @@ class TagNewRequest:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.tag_new_request_model_info_type_0 import TagNewRequestModelInfoType0
         from ..models.tag_new_request_model_max_budget_type_0 import TagNewRequestModelMaxBudgetType0
+        from ..models.tag_new_request_model_info_type_0 import TagNewRequestModelInfoType0
         name = self.name
 
         description: None | str | Unset

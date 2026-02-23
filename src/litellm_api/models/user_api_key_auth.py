@@ -56,6 +56,7 @@ class UserAPIKeyAuth:
             config (UserAPIKeyAuthConfig | Unset):
             user_id (None | str | Unset):
             team_id (None | str | Unset):
+            project_id (None | str | Unset):
             max_parallel_requests (int | None | Unset):
             metadata (UserAPIKeyAuthMetadata | Unset):
             tpm_limit (int | None | Unset):
@@ -75,6 +76,7 @@ class UserAPIKeyAuth:
             created_by (None | str | Unset):
             updated_at (datetime.datetime | None | Unset):
             updated_by (None | str | Unset):
+            last_active (datetime.datetime | None | Unset):
             object_permission_id (None | str | Unset):
             object_permission (LiteLLMObjectPermissionTable | None | Unset):
             access_group_ids (list[str] | None | Unset):
@@ -122,6 +124,7 @@ class UserAPIKeyAuth:
             user_max_budget (float | None | Unset):
             request_route (None | str | Unset):
             user (Any | None | Unset):
+            end_user_object_permission (LiteLLMObjectPermissionTable | None | Unset):
      """
 
     token: None | str | Unset = UNSET
@@ -135,6 +138,7 @@ class UserAPIKeyAuth:
     config: UserAPIKeyAuthConfig | Unset = UNSET
     user_id: None | str | Unset = UNSET
     team_id: None | str | Unset = UNSET
+    project_id: None | str | Unset = UNSET
     max_parallel_requests: int | None | Unset = UNSET
     metadata: UserAPIKeyAuthMetadata | Unset = UNSET
     tpm_limit: int | None | Unset = UNSET
@@ -154,6 +158,7 @@ class UserAPIKeyAuth:
     created_by: None | str | Unset = UNSET
     updated_at: datetime.datetime | None | Unset = UNSET
     updated_by: None | str | Unset = UNSET
+    last_active: datetime.datetime | None | Unset = UNSET
     object_permission_id: None | str | Unset = UNSET
     object_permission: LiteLLMObjectPermissionTable | None | Unset = UNSET
     access_group_ids: list[str] | None | Unset = UNSET
@@ -201,6 +206,7 @@ class UserAPIKeyAuth:
     user_max_budget: float | None | Unset = UNSET
     request_route: None | str | Unset = UNSET
     user: Any | None | Unset = UNSET
+    end_user_object_permission: LiteLLMObjectPermissionTable | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -208,21 +214,21 @@ class UserAPIKeyAuth:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.user_api_key_auth_config import UserAPIKeyAuthConfig
-        from ..models.user_api_key_auth_model_spend import UserAPIKeyAuthModelSpend
-        from ..models.user_api_key_auth_metadata import UserAPIKeyAuthMetadata
         from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
-        from ..models.user_api_key_auth_model_max_budget import UserAPIKeyAuthModelMaxBudget
-        from ..models.user_api_key_auth_team_model_aliases_type_0 import UserAPIKeyAuthTeamModelAliasesType0
-        from ..models.user_api_key_auth_router_settings_type_0 import UserAPIKeyAuthRouterSettingsType0
-        from ..models.user_api_key_auth_permissions import UserAPIKeyAuthPermissions
-        from ..models.user_api_key_auth_litellm_budget_table_type_0 import UserAPIKeyAuthLitellmBudgetTableType0
-        from ..models.member import Member
         from ..models.user_api_key_auth_tpm_limit_per_model_type_0 import UserAPIKeyAuthTpmLimitPerModelType0
-        from ..models.user_api_key_auth_team_metadata_type_0 import UserAPIKeyAuthTeamMetadataType0
-        from ..models.user_api_key_auth_rpm_limit_per_model_type_0 import UserAPIKeyAuthRpmLimitPerModelType0
-        from ..models.user_api_key_auth_aliases import UserAPIKeyAuthAliases
+        from ..models.member import Member
+        from ..models.user_api_key_auth_team_model_aliases_type_0 import UserAPIKeyAuthTeamModelAliasesType0
         from ..models.user_api_key_auth_organization_metadata_type_0 import UserAPIKeyAuthOrganizationMetadataType0
+        from ..models.user_api_key_auth_model_spend import UserAPIKeyAuthModelSpend
+        from ..models.user_api_key_auth_permissions import UserAPIKeyAuthPermissions
+        from ..models.user_api_key_auth_rpm_limit_per_model_type_0 import UserAPIKeyAuthRpmLimitPerModelType0
+        from ..models.user_api_key_auth_router_settings_type_0 import UserAPIKeyAuthRouterSettingsType0
+        from ..models.user_api_key_auth_config import UserAPIKeyAuthConfig
+        from ..models.user_api_key_auth_litellm_budget_table_type_0 import UserAPIKeyAuthLitellmBudgetTableType0
+        from ..models.user_api_key_auth_team_metadata_type_0 import UserAPIKeyAuthTeamMetadataType0
+        from ..models.user_api_key_auth_aliases import UserAPIKeyAuthAliases
+        from ..models.user_api_key_auth_metadata import UserAPIKeyAuthMetadata
+        from ..models.user_api_key_auth_model_max_budget import UserAPIKeyAuthModelMaxBudget
         token: None | str | Unset
         if isinstance(self.token, Unset):
             token = UNSET
@@ -282,6 +288,12 @@ class UserAPIKeyAuth:
             team_id = UNSET
         else:
             team_id = self.team_id
+
+        project_id: None | str | Unset
+        if isinstance(self.project_id, Unset):
+            project_id = UNSET
+        else:
+            project_id = self.project_id
 
         max_parallel_requests: int | None | Unset
         if isinstance(self.max_parallel_requests, Unset):
@@ -400,6 +412,14 @@ class UserAPIKeyAuth:
             updated_by = UNSET
         else:
             updated_by = self.updated_by
+
+        last_active: None | str | Unset
+        if isinstance(self.last_active, Unset):
+            last_active = UNSET
+        elif isinstance(self.last_active, datetime.datetime):
+            last_active = self.last_active.isoformat()
+        else:
+            last_active = self.last_active
 
         object_permission_id: None | str | Unset
         if isinstance(self.object_permission_id, Unset):
@@ -707,6 +727,14 @@ class UserAPIKeyAuth:
         else:
             user = self.user
 
+        end_user_object_permission: dict[str, Any] | None | Unset
+        if isinstance(self.end_user_object_permission, Unset):
+            end_user_object_permission = UNSET
+        elif isinstance(self.end_user_object_permission, LiteLLMObjectPermissionTable):
+            end_user_object_permission = self.end_user_object_permission.to_dict()
+        else:
+            end_user_object_permission = self.end_user_object_permission
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -734,6 +762,8 @@ class UserAPIKeyAuth:
             field_dict["user_id"] = user_id
         if team_id is not UNSET:
             field_dict["team_id"] = team_id
+        if project_id is not UNSET:
+            field_dict["project_id"] = project_id
         if max_parallel_requests is not UNSET:
             field_dict["max_parallel_requests"] = max_parallel_requests
         if metadata is not UNSET:
@@ -772,6 +802,8 @@ class UserAPIKeyAuth:
             field_dict["updated_at"] = updated_at
         if updated_by is not UNSET:
             field_dict["updated_by"] = updated_by
+        if last_active is not UNSET:
+            field_dict["last_active"] = last_active
         if object_permission_id is not UNSET:
             field_dict["object_permission_id"] = object_permission_id
         if object_permission is not UNSET:
@@ -866,6 +898,8 @@ class UserAPIKeyAuth:
             field_dict["request_route"] = request_route
         if user is not UNSET:
             field_dict["user"] = user
+        if end_user_object_permission is not UNSET:
+            field_dict["end_user_object_permission"] = end_user_object_permission
 
         return field_dict
 
@@ -992,6 +1026,16 @@ class UserAPIKeyAuth:
             return cast(None | str | Unset, data)
 
         team_id = _parse_team_id(d.pop("team_id", UNSET))
+
+
+        def _parse_project_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        project_id = _parse_project_id(d.pop("project_id", UNSET))
 
 
         def _parse_max_parallel_requests(data: object) -> int | None | Unset:
@@ -1230,6 +1274,26 @@ class UserAPIKeyAuth:
             return cast(None | str | Unset, data)
 
         updated_by = _parse_updated_by(d.pop("updated_by", UNSET))
+
+
+        def _parse_last_active(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                last_active_type_0 = isoparse(data)
+
+
+
+                return last_active_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        last_active = _parse_last_active(d.pop("last_active", UNSET))
 
 
         def _parse_object_permission_id(data: object) -> None | str | Unset:
@@ -1815,6 +1879,26 @@ class UserAPIKeyAuth:
         user = _parse_user(d.pop("user", UNSET))
 
 
+        def _parse_end_user_object_permission(data: object) -> LiteLLMObjectPermissionTable | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                end_user_object_permission_type_0 = LiteLLMObjectPermissionTable.from_dict(data)
+
+
+
+                return end_user_object_permission_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(LiteLLMObjectPermissionTable | None | Unset, data)
+
+        end_user_object_permission = _parse_end_user_object_permission(d.pop("end_user_object_permission", UNSET))
+
+
         user_api_key_auth = cls(
             token=token,
             key_name=key_name,
@@ -1827,6 +1911,7 @@ class UserAPIKeyAuth:
             config=config,
             user_id=user_id,
             team_id=team_id,
+            project_id=project_id,
             max_parallel_requests=max_parallel_requests,
             metadata=metadata,
             tpm_limit=tpm_limit,
@@ -1846,6 +1931,7 @@ class UserAPIKeyAuth:
             created_by=created_by,
             updated_at=updated_at,
             updated_by=updated_by,
+            last_active=last_active,
             object_permission_id=object_permission_id,
             object_permission=object_permission,
             access_group_ids=access_group_ids,
@@ -1893,6 +1979,7 @@ class UserAPIKeyAuth:
             user_max_budget=user_max_budget,
             request_route=request_route,
             user=user,
+            end_user_object_permission=end_user_object_permission,
         )
 
 

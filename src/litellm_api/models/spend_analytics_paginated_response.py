@@ -40,8 +40,8 @@ class SpendAnalyticsPaginatedResponse:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.daily_spend_metadata import DailySpendMetadata
         from ..models.daily_spend_data import DailySpendData
+        from ..models.daily_spend_metadata import DailySpendMetadata
         results = []
         for results_item_data in self.results:
             results_item = results_item_data.to_dict()

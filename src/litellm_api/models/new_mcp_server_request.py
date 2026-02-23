@@ -39,6 +39,7 @@ class NewMCPServerRequest:
             auth_type (NewMCPServerRequestAuthTypeType0 | None | Unset):
             credentials (MCPCredentials | None | Unset):
             url (None | str | Unset):
+            spec_path (None | str | Unset):
             mcp_info (NewMCPServerRequestMcpInfoType0 | None | Unset):
             mcp_access_groups (list[str] | Unset):
             allowed_tools (list[str] | None | Unset):
@@ -62,6 +63,7 @@ class NewMCPServerRequest:
     auth_type: NewMCPServerRequestAuthTypeType0 | None | Unset = UNSET
     credentials: MCPCredentials | None | Unset = UNSET
     url: None | str | Unset = UNSET
+    spec_path: None | str | Unset = UNSET
     mcp_info: NewMCPServerRequestMcpInfoType0 | None | Unset = UNSET
     mcp_access_groups: list[str] | Unset = UNSET
     allowed_tools: list[str] | None | Unset = UNSET
@@ -83,9 +85,9 @@ class NewMCPServerRequest:
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.mcp_credentials import MCPCredentials
-        from ..models.new_mcp_server_request_env import NewMCPServerRequestEnv
         from ..models.new_mcp_server_request_static_headers_type_0 import NewMCPServerRequestStaticHeadersType0
         from ..models.new_mcp_server_request_mcp_info_type_0 import NewMCPServerRequestMcpInfoType0
+        from ..models.new_mcp_server_request_env import NewMCPServerRequestEnv
         server_id: None | str | Unset
         if isinstance(self.server_id, Unset):
             server_id = UNSET
@@ -136,6 +138,12 @@ class NewMCPServerRequest:
             url = UNSET
         else:
             url = self.url
+
+        spec_path: None | str | Unset
+        if isinstance(self.spec_path, Unset):
+            spec_path = UNSET
+        else:
+            spec_path = self.spec_path
 
         mcp_info: dict[str, Any] | None | Unset
         if isinstance(self.mcp_info, Unset):
@@ -238,6 +246,8 @@ class NewMCPServerRequest:
             field_dict["credentials"] = credentials
         if url is not UNSET:
             field_dict["url"] = url
+        if spec_path is not UNSET:
+            field_dict["spec_path"] = spec_path
         if mcp_info is not UNSET:
             field_dict["mcp_info"] = mcp_info
         if mcp_access_groups is not UNSET:
@@ -374,6 +384,16 @@ class NewMCPServerRequest:
             return cast(None | str | Unset, data)
 
         url = _parse_url(d.pop("url", UNSET))
+
+
+        def _parse_spec_path(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        spec_path = _parse_spec_path(d.pop("spec_path", UNSET))
 
 
         def _parse_mcp_info(data: object) -> NewMCPServerRequestMcpInfoType0 | None | Unset:
@@ -521,6 +541,7 @@ class NewMCPServerRequest:
             auth_type=auth_type,
             credentials=credentials,
             url=url,
+            spec_path=spec_path,
             mcp_info=mcp_info,
             mcp_access_groups=mcp_access_groups,
             allowed_tools=allowed_tools,

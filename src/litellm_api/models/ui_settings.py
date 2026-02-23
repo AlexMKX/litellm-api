@@ -33,12 +33,15 @@ class UISettings:
                 can see in the UI sidebar. If not set, all pages are visible based on role permissions.
             require_auth_for_public_ai_hub (bool | Unset): If true, requires authentication for accessing the public AI Hub.
                 Default: False.
+            forward_client_headers_to_llm_api (bool | Unset): If enabled, forwards client headers (e.g. Authorization) to
+                the LLM API. Required for Claude Code with Max subscription. Default: False.
      """
 
     disable_model_add_for_internal_users: bool | Unset = False
     disable_team_admin_delete_team_user: bool | Unset = False
     enabled_ui_pages_internal_users: list[str] | None | Unset = UNSET
     require_auth_for_public_ai_hub: bool | Unset = False
+    forward_client_headers_to_llm_api: bool | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -62,6 +65,8 @@ class UISettings:
 
         require_auth_for_public_ai_hub = self.require_auth_for_public_ai_hub
 
+        forward_client_headers_to_llm_api = self.forward_client_headers_to_llm_api
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -75,6 +80,8 @@ class UISettings:
             field_dict["enabled_ui_pages_internal_users"] = enabled_ui_pages_internal_users
         if require_auth_for_public_ai_hub is not UNSET:
             field_dict["require_auth_for_public_ai_hub"] = require_auth_for_public_ai_hub
+        if forward_client_headers_to_llm_api is not UNSET:
+            field_dict["forward_client_headers_to_llm_api"] = forward_client_headers_to_llm_api
 
         return field_dict
 
@@ -107,11 +114,14 @@ class UISettings:
 
         require_auth_for_public_ai_hub = d.pop("require_auth_for_public_ai_hub", UNSET)
 
+        forward_client_headers_to_llm_api = d.pop("forward_client_headers_to_llm_api", UNSET)
+
         ui_settings = cls(
             disable_model_add_for_internal_users=disable_model_add_for_internal_users,
             disable_team_admin_delete_team_user=disable_team_admin_delete_team_user,
             enabled_ui_pages_internal_users=enabled_ui_pages_internal_users,
             require_auth_for_public_ai_hub=require_auth_for_public_ai_hub,
+            forward_client_headers_to_llm_api=forward_client_headers_to_llm_api,
         )
 
 

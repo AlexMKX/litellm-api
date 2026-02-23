@@ -13,6 +13,7 @@ from ..models.litellm_params_on_disallowed_action import LitellmParamsOnDisallow
 from ..models.litellm_params_on_flagged_type_0 import LitellmParamsOnFlaggedType0
 from ..models.litellm_params_presidio_filter_scope_type_0 import LitellmParamsPresidioFilterScopeType0
 from ..models.litellm_params_presidio_run_on_type_0 import LitellmParamsPresidioRunOnType0
+from ..models.litellm_params_unreachable_fallback import LitellmParamsUnreachableFallback
 from ..types import UNSET, Unset
 from typing import cast
 
@@ -114,6 +115,10 @@ class LitellmParams:
                 True.
             additional_provider_specific_params (LitellmParamsAdditionalProviderSpecificParamsType0 | None | Unset):
                 Additional provider-specific parameters for generic guardrail APIs
+            unreachable_fallback (LitellmParamsUnreachableFallback | Unset): Behavior when a guardrail endpoint is
+                unreachable due to network errors. NOTE: This is currently only implemented by
+                guardrail='generic_guardrail_api'. 'fail_closed' raises an error (default). 'fail_open' logs a critical error
+                and allows the request to proceed. Default: LitellmParamsUnreachableFallback.FAIL_CLOSED.
             custom_code (None | str | Unset): Python-like code containing the apply_guardrail function for custom guardrail
                 logic
             api_version (None | str | Unset): API version for Javelin service Default: 'v1'.
@@ -232,6 +237,7 @@ class LitellmParams:
     api_endpoint: None | str | Unset = UNSET
     fail_on_error: bool | None | Unset = True
     additional_provider_specific_params: LitellmParamsAdditionalProviderSpecificParamsType0 | None | Unset = UNSET
+    unreachable_fallback: LitellmParamsUnreachableFallback | Unset = LitellmParamsUnreachableFallback.FAIL_CLOSED
     custom_code: None | str | Unset = UNSET
     api_version: None | str | Unset = 'v1'
     metadata: LitellmParamsMetadataType0 | None | Unset = UNSET
@@ -290,21 +296,21 @@ class LitellmParams:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.litellm_params_detect_secrets_config_type_0 import LitellmParamsDetectSecretsConfigType0
-        from ..models.lakera_category_thresholds import LakeraCategoryThresholds
-        from ..models.litellm_params_config_type_0 import LitellmParamsConfigType0
         from ..models.content_filter_pattern import ContentFilterPattern
+        from ..models.litellm_params_metadata_type_0 import LitellmParamsMetadataType0
+        from ..models.litellm_params_detect_secrets_config_type_0 import LitellmParamsDetectSecretsConfigType0
+        from ..models.content_filter_category_config import ContentFilterCategoryConfig
+        from ..models.litellm_params_mock_redacted_text_type_0 import LitellmParamsMockRedactedTextType0
+        from ..models.mode import Mode
+        from ..models.blocked_word import BlockedWord
+        from ..models.tool_permission_rule import ToolPermissionRule
+        from ..models.lakera_category_thresholds import LakeraCategoryThresholds
+        from ..models.litellm_params_pii_entities_config_type_0 import LitellmParamsPiiEntitiesConfigType0
+        from ..models.litellm_params_config_type_0 import LitellmParamsConfigType0
         from ..models.litellm_params_detectors_type_0 import LitellmParamsDetectorsType0
         from ..models.litellm_params_presidio_score_thresholds_type_0 import LitellmParamsPresidioScoreThresholdsType0
-        from ..models.content_filter_category_config import ContentFilterCategoryConfig
         from ..models.gray_swan_guardrail_config_model_optional_params import GraySwanGuardrailConfigModelOptionalParams
-        from ..models.litellm_params_metadata_type_0 import LitellmParamsMetadataType0
-        from ..models.blocked_word import BlockedWord
         from ..models.litellm_params_additional_provider_specific_params_type_0 import LitellmParamsAdditionalProviderSpecificParamsType0
-        from ..models.litellm_params_mock_redacted_text_type_0 import LitellmParamsMockRedactedTextType0
-        from ..models.tool_permission_rule import ToolPermissionRule
-        from ..models.mode import Mode
-        from ..models.litellm_params_pii_entities_config_type_0 import LitellmParamsPiiEntitiesConfigType0
         guardrail = self.guardrail
 
         mode: dict[str, Any] | list[str] | str
@@ -623,6 +629,11 @@ class LitellmParams:
             additional_provider_specific_params = self.additional_provider_specific_params.to_dict()
         else:
             additional_provider_specific_params = self.additional_provider_specific_params
+
+        unreachable_fallback: str | Unset = UNSET
+        if not isinstance(self.unreachable_fallback, Unset):
+            unreachable_fallback = self.unreachable_fallback.value
+
 
         custom_code: None | str | Unset
         if isinstance(self.custom_code, Unset):
@@ -1046,6 +1057,8 @@ class LitellmParams:
             field_dict["fail_on_error"] = fail_on_error
         if additional_provider_specific_params is not UNSET:
             field_dict["additional_provider_specific_params"] = additional_provider_specific_params
+        if unreachable_fallback is not UNSET:
+            field_dict["unreachable_fallback"] = unreachable_fallback
         if custom_code is not UNSET:
             field_dict["custom_code"] = custom_code
         if api_version is not UNSET:
@@ -1760,6 +1773,16 @@ class LitellmParams:
         additional_provider_specific_params = _parse_additional_provider_specific_params(d.pop("additional_provider_specific_params", UNSET))
 
 
+        _unreachable_fallback = d.pop("unreachable_fallback", UNSET)
+        unreachable_fallback: LitellmParamsUnreachableFallback | Unset
+        if isinstance(_unreachable_fallback,  Unset):
+            unreachable_fallback = UNSET
+        else:
+            unreachable_fallback = LitellmParamsUnreachableFallback(_unreachable_fallback)
+
+
+
+
         def _parse_custom_code(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -2403,6 +2426,7 @@ class LitellmParams:
             api_endpoint=api_endpoint,
             fail_on_error=fail_on_error,
             additional_provider_specific_params=additional_provider_specific_params,
+            unreachable_fallback=unreachable_fallback,
             custom_code=custom_code,
             api_version=api_version,
             metadata=metadata,

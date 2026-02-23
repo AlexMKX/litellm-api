@@ -33,6 +33,7 @@ class Guardrail:
             litellm_params (LitellmParams):
             guardrail_id (None | str | Unset):
             guardrail_info (GuardrailGuardrailInfoType0 | None | Unset):
+            policy_template (None | str | Unset):
             created_at (datetime.datetime | None | Unset):
             updated_at (datetime.datetime | None | Unset):
      """
@@ -41,6 +42,7 @@ class Guardrail:
     litellm_params: LitellmParams
     guardrail_id: None | str | Unset = UNSET
     guardrail_info: GuardrailGuardrailInfoType0 | None | Unset = UNSET
+    policy_template: None | str | Unset = UNSET
     created_at: datetime.datetime | None | Unset = UNSET
     updated_at: datetime.datetime | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -70,6 +72,12 @@ class Guardrail:
         else:
             guardrail_info = self.guardrail_info
 
+        policy_template: None | str | Unset
+        if isinstance(self.policy_template, Unset):
+            policy_template = UNSET
+        else:
+            policy_template = self.policy_template
+
         created_at: None | str | Unset
         if isinstance(self.created_at, Unset):
             created_at = UNSET
@@ -97,6 +105,8 @@ class Guardrail:
             field_dict["guardrail_id"] = guardrail_id
         if guardrail_info is not UNSET:
             field_dict["guardrail_info"] = guardrail_info
+        if policy_template is not UNSET:
+            field_dict["policy_template"] = policy_template
         if created_at is not UNSET:
             field_dict["created_at"] = created_at
         if updated_at is not UNSET:
@@ -148,6 +158,16 @@ class Guardrail:
         guardrail_info = _parse_guardrail_info(d.pop("guardrail_info", UNSET))
 
 
+        def _parse_policy_template(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        policy_template = _parse_policy_template(d.pop("policy_template", UNSET))
+
+
         def _parse_created_at(data: object) -> datetime.datetime | None | Unset:
             if data is None:
                 return data
@@ -193,6 +213,7 @@ class Guardrail:
             litellm_params=litellm_params,
             guardrail_id=guardrail_id,
             guardrail_info=guardrail_info,
+            policy_template=policy_template,
             created_at=created_at,
             updated_at=updated_at,
         )

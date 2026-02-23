@@ -44,6 +44,8 @@ from .audit_log_response_updated_values_type_0 import AuditLogResponseUpdatedVal
 from .base_litellm_params import BaseLitellmParams
 from .base_litellm_params_additional_provider_specific_params_type_0 import BaseLitellmParamsAdditionalProviderSpecificParamsType0
 from .base_litellm_params_detect_secrets_config_type_0 import BaseLitellmParamsDetectSecretsConfigType0
+from .base_litellm_params_unreachable_fallback import BaseLitellmParamsUnreachableFallback
+from .base_model import BaseModel
 from .block_key_request import BlockKeyRequest
 from .block_team_request import BlockTeamRequest
 from .block_users import BlockUsers
@@ -97,6 +99,8 @@ from .cache_test_request_cache_settings import CacheTestRequestCacheSettings
 from .cache_test_response import CacheTestResponse
 from .call_types import CallTypes
 from .callbacks_by_type import CallbacksByType
+from .cancel_eval_response import CancelEvalResponse
+from .cancel_run_response import CancelRunResponse
 from .chat_completion_annotation import ChatCompletionAnnotation
 from .chat_completion_annotation_url_citation import ChatCompletionAnnotationURLCitation
 from .chat_completion_assistant_message import ChatCompletionAssistantMessage
@@ -130,9 +134,13 @@ from .chat_completion_text_object import ChatCompletionTextObject
 from .chat_completion_thinking_block import ChatCompletionThinkingBlock
 from .chat_completion_thinking_block_cache_control_type_0 import ChatCompletionThinkingBlockCacheControlType0
 from .chat_completion_token_logprob import ChatCompletionTokenLogprob
+from .chat_completion_tool_call_chunk import ChatCompletionToolCallChunk
 from .chat_completion_tool_call_function_chunk import ChatCompletionToolCallFunctionChunk
 from .chat_completion_tool_call_function_chunk_provider_specific_fields_type_0 import ChatCompletionToolCallFunctionChunkProviderSpecificFieldsType0
 from .chat_completion_tool_message import ChatCompletionToolMessage
+from .chat_completion_tool_param import ChatCompletionToolParam
+from .chat_completion_tool_param_function_chunk import ChatCompletionToolParamFunctionChunk
+from .chat_completion_tool_param_function_chunk_parameters import ChatCompletionToolParamFunctionChunkParameters
 from .chat_completion_user_message import ChatCompletionUserMessage
 from .chat_completion_v1_chat_completions_post_body import ChatCompletionV1ChatCompletionsPostBody
 from .chat_completion_v1_chat_completions_post_body_context_window_fallback_dict_type_0 import ChatCompletionV1ChatCompletionsPostBodyContextWindowFallbackDictType0
@@ -159,6 +167,10 @@ from .cloud_zero_init_request import CloudZeroInitRequest
 from .cloud_zero_init_response import CloudZeroInitResponse
 from .cloud_zero_settings_update import CloudZeroSettingsUpdate
 from .cloud_zero_settings_view import CloudZeroSettingsView
+from .compliance_check_request import ComplianceCheckRequest
+from .compliance_check_request_guardrail_information_type_0_item import ComplianceCheckRequestGuardrailInformationType0Item
+from .compliance_check_result import ComplianceCheckResult
+from .compliance_response import ComplianceResponse
 from .configurable_clientside_params_custom_auth import ConfigurableClientsideParamsCustomAuth
 from .content_filter_action import ContentFilterAction
 from .content_filter_category_config import ContentFilterCategoryConfig
@@ -186,9 +198,11 @@ from .default_team_settings_response_field_schema import DefaultTeamSettingsResp
 from .default_team_settings_response_values import DefaultTeamSettingsResponseValues
 from .default_team_sso_params import DefaultTeamSSOParams
 from .delete_customer_request import DeleteCustomerRequest
+from .delete_eval_response import DeleteEvalResponse
 from .delete_fallback_fallback_model_delete_fallback_type import DeleteFallbackFallbackModelDeleteFallbackType
 from .delete_model_group_response import DeleteModelGroupResponse
 from .delete_organization_request import DeleteOrganizationRequest
+from .delete_project_request import DeleteProjectRequest
 from .delete_skill_response import DeleteSkillResponse
 from .delete_team_request import DeleteTeamRequest
 from .delete_user_request import DeleteUserRequest
@@ -209,8 +223,15 @@ from .embeddings_embeddings_post_body_litellm_logging_obj_type_0 import Embeddin
 from .embeddings_v1_embeddings_post_body import EmbeddingsV1EmbeddingsPostBody
 from .embeddings_v1_embeddings_post_body_custom_llm_provider_type_1 import EmbeddingsV1EmbeddingsPostBodyCustomLlmProviderType1
 from .embeddings_v1_embeddings_post_body_litellm_logging_obj_type_0 import EmbeddingsV1EmbeddingsPostBodyLitellmLoggingObjType0
+from .enrich_policy_template_policy_templates_enrich_post_response_enrich_policy_template_policy_templates_enrich_post import EnrichPolicyTemplatePolicyTemplatesEnrichPostResponseEnrichPolicyTemplatePolicyTemplatesEnrichPost
+from .enrich_template_request import EnrichTemplateRequest
+from .enrich_template_request_parameters import EnrichTemplateRequestParameters
 from .error_response import ErrorResponse
 from .error_response_detail import ErrorResponseDetail
+from .eval_ import Eval
+from .eval_data_source_config import EvalDataSourceConfig
+from .eval_metadata_type_0 import EvalMetadataType0
+from .eval_testing_criteria_item import EvalTestingCriteriaItem
 from .failed_key_update import FailedKeyUpdate
 from .failed_key_update_key_info_type_0 import FailedKeyUpdateKeyInfoType0
 from .fallback_create_request import FallbackCreateRequest
@@ -219,6 +240,7 @@ from .fallback_delete_response import FallbackDeleteResponse
 from .fallback_get_response import FallbackGetResponse
 from .fallback_response import FallbackResponse
 from .function_call import FunctionCall
+from .generic_guardrail_api_inputs import GenericGuardrailAPIInputs
 from .get_fallback_fallback_model_get_fallback_type import GetFallbackFallbackModelGetFallbackType
 from .get_global_spend_report_global_spend_report_get_group_by_type_0 import GetGlobalSpendReportGlobalSpendReportGetGroupByType0
 from .get_team_member_permissions_response import GetTeamMemberPermissionsResponse
@@ -226,6 +248,7 @@ from .gray_swan_guardrail_config_model_optional_params import GraySwanGuardrailC
 from .gray_swan_guardrail_config_model_optional_params_categories_type_0 import GraySwanGuardrailConfigModelOptionalParamsCategoriesType0
 from .guardrail import Guardrail
 from .guardrail_guardrail_info_type_0 import GuardrailGuardrailInfoType0
+from .guardrail_test_result_entry import GuardrailTestResultEntry
 from .guardraildefinitionlocation import GUARDRAILDEFINITIONLOCATION
 from .health_services_endpoint_health_services_get_service_type_0 import HealthServicesEndpointHealthServicesGetServiceType0
 from .http_auth_security_scheme import HTTPAuthSecurityScheme
@@ -252,10 +275,12 @@ from .key_metric_with_metadata import KeyMetricWithMetadata
 from .key_request import KeyRequest
 from .lakera_category_thresholds import LakeraCategoryThresholds
 from .list_access_groups_response import ListAccessGroupsResponse
+from .list_evals_response import ListEvalsResponse
 from .list_fine_tuning_jobs_fine_tuning_jobs_get_custom_llm_provider_type_0 import ListFineTuningJobsFineTuningJobsGetCustomLlmProviderType0
 from .list_fine_tuning_jobs_v1_fine_tuning_jobs_get_custom_llm_provider_type_0 import ListFineTuningJobsV1FineTuningJobsGetCustomLlmProviderType0
 from .list_plugins_response import ListPluginsResponse
 from .list_prompts_response import ListPromptsResponse
+from .list_runs_response import ListRunsResponse
 from .list_search_tools_response import ListSearchToolsResponse
 from .list_skills_response import ListSkillsResponse
 from .list_tool_rest_api_mcp_rest_tools_list_get_response_list_tool_rest_api_mcp_rest_tools_list_get import ListToolRestApiMcpRestToolsListGetResponseListToolRestApiMcpRestToolsListGet
@@ -295,10 +320,16 @@ from .lite_llm_organization_membership_table import LiteLLMOrganizationMembershi
 from .lite_llm_organization_table_with_members import LiteLLMOrganizationTableWithMembers
 from .lite_llm_organization_table_with_members_metadata_type_0 import LiteLLMOrganizationTableWithMembersMetadataType0
 from .lite_llm_params import LiteLLMParams
+from .lite_llm_params_complexity_router_config_type_0 import LiteLLMParamsComplexityRouterConfigType0
 from .lite_llm_params_model_info_type_0 import LiteLLMParamsModelInfoType0
 from .lite_llm_params_search_context_cost_per_query_type_0 import LiteLLMParamsSearchContextCostPerQueryType0
 from .lite_llm_params_tiered_pricing_type_0_item import LiteLLMParamsTieredPricingType0Item
 from .lite_llm_params_vertex_credentials_type_1 import LiteLLMParamsVertexCredentialsType1
+from .lite_llm_project_table import LiteLLMProjectTable
+from .lite_llm_project_table_metadata_type_0 import LiteLLMProjectTableMetadataType0
+from .lite_llm_project_table_model_rpm_limit_type_0 import LiteLLMProjectTableModelRpmLimitType0
+from .lite_llm_project_table_model_spend_type_0 import LiteLLMProjectTableModelSpendType0
+from .lite_llm_project_table_model_tpm_limit_type_0 import LiteLLMProjectTableModelTpmLimitType0
 from .lite_llm_spend_logs import LiteLLMSpendLogs
 from .lite_llm_spend_logs_messages_type_2 import LiteLLMSpendLogsMessagesType2
 from .lite_llm_spend_logs_response_type_2 import LiteLLMSpendLogsResponseType2
@@ -337,6 +368,7 @@ from .litellm_params_pii_entities_config_type_0 import LitellmParamsPiiEntitiesC
 from .litellm_params_presidio_filter_scope_type_0 import LitellmParamsPresidioFilterScopeType0
 from .litellm_params_presidio_run_on_type_0 import LitellmParamsPresidioRunOnType0
 from .litellm_params_presidio_score_thresholds_type_0 import LitellmParamsPresidioScoreThresholdsType0
+from .litellm_params_unreachable_fallback import LitellmParamsUnreachableFallback
 from .litellm_user_roles import LitellmUserRoles
 from .logging_callback_status import LoggingCallbackStatus
 from .logging_callback_status_status import LoggingCallbackStatusStatus
@@ -384,6 +416,16 @@ from .new_organization_request_model_rpm_limit_type_0 import NewOrganizationRequ
 from .new_organization_request_model_tpm_limit_type_0 import NewOrganizationRequestModelTpmLimitType0
 from .new_organization_response import NewOrganizationResponse
 from .new_organization_response_metadata_type_0 import NewOrganizationResponseMetadataType0
+from .new_project_request import NewProjectRequest
+from .new_project_request_metadata_type_0 import NewProjectRequestMetadataType0
+from .new_project_request_model_max_budget_type_0 import NewProjectRequestModelMaxBudgetType0
+from .new_project_request_model_rpm_limit_type_0 import NewProjectRequestModelRpmLimitType0
+from .new_project_request_model_tpm_limit_type_0 import NewProjectRequestModelTpmLimitType0
+from .new_project_response import NewProjectResponse
+from .new_project_response_metadata_type_0 import NewProjectResponseMetadataType0
+from .new_project_response_model_rpm_limit_type_0 import NewProjectResponseModelRpmLimitType0
+from .new_project_response_model_spend_type_0 import NewProjectResponseModelSpendType0
+from .new_project_response_model_tpm_limit_type_0 import NewProjectResponseModelTpmLimitType0
 from .new_team_request import NewTeamRequest
 from .new_team_request_metadata_type_0 import NewTeamRequestMetadataType0
 from .new_team_request_model_aliases_type_0 import NewTeamRequestModelAliasesType0
@@ -411,6 +453,7 @@ from .organization_request import OrganizationRequest
 from .paginated_audit_log_response import PaginatedAuditLogResponse
 from .pass_through_endpoint_response import PassThroughEndpointResponse
 from .pass_through_generic_endpoint import PassThroughGenericEndpoint
+from .pass_through_generic_endpoint_default_query_params import PassThroughGenericEndpointDefaultQueryParams
 from .pass_through_generic_endpoint_guardrails_type_0 import PassThroughGenericEndpointGuardrailsType0
 from .pass_through_generic_endpoint_headers import PassThroughGenericEndpointHeaders
 from .pass_through_guardrail_settings import PassThroughGuardrailSettings
@@ -419,6 +462,7 @@ from .patch_agent_request_litellm_params import PatchAgentRequestLitellmParams
 from .patch_guardrail_request import PatchGuardrailRequest
 from .patch_guardrail_request_guardrail_info_type_0 import PatchGuardrailRequestGuardrailInfoType0
 from .patch_prompt_request import PatchPromptRequest
+from .per_testing_criteria_result import PerTestingCriteriaResult
 from .per_user_analytics_response import PerUserAnalyticsResponse
 from .per_user_metrics import PerUserMetrics
 from .pii_action import PiiAction
@@ -495,6 +539,7 @@ from .register_plugin_request_source import RegisterPluginRequestSource
 from .reset_key_spend_fn_key_key_reset_spend_post_response_reset_key_spend_fn_key_key_reset_spend_post import ResetKeySpendFnKeyKeyResetSpendPostResponseResetKeySpendFnKeyKeyResetSpendPost
 from .reset_spend_request import ResetSpendRequest
 from .response_lite_llm_managed_vector_store import ResponseLiteLLMManagedVectorStore
+from .result_counts import ResultCounts
 from .retrieve_fine_tuning_job_fine_tuning_jobs_fine_tuning_job_id_get_custom_llm_provider_type_0 import RetrieveFineTuningJobFineTuningJobsFineTuningJobIdGetCustomLlmProviderType0
 from .retrieve_fine_tuning_job_v1_fine_tuning_jobs_fine_tuning_job_id_get_custom_llm_provider_type_0 import RetrieveFineTuningJobV1FineTuningJobsFineTuningJobIdGetCustomLlmProviderType0
 from .role_mappings import RoleMappings
@@ -505,6 +550,13 @@ from .router_settings_field import RouterSettingsField
 from .router_settings_response import RouterSettingsResponse
 from .router_settings_response_current_values import RouterSettingsResponseCurrentValues
 from .router_settings_response_routing_strategy_descriptions import RouterSettingsResponseRoutingStrategyDescriptions
+from .run import Run
+from .run_data_source import RunDataSource
+from .run_delete_response import RunDeleteResponse
+from .run_error_type_0 import RunErrorType0
+from .run_metadata_type_0 import RunMetadataType0
+from .run_result_counts_type_0 import RunResultCountsType0
+from .run_status import RunStatus
 from .scim_feature import SCIMFeature
 from .scim_group import SCIMGroup
 from .scim_group_meta_type_0 import SCIMGroupMetaType0
@@ -538,6 +590,8 @@ from .sso_settings_response_values import SSOSettingsResponseValues
 from .streaming_choices import StreamingChoices
 from .successful_key_update import SuccessfulKeyUpdate
 from .successful_key_update_key_info import SuccessfulKeyUpdateKeyInfo
+from .suggest_policy_templates_policy_templates_suggest_post_response_suggest_policy_templates_policy_templates_suggest_post import SuggestPolicyTemplatesPolicyTemplatesSuggestPostResponseSuggestPolicyTemplatesPolicyTemplatesSuggestPost
+from .suggest_templates_request import SuggestTemplatesRequest
 from .tag_active_users_response import TagActiveUsersResponse
 from .tag_delete_request import TagDeleteRequest
 from .tag_info_request import TagInfoRequest
@@ -568,6 +622,12 @@ from .test_custom_code_guardrail_request_request_data_type_0 import TestCustomCo
 from .test_custom_code_guardrail_request_test_input import TestCustomCodeGuardrailRequestTestInput
 from .test_custom_code_guardrail_response import TestCustomCodeGuardrailResponse
 from .test_custom_code_guardrail_response_result_type_0 import TestCustomCodeGuardrailResponseResultType0
+from .test_policies_and_guardrails_request import TestPoliciesAndGuardrailsRequest
+from .test_policies_and_guardrails_request_input_type import TestPoliciesAndGuardrailsRequestInputType
+from .test_policies_and_guardrails_request_request_data import TestPoliciesAndGuardrailsRequestRequestData
+from .test_policy_template_request import TestPolicyTemplateRequest
+from .test_policy_template_request_guardrail_definitions_item import TestPolicyTemplateRequestGuardrailDefinitionsItem
+from .test_policy_template_response import TestPolicyTemplateResponse
 from .test_prompt_request import TestPromptRequest
 from .test_prompt_request_conversation_history_type_0_item import TestPromptRequestConversationHistoryType0Item
 from .test_prompt_request_prompt_variables_type_0 import TestPromptRequestPromptVariablesType0
@@ -603,6 +663,7 @@ from .update_customer_request_allowed_model_region_type_0 import UpdateCustomerR
 from .update_deployment import UpdateDeployment
 from .update_guardrail_request import UpdateGuardrailRequest
 from .update_lite_llm_params import UpdateLiteLLMParams
+from .update_lite_llm_params_complexity_router_config_type_0 import UpdateLiteLLMParamsComplexityRouterConfigType0
 from .update_lite_llm_params_model_info_type_0 import UpdateLiteLLMParamsModelInfoType0
 from .update_lite_llm_params_search_context_cost_per_query_type_0 import UpdateLiteLLMParamsSearchContextCostPerQueryType0
 from .update_lite_llm_params_tiered_pricing_type_0_item import UpdateLiteLLMParamsTieredPricingType0Item
@@ -614,6 +675,11 @@ from .update_mcp_server_request_mcp_info_type_0 import UpdateMCPServerRequestMcp
 from .update_mcp_server_request_static_headers_type_0 import UpdateMCPServerRequestStaticHeadersType0
 from .update_mcp_server_request_transport import UpdateMCPServerRequestTransport
 from .update_model_group_request import UpdateModelGroupRequest
+from .update_project_request import UpdateProjectRequest
+from .update_project_request_metadata_type_0 import UpdateProjectRequestMetadataType0
+from .update_project_request_model_max_budget_type_0 import UpdateProjectRequestModelMaxBudgetType0
+from .update_project_request_model_rpm_limit_type_0 import UpdateProjectRequestModelRpmLimitType0
+from .update_project_request_model_tpm_limit_type_0 import UpdateProjectRequestModelTpmLimitType0
 from .update_public_model_groups_request import UpdatePublicModelGroupsRequest
 from .update_search_tool_request import UpdateSearchToolRequest
 from .update_team_member_permissions_request import UpdateTeamMemberPermissionsRequest
@@ -642,6 +708,8 @@ from .user_api_key_auth_rpm_limit_per_model_type_0 import UserAPIKeyAuthRpmLimit
 from .user_api_key_auth_team_metadata_type_0 import UserAPIKeyAuthTeamMetadataType0
 from .user_api_key_auth_team_model_aliases_type_0 import UserAPIKeyAuthTeamModelAliasesType0
 from .user_api_key_auth_tpm_limit_per_model_type_0 import UserAPIKeyAuthTpmLimitPerModelType0
+from .user_info_response import UserInfoResponse
+from .user_info_response_user_info_type_0 import UserInfoResponseUserInfoType0
 from .user_update_result import UserUpdateResult
 from .user_update_result_updated_user_type_0 import UserUpdateResultUpdatedUserType0
 from .validate_blocked_words_file_guardrails_validate_blocked_words_file_post_request import ValidateBlockedWordsFileGuardrailsValidateBlockedWordsFilePostRequest
@@ -697,6 +765,8 @@ __all__ = (
     "BaseLitellmParams",
     "BaseLitellmParamsAdditionalProviderSpecificParamsType0",
     "BaseLitellmParamsDetectSecretsConfigType0",
+    "BaseLitellmParamsUnreachableFallback",
+    "BaseModel",
     "BlockedWord",
     "BlockKeyRequest",
     "BlockTeamRequest",
@@ -750,6 +820,8 @@ __all__ = (
     "CacheTestResponse",
     "CallbacksByType",
     "CallTypes",
+    "CancelEvalResponse",
+    "CancelRunResponse",
     "ChatCompletionAnnotation",
     "ChatCompletionAnnotationURLCitation",
     "ChatCompletionAssistantMessage",
@@ -783,9 +855,13 @@ __all__ = (
     "ChatCompletionThinkingBlock",
     "ChatCompletionThinkingBlockCacheControlType0",
     "ChatCompletionTokenLogprob",
+    "ChatCompletionToolCallChunk",
     "ChatCompletionToolCallFunctionChunk",
     "ChatCompletionToolCallFunctionChunkProviderSpecificFieldsType0",
     "ChatCompletionToolMessage",
+    "ChatCompletionToolParam",
+    "ChatCompletionToolParamFunctionChunk",
+    "ChatCompletionToolParamFunctionChunkParameters",
     "ChatCompletionUserMessage",
     "ChatCompletionV1ChatCompletionsPostBody",
     "ChatCompletionV1ChatCompletionsPostBodyContextWindowFallbackDictType0",
@@ -812,6 +888,10 @@ __all__ = (
     "CloudZeroInitResponse",
     "CloudZeroSettingsUpdate",
     "CloudZeroSettingsView",
+    "ComplianceCheckRequest",
+    "ComplianceCheckRequestGuardrailInformationType0Item",
+    "ComplianceCheckResult",
+    "ComplianceResponse",
     "ConfigurableClientsideParamsCustomAuth",
     "ContentFilterAction",
     "ContentFilterCategoryConfig",
@@ -839,9 +919,11 @@ __all__ = (
     "DefaultTeamSettingsResponseValues",
     "DefaultTeamSSOParams",
     "DeleteCustomerRequest",
+    "DeleteEvalResponse",
     "DeleteFallbackFallbackModelDeleteFallbackType",
     "DeleteModelGroupResponse",
     "DeleteOrganizationRequest",
+    "DeleteProjectRequest",
     "DeleteSkillResponse",
     "DeleteTeamRequest",
     "DeleteUserRequest",
@@ -862,8 +944,15 @@ __all__ = (
     "EmbeddingsV1EmbeddingsPostBody",
     "EmbeddingsV1EmbeddingsPostBodyCustomLlmProviderType1",
     "EmbeddingsV1EmbeddingsPostBodyLitellmLoggingObjType0",
+    "EnrichPolicyTemplatePolicyTemplatesEnrichPostResponseEnrichPolicyTemplatePolicyTemplatesEnrichPost",
+    "EnrichTemplateRequest",
+    "EnrichTemplateRequestParameters",
     "ErrorResponse",
     "ErrorResponseDetail",
+    "Eval",
+    "EvalDataSourceConfig",
+    "EvalMetadataType0",
+    "EvalTestingCriteriaItem",
     "FailedKeyUpdate",
     "FailedKeyUpdateKeyInfoType0",
     "FallbackCreateRequest",
@@ -872,6 +961,7 @@ __all__ = (
     "FallbackGetResponse",
     "FallbackResponse",
     "FunctionCall",
+    "GenericGuardrailAPIInputs",
     "GetFallbackFallbackModelGetFallbackType",
     "GetGlobalSpendReportGlobalSpendReportGetGroupByType0",
     "GetTeamMemberPermissionsResponse",
@@ -880,6 +970,7 @@ __all__ = (
     "Guardrail",
     "GUARDRAILDEFINITIONLOCATION",
     "GuardrailGuardrailInfoType0",
+    "GuardrailTestResultEntry",
     "HealthServicesEndpointHealthServicesGetServiceType0",
     "HTTPAuthSecurityScheme",
     "HTTPValidationError",
@@ -905,10 +996,12 @@ __all__ = (
     "KeyRequest",
     "LakeraCategoryThresholds",
     "ListAccessGroupsResponse",
+    "ListEvalsResponse",
     "ListFineTuningJobsFineTuningJobsGetCustomLlmProviderType0",
     "ListFineTuningJobsV1FineTuningJobsGetCustomLlmProviderType0",
     "ListPluginsResponse",
     "ListPromptsResponse",
+    "ListRunsResponse",
     "ListSearchToolsResponse",
     "ListSkillsResponse",
     "ListToolRestApiMcpRestToolsListGetResponseListToolRestApiMcpRestToolsListGet",
@@ -958,6 +1051,7 @@ __all__ = (
     "LiteLLMParams",
     "LitellmParams",
     "LitellmParamsAdditionalProviderSpecificParamsType0",
+    "LiteLLMParamsComplexityRouterConfigType0",
     "LitellmParamsConfigType0",
     "LitellmParamsDefaultAction",
     "LitellmParamsDetectorsType0",
@@ -973,7 +1067,13 @@ __all__ = (
     "LitellmParamsPresidioScoreThresholdsType0",
     "LiteLLMParamsSearchContextCostPerQueryType0",
     "LiteLLMParamsTieredPricingType0Item",
+    "LitellmParamsUnreachableFallback",
     "LiteLLMParamsVertexCredentialsType1",
+    "LiteLLMProjectTable",
+    "LiteLLMProjectTableMetadataType0",
+    "LiteLLMProjectTableModelRpmLimitType0",
+    "LiteLLMProjectTableModelSpendType0",
+    "LiteLLMProjectTableModelTpmLimitType0",
     "LiteLLMSpendLogs",
     "LiteLLMSpendLogsMessagesType2",
     "LiteLLMSpendLogsResponseType2",
@@ -1037,6 +1137,16 @@ __all__ = (
     "NewOrganizationRequestModelTpmLimitType0",
     "NewOrganizationResponse",
     "NewOrganizationResponseMetadataType0",
+    "NewProjectRequest",
+    "NewProjectRequestMetadataType0",
+    "NewProjectRequestModelMaxBudgetType0",
+    "NewProjectRequestModelRpmLimitType0",
+    "NewProjectRequestModelTpmLimitType0",
+    "NewProjectResponse",
+    "NewProjectResponseMetadataType0",
+    "NewProjectResponseModelRpmLimitType0",
+    "NewProjectResponseModelSpendType0",
+    "NewProjectResponseModelTpmLimitType0",
     "NewTeamRequest",
     "NewTeamRequestMetadataType0",
     "NewTeamRequestModelAliasesType0",
@@ -1064,6 +1174,7 @@ __all__ = (
     "PaginatedAuditLogResponse",
     "PassThroughEndpointResponse",
     "PassThroughGenericEndpoint",
+    "PassThroughGenericEndpointDefaultQueryParams",
     "PassThroughGenericEndpointGuardrailsType0",
     "PassThroughGenericEndpointHeaders",
     "PassThroughGuardrailSettings",
@@ -1072,6 +1183,7 @@ __all__ = (
     "PatchGuardrailRequest",
     "PatchGuardrailRequestGuardrailInfoType0",
     "PatchPromptRequest",
+    "PerTestingCriteriaResult",
     "PerUserAnalyticsResponse",
     "PerUserMetrics",
     "PiiAction",
@@ -1148,6 +1260,7 @@ __all__ = (
     "ResetKeySpendFnKeyKeyResetSpendPostResponseResetKeySpendFnKeyKeyResetSpendPost",
     "ResetSpendRequest",
     "ResponseLiteLLMManagedVectorStore",
+    "ResultCounts",
     "RetrieveFineTuningJobFineTuningJobsFineTuningJobIdGetCustomLlmProviderType0",
     "RetrieveFineTuningJobV1FineTuningJobsFineTuningJobIdGetCustomLlmProviderType0",
     "RoleMappings",
@@ -1158,6 +1271,13 @@ __all__ = (
     "RouterSettingsResponse",
     "RouterSettingsResponseCurrentValues",
     "RouterSettingsResponseRoutingStrategyDescriptions",
+    "Run",
+    "RunDataSource",
+    "RunDeleteResponse",
+    "RunErrorType0",
+    "RunMetadataType0",
+    "RunResultCountsType0",
+    "RunStatus",
     "SCIMFeature",
     "SCIMGroup",
     "SCIMGroupMetaType0",
@@ -1191,6 +1311,8 @@ __all__ = (
     "StreamingChoices",
     "SuccessfulKeyUpdate",
     "SuccessfulKeyUpdateKeyInfo",
+    "SuggestPolicyTemplatesPolicyTemplatesSuggestPostResponseSuggestPolicyTemplatesPolicyTemplatesSuggestPost",
+    "SuggestTemplatesRequest",
     "TagActiveUsersResponse",
     "TagDeleteRequest",
     "TagInfoRequest",
@@ -1221,6 +1343,12 @@ __all__ = (
     "TestCustomCodeGuardrailRequestTestInput",
     "TestCustomCodeGuardrailResponse",
     "TestCustomCodeGuardrailResponseResultType0",
+    "TestPoliciesAndGuardrailsRequest",
+    "TestPoliciesAndGuardrailsRequestInputType",
+    "TestPoliciesAndGuardrailsRequestRequestData",
+    "TestPolicyTemplateRequest",
+    "TestPolicyTemplateRequestGuardrailDefinitionsItem",
+    "TestPolicyTemplateResponse",
     "TestPromptRequest",
     "TestPromptRequestConversationHistoryType0Item",
     "TestPromptRequestPromptVariablesType0",
@@ -1256,6 +1384,7 @@ __all__ = (
     "UpdateDeployment",
     "UpdateGuardrailRequest",
     "UpdateLiteLLMParams",
+    "UpdateLiteLLMParamsComplexityRouterConfigType0",
     "UpdateLiteLLMParamsModelInfoType0",
     "UpdateLiteLLMParamsSearchContextCostPerQueryType0",
     "UpdateLiteLLMParamsTieredPricingType0Item",
@@ -1267,6 +1396,11 @@ __all__ = (
     "UpdateMCPServerRequestStaticHeadersType0",
     "UpdateMCPServerRequestTransport",
     "UpdateModelGroupRequest",
+    "UpdateProjectRequest",
+    "UpdateProjectRequestMetadataType0",
+    "UpdateProjectRequestModelMaxBudgetType0",
+    "UpdateProjectRequestModelRpmLimitType0",
+    "UpdateProjectRequestModelTpmLimitType0",
     "UpdatePublicModelGroupsRequest",
     "UpdateSearchToolRequest",
     "UpdateTeamMemberPermissionsRequest",
@@ -1295,6 +1429,8 @@ __all__ = (
     "UserAPIKeyAuthTeamMetadataType0",
     "UserAPIKeyAuthTeamModelAliasesType0",
     "UserAPIKeyAuthTpmLimitPerModelType0",
+    "UserInfoResponse",
+    "UserInfoResponseUserInfoType0",
     "UserUpdateResult",
     "UserUpdateResultUpdatedUserType0",
     "ValidateBlockedWordsFileGuardrailsValidateBlockedWordsFilePostRequest",

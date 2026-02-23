@@ -14,6 +14,7 @@ from typing import cast
 
 if TYPE_CHECKING:
   from ..models.lite_llm_budget_table import LiteLLMBudgetTable
+  from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
 
 
 
@@ -34,6 +35,8 @@ class LiteLLMEndUserTable:
             allowed_model_region (LiteLLMEndUserTableAllowedModelRegionType0 | None | Unset):
             default_model (None | str | Unset):
             litellm_budget_table (LiteLLMBudgetTable | None | Unset):
+            object_permission_id (None | str | Unset):
+            object_permission (LiteLLMObjectPermissionTable | None | Unset):
      """
 
     user_id: str
@@ -43,6 +46,8 @@ class LiteLLMEndUserTable:
     allowed_model_region: LiteLLMEndUserTableAllowedModelRegionType0 | None | Unset = UNSET
     default_model: None | str | Unset = UNSET
     litellm_budget_table: LiteLLMBudgetTable | None | Unset = UNSET
+    object_permission_id: None | str | Unset = UNSET
+    object_permission: LiteLLMObjectPermissionTable | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -50,6 +55,7 @@ class LiteLLMEndUserTable:
 
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
         from ..models.lite_llm_budget_table import LiteLLMBudgetTable
         user_id = self.user_id
 
@@ -85,6 +91,20 @@ class LiteLLMEndUserTable:
         else:
             litellm_budget_table = self.litellm_budget_table
 
+        object_permission_id: None | str | Unset
+        if isinstance(self.object_permission_id, Unset):
+            object_permission_id = UNSET
+        else:
+            object_permission_id = self.object_permission_id
+
+        object_permission: dict[str, Any] | None | Unset
+        if isinstance(self.object_permission, Unset):
+            object_permission = UNSET
+        elif isinstance(self.object_permission, LiteLLMObjectPermissionTable):
+            object_permission = self.object_permission.to_dict()
+        else:
+            object_permission = self.object_permission
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -102,6 +122,10 @@ class LiteLLMEndUserTable:
             field_dict["default_model"] = default_model
         if litellm_budget_table is not UNSET:
             field_dict["litellm_budget_table"] = litellm_budget_table
+        if object_permission_id is not UNSET:
+            field_dict["object_permission_id"] = object_permission_id
+        if object_permission is not UNSET:
+            field_dict["object_permission"] = object_permission
 
         return field_dict
 
@@ -110,6 +134,7 @@ class LiteLLMEndUserTable:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.lite_llm_budget_table import LiteLLMBudgetTable
+        from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
         d = dict(src_dict)
         user_id = d.pop("user_id")
 
@@ -177,6 +202,36 @@ class LiteLLMEndUserTable:
         litellm_budget_table = _parse_litellm_budget_table(d.pop("litellm_budget_table", UNSET))
 
 
+        def _parse_object_permission_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        object_permission_id = _parse_object_permission_id(d.pop("object_permission_id", UNSET))
+
+
+        def _parse_object_permission(data: object) -> LiteLLMObjectPermissionTable | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                object_permission_type_0 = LiteLLMObjectPermissionTable.from_dict(data)
+
+
+
+                return object_permission_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(LiteLLMObjectPermissionTable | None | Unset, data)
+
+        object_permission = _parse_object_permission(d.pop("object_permission", UNSET))
+
+
         lite_llm_end_user_table = cls(
             user_id=user_id,
             blocked=blocked,
@@ -185,6 +240,8 @@ class LiteLLMEndUserTable:
             allowed_model_region=allowed_model_region,
             default_model=default_model,
             litellm_budget_table=litellm_budget_table,
+            object_permission_id=object_permission_id,
+            object_permission=object_permission,
         )
 
 

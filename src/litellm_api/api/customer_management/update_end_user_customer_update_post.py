@@ -90,6 +90,17 @@ def sync_detailed(
     - default_model: Optional[str] = (
         None  # if no equivalent model in allowed region - default all requests to this model
     )
+    - object_permission: Optional[LiteLLM_ObjectPermissionBase] - Customer-specific object permissions
+    to control access to resources.
+        Supported fields:
+        * mcp_servers: List[str] - List of allowed MCP server IDs
+        * mcp_access_groups: List[str] - List of MCP access group names
+        * mcp_tool_permissions: Dict[str, List[str]] - Map of server ID to allowed tool names
+        * vector_stores: List[str] - List of allowed vector store IDs
+        * agents: List[str] - List of allowed agent IDs
+        * agent_access_groups: List[str] - List of agent access group names
+        Example: {\"mcp_servers\": [\"server_1\"], \"vector_stores\": [\"vector_store_1\"]}
+        IF null or {} then no object-level restrictions apply.
 
     Example curl:
     ```
@@ -98,6 +109,16 @@ def sync_detailed(
         \"user_id\": \"test-litellm-user-4\",
         \"budget_id\": \"paid_tier\"
     }'
+
+    # Updating object permissions
+    curl -L -X POST 'http://localhost:4000/customer/update'     --header 'Authorization: Bearer sk-1234'
+    --header 'Content-Type: application/json'     --data '{
+        \"user_id\": \"user_1\",
+        \"object_permission\": {
+          \"mcp_servers\": [\"server_3\"],
+          \"vector_stores\": [\"vector_store_2\", \"vector_store_3\"]
+        }
+      }'
 
     See below for all params
     ```
@@ -147,6 +168,17 @@ def sync(
     - default_model: Optional[str] = (
         None  # if no equivalent model in allowed region - default all requests to this model
     )
+    - object_permission: Optional[LiteLLM_ObjectPermissionBase] - Customer-specific object permissions
+    to control access to resources.
+        Supported fields:
+        * mcp_servers: List[str] - List of allowed MCP server IDs
+        * mcp_access_groups: List[str] - List of MCP access group names
+        * mcp_tool_permissions: Dict[str, List[str]] - Map of server ID to allowed tool names
+        * vector_stores: List[str] - List of allowed vector store IDs
+        * agents: List[str] - List of allowed agent IDs
+        * agent_access_groups: List[str] - List of agent access group names
+        Example: {\"mcp_servers\": [\"server_1\"], \"vector_stores\": [\"vector_store_1\"]}
+        IF null or {} then no object-level restrictions apply.
 
     Example curl:
     ```
@@ -155,6 +187,16 @@ def sync(
         \"user_id\": \"test-litellm-user-4\",
         \"budget_id\": \"paid_tier\"
     }'
+
+    # Updating object permissions
+    curl -L -X POST 'http://localhost:4000/customer/update'     --header 'Authorization: Bearer sk-1234'
+    --header 'Content-Type: application/json'     --data '{
+        \"user_id\": \"user_1\",
+        \"object_permission\": {
+          \"mcp_servers\": [\"server_3\"],
+          \"vector_stores\": [\"vector_store_2\", \"vector_store_3\"]
+        }
+      }'
 
     See below for all params
     ```
@@ -199,6 +241,17 @@ async def asyncio_detailed(
     - default_model: Optional[str] = (
         None  # if no equivalent model in allowed region - default all requests to this model
     )
+    - object_permission: Optional[LiteLLM_ObjectPermissionBase] - Customer-specific object permissions
+    to control access to resources.
+        Supported fields:
+        * mcp_servers: List[str] - List of allowed MCP server IDs
+        * mcp_access_groups: List[str] - List of MCP access group names
+        * mcp_tool_permissions: Dict[str, List[str]] - Map of server ID to allowed tool names
+        * vector_stores: List[str] - List of allowed vector store IDs
+        * agents: List[str] - List of allowed agent IDs
+        * agent_access_groups: List[str] - List of agent access group names
+        Example: {\"mcp_servers\": [\"server_1\"], \"vector_stores\": [\"vector_store_1\"]}
+        IF null or {} then no object-level restrictions apply.
 
     Example curl:
     ```
@@ -207,6 +260,16 @@ async def asyncio_detailed(
         \"user_id\": \"test-litellm-user-4\",
         \"budget_id\": \"paid_tier\"
     }'
+
+    # Updating object permissions
+    curl -L -X POST 'http://localhost:4000/customer/update'     --header 'Authorization: Bearer sk-1234'
+    --header 'Content-Type: application/json'     --data '{
+        \"user_id\": \"user_1\",
+        \"object_permission\": {
+          \"mcp_servers\": [\"server_3\"],
+          \"vector_stores\": [\"vector_store_2\", \"vector_store_3\"]
+        }
+      }'
 
     See below for all params
     ```
@@ -256,6 +319,17 @@ async def asyncio(
     - default_model: Optional[str] = (
         None  # if no equivalent model in allowed region - default all requests to this model
     )
+    - object_permission: Optional[LiteLLM_ObjectPermissionBase] - Customer-specific object permissions
+    to control access to resources.
+        Supported fields:
+        * mcp_servers: List[str] - List of allowed MCP server IDs
+        * mcp_access_groups: List[str] - List of MCP access group names
+        * mcp_tool_permissions: Dict[str, List[str]] - Map of server ID to allowed tool names
+        * vector_stores: List[str] - List of allowed vector store IDs
+        * agents: List[str] - List of allowed agent IDs
+        * agent_access_groups: List[str] - List of agent access group names
+        Example: {\"mcp_servers\": [\"server_1\"], \"vector_stores\": [\"vector_store_1\"]}
+        IF null or {} then no object-level restrictions apply.
 
     Example curl:
     ```
@@ -264,6 +338,16 @@ async def asyncio(
         \"user_id\": \"test-litellm-user-4\",
         \"budget_id\": \"paid_tier\"
     }'
+
+    # Updating object permissions
+    curl -L -X POST 'http://localhost:4000/customer/update'     --header 'Authorization: Bearer sk-1234'
+    --header 'Content-Type: application/json'     --data '{
+        \"user_id\": \"user_1\",
+        \"object_permission\": {
+          \"mcp_servers\": [\"server_3\"],
+          \"vector_stores\": [\"vector_store_2\", \"vector_store_3\"]
+        }
+      }'
 
     See below for all params
     ```

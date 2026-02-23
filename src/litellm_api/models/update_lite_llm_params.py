@@ -14,6 +14,7 @@ from typing import cast
 if TYPE_CHECKING:
   from ..models.configurable_clientside_params_custom_auth import ConfigurableClientsideParamsCustomAuth
   from ..models.model_response import ModelResponse
+  from ..models.update_lite_llm_params_complexity_router_config_type_0 import UpdateLiteLLMParamsComplexityRouterConfigType0
   from ..models.update_lite_llm_params_model_info_type_0 import UpdateLiteLLMParamsModelInfoType0
   from ..models.update_lite_llm_params_search_context_cost_per_query_type_0 import UpdateLiteLLMParamsSearchContextCostPerQueryType0
   from ..models.update_lite_llm_params_tiered_pricing_type_0_item import UpdateLiteLLMParamsTieredPricingType0Item
@@ -114,6 +115,8 @@ class UpdateLiteLLMParams:
             auto_router_config (None | str | Unset):
             auto_router_default_model (None | str | Unset):
             auto_router_embedding_model (None | str | Unset):
+            complexity_router_config (None | Unset | UpdateLiteLLMParamsComplexityRouterConfigType0):
+            complexity_router_default_model (None | str | Unset):
             s3_bucket_name (None | str | Unset):
             s3_encryption_key_id (None | str | Unset):
             gcs_bucket_name (None | str | Unset):
@@ -205,6 +208,8 @@ class UpdateLiteLLMParams:
     auto_router_config: None | str | Unset = UNSET
     auto_router_default_model: None | str | Unset = UNSET
     auto_router_embedding_model: None | str | Unset = UNSET
+    complexity_router_config: None | Unset | UpdateLiteLLMParamsComplexityRouterConfigType0 = UNSET
+    complexity_router_default_model: None | str | Unset = UNSET
     s3_bucket_name: None | str | Unset = UNSET
     s3_encryption_key_id: None | str | Unset = UNSET
     gcs_bucket_name: None | str | Unset = UNSET
@@ -218,12 +223,13 @@ class UpdateLiteLLMParams:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.configurable_clientside_params_custom_auth import ConfigurableClientsideParamsCustomAuth
+        from ..models.update_lite_llm_params_model_info_type_0 import UpdateLiteLLMParamsModelInfoType0
         from ..models.model_response import ModelResponse
+        from ..models.update_lite_llm_params_tiered_pricing_type_0_item import UpdateLiteLLMParamsTieredPricingType0Item
+        from ..models.configurable_clientside_params_custom_auth import ConfigurableClientsideParamsCustomAuth
         from ..models.update_lite_llm_params_search_context_cost_per_query_type_0 import UpdateLiteLLMParamsSearchContextCostPerQueryType0
         from ..models.update_lite_llm_params_vertex_credentials_type_1 import UpdateLiteLLMParamsVertexCredentialsType1
-        from ..models.update_lite_llm_params_tiered_pricing_type_0_item import UpdateLiteLLMParamsTieredPricingType0Item
-        from ..models.update_lite_llm_params_model_info_type_0 import UpdateLiteLLMParamsModelInfoType0
+        from ..models.update_lite_llm_params_complexity_router_config_type_0 import UpdateLiteLLMParamsComplexityRouterConfigType0
         input_cost_per_token: float | None | Unset
         if isinstance(self.input_cost_per_token, Unset):
             input_cost_per_token = UNSET
@@ -748,6 +754,20 @@ class UpdateLiteLLMParams:
         else:
             auto_router_embedding_model = self.auto_router_embedding_model
 
+        complexity_router_config: dict[str, Any] | None | Unset
+        if isinstance(self.complexity_router_config, Unset):
+            complexity_router_config = UNSET
+        elif isinstance(self.complexity_router_config, UpdateLiteLLMParamsComplexityRouterConfigType0):
+            complexity_router_config = self.complexity_router_config.to_dict()
+        else:
+            complexity_router_config = self.complexity_router_config
+
+        complexity_router_default_model: None | str | Unset
+        if isinstance(self.complexity_router_default_model, Unset):
+            complexity_router_default_model = UNSET
+        else:
+            complexity_router_default_model = self.complexity_router_default_model
+
         s3_bucket_name: None | str | Unset
         if isinstance(self.s3_bucket_name, Unset):
             s3_bucket_name = UNSET
@@ -955,6 +975,10 @@ class UpdateLiteLLMParams:
             field_dict["auto_router_default_model"] = auto_router_default_model
         if auto_router_embedding_model is not UNSET:
             field_dict["auto_router_embedding_model"] = auto_router_embedding_model
+        if complexity_router_config is not UNSET:
+            field_dict["complexity_router_config"] = complexity_router_config
+        if complexity_router_default_model is not UNSET:
+            field_dict["complexity_router_default_model"] = complexity_router_default_model
         if s3_bucket_name is not UNSET:
             field_dict["s3_bucket_name"] = s3_bucket_name
         if s3_encryption_key_id is not UNSET:
@@ -976,6 +1000,7 @@ class UpdateLiteLLMParams:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.configurable_clientside_params_custom_auth import ConfigurableClientsideParamsCustomAuth
         from ..models.model_response import ModelResponse
+        from ..models.update_lite_llm_params_complexity_router_config_type_0 import UpdateLiteLLMParamsComplexityRouterConfigType0
         from ..models.update_lite_llm_params_model_info_type_0 import UpdateLiteLLMParamsModelInfoType0
         from ..models.update_lite_llm_params_search_context_cost_per_query_type_0 import UpdateLiteLLMParamsSearchContextCostPerQueryType0
         from ..models.update_lite_llm_params_tiered_pricing_type_0_item import UpdateLiteLLMParamsTieredPricingType0Item
@@ -1892,6 +1917,36 @@ class UpdateLiteLLMParams:
         auto_router_embedding_model = _parse_auto_router_embedding_model(d.pop("auto_router_embedding_model", UNSET))
 
 
+        def _parse_complexity_router_config(data: object) -> None | Unset | UpdateLiteLLMParamsComplexityRouterConfigType0:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                complexity_router_config_type_0 = UpdateLiteLLMParamsComplexityRouterConfigType0.from_dict(data)
+
+
+
+                return complexity_router_config_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UpdateLiteLLMParamsComplexityRouterConfigType0, data)
+
+        complexity_router_config = _parse_complexity_router_config(d.pop("complexity_router_config", UNSET))
+
+
+        def _parse_complexity_router_default_model(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        complexity_router_default_model = _parse_complexity_router_default_model(d.pop("complexity_router_default_model", UNSET))
+
+
         def _parse_s3_bucket_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -2036,6 +2091,8 @@ class UpdateLiteLLMParams:
             auto_router_config=auto_router_config,
             auto_router_default_model=auto_router_default_model,
             auto_router_embedding_model=auto_router_embedding_model,
+            complexity_router_config=complexity_router_config,
+            complexity_router_default_model=complexity_router_default_model,
             s3_bucket_name=s3_bucket_name,
             s3_encryption_key_id=s3_encryption_key_id,
             gcs_bucket_name=gcs_bucket_name,
