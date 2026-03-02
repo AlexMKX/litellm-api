@@ -43,8 +43,8 @@ class UserInfoResponse:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.user_info_response_user_info_type_0 import UserInfoResponseUserInfoType0
         from ..models.base_model import BaseModel
+        from ..models.user_info_response_user_info_type_0 import UserInfoResponseUserInfoType0
         user_id: None | str
         user_id = self.user_id
 

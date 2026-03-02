@@ -9,7 +9,9 @@ from attrs import field as _attrs_field
 from ..types import UNSET, Unset
 
 from ..types import UNSET, Unset
+from dateutil.parser import isoparse
 from typing import cast
+import datetime
 
 if TYPE_CHECKING:
   from ..models.lite_llm_budget_table import LiteLLMBudgetTable
@@ -47,6 +49,8 @@ class LiteLLMProjectTable:
             model_tpm_limit (LiteLLMProjectTableModelTpmLimitType0 | None | Unset):
             blocked (bool | Unset):  Default: False.
             object_permission_id (None | str | Unset):
+            created_at (datetime.datetime | None | Unset):
+            updated_at (datetime.datetime | None | Unset):
             litellm_budget_table (LiteLLMBudgetTable | None | Unset):
             object_permission (LiteLLMObjectPermissionTable | None | Unset):
      """
@@ -66,6 +70,8 @@ class LiteLLMProjectTable:
     model_tpm_limit: LiteLLMProjectTableModelTpmLimitType0 | None | Unset = UNSET
     blocked: bool | Unset = False
     object_permission_id: None | str | Unset = UNSET
+    created_at: datetime.datetime | None | Unset = UNSET
+    updated_at: datetime.datetime | None | Unset = UNSET
     litellm_budget_table: LiteLLMBudgetTable | None | Unset = UNSET
     object_permission: LiteLLMObjectPermissionTable | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -75,12 +81,12 @@ class LiteLLMProjectTable:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
-        from ..models.lite_llm_project_table_model_tpm_limit_type_0 import LiteLLMProjectTableModelTpmLimitType0
-        from ..models.lite_llm_project_table_model_spend_type_0 import LiteLLMProjectTableModelSpendType0
-        from ..models.lite_llm_project_table_metadata_type_0 import LiteLLMProjectTableMetadataType0
         from ..models.lite_llm_project_table_model_rpm_limit_type_0 import LiteLLMProjectTableModelRpmLimitType0
         from ..models.lite_llm_budget_table import LiteLLMBudgetTable
+        from ..models.lite_llm_project_table_model_spend_type_0 import LiteLLMProjectTableModelSpendType0
+        from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
+        from ..models.lite_llm_project_table_metadata_type_0 import LiteLLMProjectTableMetadataType0
+        from ..models.lite_llm_project_table_model_tpm_limit_type_0 import LiteLLMProjectTableModelTpmLimitType0
         project_id = self.project_id
 
         created_by = self.created_by
@@ -159,6 +165,22 @@ class LiteLLMProjectTable:
         else:
             object_permission_id = self.object_permission_id
 
+        created_at: None | str | Unset
+        if isinstance(self.created_at, Unset):
+            created_at = UNSET
+        elif isinstance(self.created_at, datetime.datetime):
+            created_at = self.created_at.isoformat()
+        else:
+            created_at = self.created_at
+
+        updated_at: None | str | Unset
+        if isinstance(self.updated_at, Unset):
+            updated_at = UNSET
+        elif isinstance(self.updated_at, datetime.datetime):
+            updated_at = self.updated_at.isoformat()
+        else:
+            updated_at = self.updated_at
+
         litellm_budget_table: dict[str, Any] | None | Unset
         if isinstance(self.litellm_budget_table, Unset):
             litellm_budget_table = UNSET
@@ -207,6 +229,10 @@ class LiteLLMProjectTable:
             field_dict["blocked"] = blocked
         if object_permission_id is not UNSET:
             field_dict["object_permission_id"] = object_permission_id
+        if created_at is not UNSET:
+            field_dict["created_at"] = created_at
+        if updated_at is not UNSET:
+            field_dict["updated_at"] = updated_at
         if litellm_budget_table is not UNSET:
             field_dict["litellm_budget_table"] = litellm_budget_table
         if object_permission is not UNSET:
@@ -368,6 +394,46 @@ class LiteLLMProjectTable:
         object_permission_id = _parse_object_permission_id(d.pop("object_permission_id", UNSET))
 
 
+        def _parse_created_at(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                created_at_type_0 = isoparse(data)
+
+
+
+                return created_at_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        created_at = _parse_created_at(d.pop("created_at", UNSET))
+
+
+        def _parse_updated_at(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                updated_at_type_0 = isoparse(data)
+
+
+
+                return updated_at_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        updated_at = _parse_updated_at(d.pop("updated_at", UNSET))
+
+
         def _parse_litellm_budget_table(data: object) -> LiteLLMBudgetTable | None | Unset:
             if data is None:
                 return data
@@ -424,6 +490,8 @@ class LiteLLMProjectTable:
             model_tpm_limit=model_tpm_limit,
             blocked=blocked,
             object_permission_id=object_permission_id,
+            created_at=created_at,
+            updated_at=updated_at,
             litellm_budget_table=litellm_budget_table,
             object_permission=object_permission,
         )

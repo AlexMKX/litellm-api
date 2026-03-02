@@ -41,8 +41,8 @@ class Deployment:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.lite_llm_params import LiteLLMParams
         from ..models.model_info import ModelInfo
+        from ..models.lite_llm_params import LiteLLMParams
         model_name = self.model_name
 
         litellm_params = self.litellm_params.to_dict()

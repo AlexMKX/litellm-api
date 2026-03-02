@@ -96,6 +96,7 @@ def sync_detailed(
     - model_rpm_limit: *Optional[dict]* - Updated RPM limits per model
     - model_tpm_limit: *Optional[dict]* - Updated TPM limits per model
     - budget_duration: *Optional[str]* - Updated budget duration
+    - tags: *Optional[list]* - Updated list of tags for the project
     - object_permission: Optional[LiteLLM_ObjectPermissionBase] - Updated object permission
 
     Example:
@@ -165,6 +166,7 @@ def sync(
     - model_rpm_limit: *Optional[dict]* - Updated RPM limits per model
     - model_tpm_limit: *Optional[dict]* - Updated TPM limits per model
     - budget_duration: *Optional[str]* - Updated budget duration
+    - tags: *Optional[list]* - Updated list of tags for the project
     - object_permission: Optional[LiteLLM_ObjectPermissionBase] - Updated object permission
 
     Example:
@@ -229,6 +231,7 @@ async def asyncio_detailed(
     - model_rpm_limit: *Optional[dict]* - Updated RPM limits per model
     - model_tpm_limit: *Optional[dict]* - Updated TPM limits per model
     - budget_duration: *Optional[str]* - Updated budget duration
+    - tags: *Optional[list]* - Updated list of tags for the project
     - object_permission: Optional[LiteLLM_ObjectPermissionBase] - Updated object permission
 
     Example:
@@ -298,6 +301,7 @@ async def asyncio(
     - model_rpm_limit: *Optional[dict]* - Updated RPM limits per model
     - model_tpm_limit: *Optional[dict]* - Updated TPM limits per model
     - budget_duration: *Optional[str]* - Updated budget duration
+    - tags: *Optional[list]* - Updated list of tags for the project
     - object_permission: Optional[LiteLLM_ObjectPermissionBase] - Updated object permission
 
     Example:

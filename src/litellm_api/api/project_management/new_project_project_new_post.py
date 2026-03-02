@@ -107,6 +107,7 @@ def sync_detailed(
     - budget_duration: *Optional[str]* - Frequency of reseting project budget
     - metadata: *Optional[dict]* - Metadata for project, store information for project. Example metadata
     - {\"use_case_id\": \"SNOW-12345\", \"responsible_ai_id\": \"RAI-67890\"}
+    - tags: *Optional[list]* - Tags for the project. Example: [\"production\", \"api\"]
     - blocked: *bool* - Flag indicating if the project is blocked or not - will stop all calls from keys
     with this project_id.
     - object_permission: Optional[LiteLLM_ObjectPermissionBase] - project-specific object permission.
@@ -216,6 +217,7 @@ def sync(
     - budget_duration: *Optional[str]* - Frequency of reseting project budget
     - metadata: *Optional[dict]* - Metadata for project, store information for project. Example metadata
     - {\"use_case_id\": \"SNOW-12345\", \"responsible_ai_id\": \"RAI-67890\"}
+    - tags: *Optional[list]* - Tags for the project. Example: [\"production\", \"api\"]
     - blocked: *bool* - Flag indicating if the project is blocked or not - will stop all calls from keys
     with this project_id.
     - object_permission: Optional[LiteLLM_ObjectPermissionBase] - project-specific object permission.
@@ -320,6 +322,7 @@ async def asyncio_detailed(
     - budget_duration: *Optional[str]* - Frequency of reseting project budget
     - metadata: *Optional[dict]* - Metadata for project, store information for project. Example metadata
     - {\"use_case_id\": \"SNOW-12345\", \"responsible_ai_id\": \"RAI-67890\"}
+    - tags: *Optional[list]* - Tags for the project. Example: [\"production\", \"api\"]
     - blocked: *bool* - Flag indicating if the project is blocked or not - will stop all calls from keys
     with this project_id.
     - object_permission: Optional[LiteLLM_ObjectPermissionBase] - project-specific object permission.
@@ -429,6 +432,7 @@ async def asyncio(
     - budget_duration: *Optional[str]* - Frequency of reseting project budget
     - metadata: *Optional[dict]* - Metadata for project, store information for project. Example metadata
     - {\"use_case_id\": \"SNOW-12345\", \"responsible_ai_id\": \"RAI-67890\"}
+    - tags: *Optional[list]* - Tags for the project. Example: [\"production\", \"api\"]
     - blocked: *bool* - Flag indicating if the project is blocked or not - will stop all calls from keys
     with this project_id.
     - object_permission: Optional[LiteLLM_ObjectPermissionBase] - project-specific object permission.

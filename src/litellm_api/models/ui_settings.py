@@ -35,6 +35,8 @@ class UISettings:
                 Default: False.
             forward_client_headers_to_llm_api (bool | Unset): If enabled, forwards client headers (e.g. Authorization) to
                 the LLM API. Required for Claude Code with Max subscription. Default: False.
+            enable_projects_ui (bool | Unset): If enabled, shows the Projects feature in the UI sidebar and the project
+                field in key management. Default: False.
      """
 
     disable_model_add_for_internal_users: bool | Unset = False
@@ -42,6 +44,7 @@ class UISettings:
     enabled_ui_pages_internal_users: list[str] | None | Unset = UNSET
     require_auth_for_public_ai_hub: bool | Unset = False
     forward_client_headers_to_llm_api: bool | Unset = False
+    enable_projects_ui: bool | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -67,6 +70,8 @@ class UISettings:
 
         forward_client_headers_to_llm_api = self.forward_client_headers_to_llm_api
 
+        enable_projects_ui = self.enable_projects_ui
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -82,6 +87,8 @@ class UISettings:
             field_dict["require_auth_for_public_ai_hub"] = require_auth_for_public_ai_hub
         if forward_client_headers_to_llm_api is not UNSET:
             field_dict["forward_client_headers_to_llm_api"] = forward_client_headers_to_llm_api
+        if enable_projects_ui is not UNSET:
+            field_dict["enable_projects_ui"] = enable_projects_ui
 
         return field_dict
 
@@ -116,12 +123,15 @@ class UISettings:
 
         forward_client_headers_to_llm_api = d.pop("forward_client_headers_to_llm_api", UNSET)
 
+        enable_projects_ui = d.pop("enable_projects_ui", UNSET)
+
         ui_settings = cls(
             disable_model_add_for_internal_users=disable_model_add_for_internal_users,
             disable_team_admin_delete_team_user=disable_team_admin_delete_team_user,
             enabled_ui_pages_internal_users=enabled_ui_pages_internal_users,
             require_auth_for_public_ai_hub=require_auth_for_public_ai_hub,
             forward_client_headers_to_llm_api=forward_client_headers_to_llm_api,
+            enable_projects_ui=enable_projects_ui,
         )
 
 

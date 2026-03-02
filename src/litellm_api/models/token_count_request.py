@@ -44,8 +44,8 @@ class TokenCountRequest:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.token_count_request_contents_type_0_item import TokenCountRequestContentsType0Item
         from ..models.token_count_request_messages_type_0_item import TokenCountRequestMessagesType0Item
+        from ..models.token_count_request_contents_type_0_item import TokenCountRequestContentsType0Item
         model = self.model
 
         prompt: None | str | Unset

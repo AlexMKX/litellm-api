@@ -52,7 +52,7 @@ class UpdateMCPServerRequest:
             token_url (None | str | Unset):
             registration_url (None | str | Unset):
             allow_all_keys (bool | Unset):  Default: False.
-            available_on_public_internet (bool | Unset):  Default: False.
+            available_on_public_internet (bool | Unset):  Default: True.
      """
 
     server_id: str
@@ -76,7 +76,7 @@ class UpdateMCPServerRequest:
     token_url: None | str | Unset = UNSET
     registration_url: None | str | Unset = UNSET
     allow_all_keys: bool | Unset = False
-    available_on_public_internet: bool | Unset = False
+    available_on_public_internet: bool | Unset = True
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -85,8 +85,8 @@ class UpdateMCPServerRequest:
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.mcp_credentials import MCPCredentials
-        from ..models.update_mcp_server_request_mcp_info_type_0 import UpdateMCPServerRequestMcpInfoType0
         from ..models.update_mcp_server_request_static_headers_type_0 import UpdateMCPServerRequestStaticHeadersType0
+        from ..models.update_mcp_server_request_mcp_info_type_0 import UpdateMCPServerRequestMcpInfoType0
         from ..models.update_mcp_server_request_env import UpdateMCPServerRequestEnv
         server_id = self.server_id
 

@@ -8,23 +8,45 @@ from ...client import AuthenticatedClient, Client
 from ...types import Response, UNSET
 from ... import errors
 
+from ...models.http_validation_error import HTTPValidationError
 from ...models.key_aliases_key_aliases_get_response_key_aliases_key_aliases_get import KeyAliasesKeyAliasesGetResponseKeyAliasesKeyAliasesGet
+from ...types import UNSET, Unset
 from typing import cast
 
 
 
 def _get_kwargs(
-    
+    *,
+    page: int | Unset = 1,
+    size: int | Unset = 50,
+    search: None | str | Unset = UNSET,
+
 ) -> dict[str, Any]:
     
 
     
 
-    
+    params: dict[str, Any] = {}
+
+    params["page"] = page
+
+    params["size"] = size
+
+    json_search: None | str | Unset
+    if isinstance(search, Unset):
+        json_search = UNSET
+    else:
+        json_search = search
+    params["search"] = json_search
+
+
+    params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
+
 
     _kwargs: dict[str, Any] = {
         "method": "get",
         "url": "/key/aliases",
+        "params": params,
     }
 
 
@@ -32,7 +54,7 @@ def _get_kwargs(
 
 
 
-def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> KeyAliasesKeyAliasesGetResponseKeyAliasesKeyAliasesGet | None:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> HTTPValidationError | KeyAliasesKeyAliasesGetResponseKeyAliasesKeyAliasesGet | None:
     if response.status_code == 200:
         response_200 = KeyAliasesKeyAliasesGetResponseKeyAliasesKeyAliasesGet.from_dict(response.json())
 
@@ -40,13 +62,20 @@ def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Res
 
         return response_200
 
+    if response.status_code == 422:
+        response_422 = HTTPValidationError.from_dict(response.json())
+
+
+
+        return response_422
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
         return None
 
 
-def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[KeyAliasesKeyAliasesGetResponseKeyAliasesKeyAliasesGet]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[HTTPValidationError | KeyAliasesKeyAliasesGetResponseKeyAliasesKeyAliasesGet]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -58,28 +87,43 @@ def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Res
 def sync_detailed(
     *,
     client: AuthenticatedClient,
+    page: int | Unset = 1,
+    size: int | Unset = 50,
+    search: None | str | Unset = UNSET,
 
-) -> Response[KeyAliasesKeyAliasesGetResponseKeyAliasesKeyAliasesGet]:
+) -> Response[HTTPValidationError | KeyAliasesKeyAliasesGetResponseKeyAliasesKeyAliasesGet]:
     r""" Key Aliases
 
-     Lists all key aliases
+     Lists key aliases with pagination and optional search.
 
     Returns:
         {
-            \"aliases\": List[str]
+            \"aliases\": List[str],
+            \"total_count\": int,
+            \"current_page\": int,
+            \"total_pages\": int,
+            \"size\": int,
         }
+
+    Args:
+        page (int | Unset): Page number Default: 1.
+        size (int | Unset): Page size Default: 50.
+        search (None | str | Unset): Search key aliases (case-insensitive partial match)
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[KeyAliasesKeyAliasesGetResponseKeyAliasesKeyAliasesGet]
+        Response[HTTPValidationError | KeyAliasesKeyAliasesGetResponseKeyAliasesKeyAliasesGet]
      """
 
 
     kwargs = _get_kwargs(
-        
+        page=page,
+size=size,
+search=search,
+
     )
 
     response = client.get_httpx_client().request(
@@ -91,56 +135,86 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient,
+    page: int | Unset = 1,
+    size: int | Unset = 50,
+    search: None | str | Unset = UNSET,
 
-) -> KeyAliasesKeyAliasesGetResponseKeyAliasesKeyAliasesGet | None:
+) -> HTTPValidationError | KeyAliasesKeyAliasesGetResponseKeyAliasesKeyAliasesGet | None:
     r""" Key Aliases
 
-     Lists all key aliases
+     Lists key aliases with pagination and optional search.
 
     Returns:
         {
-            \"aliases\": List[str]
+            \"aliases\": List[str],
+            \"total_count\": int,
+            \"current_page\": int,
+            \"total_pages\": int,
+            \"size\": int,
         }
+
+    Args:
+        page (int | Unset): Page number Default: 1.
+        size (int | Unset): Page size Default: 50.
+        search (None | str | Unset): Search key aliases (case-insensitive partial match)
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        KeyAliasesKeyAliasesGetResponseKeyAliasesKeyAliasesGet
+        HTTPValidationError | KeyAliasesKeyAliasesGetResponseKeyAliasesKeyAliasesGet
      """
 
 
     return sync_detailed(
         client=client,
+page=page,
+size=size,
+search=search,
 
     ).parsed
 
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
+    page: int | Unset = 1,
+    size: int | Unset = 50,
+    search: None | str | Unset = UNSET,
 
-) -> Response[KeyAliasesKeyAliasesGetResponseKeyAliasesKeyAliasesGet]:
+) -> Response[HTTPValidationError | KeyAliasesKeyAliasesGetResponseKeyAliasesKeyAliasesGet]:
     r""" Key Aliases
 
-     Lists all key aliases
+     Lists key aliases with pagination and optional search.
 
     Returns:
         {
-            \"aliases\": List[str]
+            \"aliases\": List[str],
+            \"total_count\": int,
+            \"current_page\": int,
+            \"total_pages\": int,
+            \"size\": int,
         }
+
+    Args:
+        page (int | Unset): Page number Default: 1.
+        size (int | Unset): Page size Default: 50.
+        search (None | str | Unset): Search key aliases (case-insensitive partial match)
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[KeyAliasesKeyAliasesGetResponseKeyAliasesKeyAliasesGet]
+        Response[HTTPValidationError | KeyAliasesKeyAliasesGetResponseKeyAliasesKeyAliasesGet]
      """
 
 
     kwargs = _get_kwargs(
-        
+        page=page,
+size=size,
+search=search,
+
     )
 
     response = await client.get_async_httpx_client().request(
@@ -152,27 +226,42 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient,
+    page: int | Unset = 1,
+    size: int | Unset = 50,
+    search: None | str | Unset = UNSET,
 
-) -> KeyAliasesKeyAliasesGetResponseKeyAliasesKeyAliasesGet | None:
+) -> HTTPValidationError | KeyAliasesKeyAliasesGetResponseKeyAliasesKeyAliasesGet | None:
     r""" Key Aliases
 
-     Lists all key aliases
+     Lists key aliases with pagination and optional search.
 
     Returns:
         {
-            \"aliases\": List[str]
+            \"aliases\": List[str],
+            \"total_count\": int,
+            \"current_page\": int,
+            \"total_pages\": int,
+            \"size\": int,
         }
+
+    Args:
+        page (int | Unset): Page number Default: 1.
+        size (int | Unset): Page size Default: 50.
+        search (None | str | Unset): Search key aliases (case-insensitive partial match)
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        KeyAliasesKeyAliasesGetResponseKeyAliasesKeyAliasesGet
+        HTTPValidationError | KeyAliasesKeyAliasesGetResponseKeyAliasesKeyAliasesGet
      """
 
 
     return (await asyncio_detailed(
         client=client,
+page=page,
+size=size,
+search=search,
 
     )).parsed

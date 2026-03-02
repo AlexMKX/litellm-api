@@ -8,23 +8,39 @@ from ...client import AuthenticatedClient, Client
 from ...types import Response, UNSET
 from ... import errors
 
+from ...models.http_validation_error import HTTPValidationError
 from ...models.policy_list_db_response import PolicyListDBResponse
+from ...types import UNSET, Unset
 from typing import cast
 
 
 
 def _get_kwargs(
-    
+    *,
+    version_status: None | str | Unset = UNSET,
+
 ) -> dict[str, Any]:
     
 
     
 
-    
+    params: dict[str, Any] = {}
+
+    json_version_status: None | str | Unset
+    if isinstance(version_status, Unset):
+        json_version_status = UNSET
+    else:
+        json_version_status = version_status
+    params["version_status"] = json_version_status
+
+
+    params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
+
 
     _kwargs: dict[str, Any] = {
         "method": "get",
         "url": "/policies/list",
+        "params": params,
     }
 
 
@@ -32,7 +48,7 @@ def _get_kwargs(
 
 
 
-def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> PolicyListDBResponse | None:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> HTTPValidationError | PolicyListDBResponse | None:
     if response.status_code == 200:
         response_200 = PolicyListDBResponse.from_dict(response.json())
 
@@ -40,13 +56,20 @@ def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Res
 
         return response_200
 
+    if response.status_code == 422:
+        response_422 = HTTPValidationError.from_dict(response.json())
+
+
+
+        return response_422
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
         return None
 
 
-def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[PolicyListDBResponse]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[HTTPValidationError | PolicyListDBResponse]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -58,15 +81,22 @@ def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Res
 def sync_detailed(
     *,
     client: AuthenticatedClient,
+    version_status: None | str | Unset = UNSET,
 
-) -> Response[PolicyListDBResponse]:
+) -> Response[HTTPValidationError | PolicyListDBResponse]:
     r""" List Policies
 
-     List all policies from the database.
+     List all policies from the database. Optionally filter by version_status.
+
+    Query params:
+    - version_status: Optional. One of \"draft\", \"published\", \"production\".
+      If omitted, all versions are returned.
 
     Example Request:
     ```bash
     curl -X GET \"http://localhost:4000/policies/list\" \
+        -H \"Authorization: Bearer <your_api_key>\"
+    curl -X GET \"http://localhost:4000/policies/list?version_status=production\" \
         -H \"Authorization: Bearer <your_api_key>\"
     ```
 
@@ -77,6 +107,8 @@ def sync_detailed(
             {
                 \"policy_id\": \"123e4567-e89b-12d3-a456-426614174000\",
                 \"policy_name\": \"global-baseline\",
+                \"version_number\": 1,
+                \"version_status\": \"production\",
                 \"inherit\": null,
                 \"description\": \"Base guardrails for all requests\",
                 \"guardrails_add\": [\"pii_masking\"],
@@ -90,17 +122,21 @@ def sync_detailed(
     }
     ```
 
+    Args:
+        version_status (None | str | Unset):
+
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[PolicyListDBResponse]
+        Response[HTTPValidationError | PolicyListDBResponse]
      """
 
 
     kwargs = _get_kwargs(
-        
+        version_status=version_status,
+
     )
 
     response = client.get_httpx_client().request(
@@ -112,15 +148,22 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient,
+    version_status: None | str | Unset = UNSET,
 
-) -> PolicyListDBResponse | None:
+) -> HTTPValidationError | PolicyListDBResponse | None:
     r""" List Policies
 
-     List all policies from the database.
+     List all policies from the database. Optionally filter by version_status.
+
+    Query params:
+    - version_status: Optional. One of \"draft\", \"published\", \"production\".
+      If omitted, all versions are returned.
 
     Example Request:
     ```bash
     curl -X GET \"http://localhost:4000/policies/list\" \
+        -H \"Authorization: Bearer <your_api_key>\"
+    curl -X GET \"http://localhost:4000/policies/list?version_status=production\" \
         -H \"Authorization: Bearer <your_api_key>\"
     ```
 
@@ -131,6 +174,8 @@ def sync(
             {
                 \"policy_id\": \"123e4567-e89b-12d3-a456-426614174000\",
                 \"policy_name\": \"global-baseline\",
+                \"version_number\": 1,
+                \"version_status\": \"production\",
                 \"inherit\": null,
                 \"description\": \"Base guardrails for all requests\",
                 \"guardrails_add\": [\"pii_masking\"],
@@ -144,32 +189,43 @@ def sync(
     }
     ```
 
+    Args:
+        version_status (None | str | Unset):
+
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        PolicyListDBResponse
+        HTTPValidationError | PolicyListDBResponse
      """
 
 
     return sync_detailed(
         client=client,
+version_status=version_status,
 
     ).parsed
 
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
+    version_status: None | str | Unset = UNSET,
 
-) -> Response[PolicyListDBResponse]:
+) -> Response[HTTPValidationError | PolicyListDBResponse]:
     r""" List Policies
 
-     List all policies from the database.
+     List all policies from the database. Optionally filter by version_status.
+
+    Query params:
+    - version_status: Optional. One of \"draft\", \"published\", \"production\".
+      If omitted, all versions are returned.
 
     Example Request:
     ```bash
     curl -X GET \"http://localhost:4000/policies/list\" \
+        -H \"Authorization: Bearer <your_api_key>\"
+    curl -X GET \"http://localhost:4000/policies/list?version_status=production\" \
         -H \"Authorization: Bearer <your_api_key>\"
     ```
 
@@ -180,6 +236,8 @@ async def asyncio_detailed(
             {
                 \"policy_id\": \"123e4567-e89b-12d3-a456-426614174000\",
                 \"policy_name\": \"global-baseline\",
+                \"version_number\": 1,
+                \"version_status\": \"production\",
                 \"inherit\": null,
                 \"description\": \"Base guardrails for all requests\",
                 \"guardrails_add\": [\"pii_masking\"],
@@ -193,17 +251,21 @@ async def asyncio_detailed(
     }
     ```
 
+    Args:
+        version_status (None | str | Unset):
+
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[PolicyListDBResponse]
+        Response[HTTPValidationError | PolicyListDBResponse]
      """
 
 
     kwargs = _get_kwargs(
-        
+        version_status=version_status,
+
     )
 
     response = await client.get_async_httpx_client().request(
@@ -215,15 +277,22 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient,
+    version_status: None | str | Unset = UNSET,
 
-) -> PolicyListDBResponse | None:
+) -> HTTPValidationError | PolicyListDBResponse | None:
     r""" List Policies
 
-     List all policies from the database.
+     List all policies from the database. Optionally filter by version_status.
+
+    Query params:
+    - version_status: Optional. One of \"draft\", \"published\", \"production\".
+      If omitted, all versions are returned.
 
     Example Request:
     ```bash
     curl -X GET \"http://localhost:4000/policies/list\" \
+        -H \"Authorization: Bearer <your_api_key>\"
+    curl -X GET \"http://localhost:4000/policies/list?version_status=production\" \
         -H \"Authorization: Bearer <your_api_key>\"
     ```
 
@@ -234,6 +303,8 @@ async def asyncio(
             {
                 \"policy_id\": \"123e4567-e89b-12d3-a456-426614174000\",
                 \"policy_name\": \"global-baseline\",
+                \"version_number\": 1,
+                \"version_status\": \"production\",
                 \"inherit\": null,
                 \"description\": \"Base guardrails for all requests\",
                 \"guardrails_add\": [\"pii_masking\"],
@@ -247,16 +318,20 @@ async def asyncio(
     }
     ```
 
+    Args:
+        version_status (None | str | Unset):
+
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        PolicyListDBResponse
+        HTTPValidationError | PolicyListDBResponse
      """
 
 
     return (await asyncio_detailed(
         client=client,
+version_status=version_status,
 
     )).parsed

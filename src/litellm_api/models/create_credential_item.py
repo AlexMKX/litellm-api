@@ -44,8 +44,8 @@ class CreateCredentialItem:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.create_credential_item_credential_values_type_0 import CreateCredentialItemCredentialValuesType0
         from ..models.create_credential_item_credential_info import CreateCredentialItemCredentialInfo
+        from ..models.create_credential_item_credential_values_type_0 import CreateCredentialItemCredentialValuesType0
         credential_name = self.credential_name
 
         credential_info = self.credential_info.to_dict()

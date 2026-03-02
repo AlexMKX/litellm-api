@@ -53,8 +53,8 @@ class TestPoliciesAndGuardrailsRequest:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.test_policies_and_guardrails_request_request_data import TestPoliciesAndGuardrailsRequestRequestData
         from ..models.generic_guardrail_api_inputs import GenericGuardrailAPIInputs
+        from ..models.test_policies_and_guardrails_request_request_data import TestPoliciesAndGuardrailsRequestRequestData
         policy_names: list[str] | None | Unset
         if isinstance(self.policy_names, Unset):
             policy_names = UNSET

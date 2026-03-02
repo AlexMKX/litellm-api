@@ -54,9 +54,9 @@ class Eval:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.eval_metadata_type_0 import EvalMetadataType0
-        from ..models.eval_data_source_config import EvalDataSourceConfig
         from ..models.eval_testing_criteria_item import EvalTestingCriteriaItem
+        from ..models.eval_data_source_config import EvalDataSourceConfig
+        from ..models.eval_metadata_type_0 import EvalMetadataType0
         id = self.id
 
         created_at = self.created_at

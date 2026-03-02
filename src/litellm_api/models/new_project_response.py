@@ -81,12 +81,12 @@ class NewProjectResponse:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
-        from ..models.new_project_response_model_rpm_limit_type_0 import NewProjectResponseModelRpmLimitType0
+        from ..models.lite_llm_budget_table import LiteLLMBudgetTable
         from ..models.new_project_response_metadata_type_0 import NewProjectResponseMetadataType0
         from ..models.new_project_response_model_tpm_limit_type_0 import NewProjectResponseModelTpmLimitType0
+        from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
+        from ..models.new_project_response_model_rpm_limit_type_0 import NewProjectResponseModelRpmLimitType0
         from ..models.new_project_response_model_spend_type_0 import NewProjectResponseModelSpendType0
-        from ..models.lite_llm_budget_table import LiteLLMBudgetTable
         project_id = self.project_id
 
         created_by = self.created_by

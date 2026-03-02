@@ -58,8 +58,8 @@ class RegisterPluginRequest:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.register_plugin_request_source import RegisterPluginRequestSource
         from ..models.plugin_author import PluginAuthor
+        from ..models.register_plugin_request_source import RegisterPluginRequestSource
         name = self.name
 
         source = self.source.to_dict()

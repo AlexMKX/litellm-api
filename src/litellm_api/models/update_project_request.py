@@ -44,6 +44,7 @@ class UpdateProjectRequest:
             description (None | str | Unset):
             team_id (None | str | Unset):
             metadata (None | Unset | UpdateProjectRequestMetadataType0):
+            tags (list[str] | None | Unset):
             models (list[str] | None | Unset):
             model_rpm_limit (None | Unset | UpdateProjectRequestModelRpmLimitType0):
             model_tpm_limit (None | Unset | UpdateProjectRequestModelTpmLimitType0):
@@ -64,6 +65,7 @@ class UpdateProjectRequest:
     description: None | str | Unset = UNSET
     team_id: None | str | Unset = UNSET
     metadata: None | Unset | UpdateProjectRequestMetadataType0 = UNSET
+    tags: list[str] | None | Unset = UNSET
     models: list[str] | None | Unset = UNSET
     model_rpm_limit: None | Unset | UpdateProjectRequestModelRpmLimitType0 = UNSET
     model_tpm_limit: None | Unset | UpdateProjectRequestModelTpmLimitType0 = UNSET
@@ -76,11 +78,11 @@ class UpdateProjectRequest:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.update_project_request_metadata_type_0 import UpdateProjectRequestMetadataType0
-        from ..models.update_project_request_model_tpm_limit_type_0 import UpdateProjectRequestModelTpmLimitType0
-        from ..models.update_project_request_model_max_budget_type_0 import UpdateProjectRequestModelMaxBudgetType0
         from ..models.lite_llm_object_permission_base import LiteLLMObjectPermissionBase
+        from ..models.update_project_request_metadata_type_0 import UpdateProjectRequestMetadataType0
+        from ..models.update_project_request_model_max_budget_type_0 import UpdateProjectRequestModelMaxBudgetType0
         from ..models.update_project_request_model_rpm_limit_type_0 import UpdateProjectRequestModelRpmLimitType0
+        from ..models.update_project_request_model_tpm_limit_type_0 import UpdateProjectRequestModelTpmLimitType0
         project_id = self.project_id
 
         budget_id: None | str | Unset
@@ -159,6 +161,16 @@ class UpdateProjectRequest:
         else:
             metadata = self.metadata
 
+        tags: list[str] | None | Unset
+        if isinstance(self.tags, Unset):
+            tags = UNSET
+        elif isinstance(self.tags, list):
+            tags = self.tags
+
+
+        else:
+            tags = self.tags
+
         models: list[str] | None | Unset
         if isinstance(self.models, Unset):
             models = UNSET
@@ -229,6 +241,8 @@ class UpdateProjectRequest:
             field_dict["team_id"] = team_id
         if metadata is not UNSET:
             field_dict["metadata"] = metadata
+        if tags is not UNSET:
+            field_dict["tags"] = tags
         if models is not UNSET:
             field_dict["models"] = models
         if model_rpm_limit is not UNSET:
@@ -394,6 +408,24 @@ class UpdateProjectRequest:
         metadata = _parse_metadata(d.pop("metadata", UNSET))
 
 
+        def _parse_tags(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                tags_type_0 = cast(list[str], data)
+
+                return tags_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        tags = _parse_tags(d.pop("tags", UNSET))
+
+
         def _parse_models(data: object) -> list[str] | None | Unset:
             if data is None:
                 return data
@@ -496,6 +528,7 @@ class UpdateProjectRequest:
             description=description,
             team_id=team_id,
             metadata=metadata,
+            tags=tags,
             models=models,
             model_rpm_limit=model_rpm_limit,
             model_tpm_limit=model_tpm_limit,

@@ -26,9 +26,12 @@ class UIThemeConfig:
 
         Attributes:
             logo_url (None | str | Unset): URL or path to custom logo image. Can be a local file path or HTTP/HTTPS URL
+            favicon_url (None | str | Unset): URL to custom favicon image. Must be an HTTP/HTTPS URL to a .ico, .png, or
+                .svg file
      """
 
     logo_url: None | str | Unset = UNSET
+    favicon_url: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -42,6 +45,12 @@ class UIThemeConfig:
         else:
             logo_url = self.logo_url
 
+        favicon_url: None | str | Unset
+        if isinstance(self.favicon_url, Unset):
+            favicon_url = UNSET
+        else:
+            favicon_url = self.favicon_url
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -49,6 +58,8 @@ class UIThemeConfig:
         })
         if logo_url is not UNSET:
             field_dict["logo_url"] = logo_url
+        if favicon_url is not UNSET:
+            field_dict["favicon_url"] = favicon_url
 
         return field_dict
 
@@ -67,8 +78,19 @@ class UIThemeConfig:
         logo_url = _parse_logo_url(d.pop("logo_url", UNSET))
 
 
+        def _parse_favicon_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        favicon_url = _parse_favicon_url(d.pop("favicon_url", UNSET))
+
+
         ui_theme_config = cls(
             logo_url=logo_url,
+            favicon_url=favicon_url,
         )
 
 

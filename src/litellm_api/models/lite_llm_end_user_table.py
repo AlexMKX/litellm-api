@@ -55,8 +55,8 @@ class LiteLLMEndUserTable:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
         from ..models.lite_llm_budget_table import LiteLLMBudgetTable
+        from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
         user_id = self.user_id
 
         blocked = self.blocked

@@ -49,6 +49,7 @@ class LiteLLMDeletedVerificationToken:
             config (LiteLLMDeletedVerificationTokenConfig | Unset):
             user_id (None | str | Unset):
             team_id (None | str | Unset):
+            agent_id (None | str | Unset):
             project_id (None | str | Unset):
             max_parallel_requests (int | None | Unset):
             metadata (LiteLLMDeletedVerificationTokenMetadata | Unset):
@@ -97,6 +98,7 @@ class LiteLLMDeletedVerificationToken:
     config: LiteLLMDeletedVerificationTokenConfig | Unset = UNSET
     user_id: None | str | Unset = UNSET
     team_id: None | str | Unset = UNSET
+    agent_id: None | str | Unset = UNSET
     project_id: None | str | Unset = UNSET
     max_parallel_requests: int | None | Unset = UNSET
     metadata: LiteLLMDeletedVerificationTokenMetadata | Unset = UNSET
@@ -139,15 +141,15 @@ class LiteLLMDeletedVerificationToken:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
         from ..models.lite_llm_deleted_verification_token_aliases import LiteLLMDeletedVerificationTokenAliases
-        from ..models.lite_llm_deleted_verification_token_metadata import LiteLLMDeletedVerificationTokenMetadata
-        from ..models.lite_llm_deleted_verification_token_litellm_budget_table_type_0 import LiteLLMDeletedVerificationTokenLitellmBudgetTableType0
-        from ..models.lite_llm_deleted_verification_token_router_settings_type_0 import LiteLLMDeletedVerificationTokenRouterSettingsType0
+        from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
         from ..models.lite_llm_deleted_verification_token_model_max_budget import LiteLLMDeletedVerificationTokenModelMaxBudget
-        from ..models.lite_llm_deleted_verification_token_config import LiteLLMDeletedVerificationTokenConfig
         from ..models.lite_llm_deleted_verification_token_permissions import LiteLLMDeletedVerificationTokenPermissions
+        from ..models.lite_llm_deleted_verification_token_litellm_budget_table_type_0 import LiteLLMDeletedVerificationTokenLitellmBudgetTableType0
         from ..models.lite_llm_deleted_verification_token_model_spend import LiteLLMDeletedVerificationTokenModelSpend
+        from ..models.lite_llm_deleted_verification_token_metadata import LiteLLMDeletedVerificationTokenMetadata
+        from ..models.lite_llm_deleted_verification_token_config import LiteLLMDeletedVerificationTokenConfig
+        from ..models.lite_llm_deleted_verification_token_router_settings_type_0 import LiteLLMDeletedVerificationTokenRouterSettingsType0
         token: None | str | Unset
         if isinstance(self.token, Unset):
             token = UNSET
@@ -207,6 +209,12 @@ class LiteLLMDeletedVerificationToken:
             team_id = UNSET
         else:
             team_id = self.team_id
+
+        agent_id: None | str | Unset
+        if isinstance(self.agent_id, Unset):
+            agent_id = UNSET
+        else:
+            agent_id = self.agent_id
 
         project_id: None | str | Unset
         if isinstance(self.project_id, Unset):
@@ -465,6 +473,8 @@ class LiteLLMDeletedVerificationToken:
             field_dict["user_id"] = user_id
         if team_id is not UNSET:
             field_dict["team_id"] = team_id
+        if agent_id is not UNSET:
+            field_dict["agent_id"] = agent_id
         if project_id is not UNSET:
             field_dict["project_id"] = project_id
         if max_parallel_requests is not UNSET:
@@ -655,6 +665,16 @@ class LiteLLMDeletedVerificationToken:
             return cast(None | str | Unset, data)
 
         team_id = _parse_team_id(d.pop("team_id", UNSET))
+
+
+        def _parse_agent_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        agent_id = _parse_agent_id(d.pop("agent_id", UNSET))
 
 
         def _parse_project_id(data: object) -> None | str | Unset:
@@ -1135,6 +1155,7 @@ class LiteLLMDeletedVerificationToken:
             config=config,
             user_id=user_id,
             team_id=team_id,
+            agent_id=agent_id,
             project_id=project_id,
             max_parallel_requests=max_parallel_requests,
             metadata=metadata,

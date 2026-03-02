@@ -15,6 +15,7 @@ from typing import Literal, cast
 if TYPE_CHECKING:
   from ..models.chat_completion_assistant_tool_call import ChatCompletionAssistantToolCall
   from ..models.chat_completion_cached_content import ChatCompletionCachedContent
+  from ..models.chat_completion_image_object import ChatCompletionImageObject
   from ..models.chat_completion_redacted_thinking_block import ChatCompletionRedactedThinkingBlock
   from ..models.chat_completion_text_object import ChatCompletionTextObject
   from ..models.chat_completion_thinking_block import ChatCompletionThinkingBlock
@@ -33,7 +34,8 @@ class ChatCompletionAssistantMessage:
     """ 
         Attributes:
             role (Literal['assistant']):
-            content (list[ChatCompletionTextObject | ChatCompletionThinkingBlock] | None | str | Unset):
+            content (list[ChatCompletionImageObject | ChatCompletionRedactedThinkingBlock | ChatCompletionTextObject |
+                ChatCompletionThinkingBlock] | None | str | Unset):
             name (None | str | Unset):
             tool_calls (list[ChatCompletionAssistantToolCall] | None | Unset):
             function_call (ChatCompletionToolCallFunctionChunk | None | Unset):
@@ -43,7 +45,7 @@ class ChatCompletionAssistantMessage:
      """
 
     role: Literal['assistant']
-    content: list[ChatCompletionTextObject | ChatCompletionThinkingBlock] | None | str | Unset = UNSET
+    content: list[ChatCompletionImageObject | ChatCompletionRedactedThinkingBlock | ChatCompletionTextObject | ChatCompletionThinkingBlock] | None | str | Unset = UNSET
     name: None | str | Unset = UNSET
     tool_calls: list[ChatCompletionAssistantToolCall] | None | Unset = UNSET
     function_call: ChatCompletionToolCallFunctionChunk | None | Unset = UNSET
@@ -57,12 +59,13 @@ class ChatCompletionAssistantMessage:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.chat_completion_text_object import ChatCompletionTextObject
-        from ..models.chat_completion_thinking_block import ChatCompletionThinkingBlock
-        from ..models.chat_completion_redacted_thinking_block import ChatCompletionRedactedThinkingBlock
+        from ..models.chat_completion_image_object import ChatCompletionImageObject
         from ..models.chat_completion_assistant_tool_call import ChatCompletionAssistantToolCall
+        from ..models.chat_completion_redacted_thinking_block import ChatCompletionRedactedThinkingBlock
         from ..models.chat_completion_tool_call_function_chunk import ChatCompletionToolCallFunctionChunk
         from ..models.chat_completion_cached_content import ChatCompletionCachedContent
+        from ..models.chat_completion_text_object import ChatCompletionTextObject
+        from ..models.chat_completion_thinking_block import ChatCompletionThinkingBlock
         role = self.role
 
         content: list[dict[str, Any]] | None | str | Unset
@@ -73,6 +76,10 @@ class ChatCompletionAssistantMessage:
             for content_type_1_item_data in self.content:
                 content_type_1_item: dict[str, Any]
                 if isinstance(content_type_1_item_data, ChatCompletionTextObject):
+                    content_type_1_item = content_type_1_item_data.to_dict()
+                elif isinstance(content_type_1_item_data, ChatCompletionThinkingBlock):
+                    content_type_1_item = content_type_1_item_data.to_dict()
+                elif isinstance(content_type_1_item_data, ChatCompletionRedactedThinkingBlock):
                     content_type_1_item = content_type_1_item_data.to_dict()
                 else:
                     content_type_1_item = content_type_1_item_data.to_dict()
@@ -167,6 +174,7 @@ class ChatCompletionAssistantMessage:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.chat_completion_assistant_tool_call import ChatCompletionAssistantToolCall
         from ..models.chat_completion_cached_content import ChatCompletionCachedContent
+        from ..models.chat_completion_image_object import ChatCompletionImageObject
         from ..models.chat_completion_redacted_thinking_block import ChatCompletionRedactedThinkingBlock
         from ..models.chat_completion_text_object import ChatCompletionTextObject
         from ..models.chat_completion_thinking_block import ChatCompletionThinkingBlock
@@ -176,7 +184,7 @@ class ChatCompletionAssistantMessage:
         if role != 'assistant':
             raise ValueError(f"role must match const 'assistant', got '{role}'")
 
-        def _parse_content(data: object) -> list[ChatCompletionTextObject | ChatCompletionThinkingBlock] | None | str | Unset:
+        def _parse_content(data: object) -> list[ChatCompletionImageObject | ChatCompletionRedactedThinkingBlock | ChatCompletionTextObject | ChatCompletionThinkingBlock] | None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -187,7 +195,7 @@ class ChatCompletionAssistantMessage:
                 content_type_1 = []
                 _content_type_1 = data
                 for content_type_1_item_data in (_content_type_1):
-                    def _parse_content_type_1_item(data: object) -> ChatCompletionTextObject | ChatCompletionThinkingBlock:
+                    def _parse_content_type_1_item(data: object) -> ChatCompletionImageObject | ChatCompletionRedactedThinkingBlock | ChatCompletionTextObject | ChatCompletionThinkingBlock:
                         try:
                             if not isinstance(data, dict):
                                 raise TypeError()
@@ -198,13 +206,33 @@ class ChatCompletionAssistantMessage:
                             return content_type_1_item_type_0
                         except (TypeError, ValueError, AttributeError, KeyError):
                             pass
+                        try:
+                            if not isinstance(data, dict):
+                                raise TypeError()
+                            content_type_1_item_type_1 = ChatCompletionThinkingBlock.from_dict(data)
+
+
+
+                            return content_type_1_item_type_1
+                        except (TypeError, ValueError, AttributeError, KeyError):
+                            pass
+                        try:
+                            if not isinstance(data, dict):
+                                raise TypeError()
+                            content_type_1_item_type_2 = ChatCompletionRedactedThinkingBlock.from_dict(data)
+
+
+
+                            return content_type_1_item_type_2
+                        except (TypeError, ValueError, AttributeError, KeyError):
+                            pass
                         if not isinstance(data, dict):
                             raise TypeError()
-                        content_type_1_item_type_1 = ChatCompletionThinkingBlock.from_dict(data)
+                        content_type_1_item_type_3 = ChatCompletionImageObject.from_dict(data)
 
 
 
-                        return content_type_1_item_type_1
+                        return content_type_1_item_type_3
 
                     content_type_1_item = _parse_content_type_1_item(content_type_1_item_data)
 
@@ -213,7 +241,7 @@ class ChatCompletionAssistantMessage:
                 return content_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(list[ChatCompletionTextObject | ChatCompletionThinkingBlock] | None | str | Unset, data)
+            return cast(list[ChatCompletionImageObject | ChatCompletionRedactedThinkingBlock | ChatCompletionTextObject | ChatCompletionThinkingBlock] | None | str | Unset, data)
 
         content = _parse_content(d.pop("content", UNSET))
 

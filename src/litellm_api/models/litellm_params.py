@@ -8,12 +8,15 @@ from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..models.litellm_params_action import LitellmParamsAction
 from ..models.litellm_params_default_action import LitellmParamsDefaultAction
 from ..models.litellm_params_on_disallowed_action import LitellmParamsOnDisallowedAction
 from ..models.litellm_params_on_flagged_type_0 import LitellmParamsOnFlaggedType0
+from ..models.litellm_params_on_violation_type_0 import LitellmParamsOnViolationType0
 from ..models.litellm_params_presidio_filter_scope_type_0 import LitellmParamsPresidioFilterScopeType0
 from ..models.litellm_params_presidio_run_on_type_0 import LitellmParamsPresidioRunOnType0
 from ..models.litellm_params_unreachable_fallback import LitellmParamsUnreachableFallback
+from ..models.pii_entity_type import PiiEntityType
 from ..types import UNSET, Unset
 from typing import cast
 
@@ -50,6 +53,15 @@ class LitellmParams:
             mode (list[str] | Mode | str): When to apply the guardrail (pre_call, post_call, during_call, logging_only)
             optional_params (GraySwanGuardrailConfigModelOptionalParams | None | Unset): Optional parameters for the
                 guardrail
+            blocked_languages (list[str] | None | Unset): Language tags to block (e.g. python, javascript, bash). Empty or
+                None = block all fenced code blocks.
+            action (LitellmParamsAction | Unset): 'block' raises an error; 'mask' replaces the code block with a
+                placeholder. Default: LitellmParamsAction.BLOCK.
+            confidence_threshold (float | Unset): Only block or mask when detection confidence >= this value; below
+                threshold, allow or log_only. Default: 0.5.
+            detect_execution_intent (bool | Unset): When True, block only when user intent is to run/execute; allow when
+                intent is explain/refactor/don't run. Also block text-only execution requests (e.g. 'run `ls`', 'read
+                /etc/passwd'). Default: True.
             api_key (None | str | Unset): API key for the Lakera AI service
             api_base (None | str | Unset): Base URL for the Lakera AI API
             evaluation_id (None | str | Unset): Pre-configured evaluation ID from Qualifire dashboard. When provided, uses
@@ -107,6 +119,12 @@ class LitellmParams:
             model (None | str | Unset): Optional field if guardrail requires a 'model' parameter
             violation_message_template (None | str | Unset): Custom message when a guardrail blocks an action. Supports
                 placeholders like {tool_name}, {rule_id}, and {default_message}.
+            end_session_after_n_fails (int | None | Unset): For /v1/realtime sessions: automatically close the session after
+                this many guardrail violations.
+            on_violation (LitellmParamsOnViolationType0 | None | Unset): For /v1/realtime sessions: 'warn' speaks the
+                violation message and continues; 'end_session' speaks the message and closes the connection.
+            realtime_violation_message (None | str | Unset): The message the bot speaks aloud when a /v1/realtime guardrail
+                fires. Falls back to violation_message_template if not set.
             template_id (None | str | Unset): The ID of your Model Armor template
             location (None | str | Unset): Google Cloud location/region (e.g., us-central1)
             credentials (None | str | Unset): Path to Google Cloud credentials JSON file or JSON string
@@ -136,6 +154,8 @@ class LitellmParams:
                 LitellmParamsDefaultAction.DENY.
             on_disallowed_action (LitellmParamsOnDisallowedAction | Unset): Choose whether disallowed tools block the
                 request or get rewritten out of the payload Default: LitellmParamsOnDisallowedAction.BLOCK.
+            use_v2 (bool | None | Unset): If True and guardrail='noma', route to the new Noma v2 implementation instead of
+                the legacy implementation. Default: False.
             application_id (None | str | Unset): Application ID for Noma Security. Defaults to 'litellm' if not provided
             monitor_mode (bool | None | Unset): If True, logs violations without blocking. Defaults to False if not provided
             block_failures (bool | None | Unset): If True, blocks requests on API failures. Defaults to True if not provided
@@ -186,6 +206,9 @@ class LitellmParams:
                 actions
             presidio_score_thresholds (LitellmParamsPresidioScoreThresholdsType0 | None | Unset): Optional per-entity
                 minimum confidence scores for Presidio detections. Entities below the threshold are ignored.
+            presidio_entities_deny_list (list[PiiEntityType | str] | None | Unset): List of entity types to exclude from
+                Presidio detection results. Detections of these types will be silently dropped. Useful for suppressing false
+                positives (e.g., US_DRIVER_LICENSE on coding routes).
             presidio_ad_hoc_recognizers (None | str | Unset): Path to a JSON file containing ad-hoc recognizers for Presidio
             mock_redacted_text (LitellmParamsMockRedactedTextType0 | None | Unset): Mock redacted text for testing
      """
@@ -193,6 +216,10 @@ class LitellmParams:
     guardrail: str
     mode: list[str] | Mode | str
     optional_params: GraySwanGuardrailConfigModelOptionalParams | None | Unset = UNSET
+    blocked_languages: list[str] | None | Unset = UNSET
+    action: LitellmParamsAction | Unset = LitellmParamsAction.BLOCK
+    confidence_threshold: float | Unset = 0.5
+    detect_execution_intent: bool | Unset = True
     api_key: None | str | Unset = UNSET
     api_base: None | str | Unset = UNSET
     evaluation_id: None | str | Unset = UNSET
@@ -231,6 +258,9 @@ class LitellmParams:
     pangea_output_recipe: None | str | Unset = UNSET
     model: None | str | Unset = UNSET
     violation_message_template: None | str | Unset = UNSET
+    end_session_after_n_fails: int | None | Unset = UNSET
+    on_violation: LitellmParamsOnViolationType0 | None | Unset = UNSET
+    realtime_violation_message: None | str | Unset = UNSET
     template_id: None | str | Unset = UNSET
     location: None | str | Unset = UNSET
     credentials: None | str | Unset = UNSET
@@ -250,6 +280,7 @@ class LitellmParams:
     rules: list[ToolPermissionRule] | None | Unset = UNSET
     default_action: LitellmParamsDefaultAction | Unset = LitellmParamsDefaultAction.DENY
     on_disallowed_action: LitellmParamsOnDisallowedAction | Unset = LitellmParamsOnDisallowedAction.BLOCK
+    use_v2: bool | None | Unset = False
     application_id: None | str | Unset = UNSET
     monitor_mode: bool | None | Unset = UNSET
     block_failures: bool | None | Unset = UNSET
@@ -287,6 +318,7 @@ class LitellmParams:
     presidio_run_on: LitellmParamsPresidioRunOnType0 | None | Unset = UNSET
     pii_entities_config: LitellmParamsPiiEntitiesConfigType0 | None | Unset = UNSET
     presidio_score_thresholds: LitellmParamsPresidioScoreThresholdsType0 | None | Unset = UNSET
+    presidio_entities_deny_list: list[PiiEntityType | str] | None | Unset = UNSET
     presidio_ad_hoc_recognizers: None | str | Unset = UNSET
     mock_redacted_text: LitellmParamsMockRedactedTextType0 | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -296,21 +328,21 @@ class LitellmParams:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.content_filter_pattern import ContentFilterPattern
-        from ..models.litellm_params_metadata_type_0 import LitellmParamsMetadataType0
-        from ..models.litellm_params_detect_secrets_config_type_0 import LitellmParamsDetectSecretsConfigType0
-        from ..models.content_filter_category_config import ContentFilterCategoryConfig
-        from ..models.litellm_params_mock_redacted_text_type_0 import LitellmParamsMockRedactedTextType0
-        from ..models.mode import Mode
         from ..models.blocked_word import BlockedWord
-        from ..models.tool_permission_rule import ToolPermissionRule
-        from ..models.lakera_category_thresholds import LakeraCategoryThresholds
-        from ..models.litellm_params_pii_entities_config_type_0 import LitellmParamsPiiEntitiesConfigType0
         from ..models.litellm_params_config_type_0 import LitellmParamsConfigType0
-        from ..models.litellm_params_detectors_type_0 import LitellmParamsDetectorsType0
-        from ..models.litellm_params_presidio_score_thresholds_type_0 import LitellmParamsPresidioScoreThresholdsType0
+        from ..models.lakera_category_thresholds import LakeraCategoryThresholds
         from ..models.gray_swan_guardrail_config_model_optional_params import GraySwanGuardrailConfigModelOptionalParams
+        from ..models.content_filter_pattern import ContentFilterPattern
+        from ..models.mode import Mode
+        from ..models.litellm_params_detect_secrets_config_type_0 import LitellmParamsDetectSecretsConfigType0
         from ..models.litellm_params_additional_provider_specific_params_type_0 import LitellmParamsAdditionalProviderSpecificParamsType0
+        from ..models.content_filter_category_config import ContentFilterCategoryConfig
+        from ..models.litellm_params_pii_entities_config_type_0 import LitellmParamsPiiEntitiesConfigType0
+        from ..models.tool_permission_rule import ToolPermissionRule
+        from ..models.litellm_params_detectors_type_0 import LitellmParamsDetectorsType0
+        from ..models.litellm_params_mock_redacted_text_type_0 import LitellmParamsMockRedactedTextType0
+        from ..models.litellm_params_presidio_score_thresholds_type_0 import LitellmParamsPresidioScoreThresholdsType0
+        from ..models.litellm_params_metadata_type_0 import LitellmParamsMetadataType0
         guardrail = self.guardrail
 
         mode: dict[str, Any] | list[str] | str
@@ -330,6 +362,25 @@ class LitellmParams:
             optional_params = self.optional_params.to_dict()
         else:
             optional_params = self.optional_params
+
+        blocked_languages: list[str] | None | Unset
+        if isinstance(self.blocked_languages, Unset):
+            blocked_languages = UNSET
+        elif isinstance(self.blocked_languages, list):
+            blocked_languages = self.blocked_languages
+
+
+        else:
+            blocked_languages = self.blocked_languages
+
+        action: str | Unset = UNSET
+        if not isinstance(self.action, Unset):
+            action = self.action.value
+
+
+        confidence_threshold = self.confidence_threshold
+
+        detect_execution_intent = self.detect_execution_intent
 
         api_key: None | str | Unset
         if isinstance(self.api_key, Unset):
@@ -592,6 +643,26 @@ class LitellmParams:
         else:
             violation_message_template = self.violation_message_template
 
+        end_session_after_n_fails: int | None | Unset
+        if isinstance(self.end_session_after_n_fails, Unset):
+            end_session_after_n_fails = UNSET
+        else:
+            end_session_after_n_fails = self.end_session_after_n_fails
+
+        on_violation: None | str | Unset
+        if isinstance(self.on_violation, Unset):
+            on_violation = UNSET
+        elif isinstance(self.on_violation, LitellmParamsOnViolationType0):
+            on_violation = self.on_violation.value
+        else:
+            on_violation = self.on_violation
+
+        realtime_violation_message: None | str | Unset
+        if isinstance(self.realtime_violation_message, Unset):
+            realtime_violation_message = UNSET
+        else:
+            realtime_violation_message = self.realtime_violation_message
+
         template_id: None | str | Unset
         if isinstance(self.template_id, Unset):
             template_id = UNSET
@@ -715,6 +786,12 @@ class LitellmParams:
         if not isinstance(self.on_disallowed_action, Unset):
             on_disallowed_action = self.on_disallowed_action.value
 
+
+        use_v2: bool | None | Unset
+        if isinstance(self.use_v2, Unset):
+            use_v2 = UNSET
+        else:
+            use_v2 = self.use_v2
 
         application_id: None | str | Unset
         if isinstance(self.application_id, Unset):
@@ -946,6 +1023,23 @@ class LitellmParams:
         else:
             presidio_score_thresholds = self.presidio_score_thresholds
 
+        presidio_entities_deny_list: list[str] | None | Unset
+        if isinstance(self.presidio_entities_deny_list, Unset):
+            presidio_entities_deny_list = UNSET
+        elif isinstance(self.presidio_entities_deny_list, list):
+            presidio_entities_deny_list = []
+            for presidio_entities_deny_list_type_0_item_data in self.presidio_entities_deny_list:
+                presidio_entities_deny_list_type_0_item: str
+                if isinstance(presidio_entities_deny_list_type_0_item_data, PiiEntityType):
+                    presidio_entities_deny_list_type_0_item = presidio_entities_deny_list_type_0_item_data.value
+                else:
+                    presidio_entities_deny_list_type_0_item = presidio_entities_deny_list_type_0_item_data
+                presidio_entities_deny_list.append(presidio_entities_deny_list_type_0_item)
+
+
+        else:
+            presidio_entities_deny_list = self.presidio_entities_deny_list
+
         presidio_ad_hoc_recognizers: None | str | Unset
         if isinstance(self.presidio_ad_hoc_recognizers, Unset):
             presidio_ad_hoc_recognizers = UNSET
@@ -969,6 +1063,14 @@ class LitellmParams:
         })
         if optional_params is not UNSET:
             field_dict["optional_params"] = optional_params
+        if blocked_languages is not UNSET:
+            field_dict["blocked_languages"] = blocked_languages
+        if action is not UNSET:
+            field_dict["action"] = action
+        if confidence_threshold is not UNSET:
+            field_dict["confidence_threshold"] = confidence_threshold
+        if detect_execution_intent is not UNSET:
+            field_dict["detect_execution_intent"] = detect_execution_intent
         if api_key is not UNSET:
             field_dict["api_key"] = api_key
         if api_base is not UNSET:
@@ -1045,6 +1147,12 @@ class LitellmParams:
             field_dict["model"] = model
         if violation_message_template is not UNSET:
             field_dict["violation_message_template"] = violation_message_template
+        if end_session_after_n_fails is not UNSET:
+            field_dict["end_session_after_n_fails"] = end_session_after_n_fails
+        if on_violation is not UNSET:
+            field_dict["on_violation"] = on_violation
+        if realtime_violation_message is not UNSET:
+            field_dict["realtime_violation_message"] = realtime_violation_message
         if template_id is not UNSET:
             field_dict["template_id"] = template_id
         if location is not UNSET:
@@ -1083,6 +1191,8 @@ class LitellmParams:
             field_dict["default_action"] = default_action
         if on_disallowed_action is not UNSET:
             field_dict["on_disallowed_action"] = on_disallowed_action
+        if use_v2 is not UNSET:
+            field_dict["use_v2"] = use_v2
         if application_id is not UNSET:
             field_dict["application_id"] = application_id
         if monitor_mode is not UNSET:
@@ -1157,6 +1267,8 @@ class LitellmParams:
             field_dict["pii_entities_config"] = pii_entities_config
         if presidio_score_thresholds is not UNSET:
             field_dict["presidio_score_thresholds"] = presidio_score_thresholds
+        if presidio_entities_deny_list is not UNSET:
+            field_dict["presidio_entities_deny_list"] = presidio_entities_deny_list
         if presidio_ad_hoc_recognizers is not UNSET:
             field_dict["presidio_ad_hoc_recognizers"] = presidio_ad_hoc_recognizers
         if mock_redacted_text is not UNSET:
@@ -1229,6 +1341,38 @@ class LitellmParams:
 
         optional_params = _parse_optional_params(d.pop("optional_params", UNSET))
 
+
+        def _parse_blocked_languages(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                blocked_languages_type_0 = cast(list[str], data)
+
+                return blocked_languages_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        blocked_languages = _parse_blocked_languages(d.pop("blocked_languages", UNSET))
+
+
+        _action = d.pop("action", UNSET)
+        action: LitellmParamsAction | Unset
+        if isinstance(_action,  Unset):
+            action = UNSET
+        else:
+            action = LitellmParamsAction(_action)
+
+
+
+
+        confidence_threshold = d.pop("confidence_threshold", UNSET)
+
+        detect_execution_intent = d.pop("detect_execution_intent", UNSET)
 
         def _parse_api_key(data: object) -> None | str | Unset:
             if data is None:
@@ -1703,6 +1847,46 @@ class LitellmParams:
         violation_message_template = _parse_violation_message_template(d.pop("violation_message_template", UNSET))
 
 
+        def _parse_end_session_after_n_fails(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        end_session_after_n_fails = _parse_end_session_after_n_fails(d.pop("end_session_after_n_fails", UNSET))
+
+
+        def _parse_on_violation(data: object) -> LitellmParamsOnViolationType0 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                on_violation_type_0 = LitellmParamsOnViolationType0(data)
+
+
+
+                return on_violation_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(LitellmParamsOnViolationType0 | None | Unset, data)
+
+        on_violation = _parse_on_violation(d.pop("on_violation", UNSET))
+
+
+        def _parse_realtime_violation_message(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        realtime_violation_message = _parse_realtime_violation_message(d.pop("realtime_violation_message", UNSET))
+
+
         def _parse_template_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -1936,6 +2120,16 @@ class LitellmParams:
             on_disallowed_action = LitellmParamsOnDisallowedAction(_on_disallowed_action)
 
 
+
+
+        def _parse_use_v2(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        use_v2 = _parse_use_v2(d.pop("use_v2", UNSET))
 
 
         def _parse_application_id(data: object) -> None | str | Unset:
@@ -2348,6 +2542,42 @@ class LitellmParams:
         presidio_score_thresholds = _parse_presidio_score_thresholds(d.pop("presidio_score_thresholds", UNSET))
 
 
+        def _parse_presidio_entities_deny_list(data: object) -> list[PiiEntityType | str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                presidio_entities_deny_list_type_0 = []
+                _presidio_entities_deny_list_type_0 = data
+                for presidio_entities_deny_list_type_0_item_data in (_presidio_entities_deny_list_type_0):
+                    def _parse_presidio_entities_deny_list_type_0_item(data: object) -> PiiEntityType | str:
+                        try:
+                            if not isinstance(data, str):
+                                raise TypeError()
+                            presidio_entities_deny_list_type_0_item_type_0 = PiiEntityType(data)
+
+
+
+                            return presidio_entities_deny_list_type_0_item_type_0
+                        except (TypeError, ValueError, AttributeError, KeyError):
+                            pass
+                        return cast(PiiEntityType | str, data)
+
+                    presidio_entities_deny_list_type_0_item = _parse_presidio_entities_deny_list_type_0_item(presidio_entities_deny_list_type_0_item_data)
+
+                    presidio_entities_deny_list_type_0.append(presidio_entities_deny_list_type_0_item)
+
+                return presidio_entities_deny_list_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[PiiEntityType | str] | None | Unset, data)
+
+        presidio_entities_deny_list = _parse_presidio_entities_deny_list(d.pop("presidio_entities_deny_list", UNSET))
+
+
         def _parse_presidio_ad_hoc_recognizers(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -2382,6 +2612,10 @@ class LitellmParams:
             guardrail=guardrail,
             mode=mode,
             optional_params=optional_params,
+            blocked_languages=blocked_languages,
+            action=action,
+            confidence_threshold=confidence_threshold,
+            detect_execution_intent=detect_execution_intent,
             api_key=api_key,
             api_base=api_base,
             evaluation_id=evaluation_id,
@@ -2420,6 +2654,9 @@ class LitellmParams:
             pangea_output_recipe=pangea_output_recipe,
             model=model,
             violation_message_template=violation_message_template,
+            end_session_after_n_fails=end_session_after_n_fails,
+            on_violation=on_violation,
+            realtime_violation_message=realtime_violation_message,
             template_id=template_id,
             location=location,
             credentials=credentials,
@@ -2439,6 +2676,7 @@ class LitellmParams:
             rules=rules,
             default_action=default_action,
             on_disallowed_action=on_disallowed_action,
+            use_v2=use_v2,
             application_id=application_id,
             monitor_mode=monitor_mode,
             block_failures=block_failures,
@@ -2476,6 +2714,7 @@ class LitellmParams:
             presidio_run_on=presidio_run_on,
             pii_entities_config=pii_entities_config,
             presidio_score_thresholds=presidio_score_thresholds,
+            presidio_entities_deny_list=presidio_entities_deny_list,
             presidio_ad_hoc_recognizers=presidio_ad_hoc_recognizers,
             mock_redacted_text=mock_redacted_text,
         )

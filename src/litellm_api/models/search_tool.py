@@ -62,8 +62,8 @@ class SearchTool:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.search_tool_lite_llm_params import SearchToolLiteLLMParams
         from ..models.search_tool_search_tool_info_type_0 import SearchToolSearchToolInfoType0
+        from ..models.search_tool_lite_llm_params import SearchToolLiteLLMParams
         search_tool_name = self.search_tool_name
 
         litellm_params = self.litellm_params.to_dict()

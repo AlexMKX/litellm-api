@@ -16,6 +16,7 @@ import datetime
 if TYPE_CHECKING:
   from ..models.agent_response_agent_card_params import AgentResponseAgentCardParams
   from ..models.agent_response_litellm_params_type_0 import AgentResponseLitellmParamsType0
+  from ..models.agent_response_object_permission_type_0 import AgentResponseObjectPermissionType0
 
 
 
@@ -33,6 +34,7 @@ class AgentResponse:
             agent_name (str):
             agent_card_params (AgentResponseAgentCardParams):
             litellm_params (AgentResponseLitellmParamsType0 | None | Unset):
+            object_permission (AgentResponseObjectPermissionType0 | None | Unset):
             created_at (datetime.datetime | None | Unset):
             updated_at (datetime.datetime | None | Unset):
             created_by (None | str | Unset):
@@ -43,6 +45,7 @@ class AgentResponse:
     agent_name: str
     agent_card_params: AgentResponseAgentCardParams
     litellm_params: AgentResponseLitellmParamsType0 | None | Unset = UNSET
+    object_permission: AgentResponseObjectPermissionType0 | None | Unset = UNSET
     created_at: datetime.datetime | None | Unset = UNSET
     updated_at: datetime.datetime | None | Unset = UNSET
     created_by: None | str | Unset = UNSET
@@ -54,8 +57,9 @@ class AgentResponse:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.agent_response_agent_card_params import AgentResponseAgentCardParams
         from ..models.agent_response_litellm_params_type_0 import AgentResponseLitellmParamsType0
+        from ..models.agent_response_agent_card_params import AgentResponseAgentCardParams
+        from ..models.agent_response_object_permission_type_0 import AgentResponseObjectPermissionType0
         agent_id = self.agent_id
 
         agent_name = self.agent_name
@@ -69,6 +73,14 @@ class AgentResponse:
             litellm_params = self.litellm_params.to_dict()
         else:
             litellm_params = self.litellm_params
+
+        object_permission: dict[str, Any] | None | Unset
+        if isinstance(self.object_permission, Unset):
+            object_permission = UNSET
+        elif isinstance(self.object_permission, AgentResponseObjectPermissionType0):
+            object_permission = self.object_permission.to_dict()
+        else:
+            object_permission = self.object_permission
 
         created_at: None | str | Unset
         if isinstance(self.created_at, Unset):
@@ -108,6 +120,8 @@ class AgentResponse:
         })
         if litellm_params is not UNSET:
             field_dict["litellm_params"] = litellm_params
+        if object_permission is not UNSET:
+            field_dict["object_permission"] = object_permission
         if created_at is not UNSET:
             field_dict["created_at"] = created_at
         if updated_at is not UNSET:
@@ -125,6 +139,7 @@ class AgentResponse:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.agent_response_agent_card_params import AgentResponseAgentCardParams
         from ..models.agent_response_litellm_params_type_0 import AgentResponseLitellmParamsType0
+        from ..models.agent_response_object_permission_type_0 import AgentResponseObjectPermissionType0
         d = dict(src_dict)
         agent_id = d.pop("agent_id")
 
@@ -153,6 +168,26 @@ class AgentResponse:
             return cast(AgentResponseLitellmParamsType0 | None | Unset, data)
 
         litellm_params = _parse_litellm_params(d.pop("litellm_params", UNSET))
+
+
+        def _parse_object_permission(data: object) -> AgentResponseObjectPermissionType0 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                object_permission_type_0 = AgentResponseObjectPermissionType0.from_dict(data)
+
+
+
+                return object_permission_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(AgentResponseObjectPermissionType0 | None | Unset, data)
+
+        object_permission = _parse_object_permission(d.pop("object_permission", UNSET))
 
 
         def _parse_created_at(data: object) -> datetime.datetime | None | Unset:
@@ -220,6 +255,7 @@ class AgentResponse:
             agent_name=agent_name,
             agent_card_params=agent_card_params,
             litellm_params=litellm_params,
+            object_permission=object_permission,
             created_at=created_at,
             updated_at=updated_at,
             created_by=created_by,

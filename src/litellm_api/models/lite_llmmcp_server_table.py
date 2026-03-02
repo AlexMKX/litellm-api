@@ -66,7 +66,7 @@ class LiteLLMMCPServerTable:
             token_url (None | str | Unset):
             registration_url (None | str | Unset):
             allow_all_keys (bool | Unset):  Default: False.
-            available_on_public_internet (bool | Unset):  Default: False.
+            available_on_public_internet (bool | Unset):  Default: True.
      """
 
     server_id: str
@@ -98,7 +98,7 @@ class LiteLLMMCPServerTable:
     token_url: None | str | Unset = UNSET
     registration_url: None | str | Unset = UNSET
     allow_all_keys: bool | Unset = False
-    available_on_public_internet: bool | Unset = False
+    available_on_public_internet: bool | Unset = True
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -106,11 +106,11 @@ class LiteLLMMCPServerTable:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.lite_llmmcp_server_table_env import LiteLLMMCPServerTableEnv
-        from ..models.lite_llmmcp_server_table_static_headers_type_0 import LiteLLMMCPServerTableStaticHeadersType0
-        from ..models.lite_llmmcp_server_table_mcp_info_type_0 import LiteLLMMCPServerTableMcpInfoType0
-        from ..models.lite_llmmcp_server_table_teams_item import LiteLLMMCPServerTableTeamsItem
         from ..models.mcp_credentials import MCPCredentials
+        from ..models.lite_llmmcp_server_table_static_headers_type_0 import LiteLLMMCPServerTableStaticHeadersType0
+        from ..models.lite_llmmcp_server_table_teams_item import LiteLLMMCPServerTableTeamsItem
+        from ..models.lite_llmmcp_server_table_env import LiteLLMMCPServerTableEnv
+        from ..models.lite_llmmcp_server_table_mcp_info_type_0 import LiteLLMMCPServerTableMcpInfoType0
         server_id = self.server_id
 
         transport = self.transport.value

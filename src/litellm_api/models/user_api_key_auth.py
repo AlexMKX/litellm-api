@@ -20,12 +20,14 @@ if TYPE_CHECKING:
   from ..models.member import Member
   from ..models.user_api_key_auth_aliases import UserAPIKeyAuthAliases
   from ..models.user_api_key_auth_config import UserAPIKeyAuthConfig
+  from ..models.user_api_key_auth_end_user_model_max_budget_type_0 import UserAPIKeyAuthEndUserModelMaxBudgetType0
   from ..models.user_api_key_auth_litellm_budget_table_type_0 import UserAPIKeyAuthLitellmBudgetTableType0
   from ..models.user_api_key_auth_metadata import UserAPIKeyAuthMetadata
   from ..models.user_api_key_auth_model_max_budget import UserAPIKeyAuthModelMaxBudget
   from ..models.user_api_key_auth_model_spend import UserAPIKeyAuthModelSpend
   from ..models.user_api_key_auth_organization_metadata_type_0 import UserAPIKeyAuthOrganizationMetadataType0
   from ..models.user_api_key_auth_permissions import UserAPIKeyAuthPermissions
+  from ..models.user_api_key_auth_project_metadata_type_0 import UserAPIKeyAuthProjectMetadataType0
   from ..models.user_api_key_auth_router_settings_type_0 import UserAPIKeyAuthRouterSettingsType0
   from ..models.user_api_key_auth_rpm_limit_per_model_type_0 import UserAPIKeyAuthRpmLimitPerModelType0
   from ..models.user_api_key_auth_team_metadata_type_0 import UserAPIKeyAuthTeamMetadataType0
@@ -56,6 +58,7 @@ class UserAPIKeyAuth:
             config (UserAPIKeyAuthConfig | Unset):
             user_id (None | str | Unset):
             team_id (None | str | Unset):
+            agent_id (None | str | Unset):
             project_id (None | str | Unset):
             max_parallel_requests (int | None | Unset):
             metadata (UserAPIKeyAuthMetadata | Unset):
@@ -106,10 +109,12 @@ class UserAPIKeyAuth:
             end_user_tpm_limit (int | None | Unset):
             end_user_rpm_limit (int | None | Unset):
             end_user_max_budget (float | None | Unset):
+            end_user_model_max_budget (None | Unset | UserAPIKeyAuthEndUserModelMaxBudgetType0):
             organization_max_budget (float | None | Unset):
             organization_tpm_limit (int | None | Unset):
             organization_rpm_limit (int | None | Unset):
             organization_metadata (None | Unset | UserAPIKeyAuthOrganizationMetadataType0):
+            project_metadata (None | Unset | UserAPIKeyAuthProjectMetadataType0):
             last_refreshed_at (float | None | Unset):
             api_key (None | str | Unset):
             user_role (LitellmUserRoles | None | Unset):
@@ -138,6 +143,7 @@ class UserAPIKeyAuth:
     config: UserAPIKeyAuthConfig | Unset = UNSET
     user_id: None | str | Unset = UNSET
     team_id: None | str | Unset = UNSET
+    agent_id: None | str | Unset = UNSET
     project_id: None | str | Unset = UNSET
     max_parallel_requests: int | None | Unset = UNSET
     metadata: UserAPIKeyAuthMetadata | Unset = UNSET
@@ -188,10 +194,12 @@ class UserAPIKeyAuth:
     end_user_tpm_limit: int | None | Unset = UNSET
     end_user_rpm_limit: int | None | Unset = UNSET
     end_user_max_budget: float | None | Unset = UNSET
+    end_user_model_max_budget: None | Unset | UserAPIKeyAuthEndUserModelMaxBudgetType0 = UNSET
     organization_max_budget: float | None | Unset = UNSET
     organization_tpm_limit: int | None | Unset = UNSET
     organization_rpm_limit: int | None | Unset = UNSET
     organization_metadata: None | Unset | UserAPIKeyAuthOrganizationMetadataType0 = UNSET
+    project_metadata: None | Unset | UserAPIKeyAuthProjectMetadataType0 = UNSET
     last_refreshed_at: float | None | Unset = UNSET
     api_key: None | str | Unset = UNSET
     user_role: LitellmUserRoles | None | Unset = UNSET
@@ -214,21 +222,23 @@ class UserAPIKeyAuth:
 
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.user_api_key_auth_end_user_model_max_budget_type_0 import UserAPIKeyAuthEndUserModelMaxBudgetType0
+        from ..models.user_api_key_auth_rpm_limit_per_model_type_0 import UserAPIKeyAuthRpmLimitPerModelType0
+        from ..models.user_api_key_auth_model_max_budget import UserAPIKeyAuthModelMaxBudget
+        from ..models.user_api_key_auth_aliases import UserAPIKeyAuthAliases
+        from ..models.user_api_key_auth_router_settings_type_0 import UserAPIKeyAuthRouterSettingsType0
+        from ..models.user_api_key_auth_model_spend import UserAPIKeyAuthModelSpend
+        from ..models.user_api_key_auth_team_model_aliases_type_0 import UserAPIKeyAuthTeamModelAliasesType0
+        from ..models.user_api_key_auth_project_metadata_type_0 import UserAPIKeyAuthProjectMetadataType0
+        from ..models.user_api_key_auth_config import UserAPIKeyAuthConfig
+        from ..models.user_api_key_auth_permissions import UserAPIKeyAuthPermissions
         from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
+        from ..models.user_api_key_auth_team_metadata_type_0 import UserAPIKeyAuthTeamMetadataType0
         from ..models.user_api_key_auth_tpm_limit_per_model_type_0 import UserAPIKeyAuthTpmLimitPerModelType0
         from ..models.member import Member
-        from ..models.user_api_key_auth_team_model_aliases_type_0 import UserAPIKeyAuthTeamModelAliasesType0
         from ..models.user_api_key_auth_organization_metadata_type_0 import UserAPIKeyAuthOrganizationMetadataType0
-        from ..models.user_api_key_auth_model_spend import UserAPIKeyAuthModelSpend
-        from ..models.user_api_key_auth_permissions import UserAPIKeyAuthPermissions
-        from ..models.user_api_key_auth_rpm_limit_per_model_type_0 import UserAPIKeyAuthRpmLimitPerModelType0
-        from ..models.user_api_key_auth_router_settings_type_0 import UserAPIKeyAuthRouterSettingsType0
-        from ..models.user_api_key_auth_config import UserAPIKeyAuthConfig
-        from ..models.user_api_key_auth_litellm_budget_table_type_0 import UserAPIKeyAuthLitellmBudgetTableType0
-        from ..models.user_api_key_auth_team_metadata_type_0 import UserAPIKeyAuthTeamMetadataType0
-        from ..models.user_api_key_auth_aliases import UserAPIKeyAuthAliases
         from ..models.user_api_key_auth_metadata import UserAPIKeyAuthMetadata
-        from ..models.user_api_key_auth_model_max_budget import UserAPIKeyAuthModelMaxBudget
+        from ..models.user_api_key_auth_litellm_budget_table_type_0 import UserAPIKeyAuthLitellmBudgetTableType0
         token: None | str | Unset
         if isinstance(self.token, Unset):
             token = UNSET
@@ -288,6 +298,12 @@ class UserAPIKeyAuth:
             team_id = UNSET
         else:
             team_id = self.team_id
+
+        agent_id: None | str | Unset
+        if isinstance(self.agent_id, Unset):
+            agent_id = UNSET
+        else:
+            agent_id = self.agent_id
 
         project_id: None | str | Unset
         if isinstance(self.project_id, Unset):
@@ -609,6 +625,14 @@ class UserAPIKeyAuth:
         else:
             end_user_max_budget = self.end_user_max_budget
 
+        end_user_model_max_budget: dict[str, Any] | None | Unset
+        if isinstance(self.end_user_model_max_budget, Unset):
+            end_user_model_max_budget = UNSET
+        elif isinstance(self.end_user_model_max_budget, UserAPIKeyAuthEndUserModelMaxBudgetType0):
+            end_user_model_max_budget = self.end_user_model_max_budget.to_dict()
+        else:
+            end_user_model_max_budget = self.end_user_model_max_budget
+
         organization_max_budget: float | None | Unset
         if isinstance(self.organization_max_budget, Unset):
             organization_max_budget = UNSET
@@ -634,6 +658,14 @@ class UserAPIKeyAuth:
             organization_metadata = self.organization_metadata.to_dict()
         else:
             organization_metadata = self.organization_metadata
+
+        project_metadata: dict[str, Any] | None | Unset
+        if isinstance(self.project_metadata, Unset):
+            project_metadata = UNSET
+        elif isinstance(self.project_metadata, UserAPIKeyAuthProjectMetadataType0):
+            project_metadata = self.project_metadata.to_dict()
+        else:
+            project_metadata = self.project_metadata
 
         last_refreshed_at: float | None | Unset
         if isinstance(self.last_refreshed_at, Unset):
@@ -762,6 +794,8 @@ class UserAPIKeyAuth:
             field_dict["user_id"] = user_id
         if team_id is not UNSET:
             field_dict["team_id"] = team_id
+        if agent_id is not UNSET:
+            field_dict["agent_id"] = agent_id
         if project_id is not UNSET:
             field_dict["project_id"] = project_id
         if max_parallel_requests is not UNSET:
@@ -862,6 +896,8 @@ class UserAPIKeyAuth:
             field_dict["end_user_rpm_limit"] = end_user_rpm_limit
         if end_user_max_budget is not UNSET:
             field_dict["end_user_max_budget"] = end_user_max_budget
+        if end_user_model_max_budget is not UNSET:
+            field_dict["end_user_model_max_budget"] = end_user_model_max_budget
         if organization_max_budget is not UNSET:
             field_dict["organization_max_budget"] = organization_max_budget
         if organization_tpm_limit is not UNSET:
@@ -870,6 +906,8 @@ class UserAPIKeyAuth:
             field_dict["organization_rpm_limit"] = organization_rpm_limit
         if organization_metadata is not UNSET:
             field_dict["organization_metadata"] = organization_metadata
+        if project_metadata is not UNSET:
+            field_dict["project_metadata"] = project_metadata
         if last_refreshed_at is not UNSET:
             field_dict["last_refreshed_at"] = last_refreshed_at
         if api_key is not UNSET:
@@ -911,12 +949,14 @@ class UserAPIKeyAuth:
         from ..models.member import Member
         from ..models.user_api_key_auth_aliases import UserAPIKeyAuthAliases
         from ..models.user_api_key_auth_config import UserAPIKeyAuthConfig
+        from ..models.user_api_key_auth_end_user_model_max_budget_type_0 import UserAPIKeyAuthEndUserModelMaxBudgetType0
         from ..models.user_api_key_auth_litellm_budget_table_type_0 import UserAPIKeyAuthLitellmBudgetTableType0
         from ..models.user_api_key_auth_metadata import UserAPIKeyAuthMetadata
         from ..models.user_api_key_auth_model_max_budget import UserAPIKeyAuthModelMaxBudget
         from ..models.user_api_key_auth_model_spend import UserAPIKeyAuthModelSpend
         from ..models.user_api_key_auth_organization_metadata_type_0 import UserAPIKeyAuthOrganizationMetadataType0
         from ..models.user_api_key_auth_permissions import UserAPIKeyAuthPermissions
+        from ..models.user_api_key_auth_project_metadata_type_0 import UserAPIKeyAuthProjectMetadataType0
         from ..models.user_api_key_auth_router_settings_type_0 import UserAPIKeyAuthRouterSettingsType0
         from ..models.user_api_key_auth_rpm_limit_per_model_type_0 import UserAPIKeyAuthRpmLimitPerModelType0
         from ..models.user_api_key_auth_team_metadata_type_0 import UserAPIKeyAuthTeamMetadataType0
@@ -1026,6 +1066,16 @@ class UserAPIKeyAuth:
             return cast(None | str | Unset, data)
 
         team_id = _parse_team_id(d.pop("team_id", UNSET))
+
+
+        def _parse_agent_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        agent_id = _parse_agent_id(d.pop("agent_id", UNSET))
 
 
         def _parse_project_id(data: object) -> None | str | Unset:
@@ -1649,6 +1699,26 @@ class UserAPIKeyAuth:
         end_user_max_budget = _parse_end_user_max_budget(d.pop("end_user_max_budget", UNSET))
 
 
+        def _parse_end_user_model_max_budget(data: object) -> None | Unset | UserAPIKeyAuthEndUserModelMaxBudgetType0:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                end_user_model_max_budget_type_0 = UserAPIKeyAuthEndUserModelMaxBudgetType0.from_dict(data)
+
+
+
+                return end_user_model_max_budget_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UserAPIKeyAuthEndUserModelMaxBudgetType0, data)
+
+        end_user_model_max_budget = _parse_end_user_model_max_budget(d.pop("end_user_model_max_budget", UNSET))
+
+
         def _parse_organization_max_budget(data: object) -> float | None | Unset:
             if data is None:
                 return data
@@ -1697,6 +1767,26 @@ class UserAPIKeyAuth:
             return cast(None | Unset | UserAPIKeyAuthOrganizationMetadataType0, data)
 
         organization_metadata = _parse_organization_metadata(d.pop("organization_metadata", UNSET))
+
+
+        def _parse_project_metadata(data: object) -> None | Unset | UserAPIKeyAuthProjectMetadataType0:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                project_metadata_type_0 = UserAPIKeyAuthProjectMetadataType0.from_dict(data)
+
+
+
+                return project_metadata_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UserAPIKeyAuthProjectMetadataType0, data)
+
+        project_metadata = _parse_project_metadata(d.pop("project_metadata", UNSET))
 
 
         def _parse_last_refreshed_at(data: object) -> float | None | Unset:
@@ -1911,6 +2001,7 @@ class UserAPIKeyAuth:
             config=config,
             user_id=user_id,
             team_id=team_id,
+            agent_id=agent_id,
             project_id=project_id,
             max_parallel_requests=max_parallel_requests,
             metadata=metadata,
@@ -1961,10 +2052,12 @@ class UserAPIKeyAuth:
             end_user_tpm_limit=end_user_tpm_limit,
             end_user_rpm_limit=end_user_rpm_limit,
             end_user_max_budget=end_user_max_budget,
+            end_user_model_max_budget=end_user_model_max_budget,
             organization_max_budget=organization_max_budget,
             organization_tpm_limit=organization_tpm_limit,
             organization_rpm_limit=organization_rpm_limit,
             organization_metadata=organization_metadata,
+            project_metadata=project_metadata,
             last_refreshed_at=last_refreshed_at,
             api_key=api_key,
             user_role=user_role,

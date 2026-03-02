@@ -43,8 +43,8 @@ class BulkUpdateUserRequest:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.update_user_request_no_user_i_dor_email import UpdateUserRequestNoUserIDorEmail
         from ..models.update_user_request import UpdateUserRequest
+        from ..models.update_user_request_no_user_i_dor_email import UpdateUserRequestNoUserIDorEmail
         users: list[dict[str, Any]] | None | Unset
         if isinstance(self.users, Unset):
             users = UNSET

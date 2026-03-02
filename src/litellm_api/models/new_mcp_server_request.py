@@ -52,7 +52,7 @@ class NewMCPServerRequest:
             token_url (None | str | Unset):
             registration_url (None | str | Unset):
             allow_all_keys (bool | Unset):  Default: False.
-            available_on_public_internet (bool | Unset):  Default: False.
+            available_on_public_internet (bool | Unset):  Default: True.
      """
 
     server_id: None | str | Unset = UNSET
@@ -76,7 +76,7 @@ class NewMCPServerRequest:
     token_url: None | str | Unset = UNSET
     registration_url: None | str | Unset = UNSET
     allow_all_keys: bool | Unset = False
-    available_on_public_internet: bool | Unset = False
+    available_on_public_internet: bool | Unset = True
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 

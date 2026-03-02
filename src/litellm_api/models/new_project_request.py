@@ -44,6 +44,7 @@ class NewProjectRequest:
             project_alias (None | str | Unset):
             description (None | str | Unset):
             metadata (NewProjectRequestMetadataType0 | None | Unset):
+            tags (list[str] | None | Unset):
             models (list[str] | Unset):
             model_rpm_limit (NewProjectRequestModelRpmLimitType0 | None | Unset):
             model_tpm_limit (NewProjectRequestModelTpmLimitType0 | None | Unset):
@@ -64,6 +65,7 @@ class NewProjectRequest:
     project_alias: None | str | Unset = UNSET
     description: None | str | Unset = UNSET
     metadata: NewProjectRequestMetadataType0 | None | Unset = UNSET
+    tags: list[str] | None | Unset = UNSET
     models: list[str] | Unset = UNSET
     model_rpm_limit: NewProjectRequestModelRpmLimitType0 | None | Unset = UNSET
     model_tpm_limit: NewProjectRequestModelTpmLimitType0 | None | Unset = UNSET
@@ -76,10 +78,10 @@ class NewProjectRequest:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.new_project_request_metadata_type_0 import NewProjectRequestMetadataType0
-        from ..models.new_project_request_model_max_budget_type_0 import NewProjectRequestModelMaxBudgetType0
-        from ..models.lite_llm_object_permission_base import LiteLLMObjectPermissionBase
         from ..models.new_project_request_model_tpm_limit_type_0 import NewProjectRequestModelTpmLimitType0
+        from ..models.lite_llm_object_permission_base import LiteLLMObjectPermissionBase
+        from ..models.new_project_request_model_max_budget_type_0 import NewProjectRequestModelMaxBudgetType0
+        from ..models.new_project_request_metadata_type_0 import NewProjectRequestMetadataType0
         from ..models.new_project_request_model_rpm_limit_type_0 import NewProjectRequestModelRpmLimitType0
         team_id = self.team_id
 
@@ -159,6 +161,16 @@ class NewProjectRequest:
         else:
             metadata = self.metadata
 
+        tags: list[str] | None | Unset
+        if isinstance(self.tags, Unset):
+            tags = UNSET
+        elif isinstance(self.tags, list):
+            tags = self.tags
+
+
+        else:
+            tags = self.tags
+
         models: list[str] | Unset = UNSET
         if not isinstance(self.models, Unset):
             models = self.models
@@ -221,6 +233,8 @@ class NewProjectRequest:
             field_dict["description"] = description
         if metadata is not UNSET:
             field_dict["metadata"] = metadata
+        if tags is not UNSET:
+            field_dict["tags"] = tags
         if models is not UNSET:
             field_dict["models"] = models
         if model_rpm_limit is not UNSET:
@@ -386,6 +400,24 @@ class NewProjectRequest:
         metadata = _parse_metadata(d.pop("metadata", UNSET))
 
 
+        def _parse_tags(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                tags_type_0 = cast(list[str], data)
+
+                return tags_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        tags = _parse_tags(d.pop("tags", UNSET))
+
+
         models = cast(list[str], d.pop("models", UNSET))
 
 
@@ -465,6 +497,7 @@ class NewProjectRequest:
             project_alias=project_alias,
             description=description,
             metadata=metadata,
+            tags=tags,
             models=models,
             model_rpm_limit=model_rpm_limit,
             model_tpm_limit=model_tpm_limit,

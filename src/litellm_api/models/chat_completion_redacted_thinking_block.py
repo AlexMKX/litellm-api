@@ -44,8 +44,8 @@ class ChatCompletionRedactedThinkingBlock:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.chat_completion_cached_content import ChatCompletionCachedContent
         from ..models.chat_completion_redacted_thinking_block_cache_control_type_0 import ChatCompletionRedactedThinkingBlockCacheControlType0
+        from ..models.chat_completion_cached_content import ChatCompletionCachedContent
         type_ = self.type_
 
         data = self.data

@@ -8,6 +8,7 @@ from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..models.base_litellm_params_on_violation_type_0 import BaseLitellmParamsOnViolationType0
 from ..models.base_litellm_params_unreachable_fallback import BaseLitellmParamsUnreachableFallback
 from ..types import UNSET, Unset
 from typing import cast
@@ -59,6 +60,12 @@ class BaseLitellmParams:
             model (None | str | Unset): Optional field if guardrail requires a 'model' parameter
             violation_message_template (None | str | Unset): Custom message when a guardrail blocks an action. Supports
                 placeholders like {tool_name}, {rule_id}, and {default_message}.
+            end_session_after_n_fails (int | None | Unset): For /v1/realtime sessions: automatically close the session after
+                this many guardrail violations.
+            on_violation (BaseLitellmParamsOnViolationType0 | None | Unset): For /v1/realtime sessions: 'warn' speaks the
+                violation message and continues; 'end_session' speaks the message and closes the connection.
+            realtime_violation_message (None | str | Unset): The message the bot speaks aloud when a /v1/realtime guardrail
+                fires. Falls back to violation_message_template if not set.
             template_id (None | str | Unset): The ID of your Model Armor template
             location (None | str | Unset): Google Cloud location/region (e.g., us-central1)
             credentials (None | str | Unset): Path to Google Cloud credentials JSON file or JSON string
@@ -95,6 +102,9 @@ class BaseLitellmParams:
     pangea_output_recipe: None | str | Unset = UNSET
     model: None | str | Unset = UNSET
     violation_message_template: None | str | Unset = UNSET
+    end_session_after_n_fails: int | None | Unset = UNSET
+    on_violation: BaseLitellmParamsOnViolationType0 | None | Unset = UNSET
+    realtime_violation_message: None | str | Unset = UNSET
     template_id: None | str | Unset = UNSET
     location: None | str | Unset = UNSET
     credentials: None | str | Unset = UNSET
@@ -110,12 +120,12 @@ class BaseLitellmParams:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.content_filter_pattern import ContentFilterPattern
-        from ..models.base_litellm_params_detect_secrets_config_type_0 import BaseLitellmParamsDetectSecretsConfigType0
-        from ..models.content_filter_category_config import ContentFilterCategoryConfig
         from ..models.blocked_word import BlockedWord
+        from ..models.base_litellm_params_detect_secrets_config_type_0 import BaseLitellmParamsDetectSecretsConfigType0
         from ..models.lakera_category_thresholds import LakeraCategoryThresholds
+        from ..models.content_filter_pattern import ContentFilterPattern
         from ..models.base_litellm_params_additional_provider_specific_params_type_0 import BaseLitellmParamsAdditionalProviderSpecificParamsType0
+        from ..models.content_filter_category_config import ContentFilterCategoryConfig
         patterns: list[dict[str, Any]] | None | Unset
         if isinstance(self.patterns, Unset):
             patterns = UNSET
@@ -261,6 +271,26 @@ class BaseLitellmParams:
         else:
             violation_message_template = self.violation_message_template
 
+        end_session_after_n_fails: int | None | Unset
+        if isinstance(self.end_session_after_n_fails, Unset):
+            end_session_after_n_fails = UNSET
+        else:
+            end_session_after_n_fails = self.end_session_after_n_fails
+
+        on_violation: None | str | Unset
+        if isinstance(self.on_violation, Unset):
+            on_violation = UNSET
+        elif isinstance(self.on_violation, BaseLitellmParamsOnViolationType0):
+            on_violation = self.on_violation.value
+        else:
+            on_violation = self.on_violation
+
+        realtime_violation_message: None | str | Unset
+        if isinstance(self.realtime_violation_message, Unset):
+            realtime_violation_message = UNSET
+        else:
+            realtime_violation_message = self.realtime_violation_message
+
         template_id: None | str | Unset
         if isinstance(self.template_id, Unset):
             template_id = UNSET
@@ -355,6 +385,12 @@ class BaseLitellmParams:
             field_dict["model"] = model
         if violation_message_template is not UNSET:
             field_dict["violation_message_template"] = violation_message_template
+        if end_session_after_n_fails is not UNSET:
+            field_dict["end_session_after_n_fails"] = end_session_after_n_fails
+        if on_violation is not UNSET:
+            field_dict["on_violation"] = on_violation
+        if realtime_violation_message is not UNSET:
+            field_dict["realtime_violation_message"] = realtime_violation_message
         if template_id is not UNSET:
             field_dict["template_id"] = template_id
         if location is not UNSET:
@@ -650,6 +686,46 @@ class BaseLitellmParams:
         violation_message_template = _parse_violation_message_template(d.pop("violation_message_template", UNSET))
 
 
+        def _parse_end_session_after_n_fails(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        end_session_after_n_fails = _parse_end_session_after_n_fails(d.pop("end_session_after_n_fails", UNSET))
+
+
+        def _parse_on_violation(data: object) -> BaseLitellmParamsOnViolationType0 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                on_violation_type_0 = BaseLitellmParamsOnViolationType0(data)
+
+
+
+                return on_violation_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(BaseLitellmParamsOnViolationType0 | None | Unset, data)
+
+        on_violation = _parse_on_violation(d.pop("on_violation", UNSET))
+
+
+        def _parse_realtime_violation_message(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        realtime_violation_message = _parse_realtime_violation_message(d.pop("realtime_violation_message", UNSET))
+
+
         def _parse_template_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -761,6 +837,9 @@ class BaseLitellmParams:
             pangea_output_recipe=pangea_output_recipe,
             model=model,
             violation_message_template=violation_message_template,
+            end_session_after_n_fails=end_session_after_n_fails,
+            on_violation=on_violation,
+            realtime_violation_message=realtime_violation_message,
             template_id=template_id,
             location=location,
             credentials=credentials,

@@ -32,6 +32,12 @@ class PolicyDBResponse:
         Attributes:
             policy_id (str): Unique ID of the policy.
             policy_name (str): Name of the policy.
+            version_number (int | Unset): Version number of this policy. Default: 1.
+            version_status (str | Unset): One of: draft, published, production. Default: 'production'.
+            parent_version_id (None | str | Unset): Policy ID this version was cloned from.
+            is_latest (bool | Unset): True if this is the latest version by version_number. Default: True.
+            published_at (datetime.datetime | None | Unset): When this version was published.
+            production_at (datetime.datetime | None | Unset): When this version was promoted to production.
             inherit (None | str | Unset): Parent policy name.
             description (None | str | Unset): Policy description.
             guardrails_add (list[str] | Unset): Guardrails to add.
@@ -46,6 +52,12 @@ class PolicyDBResponse:
 
     policy_id: str
     policy_name: str
+    version_number: int | Unset = 1
+    version_status: str | Unset = 'production'
+    parent_version_id: None | str | Unset = UNSET
+    is_latest: bool | Unset = True
+    published_at: datetime.datetime | None | Unset = UNSET
+    production_at: datetime.datetime | None | Unset = UNSET
     inherit: None | str | Unset = UNSET
     description: None | str | Unset = UNSET
     guardrails_add: list[str] | Unset = UNSET
@@ -68,6 +80,34 @@ class PolicyDBResponse:
         policy_id = self.policy_id
 
         policy_name = self.policy_name
+
+        version_number = self.version_number
+
+        version_status = self.version_status
+
+        parent_version_id: None | str | Unset
+        if isinstance(self.parent_version_id, Unset):
+            parent_version_id = UNSET
+        else:
+            parent_version_id = self.parent_version_id
+
+        is_latest = self.is_latest
+
+        published_at: None | str | Unset
+        if isinstance(self.published_at, Unset):
+            published_at = UNSET
+        elif isinstance(self.published_at, datetime.datetime):
+            published_at = self.published_at.isoformat()
+        else:
+            published_at = self.published_at
+
+        production_at: None | str | Unset
+        if isinstance(self.production_at, Unset):
+            production_at = UNSET
+        elif isinstance(self.production_at, datetime.datetime):
+            production_at = self.production_at.isoformat()
+        else:
+            production_at = self.production_at
 
         inherit: None | str | Unset
         if isinstance(self.inherit, Unset):
@@ -144,6 +184,18 @@ class PolicyDBResponse:
             "policy_id": policy_id,
             "policy_name": policy_name,
         })
+        if version_number is not UNSET:
+            field_dict["version_number"] = version_number
+        if version_status is not UNSET:
+            field_dict["version_status"] = version_status
+        if parent_version_id is not UNSET:
+            field_dict["parent_version_id"] = parent_version_id
+        if is_latest is not UNSET:
+            field_dict["is_latest"] = is_latest
+        if published_at is not UNSET:
+            field_dict["published_at"] = published_at
+        if production_at is not UNSET:
+            field_dict["production_at"] = production_at
         if inherit is not UNSET:
             field_dict["inherit"] = inherit
         if description is not UNSET:
@@ -177,6 +229,62 @@ class PolicyDBResponse:
         policy_id = d.pop("policy_id")
 
         policy_name = d.pop("policy_name")
+
+        version_number = d.pop("version_number", UNSET)
+
+        version_status = d.pop("version_status", UNSET)
+
+        def _parse_parent_version_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        parent_version_id = _parse_parent_version_id(d.pop("parent_version_id", UNSET))
+
+
+        is_latest = d.pop("is_latest", UNSET)
+
+        def _parse_published_at(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                published_at_type_0 = isoparse(data)
+
+
+
+                return published_at_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        published_at = _parse_published_at(d.pop("published_at", UNSET))
+
+
+        def _parse_production_at(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                production_at_type_0 = isoparse(data)
+
+
+
+                return production_at_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        production_at = _parse_production_at(d.pop("production_at", UNSET))
+
 
         def _parse_inherit(data: object) -> None | str | Unset:
             if data is None:
@@ -307,6 +415,12 @@ class PolicyDBResponse:
         policy_db_response = cls(
             policy_id=policy_id,
             policy_name=policy_name,
+            version_number=version_number,
+            version_status=version_status,
+            parent_version_id=parent_version_id,
+            is_latest=is_latest,
+            published_at=published_at,
+            production_at=production_at,
             inherit=inherit,
             description=description,
             guardrails_add=guardrails_add,

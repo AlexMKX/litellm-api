@@ -40,8 +40,8 @@ class MCPSemanticFilterSettingsResponse:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.mcp_semantic_filter_settings_response_values import MCPSemanticFilterSettingsResponseValues
         from ..models.mcp_semantic_filter_settings_response_field_schema import MCPSemanticFilterSettingsResponseFieldSchema
+        from ..models.mcp_semantic_filter_settings_response_values import MCPSemanticFilterSettingsResponseValues
         values = self.values.to_dict()
 
         field_schema = self.field_schema.to_dict()

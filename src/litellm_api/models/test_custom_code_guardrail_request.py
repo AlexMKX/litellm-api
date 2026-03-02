@@ -45,8 +45,8 @@ class TestCustomCodeGuardrailRequest:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.test_custom_code_guardrail_request_request_data_type_0 import TestCustomCodeGuardrailRequestRequestDataType0
         from ..models.test_custom_code_guardrail_request_test_input import TestCustomCodeGuardrailRequestTestInput
+        from ..models.test_custom_code_guardrail_request_request_data_type_0 import TestCustomCodeGuardrailRequestRequestDataType0
         custom_code = self.custom_code
 
         test_input = self.test_input.to_dict()

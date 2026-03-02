@@ -73,8 +73,8 @@ class NewCustomerRequest:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.new_customer_request_model_max_budget_type_0 import NewCustomerRequestModelMaxBudgetType0
         from ..models.lite_llm_object_permission_base import LiteLLMObjectPermissionBase
+        from ..models.new_customer_request_model_max_budget_type_0 import NewCustomerRequestModelMaxBudgetType0
         user_id = self.user_id
 
         budget_id: None | str | Unset

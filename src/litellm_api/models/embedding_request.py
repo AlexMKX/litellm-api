@@ -62,8 +62,8 @@ class EmbeddingRequest:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.embedding_request_custom_llm_provider_type_1 import EmbeddingRequestCustomLlmProviderType1
         from ..models.embedding_request_litellm_logging_obj_type_0 import EmbeddingRequestLitellmLoggingObjType0
+        from ..models.embedding_request_custom_llm_provider_type_1 import EmbeddingRequestCustomLlmProviderType1
         model = self.model
 
         input_: list[str] | Unset = UNSET

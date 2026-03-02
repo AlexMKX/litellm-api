@@ -25,10 +25,13 @@ from .agent_extension import AgentExtension
 from .agent_extension_params_type_0 import AgentExtensionParamsType0
 from .agent_interface import AgentInterface
 from .agent_make_public_response import AgentMakePublicResponse
+from .agent_object_permission import AgentObjectPermission
+from .agent_object_permission_mcp_tool_permissions_type_0 import AgentObjectPermissionMcpToolPermissionsType0
 from .agent_provider import AgentProvider
 from .agent_response import AgentResponse
 from .agent_response_agent_card_params import AgentResponseAgentCardParams
 from .agent_response_litellm_params_type_0 import AgentResponseLitellmParamsType0
+from .agent_response_object_permission_type_0 import AgentResponseObjectPermissionType0
 from .agent_skill import AgentSkill
 from .agent_skill_security_type_0_item import AgentSkillSecurityType0Item
 from .allowed_vector_store_index_item import AllowedVectorStoreIndexItem
@@ -44,12 +47,15 @@ from .audit_log_response_updated_values_type_0 import AuditLogResponseUpdatedVal
 from .base_litellm_params import BaseLitellmParams
 from .base_litellm_params_additional_provider_specific_params_type_0 import BaseLitellmParamsAdditionalProviderSpecificParamsType0
 from .base_litellm_params_detect_secrets_config_type_0 import BaseLitellmParamsDetectSecretsConfigType0
+from .base_litellm_params_on_violation_type_0 import BaseLitellmParamsOnViolationType0
 from .base_litellm_params_unreachable_fallback import BaseLitellmParamsUnreachableFallback
 from .base_model import BaseModel
 from .block_key_request import BlockKeyRequest
 from .block_team_request import BlockTeamRequest
 from .block_users import BlockUsers
 from .blocked_word import BlockedWord
+from .blog_post import BlogPost
+from .blog_posts_response import BlogPostsResponse
 from .body_audio_transcriptions_audio_transcriptions_post import BodyAudioTranscriptionsAudioTranscriptionsPost
 from .body_audio_transcriptions_v1_audio_transcriptions_post import BodyAudioTranscriptionsV1AudioTranscriptionsPost
 from .body_convert_prompt_file_to_json_utils_dotprompt_json_converter_post import BodyConvertPromptFileToJsonUtilsDotpromptJsonConverterPost
@@ -154,6 +160,8 @@ from .chat_completion_v1_chat_completions_post_body_tool_choice_type_1 import Ch
 from .chat_completion_v1_chat_completions_post_body_tools_type_0_item import ChatCompletionV1ChatCompletionsPostBodyToolsType0Item
 from .chat_completion_video_object import ChatCompletionVideoObject
 from .chat_completion_video_url_object import ChatCompletionVideoUrlObject
+from .chat_message import ChatMessage
+from .chat_message_role import ChatMessageRole
 from .choice_logprobs import ChoiceLogprobs
 from .choices import Choices
 from .choices_finish_reason import ChoicesFinishReason
@@ -223,6 +231,7 @@ from .embeddings_embeddings_post_body_litellm_logging_obj_type_0 import Embeddin
 from .embeddings_v1_embeddings_post_body import EmbeddingsV1EmbeddingsPostBody
 from .embeddings_v1_embeddings_post_body_custom_llm_provider_type_1 import EmbeddingsV1EmbeddingsPostBodyCustomLlmProviderType1
 from .embeddings_v1_embeddings_post_body_litellm_logging_obj_type_0 import EmbeddingsV1EmbeddingsPostBodyLitellmLoggingObjType0
+from .endpoint_provider import EndpointProvider
 from .enrich_policy_template_policy_templates_enrich_post_response_enrich_policy_template_policy_templates_enrich_post import EnrichPolicyTemplatePolicyTemplatesEnrichPostResponseEnrichPolicyTemplatePolicyTemplatesEnrichPost
 from .enrich_template_request import EnrichTemplateRequest
 from .enrich_template_request_parameters import EnrichTemplateRequestParameters
@@ -284,6 +293,7 @@ from .list_runs_response import ListRunsResponse
 from .list_search_tools_response import ListSearchToolsResponse
 from .list_skills_response import ListSkillsResponse
 from .list_tool_rest_api_mcp_rest_tools_list_get_response_list_tool_rest_api_mcp_rest_tools_list_get import ListToolRestApiMcpRestToolsListGetResponseListToolRestApiMcpRestToolsListGet
+from .list_tools_v1_tool_list_get_call_policy_type_0 import ListToolsV1ToolListGetCallPolicyType0
 from .lite_llm_budget_table import LiteLLMBudgetTable
 from .lite_llm_budget_table_model_max_budget_type_0 import LiteLLMBudgetTableModelMaxBudgetType0
 from .lite_llm_deleted_team_table import LiteLLMDeletedTeamTable
@@ -337,6 +347,9 @@ from .lite_llm_team_membership import LiteLLMTeamMembership
 from .lite_llm_team_table import LiteLLMTeamTable
 from .lite_llm_team_table_metadata_type_0 import LiteLLMTeamTableMetadataType0
 from .lite_llm_team_table_router_settings_type_0 import LiteLLMTeamTableRouterSettingsType0
+from .lite_llm_tool_table_row import LiteLLMToolTableRow
+from .lite_llm_tool_table_row_assignments_type_0 import LiteLLMToolTableRowAssignmentsType0
+from .lite_llm_tool_table_row_call_policy import LiteLLMToolTableRowCallPolicy
 from .lite_llm_verification_token import LiteLLMVerificationToken
 from .lite_llm_verification_token_aliases import LiteLLMVerificationTokenAliases
 from .lite_llm_verification_token_config import LiteLLMVerificationTokenConfig
@@ -355,6 +368,7 @@ from .lite_llmmcp_server_table_status_type_0 import LiteLLMMCPServerTableStatusT
 from .lite_llmmcp_server_table_teams_item import LiteLLMMCPServerTableTeamsItem
 from .lite_llmmcp_server_table_transport import LiteLLMMCPServerTableTransport
 from .litellm_params import LitellmParams
+from .litellm_params_action import LitellmParamsAction
 from .litellm_params_additional_provider_specific_params_type_0 import LitellmParamsAdditionalProviderSpecificParamsType0
 from .litellm_params_config_type_0 import LitellmParamsConfigType0
 from .litellm_params_default_action import LitellmParamsDefaultAction
@@ -364,6 +378,7 @@ from .litellm_params_metadata_type_0 import LitellmParamsMetadataType0
 from .litellm_params_mock_redacted_text_type_0 import LitellmParamsMockRedactedTextType0
 from .litellm_params_on_disallowed_action import LitellmParamsOnDisallowedAction
 from .litellm_params_on_flagged_type_0 import LitellmParamsOnFlaggedType0
+from .litellm_params_on_violation_type_0 import LitellmParamsOnViolationType0
 from .litellm_params_pii_entities_config_type_0 import LitellmParamsPiiEntitiesConfigType0
 from .litellm_params_presidio_filter_scope_type_0 import LitellmParamsPresidioFilterScopeType0
 from .litellm_params_presidio_run_on_type_0 import LitellmParamsPresidioRunOnType0
@@ -501,6 +516,12 @@ from .policy_validate_request_policies import PolicyValidateRequestPolicies
 from .policy_validation_error import PolicyValidationError
 from .policy_validation_error_type import PolicyValidationErrorType
 from .policy_validation_response import PolicyValidationResponse
+from .policy_version_compare_response import PolicyVersionCompareResponse
+from .policy_version_compare_response_field_diffs import PolicyVersionCompareResponseFieldDiffs
+from .policy_version_compare_response_field_diffs_additional_property import PolicyVersionCompareResponseFieldDiffsAdditionalProperty
+from .policy_version_create_request import PolicyVersionCreateRequest
+from .policy_version_list_response import PolicyVersionListResponse
+from .policy_version_status_update_request import PolicyVersionStatusUpdateRequest
 from .prompt import Prompt
 from .prompt_info import PromptInfo
 from .prompt_info_prompt_type import PromptInfoPromptType
@@ -592,6 +613,8 @@ from .successful_key_update import SuccessfulKeyUpdate
 from .successful_key_update_key_info import SuccessfulKeyUpdateKeyInfo
 from .suggest_policy_templates_policy_templates_suggest_post_response_suggest_policy_templates_policy_templates_suggest_post import SuggestPolicyTemplatesPolicyTemplatesSuggestPostResponseSuggestPolicyTemplatesPolicyTemplatesSuggestPost
 from .suggest_templates_request import SuggestTemplatesRequest
+from .supported_endpoint import SupportedEndpoint
+from .supported_endpoints_response import SupportedEndpointsResponse
 from .tag_active_users_response import TagActiveUsersResponse
 from .tag_delete_request import TagDeleteRequest
 from .tag_info_request import TagInfoRequest
@@ -639,9 +662,14 @@ from .token_count_request_contents_type_0_item import TokenCountRequestContentsT
 from .token_count_request_messages_type_0_item import TokenCountRequestMessagesType0Item
 from .token_count_response import TokenCountResponse
 from .token_count_response_original_response_type_0 import TokenCountResponseOriginalResponseType0
+from .tool_list_response import ToolListResponse
 from .tool_permission_rule import ToolPermissionRule
 from .tool_permission_rule_allowed_param_patterns_type_0 import ToolPermissionRuleAllowedParamPatternsType0
 from .tool_permission_rule_decision import ToolPermissionRuleDecision
+from .tool_policy_update_request import ToolPolicyUpdateRequest
+from .tool_policy_update_request_call_policy import ToolPolicyUpdateRequestCallPolicy
+from .tool_policy_update_response import ToolPolicyUpdateResponse
+from .tool_policy_update_response_call_policy import ToolPolicyUpdateResponseCallPolicy
 from .top_logprob import TopLogprob
 from .transform_request_body import TransformRequestBody
 from .transform_request_body_request_body import TransformRequestBodyRequestBody
@@ -693,16 +721,26 @@ from .update_team_request_secret_manager_settings_type_0 import UpdateTeamReques
 from .update_useful_links_request import UpdateUsefulLinksRequest
 from .update_useful_links_request_useful_links import UpdateUsefulLinksRequestUsefulLinks
 from .update_useful_links_request_useful_links_additional_property_type_1 import UpdateUsefulLinksRequestUsefulLinksAdditionalPropertyType1
+from .usage_ai_chat_request import UsageAIChatRequest
+from .usage_detail_response import UsageDetailResponse
+from .usage_detail_response_time_series_item import UsageDetailResponseTimeSeriesItem
+from .usage_log_entry import UsageLogEntry
+from .usage_logs_response import UsageLogsResponse
+from .usage_overview_response import UsageOverviewResponse
+from .usage_overview_response_chart_item import UsageOverviewResponseChartItem
+from .usage_overview_row import UsageOverviewRow
 from .user_api_key_auth import UserAPIKeyAuth
 from .user_api_key_auth_aliases import UserAPIKeyAuthAliases
 from .user_api_key_auth_allowed_model_region_type_0 import UserAPIKeyAuthAllowedModelRegionType0
 from .user_api_key_auth_config import UserAPIKeyAuthConfig
+from .user_api_key_auth_end_user_model_max_budget_type_0 import UserAPIKeyAuthEndUserModelMaxBudgetType0
 from .user_api_key_auth_litellm_budget_table_type_0 import UserAPIKeyAuthLitellmBudgetTableType0
 from .user_api_key_auth_metadata import UserAPIKeyAuthMetadata
 from .user_api_key_auth_model_max_budget import UserAPIKeyAuthModelMaxBudget
 from .user_api_key_auth_model_spend import UserAPIKeyAuthModelSpend
 from .user_api_key_auth_organization_metadata_type_0 import UserAPIKeyAuthOrganizationMetadataType0
 from .user_api_key_auth_permissions import UserAPIKeyAuthPermissions
+from .user_api_key_auth_project_metadata_type_0 import UserAPIKeyAuthProjectMetadataType0
 from .user_api_key_auth_router_settings_type_0 import UserAPIKeyAuthRouterSettingsType0
 from .user_api_key_auth_rpm_limit_per_model_type_0 import UserAPIKeyAuthRpmLimitPerModelType0
 from .user_api_key_auth_team_metadata_type_0 import UserAPIKeyAuthTeamMetadataType0
@@ -746,10 +784,13 @@ __all__ = (
     "AgentExtensionParamsType0",
     "AgentInterface",
     "AgentMakePublicResponse",
+    "AgentObjectPermission",
+    "AgentObjectPermissionMcpToolPermissionsType0",
     "AgentProvider",
     "AgentResponse",
     "AgentResponseAgentCardParams",
     "AgentResponseLitellmParamsType0",
+    "AgentResponseObjectPermissionType0",
     "AgentSkill",
     "AgentSkillSecurityType0Item",
     "AllowedVectorStoreIndexItem",
@@ -765,12 +806,15 @@ __all__ = (
     "BaseLitellmParams",
     "BaseLitellmParamsAdditionalProviderSpecificParamsType0",
     "BaseLitellmParamsDetectSecretsConfigType0",
+    "BaseLitellmParamsOnViolationType0",
     "BaseLitellmParamsUnreachableFallback",
     "BaseModel",
     "BlockedWord",
     "BlockKeyRequest",
     "BlockTeamRequest",
     "BlockUsers",
+    "BlogPost",
+    "BlogPostsResponse",
     "BodyAudioTranscriptionsAudioTranscriptionsPost",
     "BodyAudioTranscriptionsV1AudioTranscriptionsPost",
     "BodyConvertPromptFileToJsonUtilsDotpromptJsonConverterPost",
@@ -875,6 +919,8 @@ __all__ = (
     "ChatCompletionV1ChatCompletionsPostBodyToolsType0Item",
     "ChatCompletionVideoObject",
     "ChatCompletionVideoUrlObject",
+    "ChatMessage",
+    "ChatMessageRole",
     "ChoiceLogprobs",
     "Choices",
     "ChoicesFinishReason",
@@ -944,6 +990,7 @@ __all__ = (
     "EmbeddingsV1EmbeddingsPostBody",
     "EmbeddingsV1EmbeddingsPostBodyCustomLlmProviderType1",
     "EmbeddingsV1EmbeddingsPostBodyLitellmLoggingObjType0",
+    "EndpointProvider",
     "EnrichPolicyTemplatePolicyTemplatesEnrichPostResponseEnrichPolicyTemplatePolicyTemplatesEnrichPost",
     "EnrichTemplateRequest",
     "EnrichTemplateRequestParameters",
@@ -1005,6 +1052,7 @@ __all__ = (
     "ListSearchToolsResponse",
     "ListSkillsResponse",
     "ListToolRestApiMcpRestToolsListGetResponseListToolRestApiMcpRestToolsListGet",
+    "ListToolsV1ToolListGetCallPolicyType0",
     "LiteLLMBudgetTable",
     "LiteLLMBudgetTableModelMaxBudgetType0",
     "LiteLLMDeletedTeamTable",
@@ -1050,6 +1098,7 @@ __all__ = (
     "LiteLLMOrganizationTableWithMembersMetadataType0",
     "LiteLLMParams",
     "LitellmParams",
+    "LitellmParamsAction",
     "LitellmParamsAdditionalProviderSpecificParamsType0",
     "LiteLLMParamsComplexityRouterConfigType0",
     "LitellmParamsConfigType0",
@@ -1061,6 +1110,7 @@ __all__ = (
     "LiteLLMParamsModelInfoType0",
     "LitellmParamsOnDisallowedAction",
     "LitellmParamsOnFlaggedType0",
+    "LitellmParamsOnViolationType0",
     "LitellmParamsPiiEntitiesConfigType0",
     "LitellmParamsPresidioFilterScopeType0",
     "LitellmParamsPresidioRunOnType0",
@@ -1081,6 +1131,9 @@ __all__ = (
     "LiteLLMTeamTable",
     "LiteLLMTeamTableMetadataType0",
     "LiteLLMTeamTableRouterSettingsType0",
+    "LiteLLMToolTableRow",
+    "LiteLLMToolTableRowAssignmentsType0",
+    "LiteLLMToolTableRowCallPolicy",
     "LitellmUserRoles",
     "LiteLLMVerificationToken",
     "LiteLLMVerificationTokenAliases",
@@ -1222,6 +1275,12 @@ __all__ = (
     "PolicyValidationError",
     "PolicyValidationErrorType",
     "PolicyValidationResponse",
+    "PolicyVersionCompareResponse",
+    "PolicyVersionCompareResponseFieldDiffs",
+    "PolicyVersionCompareResponseFieldDiffsAdditionalProperty",
+    "PolicyVersionCreateRequest",
+    "PolicyVersionListResponse",
+    "PolicyVersionStatusUpdateRequest",
     "Prompt",
     "PromptInfo",
     "PromptInfoPromptType",
@@ -1313,6 +1372,8 @@ __all__ = (
     "SuccessfulKeyUpdateKeyInfo",
     "SuggestPolicyTemplatesPolicyTemplatesSuggestPostResponseSuggestPolicyTemplatesPolicyTemplatesSuggestPost",
     "SuggestTemplatesRequest",
+    "SupportedEndpoint",
+    "SupportedEndpointsResponse",
     "TagActiveUsersResponse",
     "TagDeleteRequest",
     "TagInfoRequest",
@@ -1360,9 +1421,14 @@ __all__ = (
     "TokenCountRequestMessagesType0Item",
     "TokenCountResponse",
     "TokenCountResponseOriginalResponseType0",
+    "ToolListResponse",
     "ToolPermissionRule",
     "ToolPermissionRuleAllowedParamPatternsType0",
     "ToolPermissionRuleDecision",
+    "ToolPolicyUpdateRequest",
+    "ToolPolicyUpdateRequestCallPolicy",
+    "ToolPolicyUpdateResponse",
+    "ToolPolicyUpdateResponseCallPolicy",
     "TopLogprob",
     "TransformRequestBody",
     "TransformRequestBodyRequestBody",
@@ -1414,16 +1480,26 @@ __all__ = (
     "UpdateUsefulLinksRequest",
     "UpdateUsefulLinksRequestUsefulLinks",
     "UpdateUsefulLinksRequestUsefulLinksAdditionalPropertyType1",
+    "UsageAIChatRequest",
+    "UsageDetailResponse",
+    "UsageDetailResponseTimeSeriesItem",
+    "UsageLogEntry",
+    "UsageLogsResponse",
+    "UsageOverviewResponse",
+    "UsageOverviewResponseChartItem",
+    "UsageOverviewRow",
     "UserAPIKeyAuth",
     "UserAPIKeyAuthAliases",
     "UserAPIKeyAuthAllowedModelRegionType0",
     "UserAPIKeyAuthConfig",
+    "UserAPIKeyAuthEndUserModelMaxBudgetType0",
     "UserAPIKeyAuthLitellmBudgetTableType0",
     "UserAPIKeyAuthMetadata",
     "UserAPIKeyAuthModelMaxBudget",
     "UserAPIKeyAuthModelSpend",
     "UserAPIKeyAuthOrganizationMetadataType0",
     "UserAPIKeyAuthPermissions",
+    "UserAPIKeyAuthProjectMetadataType0",
     "UserAPIKeyAuthRouterSettingsType0",
     "UserAPIKeyAuthRpmLimitPerModelType0",
     "UserAPIKeyAuthTeamMetadataType0",

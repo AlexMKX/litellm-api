@@ -58,19 +58,24 @@ def sync_detailed(
 
      OCR endpoint for extracting text from documents and images.
 
-    Follows the Mistral OCR API spec:
-    https://docs.mistral.ai/capabilities/vision/#optical-character-recognition-ocr
+    Supports two input modes:
 
-    Example:
+    **1. JSON body** (Mistral OCR API compatible):
     ```bash
     curl -X POST \"http://localhost:4000/v1/ocr\"         -H \"Authorization: Bearer sk-1234\"
     -H \"Content-Type: application/json\"         -d '{
-            \"model\": \"mistral/mistral-ocr-latest\",
+            \"model\": \"mistral-ocr\",
             \"document\": {
                 \"type\": \"document_url\",
                 \"document_url\": \"https://arxiv.org/pdf/2201.04234\"
             }
         }'
+    ```
+
+    **2. Multipart form file upload**:
+    ```bash
+    curl -X POST \"http://localhost:4000/v1/ocr\"         -H \"Authorization: Bearer sk-1234\"
+    -F \"model=mistral-ocr\"         -F \"file=@document.pdf\"
     ```
 
     Raises:
@@ -102,19 +107,24 @@ async def asyncio_detailed(
 
      OCR endpoint for extracting text from documents and images.
 
-    Follows the Mistral OCR API spec:
-    https://docs.mistral.ai/capabilities/vision/#optical-character-recognition-ocr
+    Supports two input modes:
 
-    Example:
+    **1. JSON body** (Mistral OCR API compatible):
     ```bash
     curl -X POST \"http://localhost:4000/v1/ocr\"         -H \"Authorization: Bearer sk-1234\"
     -H \"Content-Type: application/json\"         -d '{
-            \"model\": \"mistral/mistral-ocr-latest\",
+            \"model\": \"mistral-ocr\",
             \"document\": {
                 \"type\": \"document_url\",
                 \"document_url\": \"https://arxiv.org/pdf/2201.04234\"
             }
         }'
+    ```
+
+    **2. Multipart form file upload**:
+    ```bash
+    curl -X POST \"http://localhost:4000/v1/ocr\"         -H \"Authorization: Bearer sk-1234\"
+    -F \"model=mistral-ocr\"         -F \"file=@document.pdf\"
     ```
 
     Raises:

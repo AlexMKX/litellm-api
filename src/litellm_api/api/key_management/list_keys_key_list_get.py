@@ -31,6 +31,8 @@ def _get_kwargs(
     sort_order: str | Unset = 'desc',
     expand: list[str] | None | Unset = UNSET,
     status: None | str | Unset = UNSET,
+    project_id: None | str | Unset = UNSET,
+    access_group_id: None | str | Unset = UNSET,
 
 ) -> dict[str, Any]:
     
@@ -111,6 +113,20 @@ def _get_kwargs(
         json_status = status
     params["status"] = json_status
 
+    json_project_id: None | str | Unset
+    if isinstance(project_id, Unset):
+        json_project_id = UNSET
+    else:
+        json_project_id = project_id
+    params["project_id"] = json_project_id
+
+    json_access_group_id: None | str | Unset
+    if isinstance(access_group_id, Unset):
+        json_access_group_id = UNSET
+    else:
+        json_access_group_id = access_group_id
+    params["access_group_id"] = json_access_group_id
+
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
@@ -173,6 +189,8 @@ def sync_detailed(
     sort_order: str | Unset = 'desc',
     expand: list[str] | None | Unset = UNSET,
     status: None | str | Unset = UNSET,
+    project_id: None | str | Unset = UNSET,
+    access_group_id: None | str | Unset = UNSET,
 
 ) -> Response[HTTPValidationError | KeyListResponseObject]:
     r""" List Keys
@@ -212,6 +230,8 @@ def sync_detailed(
         sort_order (str | Unset): Sort order ('asc' or 'desc') Default: 'desc'.
         expand (list[str] | None | Unset): Expand related objects (e.g. 'user')
         status (None | str | Unset): Filter by status (e.g. 'deleted')
+        project_id (None | str | Unset): Filter keys by project ID
+        access_group_id (None | str | Unset): Filter keys by access group ID
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -237,6 +257,8 @@ sort_by=sort_by,
 sort_order=sort_order,
 expand=expand,
 status=status,
+project_id=project_id,
+access_group_id=access_group_id,
 
     )
 
@@ -263,6 +285,8 @@ def sync(
     sort_order: str | Unset = 'desc',
     expand: list[str] | None | Unset = UNSET,
     status: None | str | Unset = UNSET,
+    project_id: None | str | Unset = UNSET,
+    access_group_id: None | str | Unset = UNSET,
 
 ) -> HTTPValidationError | KeyListResponseObject | None:
     r""" List Keys
@@ -302,6 +326,8 @@ def sync(
         sort_order (str | Unset): Sort order ('asc' or 'desc') Default: 'desc'.
         expand (list[str] | None | Unset): Expand related objects (e.g. 'user')
         status (None | str | Unset): Filter by status (e.g. 'deleted')
+        project_id (None | str | Unset): Filter keys by project ID
+        access_group_id (None | str | Unset): Filter keys by access group ID
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -328,6 +354,8 @@ sort_by=sort_by,
 sort_order=sort_order,
 expand=expand,
 status=status,
+project_id=project_id,
+access_group_id=access_group_id,
 
     ).parsed
 
@@ -348,6 +376,8 @@ async def asyncio_detailed(
     sort_order: str | Unset = 'desc',
     expand: list[str] | None | Unset = UNSET,
     status: None | str | Unset = UNSET,
+    project_id: None | str | Unset = UNSET,
+    access_group_id: None | str | Unset = UNSET,
 
 ) -> Response[HTTPValidationError | KeyListResponseObject]:
     r""" List Keys
@@ -387,6 +417,8 @@ async def asyncio_detailed(
         sort_order (str | Unset): Sort order ('asc' or 'desc') Default: 'desc'.
         expand (list[str] | None | Unset): Expand related objects (e.g. 'user')
         status (None | str | Unset): Filter by status (e.g. 'deleted')
+        project_id (None | str | Unset): Filter keys by project ID
+        access_group_id (None | str | Unset): Filter keys by access group ID
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -412,6 +444,8 @@ sort_by=sort_by,
 sort_order=sort_order,
 expand=expand,
 status=status,
+project_id=project_id,
+access_group_id=access_group_id,
 
     )
 
@@ -438,6 +472,8 @@ async def asyncio(
     sort_order: str | Unset = 'desc',
     expand: list[str] | None | Unset = UNSET,
     status: None | str | Unset = UNSET,
+    project_id: None | str | Unset = UNSET,
+    access_group_id: None | str | Unset = UNSET,
 
 ) -> HTTPValidationError | KeyListResponseObject | None:
     r""" List Keys
@@ -477,6 +513,8 @@ async def asyncio(
         sort_order (str | Unset): Sort order ('asc' or 'desc') Default: 'desc'.
         expand (list[str] | None | Unset): Expand related objects (e.g. 'user')
         status (None | str | Unset): Filter by status (e.g. 'deleted')
+        project_id (None | str | Unset): Filter keys by project ID
+        access_group_id (None | str | Unset): Filter keys by access group ID
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -503,5 +541,7 @@ sort_by=sort_by,
 sort_order=sort_order,
 expand=expand,
 status=status,
+project_id=project_id,
+access_group_id=access_group_id,
 
     )).parsed

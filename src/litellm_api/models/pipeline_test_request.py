@@ -41,8 +41,8 @@ class PipelineTestRequest:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.pipeline_test_request_pipeline import PipelineTestRequestPipeline
         from ..models.pipeline_test_request_test_messages_item import PipelineTestRequestTestMessagesItem
+        from ..models.pipeline_test_request_pipeline import PipelineTestRequestPipeline
         pipeline = self.pipeline.to_dict()
 
         test_messages = []
