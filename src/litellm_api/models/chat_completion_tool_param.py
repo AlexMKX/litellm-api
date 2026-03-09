@@ -43,8 +43,8 @@ class ChatCompletionToolParam:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.chat_completion_tool_param_function_chunk import ChatCompletionToolParamFunctionChunk
         from ..models.chat_completion_cached_content import ChatCompletionCachedContent
+        from ..models.chat_completion_tool_param_function_chunk import ChatCompletionToolParamFunctionChunk
         type_: Literal['function'] | str
         type_ = self.type_
 

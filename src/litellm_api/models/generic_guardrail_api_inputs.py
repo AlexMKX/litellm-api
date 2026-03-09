@@ -57,15 +57,15 @@ class GenericGuardrailAPIInputs:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.chat_completion_tool_message import ChatCompletionToolMessage
-        from ..models.chat_completion_system_message import ChatCompletionSystemMessage
-        from ..models.chat_completion_tool_call_chunk import ChatCompletionToolCallChunk
-        from ..models.chat_completion_message_tool_call import ChatCompletionMessageToolCall
-        from ..models.chat_completion_tool_param import ChatCompletionToolParam
         from ..models.chat_completion_assistant_message import ChatCompletionAssistantMessage
         from ..models.chat_completion_developer_message import ChatCompletionDeveloperMessage
-        from ..models.chat_completion_user_message import ChatCompletionUserMessage
         from ..models.chat_completion_function_message import ChatCompletionFunctionMessage
+        from ..models.chat_completion_message_tool_call import ChatCompletionMessageToolCall
+        from ..models.chat_completion_system_message import ChatCompletionSystemMessage
+        from ..models.chat_completion_tool_call_chunk import ChatCompletionToolCallChunk
+        from ..models.chat_completion_tool_message import ChatCompletionToolMessage
+        from ..models.chat_completion_tool_param import ChatCompletionToolParam
+        from ..models.chat_completion_user_message import ChatCompletionUserMessage
         texts: list[str] | Unset = UNSET
         if not isinstance(self.texts, Unset):
             texts = self.texts

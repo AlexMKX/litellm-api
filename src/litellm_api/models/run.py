@@ -76,9 +76,9 @@ class Run:
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.per_testing_criteria_result import PerTestingCriteriaResult
+        from ..models.run_data_source import RunDataSource
         from ..models.run_error_type_0 import RunErrorType0
         from ..models.run_metadata_type_0 import RunMetadataType0
-        from ..models.run_data_source import RunDataSource
         from ..models.run_result_counts_type_0 import RunResultCountsType0
         id = self.id
 

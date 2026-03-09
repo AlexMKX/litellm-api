@@ -45,8 +45,8 @@ class UsageOverviewResponse:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.usage_overview_row import UsageOverviewRow
         from ..models.usage_overview_response_chart_item import UsageOverviewResponseChartItem
+        from ..models.usage_overview_row import UsageOverviewRow
         rows = []
         for rows_item_data in self.rows:
             rows_item = rows_item_data.to_dict()

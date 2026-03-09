@@ -78,11 +78,11 @@ class NewProjectRequest:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.new_project_request_model_tpm_limit_type_0 import NewProjectRequestModelTpmLimitType0
         from ..models.lite_llm_object_permission_base import LiteLLMObjectPermissionBase
-        from ..models.new_project_request_model_max_budget_type_0 import NewProjectRequestModelMaxBudgetType0
         from ..models.new_project_request_metadata_type_0 import NewProjectRequestMetadataType0
+        from ..models.new_project_request_model_max_budget_type_0 import NewProjectRequestModelMaxBudgetType0
         from ..models.new_project_request_model_rpm_limit_type_0 import NewProjectRequestModelRpmLimitType0
+        from ..models.new_project_request_model_tpm_limit_type_0 import NewProjectRequestModelTpmLimitType0
         team_id = self.team_id
 
         budget_id: None | str | Unset

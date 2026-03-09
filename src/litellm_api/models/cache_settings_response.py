@@ -42,8 +42,8 @@ class CacheSettingsResponse:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.cache_settings_response_current_values import CacheSettingsResponseCurrentValues
         from ..models.cache_settings_field import CacheSettingsField
+        from ..models.cache_settings_response_current_values import CacheSettingsResponseCurrentValues
         from ..models.cache_settings_response_redis_type_descriptions import CacheSettingsResponseRedisTypeDescriptions
         fields = []
         for fields_item_data in self.fields:

@@ -49,8 +49,8 @@ class TeamMemberAddResult:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.team_member_add_result_updated_user_type_0 import TeamMemberAddResultUpdatedUserType0
         from ..models.team_member_add_result_updated_team_membership_type_0 import TeamMemberAddResultUpdatedTeamMembershipType0
+        from ..models.team_member_add_result_updated_user_type_0 import TeamMemberAddResultUpdatedUserType0
         success = self.success
 
         user_id: None | str | Unset

@@ -81,11 +81,11 @@ class LiteLLMProjectTable:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.lite_llm_project_table_model_rpm_limit_type_0 import LiteLLMProjectTableModelRpmLimitType0
         from ..models.lite_llm_budget_table import LiteLLMBudgetTable
-        from ..models.lite_llm_project_table_model_spend_type_0 import LiteLLMProjectTableModelSpendType0
         from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
         from ..models.lite_llm_project_table_metadata_type_0 import LiteLLMProjectTableMetadataType0
+        from ..models.lite_llm_project_table_model_rpm_limit_type_0 import LiteLLMProjectTableModelRpmLimitType0
+        from ..models.lite_llm_project_table_model_spend_type_0 import LiteLLMProjectTableModelSpendType0
         from ..models.lite_llm_project_table_model_tpm_limit_type_0 import LiteLLMProjectTableModelTpmLimitType0
         project_id = self.project_id
 

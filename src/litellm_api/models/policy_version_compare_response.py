@@ -44,8 +44,8 @@ class PolicyVersionCompareResponse:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.policy_version_compare_response_field_diffs import PolicyVersionCompareResponseFieldDiffs
         from ..models.policy_db_response import PolicyDBResponse
+        from ..models.policy_version_compare_response_field_diffs import PolicyVersionCompareResponseFieldDiffs
         version_a = self.version_a.to_dict()
 
         version_b = self.version_b.to_dict()

@@ -61,8 +61,8 @@ class PluginListItem:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.plugin_list_item_source import PluginListItemSource
         from ..models.plugin_author import PluginAuthor
+        from ..models.plugin_list_item_source import PluginListItemSource
         id = self.id
 
         name = self.name
