@@ -17,6 +17,8 @@ if TYPE_CHECKING:
   from ..models.allowed_vector_store_index_item import AllowedVectorStoreIndexItem
   from ..models.lite_llm_object_permission_base import LiteLLMObjectPermissionBase
   from ..models.member import Member
+  from ..models.new_team_request_enforced_batch_output_expires_after_type_0 import NewTeamRequestEnforcedBatchOutputExpiresAfterType0
+  from ..models.new_team_request_enforced_file_expires_after_type_0 import NewTeamRequestEnforcedFileExpiresAfterType0
   from ..models.new_team_request_metadata_type_0 import NewTeamRequestMetadataType0
   from ..models.new_team_request_model_aliases_type_0 import NewTeamRequestModelAliasesType0
   from ..models.new_team_request_model_rpm_limit_type_0 import NewTeamRequestModelRpmLimitType0
@@ -70,6 +72,8 @@ class NewTeamRequest:
             team_member_tpm_limit (int | None | Unset):
             team_member_key_duration (None | str | Unset):
             allowed_vector_store_indexes (list[AllowedVectorStoreIndexItem] | None | Unset):
+            enforced_batch_output_expires_after (NewTeamRequestEnforcedBatchOutputExpiresAfterType0 | None | Unset):
+            enforced_file_expires_after (NewTeamRequestEnforcedFileExpiresAfterType0 | None | Unset):
      """
 
     team_alias: None | str | Unset = UNSET
@@ -106,6 +110,8 @@ class NewTeamRequest:
     team_member_tpm_limit: int | None | Unset = UNSET
     team_member_key_duration: None | str | Unset = UNSET
     allowed_vector_store_indexes: list[AllowedVectorStoreIndexItem] | None | Unset = UNSET
+    enforced_batch_output_expires_after: NewTeamRequestEnforcedBatchOutputExpiresAfterType0 | None | Unset = UNSET
+    enforced_file_expires_after: NewTeamRequestEnforcedFileExpiresAfterType0 | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -116,6 +122,8 @@ class NewTeamRequest:
         from ..models.allowed_vector_store_index_item import AllowedVectorStoreIndexItem
         from ..models.lite_llm_object_permission_base import LiteLLMObjectPermissionBase
         from ..models.member import Member
+        from ..models.new_team_request_enforced_batch_output_expires_after_type_0 import NewTeamRequestEnforcedBatchOutputExpiresAfterType0
+        from ..models.new_team_request_enforced_file_expires_after_type_0 import NewTeamRequestEnforcedFileExpiresAfterType0
         from ..models.new_team_request_metadata_type_0 import NewTeamRequestMetadataType0
         from ..models.new_team_request_model_aliases_type_0 import NewTeamRequestModelAliasesType0
         from ..models.new_team_request_model_rpm_limit_type_0 import NewTeamRequestModelRpmLimitType0
@@ -378,6 +386,22 @@ class NewTeamRequest:
         else:
             allowed_vector_store_indexes = self.allowed_vector_store_indexes
 
+        enforced_batch_output_expires_after: dict[str, Any] | None | Unset
+        if isinstance(self.enforced_batch_output_expires_after, Unset):
+            enforced_batch_output_expires_after = UNSET
+        elif isinstance(self.enforced_batch_output_expires_after, NewTeamRequestEnforcedBatchOutputExpiresAfterType0):
+            enforced_batch_output_expires_after = self.enforced_batch_output_expires_after.to_dict()
+        else:
+            enforced_batch_output_expires_after = self.enforced_batch_output_expires_after
+
+        enforced_file_expires_after: dict[str, Any] | None | Unset
+        if isinstance(self.enforced_file_expires_after, Unset):
+            enforced_file_expires_after = UNSET
+        elif isinstance(self.enforced_file_expires_after, NewTeamRequestEnforcedFileExpiresAfterType0):
+            enforced_file_expires_after = self.enforced_file_expires_after.to_dict()
+        else:
+            enforced_file_expires_after = self.enforced_file_expires_after
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -451,6 +475,10 @@ class NewTeamRequest:
             field_dict["team_member_key_duration"] = team_member_key_duration
         if allowed_vector_store_indexes is not UNSET:
             field_dict["allowed_vector_store_indexes"] = allowed_vector_store_indexes
+        if enforced_batch_output_expires_after is not UNSET:
+            field_dict["enforced_batch_output_expires_after"] = enforced_batch_output_expires_after
+        if enforced_file_expires_after is not UNSET:
+            field_dict["enforced_file_expires_after"] = enforced_file_expires_after
 
         return field_dict
 
@@ -461,6 +489,8 @@ class NewTeamRequest:
         from ..models.allowed_vector_store_index_item import AllowedVectorStoreIndexItem
         from ..models.lite_llm_object_permission_base import LiteLLMObjectPermissionBase
         from ..models.member import Member
+        from ..models.new_team_request_enforced_batch_output_expires_after_type_0 import NewTeamRequestEnforcedBatchOutputExpiresAfterType0
+        from ..models.new_team_request_enforced_file_expires_after_type_0 import NewTeamRequestEnforcedFileExpiresAfterType0
         from ..models.new_team_request_metadata_type_0 import NewTeamRequestMetadataType0
         from ..models.new_team_request_model_aliases_type_0 import NewTeamRequestModelAliasesType0
         from ..models.new_team_request_model_rpm_limit_type_0 import NewTeamRequestModelRpmLimitType0
@@ -942,6 +972,46 @@ class NewTeamRequest:
         allowed_vector_store_indexes = _parse_allowed_vector_store_indexes(d.pop("allowed_vector_store_indexes", UNSET))
 
 
+        def _parse_enforced_batch_output_expires_after(data: object) -> NewTeamRequestEnforcedBatchOutputExpiresAfterType0 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                enforced_batch_output_expires_after_type_0 = NewTeamRequestEnforcedBatchOutputExpiresAfterType0.from_dict(data)
+
+
+
+                return enforced_batch_output_expires_after_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(NewTeamRequestEnforcedBatchOutputExpiresAfterType0 | None | Unset, data)
+
+        enforced_batch_output_expires_after = _parse_enforced_batch_output_expires_after(d.pop("enforced_batch_output_expires_after", UNSET))
+
+
+        def _parse_enforced_file_expires_after(data: object) -> NewTeamRequestEnforcedFileExpiresAfterType0 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                enforced_file_expires_after_type_0 = NewTeamRequestEnforcedFileExpiresAfterType0.from_dict(data)
+
+
+
+                return enforced_file_expires_after_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(NewTeamRequestEnforcedFileExpiresAfterType0 | None | Unset, data)
+
+        enforced_file_expires_after = _parse_enforced_file_expires_after(d.pop("enforced_file_expires_after", UNSET))
+
+
         new_team_request = cls(
             team_alias=team_alias,
             team_id=team_id,
@@ -977,6 +1047,8 @@ class NewTeamRequest:
             team_member_tpm_limit=team_member_tpm_limit,
             team_member_key_duration=team_member_key_duration,
             allowed_vector_store_indexes=allowed_vector_store_indexes,
+            enforced_batch_output_expires_after=enforced_batch_output_expires_after,
+            enforced_file_expires_after=enforced_file_expires_after,
         )
 
 

@@ -8,40 +8,24 @@ from ...client import AuthenticatedClient, Client
 from ...types import Response, UNSET
 from ... import errors
 
-from ...models.credential_item import CredentialItem
 from ...models.http_validation_error import HTTPValidationError
-from ...types import UNSET, Unset
 from typing import cast
 
 
 
 def _get_kwargs(
-    credential_name: str,
-    *,
-    model_id: None | str | Unset = UNSET,
+    vector_store_id: str,
 
 ) -> dict[str, Any]:
     
 
     
 
-    params: dict[str, Any] = {}
-
-    json_model_id: None | str | Unset
-    if isinstance(model_id, Unset):
-        json_model_id = UNSET
-    else:
-        json_model_id = model_id
-    params["model_id"] = json_model_id
-
-
-    params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
-
+    
 
     _kwargs: dict[str, Any] = {
-        "method": "get",
-        "url": "/credentials/by_name/{credential_name}".format(credential_name=quote(str(credential_name), safe=""),),
-        "params": params,
+        "method": "post",
+        "url": "/vector_stores/{vector_store_id}".format(vector_store_id=quote(str(vector_store_id), safe=""),),
     }
 
 
@@ -49,12 +33,9 @@ def _get_kwargs(
 
 
 
-def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> CredentialItem | HTTPValidationError | None:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Any | HTTPValidationError | None:
     if response.status_code == 200:
-        response_200 = CredentialItem.from_dict(response.json())
-
-
-
+        response_200 = response.json()
         return response_200
 
     if response.status_code == 422:
@@ -70,7 +51,7 @@ def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Res
         return None
 
 
-def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[CredentialItem | HTTPValidationError]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Any | HTTPValidationError]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -80,32 +61,32 @@ def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Res
 
 
 def sync_detailed(
-    credential_name: str,
+    vector_store_id: str,
     *,
     client: AuthenticatedClient,
-    model_id: None | str | Unset = UNSET,
 
-) -> Response[CredentialItem | HTTPValidationError]:
-    """ Get Credential
+) -> Response[Any | HTTPValidationError]:
+    """ Vector Store Update
 
-     [BETA] endpoint. This might change unexpectedly.
+     Update a vector store.
+
+    API Reference:
+    https://platform.openai.com/docs/api-reference/vector-stores/modify
 
     Args:
-        credential_name (str): The credential name, percent-decoded; may contain slashes
-        model_id (None | str | Unset):
+        vector_store_id (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[CredentialItem | HTTPValidationError]
+        Response[Any | HTTPValidationError]
      """
 
 
     kwargs = _get_kwargs(
-        credential_name=credential_name,
-model_id=model_id,
+        vector_store_id=vector_store_id,
 
     )
 
@@ -116,63 +97,63 @@ model_id=model_id,
     return _build_response(client=client, response=response)
 
 def sync(
-    credential_name: str,
+    vector_store_id: str,
     *,
     client: AuthenticatedClient,
-    model_id: None | str | Unset = UNSET,
 
-) -> CredentialItem | HTTPValidationError | None:
-    """ Get Credential
+) -> Any | HTTPValidationError | None:
+    """ Vector Store Update
 
-     [BETA] endpoint. This might change unexpectedly.
+     Update a vector store.
+
+    API Reference:
+    https://platform.openai.com/docs/api-reference/vector-stores/modify
 
     Args:
-        credential_name (str): The credential name, percent-decoded; may contain slashes
-        model_id (None | str | Unset):
+        vector_store_id (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        CredentialItem | HTTPValidationError
+        Any | HTTPValidationError
      """
 
 
     return sync_detailed(
-        credential_name=credential_name,
+        vector_store_id=vector_store_id,
 client=client,
-model_id=model_id,
 
     ).parsed
 
 async def asyncio_detailed(
-    credential_name: str,
+    vector_store_id: str,
     *,
     client: AuthenticatedClient,
-    model_id: None | str | Unset = UNSET,
 
-) -> Response[CredentialItem | HTTPValidationError]:
-    """ Get Credential
+) -> Response[Any | HTTPValidationError]:
+    """ Vector Store Update
 
-     [BETA] endpoint. This might change unexpectedly.
+     Update a vector store.
+
+    API Reference:
+    https://platform.openai.com/docs/api-reference/vector-stores/modify
 
     Args:
-        credential_name (str): The credential name, percent-decoded; may contain slashes
-        model_id (None | str | Unset):
+        vector_store_id (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[CredentialItem | HTTPValidationError]
+        Response[Any | HTTPValidationError]
      """
 
 
     kwargs = _get_kwargs(
-        credential_name=credential_name,
-model_id=model_id,
+        vector_store_id=vector_store_id,
 
     )
 
@@ -183,32 +164,32 @@ model_id=model_id,
     return _build_response(client=client, response=response)
 
 async def asyncio(
-    credential_name: str,
+    vector_store_id: str,
     *,
     client: AuthenticatedClient,
-    model_id: None | str | Unset = UNSET,
 
-) -> CredentialItem | HTTPValidationError | None:
-    """ Get Credential
+) -> Any | HTTPValidationError | None:
+    """ Vector Store Update
 
-     [BETA] endpoint. This might change unexpectedly.
+     Update a vector store.
+
+    API Reference:
+    https://platform.openai.com/docs/api-reference/vector-stores/modify
 
     Args:
-        credential_name (str): The credential name, percent-decoded; may contain slashes
-        model_id (None | str | Unset):
+        vector_store_id (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        CredentialItem | HTTPValidationError
+        Any | HTTPValidationError
      """
 
 
     return (await asyncio_detailed(
-        credential_name=credential_name,
+        vector_store_id=vector_store_id,
 client=client,
-model_id=model_id,
 
     )).parsed

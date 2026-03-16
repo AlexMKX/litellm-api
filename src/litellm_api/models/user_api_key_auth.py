@@ -129,6 +129,7 @@ class UserAPIKeyAuth:
             user_max_budget (float | None | Unset):
             request_route (None | str | Unset):
             user (Any | None | Unset):
+            created_by_user (Any | None | Unset):
             end_user_object_permission (LiteLLMObjectPermissionTable | None | Unset):
      """
 
@@ -214,6 +215,7 @@ class UserAPIKeyAuth:
     user_max_budget: float | None | Unset = UNSET
     request_route: None | str | Unset = UNSET
     user: Any | None | Unset = UNSET
+    created_by_user: Any | None | Unset = UNSET
     end_user_object_permission: LiteLLMObjectPermissionTable | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -759,6 +761,12 @@ class UserAPIKeyAuth:
         else:
             user = self.user
 
+        created_by_user: Any | None | Unset
+        if isinstance(self.created_by_user, Unset):
+            created_by_user = UNSET
+        else:
+            created_by_user = self.created_by_user
+
         end_user_object_permission: dict[str, Any] | None | Unset
         if isinstance(self.end_user_object_permission, Unset):
             end_user_object_permission = UNSET
@@ -936,6 +944,8 @@ class UserAPIKeyAuth:
             field_dict["request_route"] = request_route
         if user is not UNSET:
             field_dict["user"] = user
+        if created_by_user is not UNSET:
+            field_dict["created_by_user"] = created_by_user
         if end_user_object_permission is not UNSET:
             field_dict["end_user_object_permission"] = end_user_object_permission
 
@@ -1969,6 +1979,16 @@ class UserAPIKeyAuth:
         user = _parse_user(d.pop("user", UNSET))
 
 
+        def _parse_created_by_user(data: object) -> Any | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(Any | None | Unset, data)
+
+        created_by_user = _parse_created_by_user(d.pop("created_by_user", UNSET))
+
+
         def _parse_end_user_object_permission(data: object) -> LiteLLMObjectPermissionTable | None | Unset:
             if data is None:
                 return data
@@ -2072,6 +2092,7 @@ class UserAPIKeyAuth:
             user_max_budget=user_max_budget,
             request_route=request_route,
             user=user,
+            created_by_user=created_by_user,
             end_user_object_permission=end_user_object_permission,
         )
 

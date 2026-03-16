@@ -162,6 +162,12 @@ def sync_detailed(
     - access_group_ids: Optional[List[str]] - List of access group IDs to associate with the team.
     Access groups define which models the team can access. Example - [\"access_group_1\",
     \"access_group_2\"].
+    - enforced_file_expires_after: Optional[dict] - Enforced file expiration policy for the team. Keys
+    created under this team will inherit this policy for file uploads. Example - {\"anchor\":
+    \"created_at\", \"days\": 30}.
+    - enforced_batch_output_expires_after: Optional[dict] - Enforced batch output file expiration policy
+    for the team. Keys created under this team will inherit this policy for batch output files. Example
+    - {\"anchor\": \"created_at\", \"days\": 30}.
 
     Returns:
     - team_id: (str) Unique team id - used for tracking spend across multiple keys for same team id.
@@ -302,6 +308,12 @@ def sync(
     - access_group_ids: Optional[List[str]] - List of access group IDs to associate with the team.
     Access groups define which models the team can access. Example - [\"access_group_1\",
     \"access_group_2\"].
+    - enforced_file_expires_after: Optional[dict] - Enforced file expiration policy for the team. Keys
+    created under this team will inherit this policy for file uploads. Example - {\"anchor\":
+    \"created_at\", \"days\": 30}.
+    - enforced_batch_output_expires_after: Optional[dict] - Enforced batch output file expiration policy
+    for the team. Keys created under this team will inherit this policy for batch output files. Example
+    - {\"anchor\": \"created_at\", \"days\": 30}.
 
     Returns:
     - team_id: (str) Unique team id - used for tracking spend across multiple keys for same team id.
@@ -437,6 +449,12 @@ async def asyncio_detailed(
     - access_group_ids: Optional[List[str]] - List of access group IDs to associate with the team.
     Access groups define which models the team can access. Example - [\"access_group_1\",
     \"access_group_2\"].
+    - enforced_file_expires_after: Optional[dict] - Enforced file expiration policy for the team. Keys
+    created under this team will inherit this policy for file uploads. Example - {\"anchor\":
+    \"created_at\", \"days\": 30}.
+    - enforced_batch_output_expires_after: Optional[dict] - Enforced batch output file expiration policy
+    for the team. Keys created under this team will inherit this policy for batch output files. Example
+    - {\"anchor\": \"created_at\", \"days\": 30}.
 
     Returns:
     - team_id: (str) Unique team id - used for tracking spend across multiple keys for same team id.
@@ -577,6 +595,12 @@ async def asyncio(
     - access_group_ids: Optional[List[str]] - List of access group IDs to associate with the team.
     Access groups define which models the team can access. Example - [\"access_group_1\",
     \"access_group_2\"].
+    - enforced_file_expires_after: Optional[dict] - Enforced file expiration policy for the team. Keys
+    created under this team will inherit this policy for file uploads. Example - {\"anchor\":
+    \"created_at\", \"days\": 30}.
+    - enforced_batch_output_expires_after: Optional[dict] - Enforced batch output file expiration policy
+    for the team. Keys created under this team will inherit this policy for batch output files. Example
+    - {\"anchor\": \"created_at\", \"days\": 30}.
 
     Returns:
     - team_id: (str) Unique team id - used for tracking spend across multiple keys for same team id.

@@ -8,6 +8,7 @@ from ...client import AuthenticatedClient, Client
 from ...types import Response, UNSET
 from ... import errors
 
+from ...models.calculate_spend_spend_calculate_post_response_200 import CalculateSpendSpendCalculatePostResponse200
 from ...models.http_validation_error import HTTPValidationError
 from ...models.spend_calculate_request import SpendCalculateRequest
 from typing import cast
@@ -41,9 +42,12 @@ def _get_kwargs(
 
 
 
-def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Any | HTTPValidationError | None:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> CalculateSpendSpendCalculatePostResponse200 | HTTPValidationError | None:
     if response.status_code == 200:
-        response_200 = response.json()
+        response_200 = CalculateSpendSpendCalculatePostResponse200.from_dict(response.json())
+
+
+
         return response_200
 
     if response.status_code == 422:
@@ -59,7 +63,7 @@ def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Res
         return None
 
 
-def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Any | HTTPValidationError]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[CalculateSpendSpendCalculatePostResponse200 | HTTPValidationError]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -73,7 +77,7 @@ def sync_detailed(
     client: AuthenticatedClient,
     body: SpendCalculateRequest,
 
-) -> Response[Any | HTTPValidationError]:
+) -> Response[CalculateSpendSpendCalculatePostResponse200 | HTTPValidationError]:
     r""" Calculate Spend
 
      Accepts all the params of completion_cost.
@@ -132,7 +136,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | HTTPValidationError]
+        Response[CalculateSpendSpendCalculatePostResponse200 | HTTPValidationError]
      """
 
 
@@ -152,7 +156,7 @@ def sync(
     client: AuthenticatedClient,
     body: SpendCalculateRequest,
 
-) -> Any | HTTPValidationError | None:
+) -> CalculateSpendSpendCalculatePostResponse200 | HTTPValidationError | None:
     r""" Calculate Spend
 
      Accepts all the params of completion_cost.
@@ -211,7 +215,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | HTTPValidationError
+        CalculateSpendSpendCalculatePostResponse200 | HTTPValidationError
      """
 
 
@@ -226,7 +230,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient,
     body: SpendCalculateRequest,
 
-) -> Response[Any | HTTPValidationError]:
+) -> Response[CalculateSpendSpendCalculatePostResponse200 | HTTPValidationError]:
     r""" Calculate Spend
 
      Accepts all the params of completion_cost.
@@ -285,7 +289,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | HTTPValidationError]
+        Response[CalculateSpendSpendCalculatePostResponse200 | HTTPValidationError]
      """
 
 
@@ -305,7 +309,7 @@ async def asyncio(
     client: AuthenticatedClient,
     body: SpendCalculateRequest,
 
-) -> Any | HTTPValidationError | None:
+) -> CalculateSpendSpendCalculatePostResponse200 | HTTPValidationError | None:
     r""" Calculate Spend
 
      Accepts all the params of completion_cost.
@@ -364,7 +368,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | HTTPValidationError
+        CalculateSpendSpendCalculatePostResponse200 | HTTPValidationError
      """
 
 

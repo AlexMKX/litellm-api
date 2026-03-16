@@ -13,7 +13,6 @@ from typing import cast
 
 if TYPE_CHECKING:
   from ..models.choices import Choices
-  from ..models.streaming_choices import StreamingChoices
 
 
 
@@ -30,7 +29,7 @@ class ModelResponse:
             id (str):
             created (int):
             object_ (str):
-            choices (list[Choices | StreamingChoices]):
+            choices (list[Choices]):
             model (None | str | Unset):
             system_fingerprint (None | str | Unset):
      """
@@ -38,7 +37,7 @@ class ModelResponse:
     id: str
     created: int
     object_: str
-    choices: list[Choices | StreamingChoices]
+    choices: list[Choices]
     model: None | str | Unset = UNSET
     system_fingerprint: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -49,7 +48,6 @@ class ModelResponse:
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.choices import Choices
-        from ..models.streaming_choices import StreamingChoices
         id = self.id
 
         created = self.created
@@ -58,12 +56,7 @@ class ModelResponse:
 
         choices = []
         for choices_item_data in self.choices:
-            choices_item: dict[str, Any]
-            if isinstance(choices_item_data, Choices):
-                choices_item = choices_item_data.to_dict()
-            else:
-                choices_item = choices_item_data.to_dict()
-
+            choices_item = choices_item_data.to_dict()
             choices.append(choices_item)
 
 
@@ -101,7 +94,6 @@ class ModelResponse:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.choices import Choices
-        from ..models.streaming_choices import StreamingChoices
         d = dict(src_dict)
         id = d.pop("id")
 
@@ -112,26 +104,9 @@ class ModelResponse:
         choices = []
         _choices = d.pop("choices")
         for choices_item_data in (_choices):
-            def _parse_choices_item(data: object) -> Choices | StreamingChoices:
-                try:
-                    if not isinstance(data, dict):
-                        raise TypeError()
-                    choices_item_type_0 = Choices.from_dict(data)
+            choices_item = Choices.from_dict(choices_item_data)
 
 
-
-                    return choices_item_type_0
-                except (TypeError, ValueError, AttributeError, KeyError):
-                    pass
-                if not isinstance(data, dict):
-                    raise TypeError()
-                choices_item_type_1 = StreamingChoices.from_dict(data)
-
-
-
-                return choices_item_type_1
-
-            choices_item = _parse_choices_item(choices_item_data)
 
             choices.append(choices_item)
 

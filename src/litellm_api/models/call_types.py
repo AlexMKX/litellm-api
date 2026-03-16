@@ -110,6 +110,7 @@ class CallTypes(str, Enum):
     TRANSCRIPTION = "transcription"
     UPLOAD_CONTAINER_FILE = "upload_container_file"
     VALUE_20 = "_arealtime"
+    VALUE_21 = "_aresponses_websocket"
     VECTOR_STORE_CREATE = "vector_store_create"
     VECTOR_STORE_FILE_CONTENT = "vector_store_file_content"
     VECTOR_STORE_FILE_CREATE = "vector_store_file_create"

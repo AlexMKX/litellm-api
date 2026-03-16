@@ -74,9 +74,6 @@ def sync_detailed(
 
      Get details for a single tool.
 
-    Parameters:
-    - tool_name: The tool name (supports namespaced names with slashes)
-
     Args:
         tool_name (str):
 
@@ -110,9 +107,6 @@ def sync(
 
      Get details for a single tool.
 
-    Parameters:
-    - tool_name: The tool name (supports namespaced names with slashes)
-
     Args:
         tool_name (str):
 
@@ -140,9 +134,6 @@ async def asyncio_detailed(
     """ Get Tool
 
      Get details for a single tool.
-
-    Parameters:
-    - tool_name: The tool name (supports namespaced names with slashes)
 
     Args:
         tool_name (str):
@@ -176,9 +167,6 @@ async def asyncio(
     """ Get Tool
 
      Get details for a single tool.
-
-    Parameters:
-    - tool_name: The tool name (supports namespaced names with slashes)
 
     Args:
         tool_name (str):

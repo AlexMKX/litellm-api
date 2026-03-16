@@ -22,7 +22,7 @@ def _get_kwargs(
 
     _kwargs: dict[str, Any] = {
         "method": "post",
-        "url": "/v1/responses",
+        "url": "/config_overrides/hashicorp_vault/test_connection",
     }
 
 
@@ -54,30 +54,10 @@ def sync_detailed(
     client: AuthenticatedClient,
 
 ) -> Response[Any]:
-    r""" Responses Api
+    """ Test Hashicorp Vault Connection
 
-     Follows the OpenAI Responses API spec: https://platform.openai.com/docs/api-reference/responses
-
-    Supports background mode with polling_via_cache for partial response retrieval.
-    When background=true and polling_via_cache is enabled, returns a polling_id immediately
-    and streams the response in the background, updating Redis cache.
-
-    ```bash
-    # Normal request
-    curl -X POST http://localhost:4000/v1/responses     -H \"Content-Type: application/json\"     -H
-    \"Authorization: Bearer sk-1234\"     -d '{
-        \"model\": \"gpt-4o\",
-        \"input\": \"Tell me about AI\"
-    }'
-
-    # Background request with polling
-    curl -X POST http://localhost:4000/v1/responses     -H \"Content-Type: application/json\"     -H
-    \"Authorization: Bearer sk-1234\"     -d '{
-        \"model\": \"gpt-4o\",
-        \"input\": \"Tell me about AI\",
-        \"background\": true
-    }'
-    ```
+     Test the connection to the currently configured Hashicorp Vault.
+    Uses the already-initialized secret manager client. Does not modify any state.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -104,30 +84,10 @@ async def asyncio_detailed(
     client: AuthenticatedClient,
 
 ) -> Response[Any]:
-    r""" Responses Api
+    """ Test Hashicorp Vault Connection
 
-     Follows the OpenAI Responses API spec: https://platform.openai.com/docs/api-reference/responses
-
-    Supports background mode with polling_via_cache for partial response retrieval.
-    When background=true and polling_via_cache is enabled, returns a polling_id immediately
-    and streams the response in the background, updating Redis cache.
-
-    ```bash
-    # Normal request
-    curl -X POST http://localhost:4000/v1/responses     -H \"Content-Type: application/json\"     -H
-    \"Authorization: Bearer sk-1234\"     -d '{
-        \"model\": \"gpt-4o\",
-        \"input\": \"Tell me about AI\"
-    }'
-
-    # Background request with polling
-    curl -X POST http://localhost:4000/v1/responses     -H \"Content-Type: application/json\"     -H
-    \"Authorization: Bearer sk-1234\"     -d '{
-        \"model\": \"gpt-4o\",
-        \"input\": \"Tell me about AI\",
-        \"background\": true
-    }'
-    ```
+     Test the connection to the currently configured Hashicorp Vault.
+    Uses the already-initialized secret manager client. Does not modify any state.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.

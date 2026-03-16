@@ -21,6 +21,8 @@ if TYPE_CHECKING:
   from ..models.lite_llmmcp_server_table_mcp_info_type_0 import LiteLLMMCPServerTableMcpInfoType0
   from ..models.lite_llmmcp_server_table_static_headers_type_0 import LiteLLMMCPServerTableStaticHeadersType0
   from ..models.lite_llmmcp_server_table_teams_item import LiteLLMMCPServerTableTeamsItem
+  from ..models.lite_llmmcp_server_table_tool_name_to_description_type_0 import LiteLLMMCPServerTableToolNameToDescriptionType0
+  from ..models.lite_llmmcp_server_table_tool_name_to_display_name_type_0 import LiteLLMMCPServerTableToolNameToDisplayNameType0
   from ..models.mcp_credentials import MCPCredentials
 
 
@@ -52,6 +54,8 @@ class LiteLLMMCPServerTable:
             teams (list[LiteLLMMCPServerTableTeamsItem] | Unset):
             mcp_access_groups (list[str] | Unset):
             allowed_tools (list[str] | Unset):
+            tool_name_to_display_name (LiteLLMMCPServerTableToolNameToDisplayNameType0 | None | Unset):
+            tool_name_to_description (LiteLLMMCPServerTableToolNameToDescriptionType0 | None | Unset):
             extra_headers (list[str] | Unset):
             mcp_info (LiteLLMMCPServerTableMcpInfoType0 | None | Unset):
             static_headers (LiteLLMMCPServerTableStaticHeadersType0 | None | Unset):
@@ -67,6 +71,16 @@ class LiteLLMMCPServerTable:
             registration_url (None | str | Unset):
             allow_all_keys (bool | Unset):  Default: False.
             available_on_public_internet (bool | Unset):  Default: True.
+            is_byok (bool | Unset):  Default: False.
+            byok_description (list[str] | Unset):
+            byok_api_key_help_url (None | str | Unset):
+            has_user_credential (bool | None | Unset):
+            source_url (None | str | Unset):
+            approval_status (None | str | Unset): Approval status: 'pending_review', 'active', 'rejected' Default: 'active'.
+            submitted_by (None | str | Unset):
+            submitted_at (datetime.datetime | None | Unset):
+            reviewed_at (datetime.datetime | None | Unset):
+            review_notes (None | str | Unset):
      """
 
     server_id: str
@@ -85,6 +99,8 @@ class LiteLLMMCPServerTable:
     teams: list[LiteLLMMCPServerTableTeamsItem] | Unset = UNSET
     mcp_access_groups: list[str] | Unset = UNSET
     allowed_tools: list[str] | Unset = UNSET
+    tool_name_to_display_name: LiteLLMMCPServerTableToolNameToDisplayNameType0 | None | Unset = UNSET
+    tool_name_to_description: LiteLLMMCPServerTableToolNameToDescriptionType0 | None | Unset = UNSET
     extra_headers: list[str] | Unset = UNSET
     mcp_info: LiteLLMMCPServerTableMcpInfoType0 | None | Unset = UNSET
     static_headers: LiteLLMMCPServerTableStaticHeadersType0 | None | Unset = UNSET
@@ -99,6 +115,16 @@ class LiteLLMMCPServerTable:
     registration_url: None | str | Unset = UNSET
     allow_all_keys: bool | Unset = False
     available_on_public_internet: bool | Unset = True
+    is_byok: bool | Unset = False
+    byok_description: list[str] | Unset = UNSET
+    byok_api_key_help_url: None | str | Unset = UNSET
+    has_user_credential: bool | None | Unset = UNSET
+    source_url: None | str | Unset = UNSET
+    approval_status: None | str | Unset = 'active'
+    submitted_by: None | str | Unset = UNSET
+    submitted_at: datetime.datetime | None | Unset = UNSET
+    reviewed_at: datetime.datetime | None | Unset = UNSET
+    review_notes: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -110,6 +136,8 @@ class LiteLLMMCPServerTable:
         from ..models.lite_llmmcp_server_table_mcp_info_type_0 import LiteLLMMCPServerTableMcpInfoType0
         from ..models.lite_llmmcp_server_table_static_headers_type_0 import LiteLLMMCPServerTableStaticHeadersType0
         from ..models.lite_llmmcp_server_table_teams_item import LiteLLMMCPServerTableTeamsItem
+        from ..models.lite_llmmcp_server_table_tool_name_to_description_type_0 import LiteLLMMCPServerTableToolNameToDescriptionType0
+        from ..models.lite_llmmcp_server_table_tool_name_to_display_name_type_0 import LiteLLMMCPServerTableToolNameToDisplayNameType0
         from ..models.mcp_credentials import MCPCredentials
         server_id = self.server_id
 
@@ -210,6 +238,22 @@ class LiteLLMMCPServerTable:
 
 
 
+        tool_name_to_display_name: dict[str, Any] | None | Unset
+        if isinstance(self.tool_name_to_display_name, Unset):
+            tool_name_to_display_name = UNSET
+        elif isinstance(self.tool_name_to_display_name, LiteLLMMCPServerTableToolNameToDisplayNameType0):
+            tool_name_to_display_name = self.tool_name_to_display_name.to_dict()
+        else:
+            tool_name_to_display_name = self.tool_name_to_display_name
+
+        tool_name_to_description: dict[str, Any] | None | Unset
+        if isinstance(self.tool_name_to_description, Unset):
+            tool_name_to_description = UNSET
+        elif isinstance(self.tool_name_to_description, LiteLLMMCPServerTableToolNameToDescriptionType0):
+            tool_name_to_description = self.tool_name_to_description.to_dict()
+        else:
+            tool_name_to_description = self.tool_name_to_description
+
         extra_headers: list[str] | Unset = UNSET
         if not isinstance(self.extra_headers, Unset):
             extra_headers = self.extra_headers
@@ -292,6 +336,66 @@ class LiteLLMMCPServerTable:
 
         available_on_public_internet = self.available_on_public_internet
 
+        is_byok = self.is_byok
+
+        byok_description: list[str] | Unset = UNSET
+        if not isinstance(self.byok_description, Unset):
+            byok_description = self.byok_description
+
+
+
+        byok_api_key_help_url: None | str | Unset
+        if isinstance(self.byok_api_key_help_url, Unset):
+            byok_api_key_help_url = UNSET
+        else:
+            byok_api_key_help_url = self.byok_api_key_help_url
+
+        has_user_credential: bool | None | Unset
+        if isinstance(self.has_user_credential, Unset):
+            has_user_credential = UNSET
+        else:
+            has_user_credential = self.has_user_credential
+
+        source_url: None | str | Unset
+        if isinstance(self.source_url, Unset):
+            source_url = UNSET
+        else:
+            source_url = self.source_url
+
+        approval_status: None | str | Unset
+        if isinstance(self.approval_status, Unset):
+            approval_status = UNSET
+        else:
+            approval_status = self.approval_status
+
+        submitted_by: None | str | Unset
+        if isinstance(self.submitted_by, Unset):
+            submitted_by = UNSET
+        else:
+            submitted_by = self.submitted_by
+
+        submitted_at: None | str | Unset
+        if isinstance(self.submitted_at, Unset):
+            submitted_at = UNSET
+        elif isinstance(self.submitted_at, datetime.datetime):
+            submitted_at = self.submitted_at.isoformat()
+        else:
+            submitted_at = self.submitted_at
+
+        reviewed_at: None | str | Unset
+        if isinstance(self.reviewed_at, Unset):
+            reviewed_at = UNSET
+        elif isinstance(self.reviewed_at, datetime.datetime):
+            reviewed_at = self.reviewed_at.isoformat()
+        else:
+            reviewed_at = self.reviewed_at
+
+        review_notes: None | str | Unset
+        if isinstance(self.review_notes, Unset):
+            review_notes = UNSET
+        else:
+            review_notes = self.review_notes
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -327,6 +431,10 @@ class LiteLLMMCPServerTable:
             field_dict["mcp_access_groups"] = mcp_access_groups
         if allowed_tools is not UNSET:
             field_dict["allowed_tools"] = allowed_tools
+        if tool_name_to_display_name is not UNSET:
+            field_dict["tool_name_to_display_name"] = tool_name_to_display_name
+        if tool_name_to_description is not UNSET:
+            field_dict["tool_name_to_description"] = tool_name_to_description
         if extra_headers is not UNSET:
             field_dict["extra_headers"] = extra_headers
         if mcp_info is not UNSET:
@@ -355,6 +463,26 @@ class LiteLLMMCPServerTable:
             field_dict["allow_all_keys"] = allow_all_keys
         if available_on_public_internet is not UNSET:
             field_dict["available_on_public_internet"] = available_on_public_internet
+        if is_byok is not UNSET:
+            field_dict["is_byok"] = is_byok
+        if byok_description is not UNSET:
+            field_dict["byok_description"] = byok_description
+        if byok_api_key_help_url is not UNSET:
+            field_dict["byok_api_key_help_url"] = byok_api_key_help_url
+        if has_user_credential is not UNSET:
+            field_dict["has_user_credential"] = has_user_credential
+        if source_url is not UNSET:
+            field_dict["source_url"] = source_url
+        if approval_status is not UNSET:
+            field_dict["approval_status"] = approval_status
+        if submitted_by is not UNSET:
+            field_dict["submitted_by"] = submitted_by
+        if submitted_at is not UNSET:
+            field_dict["submitted_at"] = submitted_at
+        if reviewed_at is not UNSET:
+            field_dict["reviewed_at"] = reviewed_at
+        if review_notes is not UNSET:
+            field_dict["review_notes"] = review_notes
 
         return field_dict
 
@@ -366,6 +494,8 @@ class LiteLLMMCPServerTable:
         from ..models.lite_llmmcp_server_table_mcp_info_type_0 import LiteLLMMCPServerTableMcpInfoType0
         from ..models.lite_llmmcp_server_table_static_headers_type_0 import LiteLLMMCPServerTableStaticHeadersType0
         from ..models.lite_llmmcp_server_table_teams_item import LiteLLMMCPServerTableTeamsItem
+        from ..models.lite_llmmcp_server_table_tool_name_to_description_type_0 import LiteLLMMCPServerTableToolNameToDescriptionType0
+        from ..models.lite_llmmcp_server_table_tool_name_to_display_name_type_0 import LiteLLMMCPServerTableToolNameToDisplayNameType0
         from ..models.mcp_credentials import MCPCredentials
         d = dict(src_dict)
         server_id = d.pop("server_id")
@@ -543,6 +673,46 @@ class LiteLLMMCPServerTable:
         allowed_tools = cast(list[str], d.pop("allowed_tools", UNSET))
 
 
+        def _parse_tool_name_to_display_name(data: object) -> LiteLLMMCPServerTableToolNameToDisplayNameType0 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                tool_name_to_display_name_type_0 = LiteLLMMCPServerTableToolNameToDisplayNameType0.from_dict(data)
+
+
+
+                return tool_name_to_display_name_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(LiteLLMMCPServerTableToolNameToDisplayNameType0 | None | Unset, data)
+
+        tool_name_to_display_name = _parse_tool_name_to_display_name(d.pop("tool_name_to_display_name", UNSET))
+
+
+        def _parse_tool_name_to_description(data: object) -> LiteLLMMCPServerTableToolNameToDescriptionType0 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                tool_name_to_description_type_0 = LiteLLMMCPServerTableToolNameToDescriptionType0.from_dict(data)
+
+
+
+                return tool_name_to_description_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(LiteLLMMCPServerTableToolNameToDescriptionType0 | None | Unset, data)
+
+        tool_name_to_description = _parse_tool_name_to_description(d.pop("tool_name_to_description", UNSET))
+
+
         extra_headers = cast(list[str], d.pop("extra_headers", UNSET))
 
 
@@ -693,6 +863,111 @@ class LiteLLMMCPServerTable:
 
         available_on_public_internet = d.pop("available_on_public_internet", UNSET)
 
+        is_byok = d.pop("is_byok", UNSET)
+
+        byok_description = cast(list[str], d.pop("byok_description", UNSET))
+
+
+        def _parse_byok_api_key_help_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        byok_api_key_help_url = _parse_byok_api_key_help_url(d.pop("byok_api_key_help_url", UNSET))
+
+
+        def _parse_has_user_credential(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        has_user_credential = _parse_has_user_credential(d.pop("has_user_credential", UNSET))
+
+
+        def _parse_source_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        source_url = _parse_source_url(d.pop("source_url", UNSET))
+
+
+        def _parse_approval_status(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        approval_status = _parse_approval_status(d.pop("approval_status", UNSET))
+
+
+        def _parse_submitted_by(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        submitted_by = _parse_submitted_by(d.pop("submitted_by", UNSET))
+
+
+        def _parse_submitted_at(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                submitted_at_type_0 = isoparse(data)
+
+
+
+                return submitted_at_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        submitted_at = _parse_submitted_at(d.pop("submitted_at", UNSET))
+
+
+        def _parse_reviewed_at(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                reviewed_at_type_0 = isoparse(data)
+
+
+
+                return reviewed_at_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        reviewed_at = _parse_reviewed_at(d.pop("reviewed_at", UNSET))
+
+
+        def _parse_review_notes(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        review_notes = _parse_review_notes(d.pop("review_notes", UNSET))
+
+
         lite_llmmcp_server_table = cls(
             server_id=server_id,
             transport=transport,
@@ -710,6 +985,8 @@ class LiteLLMMCPServerTable:
             teams=teams,
             mcp_access_groups=mcp_access_groups,
             allowed_tools=allowed_tools,
+            tool_name_to_display_name=tool_name_to_display_name,
+            tool_name_to_description=tool_name_to_description,
             extra_headers=extra_headers,
             mcp_info=mcp_info,
             static_headers=static_headers,
@@ -724,6 +1001,16 @@ class LiteLLMMCPServerTable:
             registration_url=registration_url,
             allow_all_keys=allow_all_keys,
             available_on_public_internet=available_on_public_internet,
+            is_byok=is_byok,
+            byok_description=byok_description,
+            byok_api_key_help_url=byok_api_key_help_url,
+            has_user_credential=has_user_credential,
+            source_url=source_url,
+            approval_status=approval_status,
+            submitted_by=submitted_by,
+            submitted_at=submitted_at,
+            reviewed_at=reviewed_at,
+            review_notes=review_notes,
         )
 
 

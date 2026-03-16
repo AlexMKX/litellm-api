@@ -14,6 +14,8 @@ from typing import cast
 if TYPE_CHECKING:
   from ..models.allowed_vector_store_index_item import AllowedVectorStoreIndexItem
   from ..models.lite_llm_object_permission_base import LiteLLMObjectPermissionBase
+  from ..models.update_team_request_enforced_batch_output_expires_after_type_0 import UpdateTeamRequestEnforcedBatchOutputExpiresAfterType0
+  from ..models.update_team_request_enforced_file_expires_after_type_0 import UpdateTeamRequestEnforcedFileExpiresAfterType0
   from ..models.update_team_request_metadata_type_0 import UpdateTeamRequestMetadataType0
   from ..models.update_team_request_model_aliases_type_0 import UpdateTeamRequestModelAliasesType0
   from ..models.update_team_request_model_rpm_limit_type_0 import UpdateTeamRequestModelRpmLimitType0
@@ -74,6 +76,8 @@ class UpdateTeamRequest:
             model_rpm_limit (None | Unset | UpdateTeamRequestModelRpmLimitType0):
             model_tpm_limit (None | Unset | UpdateTeamRequestModelTpmLimitType0):
             allowed_vector_store_indexes (list[AllowedVectorStoreIndexItem] | None | Unset):
+            enforced_batch_output_expires_after (None | Unset | UpdateTeamRequestEnforcedBatchOutputExpiresAfterType0):
+            enforced_file_expires_after (None | Unset | UpdateTeamRequestEnforcedFileExpiresAfterType0):
             router_settings (None | Unset | UpdateTeamRequestRouterSettingsType0):
             access_group_ids (list[str] | None | Unset):
      """
@@ -105,6 +109,8 @@ class UpdateTeamRequest:
     model_rpm_limit: None | Unset | UpdateTeamRequestModelRpmLimitType0 = UNSET
     model_tpm_limit: None | Unset | UpdateTeamRequestModelTpmLimitType0 = UNSET
     allowed_vector_store_indexes: list[AllowedVectorStoreIndexItem] | None | Unset = UNSET
+    enforced_batch_output_expires_after: None | Unset | UpdateTeamRequestEnforcedBatchOutputExpiresAfterType0 = UNSET
+    enforced_file_expires_after: None | Unset | UpdateTeamRequestEnforcedFileExpiresAfterType0 = UNSET
     router_settings: None | Unset | UpdateTeamRequestRouterSettingsType0 = UNSET
     access_group_ids: list[str] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -116,6 +122,8 @@ class UpdateTeamRequest:
     def to_dict(self) -> dict[str, Any]:
         from ..models.allowed_vector_store_index_item import AllowedVectorStoreIndexItem
         from ..models.lite_llm_object_permission_base import LiteLLMObjectPermissionBase
+        from ..models.update_team_request_enforced_batch_output_expires_after_type_0 import UpdateTeamRequestEnforcedBatchOutputExpiresAfterType0
+        from ..models.update_team_request_enforced_file_expires_after_type_0 import UpdateTeamRequestEnforcedFileExpiresAfterType0
         from ..models.update_team_request_metadata_type_0 import UpdateTeamRequestMetadataType0
         from ..models.update_team_request_model_aliases_type_0 import UpdateTeamRequestModelAliasesType0
         from ..models.update_team_request_model_rpm_limit_type_0 import UpdateTeamRequestModelRpmLimitType0
@@ -323,6 +331,22 @@ class UpdateTeamRequest:
         else:
             allowed_vector_store_indexes = self.allowed_vector_store_indexes
 
+        enforced_batch_output_expires_after: dict[str, Any] | None | Unset
+        if isinstance(self.enforced_batch_output_expires_after, Unset):
+            enforced_batch_output_expires_after = UNSET
+        elif isinstance(self.enforced_batch_output_expires_after, UpdateTeamRequestEnforcedBatchOutputExpiresAfterType0):
+            enforced_batch_output_expires_after = self.enforced_batch_output_expires_after.to_dict()
+        else:
+            enforced_batch_output_expires_after = self.enforced_batch_output_expires_after
+
+        enforced_file_expires_after: dict[str, Any] | None | Unset
+        if isinstance(self.enforced_file_expires_after, Unset):
+            enforced_file_expires_after = UNSET
+        elif isinstance(self.enforced_file_expires_after, UpdateTeamRequestEnforcedFileExpiresAfterType0):
+            enforced_file_expires_after = self.enforced_file_expires_after.to_dict()
+        else:
+            enforced_file_expires_after = self.enforced_file_expires_after
+
         router_settings: dict[str, Any] | None | Unset
         if isinstance(self.router_settings, Unset):
             router_settings = UNSET
@@ -399,6 +423,10 @@ class UpdateTeamRequest:
             field_dict["model_tpm_limit"] = model_tpm_limit
         if allowed_vector_store_indexes is not UNSET:
             field_dict["allowed_vector_store_indexes"] = allowed_vector_store_indexes
+        if enforced_batch_output_expires_after is not UNSET:
+            field_dict["enforced_batch_output_expires_after"] = enforced_batch_output_expires_after
+        if enforced_file_expires_after is not UNSET:
+            field_dict["enforced_file_expires_after"] = enforced_file_expires_after
         if router_settings is not UNSET:
             field_dict["router_settings"] = router_settings
         if access_group_ids is not UNSET:
@@ -412,6 +440,8 @@ class UpdateTeamRequest:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.allowed_vector_store_index_item import AllowedVectorStoreIndexItem
         from ..models.lite_llm_object_permission_base import LiteLLMObjectPermissionBase
+        from ..models.update_team_request_enforced_batch_output_expires_after_type_0 import UpdateTeamRequestEnforcedBatchOutputExpiresAfterType0
+        from ..models.update_team_request_enforced_file_expires_after_type_0 import UpdateTeamRequestEnforcedFileExpiresAfterType0
         from ..models.update_team_request_metadata_type_0 import UpdateTeamRequestMetadataType0
         from ..models.update_team_request_model_aliases_type_0 import UpdateTeamRequestModelAliasesType0
         from ..models.update_team_request_model_rpm_limit_type_0 import UpdateTeamRequestModelRpmLimitType0
@@ -804,6 +834,46 @@ class UpdateTeamRequest:
         allowed_vector_store_indexes = _parse_allowed_vector_store_indexes(d.pop("allowed_vector_store_indexes", UNSET))
 
 
+        def _parse_enforced_batch_output_expires_after(data: object) -> None | Unset | UpdateTeamRequestEnforcedBatchOutputExpiresAfterType0:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                enforced_batch_output_expires_after_type_0 = UpdateTeamRequestEnforcedBatchOutputExpiresAfterType0.from_dict(data)
+
+
+
+                return enforced_batch_output_expires_after_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UpdateTeamRequestEnforcedBatchOutputExpiresAfterType0, data)
+
+        enforced_batch_output_expires_after = _parse_enforced_batch_output_expires_after(d.pop("enforced_batch_output_expires_after", UNSET))
+
+
+        def _parse_enforced_file_expires_after(data: object) -> None | Unset | UpdateTeamRequestEnforcedFileExpiresAfterType0:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                enforced_file_expires_after_type_0 = UpdateTeamRequestEnforcedFileExpiresAfterType0.from_dict(data)
+
+
+
+                return enforced_file_expires_after_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UpdateTeamRequestEnforcedFileExpiresAfterType0, data)
+
+        enforced_file_expires_after = _parse_enforced_file_expires_after(d.pop("enforced_file_expires_after", UNSET))
+
+
         def _parse_router_settings(data: object) -> None | Unset | UpdateTeamRequestRouterSettingsType0:
             if data is None:
                 return data
@@ -870,6 +940,8 @@ class UpdateTeamRequest:
             model_rpm_limit=model_rpm_limit,
             model_tpm_limit=model_tpm_limit,
             allowed_vector_store_indexes=allowed_vector_store_indexes,
+            enforced_batch_output_expires_after=enforced_batch_output_expires_after,
+            enforced_file_expires_after=enforced_file_expires_after,
             router_settings=router_settings,
             access_group_ids=access_group_ids,
         )

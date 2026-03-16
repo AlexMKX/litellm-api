@@ -14,6 +14,7 @@ from typing import cast
 if TYPE_CHECKING:
   from ..models.token_count_request_contents_type_0_item import TokenCountRequestContentsType0Item
   from ..models.token_count_request_messages_type_0_item import TokenCountRequestMessagesType0Item
+  from ..models.token_count_request_tools_type_0_item import TokenCountRequestToolsType0Item
 
 
 
@@ -31,12 +32,16 @@ class TokenCountRequest:
             prompt (None | str | Unset):
             messages (list[TokenCountRequestMessagesType0Item] | None | Unset):
             contents (list[TokenCountRequestContentsType0Item] | None | Unset):
+            tools (list[TokenCountRequestToolsType0Item] | None | Unset):
+            system (Any | None | Unset):
      """
 
     model: str
     prompt: None | str | Unset = UNSET
     messages: list[TokenCountRequestMessagesType0Item] | None | Unset = UNSET
     contents: list[TokenCountRequestContentsType0Item] | None | Unset = UNSET
+    tools: list[TokenCountRequestToolsType0Item] | None | Unset = UNSET
+    system: Any | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -46,6 +51,7 @@ class TokenCountRequest:
     def to_dict(self) -> dict[str, Any]:
         from ..models.token_count_request_contents_type_0_item import TokenCountRequestContentsType0Item
         from ..models.token_count_request_messages_type_0_item import TokenCountRequestMessagesType0Item
+        from ..models.token_count_request_tools_type_0_item import TokenCountRequestToolsType0Item
         model = self.model
 
         prompt: None | str | Unset
@@ -80,6 +86,25 @@ class TokenCountRequest:
         else:
             contents = self.contents
 
+        tools: list[dict[str, Any]] | None | Unset
+        if isinstance(self.tools, Unset):
+            tools = UNSET
+        elif isinstance(self.tools, list):
+            tools = []
+            for tools_type_0_item_data in self.tools:
+                tools_type_0_item = tools_type_0_item_data.to_dict()
+                tools.append(tools_type_0_item)
+
+
+        else:
+            tools = self.tools
+
+        system: Any | None | Unset
+        if isinstance(self.system, Unset):
+            system = UNSET
+        else:
+            system = self.system
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -92,6 +117,10 @@ class TokenCountRequest:
             field_dict["messages"] = messages
         if contents is not UNSET:
             field_dict["contents"] = contents
+        if tools is not UNSET:
+            field_dict["tools"] = tools
+        if system is not UNSET:
+            field_dict["system"] = system
 
         return field_dict
 
@@ -101,6 +130,7 @@ class TokenCountRequest:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.token_count_request_contents_type_0_item import TokenCountRequestContentsType0Item
         from ..models.token_count_request_messages_type_0_item import TokenCountRequestMessagesType0Item
+        from ..models.token_count_request_tools_type_0_item import TokenCountRequestToolsType0Item
         d = dict(src_dict)
         model = d.pop("model")
 
@@ -164,11 +194,48 @@ class TokenCountRequest:
         contents = _parse_contents(d.pop("contents", UNSET))
 
 
+        def _parse_tools(data: object) -> list[TokenCountRequestToolsType0Item] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                tools_type_0 = []
+                _tools_type_0 = data
+                for tools_type_0_item_data in (_tools_type_0):
+                    tools_type_0_item = TokenCountRequestToolsType0Item.from_dict(tools_type_0_item_data)
+
+
+
+                    tools_type_0.append(tools_type_0_item)
+
+                return tools_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[TokenCountRequestToolsType0Item] | None | Unset, data)
+
+        tools = _parse_tools(d.pop("tools", UNSET))
+
+
+        def _parse_system(data: object) -> Any | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(Any | None | Unset, data)
+
+        system = _parse_system(d.pop("system", UNSET))
+
+
         token_count_request = cls(
             model=model,
             prompt=prompt,
             messages=messages,
             contents=contents,
+            tools=tools,
+            system=system,
         )
 
 

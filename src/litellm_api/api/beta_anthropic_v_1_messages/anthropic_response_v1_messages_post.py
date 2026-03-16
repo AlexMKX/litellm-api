@@ -57,7 +57,7 @@ def sync_detailed(
     """ Anthropic Response
 
      Use `{PROXY_BASE_URL}/anthropic/v1/messages` instead -
-    [Docs](https://docs.litellm.ai/docs/anthropic_completion).
+    [Docs](https://docs.litellm.ai/docs/pass_through/anthropic_completion).
 
     This was a BETA endpoint that calls 100+ LLMs in the anthropic format.
 
@@ -89,7 +89,7 @@ async def asyncio_detailed(
     """ Anthropic Response
 
      Use `{PROXY_BASE_URL}/anthropic/v1/messages` instead -
-    [Docs](https://docs.litellm.ai/docs/anthropic_completion).
+    [Docs](https://docs.litellm.ai/docs/pass_through/anthropic_completion).
 
     This was a BETA endpoint that calls 100+ LLMs in the anthropic format.
 

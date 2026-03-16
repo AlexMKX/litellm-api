@@ -37,6 +37,16 @@ class UISettings:
                 the LLM API. Required for Claude Code with Max subscription. Default: False.
             enable_projects_ui (bool | Unset): If enabled, shows the Projects feature in the UI sidebar and the project
                 field in key management. Default: False.
+            disable_agents_for_internal_users (bool | Unset): If true, internal users cannot access agent management
+                endpoints or the Agents page in the UI. Default: False.
+            allow_agents_for_team_admins (bool | Unset): If true, team admins are exempt from the agents disable restriction
+                (only takes effect when disable_agents_for_internal_users is true). Default: False.
+            disable_vector_stores_for_internal_users (bool | Unset): If true, internal users cannot access vector store
+                management endpoints or the Vector Stores page in the UI. Default: False.
+            allow_vector_stores_for_team_admins (bool | Unset): If true, team admins are exempt from the vector stores
+                disable restriction (only takes effect when disable_vector_stores_for_internal_users is true). Default: False.
+            scope_user_search_to_org (bool | Unset): If enabled, the user search endpoint (/user/filter/ui) restricts
+                results by organization. When off, any authenticated user can search all users. Default: False.
      """
 
     disable_model_add_for_internal_users: bool | Unset = False
@@ -45,6 +55,11 @@ class UISettings:
     require_auth_for_public_ai_hub: bool | Unset = False
     forward_client_headers_to_llm_api: bool | Unset = False
     enable_projects_ui: bool | Unset = False
+    disable_agents_for_internal_users: bool | Unset = False
+    allow_agents_for_team_admins: bool | Unset = False
+    disable_vector_stores_for_internal_users: bool | Unset = False
+    allow_vector_stores_for_team_admins: bool | Unset = False
+    scope_user_search_to_org: bool | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -72,6 +87,16 @@ class UISettings:
 
         enable_projects_ui = self.enable_projects_ui
 
+        disable_agents_for_internal_users = self.disable_agents_for_internal_users
+
+        allow_agents_for_team_admins = self.allow_agents_for_team_admins
+
+        disable_vector_stores_for_internal_users = self.disable_vector_stores_for_internal_users
+
+        allow_vector_stores_for_team_admins = self.allow_vector_stores_for_team_admins
+
+        scope_user_search_to_org = self.scope_user_search_to_org
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -89,6 +114,16 @@ class UISettings:
             field_dict["forward_client_headers_to_llm_api"] = forward_client_headers_to_llm_api
         if enable_projects_ui is not UNSET:
             field_dict["enable_projects_ui"] = enable_projects_ui
+        if disable_agents_for_internal_users is not UNSET:
+            field_dict["disable_agents_for_internal_users"] = disable_agents_for_internal_users
+        if allow_agents_for_team_admins is not UNSET:
+            field_dict["allow_agents_for_team_admins"] = allow_agents_for_team_admins
+        if disable_vector_stores_for_internal_users is not UNSET:
+            field_dict["disable_vector_stores_for_internal_users"] = disable_vector_stores_for_internal_users
+        if allow_vector_stores_for_team_admins is not UNSET:
+            field_dict["allow_vector_stores_for_team_admins"] = allow_vector_stores_for_team_admins
+        if scope_user_search_to_org is not UNSET:
+            field_dict["scope_user_search_to_org"] = scope_user_search_to_org
 
         return field_dict
 
@@ -125,6 +160,16 @@ class UISettings:
 
         enable_projects_ui = d.pop("enable_projects_ui", UNSET)
 
+        disable_agents_for_internal_users = d.pop("disable_agents_for_internal_users", UNSET)
+
+        allow_agents_for_team_admins = d.pop("allow_agents_for_team_admins", UNSET)
+
+        disable_vector_stores_for_internal_users = d.pop("disable_vector_stores_for_internal_users", UNSET)
+
+        allow_vector_stores_for_team_admins = d.pop("allow_vector_stores_for_team_admins", UNSET)
+
+        scope_user_search_to_org = d.pop("scope_user_search_to_org", UNSET)
+
         ui_settings = cls(
             disable_model_add_for_internal_users=disable_model_add_for_internal_users,
             disable_team_admin_delete_team_user=disable_team_admin_delete_team_user,
@@ -132,6 +177,11 @@ class UISettings:
             require_auth_for_public_ai_hub=require_auth_for_public_ai_hub,
             forward_client_headers_to_llm_api=forward_client_headers_to_llm_api,
             enable_projects_ui=enable_projects_ui,
+            disable_agents_for_internal_users=disable_agents_for_internal_users,
+            allow_agents_for_team_admins=allow_agents_for_team_admins,
+            disable_vector_stores_for_internal_users=disable_vector_stores_for_internal_users,
+            allow_vector_stores_for_team_admins=allow_vector_stores_for_team_admins,
+            scope_user_search_to_org=scope_user_search_to_org,
         )
 
 

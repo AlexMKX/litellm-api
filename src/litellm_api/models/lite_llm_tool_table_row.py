@@ -8,7 +8,8 @@ from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..models.lite_llm_tool_table_row_call_policy import LiteLLMToolTableRowCallPolicy
+from ..models.lite_llm_tool_table_row_input_policy import LiteLLMToolTableRowInputPolicy
+from ..models.lite_llm_tool_table_row_output_policy import LiteLLMToolTableRowOutputPolicy
 from ..types import UNSET, Unset
 from dateutil.parser import isoparse
 from typing import cast
@@ -32,12 +33,15 @@ class LiteLLMToolTableRow:
             tool_id (str):
             tool_name (str):
             origin (None | str | Unset):
-            call_policy (LiteLLMToolTableRowCallPolicy | Unset):  Default: LiteLLMToolTableRowCallPolicy.UNTRUSTED.
+            input_policy (LiteLLMToolTableRowInputPolicy | Unset):  Default: LiteLLMToolTableRowInputPolicy.UNTRUSTED.
+            output_policy (LiteLLMToolTableRowOutputPolicy | Unset):  Default: LiteLLMToolTableRowOutputPolicy.UNTRUSTED.
             call_count (int | Unset):  Default: 0.
             assignments (LiteLLMToolTableRowAssignmentsType0 | None | Unset):
             key_hash (None | str | Unset):
             team_id (None | str | Unset):
             key_alias (None | str | Unset):
+            user_agent (None | str | Unset):
+            last_used_at (datetime.datetime | None | Unset):
             created_at (datetime.datetime | None | Unset):
             updated_at (datetime.datetime | None | Unset):
             created_by (None | str | Unset):
@@ -47,12 +51,15 @@ class LiteLLMToolTableRow:
     tool_id: str
     tool_name: str
     origin: None | str | Unset = UNSET
-    call_policy: LiteLLMToolTableRowCallPolicy | Unset = LiteLLMToolTableRowCallPolicy.UNTRUSTED
+    input_policy: LiteLLMToolTableRowInputPolicy | Unset = LiteLLMToolTableRowInputPolicy.UNTRUSTED
+    output_policy: LiteLLMToolTableRowOutputPolicy | Unset = LiteLLMToolTableRowOutputPolicy.UNTRUSTED
     call_count: int | Unset = 0
     assignments: LiteLLMToolTableRowAssignmentsType0 | None | Unset = UNSET
     key_hash: None | str | Unset = UNSET
     team_id: None | str | Unset = UNSET
     key_alias: None | str | Unset = UNSET
+    user_agent: None | str | Unset = UNSET
+    last_used_at: datetime.datetime | None | Unset = UNSET
     created_at: datetime.datetime | None | Unset = UNSET
     updated_at: datetime.datetime | None | Unset = UNSET
     created_by: None | str | Unset = UNSET
@@ -75,9 +82,14 @@ class LiteLLMToolTableRow:
         else:
             origin = self.origin
 
-        call_policy: str | Unset = UNSET
-        if not isinstance(self.call_policy, Unset):
-            call_policy = self.call_policy.value
+        input_policy: str | Unset = UNSET
+        if not isinstance(self.input_policy, Unset):
+            input_policy = self.input_policy.value
+
+
+        output_policy: str | Unset = UNSET
+        if not isinstance(self.output_policy, Unset):
+            output_policy = self.output_policy.value
 
 
         call_count = self.call_count
@@ -107,6 +119,20 @@ class LiteLLMToolTableRow:
             key_alias = UNSET
         else:
             key_alias = self.key_alias
+
+        user_agent: None | str | Unset
+        if isinstance(self.user_agent, Unset):
+            user_agent = UNSET
+        else:
+            user_agent = self.user_agent
+
+        last_used_at: None | str | Unset
+        if isinstance(self.last_used_at, Unset):
+            last_used_at = UNSET
+        elif isinstance(self.last_used_at, datetime.datetime):
+            last_used_at = self.last_used_at.isoformat()
+        else:
+            last_used_at = self.last_used_at
 
         created_at: None | str | Unset
         if isinstance(self.created_at, Unset):
@@ -145,8 +171,10 @@ class LiteLLMToolTableRow:
         })
         if origin is not UNSET:
             field_dict["origin"] = origin
-        if call_policy is not UNSET:
-            field_dict["call_policy"] = call_policy
+        if input_policy is not UNSET:
+            field_dict["input_policy"] = input_policy
+        if output_policy is not UNSET:
+            field_dict["output_policy"] = output_policy
         if call_count is not UNSET:
             field_dict["call_count"] = call_count
         if assignments is not UNSET:
@@ -157,6 +185,10 @@ class LiteLLMToolTableRow:
             field_dict["team_id"] = team_id
         if key_alias is not UNSET:
             field_dict["key_alias"] = key_alias
+        if user_agent is not UNSET:
+            field_dict["user_agent"] = user_agent
+        if last_used_at is not UNSET:
+            field_dict["last_used_at"] = last_used_at
         if created_at is not UNSET:
             field_dict["created_at"] = created_at
         if updated_at is not UNSET:
@@ -188,12 +220,22 @@ class LiteLLMToolTableRow:
         origin = _parse_origin(d.pop("origin", UNSET))
 
 
-        _call_policy = d.pop("call_policy", UNSET)
-        call_policy: LiteLLMToolTableRowCallPolicy | Unset
-        if isinstance(_call_policy,  Unset):
-            call_policy = UNSET
+        _input_policy = d.pop("input_policy", UNSET)
+        input_policy: LiteLLMToolTableRowInputPolicy | Unset
+        if isinstance(_input_policy,  Unset):
+            input_policy = UNSET
         else:
-            call_policy = LiteLLMToolTableRowCallPolicy(_call_policy)
+            input_policy = LiteLLMToolTableRowInputPolicy(_input_policy)
+
+
+
+
+        _output_policy = d.pop("output_policy", UNSET)
+        output_policy: LiteLLMToolTableRowOutputPolicy | Unset
+        if isinstance(_output_policy,  Unset):
+            output_policy = UNSET
+        else:
+            output_policy = LiteLLMToolTableRowOutputPolicy(_output_policy)
 
 
 
@@ -248,6 +290,36 @@ class LiteLLMToolTableRow:
             return cast(None | str | Unset, data)
 
         key_alias = _parse_key_alias(d.pop("key_alias", UNSET))
+
+
+        def _parse_user_agent(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        user_agent = _parse_user_agent(d.pop("user_agent", UNSET))
+
+
+        def _parse_last_used_at(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                last_used_at_type_0 = isoparse(data)
+
+
+
+                return last_used_at_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        last_used_at = _parse_last_used_at(d.pop("last_used_at", UNSET))
 
 
         def _parse_created_at(data: object) -> datetime.datetime | None | Unset:
@@ -314,12 +386,15 @@ class LiteLLMToolTableRow:
             tool_id=tool_id,
             tool_name=tool_name,
             origin=origin,
-            call_policy=call_policy,
+            input_policy=input_policy,
+            output_policy=output_policy,
             call_count=call_count,
             assignments=assignments,
             key_hash=key_hash,
             team_id=team_id,
             key_alias=key_alias,
+            user_agent=user_agent,
+            last_used_at=last_used_at,
             created_at=created_at,
             updated_at=updated_at,
             created_by=created_by,

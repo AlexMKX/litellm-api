@@ -27,11 +27,11 @@ class Mode:
     """ 
         Attributes:
             tags (ModeTags): Tags for the guardrail mode
-            default (None | str | Unset): Default mode when no tags match
+            default (list[str] | None | str | Unset): Default mode when no tags match
      """
 
     tags: ModeTags
-    default: None | str | Unset = UNSET
+    default: list[str] | None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -42,9 +42,13 @@ class Mode:
         from ..models.mode_tags import ModeTags
         tags = self.tags.to_dict()
 
-        default: None | str | Unset
+        default: list[str] | None | str | Unset
         if isinstance(self.default, Unset):
             default = UNSET
+        elif isinstance(self.default, list):
+            default = self.default
+
+
         else:
             default = self.default
 
@@ -70,12 +74,20 @@ class Mode:
 
 
 
-        def _parse_default(data: object) -> None | str | Unset:
+        def _parse_default(data: object) -> list[str] | None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(None | str | Unset, data)
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                default_type_1 = cast(list[str], data)
+
+                return default_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | str | Unset, data)
 
         default = _parse_default(d.pop("default", UNSET))
 

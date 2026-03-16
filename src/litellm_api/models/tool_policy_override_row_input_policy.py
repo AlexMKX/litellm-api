@@ -1,8 +1,7 @@
 from enum import Enum
 
-class LiteLLMToolTableRowCallPolicy(str, Enum):
+class ToolPolicyOverrideRowInputPolicy(str, Enum):
     BLOCKED = "blocked"
-    DUAL_LLM = "dual_llm"
     TRUSTED = "trusted"
     UNTRUSTED = "untrusted"
 

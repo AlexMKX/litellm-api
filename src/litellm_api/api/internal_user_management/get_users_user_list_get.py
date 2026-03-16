@@ -25,6 +25,7 @@ def _get_kwargs(
     page_size: int | Unset = 25,
     sort_by: None | str | Unset = UNSET,
     sort_order: str | Unset = 'asc',
+    organization_ids: None | str | Unset = UNSET,
 
 ) -> dict[str, Any]:
     
@@ -81,6 +82,13 @@ def _get_kwargs(
 
     params["sort_order"] = sort_order
 
+    json_organization_ids: None | str | Unset
+    if isinstance(organization_ids, Unset):
+        json_organization_ids = UNSET
+    else:
+        json_organization_ids = organization_ids
+    params["organization_ids"] = json_organization_ids
+
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
@@ -131,6 +139,7 @@ def sync_detailed(
     page_size: int | Unset = 25,
     sort_by: None | str | Unset = UNSET,
     sort_order: str | Unset = 'asc',
+    organization_ids: None | str | Unset = UNSET,
 
 ) -> Response[HTTPValidationError]:
     """ Get Users
@@ -172,6 +181,8 @@ def sync_detailed(
         sort_by (None | str | Unset): Column to sort by (e.g. 'user_id', 'user_email',
             'created_at', 'spend')
         sort_order (str | Unset): Sort order ('asc' or 'desc') Default: 'asc'.
+        organization_ids (None | str | Unset): Filter users by organization membership. Comma-
+            separated list of org IDs.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -192,6 +203,7 @@ page=page,
 page_size=page_size,
 sort_by=sort_by,
 sort_order=sort_order,
+organization_ids=organization_ids,
 
     )
 
@@ -213,6 +225,7 @@ def sync(
     page_size: int | Unset = 25,
     sort_by: None | str | Unset = UNSET,
     sort_order: str | Unset = 'asc',
+    organization_ids: None | str | Unset = UNSET,
 
 ) -> HTTPValidationError | None:
     """ Get Users
@@ -254,6 +267,8 @@ def sync(
         sort_by (None | str | Unset): Column to sort by (e.g. 'user_id', 'user_email',
             'created_at', 'spend')
         sort_order (str | Unset): Sort order ('asc' or 'desc') Default: 'asc'.
+        organization_ids (None | str | Unset): Filter users by organization membership. Comma-
+            separated list of org IDs.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -275,6 +290,7 @@ page=page,
 page_size=page_size,
 sort_by=sort_by,
 sort_order=sort_order,
+organization_ids=organization_ids,
 
     ).parsed
 
@@ -290,6 +306,7 @@ async def asyncio_detailed(
     page_size: int | Unset = 25,
     sort_by: None | str | Unset = UNSET,
     sort_order: str | Unset = 'asc',
+    organization_ids: None | str | Unset = UNSET,
 
 ) -> Response[HTTPValidationError]:
     """ Get Users
@@ -331,6 +348,8 @@ async def asyncio_detailed(
         sort_by (None | str | Unset): Column to sort by (e.g. 'user_id', 'user_email',
             'created_at', 'spend')
         sort_order (str | Unset): Sort order ('asc' or 'desc') Default: 'asc'.
+        organization_ids (None | str | Unset): Filter users by organization membership. Comma-
+            separated list of org IDs.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -351,6 +370,7 @@ page=page,
 page_size=page_size,
 sort_by=sort_by,
 sort_order=sort_order,
+organization_ids=organization_ids,
 
     )
 
@@ -372,6 +392,7 @@ async def asyncio(
     page_size: int | Unset = 25,
     sort_by: None | str | Unset = UNSET,
     sort_order: str | Unset = 'asc',
+    organization_ids: None | str | Unset = UNSET,
 
 ) -> HTTPValidationError | None:
     """ Get Users
@@ -413,6 +434,8 @@ async def asyncio(
         sort_by (None | str | Unset): Column to sort by (e.g. 'user_id', 'user_email',
             'created_at', 'spend')
         sort_order (str | Unset): Sort order ('asc' or 'desc') Default: 'asc'.
+        organization_ids (None | str | Unset): Filter users by organization membership. Comma-
+            separated list of org IDs.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -434,5 +457,6 @@ page=page,
 page_size=page_size,
 sort_by=sort_by,
 sort_order=sort_order,
+organization_ids=organization_ids,
 
     )).parsed

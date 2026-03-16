@@ -80,14 +80,15 @@ def sync_detailed(
 ) -> Response[HTTPValidationError | ToolPolicyUpdateResponse]:
     r""" Update Tool Policy
 
-     Set the call policy for a tool.
+     Set the input_policy and/or output_policy for a tool (global), or block for a specific team/key
+    (override).
 
     Parameters:
     - tool_name: str - The tool to update
-    - call_policy: \"trusted\" | \"untrusted\" | \"dual_llm\" | \"blocked\"
-
-    Setting a tool to \"blocked\" will cause the ToolPolicyGuardrail to remove
-    that tool_call from LLM responses before returning them to the client.
+    - input_policy: optional - \"trusted\" | \"untrusted\" | \"blocked\"
+    - output_policy: optional - \"trusted\" | \"untrusted\"
+    - team_id: optional - if set, create/update override for this team only
+    - key_hash: optional - if set, create/update override for this key only
 
     Args:
         body (ToolPolicyUpdateRequest):
@@ -120,14 +121,15 @@ def sync(
 ) -> HTTPValidationError | ToolPolicyUpdateResponse | None:
     r""" Update Tool Policy
 
-     Set the call policy for a tool.
+     Set the input_policy and/or output_policy for a tool (global), or block for a specific team/key
+    (override).
 
     Parameters:
     - tool_name: str - The tool to update
-    - call_policy: \"trusted\" | \"untrusted\" | \"dual_llm\" | \"blocked\"
-
-    Setting a tool to \"blocked\" will cause the ToolPolicyGuardrail to remove
-    that tool_call from LLM responses before returning them to the client.
+    - input_policy: optional - \"trusted\" | \"untrusted\" | \"blocked\"
+    - output_policy: optional - \"trusted\" | \"untrusted\"
+    - team_id: optional - if set, create/update override for this team only
+    - key_hash: optional - if set, create/update override for this key only
 
     Args:
         body (ToolPolicyUpdateRequest):
@@ -155,14 +157,15 @@ async def asyncio_detailed(
 ) -> Response[HTTPValidationError | ToolPolicyUpdateResponse]:
     r""" Update Tool Policy
 
-     Set the call policy for a tool.
+     Set the input_policy and/or output_policy for a tool (global), or block for a specific team/key
+    (override).
 
     Parameters:
     - tool_name: str - The tool to update
-    - call_policy: \"trusted\" | \"untrusted\" | \"dual_llm\" | \"blocked\"
-
-    Setting a tool to \"blocked\" will cause the ToolPolicyGuardrail to remove
-    that tool_call from LLM responses before returning them to the client.
+    - input_policy: optional - \"trusted\" | \"untrusted\" | \"blocked\"
+    - output_policy: optional - \"trusted\" | \"untrusted\"
+    - team_id: optional - if set, create/update override for this team only
+    - key_hash: optional - if set, create/update override for this key only
 
     Args:
         body (ToolPolicyUpdateRequest):
@@ -195,14 +198,15 @@ async def asyncio(
 ) -> HTTPValidationError | ToolPolicyUpdateResponse | None:
     r""" Update Tool Policy
 
-     Set the call policy for a tool.
+     Set the input_policy and/or output_policy for a tool (global), or block for a specific team/key
+    (override).
 
     Parameters:
     - tool_name: str - The tool to update
-    - call_policy: \"trusted\" | \"untrusted\" | \"dual_llm\" | \"blocked\"
-
-    Setting a tool to \"blocked\" will cause the ToolPolicyGuardrail to remove
-    that tool_call from LLM responses before returning them to the client.
+    - input_policy: optional - \"trusted\" | \"untrusted\" | \"blocked\"
+    - output_policy: optional - \"trusted\" | \"untrusted\"
+    - team_id: optional - if set, create/update override for this team only
+    - key_hash: optional - if set, create/update override for this key only
 
     Args:
         body (ToolPolicyUpdateRequest):

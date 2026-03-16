@@ -18,6 +18,8 @@ if TYPE_CHECKING:
   from ..models.update_mcp_server_request_env import UpdateMCPServerRequestEnv
   from ..models.update_mcp_server_request_mcp_info_type_0 import UpdateMCPServerRequestMcpInfoType0
   from ..models.update_mcp_server_request_static_headers_type_0 import UpdateMCPServerRequestStaticHeadersType0
+  from ..models.update_mcp_server_request_tool_name_to_description_type_0 import UpdateMCPServerRequestToolNameToDescriptionType0
+  from ..models.update_mcp_server_request_tool_name_to_display_name_type_0 import UpdateMCPServerRequestToolNameToDisplayNameType0
 
 
 
@@ -43,6 +45,8 @@ class UpdateMCPServerRequest:
             mcp_info (None | Unset | UpdateMCPServerRequestMcpInfoType0):
             mcp_access_groups (list[str] | Unset):
             allowed_tools (list[str] | None | Unset):
+            tool_name_to_display_name (None | Unset | UpdateMCPServerRequestToolNameToDisplayNameType0):
+            tool_name_to_description (None | Unset | UpdateMCPServerRequestToolNameToDescriptionType0):
             extra_headers (list[str] | None | Unset):
             static_headers (None | Unset | UpdateMCPServerRequestStaticHeadersType0):
             command (None | str | Unset):
@@ -53,6 +57,10 @@ class UpdateMCPServerRequest:
             registration_url (None | str | Unset):
             allow_all_keys (bool | Unset):  Default: False.
             available_on_public_internet (bool | Unset):  Default: True.
+            is_byok (bool | Unset):  Default: False.
+            byok_description (list[str] | Unset):
+            byok_api_key_help_url (None | str | Unset):
+            source_url (None | str | Unset):
      """
 
     server_id: str
@@ -67,6 +75,8 @@ class UpdateMCPServerRequest:
     mcp_info: None | Unset | UpdateMCPServerRequestMcpInfoType0 = UNSET
     mcp_access_groups: list[str] | Unset = UNSET
     allowed_tools: list[str] | None | Unset = UNSET
+    tool_name_to_display_name: None | Unset | UpdateMCPServerRequestToolNameToDisplayNameType0 = UNSET
+    tool_name_to_description: None | Unset | UpdateMCPServerRequestToolNameToDescriptionType0 = UNSET
     extra_headers: list[str] | None | Unset = UNSET
     static_headers: None | Unset | UpdateMCPServerRequestStaticHeadersType0 = UNSET
     command: None | str | Unset = UNSET
@@ -77,6 +87,10 @@ class UpdateMCPServerRequest:
     registration_url: None | str | Unset = UNSET
     allow_all_keys: bool | Unset = False
     available_on_public_internet: bool | Unset = True
+    is_byok: bool | Unset = False
+    byok_description: list[str] | Unset = UNSET
+    byok_api_key_help_url: None | str | Unset = UNSET
+    source_url: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -88,6 +102,8 @@ class UpdateMCPServerRequest:
         from ..models.update_mcp_server_request_env import UpdateMCPServerRequestEnv
         from ..models.update_mcp_server_request_mcp_info_type_0 import UpdateMCPServerRequestMcpInfoType0
         from ..models.update_mcp_server_request_static_headers_type_0 import UpdateMCPServerRequestStaticHeadersType0
+        from ..models.update_mcp_server_request_tool_name_to_description_type_0 import UpdateMCPServerRequestToolNameToDescriptionType0
+        from ..models.update_mcp_server_request_tool_name_to_display_name_type_0 import UpdateMCPServerRequestToolNameToDisplayNameType0
         server_id = self.server_id
 
         server_name: None | str | Unset
@@ -165,6 +181,22 @@ class UpdateMCPServerRequest:
         else:
             allowed_tools = self.allowed_tools
 
+        tool_name_to_display_name: dict[str, Any] | None | Unset
+        if isinstance(self.tool_name_to_display_name, Unset):
+            tool_name_to_display_name = UNSET
+        elif isinstance(self.tool_name_to_display_name, UpdateMCPServerRequestToolNameToDisplayNameType0):
+            tool_name_to_display_name = self.tool_name_to_display_name.to_dict()
+        else:
+            tool_name_to_display_name = self.tool_name_to_display_name
+
+        tool_name_to_description: dict[str, Any] | None | Unset
+        if isinstance(self.tool_name_to_description, Unset):
+            tool_name_to_description = UNSET
+        elif isinstance(self.tool_name_to_description, UpdateMCPServerRequestToolNameToDescriptionType0):
+            tool_name_to_description = self.tool_name_to_description.to_dict()
+        else:
+            tool_name_to_description = self.tool_name_to_description
+
         extra_headers: list[str] | None | Unset
         if isinstance(self.extra_headers, Unset):
             extra_headers = UNSET
@@ -221,6 +253,26 @@ class UpdateMCPServerRequest:
 
         available_on_public_internet = self.available_on_public_internet
 
+        is_byok = self.is_byok
+
+        byok_description: list[str] | Unset = UNSET
+        if not isinstance(self.byok_description, Unset):
+            byok_description = self.byok_description
+
+
+
+        byok_api_key_help_url: None | str | Unset
+        if isinstance(self.byok_api_key_help_url, Unset):
+            byok_api_key_help_url = UNSET
+        else:
+            byok_api_key_help_url = self.byok_api_key_help_url
+
+        source_url: None | str | Unset
+        if isinstance(self.source_url, Unset):
+            source_url = UNSET
+        else:
+            source_url = self.source_url
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -249,6 +301,10 @@ class UpdateMCPServerRequest:
             field_dict["mcp_access_groups"] = mcp_access_groups
         if allowed_tools is not UNSET:
             field_dict["allowed_tools"] = allowed_tools
+        if tool_name_to_display_name is not UNSET:
+            field_dict["tool_name_to_display_name"] = tool_name_to_display_name
+        if tool_name_to_description is not UNSET:
+            field_dict["tool_name_to_description"] = tool_name_to_description
         if extra_headers is not UNSET:
             field_dict["extra_headers"] = extra_headers
         if static_headers is not UNSET:
@@ -269,6 +325,14 @@ class UpdateMCPServerRequest:
             field_dict["allow_all_keys"] = allow_all_keys
         if available_on_public_internet is not UNSET:
             field_dict["available_on_public_internet"] = available_on_public_internet
+        if is_byok is not UNSET:
+            field_dict["is_byok"] = is_byok
+        if byok_description is not UNSET:
+            field_dict["byok_description"] = byok_description
+        if byok_api_key_help_url is not UNSET:
+            field_dict["byok_api_key_help_url"] = byok_api_key_help_url
+        if source_url is not UNSET:
+            field_dict["source_url"] = source_url
 
         return field_dict
 
@@ -280,6 +344,8 @@ class UpdateMCPServerRequest:
         from ..models.update_mcp_server_request_env import UpdateMCPServerRequestEnv
         from ..models.update_mcp_server_request_mcp_info_type_0 import UpdateMCPServerRequestMcpInfoType0
         from ..models.update_mcp_server_request_static_headers_type_0 import UpdateMCPServerRequestStaticHeadersType0
+        from ..models.update_mcp_server_request_tool_name_to_description_type_0 import UpdateMCPServerRequestToolNameToDescriptionType0
+        from ..models.update_mcp_server_request_tool_name_to_display_name_type_0 import UpdateMCPServerRequestToolNameToDisplayNameType0
         d = dict(src_dict)
         server_id = d.pop("server_id")
 
@@ -424,6 +490,46 @@ class UpdateMCPServerRequest:
         allowed_tools = _parse_allowed_tools(d.pop("allowed_tools", UNSET))
 
 
+        def _parse_tool_name_to_display_name(data: object) -> None | Unset | UpdateMCPServerRequestToolNameToDisplayNameType0:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                tool_name_to_display_name_type_0 = UpdateMCPServerRequestToolNameToDisplayNameType0.from_dict(data)
+
+
+
+                return tool_name_to_display_name_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UpdateMCPServerRequestToolNameToDisplayNameType0, data)
+
+        tool_name_to_display_name = _parse_tool_name_to_display_name(d.pop("tool_name_to_display_name", UNSET))
+
+
+        def _parse_tool_name_to_description(data: object) -> None | Unset | UpdateMCPServerRequestToolNameToDescriptionType0:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                tool_name_to_description_type_0 = UpdateMCPServerRequestToolNameToDescriptionType0.from_dict(data)
+
+
+
+                return tool_name_to_description_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UpdateMCPServerRequestToolNameToDescriptionType0, data)
+
+        tool_name_to_description = _parse_tool_name_to_description(d.pop("tool_name_to_description", UNSET))
+
+
         def _parse_extra_headers(data: object) -> list[str] | None | Unset:
             if data is None:
                 return data
@@ -519,6 +625,31 @@ class UpdateMCPServerRequest:
 
         available_on_public_internet = d.pop("available_on_public_internet", UNSET)
 
+        is_byok = d.pop("is_byok", UNSET)
+
+        byok_description = cast(list[str], d.pop("byok_description", UNSET))
+
+
+        def _parse_byok_api_key_help_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        byok_api_key_help_url = _parse_byok_api_key_help_url(d.pop("byok_api_key_help_url", UNSET))
+
+
+        def _parse_source_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        source_url = _parse_source_url(d.pop("source_url", UNSET))
+
+
         update_mcp_server_request = cls(
             server_id=server_id,
             server_name=server_name,
@@ -532,6 +663,8 @@ class UpdateMCPServerRequest:
             mcp_info=mcp_info,
             mcp_access_groups=mcp_access_groups,
             allowed_tools=allowed_tools,
+            tool_name_to_display_name=tool_name_to_display_name,
+            tool_name_to_description=tool_name_to_description,
             extra_headers=extra_headers,
             static_headers=static_headers,
             command=command,
@@ -542,6 +675,10 @@ class UpdateMCPServerRequest:
             registration_url=registration_url,
             allow_all_keys=allow_all_keys,
             available_on_public_internet=available_on_public_internet,
+            is_byok=is_byok,
+            byok_description=byok_description,
+            byok_api_key_help_url=byok_api_key_help_url,
+            source_url=source_url,
         )
 
 

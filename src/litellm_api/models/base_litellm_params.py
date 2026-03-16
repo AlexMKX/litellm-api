@@ -78,6 +78,9 @@ class BaseLitellmParams:
                 unreachable due to network errors. NOTE: This is currently only implemented by
                 guardrail='generic_guardrail_api'. 'fail_closed' raises an error (default). 'fail_open' logs a critical error
                 and allows the request to proceed. Default: BaseLitellmParamsUnreachableFallback.FAIL_CLOSED.
+            extra_headers (list[str] | None | Unset): Header names to forward from the client request to the guardrail (e.g.
+                x-request-id). Only these headers' values are sent; others may be omitted or sent as [present]. Used by
+                generic_guardrail_api (similar to MCP extra_headers).
             custom_code (None | str | Unset): Python-like code containing the apply_guardrail function for custom guardrail
                 logic
      """
@@ -112,6 +115,7 @@ class BaseLitellmParams:
     fail_on_error: bool | None | Unset = True
     additional_provider_specific_params: BaseLitellmParamsAdditionalProviderSpecificParamsType0 | None | Unset = UNSET
     unreachable_fallback: BaseLitellmParamsUnreachableFallback | Unset = BaseLitellmParamsUnreachableFallback.FAIL_CLOSED
+    extra_headers: list[str] | None | Unset = UNSET
     custom_code: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -334,6 +338,16 @@ class BaseLitellmParams:
             unreachable_fallback = self.unreachable_fallback.value
 
 
+        extra_headers: list[str] | None | Unset
+        if isinstance(self.extra_headers, Unset):
+            extra_headers = UNSET
+        elif isinstance(self.extra_headers, list):
+            extra_headers = self.extra_headers
+
+
+        else:
+            extra_headers = self.extra_headers
+
         custom_code: None | str | Unset
         if isinstance(self.custom_code, Unset):
             custom_code = UNSET
@@ -405,6 +419,8 @@ class BaseLitellmParams:
             field_dict["additional_provider_specific_params"] = additional_provider_specific_params
         if unreachable_fallback is not UNSET:
             field_dict["unreachable_fallback"] = unreachable_fallback
+        if extra_headers is not UNSET:
+            field_dict["extra_headers"] = extra_headers
         if custom_code is not UNSET:
             field_dict["custom_code"] = custom_code
 
@@ -806,6 +822,24 @@ class BaseLitellmParams:
 
 
 
+        def _parse_extra_headers(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                extra_headers_type_0 = cast(list[str], data)
+
+                return extra_headers_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        extra_headers = _parse_extra_headers(d.pop("extra_headers", UNSET))
+
+
         def _parse_custom_code(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -847,6 +881,7 @@ class BaseLitellmParams:
             fail_on_error=fail_on_error,
             additional_provider_specific_params=additional_provider_specific_params,
             unreachable_fallback=unreachable_fallback,
+            extra_headers=extra_headers,
             custom_code=custom_code,
         )
 

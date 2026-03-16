@@ -16,8 +16,8 @@ from typing import cast
 
 def _get_kwargs(
     *,
-    client_id: str,
     redirect_uri: str,
+    client_id: None | str | Unset = UNSET,
     state: str | Unset = '',
     mcp_server_name: None | str | Unset = UNSET,
     code_challenge: None | str | Unset = UNSET,
@@ -32,9 +32,14 @@ def _get_kwargs(
 
     params: dict[str, Any] = {}
 
-    params["client_id"] = client_id
-
     params["redirect_uri"] = redirect_uri
+
+    json_client_id: None | str | Unset
+    if isinstance(client_id, Unset):
+        json_client_id = UNSET
+    else:
+        json_client_id = client_id
+    params["client_id"] = json_client_id
 
     params["state"] = state
 
@@ -118,8 +123,8 @@ def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Res
 def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
-    client_id: str,
     redirect_uri: str,
+    client_id: None | str | Unset = UNSET,
     state: str | Unset = '',
     mcp_server_name: None | str | Unset = UNSET,
     code_challenge: None | str | Unset = UNSET,
@@ -131,8 +136,8 @@ def sync_detailed(
     """ Authorize
 
     Args:
-        client_id (str):
         redirect_uri (str):
+        client_id (None | str | Unset):
         state (str | Unset):  Default: ''.
         mcp_server_name (None | str | Unset):
         code_challenge (None | str | Unset):
@@ -150,8 +155,8 @@ def sync_detailed(
 
 
     kwargs = _get_kwargs(
-        client_id=client_id,
-redirect_uri=redirect_uri,
+        redirect_uri=redirect_uri,
+client_id=client_id,
 state=state,
 mcp_server_name=mcp_server_name,
 code_challenge=code_challenge,
@@ -170,8 +175,8 @@ scope=scope,
 def sync(
     *,
     client: AuthenticatedClient | Client,
-    client_id: str,
     redirect_uri: str,
+    client_id: None | str | Unset = UNSET,
     state: str | Unset = '',
     mcp_server_name: None | str | Unset = UNSET,
     code_challenge: None | str | Unset = UNSET,
@@ -183,8 +188,8 @@ def sync(
     """ Authorize
 
     Args:
-        client_id (str):
         redirect_uri (str):
+        client_id (None | str | Unset):
         state (str | Unset):  Default: ''.
         mcp_server_name (None | str | Unset):
         code_challenge (None | str | Unset):
@@ -203,8 +208,8 @@ def sync(
 
     return sync_detailed(
         client=client,
-client_id=client_id,
 redirect_uri=redirect_uri,
+client_id=client_id,
 state=state,
 mcp_server_name=mcp_server_name,
 code_challenge=code_challenge,
@@ -217,8 +222,8 @@ scope=scope,
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
-    client_id: str,
     redirect_uri: str,
+    client_id: None | str | Unset = UNSET,
     state: str | Unset = '',
     mcp_server_name: None | str | Unset = UNSET,
     code_challenge: None | str | Unset = UNSET,
@@ -230,8 +235,8 @@ async def asyncio_detailed(
     """ Authorize
 
     Args:
-        client_id (str):
         redirect_uri (str):
+        client_id (None | str | Unset):
         state (str | Unset):  Default: ''.
         mcp_server_name (None | str | Unset):
         code_challenge (None | str | Unset):
@@ -249,8 +254,8 @@ async def asyncio_detailed(
 
 
     kwargs = _get_kwargs(
-        client_id=client_id,
-redirect_uri=redirect_uri,
+        redirect_uri=redirect_uri,
+client_id=client_id,
 state=state,
 mcp_server_name=mcp_server_name,
 code_challenge=code_challenge,
@@ -269,8 +274,8 @@ scope=scope,
 async def asyncio(
     *,
     client: AuthenticatedClient | Client,
-    client_id: str,
     redirect_uri: str,
+    client_id: None | str | Unset = UNSET,
     state: str | Unset = '',
     mcp_server_name: None | str | Unset = UNSET,
     code_challenge: None | str | Unset = UNSET,
@@ -282,8 +287,8 @@ async def asyncio(
     """ Authorize
 
     Args:
-        client_id (str):
         redirect_uri (str):
+        client_id (None | str | Unset):
         state (str | Unset):  Default: ''.
         mcp_server_name (None | str | Unset):
         code_challenge (None | str | Unset):
@@ -302,8 +307,8 @@ async def asyncio(
 
     return (await asyncio_detailed(
         client=client,
-client_id=client_id,
 redirect_uri=redirect_uri,
+client_id=client_id,
 state=state,
 mcp_server_name=mcp_server_name,
 code_challenge=code_challenge,

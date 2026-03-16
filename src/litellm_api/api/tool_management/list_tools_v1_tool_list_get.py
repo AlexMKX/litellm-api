@@ -9,7 +9,7 @@ from ...types import Response, UNSET
 from ... import errors
 
 from ...models.http_validation_error import HTTPValidationError
-from ...models.list_tools_v1_tool_list_get_call_policy_type_0 import ListToolsV1ToolListGetCallPolicyType0
+from ...models.list_tools_v1_tool_list_get_input_policy_type_0 import ListToolsV1ToolListGetInputPolicyType0
 from ...models.tool_list_response import ToolListResponse
 from ...types import UNSET, Unset
 from typing import cast
@@ -18,7 +18,7 @@ from typing import cast
 
 def _get_kwargs(
     *,
-    call_policy: ListToolsV1ToolListGetCallPolicyType0 | None | Unset = UNSET,
+    input_policy: ListToolsV1ToolListGetInputPolicyType0 | None | Unset = UNSET,
 
 ) -> dict[str, Any]:
     
@@ -27,14 +27,14 @@ def _get_kwargs(
 
     params: dict[str, Any] = {}
 
-    json_call_policy: None | str | Unset
-    if isinstance(call_policy, Unset):
-        json_call_policy = UNSET
-    elif isinstance(call_policy, ListToolsV1ToolListGetCallPolicyType0):
-        json_call_policy = call_policy.value
+    json_input_policy: None | str | Unset
+    if isinstance(input_policy, Unset):
+        json_input_policy = UNSET
+    elif isinstance(input_policy, ListToolsV1ToolListGetInputPolicyType0):
+        json_input_policy = input_policy.value
     else:
-        json_call_policy = call_policy
-    params["call_policy"] = json_call_policy
+        json_input_policy = input_policy
+    params["input_policy"] = json_input_policy
 
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
@@ -84,18 +84,18 @@ def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Res
 def sync_detailed(
     *,
     client: AuthenticatedClient,
-    call_policy: ListToolsV1ToolListGetCallPolicyType0 | None | Unset = UNSET,
+    input_policy: ListToolsV1ToolListGetInputPolicyType0 | None | Unset = UNSET,
 
 ) -> Response[HTTPValidationError | ToolListResponse]:
     r""" List Tools
 
-     List all auto-discovered tools and their call policies.
+     List all auto-discovered tools and their policies.
 
     Parameters:
-    - call_policy: Optional filter — one of \"trusted\", \"untrusted\", \"dual_llm\", \"blocked\"
+    - input_policy: Optional filter — one of \"trusted\", \"untrusted\", \"blocked\"
 
     Args:
-        call_policy (ListToolsV1ToolListGetCallPolicyType0 | None | Unset):
+        input_policy (ListToolsV1ToolListGetInputPolicyType0 | None | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -107,7 +107,7 @@ def sync_detailed(
 
 
     kwargs = _get_kwargs(
-        call_policy=call_policy,
+        input_policy=input_policy,
 
     )
 
@@ -120,18 +120,18 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient,
-    call_policy: ListToolsV1ToolListGetCallPolicyType0 | None | Unset = UNSET,
+    input_policy: ListToolsV1ToolListGetInputPolicyType0 | None | Unset = UNSET,
 
 ) -> HTTPValidationError | ToolListResponse | None:
     r""" List Tools
 
-     List all auto-discovered tools and their call policies.
+     List all auto-discovered tools and their policies.
 
     Parameters:
-    - call_policy: Optional filter — one of \"trusted\", \"untrusted\", \"dual_llm\", \"blocked\"
+    - input_policy: Optional filter — one of \"trusted\", \"untrusted\", \"blocked\"
 
     Args:
-        call_policy (ListToolsV1ToolListGetCallPolicyType0 | None | Unset):
+        input_policy (ListToolsV1ToolListGetInputPolicyType0 | None | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -144,25 +144,25 @@ def sync(
 
     return sync_detailed(
         client=client,
-call_policy=call_policy,
+input_policy=input_policy,
 
     ).parsed
 
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
-    call_policy: ListToolsV1ToolListGetCallPolicyType0 | None | Unset = UNSET,
+    input_policy: ListToolsV1ToolListGetInputPolicyType0 | None | Unset = UNSET,
 
 ) -> Response[HTTPValidationError | ToolListResponse]:
     r""" List Tools
 
-     List all auto-discovered tools and their call policies.
+     List all auto-discovered tools and their policies.
 
     Parameters:
-    - call_policy: Optional filter — one of \"trusted\", \"untrusted\", \"dual_llm\", \"blocked\"
+    - input_policy: Optional filter — one of \"trusted\", \"untrusted\", \"blocked\"
 
     Args:
-        call_policy (ListToolsV1ToolListGetCallPolicyType0 | None | Unset):
+        input_policy (ListToolsV1ToolListGetInputPolicyType0 | None | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -174,7 +174,7 @@ async def asyncio_detailed(
 
 
     kwargs = _get_kwargs(
-        call_policy=call_policy,
+        input_policy=input_policy,
 
     )
 
@@ -187,18 +187,18 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient,
-    call_policy: ListToolsV1ToolListGetCallPolicyType0 | None | Unset = UNSET,
+    input_policy: ListToolsV1ToolListGetInputPolicyType0 | None | Unset = UNSET,
 
 ) -> HTTPValidationError | ToolListResponse | None:
     r""" List Tools
 
-     List all auto-discovered tools and their call policies.
+     List all auto-discovered tools and their policies.
 
     Parameters:
-    - call_policy: Optional filter — one of \"trusted\", \"untrusted\", \"dual_llm\", \"blocked\"
+    - input_policy: Optional filter — one of \"trusted\", \"untrusted\", \"blocked\"
 
     Args:
-        call_policy (ListToolsV1ToolListGetCallPolicyType0 | None | Unset):
+        input_policy (ListToolsV1ToolListGetInputPolicyType0 | None | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -211,6 +211,6 @@ async def asyncio(
 
     return (await asyncio_detailed(
         client=client,
-call_policy=call_policy,
+input_policy=input_policy,
 
     )).parsed

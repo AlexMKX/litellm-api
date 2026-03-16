@@ -1,8 +1,6 @@
 from enum import Enum
 
-class ToolPolicyUpdateResponseCallPolicy(str, Enum):
-    BLOCKED = "blocked"
-    DUAL_LLM = "dual_llm"
+class ToolPolicyUpdateResponseOutputPolicyType0(str, Enum):
     TRUSTED = "trusted"
     UNTRUSTED = "untrusted"
 

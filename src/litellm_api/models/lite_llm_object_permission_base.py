@@ -32,6 +32,7 @@ class LiteLLMObjectPermissionBase:
             vector_stores (list[str] | None | Unset):
             agents (list[str] | None | Unset):
             agent_access_groups (list[str] | None | Unset):
+            models (list[str] | None | Unset):
      """
 
     mcp_servers: list[str] | None | Unset = UNSET
@@ -40,6 +41,7 @@ class LiteLLMObjectPermissionBase:
     vector_stores: list[str] | None | Unset = UNSET
     agents: list[str] | None | Unset = UNSET
     agent_access_groups: list[str] | None | Unset = UNSET
+    models: list[str] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -106,6 +108,16 @@ class LiteLLMObjectPermissionBase:
         else:
             agent_access_groups = self.agent_access_groups
 
+        models: list[str] | None | Unset
+        if isinstance(self.models, Unset):
+            models = UNSET
+        elif isinstance(self.models, list):
+            models = self.models
+
+
+        else:
+            models = self.models
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -123,6 +135,8 @@ class LiteLLMObjectPermissionBase:
             field_dict["agents"] = agents
         if agent_access_groups is not UNSET:
             field_dict["agent_access_groups"] = agent_access_groups
+        if models is not UNSET:
+            field_dict["models"] = models
 
         return field_dict
 
@@ -242,6 +256,24 @@ class LiteLLMObjectPermissionBase:
         agent_access_groups = _parse_agent_access_groups(d.pop("agent_access_groups", UNSET))
 
 
+        def _parse_models(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                models_type_0 = cast(list[str], data)
+
+                return models_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        models = _parse_models(d.pop("models", UNSET))
+
+
         lite_llm_object_permission_base = cls(
             mcp_servers=mcp_servers,
             mcp_access_groups=mcp_access_groups,
@@ -249,6 +281,7 @@ class LiteLLMObjectPermissionBase:
             vector_stores=vector_stores,
             agents=agents,
             agent_access_groups=agent_access_groups,
+            models=models,
         )
 
 

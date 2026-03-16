@@ -17,6 +17,7 @@ from .agent_card_signature import AgentCardSignature
 from .agent_card_signature_header_type_0 import AgentCardSignatureHeaderType0
 from .agent_config import AgentConfig
 from .agent_config_litellm_params import AgentConfigLitellmParams
+from .agent_config_static_headers_type_0 import AgentConfigStaticHeadersType0
 from .agent_create_info import AgentCreateInfo
 from .agent_create_info_litellm_params_template_type_0 import AgentCreateInfoLitellmParamsTemplateType0
 from .agent_credential_field import AgentCredentialField
@@ -32,6 +33,7 @@ from .agent_response import AgentResponse
 from .agent_response_agent_card_params import AgentResponseAgentCardParams
 from .agent_response_litellm_params_type_0 import AgentResponseLitellmParamsType0
 from .agent_response_object_permission_type_0 import AgentResponseObjectPermissionType0
+from .agent_response_static_headers_type_0 import AgentResponseStaticHeadersType0
 from .agent_skill import AgentSkill
 from .agent_skill_security_type_0_item import AgentSkillSecurityType0Item
 from .allowed_vector_store_index_item import AllowedVectorStoreIndexItem
@@ -103,6 +105,7 @@ from .cache_settings_update_request_cache_settings import CacheSettingsUpdateReq
 from .cache_test_request import CacheTestRequest
 from .cache_test_request_cache_settings import CacheTestRequestCacheSettings
 from .cache_test_response import CacheTestResponse
+from .calculate_spend_spend_calculate_post_response_200 import CalculateSpendSpendCalculatePostResponse200
 from .call_types import CallTypes
 from .callbacks_by_type import CallbacksByType
 from .cancel_eval_response import CancelEvalResponse
@@ -179,6 +182,9 @@ from .compliance_check_request import ComplianceCheckRequest
 from .compliance_check_request_guardrail_information_type_0_item import ComplianceCheckRequestGuardrailInformationType0Item
 from .compliance_check_result import ComplianceCheckResult
 from .compliance_response import ComplianceResponse
+from .config_override_settings_response import ConfigOverrideSettingsResponse
+from .config_override_settings_response_field_schema import ConfigOverrideSettingsResponseFieldSchema
+from .config_override_settings_response_values import ConfigOverrideSettingsResponseValues
 from .configurable_clientside_params_custom_auth import ConfigurableClientsideParamsCustomAuth
 from .content_filter_action import ContentFilterAction
 from .content_filter_category_config import ContentFilterCategoryConfig
@@ -193,6 +199,7 @@ from .create_credential_item import CreateCredentialItem
 from .create_credential_item_credential_info import CreateCredentialItemCredentialInfo
 from .create_credential_item_credential_values_type_0 import CreateCredentialItemCredentialValuesType0
 from .create_guardrail_request import CreateGuardrailRequest
+from .create_jwt_key_mapping_request import CreateJWTKeyMappingRequest
 from .create_search_tool_request import CreateSearchToolRequest
 from .credential_item import CredentialItem
 from .credential_item_credential_info import CredentialItemCredentialInfo
@@ -208,6 +215,7 @@ from .default_team_sso_params import DefaultTeamSSOParams
 from .delete_customer_request import DeleteCustomerRequest
 from .delete_eval_response import DeleteEvalResponse
 from .delete_fallback_fallback_model_delete_fallback_type import DeleteFallbackFallbackModelDeleteFallbackType
+from .delete_jwt_key_mapping_request import DeleteJWTKeyMappingRequest
 from .delete_model_group_response import DeleteModelGroupResponse
 from .delete_organization_request import DeleteOrganizationRequest
 from .delete_project_request import DeleteProjectRequest
@@ -257,8 +265,13 @@ from .gray_swan_guardrail_config_model_optional_params import GraySwanGuardrailC
 from .gray_swan_guardrail_config_model_optional_params_categories_type_0 import GraySwanGuardrailConfigModelOptionalParamsCategoriesType0
 from .guardrail import Guardrail
 from .guardrail_guardrail_info_type_0 import GuardrailGuardrailInfoType0
+from .guardrail_submission_item import GuardrailSubmissionItem
+from .guardrail_submission_item_guardrail_info_type_0 import GuardrailSubmissionItemGuardrailInfoType0
+from .guardrail_submission_item_litellm_params_type_0 import GuardrailSubmissionItemLitellmParamsType0
+from .guardrail_submission_summary import GuardrailSubmissionSummary
 from .guardrail_test_result_entry import GuardrailTestResultEntry
 from .guardraildefinitionlocation import GUARDRAILDEFINITIONLOCATION
+from .hashicorp_vault_config import HashicorpVaultConfig
 from .health_services_endpoint_health_services_get_service_type_0 import HealthServicesEndpointHealthServicesGetServiceType0
 from .http_auth_security_scheme import HTTPAuthSecurityScheme
 from .http_validation_error import HTTPValidationError
@@ -275,6 +288,7 @@ from .internal_user_settings_response import InternalUserSettingsResponse
 from .internal_user_settings_response_field_schema import InternalUserSettingsResponseFieldSchema
 from .internal_user_settings_response_values import InternalUserSettingsResponseValues
 from .ip_address import IPAddress
+from .jwt_key_mapping_response import JWTKeyMappingResponse
 from .key_aliases_key_aliases_get_response_key_aliases_key_aliases_get import KeyAliasesKeyAliasesGetResponseKeyAliasesKeyAliasesGet
 from .key_health_response import KeyHealthResponse
 from .key_health_response_key import KeyHealthResponseKey
@@ -287,13 +301,14 @@ from .list_access_groups_response import ListAccessGroupsResponse
 from .list_evals_response import ListEvalsResponse
 from .list_fine_tuning_jobs_fine_tuning_jobs_get_custom_llm_provider_type_0 import ListFineTuningJobsFineTuningJobsGetCustomLlmProviderType0
 from .list_fine_tuning_jobs_v1_fine_tuning_jobs_get_custom_llm_provider_type_0 import ListFineTuningJobsV1FineTuningJobsGetCustomLlmProviderType0
+from .list_guardrail_submissions_response import ListGuardrailSubmissionsResponse
 from .list_plugins_response import ListPluginsResponse
 from .list_prompts_response import ListPromptsResponse
 from .list_runs_response import ListRunsResponse
 from .list_search_tools_response import ListSearchToolsResponse
 from .list_skills_response import ListSkillsResponse
 from .list_tool_rest_api_mcp_rest_tools_list_get_response_list_tool_rest_api_mcp_rest_tools_list_get import ListToolRestApiMcpRestToolsListGetResponseListToolRestApiMcpRestToolsListGet
-from .list_tools_v1_tool_list_get_call_policy_type_0 import ListToolsV1ToolListGetCallPolicyType0
+from .list_tools_v1_tool_list_get_input_policy_type_0 import ListToolsV1ToolListGetInputPolicyType0
 from .lite_llm_budget_table import LiteLLMBudgetTable
 from .lite_llm_budget_table_model_max_budget_type_0 import LiteLLMBudgetTableModelMaxBudgetType0
 from .lite_llm_deleted_team_table import LiteLLMDeletedTeamTable
@@ -349,7 +364,8 @@ from .lite_llm_team_table_metadata_type_0 import LiteLLMTeamTableMetadataType0
 from .lite_llm_team_table_router_settings_type_0 import LiteLLMTeamTableRouterSettingsType0
 from .lite_llm_tool_table_row import LiteLLMToolTableRow
 from .lite_llm_tool_table_row_assignments_type_0 import LiteLLMToolTableRowAssignmentsType0
-from .lite_llm_tool_table_row_call_policy import LiteLLMToolTableRowCallPolicy
+from .lite_llm_tool_table_row_input_policy import LiteLLMToolTableRowInputPolicy
+from .lite_llm_tool_table_row_output_policy import LiteLLMToolTableRowOutputPolicy
 from .lite_llm_verification_token import LiteLLMVerificationToken
 from .lite_llm_verification_token_aliases import LiteLLMVerificationTokenAliases
 from .lite_llm_verification_token_config import LiteLLMVerificationTokenConfig
@@ -366,6 +382,8 @@ from .lite_llmmcp_server_table_mcp_info_type_0 import LiteLLMMCPServerTableMcpIn
 from .lite_llmmcp_server_table_static_headers_type_0 import LiteLLMMCPServerTableStaticHeadersType0
 from .lite_llmmcp_server_table_status_type_0 import LiteLLMMCPServerTableStatusType0
 from .lite_llmmcp_server_table_teams_item import LiteLLMMCPServerTableTeamsItem
+from .lite_llmmcp_server_table_tool_name_to_description_type_0 import LiteLLMMCPServerTableToolNameToDescriptionType0
+from .lite_llmmcp_server_table_tool_name_to_display_name_type_0 import LiteLLMMCPServerTableToolNameToDisplayNameType0
 from .lite_llmmcp_server_table_transport import LiteLLMMCPServerTableTransport
 from .litellm_params import LitellmParams
 from .litellm_params_action import LitellmParamsAction
@@ -398,6 +416,12 @@ from .mcp_semantic_filter_settings import MCPSemanticFilterSettings
 from .mcp_semantic_filter_settings_response import MCPSemanticFilterSettingsResponse
 from .mcp_semantic_filter_settings_response_field_schema import MCPSemanticFilterSettingsResponseFieldSchema
 from .mcp_semantic_filter_settings_response_values import MCPSemanticFilterSettingsResponseValues
+from .mcp_submissions_summary import MCPSubmissionsSummary
+from .mcp_user_credential_list_item import MCPUserCredentialListItem
+from .mcp_user_credential_request import MCPUserCredentialRequest
+from .mcp_user_credential_response import MCPUserCredentialResponse
+from .mcpo_auth_user_credential_request import MCPOAuthUserCredentialRequest
+from .mcpo_auth_user_credential_status import MCPOAuthUserCredentialStatus
 from .member import Member
 from .member_role import MemberRole
 from .message import Message
@@ -421,6 +445,8 @@ from .new_mcp_server_request_auth_type_type_0 import NewMCPServerRequestAuthType
 from .new_mcp_server_request_env import NewMCPServerRequestEnv
 from .new_mcp_server_request_mcp_info_type_0 import NewMCPServerRequestMcpInfoType0
 from .new_mcp_server_request_static_headers_type_0 import NewMCPServerRequestStaticHeadersType0
+from .new_mcp_server_request_tool_name_to_description_type_0 import NewMCPServerRequestToolNameToDescriptionType0
+from .new_mcp_server_request_tool_name_to_display_name_type_0 import NewMCPServerRequestToolNameToDisplayNameType0
 from .new_mcp_server_request_transport import NewMCPServerRequestTransport
 from .new_model_group_request import NewModelGroupRequest
 from .new_model_group_response import NewModelGroupResponse
@@ -442,6 +468,8 @@ from .new_project_response_model_rpm_limit_type_0 import NewProjectResponseModel
 from .new_project_response_model_spend_type_0 import NewProjectResponseModelSpendType0
 from .new_project_response_model_tpm_limit_type_0 import NewProjectResponseModelTpmLimitType0
 from .new_team_request import NewTeamRequest
+from .new_team_request_enforced_batch_output_expires_after_type_0 import NewTeamRequestEnforcedBatchOutputExpiresAfterType0
+from .new_team_request_enforced_file_expires_after_type_0 import NewTeamRequestEnforcedFileExpiresAfterType0
 from .new_team_request_metadata_type_0 import NewTeamRequestMetadataType0
 from .new_team_request_model_aliases_type_0 import NewTeamRequestModelAliasesType0
 from .new_team_request_model_rpm_limit_type_0 import NewTeamRequestModelRpmLimitType0
@@ -474,6 +502,7 @@ from .pass_through_generic_endpoint_headers import PassThroughGenericEndpointHea
 from .pass_through_guardrail_settings import PassThroughGuardrailSettings
 from .patch_agent_request import PatchAgentRequest
 from .patch_agent_request_litellm_params import PatchAgentRequestLitellmParams
+from .patch_agent_request_static_headers_type_0 import PatchAgentRequestStaticHeadersType0
 from .patch_guardrail_request import PatchGuardrailRequest
 from .patch_guardrail_request_guardrail_info_type_0 import PatchGuardrailRequestGuardrailInfoType0
 from .patch_prompt_request import PatchPromptRequest
@@ -555,8 +584,15 @@ from .public_model_hub_info_useful_links_type_0_additional_property_type_1 impor
 from .raw_request_typed_dict import RawRequestTypedDict
 from .raw_request_typed_dict_raw_request_body_type_0 import RawRequestTypedDictRawRequestBodyType0
 from .raw_request_typed_dict_raw_request_headers_type_0 import RawRequestTypedDictRawRequestHeadersType0
+from .realtime_client_secret_response import RealtimeClientSecretResponse
+from .realtime_client_secret_response_session_type_0 import RealtimeClientSecretResponseSessionType0
+from .register_guardrail_request import RegisterGuardrailRequest
+from .register_guardrail_request_guardrail_info_type_0 import RegisterGuardrailRequestGuardrailInfoType0
+from .register_guardrail_request_litellm_params import RegisterGuardrailRequestLitellmParams
+from .register_guardrail_response import RegisterGuardrailResponse
 from .register_plugin_request import RegisterPluginRequest
 from .register_plugin_request_source import RegisterPluginRequestSource
+from .reject_mcp_server_request import RejectMCPServerRequest
 from .reset_key_spend_fn_key_key_reset_spend_post_response_reset_key_spend_fn_key_key_reset_spend_post import ResetKeySpendFnKeyKeyResetSpendPostResponseResetKeySpendFnKeyKeyResetSpendPost
 from .reset_spend_request import ResetSpendRequest
 from .response_lite_llm_managed_vector_store import ResponseLiteLLMManagedVectorStore
@@ -608,7 +644,6 @@ from .sso_config import SSOConfig
 from .sso_settings_response import SSOSettingsResponse
 from .sso_settings_response_field_schema import SSOSettingsResponseFieldSchema
 from .sso_settings_response_values import SSOSettingsResponseValues
-from .streaming_choices import StreamingChoices
 from .successful_key_update import SuccessfulKeyUpdate
 from .successful_key_update_key_info import SuccessfulKeyUpdateKeyInfo
 from .suggest_policy_templates_policy_templates_suggest_post_response_suggest_policy_templates_policy_templates_suggest_post import SuggestPolicyTemplatesPolicyTemplatesSuggestPostResponseSuggestPolicyTemplatesPolicyTemplatesSuggestPost
@@ -660,16 +695,26 @@ from .token_count_details_response import TokenCountDetailsResponse
 from .token_count_request import TokenCountRequest
 from .token_count_request_contents_type_0_item import TokenCountRequestContentsType0Item
 from .token_count_request_messages_type_0_item import TokenCountRequestMessagesType0Item
+from .token_count_request_tools_type_0_item import TokenCountRequestToolsType0Item
 from .token_count_response import TokenCountResponse
 from .token_count_response_original_response_type_0 import TokenCountResponseOriginalResponseType0
+from .tool_detail_response import ToolDetailResponse
 from .tool_list_response import ToolListResponse
 from .tool_permission_rule import ToolPermissionRule
 from .tool_permission_rule_allowed_param_patterns_type_0 import ToolPermissionRuleAllowedParamPatternsType0
 from .tool_permission_rule_decision import ToolPermissionRuleDecision
+from .tool_policy_option import ToolPolicyOption
+from .tool_policy_options_response import ToolPolicyOptionsResponse
+from .tool_policy_override_row import ToolPolicyOverrideRow
+from .tool_policy_override_row_input_policy import ToolPolicyOverrideRowInputPolicy
 from .tool_policy_update_request import ToolPolicyUpdateRequest
-from .tool_policy_update_request_call_policy import ToolPolicyUpdateRequestCallPolicy
+from .tool_policy_update_request_input_policy_type_0 import ToolPolicyUpdateRequestInputPolicyType0
+from .tool_policy_update_request_output_policy_type_0 import ToolPolicyUpdateRequestOutputPolicyType0
 from .tool_policy_update_response import ToolPolicyUpdateResponse
-from .tool_policy_update_response_call_policy import ToolPolicyUpdateResponseCallPolicy
+from .tool_policy_update_response_input_policy_type_0 import ToolPolicyUpdateResponseInputPolicyType0
+from .tool_policy_update_response_output_policy_type_0 import ToolPolicyUpdateResponseOutputPolicyType0
+from .tool_usage_log_entry import ToolUsageLogEntry
+from .tool_usage_logs_response import ToolUsageLogsResponse
 from .top_logprob import TopLogprob
 from .transform_request_body import TransformRequestBody
 from .transform_request_body_request_body import TransformRequestBodyRequestBody
@@ -690,6 +735,7 @@ from .update_customer_request import UpdateCustomerRequest
 from .update_customer_request_allowed_model_region_type_0 import UpdateCustomerRequestAllowedModelRegionType0
 from .update_deployment import UpdateDeployment
 from .update_guardrail_request import UpdateGuardrailRequest
+from .update_jwt_key_mapping_request import UpdateJWTKeyMappingRequest
 from .update_lite_llm_params import UpdateLiteLLMParams
 from .update_lite_llm_params_complexity_router_config_type_0 import UpdateLiteLLMParamsComplexityRouterConfigType0
 from .update_lite_llm_params_model_info_type_0 import UpdateLiteLLMParamsModelInfoType0
@@ -701,6 +747,8 @@ from .update_mcp_server_request_auth_type_type_0 import UpdateMCPServerRequestAu
 from .update_mcp_server_request_env import UpdateMCPServerRequestEnv
 from .update_mcp_server_request_mcp_info_type_0 import UpdateMCPServerRequestMcpInfoType0
 from .update_mcp_server_request_static_headers_type_0 import UpdateMCPServerRequestStaticHeadersType0
+from .update_mcp_server_request_tool_name_to_description_type_0 import UpdateMCPServerRequestToolNameToDescriptionType0
+from .update_mcp_server_request_tool_name_to_display_name_type_0 import UpdateMCPServerRequestToolNameToDisplayNameType0
 from .update_mcp_server_request_transport import UpdateMCPServerRequestTransport
 from .update_model_group_request import UpdateModelGroupRequest
 from .update_project_request import UpdateProjectRequest
@@ -712,6 +760,8 @@ from .update_public_model_groups_request import UpdatePublicModelGroupsRequest
 from .update_search_tool_request import UpdateSearchToolRequest
 from .update_team_member_permissions_request import UpdateTeamMemberPermissionsRequest
 from .update_team_request import UpdateTeamRequest
+from .update_team_request_enforced_batch_output_expires_after_type_0 import UpdateTeamRequestEnforcedBatchOutputExpiresAfterType0
+from .update_team_request_enforced_file_expires_after_type_0 import UpdateTeamRequestEnforcedFileExpiresAfterType0
 from .update_team_request_metadata_type_0 import UpdateTeamRequestMetadataType0
 from .update_team_request_model_aliases_type_0 import UpdateTeamRequestModelAliasesType0
 from .update_team_request_model_rpm_limit_type_0 import UpdateTeamRequestModelRpmLimitType0
@@ -776,6 +826,7 @@ __all__ = (
     "AgentCardSignatureHeaderType0",
     "AgentConfig",
     "AgentConfigLitellmParams",
+    "AgentConfigStaticHeadersType0",
     "AgentCreateInfo",
     "AgentCreateInfoLitellmParamsTemplateType0",
     "AgentCredentialField",
@@ -791,6 +842,7 @@ __all__ = (
     "AgentResponseAgentCardParams",
     "AgentResponseLitellmParamsType0",
     "AgentResponseObjectPermissionType0",
+    "AgentResponseStaticHeadersType0",
     "AgentSkill",
     "AgentSkillSecurityType0Item",
     "AllowedVectorStoreIndexItem",
@@ -862,6 +914,7 @@ __all__ = (
     "CacheTestRequest",
     "CacheTestRequestCacheSettings",
     "CacheTestResponse",
+    "CalculateSpendSpendCalculatePostResponse200",
     "CallbacksByType",
     "CallTypes",
     "CancelEvalResponse",
@@ -938,6 +991,9 @@ __all__ = (
     "ComplianceCheckRequestGuardrailInformationType0Item",
     "ComplianceCheckResult",
     "ComplianceResponse",
+    "ConfigOverrideSettingsResponse",
+    "ConfigOverrideSettingsResponseFieldSchema",
+    "ConfigOverrideSettingsResponseValues",
     "ConfigurableClientsideParamsCustomAuth",
     "ContentFilterAction",
     "ContentFilterCategoryConfig",
@@ -952,6 +1008,7 @@ __all__ = (
     "CreateCredentialItemCredentialInfo",
     "CreateCredentialItemCredentialValuesType0",
     "CreateGuardrailRequest",
+    "CreateJWTKeyMappingRequest",
     "CreateSearchToolRequest",
     "CredentialItem",
     "CredentialItemCredentialInfo",
@@ -967,6 +1024,7 @@ __all__ = (
     "DeleteCustomerRequest",
     "DeleteEvalResponse",
     "DeleteFallbackFallbackModelDeleteFallbackType",
+    "DeleteJWTKeyMappingRequest",
     "DeleteModelGroupResponse",
     "DeleteOrganizationRequest",
     "DeleteProjectRequest",
@@ -1017,7 +1075,12 @@ __all__ = (
     "Guardrail",
     "GUARDRAILDEFINITIONLOCATION",
     "GuardrailGuardrailInfoType0",
+    "GuardrailSubmissionItem",
+    "GuardrailSubmissionItemGuardrailInfoType0",
+    "GuardrailSubmissionItemLitellmParamsType0",
+    "GuardrailSubmissionSummary",
     "GuardrailTestResultEntry",
+    "HashicorpVaultConfig",
     "HealthServicesEndpointHealthServicesGetServiceType0",
     "HTTPAuthSecurityScheme",
     "HTTPValidationError",
@@ -1034,6 +1097,7 @@ __all__ = (
     "InternalUserSettingsResponseFieldSchema",
     "InternalUserSettingsResponseValues",
     "IPAddress",
+    "JWTKeyMappingResponse",
     "KeyAliasesKeyAliasesGetResponseKeyAliasesKeyAliasesGet",
     "KeyHealthResponse",
     "KeyHealthResponseKey",
@@ -1046,13 +1110,14 @@ __all__ = (
     "ListEvalsResponse",
     "ListFineTuningJobsFineTuningJobsGetCustomLlmProviderType0",
     "ListFineTuningJobsV1FineTuningJobsGetCustomLlmProviderType0",
+    "ListGuardrailSubmissionsResponse",
     "ListPluginsResponse",
     "ListPromptsResponse",
     "ListRunsResponse",
     "ListSearchToolsResponse",
     "ListSkillsResponse",
     "ListToolRestApiMcpRestToolsListGetResponseListToolRestApiMcpRestToolsListGet",
-    "ListToolsV1ToolListGetCallPolicyType0",
+    "ListToolsV1ToolListGetInputPolicyType0",
     "LiteLLMBudgetTable",
     "LiteLLMBudgetTableModelMaxBudgetType0",
     "LiteLLMDeletedTeamTable",
@@ -1086,6 +1151,8 @@ __all__ = (
     "LiteLLMMCPServerTableStaticHeadersType0",
     "LiteLLMMCPServerTableStatusType0",
     "LiteLLMMCPServerTableTeamsItem",
+    "LiteLLMMCPServerTableToolNameToDescriptionType0",
+    "LiteLLMMCPServerTableToolNameToDisplayNameType0",
     "LiteLLMMCPServerTableTransport",
     "LiteLLMModelTable",
     "LiteLLMModelTableModelAliasesType0",
@@ -1133,7 +1200,8 @@ __all__ = (
     "LiteLLMTeamTableRouterSettingsType0",
     "LiteLLMToolTableRow",
     "LiteLLMToolTableRowAssignmentsType0",
-    "LiteLLMToolTableRowCallPolicy",
+    "LiteLLMToolTableRowInputPolicy",
+    "LiteLLMToolTableRowOutputPolicy",
     "LitellmUserRoles",
     "LiteLLMVerificationToken",
     "LiteLLMVerificationTokenAliases",
@@ -1149,6 +1217,8 @@ __all__ = (
     "MakeAgentsPublicRequest",
     "MakeMCPServersPublicRequest",
     "MCPCredentials",
+    "MCPOAuthUserCredentialRequest",
+    "MCPOAuthUserCredentialStatus",
     "MCPPublicServer",
     "MCPPublicServerAuthTypeType0",
     "MCPPublicServerMcpInfoType0",
@@ -1157,6 +1227,10 @@ __all__ = (
     "MCPSemanticFilterSettingsResponse",
     "MCPSemanticFilterSettingsResponseFieldSchema",
     "MCPSemanticFilterSettingsResponseValues",
+    "MCPSubmissionsSummary",
+    "MCPUserCredentialListItem",
+    "MCPUserCredentialRequest",
+    "MCPUserCredentialResponse",
     "Member",
     "MemberRole",
     "Message",
@@ -1180,6 +1254,8 @@ __all__ = (
     "NewMCPServerRequestEnv",
     "NewMCPServerRequestMcpInfoType0",
     "NewMCPServerRequestStaticHeadersType0",
+    "NewMCPServerRequestToolNameToDescriptionType0",
+    "NewMCPServerRequestToolNameToDisplayNameType0",
     "NewMCPServerRequestTransport",
     "NewModelGroupRequest",
     "NewModelGroupResponse",
@@ -1201,6 +1277,8 @@ __all__ = (
     "NewProjectResponseModelSpendType0",
     "NewProjectResponseModelTpmLimitType0",
     "NewTeamRequest",
+    "NewTeamRequestEnforcedBatchOutputExpiresAfterType0",
+    "NewTeamRequestEnforcedFileExpiresAfterType0",
     "NewTeamRequestMetadataType0",
     "NewTeamRequestModelAliasesType0",
     "NewTeamRequestModelRpmLimitType0",
@@ -1233,6 +1311,7 @@ __all__ = (
     "PassThroughGuardrailSettings",
     "PatchAgentRequest",
     "PatchAgentRequestLitellmParams",
+    "PatchAgentRequestStaticHeadersType0",
     "PatchGuardrailRequest",
     "PatchGuardrailRequestGuardrailInfoType0",
     "PatchPromptRequest",
@@ -1314,8 +1393,15 @@ __all__ = (
     "RawRequestTypedDict",
     "RawRequestTypedDictRawRequestBodyType0",
     "RawRequestTypedDictRawRequestHeadersType0",
+    "RealtimeClientSecretResponse",
+    "RealtimeClientSecretResponseSessionType0",
+    "RegisterGuardrailRequest",
+    "RegisterGuardrailRequestGuardrailInfoType0",
+    "RegisterGuardrailRequestLitellmParams",
+    "RegisterGuardrailResponse",
     "RegisterPluginRequest",
     "RegisterPluginRequestSource",
+    "RejectMCPServerRequest",
     "ResetKeySpendFnKeyKeyResetSpendPostResponseResetKeySpendFnKeyKeyResetSpendPost",
     "ResetSpendRequest",
     "ResponseLiteLLMManagedVectorStore",
@@ -1367,7 +1453,6 @@ __all__ = (
     "SSOSettingsResponse",
     "SSOSettingsResponseFieldSchema",
     "SSOSettingsResponseValues",
-    "StreamingChoices",
     "SuccessfulKeyUpdate",
     "SuccessfulKeyUpdateKeyInfo",
     "SuggestPolicyTemplatesPolicyTemplatesSuggestPostResponseSuggestPolicyTemplatesPolicyTemplatesSuggestPost",
@@ -1419,16 +1504,26 @@ __all__ = (
     "TokenCountRequest",
     "TokenCountRequestContentsType0Item",
     "TokenCountRequestMessagesType0Item",
+    "TokenCountRequestToolsType0Item",
     "TokenCountResponse",
     "TokenCountResponseOriginalResponseType0",
+    "ToolDetailResponse",
     "ToolListResponse",
     "ToolPermissionRule",
     "ToolPermissionRuleAllowedParamPatternsType0",
     "ToolPermissionRuleDecision",
+    "ToolPolicyOption",
+    "ToolPolicyOptionsResponse",
+    "ToolPolicyOverrideRow",
+    "ToolPolicyOverrideRowInputPolicy",
     "ToolPolicyUpdateRequest",
-    "ToolPolicyUpdateRequestCallPolicy",
+    "ToolPolicyUpdateRequestInputPolicyType0",
+    "ToolPolicyUpdateRequestOutputPolicyType0",
     "ToolPolicyUpdateResponse",
-    "ToolPolicyUpdateResponseCallPolicy",
+    "ToolPolicyUpdateResponseInputPolicyType0",
+    "ToolPolicyUpdateResponseOutputPolicyType0",
+    "ToolUsageLogEntry",
+    "ToolUsageLogsResponse",
     "TopLogprob",
     "TransformRequestBody",
     "TransformRequestBodyRequestBody",
@@ -1449,6 +1544,7 @@ __all__ = (
     "UpdateCustomerRequestAllowedModelRegionType0",
     "UpdateDeployment",
     "UpdateGuardrailRequest",
+    "UpdateJWTKeyMappingRequest",
     "UpdateLiteLLMParams",
     "UpdateLiteLLMParamsComplexityRouterConfigType0",
     "UpdateLiteLLMParamsModelInfoType0",
@@ -1460,6 +1556,8 @@ __all__ = (
     "UpdateMCPServerRequestEnv",
     "UpdateMCPServerRequestMcpInfoType0",
     "UpdateMCPServerRequestStaticHeadersType0",
+    "UpdateMCPServerRequestToolNameToDescriptionType0",
+    "UpdateMCPServerRequestToolNameToDisplayNameType0",
     "UpdateMCPServerRequestTransport",
     "UpdateModelGroupRequest",
     "UpdateProjectRequest",
@@ -1471,6 +1569,8 @@ __all__ = (
     "UpdateSearchToolRequest",
     "UpdateTeamMemberPermissionsRequest",
     "UpdateTeamRequest",
+    "UpdateTeamRequestEnforcedBatchOutputExpiresAfterType0",
+    "UpdateTeamRequestEnforcedFileExpiresAfterType0",
     "UpdateTeamRequestMetadataType0",
     "UpdateTeamRequestModelAliasesType0",
     "UpdateTeamRequestModelRpmLimitType0",

@@ -26,6 +26,8 @@ def _get_kwargs(
     object_id: None | str | Unset = UNSET,
     start_date: None | str | Unset = UNSET,
     end_date: None | str | Unset = UNSET,
+    object_team_id: None | str | Unset = UNSET,
+    object_key_hash: None | str | Unset = UNSET,
     sort_by: None | str | Unset = UNSET,
     sort_order: str | Unset = 'desc',
 
@@ -88,6 +90,20 @@ def _get_kwargs(
     else:
         json_end_date = end_date
     params["end_date"] = json_end_date
+
+    json_object_team_id: None | str | Unset
+    if isinstance(object_team_id, Unset):
+        json_object_team_id = UNSET
+    else:
+        json_object_team_id = object_team_id
+    params["object_team_id"] = json_object_team_id
+
+    json_object_key_hash: None | str | Unset
+    if isinstance(object_key_hash, Unset):
+        json_object_key_hash = UNSET
+    else:
+        json_object_key_hash = object_key_hash
+    params["object_key_hash"] = json_object_key_hash
 
     json_sort_by: None | str | Unset
     if isinstance(sort_by, Unset):
@@ -155,6 +171,8 @@ def sync_detailed(
     object_id: None | str | Unset = UNSET,
     start_date: None | str | Unset = UNSET,
     end_date: None | str | Unset = UNSET,
+    object_team_id: None | str | Unset = UNSET,
+    object_key_hash: None | str | Unset = UNSET,
     sort_by: None | str | Unset = UNSET,
     sort_order: str | Unset = 'desc',
 
@@ -164,6 +182,9 @@ def sync_detailed(
      Get all audit logs with filtering and pagination.
 
     Returns a paginated response of audit logs matching the specified filters.
+
+    Note: object_team_id and object_key_hash use Prisma JSON path filtering,
+    which requires PostgreSQL.
 
     Args:
         page (int | Unset):  Default: 1.
@@ -175,6 +196,10 @@ def sync_detailed(
         object_id (None | str | Unset): Filter by ID of the object that was modified
         start_date (None | str | Unset): Filter logs after this date
         end_date (None | str | Unset): Filter logs before this date
+        object_team_id (None | str | Unset): Filter by team_id present in before_value or
+            updated_values JSON (PostgreSQL only)
+        object_key_hash (None | str | Unset): Filter by token (key hash) present in before_value
+            or updated_values JSON (PostgreSQL only)
         sort_by (None | str | Unset): Column to sort by (e.g. 'updated_at', 'action',
             'table_name')
         sort_order (str | Unset): Sort order ('asc' or 'desc') Default: 'desc'.
@@ -198,6 +223,8 @@ table_name=table_name,
 object_id=object_id,
 start_date=start_date,
 end_date=end_date,
+object_team_id=object_team_id,
+object_key_hash=object_key_hash,
 sort_by=sort_by,
 sort_order=sort_order,
 
@@ -221,6 +248,8 @@ def sync(
     object_id: None | str | Unset = UNSET,
     start_date: None | str | Unset = UNSET,
     end_date: None | str | Unset = UNSET,
+    object_team_id: None | str | Unset = UNSET,
+    object_key_hash: None | str | Unset = UNSET,
     sort_by: None | str | Unset = UNSET,
     sort_order: str | Unset = 'desc',
 
@@ -230,6 +259,9 @@ def sync(
      Get all audit logs with filtering and pagination.
 
     Returns a paginated response of audit logs matching the specified filters.
+
+    Note: object_team_id and object_key_hash use Prisma JSON path filtering,
+    which requires PostgreSQL.
 
     Args:
         page (int | Unset):  Default: 1.
@@ -241,6 +273,10 @@ def sync(
         object_id (None | str | Unset): Filter by ID of the object that was modified
         start_date (None | str | Unset): Filter logs after this date
         end_date (None | str | Unset): Filter logs before this date
+        object_team_id (None | str | Unset): Filter by team_id present in before_value or
+            updated_values JSON (PostgreSQL only)
+        object_key_hash (None | str | Unset): Filter by token (key hash) present in before_value
+            or updated_values JSON (PostgreSQL only)
         sort_by (None | str | Unset): Column to sort by (e.g. 'updated_at', 'action',
             'table_name')
         sort_order (str | Unset): Sort order ('asc' or 'desc') Default: 'desc'.
@@ -265,6 +301,8 @@ table_name=table_name,
 object_id=object_id,
 start_date=start_date,
 end_date=end_date,
+object_team_id=object_team_id,
+object_key_hash=object_key_hash,
 sort_by=sort_by,
 sort_order=sort_order,
 
@@ -282,6 +320,8 @@ async def asyncio_detailed(
     object_id: None | str | Unset = UNSET,
     start_date: None | str | Unset = UNSET,
     end_date: None | str | Unset = UNSET,
+    object_team_id: None | str | Unset = UNSET,
+    object_key_hash: None | str | Unset = UNSET,
     sort_by: None | str | Unset = UNSET,
     sort_order: str | Unset = 'desc',
 
@@ -291,6 +331,9 @@ async def asyncio_detailed(
      Get all audit logs with filtering and pagination.
 
     Returns a paginated response of audit logs matching the specified filters.
+
+    Note: object_team_id and object_key_hash use Prisma JSON path filtering,
+    which requires PostgreSQL.
 
     Args:
         page (int | Unset):  Default: 1.
@@ -302,6 +345,10 @@ async def asyncio_detailed(
         object_id (None | str | Unset): Filter by ID of the object that was modified
         start_date (None | str | Unset): Filter logs after this date
         end_date (None | str | Unset): Filter logs before this date
+        object_team_id (None | str | Unset): Filter by team_id present in before_value or
+            updated_values JSON (PostgreSQL only)
+        object_key_hash (None | str | Unset): Filter by token (key hash) present in before_value
+            or updated_values JSON (PostgreSQL only)
         sort_by (None | str | Unset): Column to sort by (e.g. 'updated_at', 'action',
             'table_name')
         sort_order (str | Unset): Sort order ('asc' or 'desc') Default: 'desc'.
@@ -325,6 +372,8 @@ table_name=table_name,
 object_id=object_id,
 start_date=start_date,
 end_date=end_date,
+object_team_id=object_team_id,
+object_key_hash=object_key_hash,
 sort_by=sort_by,
 sort_order=sort_order,
 
@@ -348,6 +397,8 @@ async def asyncio(
     object_id: None | str | Unset = UNSET,
     start_date: None | str | Unset = UNSET,
     end_date: None | str | Unset = UNSET,
+    object_team_id: None | str | Unset = UNSET,
+    object_key_hash: None | str | Unset = UNSET,
     sort_by: None | str | Unset = UNSET,
     sort_order: str | Unset = 'desc',
 
@@ -357,6 +408,9 @@ async def asyncio(
      Get all audit logs with filtering and pagination.
 
     Returns a paginated response of audit logs matching the specified filters.
+
+    Note: object_team_id and object_key_hash use Prisma JSON path filtering,
+    which requires PostgreSQL.
 
     Args:
         page (int | Unset):  Default: 1.
@@ -368,6 +422,10 @@ async def asyncio(
         object_id (None | str | Unset): Filter by ID of the object that was modified
         start_date (None | str | Unset): Filter logs after this date
         end_date (None | str | Unset): Filter logs before this date
+        object_team_id (None | str | Unset): Filter by team_id present in before_value or
+            updated_values JSON (PostgreSQL only)
+        object_key_hash (None | str | Unset): Filter by token (key hash) present in before_value
+            or updated_values JSON (PostgreSQL only)
         sort_by (None | str | Unset): Column to sort by (e.g. 'updated_at', 'action',
             'table_name')
         sort_order (str | Unset): Sort order ('asc' or 'desc') Default: 'desc'.
@@ -392,6 +450,8 @@ table_name=table_name,
 object_id=object_id,
 start_date=start_date,
 end_date=end_date,
+object_team_id=object_team_id,
+object_key_hash=object_key_hash,
 sort_by=sort_by,
 sort_order=sort_order,
 

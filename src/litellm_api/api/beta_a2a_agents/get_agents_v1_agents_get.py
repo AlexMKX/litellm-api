@@ -9,22 +9,33 @@ from ...types import Response, UNSET
 from ... import errors
 
 from ...models.agent_response import AgentResponse
+from ...models.http_validation_error import HTTPValidationError
+from ...types import UNSET, Unset
 from typing import cast
 
 
 
 def _get_kwargs(
-    
+    *,
+    health_check: bool | Unset = False,
+
 ) -> dict[str, Any]:
     
 
     
 
-    
+    params: dict[str, Any] = {}
+
+    params["health_check"] = health_check
+
+
+    params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
+
 
     _kwargs: dict[str, Any] = {
         "method": "get",
         "url": "/v1/agents",
+        "params": params,
     }
 
 
@@ -32,7 +43,7 @@ def _get_kwargs(
 
 
 
-def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> list[AgentResponse] | None:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> HTTPValidationError | list[AgentResponse] | None:
     if response.status_code == 200:
         response_200 = []
         _response_200 = response.json()
@@ -45,13 +56,20 @@ def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Res
 
         return response_200
 
+    if response.status_code == 422:
+        response_422 = HTTPValidationError.from_dict(response.json())
+
+
+
+        return response_422
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
         return None
 
 
-def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[list[AgentResponse]]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[HTTPValidationError | list[AgentResponse]]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -63,8 +81,9 @@ def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Res
 def sync_detailed(
     *,
     client: AuthenticatedClient,
+    health_check: bool | Unset = False,
 
-) -> Response[list[AgentResponse]]:
+) -> Response[HTTPValidationError | list[AgentResponse]]:
     r""" Get Agents
 
      Example usage:
@@ -72,19 +91,30 @@ def sync_detailed(
     curl -X GET \"http://localhost:4000/v1/agents\"       -H \"Content-Type: application/json\"       -H
     \"Authorization: Bearer your-key\"     ```
 
+    Pass `?health_check=true` to filter out agents whose URL is unreachable:
+    ```
+    curl -X GET \"http://localhost:4000/v1/agents?health_check=true\"       -H \"Content-Type:
+    application/json\"       -H \"Authorization: Bearer your-key\"     ```
+
     Returns: List[AgentResponse]
+
+    Args:
+        health_check (bool | Unset): When true, performs a GET request to each agent's URL. Agents
+            with reachable URLs (HTTP status < 500) and agents without a URL are returned; unreachable
+            agents are filtered out. Default: False.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[list[AgentResponse]]
+        Response[HTTPValidationError | list[AgentResponse]]
      """
 
 
     kwargs = _get_kwargs(
-        
+        health_check=health_check,
+
     )
 
     response = client.get_httpx_client().request(
@@ -96,8 +126,9 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient,
+    health_check: bool | Unset = False,
 
-) -> list[AgentResponse] | None:
+) -> HTTPValidationError | list[AgentResponse] | None:
     r""" Get Agents
 
      Example usage:
@@ -105,27 +136,39 @@ def sync(
     curl -X GET \"http://localhost:4000/v1/agents\"       -H \"Content-Type: application/json\"       -H
     \"Authorization: Bearer your-key\"     ```
 
+    Pass `?health_check=true` to filter out agents whose URL is unreachable:
+    ```
+    curl -X GET \"http://localhost:4000/v1/agents?health_check=true\"       -H \"Content-Type:
+    application/json\"       -H \"Authorization: Bearer your-key\"     ```
+
     Returns: List[AgentResponse]
+
+    Args:
+        health_check (bool | Unset): When true, performs a GET request to each agent's URL. Agents
+            with reachable URLs (HTTP status < 500) and agents without a URL are returned; unreachable
+            agents are filtered out. Default: False.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        list[AgentResponse]
+        HTTPValidationError | list[AgentResponse]
      """
 
 
     return sync_detailed(
         client=client,
+health_check=health_check,
 
     ).parsed
 
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
+    health_check: bool | Unset = False,
 
-) -> Response[list[AgentResponse]]:
+) -> Response[HTTPValidationError | list[AgentResponse]]:
     r""" Get Agents
 
      Example usage:
@@ -133,19 +176,30 @@ async def asyncio_detailed(
     curl -X GET \"http://localhost:4000/v1/agents\"       -H \"Content-Type: application/json\"       -H
     \"Authorization: Bearer your-key\"     ```
 
+    Pass `?health_check=true` to filter out agents whose URL is unreachable:
+    ```
+    curl -X GET \"http://localhost:4000/v1/agents?health_check=true\"       -H \"Content-Type:
+    application/json\"       -H \"Authorization: Bearer your-key\"     ```
+
     Returns: List[AgentResponse]
+
+    Args:
+        health_check (bool | Unset): When true, performs a GET request to each agent's URL. Agents
+            with reachable URLs (HTTP status < 500) and agents without a URL are returned; unreachable
+            agents are filtered out. Default: False.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[list[AgentResponse]]
+        Response[HTTPValidationError | list[AgentResponse]]
      """
 
 
     kwargs = _get_kwargs(
-        
+        health_check=health_check,
+
     )
 
     response = await client.get_async_httpx_client().request(
@@ -157,8 +211,9 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient,
+    health_check: bool | Unset = False,
 
-) -> list[AgentResponse] | None:
+) -> HTTPValidationError | list[AgentResponse] | None:
     r""" Get Agents
 
      Example usage:
@@ -166,18 +221,29 @@ async def asyncio(
     curl -X GET \"http://localhost:4000/v1/agents\"       -H \"Content-Type: application/json\"       -H
     \"Authorization: Bearer your-key\"     ```
 
+    Pass `?health_check=true` to filter out agents whose URL is unreachable:
+    ```
+    curl -X GET \"http://localhost:4000/v1/agents?health_check=true\"       -H \"Content-Type:
+    application/json\"       -H \"Authorization: Bearer your-key\"     ```
+
     Returns: List[AgentResponse]
+
+    Args:
+        health_check (bool | Unset): When true, performs a GET request to each agent's URL. Agents
+            with reachable URLs (HTTP status < 500) and agents without a URL are returned; unreachable
+            agents are filtered out. Default: False.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        list[AgentResponse]
+        HTTPValidationError | list[AgentResponse]
      """
 
 
     return (await asyncio_detailed(
         client=client,
+health_check=health_check,
 
     )).parsed

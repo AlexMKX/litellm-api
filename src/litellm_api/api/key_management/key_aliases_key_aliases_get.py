@@ -96,6 +96,9 @@ def sync_detailed(
 
      Lists key aliases with pagination and optional search.
 
+    Non-admin users only see aliases for keys they own or keys belonging to
+    their teams.
+
     Returns:
         {
             \"aliases\": List[str],
@@ -144,6 +147,9 @@ def sync(
 
      Lists key aliases with pagination and optional search.
 
+    Non-admin users only see aliases for keys they own or keys belonging to
+    their teams.
+
     Returns:
         {
             \"aliases\": List[str],
@@ -186,6 +192,9 @@ async def asyncio_detailed(
     r""" Key Aliases
 
      Lists key aliases with pagination and optional search.
+
+    Non-admin users only see aliases for keys they own or keys belonging to
+    their teams.
 
     Returns:
         {
@@ -234,6 +243,9 @@ async def asyncio(
     r""" Key Aliases
 
      Lists key aliases with pagination and optional search.
+
+    Non-admin users only see aliases for keys they own or keys belonging to
+    their teams.
 
     Returns:
         {

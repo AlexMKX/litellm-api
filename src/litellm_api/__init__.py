@@ -1,2 +1,2 @@
-__version__ = "1.82.0"
+__version__ = "1.82.2"
 from .client import *
