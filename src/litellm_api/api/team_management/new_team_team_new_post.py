@@ -143,6 +143,8 @@ def sync_detailed(
     Example - {\"vector_stores\": [\"vector_store_1\", \"vector_store_2\"], \"agents\": [\"agent_1\",
     \"agent_2\"], \"agent_access_groups\": [\"dev_group\"]}. IF null or {} then no object permission.
     - team_member_budget: Optional[float] - The maximum budget allocated to an individual team member.
+    - team_member_budget_duration: Optional[str] - The duration of the budget for the team member. Doc
+    [here](https://docs.litellm.ai/docs/proxy/team_budgets)
     - team_member_rpm_limit: Optional[int] - The RPM (Requests Per Minute) limit for individual team
     members.
     - team_member_tpm_limit: Optional[int] - The TPM (Tokens Per Minute) limit for individual team
@@ -289,6 +291,8 @@ def sync(
     Example - {\"vector_stores\": [\"vector_store_1\", \"vector_store_2\"], \"agents\": [\"agent_1\",
     \"agent_2\"], \"agent_access_groups\": [\"dev_group\"]}. IF null or {} then no object permission.
     - team_member_budget: Optional[float] - The maximum budget allocated to an individual team member.
+    - team_member_budget_duration: Optional[str] - The duration of the budget for the team member. Doc
+    [here](https://docs.litellm.ai/docs/proxy/team_budgets)
     - team_member_rpm_limit: Optional[int] - The RPM (Requests Per Minute) limit for individual team
     members.
     - team_member_tpm_limit: Optional[int] - The TPM (Tokens Per Minute) limit for individual team
@@ -430,6 +434,8 @@ async def asyncio_detailed(
     Example - {\"vector_stores\": [\"vector_store_1\", \"vector_store_2\"], \"agents\": [\"agent_1\",
     \"agent_2\"], \"agent_access_groups\": [\"dev_group\"]}. IF null or {} then no object permission.
     - team_member_budget: Optional[float] - The maximum budget allocated to an individual team member.
+    - team_member_budget_duration: Optional[str] - The duration of the budget for the team member. Doc
+    [here](https://docs.litellm.ai/docs/proxy/team_budgets)
     - team_member_rpm_limit: Optional[int] - The RPM (Requests Per Minute) limit for individual team
     members.
     - team_member_tpm_limit: Optional[int] - The TPM (Tokens Per Minute) limit for individual team
@@ -576,6 +582,8 @@ async def asyncio(
     Example - {\"vector_stores\": [\"vector_store_1\", \"vector_store_2\"], \"agents\": [\"agent_1\",
     \"agent_2\"], \"agent_access_groups\": [\"dev_group\"]}. IF null or {} then no object permission.
     - team_member_budget: Optional[float] - The maximum budget allocated to an individual team member.
+    - team_member_budget_duration: Optional[str] - The duration of the budget for the team member. Doc
+    [here](https://docs.litellm.ai/docs/proxy/team_budgets)
     - team_member_rpm_limit: Optional[int] - The RPM (Requests Per Minute) limit for individual team
     members.
     - team_member_tpm_limit: Optional[int] - The TPM (Tokens Per Minute) limit for individual team

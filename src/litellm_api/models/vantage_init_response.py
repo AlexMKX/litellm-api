@@ -14,29 +14,39 @@ from ..types import UNSET, Unset
 
 
 
-T = TypeVar("T", bound="RegisterPluginRequestSource")
+T = TypeVar("T", bound="VantageInitResponse")
 
 
 
 @_attrs_define
-class RegisterPluginRequestSource:
-    """ Git source reference. Supported formats:
-    - GitHub: {'source': 'github', 'repo': 'org/repo'}
-    - Git URL: {'source': 'url', 'url': 'https://github.com/org/repo.git'}
-    - Git Subdir: {'source': 'git-subdir', 'url': 'https://github.com/org/repo.git', 'path': 'plugins/plugin-name'}
+class VantageInitResponse:
+    """ Response model for Vantage initialization
 
+        Attributes:
+            message (str):
+            status (str):
      """
 
-    additional_properties: dict[str, str] = _attrs_field(init=False, factory=dict)
+    message: str
+    status: str
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
 
 
 
     def to_dict(self) -> dict[str, Any]:
-        
+        message = self.message
+
+        status = self.status
+
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
+        field_dict.update({
+            "message": message,
+            "status": status,
+        })
 
         return field_dict
 
@@ -45,21 +55,27 @@ class RegisterPluginRequestSource:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        register_plugin_request_source = cls(
+        message = d.pop("message")
+
+        status = d.pop("status")
+
+        vantage_init_response = cls(
+            message=message,
+            status=status,
         )
 
 
-        register_plugin_request_source.additional_properties = d
-        return register_plugin_request_source
+        vantage_init_response.additional_properties = d
+        return vantage_init_response
 
     @property
     def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
-    def __getitem__(self, key: str) -> str:
+    def __getitem__(self, key: str) -> Any:
         return self.additional_properties[key]
 
-    def __setitem__(self, key: str, value: str) -> None:
+    def __setitem__(self, key: str, value: Any) -> None:
         self.additional_properties[key] = value
 
     def __delitem__(self, key: str) -> None:

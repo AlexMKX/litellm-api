@@ -29,14 +29,14 @@ class DefaultInternalUserParams:
 
         Attributes:
             user_role (DefaultInternalUserParamsUserRoleType0 | None | Unset): Default role assigned to new users created
-                Default: DefaultInternalUserParamsUserRoleType0.INTERNAL_USER.
+                Default: DefaultInternalUserParamsUserRoleType0.INTERNAL_USER_VIEWER.
             max_budget (float | None | Unset): Default maximum budget (in USD) for new users created
             budget_duration (None | str | Unset): Default budget duration for new users (e.g. 'daily', 'weekly', 'monthly')
             models (list[str] | None | Unset): Default list of models that new users can access
             teams (list[NewUserRequestTeam] | list[str] | None | Unset): Default teams for new users created
      """
 
-    user_role: DefaultInternalUserParamsUserRoleType0 | None | Unset = DefaultInternalUserParamsUserRoleType0.INTERNAL_USER
+    user_role: DefaultInternalUserParamsUserRoleType0 | None | Unset = DefaultInternalUserParamsUserRoleType0.INTERNAL_USER_VIEWER
     max_budget: float | None | Unset = UNSET
     budget_duration: None | str | Unset = UNSET
     models: list[str] | None | Unset = UNSET

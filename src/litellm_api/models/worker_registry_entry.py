@@ -14,29 +14,43 @@ from ..types import UNSET, Unset
 
 
 
-T = TypeVar("T", bound="RegisterPluginRequestSource")
+T = TypeVar("T", bound="WorkerRegistryEntry")
 
 
 
 @_attrs_define
-class RegisterPluginRequestSource:
-    """ Git source reference. Supported formats:
-    - GitHub: {'source': 'github', 'repo': 'org/repo'}
-    - Git URL: {'source': 'url', 'url': 'https://github.com/org/repo.git'}
-    - Git Subdir: {'source': 'git-subdir', 'url': 'https://github.com/org/repo.git', 'path': 'plugins/plugin-name'}
-
+class WorkerRegistryEntry:
+    """ 
+        Attributes:
+            worker_id (str):
+            name (str):
+            url (str):
      """
 
-    additional_properties: dict[str, str] = _attrs_field(init=False, factory=dict)
+    worker_id: str
+    name: str
+    url: str
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
 
 
 
     def to_dict(self) -> dict[str, Any]:
-        
+        worker_id = self.worker_id
+
+        name = self.name
+
+        url = self.url
+
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
+        field_dict.update({
+            "worker_id": worker_id,
+            "name": name,
+            "url": url,
+        })
 
         return field_dict
 
@@ -45,21 +59,30 @@ class RegisterPluginRequestSource:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        register_plugin_request_source = cls(
+        worker_id = d.pop("worker_id")
+
+        name = d.pop("name")
+
+        url = d.pop("url")
+
+        worker_registry_entry = cls(
+            worker_id=worker_id,
+            name=name,
+            url=url,
         )
 
 
-        register_plugin_request_source.additional_properties = d
-        return register_plugin_request_source
+        worker_registry_entry.additional_properties = d
+        return worker_registry_entry
 
     @property
     def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
-    def __getitem__(self, key: str) -> str:
+    def __getitem__(self, key: str) -> Any:
         return self.additional_properties[key]
 
-    def __setitem__(self, key: str, value: str) -> None:
+    def __setitem__(self, key: str, value: Any) -> None:
         self.additional_properties[key] = value
 
     def __delitem__(self, key: str) -> None:

@@ -84,7 +84,7 @@ def sync_detailed(
 
     Parameters:
         - name: Plugin name (kebab-case)
-        - source: Git source reference (github or url format)
+        - source: Git source reference (github, url, or git-subdir format)
         - version: Semantic version (optional)
         - description: Plugin description (optional)
         - author: Author information (optional)
@@ -150,7 +150,7 @@ def sync(
 
     Parameters:
         - name: Plugin name (kebab-case)
-        - source: Git source reference (github or url format)
+        - source: Git source reference (github, url, or git-subdir format)
         - version: Semantic version (optional)
         - description: Plugin description (optional)
         - author: Author information (optional)
@@ -211,7 +211,7 @@ async def asyncio_detailed(
 
     Parameters:
         - name: Plugin name (kebab-case)
-        - source: Git source reference (github or url format)
+        - source: Git source reference (github, url, or git-subdir format)
         - version: Semantic version (optional)
         - description: Plugin description (optional)
         - author: Author information (optional)
@@ -277,7 +277,7 @@ async def asyncio(
 
     Parameters:
         - name: Plugin name (kebab-case)
-        - source: Git source reference (github or url format)
+        - source: Git source reference (github, url, or git-subdir format)
         - version: Semantic version (optional)
         - description: Plugin description (optional)
         - author: Author information (optional)

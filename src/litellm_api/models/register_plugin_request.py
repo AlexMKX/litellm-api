@@ -35,6 +35,7 @@ class RegisterPluginRequest:
             source (RegisterPluginRequestSource): Git source reference. Supported formats:
                 - GitHub: {'source': 'github', 'repo': 'org/repo'}
                 - Git URL: {'source': 'url', 'url': 'https://github.com/org/repo.git'}
+                - Git Subdir: {'source': 'git-subdir', 'url': 'https://github.com/org/repo.git', 'path': 'plugins/plugin-name'}
             version (None | str | Unset): Semantic version Default: '1.0.0'.
             description (None | str | Unset): Plugin description
             author (None | PluginAuthor | Unset): Plugin author

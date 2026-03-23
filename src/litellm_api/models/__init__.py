@@ -71,6 +71,8 @@ from .body_test_model_connection_health_test_connection_post_model_info import B
 from .body_token_endpoint_mcp_server_name_token_post import BodyTokenEndpointMcpServerNameTokenPost
 from .body_token_endpoint_token_post import BodyTokenEndpointTokenPost
 from .body_upload_logo_upload_logo_post import BodyUploadLogoUploadLogoPost
+from .body_video_create_character_v1_videos_characters_post import BodyVideoCreateCharacterV1VideosCharactersPost
+from .body_video_create_character_videos_characters_post import BodyVideoCreateCharacterVideosCharactersPost
 from .body_video_generation_v1_videos_post import BodyVideoGenerationV1VideosPost
 from .body_video_generation_videos_post import BodyVideoGenerationVideosPost
 from .breakdown_metrics import BreakdownMetrics
@@ -293,6 +295,7 @@ from .key_aliases_key_aliases_get_response_key_aliases_key_aliases_get import Ke
 from .key_health_response import KeyHealthResponse
 from .key_health_response_key import KeyHealthResponseKey
 from .key_list_response_object import KeyListResponseObject
+from .key_management_routes import KeyManagementRoutes
 from .key_metadata import KeyMetadata
 from .key_metric_with_metadata import KeyMetricWithMetadata
 from .key_request import KeyRequest
@@ -444,6 +447,7 @@ from .new_mcp_server_request import NewMCPServerRequest
 from .new_mcp_server_request_auth_type_type_0 import NewMCPServerRequestAuthTypeType0
 from .new_mcp_server_request_env import NewMCPServerRequestEnv
 from .new_mcp_server_request_mcp_info_type_0 import NewMCPServerRequestMcpInfoType0
+from .new_mcp_server_request_oauth_2_flow_type_0 import NewMCPServerRequestOauth2FlowType0
 from .new_mcp_server_request_static_headers_type_0 import NewMCPServerRequestStaticHeadersType0
 from .new_mcp_server_request_tool_name_to_description_type_0 import NewMCPServerRequestToolNameToDescriptionType0
 from .new_mcp_server_request_tool_name_to_display_name_type_0 import NewMCPServerRequestToolNameToDisplayNameType0
@@ -663,6 +667,9 @@ from .tag_update_request_model_info_type_0 import TagUpdateRequestModelInfoType0
 from .tag_update_request_model_max_budget_type_0 import TagUpdateRequestModelMaxBudgetType0
 from .team_add_member_response_metadata_type_0 import TeamAddMemberResponseMetadataType0
 from .team_add_member_response_router_settings_type_0 import TeamAddMemberResponseRouterSettingsType0
+from .team_list_item import TeamListItem
+from .team_list_item_metadata_type_0 import TeamListItemMetadataType0
+from .team_list_item_router_settings_type_0 import TeamListItemRouterSettingsType0
 from .team_list_response import TeamListResponse
 from .team_mappings import TeamMappings
 from .team_member_add_request import TeamMemberAddRequest
@@ -784,6 +791,7 @@ from .user_api_key_auth_aliases import UserAPIKeyAuthAliases
 from .user_api_key_auth_allowed_model_region_type_0 import UserAPIKeyAuthAllowedModelRegionType0
 from .user_api_key_auth_config import UserAPIKeyAuthConfig
 from .user_api_key_auth_end_user_model_max_budget_type_0 import UserAPIKeyAuthEndUserModelMaxBudgetType0
+from .user_api_key_auth_jwt_claims_type_0 import UserAPIKeyAuthJwtClaimsType0
 from .user_api_key_auth_litellm_budget_table_type_0 import UserAPIKeyAuthLitellmBudgetTableType0
 from .user_api_key_auth_metadata import UserAPIKeyAuthMetadata
 from .user_api_key_auth_model_max_budget import UserAPIKeyAuthModelMaxBudget
@@ -798,15 +806,27 @@ from .user_api_key_auth_team_model_aliases_type_0 import UserAPIKeyAuthTeamModel
 from .user_api_key_auth_tpm_limit_per_model_type_0 import UserAPIKeyAuthTpmLimitPerModelType0
 from .user_info_response import UserInfoResponse
 from .user_info_response_user_info_type_0 import UserInfoResponseUserInfoType0
+from .user_info_v2_response import UserInfoV2Response
+from .user_info_v2_response_metadata_type_0 import UserInfoV2ResponseMetadataType0
 from .user_update_result import UserUpdateResult
 from .user_update_result_updated_user_type_0 import UserUpdateResultUpdatedUserType0
 from .validate_blocked_words_file_guardrails_validate_blocked_words_file_post_request import ValidateBlockedWordsFileGuardrailsValidateBlockedWordsFilePostRequest
 from .validation_error import ValidationError
 from .validation_error_context import ValidationErrorContext
+from .vantage_dry_run_request import VantageDryRunRequest
+from .vantage_export_request import VantageExportRequest
+from .vantage_export_response import VantageExportResponse
+from .vantage_export_response_dry_run_data_type_0 import VantageExportResponseDryRunDataType0
+from .vantage_export_response_summary_type_0 import VantageExportResponseSummaryType0
+from .vantage_init_request import VantageInitRequest
+from .vantage_init_response import VantageInitResponse
+from .vantage_settings_update import VantageSettingsUpdate
+from .vantage_settings_view import VantageSettingsView
 from .vector_store_delete_request import VectorStoreDeleteRequest
 from .vector_store_info_request import VectorStoreInfoRequest
 from .vector_store_update_request import VectorStoreUpdateRequest
 from .vector_store_update_request_vector_store_metadata_type_0 import VectorStoreUpdateRequestVectorStoreMetadataType0
+from .worker_registry_entry import WorkerRegistryEntry
 
 __all__ = (
     "AccessControlUIAccessMode",
@@ -880,6 +900,8 @@ __all__ = (
     "BodyTokenEndpointMcpServerNameTokenPost",
     "BodyTokenEndpointTokenPost",
     "BodyUploadLogoUploadLogoPost",
+    "BodyVideoCreateCharacterV1VideosCharactersPost",
+    "BodyVideoCreateCharacterVideosCharactersPost",
     "BodyVideoGenerationV1VideosPost",
     "BodyVideoGenerationVideosPost",
     "BreakdownMetrics",
@@ -1102,6 +1124,7 @@ __all__ = (
     "KeyHealthResponse",
     "KeyHealthResponseKey",
     "KeyListResponseObject",
+    "KeyManagementRoutes",
     "KeyMetadata",
     "KeyMetricWithMetadata",
     "KeyRequest",
@@ -1253,6 +1276,7 @@ __all__ = (
     "NewMCPServerRequestAuthTypeType0",
     "NewMCPServerRequestEnv",
     "NewMCPServerRequestMcpInfoType0",
+    "NewMCPServerRequestOauth2FlowType0",
     "NewMCPServerRequestStaticHeadersType0",
     "NewMCPServerRequestToolNameToDescriptionType0",
     "NewMCPServerRequestToolNameToDisplayNameType0",
@@ -1472,6 +1496,9 @@ __all__ = (
     "TagUpdateRequestModelMaxBudgetType0",
     "TeamAddMemberResponseMetadataType0",
     "TeamAddMemberResponseRouterSettingsType0",
+    "TeamListItem",
+    "TeamListItemMetadataType0",
+    "TeamListItemRouterSettingsType0",
     "TeamListResponse",
     "TeamMappings",
     "TeamMemberAddRequest",
@@ -1593,6 +1620,7 @@ __all__ = (
     "UserAPIKeyAuthAllowedModelRegionType0",
     "UserAPIKeyAuthConfig",
     "UserAPIKeyAuthEndUserModelMaxBudgetType0",
+    "UserAPIKeyAuthJwtClaimsType0",
     "UserAPIKeyAuthLitellmBudgetTableType0",
     "UserAPIKeyAuthMetadata",
     "UserAPIKeyAuthModelMaxBudget",
@@ -1607,13 +1635,25 @@ __all__ = (
     "UserAPIKeyAuthTpmLimitPerModelType0",
     "UserInfoResponse",
     "UserInfoResponseUserInfoType0",
+    "UserInfoV2Response",
+    "UserInfoV2ResponseMetadataType0",
     "UserUpdateResult",
     "UserUpdateResultUpdatedUserType0",
     "ValidateBlockedWordsFileGuardrailsValidateBlockedWordsFilePostRequest",
     "ValidationError",
     "ValidationErrorContext",
+    "VantageDryRunRequest",
+    "VantageExportRequest",
+    "VantageExportResponse",
+    "VantageExportResponseDryRunDataType0",
+    "VantageExportResponseSummaryType0",
+    "VantageInitRequest",
+    "VantageInitResponse",
+    "VantageSettingsUpdate",
+    "VantageSettingsView",
     "VectorStoreDeleteRequest",
     "VectorStoreInfoRequest",
     "VectorStoreUpdateRequest",
     "VectorStoreUpdateRequestVectorStoreMetadataType0",
+    "WorkerRegistryEntry",
 )

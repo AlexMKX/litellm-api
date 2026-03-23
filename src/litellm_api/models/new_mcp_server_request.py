@@ -9,6 +9,7 @@ from attrs import field as _attrs_field
 from ..types import UNSET, Unset
 
 from ..models.new_mcp_server_request_auth_type_type_0 import NewMCPServerRequestAuthTypeType0
+from ..models.new_mcp_server_request_oauth_2_flow_type_0 import NewMCPServerRequestOauth2FlowType0
 from ..models.new_mcp_server_request_transport import NewMCPServerRequestTransport
 from ..types import UNSET, Unset
 from dateutil.parser import isoparse
@@ -57,6 +58,7 @@ class NewMCPServerRequest:
             authorization_url (None | str | Unset):
             token_url (None | str | Unset):
             registration_url (None | str | Unset):
+            oauth2_flow (NewMCPServerRequestOauth2FlowType0 | None | Unset):
             allow_all_keys (bool | Unset):  Default: False.
             available_on_public_internet (bool | Unset):  Default: True.
             is_byok (bool | Unset):  Default: False.
@@ -91,6 +93,7 @@ class NewMCPServerRequest:
     authorization_url: None | str | Unset = UNSET
     token_url: None | str | Unset = UNSET
     registration_url: None | str | Unset = UNSET
+    oauth2_flow: NewMCPServerRequestOauth2FlowType0 | None | Unset = UNSET
     allow_all_keys: bool | Unset = False
     available_on_public_internet: bool | Unset = True
     is_byok: bool | Unset = False
@@ -262,6 +265,14 @@ class NewMCPServerRequest:
         else:
             registration_url = self.registration_url
 
+        oauth2_flow: None | str | Unset
+        if isinstance(self.oauth2_flow, Unset):
+            oauth2_flow = UNSET
+        elif isinstance(self.oauth2_flow, NewMCPServerRequestOauth2FlowType0):
+            oauth2_flow = self.oauth2_flow.value
+        else:
+            oauth2_flow = self.oauth2_flow
+
         allow_all_keys = self.allow_all_keys
 
         available_on_public_internet = self.available_on_public_internet
@@ -355,6 +366,8 @@ class NewMCPServerRequest:
             field_dict["token_url"] = token_url
         if registration_url is not UNSET:
             field_dict["registration_url"] = registration_url
+        if oauth2_flow is not UNSET:
+            field_dict["oauth2_flow"] = oauth2_flow
         if allow_all_keys is not UNSET:
             field_dict["allow_all_keys"] = allow_all_keys
         if available_on_public_internet is not UNSET:
@@ -669,6 +682,26 @@ class NewMCPServerRequest:
         registration_url = _parse_registration_url(d.pop("registration_url", UNSET))
 
 
+        def _parse_oauth2_flow(data: object) -> NewMCPServerRequestOauth2FlowType0 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                oauth2_flow_type_0 = NewMCPServerRequestOauth2FlowType0(data)
+
+
+
+                return oauth2_flow_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(NewMCPServerRequestOauth2FlowType0 | None | Unset, data)
+
+        oauth2_flow = _parse_oauth2_flow(d.pop("oauth2_flow", UNSET))
+
+
         allow_all_keys = d.pop("allow_all_keys", UNSET)
 
         available_on_public_internet = d.pop("available_on_public_internet", UNSET)
@@ -761,6 +794,7 @@ class NewMCPServerRequest:
             authorization_url=authorization_url,
             token_url=token_url,
             registration_url=registration_url,
+            oauth2_flow=oauth2_flow,
             allow_all_keys=allow_all_keys,
             available_on_public_internet=available_on_public_internet,
             is_byok=is_byok,

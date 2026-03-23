@@ -21,6 +21,7 @@ if TYPE_CHECKING:
   from ..models.user_api_key_auth_aliases import UserAPIKeyAuthAliases
   from ..models.user_api_key_auth_config import UserAPIKeyAuthConfig
   from ..models.user_api_key_auth_end_user_model_max_budget_type_0 import UserAPIKeyAuthEndUserModelMaxBudgetType0
+  from ..models.user_api_key_auth_jwt_claims_type_0 import UserAPIKeyAuthJwtClaimsType0
   from ..models.user_api_key_auth_litellm_budget_table_type_0 import UserAPIKeyAuthLitellmBudgetTableType0
   from ..models.user_api_key_auth_metadata import UserAPIKeyAuthMetadata
   from ..models.user_api_key_auth_model_max_budget import UserAPIKeyAuthModelMaxBudget
@@ -131,6 +132,7 @@ class UserAPIKeyAuth:
             user (Any | None | Unset):
             created_by_user (Any | None | Unset):
             end_user_object_permission (LiteLLMObjectPermissionTable | None | Unset):
+            jwt_claims (None | Unset | UserAPIKeyAuthJwtClaimsType0):
      """
 
     token: None | str | Unset = UNSET
@@ -217,6 +219,7 @@ class UserAPIKeyAuth:
     user: Any | None | Unset = UNSET
     created_by_user: Any | None | Unset = UNSET
     end_user_object_permission: LiteLLMObjectPermissionTable | None | Unset = UNSET
+    jwt_claims: None | Unset | UserAPIKeyAuthJwtClaimsType0 = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -229,6 +232,7 @@ class UserAPIKeyAuth:
         from ..models.user_api_key_auth_aliases import UserAPIKeyAuthAliases
         from ..models.user_api_key_auth_config import UserAPIKeyAuthConfig
         from ..models.user_api_key_auth_end_user_model_max_budget_type_0 import UserAPIKeyAuthEndUserModelMaxBudgetType0
+        from ..models.user_api_key_auth_jwt_claims_type_0 import UserAPIKeyAuthJwtClaimsType0
         from ..models.user_api_key_auth_litellm_budget_table_type_0 import UserAPIKeyAuthLitellmBudgetTableType0
         from ..models.user_api_key_auth_metadata import UserAPIKeyAuthMetadata
         from ..models.user_api_key_auth_model_max_budget import UserAPIKeyAuthModelMaxBudget
@@ -775,6 +779,14 @@ class UserAPIKeyAuth:
         else:
             end_user_object_permission = self.end_user_object_permission
 
+        jwt_claims: dict[str, Any] | None | Unset
+        if isinstance(self.jwt_claims, Unset):
+            jwt_claims = UNSET
+        elif isinstance(self.jwt_claims, UserAPIKeyAuthJwtClaimsType0):
+            jwt_claims = self.jwt_claims.to_dict()
+        else:
+            jwt_claims = self.jwt_claims
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -948,6 +960,8 @@ class UserAPIKeyAuth:
             field_dict["created_by_user"] = created_by_user
         if end_user_object_permission is not UNSET:
             field_dict["end_user_object_permission"] = end_user_object_permission
+        if jwt_claims is not UNSET:
+            field_dict["jwt_claims"] = jwt_claims
 
         return field_dict
 
@@ -960,6 +974,7 @@ class UserAPIKeyAuth:
         from ..models.user_api_key_auth_aliases import UserAPIKeyAuthAliases
         from ..models.user_api_key_auth_config import UserAPIKeyAuthConfig
         from ..models.user_api_key_auth_end_user_model_max_budget_type_0 import UserAPIKeyAuthEndUserModelMaxBudgetType0
+        from ..models.user_api_key_auth_jwt_claims_type_0 import UserAPIKeyAuthJwtClaimsType0
         from ..models.user_api_key_auth_litellm_budget_table_type_0 import UserAPIKeyAuthLitellmBudgetTableType0
         from ..models.user_api_key_auth_metadata import UserAPIKeyAuthMetadata
         from ..models.user_api_key_auth_model_max_budget import UserAPIKeyAuthModelMaxBudget
@@ -2009,6 +2024,26 @@ class UserAPIKeyAuth:
         end_user_object_permission = _parse_end_user_object_permission(d.pop("end_user_object_permission", UNSET))
 
 
+        def _parse_jwt_claims(data: object) -> None | Unset | UserAPIKeyAuthJwtClaimsType0:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                jwt_claims_type_0 = UserAPIKeyAuthJwtClaimsType0.from_dict(data)
+
+
+
+                return jwt_claims_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UserAPIKeyAuthJwtClaimsType0, data)
+
+        jwt_claims = _parse_jwt_claims(d.pop("jwt_claims", UNSET))
+
+
         user_api_key_auth = cls(
             token=token,
             key_name=key_name,
@@ -2094,6 +2129,7 @@ class UserAPIKeyAuth:
             user=user,
             created_by_user=created_by_user,
             end_user_object_permission=end_user_object_permission,
+            jwt_claims=jwt_claims,
         )
 
 

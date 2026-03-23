@@ -104,6 +104,8 @@ class UpdateLiteLLMParams:
             litellm_credential_name (None | str | Unset):
             litellm_trace_id (None | str | Unset):
             max_file_size_mb (float | None | Unset):
+            default_api_key_tpm_limit (int | None | Unset):
+            default_api_key_rpm_limit (int | None | Unset):
             max_budget (float | None | Unset):
             budget_duration (None | str | Unset):
             use_in_pass_through (bool | None | Unset):  Default: False.
@@ -111,6 +113,8 @@ class UpdateLiteLLMParams:
             merge_reasoning_content_in_choices (bool | None | Unset):  Default: False.
             model_info (None | Unset | UpdateLiteLLMParamsModelInfoType0):
             mock_response (Any | ModelResponse | None | str | Unset):
+            tags (list[str] | None | Unset):
+            tag_regex (list[str] | None | Unset):
             auto_router_config_path (None | str | Unset):
             auto_router_config (None | str | Unset):
             auto_router_default_model (None | str | Unset):
@@ -197,6 +201,8 @@ class UpdateLiteLLMParams:
     litellm_credential_name: None | str | Unset = UNSET
     litellm_trace_id: None | str | Unset = UNSET
     max_file_size_mb: float | None | Unset = UNSET
+    default_api_key_tpm_limit: int | None | Unset = UNSET
+    default_api_key_rpm_limit: int | None | Unset = UNSET
     max_budget: float | None | Unset = UNSET
     budget_duration: None | str | Unset = UNSET
     use_in_pass_through: bool | None | Unset = False
@@ -204,6 +210,8 @@ class UpdateLiteLLMParams:
     merge_reasoning_content_in_choices: bool | None | Unset = False
     model_info: None | Unset | UpdateLiteLLMParamsModelInfoType0 = UNSET
     mock_response: Any | ModelResponse | None | str | Unset = UNSET
+    tags: list[str] | None | Unset = UNSET
+    tag_regex: list[str] | None | Unset = UNSET
     auto_router_config_path: None | str | Unset = UNSET
     auto_router_config: None | str | Unset = UNSET
     auto_router_default_model: None | str | Unset = UNSET
@@ -684,6 +692,18 @@ class UpdateLiteLLMParams:
         else:
             max_file_size_mb = self.max_file_size_mb
 
+        default_api_key_tpm_limit: int | None | Unset
+        if isinstance(self.default_api_key_tpm_limit, Unset):
+            default_api_key_tpm_limit = UNSET
+        else:
+            default_api_key_tpm_limit = self.default_api_key_tpm_limit
+
+        default_api_key_rpm_limit: int | None | Unset
+        if isinstance(self.default_api_key_rpm_limit, Unset):
+            default_api_key_rpm_limit = UNSET
+        else:
+            default_api_key_rpm_limit = self.default_api_key_rpm_limit
+
         max_budget: float | None | Unset
         if isinstance(self.max_budget, Unset):
             max_budget = UNSET
@@ -729,6 +749,26 @@ class UpdateLiteLLMParams:
             mock_response = self.mock_response.to_dict()
         else:
             mock_response = self.mock_response
+
+        tags: list[str] | None | Unset
+        if isinstance(self.tags, Unset):
+            tags = UNSET
+        elif isinstance(self.tags, list):
+            tags = self.tags
+
+
+        else:
+            tags = self.tags
+
+        tag_regex: list[str] | None | Unset
+        if isinstance(self.tag_regex, Unset):
+            tag_regex = UNSET
+        elif isinstance(self.tag_regex, list):
+            tag_regex = self.tag_regex
+
+
+        else:
+            tag_regex = self.tag_regex
 
         auto_router_config_path: None | str | Unset
         if isinstance(self.auto_router_config_path, Unset):
@@ -953,6 +993,10 @@ class UpdateLiteLLMParams:
             field_dict["litellm_trace_id"] = litellm_trace_id
         if max_file_size_mb is not UNSET:
             field_dict["max_file_size_mb"] = max_file_size_mb
+        if default_api_key_tpm_limit is not UNSET:
+            field_dict["default_api_key_tpm_limit"] = default_api_key_tpm_limit
+        if default_api_key_rpm_limit is not UNSET:
+            field_dict["default_api_key_rpm_limit"] = default_api_key_rpm_limit
         if max_budget is not UNSET:
             field_dict["max_budget"] = max_budget
         if budget_duration is not UNSET:
@@ -967,6 +1011,10 @@ class UpdateLiteLLMParams:
             field_dict["model_info"] = model_info
         if mock_response is not UNSET:
             field_dict["mock_response"] = mock_response
+        if tags is not UNSET:
+            field_dict["tags"] = tags
+        if tag_regex is not UNSET:
+            field_dict["tag_regex"] = tag_regex
         if auto_router_config_path is not UNSET:
             field_dict["auto_router_config_path"] = auto_router_config_path
         if auto_router_config is not UNSET:
@@ -1787,6 +1835,26 @@ class UpdateLiteLLMParams:
         max_file_size_mb = _parse_max_file_size_mb(d.pop("max_file_size_mb", UNSET))
 
 
+        def _parse_default_api_key_tpm_limit(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        default_api_key_tpm_limit = _parse_default_api_key_tpm_limit(d.pop("default_api_key_tpm_limit", UNSET))
+
+
+        def _parse_default_api_key_rpm_limit(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        default_api_key_rpm_limit = _parse_default_api_key_rpm_limit(d.pop("default_api_key_rpm_limit", UNSET))
+
+
         def _parse_max_budget(data: object) -> float | None | Unset:
             if data is None:
                 return data
@@ -1875,6 +1943,42 @@ class UpdateLiteLLMParams:
             return cast(Any | ModelResponse | None | str | Unset, data)
 
         mock_response = _parse_mock_response(d.pop("mock_response", UNSET))
+
+
+        def _parse_tags(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                tags_type_0 = cast(list[str], data)
+
+                return tags_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        tags = _parse_tags(d.pop("tags", UNSET))
+
+
+        def _parse_tag_regex(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                tag_regex_type_0 = cast(list[str], data)
+
+                return tag_regex_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        tag_regex = _parse_tag_regex(d.pop("tag_regex", UNSET))
 
 
         def _parse_auto_router_config_path(data: object) -> None | str | Unset:
@@ -2080,6 +2184,8 @@ class UpdateLiteLLMParams:
             litellm_credential_name=litellm_credential_name,
             litellm_trace_id=litellm_trace_id,
             max_file_size_mb=max_file_size_mb,
+            default_api_key_tpm_limit=default_api_key_tpm_limit,
+            default_api_key_rpm_limit=default_api_key_rpm_limit,
             max_budget=max_budget,
             budget_duration=budget_duration,
             use_in_pass_through=use_in_pass_through,
@@ -2087,6 +2193,8 @@ class UpdateLiteLLMParams:
             merge_reasoning_content_in_choices=merge_reasoning_content_in_choices,
             model_info=model_info,
             mock_response=mock_response,
+            tags=tags,
+            tag_regex=tag_regex,
             auto_router_config_path=auto_router_config_path,
             auto_router_config=auto_router_config,
             auto_router_default_model=auto_router_default_model,

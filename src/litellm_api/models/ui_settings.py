@@ -47,6 +47,8 @@ class UISettings:
                 disable restriction (only takes effect when disable_vector_stores_for_internal_users is true). Default: False.
             scope_user_search_to_org (bool | Unset): If enabled, the user search endpoint (/user/filter/ui) restricts
                 results by organization. When off, any authenticated user can search all users. Default: False.
+            disable_custom_api_keys (bool | Unset): If true, users cannot specify custom key values. All keys must be auto-
+                generated. Default: False.
      """
 
     disable_model_add_for_internal_users: bool | Unset = False
@@ -60,6 +62,7 @@ class UISettings:
     disable_vector_stores_for_internal_users: bool | Unset = False
     allow_vector_stores_for_team_admins: bool | Unset = False
     scope_user_search_to_org: bool | Unset = False
+    disable_custom_api_keys: bool | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -97,6 +100,8 @@ class UISettings:
 
         scope_user_search_to_org = self.scope_user_search_to_org
 
+        disable_custom_api_keys = self.disable_custom_api_keys
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -124,6 +129,8 @@ class UISettings:
             field_dict["allow_vector_stores_for_team_admins"] = allow_vector_stores_for_team_admins
         if scope_user_search_to_org is not UNSET:
             field_dict["scope_user_search_to_org"] = scope_user_search_to_org
+        if disable_custom_api_keys is not UNSET:
+            field_dict["disable_custom_api_keys"] = disable_custom_api_keys
 
         return field_dict
 
@@ -170,6 +177,8 @@ class UISettings:
 
         scope_user_search_to_org = d.pop("scope_user_search_to_org", UNSET)
 
+        disable_custom_api_keys = d.pop("disable_custom_api_keys", UNSET)
+
         ui_settings = cls(
             disable_model_add_for_internal_users=disable_model_add_for_internal_users,
             disable_team_admin_delete_team_user=disable_team_admin_delete_team_user,
@@ -182,6 +191,7 @@ class UISettings:
             disable_vector_stores_for_internal_users=disable_vector_stores_for_internal_users,
             allow_vector_stores_for_team_admins=allow_vector_stores_for_team_admins,
             scope_user_search_to_org=scope_user_search_to_org,
+            disable_custom_api_keys=disable_custom_api_keys,
         )
 
 

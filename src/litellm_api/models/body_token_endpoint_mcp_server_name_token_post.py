@@ -30,6 +30,8 @@ class BodyTokenEndpointMcpServerNameTokenPost:
             redirect_uri (str | Unset):
             client_secret (None | str | Unset):
             code_verifier (str | Unset):
+            refresh_token (None | str | Unset):
+            scope (None | str | Unset):
      """
 
     grant_type: str
@@ -38,6 +40,8 @@ class BodyTokenEndpointMcpServerNameTokenPost:
     redirect_uri: str | Unset = UNSET
     client_secret: None | str | Unset = UNSET
     code_verifier: str | Unset = UNSET
+    refresh_token: None | str | Unset = UNSET
+    scope: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -61,6 +65,18 @@ class BodyTokenEndpointMcpServerNameTokenPost:
 
         code_verifier = self.code_verifier
 
+        refresh_token: None | str | Unset
+        if isinstance(self.refresh_token, Unset):
+            refresh_token = UNSET
+        else:
+            refresh_token = self.refresh_token
+
+        scope: None | str | Unset
+        if isinstance(self.scope, Unset):
+            scope = UNSET
+        else:
+            scope = self.scope
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -76,6 +92,10 @@ class BodyTokenEndpointMcpServerNameTokenPost:
             field_dict["client_secret"] = client_secret
         if code_verifier is not UNSET:
             field_dict["code_verifier"] = code_verifier
+        if refresh_token is not UNSET:
+            field_dict["refresh_token"] = refresh_token
+        if scope is not UNSET:
+            field_dict["scope"] = scope
 
         return field_dict
 
@@ -104,6 +124,26 @@ class BodyTokenEndpointMcpServerNameTokenPost:
 
         code_verifier = d.pop("code_verifier", UNSET)
 
+        def _parse_refresh_token(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        refresh_token = _parse_refresh_token(d.pop("refresh_token", UNSET))
+
+
+        def _parse_scope(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        scope = _parse_scope(d.pop("scope", UNSET))
+
+
         body_token_endpoint_mcp_server_name_token_post = cls(
             grant_type=grant_type,
             client_id=client_id,
@@ -111,6 +151,8 @@ class BodyTokenEndpointMcpServerNameTokenPost:
             redirect_uri=redirect_uri,
             client_secret=client_secret,
             code_verifier=code_verifier,
+            refresh_token=refresh_token,
+            scope=scope,
         )
 
 

@@ -8,6 +8,7 @@ from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..models.key_management_routes import KeyManagementRoutes
 from ..types import UNSET, Unset
 from typing import cast
 
@@ -31,6 +32,9 @@ class DefaultTeamSSOParams:
                 'weekly', 'monthly')
             tpm_limit (int | None | Unset): Default tpm limit for new automatically created teams
             rpm_limit (int | None | Unset): Default rpm limit for new automatically created teams
+            team_member_permissions (list[KeyManagementRoutes] | None | Unset): Default permissions granted to members of
+                newly created teams (e.g. /key/generate, /key/update, /key/delete). /key/info and /key/health are always
+                included.
      """
 
     models: list[str] | Unset = UNSET
@@ -38,6 +42,7 @@ class DefaultTeamSSOParams:
     budget_duration: None | str | Unset = UNSET
     tpm_limit: int | None | Unset = UNSET
     rpm_limit: int | None | Unset = UNSET
+    team_member_permissions: list[KeyManagementRoutes] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -75,6 +80,19 @@ class DefaultTeamSSOParams:
         else:
             rpm_limit = self.rpm_limit
 
+        team_member_permissions: list[str] | None | Unset
+        if isinstance(self.team_member_permissions, Unset):
+            team_member_permissions = UNSET
+        elif isinstance(self.team_member_permissions, list):
+            team_member_permissions = []
+            for team_member_permissions_type_0_item_data in self.team_member_permissions:
+                team_member_permissions_type_0_item = team_member_permissions_type_0_item_data.value
+                team_member_permissions.append(team_member_permissions_type_0_item)
+
+
+        else:
+            team_member_permissions = self.team_member_permissions
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -90,6 +108,8 @@ class DefaultTeamSSOParams:
             field_dict["tpm_limit"] = tpm_limit
         if rpm_limit is not UNSET:
             field_dict["rpm_limit"] = rpm_limit
+        if team_member_permissions is not UNSET:
+            field_dict["team_member_permissions"] = team_member_permissions
 
         return field_dict
 
@@ -141,12 +161,38 @@ class DefaultTeamSSOParams:
         rpm_limit = _parse_rpm_limit(d.pop("rpm_limit", UNSET))
 
 
+        def _parse_team_member_permissions(data: object) -> list[KeyManagementRoutes] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                team_member_permissions_type_0 = []
+                _team_member_permissions_type_0 = data
+                for team_member_permissions_type_0_item_data in (_team_member_permissions_type_0):
+                    team_member_permissions_type_0_item = KeyManagementRoutes(team_member_permissions_type_0_item_data)
+
+
+
+                    team_member_permissions_type_0.append(team_member_permissions_type_0_item)
+
+                return team_member_permissions_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[KeyManagementRoutes] | None | Unset, data)
+
+        team_member_permissions = _parse_team_member_permissions(d.pop("team_member_permissions", UNSET))
+
+
         default_team_sso_params = cls(
             models=models,
             max_budget=max_budget,
             budget_duration=budget_duration,
             tpm_limit=tpm_limit,
             rpm_limit=rpm_limit,
+            team_member_permissions=team_member_permissions,
         )
 
 

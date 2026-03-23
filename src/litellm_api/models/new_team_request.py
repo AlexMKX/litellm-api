@@ -71,6 +71,7 @@ class NewTeamRequest:
             team_member_rpm_limit (int | None | Unset):
             team_member_tpm_limit (int | None | Unset):
             team_member_key_duration (None | str | Unset):
+            team_member_budget_duration (None | str | Unset):
             allowed_vector_store_indexes (list[AllowedVectorStoreIndexItem] | None | Unset):
             enforced_batch_output_expires_after (NewTeamRequestEnforcedBatchOutputExpiresAfterType0 | None | Unset):
             enforced_file_expires_after (NewTeamRequestEnforcedFileExpiresAfterType0 | None | Unset):
@@ -109,6 +110,7 @@ class NewTeamRequest:
     team_member_rpm_limit: int | None | Unset = UNSET
     team_member_tpm_limit: int | None | Unset = UNSET
     team_member_key_duration: None | str | Unset = UNSET
+    team_member_budget_duration: None | str | Unset = UNSET
     allowed_vector_store_indexes: list[AllowedVectorStoreIndexItem] | None | Unset = UNSET
     enforced_batch_output_expires_after: NewTeamRequestEnforcedBatchOutputExpiresAfterType0 | None | Unset = UNSET
     enforced_file_expires_after: NewTeamRequestEnforcedFileExpiresAfterType0 | None | Unset = UNSET
@@ -373,6 +375,12 @@ class NewTeamRequest:
         else:
             team_member_key_duration = self.team_member_key_duration
 
+        team_member_budget_duration: None | str | Unset
+        if isinstance(self.team_member_budget_duration, Unset):
+            team_member_budget_duration = UNSET
+        else:
+            team_member_budget_duration = self.team_member_budget_duration
+
         allowed_vector_store_indexes: list[dict[str, Any]] | None | Unset
         if isinstance(self.allowed_vector_store_indexes, Unset):
             allowed_vector_store_indexes = UNSET
@@ -473,6 +481,8 @@ class NewTeamRequest:
             field_dict["team_member_tpm_limit"] = team_member_tpm_limit
         if team_member_key_duration is not UNSET:
             field_dict["team_member_key_duration"] = team_member_key_duration
+        if team_member_budget_duration is not UNSET:
+            field_dict["team_member_budget_duration"] = team_member_budget_duration
         if allowed_vector_store_indexes is not UNSET:
             field_dict["allowed_vector_store_indexes"] = allowed_vector_store_indexes
         if enforced_batch_output_expires_after is not UNSET:
@@ -947,6 +957,16 @@ class NewTeamRequest:
         team_member_key_duration = _parse_team_member_key_duration(d.pop("team_member_key_duration", UNSET))
 
 
+        def _parse_team_member_budget_duration(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        team_member_budget_duration = _parse_team_member_budget_duration(d.pop("team_member_budget_duration", UNSET))
+
+
         def _parse_allowed_vector_store_indexes(data: object) -> list[AllowedVectorStoreIndexItem] | None | Unset:
             if data is None:
                 return data
@@ -1046,6 +1066,7 @@ class NewTeamRequest:
             team_member_rpm_limit=team_member_rpm_limit,
             team_member_tpm_limit=team_member_tpm_limit,
             team_member_key_duration=team_member_key_duration,
+            team_member_budget_duration=team_member_budget_duration,
             allowed_vector_store_indexes=allowed_vector_store_indexes,
             enforced_batch_output_expires_after=enforced_batch_output_expires_after,
             enforced_file_expires_after=enforced_file_expires_after,

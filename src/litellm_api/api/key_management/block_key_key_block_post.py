@@ -112,7 +112,7 @@ def sync_detailed(
     }'
     ```
 
-    Note: This is an admin-only endpoint. Only proxy admins can block keys.
+    Note: This is an admin-only endpoint. Only proxy admins, team admins, or org admins can block keys.
 
     Args:
         litellm_changed_by (None | str | Unset): The litellm-changed-by header enables tracking of
@@ -163,7 +163,7 @@ def sync(
     }'
     ```
 
-    Note: This is an admin-only endpoint. Only proxy admins can block keys.
+    Note: This is an admin-only endpoint. Only proxy admins, team admins, or org admins can block keys.
 
     Args:
         litellm_changed_by (None | str | Unset): The litellm-changed-by header enables tracking of
@@ -209,7 +209,7 @@ async def asyncio_detailed(
     }'
     ```
 
-    Note: This is an admin-only endpoint. Only proxy admins can block keys.
+    Note: This is an admin-only endpoint. Only proxy admins, team admins, or org admins can block keys.
 
     Args:
         litellm_changed_by (None | str | Unset): The litellm-changed-by header enables tracking of
@@ -260,7 +260,7 @@ async def asyncio(
     }'
     ```
 
-    Note: This is an admin-only endpoint. Only proxy admins can block keys.
+    Note: This is an admin-only endpoint. Only proxy admins, team admins, or org admins can block keys.
 
     Args:
         litellm_changed_by (None | str | Unset): The litellm-changed-by header enables tracking of

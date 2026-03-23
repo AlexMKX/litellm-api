@@ -133,10 +133,8 @@ class LitellmParams:
                 True.
             additional_provider_specific_params (LitellmParamsAdditionalProviderSpecificParamsType0 | None | Unset):
                 Additional provider-specific parameters for generic guardrail APIs
-            unreachable_fallback (LitellmParamsUnreachableFallback | Unset): Behavior when a guardrail endpoint is
-                unreachable due to network errors. NOTE: This is currently only implemented by
-                guardrail='generic_guardrail_api'. 'fail_closed' raises an error (default). 'fail_open' logs a critical error
-                and allows the request to proceed. Default: LitellmParamsUnreachableFallback.FAIL_CLOSED.
+            unreachable_fallback (LitellmParamsUnreachableFallback | Unset): What to do when Akto is unreachable.
+                'fail_open' = allow, 'fail_closed' = block. Default: LitellmParamsUnreachableFallback.FAIL_CLOSED.
             extra_headers (list[str] | None | Unset): Header names to forward from the client request to the guardrail (e.g.
                 x-request-id). Only these headers' values are sent; others may be omitted or sent as [present]. Used by
                 generic_guardrail_api (similar to MCP extra_headers).
@@ -146,6 +144,12 @@ class LitellmParams:
             metadata (LitellmParamsMetadataType0 | None | Unset): Additional metadata to include in the request
             application (None | str | Unset): Application name for Javelin service
             config (LitellmParamsConfigType0 | None | Unset): Additional configuration for the guardrail
+            akto_base_url (None | str | Unset): Akto Guardrail API Base URL. Env: AKTO_GUARDRAIL_API_BASE.
+            akto_api_key (None | str | Unset): API key for Akto. Env: AKTO_API_KEY.
+            akto_account_id (None | str | Unset): Akto account ID for multi-tenant deployments. Env: AKTO_ACCOUNT_ID.
+                Default: '1000000'.
+            akto_vxlan_id (None | str | Unset): Akto VXLAN ID. Env: AKTO_VXLAN_ID. Default: '0'.
+            guardrail_timeout (int | None | Unset): HTTP timeout in seconds. Default: 5.
             policy_id (int | None | Unset): Policy ID for Zscaler AI Guard. Can also be set via ZSCALER_AI_GUARD_POLICY_ID
                 environment variable
             send_user_api_key_alias (bool | None | Unset): Whether to send user_API_key_alias in headers Default: False.
@@ -277,6 +281,11 @@ class LitellmParams:
     metadata: LitellmParamsMetadataType0 | None | Unset = UNSET
     application: None | str | Unset = UNSET
     config: LitellmParamsConfigType0 | None | Unset = UNSET
+    akto_base_url: None | str | Unset = UNSET
+    akto_api_key: None | str | Unset = UNSET
+    akto_account_id: None | str | Unset = UNSET
+    akto_vxlan_id: None | str | Unset = UNSET
+    guardrail_timeout: int | None | Unset = UNSET
     policy_id: int | None | Unset = UNSET
     send_user_api_key_alias: bool | None | Unset = False
     send_user_api_key_user_id: bool | None | Unset = False
@@ -754,6 +763,36 @@ class LitellmParams:
         else:
             config = self.config
 
+        akto_base_url: None | str | Unset
+        if isinstance(self.akto_base_url, Unset):
+            akto_base_url = UNSET
+        else:
+            akto_base_url = self.akto_base_url
+
+        akto_api_key: None | str | Unset
+        if isinstance(self.akto_api_key, Unset):
+            akto_api_key = UNSET
+        else:
+            akto_api_key = self.akto_api_key
+
+        akto_account_id: None | str | Unset
+        if isinstance(self.akto_account_id, Unset):
+            akto_account_id = UNSET
+        else:
+            akto_account_id = self.akto_account_id
+
+        akto_vxlan_id: None | str | Unset
+        if isinstance(self.akto_vxlan_id, Unset):
+            akto_vxlan_id = UNSET
+        else:
+            akto_vxlan_id = self.akto_vxlan_id
+
+        guardrail_timeout: int | None | Unset
+        if isinstance(self.guardrail_timeout, Unset):
+            guardrail_timeout = UNSET
+        else:
+            guardrail_timeout = self.guardrail_timeout
+
         policy_id: int | None | Unset
         if isinstance(self.policy_id, Unset):
             policy_id = UNSET
@@ -1193,6 +1232,16 @@ class LitellmParams:
             field_dict["application"] = application
         if config is not UNSET:
             field_dict["config"] = config
+        if akto_base_url is not UNSET:
+            field_dict["akto_base_url"] = akto_base_url
+        if akto_api_key is not UNSET:
+            field_dict["akto_api_key"] = akto_api_key
+        if akto_account_id is not UNSET:
+            field_dict["akto_account_id"] = akto_account_id
+        if akto_vxlan_id is not UNSET:
+            field_dict["akto_vxlan_id"] = akto_vxlan_id
+        if guardrail_timeout is not UNSET:
+            field_dict["guardrail_timeout"] = guardrail_timeout
         if policy_id is not UNSET:
             field_dict["policy_id"] = policy_id
         if send_user_api_key_alias is not UNSET:
@@ -2071,6 +2120,56 @@ class LitellmParams:
         config = _parse_config(d.pop("config", UNSET))
 
 
+        def _parse_akto_base_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        akto_base_url = _parse_akto_base_url(d.pop("akto_base_url", UNSET))
+
+
+        def _parse_akto_api_key(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        akto_api_key = _parse_akto_api_key(d.pop("akto_api_key", UNSET))
+
+
+        def _parse_akto_account_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        akto_account_id = _parse_akto_account_id(d.pop("akto_account_id", UNSET))
+
+
+        def _parse_akto_vxlan_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        akto_vxlan_id = _parse_akto_vxlan_id(d.pop("akto_vxlan_id", UNSET))
+
+
+        def _parse_guardrail_timeout(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        guardrail_timeout = _parse_guardrail_timeout(d.pop("guardrail_timeout", UNSET))
+
+
         def _parse_policy_id(data: object) -> int | None | Unset:
             if data is None:
                 return data
@@ -2704,6 +2803,11 @@ class LitellmParams:
             metadata=metadata,
             application=application,
             config=config,
+            akto_base_url=akto_base_url,
+            akto_api_key=akto_api_key,
+            akto_account_id=akto_account_id,
+            akto_vxlan_id=akto_vxlan_id,
+            guardrail_timeout=guardrail_timeout,
             policy_id=policy_id,
             send_user_api_key_alias=send_user_api_key_alias,
             send_user_api_key_user_id=send_user_api_key_user_id,
