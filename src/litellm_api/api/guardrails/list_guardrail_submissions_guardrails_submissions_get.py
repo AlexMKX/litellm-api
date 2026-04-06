@@ -104,13 +104,16 @@ def sync_detailed(
 ) -> Response[HTTPValidationError | ListGuardrailSubmissionsResponse]:
     """ List Guardrail Submissions
 
-     List team guardrail submissions (admin only). Returns only guardrails with a team_id.
+     List team guardrail submissions. Returns only guardrails with a team_id.
+
+    Admins see all submissions. Non-admin users see submissions for teams they are
+    a member of.
 
     Status values: pending_review (team-registered, awaiting approval), active (approved), rejected.
 
     Optional filters:
     - status: pending_review | active | rejected
-    - team_id: filter by specific team
+    - team_id: filter by specific team (non-admins must be a member of that team)
     - search: name/description
 
     Args:
@@ -150,13 +153,16 @@ def sync(
 ) -> HTTPValidationError | ListGuardrailSubmissionsResponse | None:
     """ List Guardrail Submissions
 
-     List team guardrail submissions (admin only). Returns only guardrails with a team_id.
+     List team guardrail submissions. Returns only guardrails with a team_id.
+
+    Admins see all submissions. Non-admin users see submissions for teams they are
+    a member of.
 
     Status values: pending_review (team-registered, awaiting approval), active (approved), rejected.
 
     Optional filters:
     - status: pending_review | active | rejected
-    - team_id: filter by specific team
+    - team_id: filter by specific team (non-admins must be a member of that team)
     - search: name/description
 
     Args:
@@ -191,13 +197,16 @@ async def asyncio_detailed(
 ) -> Response[HTTPValidationError | ListGuardrailSubmissionsResponse]:
     """ List Guardrail Submissions
 
-     List team guardrail submissions (admin only). Returns only guardrails with a team_id.
+     List team guardrail submissions. Returns only guardrails with a team_id.
+
+    Admins see all submissions. Non-admin users see submissions for teams they are
+    a member of.
 
     Status values: pending_review (team-registered, awaiting approval), active (approved), rejected.
 
     Optional filters:
     - status: pending_review | active | rejected
-    - team_id: filter by specific team
+    - team_id: filter by specific team (non-admins must be a member of that team)
     - search: name/description
 
     Args:
@@ -237,13 +246,16 @@ async def asyncio(
 ) -> HTTPValidationError | ListGuardrailSubmissionsResponse | None:
     """ List Guardrail Submissions
 
-     List team guardrail submissions (admin only). Returns only guardrails with a team_id.
+     List team guardrail submissions. Returns only guardrails with a team_id.
+
+    Admins see all submissions. Non-admin users see submissions for teams they are
+    a member of.
 
     Status values: pending_review (team-registered, awaiting approval), active (approved), rejected.
 
     Optional filters:
     - status: pending_review | active | rejected
-    - team_id: filter by specific team
+    - team_id: filter by specific team (non-admins must be a member of that team)
     - search: name/description
 
     Args:

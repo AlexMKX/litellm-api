@@ -10,6 +10,8 @@ from .. import types
 
 from ..types import UNSET, Unset
 
+from ..types import File, FileTypes
+from io import BytesIO
 
 
 
@@ -24,10 +26,10 @@ T = TypeVar("T", bound="BodyConvertPromptFileToJsonUtilsDotpromptJsonConverterPo
 class BodyConvertPromptFileToJsonUtilsDotpromptJsonConverterPost:
     """ 
         Attributes:
-            file (str):
+            file (File):
      """
 
-    file: str
+    file: File
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -35,7 +37,8 @@ class BodyConvertPromptFileToJsonUtilsDotpromptJsonConverterPost:
 
 
     def to_dict(self) -> dict[str, Any]:
-        file = self.file
+        file = self.file.to_tuple()
+
 
 
         field_dict: dict[str, Any] = {}
@@ -50,7 +53,7 @@ class BodyConvertPromptFileToJsonUtilsDotpromptJsonConverterPost:
     def to_multipart(self) -> types.RequestFiles:
         files: types.RequestFiles = []
 
-        files.append(("file", (None, str(self.file).encode(), "text/plain")))
+        files.append(("file", self.file.to_tuple()))
 
 
 
@@ -66,7 +69,12 @@ class BodyConvertPromptFileToJsonUtilsDotpromptJsonConverterPost:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        file = d.pop("file")
+        file = File(
+             payload = BytesIO(d.pop("file"))
+        )
+
+
+
 
         body_convert_prompt_file_to_json_utils_dotprompt_json_converter_post = cls(
             file=file,

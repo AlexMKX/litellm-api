@@ -20,6 +20,7 @@ def _get_kwargs(
     page: int | Unset = 1,
     size: int | Unset = 50,
     search: None | str | Unset = UNSET,
+    team_id: None | str | Unset = UNSET,
 
 ) -> dict[str, Any]:
     
@@ -38,6 +39,13 @@ def _get_kwargs(
     else:
         json_search = search
     params["search"] = json_search
+
+    json_team_id: None | str | Unset
+    if isinstance(team_id, Unset):
+        json_team_id = UNSET
+    else:
+        json_team_id = team_id
+    params["team_id"] = json_team_id
 
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
@@ -90,6 +98,7 @@ def sync_detailed(
     page: int | Unset = 1,
     size: int | Unset = 50,
     search: None | str | Unset = UNSET,
+    team_id: None | str | Unset = UNSET,
 
 ) -> Response[HTTPValidationError | KeyAliasesKeyAliasesGetResponseKeyAliasesKeyAliasesGet]:
     r""" Key Aliases
@@ -112,6 +121,7 @@ def sync_detailed(
         page (int | Unset): Page number Default: 1.
         size (int | Unset): Page size Default: 50.
         search (None | str | Unset): Search key aliases (case-insensitive partial match)
+        team_id (None | str | Unset): Filter aliases to keys belonging to this team
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -126,6 +136,7 @@ def sync_detailed(
         page=page,
 size=size,
 search=search,
+team_id=team_id,
 
     )
 
@@ -141,6 +152,7 @@ def sync(
     page: int | Unset = 1,
     size: int | Unset = 50,
     search: None | str | Unset = UNSET,
+    team_id: None | str | Unset = UNSET,
 
 ) -> HTTPValidationError | KeyAliasesKeyAliasesGetResponseKeyAliasesKeyAliasesGet | None:
     r""" Key Aliases
@@ -163,6 +175,7 @@ def sync(
         page (int | Unset): Page number Default: 1.
         size (int | Unset): Page size Default: 50.
         search (None | str | Unset): Search key aliases (case-insensitive partial match)
+        team_id (None | str | Unset): Filter aliases to keys belonging to this team
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -178,6 +191,7 @@ def sync(
 page=page,
 size=size,
 search=search,
+team_id=team_id,
 
     ).parsed
 
@@ -187,6 +201,7 @@ async def asyncio_detailed(
     page: int | Unset = 1,
     size: int | Unset = 50,
     search: None | str | Unset = UNSET,
+    team_id: None | str | Unset = UNSET,
 
 ) -> Response[HTTPValidationError | KeyAliasesKeyAliasesGetResponseKeyAliasesKeyAliasesGet]:
     r""" Key Aliases
@@ -209,6 +224,7 @@ async def asyncio_detailed(
         page (int | Unset): Page number Default: 1.
         size (int | Unset): Page size Default: 50.
         search (None | str | Unset): Search key aliases (case-insensitive partial match)
+        team_id (None | str | Unset): Filter aliases to keys belonging to this team
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -223,6 +239,7 @@ async def asyncio_detailed(
         page=page,
 size=size,
 search=search,
+team_id=team_id,
 
     )
 
@@ -238,6 +255,7 @@ async def asyncio(
     page: int | Unset = 1,
     size: int | Unset = 50,
     search: None | str | Unset = UNSET,
+    team_id: None | str | Unset = UNSET,
 
 ) -> HTTPValidationError | KeyAliasesKeyAliasesGetResponseKeyAliasesKeyAliasesGet | None:
     r""" Key Aliases
@@ -260,6 +278,7 @@ async def asyncio(
         page (int | Unset): Page number Default: 1.
         size (int | Unset): Page size Default: 50.
         search (None | str | Unset): Search key aliases (case-insensitive partial match)
+        team_id (None | str | Unset): Filter aliases to keys belonging to this team
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -275,5 +294,6 @@ async def asyncio(
 page=page,
 size=size,
 search=search,
+team_id=team_id,
 
     )).parsed

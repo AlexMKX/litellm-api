@@ -14,7 +14,7 @@ from typing import cast
 
 
 def _get_kwargs(
-    mcp_server_name: str,
+    toolset_name: str,
 
 ) -> dict[str, Any]:
     
@@ -25,7 +25,7 @@ def _get_kwargs(
 
     _kwargs: dict[str, Any] = {
         "method": "patch",
-        "url": "/{mcp_server_name}/mcp".format(mcp_server_name=quote(str(mcp_server_name), safe=""),),
+        "url": "/toolset/{toolset_name}/mcp".format(toolset_name=quote(str(toolset_name), safe=""),),
     }
 
 
@@ -61,17 +61,22 @@ def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Res
 
 
 def sync_detailed(
-    mcp_server_name: str,
+    toolset_name: str,
     *,
     client: AuthenticatedClient | Client,
 
 ) -> Response[Any | HTTPValidationError]:
-    """ Dynamic Mcp Route
+    """ Toolset Mcp Route
 
-     Handle dynamic MCP server routes like /github_mcp/mcp and toolset routes like /devtooling-prod/mcp
+     Namespace a toolset as its own MCP endpoint.
+
+    Connecting to /toolset/<name>/mcp exposes exactly the tools defined in
+    the toolset. Access is enforced: non-admin API keys must have the toolset
+    listed in their object_permission.mcp_toolsets grant list, or the request
+    will be rejected with a 403.
 
     Args:
-        mcp_server_name (str):
+        toolset_name (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -83,7 +88,7 @@ def sync_detailed(
 
 
     kwargs = _get_kwargs(
-        mcp_server_name=mcp_server_name,
+        toolset_name=toolset_name,
 
     )
 
@@ -94,17 +99,22 @@ def sync_detailed(
     return _build_response(client=client, response=response)
 
 def sync(
-    mcp_server_name: str,
+    toolset_name: str,
     *,
     client: AuthenticatedClient | Client,
 
 ) -> Any | HTTPValidationError | None:
-    """ Dynamic Mcp Route
+    """ Toolset Mcp Route
 
-     Handle dynamic MCP server routes like /github_mcp/mcp and toolset routes like /devtooling-prod/mcp
+     Namespace a toolset as its own MCP endpoint.
+
+    Connecting to /toolset/<name>/mcp exposes exactly the tools defined in
+    the toolset. Access is enforced: non-admin API keys must have the toolset
+    listed in their object_permission.mcp_toolsets grant list, or the request
+    will be rejected with a 403.
 
     Args:
-        mcp_server_name (str):
+        toolset_name (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -116,23 +126,28 @@ def sync(
 
 
     return sync_detailed(
-        mcp_server_name=mcp_server_name,
+        toolset_name=toolset_name,
 client=client,
 
     ).parsed
 
 async def asyncio_detailed(
-    mcp_server_name: str,
+    toolset_name: str,
     *,
     client: AuthenticatedClient | Client,
 
 ) -> Response[Any | HTTPValidationError]:
-    """ Dynamic Mcp Route
+    """ Toolset Mcp Route
 
-     Handle dynamic MCP server routes like /github_mcp/mcp and toolset routes like /devtooling-prod/mcp
+     Namespace a toolset as its own MCP endpoint.
+
+    Connecting to /toolset/<name>/mcp exposes exactly the tools defined in
+    the toolset. Access is enforced: non-admin API keys must have the toolset
+    listed in their object_permission.mcp_toolsets grant list, or the request
+    will be rejected with a 403.
 
     Args:
-        mcp_server_name (str):
+        toolset_name (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -144,7 +159,7 @@ async def asyncio_detailed(
 
 
     kwargs = _get_kwargs(
-        mcp_server_name=mcp_server_name,
+        toolset_name=toolset_name,
 
     )
 
@@ -155,17 +170,22 @@ async def asyncio_detailed(
     return _build_response(client=client, response=response)
 
 async def asyncio(
-    mcp_server_name: str,
+    toolset_name: str,
     *,
     client: AuthenticatedClient | Client,
 
 ) -> Any | HTTPValidationError | None:
-    """ Dynamic Mcp Route
+    """ Toolset Mcp Route
 
-     Handle dynamic MCP server routes like /github_mcp/mcp and toolset routes like /devtooling-prod/mcp
+     Namespace a toolset as its own MCP endpoint.
+
+    Connecting to /toolset/<name>/mcp exposes exactly the tools defined in
+    the toolset. Access is enforced: non-admin API keys must have the toolset
+    listed in their object_permission.mcp_toolsets grant list, or the request
+    will be rejected with a 403.
 
     Args:
-        mcp_server_name (str):
+        toolset_name (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -177,7 +197,7 @@ async def asyncio(
 
 
     return (await asyncio_detailed(
-        mcp_server_name=mcp_server_name,
+        toolset_name=toolset_name,
 client=client,
 
     )).parsed

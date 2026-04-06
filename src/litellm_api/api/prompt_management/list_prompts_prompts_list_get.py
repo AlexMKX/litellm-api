@@ -8,23 +8,39 @@ from ...client import AuthenticatedClient, Client
 from ...types import Response, UNSET
 from ... import errors
 
+from ...models.http_validation_error import HTTPValidationError
 from ...models.list_prompts_response import ListPromptsResponse
+from ...types import UNSET, Unset
 from typing import cast
 
 
 
 def _get_kwargs(
-    
+    *,
+    environment: None | str | Unset = UNSET,
+
 ) -> dict[str, Any]:
     
 
     
 
-    
+    params: dict[str, Any] = {}
+
+    json_environment: None | str | Unset
+    if isinstance(environment, Unset):
+        json_environment = UNSET
+    else:
+        json_environment = environment
+    params["environment"] = json_environment
+
+
+    params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
+
 
     _kwargs: dict[str, Any] = {
         "method": "get",
         "url": "/prompts/list",
+        "params": params,
     }
 
 
@@ -32,7 +48,7 @@ def _get_kwargs(
 
 
 
-def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> ListPromptsResponse | None:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> HTTPValidationError | ListPromptsResponse | None:
     if response.status_code == 200:
         response_200 = ListPromptsResponse.from_dict(response.json())
 
@@ -40,13 +56,20 @@ def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Res
 
         return response_200
 
+    if response.status_code == 422:
+        response_422 = HTTPValidationError.from_dict(response.json())
+
+
+
+        return response_422
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
         return None
 
 
-def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[ListPromptsResponse]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[HTTPValidationError | ListPromptsResponse]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -58,8 +81,9 @@ def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Res
 def sync_detailed(
     *,
     client: AuthenticatedClient,
+    environment: None | str | Unset = UNSET,
 
-) -> Response[ListPromptsResponse]:
+) -> Response[HTTPValidationError | ListPromptsResponse]:
     r""" List Prompts
 
      List the prompts that are available on the proxy server
@@ -92,17 +116,21 @@ def sync_detailed(
     }
     ```
 
+    Args:
+        environment (None | str | Unset):
+
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[ListPromptsResponse]
+        Response[HTTPValidationError | ListPromptsResponse]
      """
 
 
     kwargs = _get_kwargs(
-        
+        environment=environment,
+
     )
 
     response = client.get_httpx_client().request(
@@ -114,8 +142,9 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient,
+    environment: None | str | Unset = UNSET,
 
-) -> ListPromptsResponse | None:
+) -> HTTPValidationError | ListPromptsResponse | None:
     r""" List Prompts
 
      List the prompts that are available on the proxy server
@@ -148,25 +177,30 @@ def sync(
     }
     ```
 
+    Args:
+        environment (None | str | Unset):
+
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        ListPromptsResponse
+        HTTPValidationError | ListPromptsResponse
      """
 
 
     return sync_detailed(
         client=client,
+environment=environment,
 
     ).parsed
 
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
+    environment: None | str | Unset = UNSET,
 
-) -> Response[ListPromptsResponse]:
+) -> Response[HTTPValidationError | ListPromptsResponse]:
     r""" List Prompts
 
      List the prompts that are available on the proxy server
@@ -199,17 +233,21 @@ async def asyncio_detailed(
     }
     ```
 
+    Args:
+        environment (None | str | Unset):
+
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[ListPromptsResponse]
+        Response[HTTPValidationError | ListPromptsResponse]
      """
 
 
     kwargs = _get_kwargs(
-        
+        environment=environment,
+
     )
 
     response = await client.get_async_httpx_client().request(
@@ -221,8 +259,9 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient,
+    environment: None | str | Unset = UNSET,
 
-) -> ListPromptsResponse | None:
+) -> HTTPValidationError | ListPromptsResponse | None:
     r""" List Prompts
 
      List the prompts that are available on the proxy server
@@ -255,16 +294,20 @@ async def asyncio(
     }
     ```
 
+    Args:
+        environment (None | str | Unset):
+
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        ListPromptsResponse
+        HTTPValidationError | ListPromptsResponse
      """
 
 
     return (await asyncio_detailed(
         client=client,
+environment=environment,
 
     )).parsed

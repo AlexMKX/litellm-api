@@ -9,23 +9,38 @@ from ...types import Response, UNSET
 from ... import errors
 
 from ...models.http_validation_error import HTTPValidationError
+from ...types import UNSET, Unset
 from typing import cast
 
 
 
 def _get_kwargs(
     prompt_id: str,
+    *,
+    environment: None | str | Unset = UNSET,
 
 ) -> dict[str, Any]:
     
 
     
 
-    
+    params: dict[str, Any] = {}
+
+    json_environment: None | str | Unset
+    if isinstance(environment, Unset):
+        json_environment = UNSET
+    else:
+        json_environment = environment
+    params["environment"] = json_environment
+
+
+    params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
+
 
     _kwargs: dict[str, Any] = {
         "method": "delete",
         "url": "/prompts/{prompt_id}".format(prompt_id=quote(str(prompt_id), safe=""),),
+        "params": params,
     }
 
 
@@ -64,6 +79,7 @@ def sync_detailed(
     prompt_id: str,
     *,
     client: AuthenticatedClient,
+    environment: None | str | Unset = UNSET,
 
 ) -> Response[Any | HTTPValidationError]:
     r""" Delete Prompt
@@ -87,6 +103,7 @@ def sync_detailed(
 
     Args:
         prompt_id (str):
+        environment (None | str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -99,6 +116,7 @@ def sync_detailed(
 
     kwargs = _get_kwargs(
         prompt_id=prompt_id,
+environment=environment,
 
     )
 
@@ -112,6 +130,7 @@ def sync(
     prompt_id: str,
     *,
     client: AuthenticatedClient,
+    environment: None | str | Unset = UNSET,
 
 ) -> Any | HTTPValidationError | None:
     r""" Delete Prompt
@@ -135,6 +154,7 @@ def sync(
 
     Args:
         prompt_id (str):
+        environment (None | str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -148,6 +168,7 @@ def sync(
     return sync_detailed(
         prompt_id=prompt_id,
 client=client,
+environment=environment,
 
     ).parsed
 
@@ -155,6 +176,7 @@ async def asyncio_detailed(
     prompt_id: str,
     *,
     client: AuthenticatedClient,
+    environment: None | str | Unset = UNSET,
 
 ) -> Response[Any | HTTPValidationError]:
     r""" Delete Prompt
@@ -178,6 +200,7 @@ async def asyncio_detailed(
 
     Args:
         prompt_id (str):
+        environment (None | str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -190,6 +213,7 @@ async def asyncio_detailed(
 
     kwargs = _get_kwargs(
         prompt_id=prompt_id,
+environment=environment,
 
     )
 
@@ -203,6 +227,7 @@ async def asyncio(
     prompt_id: str,
     *,
     client: AuthenticatedClient,
+    environment: None | str | Unset = UNSET,
 
 ) -> Any | HTTPValidationError | None:
     r""" Delete Prompt
@@ -226,6 +251,7 @@ async def asyncio(
 
     Args:
         prompt_id (str):
+        environment (None | str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -239,5 +265,6 @@ async def asyncio(
     return (await asyncio_detailed(
         prompt_id=prompt_id,
 client=client,
+environment=environment,
 
     )).parsed

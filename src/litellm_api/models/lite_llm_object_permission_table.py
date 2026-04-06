@@ -34,6 +34,8 @@ class LiteLLMObjectPermissionTable:
             vector_stores (list[str] | None | Unset):
             agents (list[str] | None | Unset):
             agent_access_groups (list[str] | None | Unset):
+            mcp_toolsets (list[str] | None | Unset):
+            blocked_tools (list[str] | None | Unset):
      """
 
     object_permission_id: str
@@ -43,6 +45,8 @@ class LiteLLMObjectPermissionTable:
     vector_stores: list[str] | None | Unset = UNSET
     agents: list[str] | None | Unset = UNSET
     agent_access_groups: list[str] | None | Unset = UNSET
+    mcp_toolsets: list[str] | None | Unset = UNSET
+    blocked_tools: list[str] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -111,6 +115,26 @@ class LiteLLMObjectPermissionTable:
         else:
             agent_access_groups = self.agent_access_groups
 
+        mcp_toolsets: list[str] | None | Unset
+        if isinstance(self.mcp_toolsets, Unset):
+            mcp_toolsets = UNSET
+        elif isinstance(self.mcp_toolsets, list):
+            mcp_toolsets = self.mcp_toolsets
+
+
+        else:
+            mcp_toolsets = self.mcp_toolsets
+
+        blocked_tools: list[str] | None | Unset
+        if isinstance(self.blocked_tools, Unset):
+            blocked_tools = UNSET
+        elif isinstance(self.blocked_tools, list):
+            blocked_tools = self.blocked_tools
+
+
+        else:
+            blocked_tools = self.blocked_tools
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -129,6 +153,10 @@ class LiteLLMObjectPermissionTable:
             field_dict["agents"] = agents
         if agent_access_groups is not UNSET:
             field_dict["agent_access_groups"] = agent_access_groups
+        if mcp_toolsets is not UNSET:
+            field_dict["mcp_toolsets"] = mcp_toolsets
+        if blocked_tools is not UNSET:
+            field_dict["blocked_tools"] = blocked_tools
 
         return field_dict
 
@@ -250,6 +278,42 @@ class LiteLLMObjectPermissionTable:
         agent_access_groups = _parse_agent_access_groups(d.pop("agent_access_groups", UNSET))
 
 
+        def _parse_mcp_toolsets(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                mcp_toolsets_type_0 = cast(list[str], data)
+
+                return mcp_toolsets_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        mcp_toolsets = _parse_mcp_toolsets(d.pop("mcp_toolsets", UNSET))
+
+
+        def _parse_blocked_tools(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                blocked_tools_type_0 = cast(list[str], data)
+
+                return blocked_tools_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        blocked_tools = _parse_blocked_tools(d.pop("blocked_tools", UNSET))
+
+
         lite_llm_object_permission_table = cls(
             object_permission_id=object_permission_id,
             mcp_servers=mcp_servers,
@@ -258,6 +322,8 @@ class LiteLLMObjectPermissionTable:
             vector_stores=vector_stores,
             agents=agents,
             agent_access_groups=agent_access_groups,
+            mcp_toolsets=mcp_toolsets,
+            blocked_tools=blocked_tools,
         )
 
 

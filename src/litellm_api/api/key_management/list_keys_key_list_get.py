@@ -217,11 +217,13 @@ def sync_detailed(
     Args:
         page (int | Unset): Page number Default: 1.
         size (int | Unset): Page size Default: 10.
-        user_id (None | str | Unset): Filter keys by user ID
+        user_id (None | str | Unset): Filter keys by user ID. Supports partial matching
+            (substring, case-insensitive).
         team_id (None | str | Unset): Filter keys by team ID
         organization_id (None | str | Unset): Filter keys by organization ID
         key_hash (None | str | Unset): Filter keys by key hash
-        key_alias (None | str | Unset): Filter keys by key alias
+        key_alias (None | str | Unset): Filter keys by key alias. Supports partial matching
+            (substring, case-insensitive).
         return_full_object (bool | Unset): Return full key object Default: False.
         include_team_keys (bool | Unset): Include all keys for teams that user is an admin of.
             Default: False.
@@ -313,11 +315,13 @@ def sync(
     Args:
         page (int | Unset): Page number Default: 1.
         size (int | Unset): Page size Default: 10.
-        user_id (None | str | Unset): Filter keys by user ID
+        user_id (None | str | Unset): Filter keys by user ID. Supports partial matching
+            (substring, case-insensitive).
         team_id (None | str | Unset): Filter keys by team ID
         organization_id (None | str | Unset): Filter keys by organization ID
         key_hash (None | str | Unset): Filter keys by key hash
-        key_alias (None | str | Unset): Filter keys by key alias
+        key_alias (None | str | Unset): Filter keys by key alias. Supports partial matching
+            (substring, case-insensitive).
         return_full_object (bool | Unset): Return full key object Default: False.
         include_team_keys (bool | Unset): Include all keys for teams that user is an admin of.
             Default: False.
@@ -404,11 +408,13 @@ async def asyncio_detailed(
     Args:
         page (int | Unset): Page number Default: 1.
         size (int | Unset): Page size Default: 10.
-        user_id (None | str | Unset): Filter keys by user ID
+        user_id (None | str | Unset): Filter keys by user ID. Supports partial matching
+            (substring, case-insensitive).
         team_id (None | str | Unset): Filter keys by team ID
         organization_id (None | str | Unset): Filter keys by organization ID
         key_hash (None | str | Unset): Filter keys by key hash
-        key_alias (None | str | Unset): Filter keys by key alias
+        key_alias (None | str | Unset): Filter keys by key alias. Supports partial matching
+            (substring, case-insensitive).
         return_full_object (bool | Unset): Return full key object Default: False.
         include_team_keys (bool | Unset): Include all keys for teams that user is an admin of.
             Default: False.
@@ -500,11 +506,13 @@ async def asyncio(
     Args:
         page (int | Unset): Page number Default: 1.
         size (int | Unset): Page size Default: 10.
-        user_id (None | str | Unset): Filter keys by user ID
+        user_id (None | str | Unset): Filter keys by user ID. Supports partial matching
+            (substring, case-insensitive).
         team_id (None | str | Unset): Filter keys by team ID
         organization_id (None | str | Unset): Filter keys by organization ID
         key_hash (None | str | Unset): Filter keys by key hash
-        key_alias (None | str | Unset): Filter keys by key alias
+        key_alias (None | str | Unset): Filter keys by key alias. Supports partial matching
+            (substring, case-insensitive).
         return_full_object (bool | Unset): Return full key object Default: False.
         include_team_keys (bool | Unset): Include all keys for teams that user is an admin of.
             Default: False.

@@ -35,6 +35,8 @@ class PromptSpec:
             created_at (datetime.datetime | None | Unset):
             updated_at (datetime.datetime | None | Unset):
             version (int | None | Unset):
+            environment (None | str | Unset):  Default: 'development'.
+            created_by (None | str | Unset):
      """
 
     prompt_id: str
@@ -43,6 +45,8 @@ class PromptSpec:
     created_at: datetime.datetime | None | Unset = UNSET
     updated_at: datetime.datetime | None | Unset = UNSET
     version: int | None | Unset = UNSET
+    environment: None | str | Unset = 'development'
+    created_by: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -80,6 +84,18 @@ class PromptSpec:
         else:
             version = self.version
 
+        environment: None | str | Unset
+        if isinstance(self.environment, Unset):
+            environment = UNSET
+        else:
+            environment = self.environment
+
+        created_by: None | str | Unset
+        if isinstance(self.created_by, Unset):
+            created_by = UNSET
+        else:
+            created_by = self.created_by
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -94,6 +110,10 @@ class PromptSpec:
             field_dict["updated_at"] = updated_at
         if version is not UNSET:
             field_dict["version"] = version
+        if environment is not UNSET:
+            field_dict["environment"] = environment
+        if created_by is not UNSET:
+            field_dict["created_by"] = created_by
 
         return field_dict
 
@@ -166,6 +186,26 @@ class PromptSpec:
         version = _parse_version(d.pop("version", UNSET))
 
 
+        def _parse_environment(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        environment = _parse_environment(d.pop("environment", UNSET))
+
+
+        def _parse_created_by(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        created_by = _parse_created_by(d.pop("created_by", UNSET))
+
+
         prompt_spec = cls(
             prompt_id=prompt_id,
             litellm_params=litellm_params,
@@ -173,6 +213,8 @@ class PromptSpec:
             created_at=created_at,
             updated_at=updated_at,
             version=version,
+            environment=environment,
+            created_by=created_by,
         )
 
 

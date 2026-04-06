@@ -115,6 +115,7 @@ class UserAPIKeyAuth:
             organization_tpm_limit (int | None | Unset):
             organization_rpm_limit (int | None | Unset):
             organization_metadata (None | Unset | UserAPIKeyAuthOrganizationMetadataType0):
+            project_alias (None | str | Unset):
             project_metadata (None | Unset | UserAPIKeyAuthProjectMetadataType0):
             last_refreshed_at (float | None | Unset):
             api_key (None | str | Unset):
@@ -202,6 +203,7 @@ class UserAPIKeyAuth:
     organization_tpm_limit: int | None | Unset = UNSET
     organization_rpm_limit: int | None | Unset = UNSET
     organization_metadata: None | Unset | UserAPIKeyAuthOrganizationMetadataType0 = UNSET
+    project_alias: None | str | Unset = UNSET
     project_metadata: None | Unset | UserAPIKeyAuthProjectMetadataType0 = UNSET
     last_refreshed_at: float | None | Unset = UNSET
     api_key: None | str | Unset = UNSET
@@ -665,6 +667,12 @@ class UserAPIKeyAuth:
         else:
             organization_metadata = self.organization_metadata
 
+        project_alias: None | str | Unset
+        if isinstance(self.project_alias, Unset):
+            project_alias = UNSET
+        else:
+            project_alias = self.project_alias
+
         project_metadata: dict[str, Any] | None | Unset
         if isinstance(self.project_metadata, Unset):
             project_metadata = UNSET
@@ -926,6 +934,8 @@ class UserAPIKeyAuth:
             field_dict["organization_rpm_limit"] = organization_rpm_limit
         if organization_metadata is not UNSET:
             field_dict["organization_metadata"] = organization_metadata
+        if project_alias is not UNSET:
+            field_dict["project_alias"] = project_alias
         if project_metadata is not UNSET:
             field_dict["project_metadata"] = project_metadata
         if last_refreshed_at is not UNSET:
@@ -1794,6 +1804,16 @@ class UserAPIKeyAuth:
         organization_metadata = _parse_organization_metadata(d.pop("organization_metadata", UNSET))
 
 
+        def _parse_project_alias(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        project_alias = _parse_project_alias(d.pop("project_alias", UNSET))
+
+
         def _parse_project_metadata(data: object) -> None | Unset | UserAPIKeyAuthProjectMetadataType0:
             if data is None:
                 return data
@@ -2112,6 +2132,7 @@ class UserAPIKeyAuth:
             organization_tpm_limit=organization_tpm_limit,
             organization_rpm_limit=organization_rpm_limit,
             organization_metadata=organization_metadata,
+            project_alias=project_alias,
             project_metadata=project_metadata,
             last_refreshed_at=last_refreshed_at,
             api_key=api_key,

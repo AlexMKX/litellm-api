@@ -29,10 +29,12 @@ class PromptInfoResponse:
         Attributes:
             prompt_spec (PromptSpec):
             raw_prompt_template (None | PromptTemplateBase | Unset):
+            environments (list[str] | None | Unset):
      """
 
     prompt_spec: PromptSpec
     raw_prompt_template: None | PromptTemplateBase | Unset = UNSET
+    environments: list[str] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -52,6 +54,16 @@ class PromptInfoResponse:
         else:
             raw_prompt_template = self.raw_prompt_template
 
+        environments: list[str] | None | Unset
+        if isinstance(self.environments, Unset):
+            environments = UNSET
+        elif isinstance(self.environments, list):
+            environments = self.environments
+
+
+        else:
+            environments = self.environments
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -60,6 +72,8 @@ class PromptInfoResponse:
         })
         if raw_prompt_template is not UNSET:
             field_dict["raw_prompt_template"] = raw_prompt_template
+        if environments is not UNSET:
+            field_dict["environments"] = environments
 
         return field_dict
 
@@ -95,9 +109,28 @@ class PromptInfoResponse:
         raw_prompt_template = _parse_raw_prompt_template(d.pop("raw_prompt_template", UNSET))
 
 
+        def _parse_environments(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                environments_type_0 = cast(list[str], data)
+
+                return environments_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        environments = _parse_environments(d.pop("environments", UNSET))
+
+
         prompt_info_response = cls(
             prompt_spec=prompt_spec,
             raw_prompt_template=raw_prompt_template,
+            environments=environments,
         )
 
 

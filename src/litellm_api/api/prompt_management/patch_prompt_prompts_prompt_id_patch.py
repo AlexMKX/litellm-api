@@ -10,6 +10,7 @@ from ... import errors
 
 from ...models.http_validation_error import HTTPValidationError
 from ...models.patch_prompt_request import PatchPromptRequest
+from ...types import UNSET, Unset
 from typing import cast
 
 
@@ -18,6 +19,7 @@ def _get_kwargs(
     prompt_id: str,
     *,
     body: PatchPromptRequest,
+    environment: None | str | Unset = UNSET,
 
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
@@ -25,11 +27,23 @@ def _get_kwargs(
 
     
 
-    
+    params: dict[str, Any] = {}
+
+    json_environment: None | str | Unset
+    if isinstance(environment, Unset):
+        json_environment = UNSET
+    else:
+        json_environment = environment
+    params["environment"] = json_environment
+
+
+    params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
+
 
     _kwargs: dict[str, Any] = {
         "method": "patch",
         "url": "/prompts/{prompt_id}".format(prompt_id=quote(str(prompt_id), safe=""),),
+        "params": params,
     }
 
     _kwargs["json"] = body.to_dict()
@@ -74,6 +88,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient,
     body: PatchPromptRequest,
+    environment: None | str | Unset = UNSET,
 
 ) -> Response[Any | HTTPValidationError]:
     r""" Patch Prompt
@@ -101,6 +116,7 @@ def sync_detailed(
 
     Args:
         prompt_id (str):
+        environment (None | str | Unset):
         body (PatchPromptRequest):
 
     Raises:
@@ -115,6 +131,7 @@ def sync_detailed(
     kwargs = _get_kwargs(
         prompt_id=prompt_id,
 body=body,
+environment=environment,
 
     )
 
@@ -129,6 +146,7 @@ def sync(
     *,
     client: AuthenticatedClient,
     body: PatchPromptRequest,
+    environment: None | str | Unset = UNSET,
 
 ) -> Any | HTTPValidationError | None:
     r""" Patch Prompt
@@ -156,6 +174,7 @@ def sync(
 
     Args:
         prompt_id (str):
+        environment (None | str | Unset):
         body (PatchPromptRequest):
 
     Raises:
@@ -171,6 +190,7 @@ def sync(
         prompt_id=prompt_id,
 client=client,
 body=body,
+environment=environment,
 
     ).parsed
 
@@ -179,6 +199,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
     body: PatchPromptRequest,
+    environment: None | str | Unset = UNSET,
 
 ) -> Response[Any | HTTPValidationError]:
     r""" Patch Prompt
@@ -206,6 +227,7 @@ async def asyncio_detailed(
 
     Args:
         prompt_id (str):
+        environment (None | str | Unset):
         body (PatchPromptRequest):
 
     Raises:
@@ -220,6 +242,7 @@ async def asyncio_detailed(
     kwargs = _get_kwargs(
         prompt_id=prompt_id,
 body=body,
+environment=environment,
 
     )
 
@@ -234,6 +257,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient,
     body: PatchPromptRequest,
+    environment: None | str | Unset = UNSET,
 
 ) -> Any | HTTPValidationError | None:
     r""" Patch Prompt
@@ -261,6 +285,7 @@ async def asyncio(
 
     Args:
         prompt_id (str):
+        environment (None | str | Unset):
         body (PatchPromptRequest):
 
     Raises:
@@ -276,5 +301,6 @@ async def asyncio(
         prompt_id=prompt_id,
 client=client,
 body=body,
+environment=environment,
 
     )).parsed

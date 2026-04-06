@@ -45,6 +45,8 @@ class NewProjectRequest:
             description (None | str | Unset):
             metadata (NewProjectRequestMetadataType0 | None | Unset):
             tags (list[str] | None | Unset):
+            guardrails (list[str] | None | Unset):
+            policies (list[str] | None | Unset):
             models (list[str] | Unset):
             model_rpm_limit (NewProjectRequestModelRpmLimitType0 | None | Unset):
             model_tpm_limit (NewProjectRequestModelTpmLimitType0 | None | Unset):
@@ -66,6 +68,8 @@ class NewProjectRequest:
     description: None | str | Unset = UNSET
     metadata: NewProjectRequestMetadataType0 | None | Unset = UNSET
     tags: list[str] | None | Unset = UNSET
+    guardrails: list[str] | None | Unset = UNSET
+    policies: list[str] | None | Unset = UNSET
     models: list[str] | Unset = UNSET
     model_rpm_limit: NewProjectRequestModelRpmLimitType0 | None | Unset = UNSET
     model_tpm_limit: NewProjectRequestModelTpmLimitType0 | None | Unset = UNSET
@@ -171,6 +175,26 @@ class NewProjectRequest:
         else:
             tags = self.tags
 
+        guardrails: list[str] | None | Unset
+        if isinstance(self.guardrails, Unset):
+            guardrails = UNSET
+        elif isinstance(self.guardrails, list):
+            guardrails = self.guardrails
+
+
+        else:
+            guardrails = self.guardrails
+
+        policies: list[str] | None | Unset
+        if isinstance(self.policies, Unset):
+            policies = UNSET
+        elif isinstance(self.policies, list):
+            policies = self.policies
+
+
+        else:
+            policies = self.policies
+
         models: list[str] | Unset = UNSET
         if not isinstance(self.models, Unset):
             models = self.models
@@ -235,6 +259,10 @@ class NewProjectRequest:
             field_dict["metadata"] = metadata
         if tags is not UNSET:
             field_dict["tags"] = tags
+        if guardrails is not UNSET:
+            field_dict["guardrails"] = guardrails
+        if policies is not UNSET:
+            field_dict["policies"] = policies
         if models is not UNSET:
             field_dict["models"] = models
         if model_rpm_limit is not UNSET:
@@ -418,6 +446,42 @@ class NewProjectRequest:
         tags = _parse_tags(d.pop("tags", UNSET))
 
 
+        def _parse_guardrails(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                guardrails_type_0 = cast(list[str], data)
+
+                return guardrails_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        guardrails = _parse_guardrails(d.pop("guardrails", UNSET))
+
+
+        def _parse_policies(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                policies_type_0 = cast(list[str], data)
+
+                return policies_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        policies = _parse_policies(d.pop("policies", UNSET))
+
+
         models = cast(list[str], d.pop("models", UNSET))
 
 
@@ -498,6 +562,8 @@ class NewProjectRequest:
             description=description,
             metadata=metadata,
             tags=tags,
+            guardrails=guardrails,
+            policies=policies,
             models=models,
             model_rpm_limit=model_rpm_limit,
             model_tpm_limit=model_tpm_limit,

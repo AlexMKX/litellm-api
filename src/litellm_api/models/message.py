@@ -16,6 +16,7 @@ if TYPE_CHECKING:
   from ..models.chat_completion_annotation import ChatCompletionAnnotation
   from ..models.chat_completion_audio_response import ChatCompletionAudioResponse
   from ..models.chat_completion_message_tool_call import ChatCompletionMessageToolCall
+  from ..models.chat_completion_reasoning_item import ChatCompletionReasoningItem
   from ..models.chat_completion_redacted_thinking_block import ChatCompletionRedactedThinkingBlock
   from ..models.chat_completion_thinking_block import ChatCompletionThinkingBlock
   from ..models.function_call import FunctionCall
@@ -42,6 +43,7 @@ class Message:
             images (list[ImageURLListItem] | None | Unset):
             reasoning_content (None | str | Unset):
             thinking_blocks (list[ChatCompletionRedactedThinkingBlock | ChatCompletionThinkingBlock] | None | Unset):
+            reasoning_items (list[ChatCompletionReasoningItem] | None | Unset):
             provider_specific_fields (MessageProviderSpecificFieldsType0 | None | Unset):
             annotations (list[ChatCompletionAnnotation] | None | Unset):
      """
@@ -54,6 +56,7 @@ class Message:
     images: list[ImageURLListItem] | None | Unset = UNSET
     reasoning_content: None | str | Unset = UNSET
     thinking_blocks: list[ChatCompletionRedactedThinkingBlock | ChatCompletionThinkingBlock] | None | Unset = UNSET
+    reasoning_items: list[ChatCompletionReasoningItem] | None | Unset = UNSET
     provider_specific_fields: MessageProviderSpecificFieldsType0 | None | Unset = UNSET
     annotations: list[ChatCompletionAnnotation] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -66,6 +69,7 @@ class Message:
         from ..models.chat_completion_annotation import ChatCompletionAnnotation
         from ..models.chat_completion_audio_response import ChatCompletionAudioResponse
         from ..models.chat_completion_message_tool_call import ChatCompletionMessageToolCall
+        from ..models.chat_completion_reasoning_item import ChatCompletionReasoningItem
         from ..models.chat_completion_redacted_thinking_block import ChatCompletionRedactedThinkingBlock
         from ..models.chat_completion_thinking_block import ChatCompletionThinkingBlock
         from ..models.function_call import FunctionCall
@@ -138,6 +142,19 @@ class Message:
         else:
             thinking_blocks = self.thinking_blocks
 
+        reasoning_items: list[dict[str, Any]] | None | Unset
+        if isinstance(self.reasoning_items, Unset):
+            reasoning_items = UNSET
+        elif isinstance(self.reasoning_items, list):
+            reasoning_items = []
+            for reasoning_items_type_0_item_data in self.reasoning_items:
+                reasoning_items_type_0_item = reasoning_items_type_0_item_data.to_dict()
+                reasoning_items.append(reasoning_items_type_0_item)
+
+
+        else:
+            reasoning_items = self.reasoning_items
+
         provider_specific_fields: dict[str, Any] | None | Unset
         if isinstance(self.provider_specific_fields, Unset):
             provider_specific_fields = UNSET
@@ -176,6 +193,8 @@ class Message:
             field_dict["reasoning_content"] = reasoning_content
         if thinking_blocks is not UNSET:
             field_dict["thinking_blocks"] = thinking_blocks
+        if reasoning_items is not UNSET:
+            field_dict["reasoning_items"] = reasoning_items
         if provider_specific_fields is not UNSET:
             field_dict["provider_specific_fields"] = provider_specific_fields
         if annotations is not UNSET:
@@ -190,6 +209,7 @@ class Message:
         from ..models.chat_completion_annotation import ChatCompletionAnnotation
         from ..models.chat_completion_audio_response import ChatCompletionAudioResponse
         from ..models.chat_completion_message_tool_call import ChatCompletionMessageToolCall
+        from ..models.chat_completion_reasoning_item import ChatCompletionReasoningItem
         from ..models.chat_completion_redacted_thinking_block import ChatCompletionRedactedThinkingBlock
         from ..models.chat_completion_thinking_block import ChatCompletionThinkingBlock
         from ..models.function_call import FunctionCall
@@ -347,6 +367,31 @@ class Message:
         thinking_blocks = _parse_thinking_blocks(d.pop("thinking_blocks", UNSET))
 
 
+        def _parse_reasoning_items(data: object) -> list[ChatCompletionReasoningItem] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                reasoning_items_type_0 = []
+                _reasoning_items_type_0 = data
+                for reasoning_items_type_0_item_data in (_reasoning_items_type_0):
+                    reasoning_items_type_0_item = ChatCompletionReasoningItem.from_dict(reasoning_items_type_0_item_data)
+
+
+
+                    reasoning_items_type_0.append(reasoning_items_type_0_item)
+
+                return reasoning_items_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[ChatCompletionReasoningItem] | None | Unset, data)
+
+        reasoning_items = _parse_reasoning_items(d.pop("reasoning_items", UNSET))
+
+
         def _parse_provider_specific_fields(data: object) -> MessageProviderSpecificFieldsType0 | None | Unset:
             if data is None:
                 return data
@@ -401,6 +446,7 @@ class Message:
             images=images,
             reasoning_content=reasoning_content,
             thinking_blocks=thinking_blocks,
+            reasoning_items=reasoning_items,
             provider_specific_fields=provider_specific_fields,
             annotations=annotations,
         )

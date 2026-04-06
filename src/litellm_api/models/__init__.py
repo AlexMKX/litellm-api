@@ -138,6 +138,8 @@ from .chat_completion_function_message import ChatCompletionFunctionMessage
 from .chat_completion_image_object import ChatCompletionImageObject
 from .chat_completion_image_url_object import ChatCompletionImageUrlObject
 from .chat_completion_message_tool_call import ChatCompletionMessageToolCall
+from .chat_completion_reasoning_item import ChatCompletionReasoningItem
+from .chat_completion_reasoning_summary_text_block import ChatCompletionReasoningSummaryTextBlock
 from .chat_completion_redacted_thinking_block import ChatCompletionRedactedThinkingBlock
 from .chat_completion_redacted_thinking_block_cache_control_type_0 import ChatCompletionRedactedThinkingBlockCacheControlType0
 from .chat_completion_system_message import ChatCompletionSystemMessage
@@ -420,6 +422,7 @@ from .mcp_semantic_filter_settings_response import MCPSemanticFilterSettingsResp
 from .mcp_semantic_filter_settings_response_field_schema import MCPSemanticFilterSettingsResponseFieldSchema
 from .mcp_semantic_filter_settings_response_values import MCPSemanticFilterSettingsResponseValues
 from .mcp_submissions_summary import MCPSubmissionsSummary
+from .mcp_toolset_tool import MCPToolsetTool
 from .mcp_user_credential_list_item import MCPUserCredentialListItem
 from .mcp_user_credential_request import MCPUserCredentialRequest
 from .mcp_user_credential_response import MCPUserCredentialResponse
@@ -452,6 +455,7 @@ from .new_mcp_server_request_static_headers_type_0 import NewMCPServerRequestSta
 from .new_mcp_server_request_tool_name_to_description_type_0 import NewMCPServerRequestToolNameToDescriptionType0
 from .new_mcp_server_request_tool_name_to_display_name_type_0 import NewMCPServerRequestToolNameToDisplayNameType0
 from .new_mcp_server_request_transport import NewMCPServerRequestTransport
+from .new_mcp_toolset_request import NewMCPToolsetRequest
 from .new_model_group_request import NewModelGroupRequest
 from .new_model_group_response import NewModelGroupResponse
 from .new_organization_request import NewOrganizationRequest
@@ -757,6 +761,7 @@ from .update_mcp_server_request_static_headers_type_0 import UpdateMCPServerRequ
 from .update_mcp_server_request_tool_name_to_description_type_0 import UpdateMCPServerRequestToolNameToDescriptionType0
 from .update_mcp_server_request_tool_name_to_display_name_type_0 import UpdateMCPServerRequestToolNameToDisplayNameType0
 from .update_mcp_server_request_transport import UpdateMCPServerRequestTransport
+from .update_mcp_toolset_request import UpdateMCPToolsetRequest
 from .update_model_group_request import UpdateModelGroupRequest
 from .update_project_request import UpdateProjectRequest
 from .update_project_request_metadata_type_0 import UpdateProjectRequestMetadataType0
@@ -812,7 +817,6 @@ from .user_update_result import UserUpdateResult
 from .user_update_result_updated_user_type_0 import UserUpdateResultUpdatedUserType0
 from .validate_blocked_words_file_guardrails_validate_blocked_words_file_post_request import ValidateBlockedWordsFileGuardrailsValidateBlockedWordsFilePostRequest
 from .validation_error import ValidationError
-from .validation_error_context import ValidationErrorContext
 from .vantage_dry_run_request import VantageDryRunRequest
 from .vantage_export_request import VantageExportRequest
 from .vantage_export_response import VantageExportResponse
@@ -967,6 +971,8 @@ __all__ = (
     "ChatCompletionImageObject",
     "ChatCompletionImageUrlObject",
     "ChatCompletionMessageToolCall",
+    "ChatCompletionReasoningItem",
+    "ChatCompletionReasoningSummaryTextBlock",
     "ChatCompletionRedactedThinkingBlock",
     "ChatCompletionRedactedThinkingBlockCacheControlType0",
     "ChatCompletionSystemMessage",
@@ -1251,6 +1257,7 @@ __all__ = (
     "MCPSemanticFilterSettingsResponseFieldSchema",
     "MCPSemanticFilterSettingsResponseValues",
     "MCPSubmissionsSummary",
+    "MCPToolsetTool",
     "MCPUserCredentialListItem",
     "MCPUserCredentialRequest",
     "MCPUserCredentialResponse",
@@ -1281,6 +1288,7 @@ __all__ = (
     "NewMCPServerRequestToolNameToDescriptionType0",
     "NewMCPServerRequestToolNameToDisplayNameType0",
     "NewMCPServerRequestTransport",
+    "NewMCPToolsetRequest",
     "NewModelGroupRequest",
     "NewModelGroupResponse",
     "NewOrganizationRequest",
@@ -1586,6 +1594,7 @@ __all__ = (
     "UpdateMCPServerRequestToolNameToDescriptionType0",
     "UpdateMCPServerRequestToolNameToDisplayNameType0",
     "UpdateMCPServerRequestTransport",
+    "UpdateMCPToolsetRequest",
     "UpdateModelGroupRequest",
     "UpdateProjectRequest",
     "UpdateProjectRequestMetadataType0",
@@ -1641,7 +1650,6 @@ __all__ = (
     "UserUpdateResultUpdatedUserType0",
     "ValidateBlockedWordsFileGuardrailsValidateBlockedWordsFilePostRequest",
     "ValidationError",
-    "ValidationErrorContext",
     "VantageDryRunRequest",
     "VantageExportRequest",
     "VantageExportResponse",

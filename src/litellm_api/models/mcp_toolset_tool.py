@@ -14,15 +14,20 @@ from ..types import UNSET, Unset
 
 
 
-T = TypeVar("T", bound="ValidationErrorContext")
+T = TypeVar("T", bound="MCPToolsetTool")
 
 
 
 @_attrs_define
-class ValidationErrorContext:
+class MCPToolsetTool:
     """ 
+        Attributes:
+            server_id (str):
+            tool_name (str):
      """
 
+    server_id: str
+    tool_name: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -30,9 +35,17 @@ class ValidationErrorContext:
 
 
     def to_dict(self) -> dict[str, Any]:
-        
+        server_id = self.server_id
+
+        tool_name = self.tool_name
+
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
+        field_dict.update({
+            "server_id": server_id,
+            "tool_name": tool_name,
+        })
 
         return field_dict
 
@@ -41,12 +54,18 @@ class ValidationErrorContext:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        validation_error_context = cls(
+        server_id = d.pop("server_id")
+
+        tool_name = d.pop("tool_name")
+
+        mcp_toolset_tool = cls(
+            server_id=server_id,
+            tool_name=tool_name,
         )
 
 
-        validation_error_context.additional_properties = d
-        return validation_error_context
+        mcp_toolset_tool.additional_properties = d
+        return mcp_toolset_tool
 
     @property
     def additional_keys(self) -> list[str]:

@@ -60,6 +60,9 @@ class TeamListItem:
             created_at (datetime.datetime | None | Unset):
             object_permission_id (None | str | Unset):
             members_count (int | Unset):  Default: 0.
+            access_group_models (list[str] | None | Unset):
+            access_group_mcp_server_ids (list[str] | None | Unset):
+            access_group_agent_ids (list[str] | None | Unset):
      """
 
     team_id: str
@@ -89,6 +92,9 @@ class TeamListItem:
     created_at: datetime.datetime | None | Unset = UNSET
     object_permission_id: None | str | Unset = UNSET
     members_count: int | Unset = 0
+    access_group_models: list[str] | None | Unset = UNSET
+    access_group_mcp_server_ids: list[str] | None | Unset = UNSET
+    access_group_agent_ids: list[str] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -276,6 +282,36 @@ class TeamListItem:
 
         members_count = self.members_count
 
+        access_group_models: list[str] | None | Unset
+        if isinstance(self.access_group_models, Unset):
+            access_group_models = UNSET
+        elif isinstance(self.access_group_models, list):
+            access_group_models = self.access_group_models
+
+
+        else:
+            access_group_models = self.access_group_models
+
+        access_group_mcp_server_ids: list[str] | None | Unset
+        if isinstance(self.access_group_mcp_server_ids, Unset):
+            access_group_mcp_server_ids = UNSET
+        elif isinstance(self.access_group_mcp_server_ids, list):
+            access_group_mcp_server_ids = self.access_group_mcp_server_ids
+
+
+        else:
+            access_group_mcp_server_ids = self.access_group_mcp_server_ids
+
+        access_group_agent_ids: list[str] | None | Unset
+        if isinstance(self.access_group_agent_ids, Unset):
+            access_group_agent_ids = UNSET
+        elif isinstance(self.access_group_agent_ids, list):
+            access_group_agent_ids = self.access_group_agent_ids
+
+
+        else:
+            access_group_agent_ids = self.access_group_agent_ids
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -334,6 +370,12 @@ class TeamListItem:
             field_dict["object_permission_id"] = object_permission_id
         if members_count is not UNSET:
             field_dict["members_count"] = members_count
+        if access_group_models is not UNSET:
+            field_dict["access_group_models"] = access_group_models
+        if access_group_mcp_server_ids is not UNSET:
+            field_dict["access_group_mcp_server_ids"] = access_group_mcp_server_ids
+        if access_group_agent_ids is not UNSET:
+            field_dict["access_group_agent_ids"] = access_group_agent_ids
 
         return field_dict
 
@@ -660,6 +702,60 @@ class TeamListItem:
 
         members_count = d.pop("members_count", UNSET)
 
+        def _parse_access_group_models(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                access_group_models_type_0 = cast(list[str], data)
+
+                return access_group_models_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        access_group_models = _parse_access_group_models(d.pop("access_group_models", UNSET))
+
+
+        def _parse_access_group_mcp_server_ids(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                access_group_mcp_server_ids_type_0 = cast(list[str], data)
+
+                return access_group_mcp_server_ids_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        access_group_mcp_server_ids = _parse_access_group_mcp_server_ids(d.pop("access_group_mcp_server_ids", UNSET))
+
+
+        def _parse_access_group_agent_ids(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                access_group_agent_ids_type_0 = cast(list[str], data)
+
+                return access_group_agent_ids_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        access_group_agent_ids = _parse_access_group_agent_ids(d.pop("access_group_agent_ids", UNSET))
+
+
         team_list_item = cls(
             team_id=team_id,
             team_alias=team_alias,
@@ -688,6 +784,9 @@ class TeamListItem:
             created_at=created_at,
             object_permission_id=object_permission_id,
             members_count=members_count,
+            access_group_models=access_group_models,
+            access_group_mcp_server_ids=access_group_mcp_server_ids,
+            access_group_agent_ids=access_group_agent_ids,
         )
 
 

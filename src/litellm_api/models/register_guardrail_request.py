@@ -31,11 +31,13 @@ class RegisterGuardrailRequest:
             guardrail_name (str):
             litellm_params (RegisterGuardrailRequestLitellmParams):
             guardrail_info (None | RegisterGuardrailRequestGuardrailInfoType0 | Unset):
+            team_id (None | str | Unset):
      """
 
     guardrail_name: str
     litellm_params: RegisterGuardrailRequestLitellmParams
     guardrail_info: None | RegisterGuardrailRequestGuardrailInfoType0 | Unset = UNSET
+    team_id: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -57,6 +59,12 @@ class RegisterGuardrailRequest:
         else:
             guardrail_info = self.guardrail_info
 
+        team_id: None | str | Unset
+        if isinstance(self.team_id, Unset):
+            team_id = UNSET
+        else:
+            team_id = self.team_id
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -66,6 +74,8 @@ class RegisterGuardrailRequest:
         })
         if guardrail_info is not UNSET:
             field_dict["guardrail_info"] = guardrail_info
+        if team_id is not UNSET:
+            field_dict["team_id"] = team_id
 
         return field_dict
 
@@ -103,10 +113,21 @@ class RegisterGuardrailRequest:
         guardrail_info = _parse_guardrail_info(d.pop("guardrail_info", UNSET))
 
 
+        def _parse_team_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        team_id = _parse_team_id(d.pop("team_id", UNSET))
+
+
         register_guardrail_request = cls(
             guardrail_name=guardrail_name,
             litellm_params=litellm_params,
             guardrail_info=guardrail_info,
+            team_id=team_id,
         )
 
 

@@ -10,7 +10,9 @@ from .. import types
 
 from ..types import UNSET, Unset
 
+from ..types import File, FileTypes
 from ..types import UNSET, Unset
+from io import BytesIO
 from typing import cast
 
 
@@ -27,7 +29,7 @@ class BodyCreateFileV1FilesPost:
     """ 
         Attributes:
             purpose (str):
-            file (str):
+            file (File):
             target_model_names (str | Unset):  Default: ''.
             target_storage (str | Unset):  Default: 'default'.
             custom_llm_provider (str | Unset):  Default: 'openai'.
@@ -35,7 +37,7 @@ class BodyCreateFileV1FilesPost:
      """
 
     purpose: str
-    file: str
+    file: File
     target_model_names: str | Unset = ''
     target_storage: str | Unset = 'default'
     custom_llm_provider: str | Unset = 'openai'
@@ -49,7 +51,8 @@ class BodyCreateFileV1FilesPost:
     def to_dict(self) -> dict[str, Any]:
         purpose = self.purpose
 
-        file = self.file
+        file = self.file.to_tuple()
+
 
         target_model_names = self.target_model_names
 
@@ -89,7 +92,7 @@ class BodyCreateFileV1FilesPost:
 
 
 
-        files.append(("file", (None, str(self.file).encode(), "text/plain")))
+        files.append(("file", self.file.to_tuple()))
 
 
 
@@ -130,7 +133,12 @@ class BodyCreateFileV1FilesPost:
         d = dict(src_dict)
         purpose = d.pop("purpose")
 
-        file = d.pop("file")
+        file = File(
+             payload = BytesIO(d.pop("file"))
+        )
+
+
+
 
         target_model_names = d.pop("target_model_names", UNSET)
 

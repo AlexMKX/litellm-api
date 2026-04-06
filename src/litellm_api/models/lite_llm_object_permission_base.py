@@ -29,6 +29,8 @@ class LiteLLMObjectPermissionBase:
             mcp_servers (list[str] | None | Unset):
             mcp_access_groups (list[str] | None | Unset):
             mcp_tool_permissions (LiteLLMObjectPermissionBaseMcpToolPermissionsType0 | None | Unset):
+            mcp_toolsets (list[str] | None | Unset):
+            blocked_tools (list[str] | None | Unset):
             vector_stores (list[str] | None | Unset):
             agents (list[str] | None | Unset):
             agent_access_groups (list[str] | None | Unset):
@@ -38,6 +40,8 @@ class LiteLLMObjectPermissionBase:
     mcp_servers: list[str] | None | Unset = UNSET
     mcp_access_groups: list[str] | None | Unset = UNSET
     mcp_tool_permissions: LiteLLMObjectPermissionBaseMcpToolPermissionsType0 | None | Unset = UNSET
+    mcp_toolsets: list[str] | None | Unset = UNSET
+    blocked_tools: list[str] | None | Unset = UNSET
     vector_stores: list[str] | None | Unset = UNSET
     agents: list[str] | None | Unset = UNSET
     agent_access_groups: list[str] | None | Unset = UNSET
@@ -77,6 +81,26 @@ class LiteLLMObjectPermissionBase:
             mcp_tool_permissions = self.mcp_tool_permissions.to_dict()
         else:
             mcp_tool_permissions = self.mcp_tool_permissions
+
+        mcp_toolsets: list[str] | None | Unset
+        if isinstance(self.mcp_toolsets, Unset):
+            mcp_toolsets = UNSET
+        elif isinstance(self.mcp_toolsets, list):
+            mcp_toolsets = self.mcp_toolsets
+
+
+        else:
+            mcp_toolsets = self.mcp_toolsets
+
+        blocked_tools: list[str] | None | Unset
+        if isinstance(self.blocked_tools, Unset):
+            blocked_tools = UNSET
+        elif isinstance(self.blocked_tools, list):
+            blocked_tools = self.blocked_tools
+
+
+        else:
+            blocked_tools = self.blocked_tools
 
         vector_stores: list[str] | None | Unset
         if isinstance(self.vector_stores, Unset):
@@ -129,6 +153,10 @@ class LiteLLMObjectPermissionBase:
             field_dict["mcp_access_groups"] = mcp_access_groups
         if mcp_tool_permissions is not UNSET:
             field_dict["mcp_tool_permissions"] = mcp_tool_permissions
+        if mcp_toolsets is not UNSET:
+            field_dict["mcp_toolsets"] = mcp_toolsets
+        if blocked_tools is not UNSET:
+            field_dict["blocked_tools"] = blocked_tools
         if vector_stores is not UNSET:
             field_dict["vector_stores"] = vector_stores
         if agents is not UNSET:
@@ -200,6 +228,42 @@ class LiteLLMObjectPermissionBase:
             return cast(LiteLLMObjectPermissionBaseMcpToolPermissionsType0 | None | Unset, data)
 
         mcp_tool_permissions = _parse_mcp_tool_permissions(d.pop("mcp_tool_permissions", UNSET))
+
+
+        def _parse_mcp_toolsets(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                mcp_toolsets_type_0 = cast(list[str], data)
+
+                return mcp_toolsets_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        mcp_toolsets = _parse_mcp_toolsets(d.pop("mcp_toolsets", UNSET))
+
+
+        def _parse_blocked_tools(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                blocked_tools_type_0 = cast(list[str], data)
+
+                return blocked_tools_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        blocked_tools = _parse_blocked_tools(d.pop("blocked_tools", UNSET))
 
 
         def _parse_vector_stores(data: object) -> list[str] | None | Unset:
@@ -278,6 +342,8 @@ class LiteLLMObjectPermissionBase:
             mcp_servers=mcp_servers,
             mcp_access_groups=mcp_access_groups,
             mcp_tool_permissions=mcp_tool_permissions,
+            mcp_toolsets=mcp_toolsets,
+            blocked_tools=blocked_tools,
             vector_stores=vector_stores,
             agents=agents,
             agent_access_groups=agent_access_groups,

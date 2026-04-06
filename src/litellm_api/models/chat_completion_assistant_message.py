@@ -16,6 +16,7 @@ if TYPE_CHECKING:
   from ..models.chat_completion_assistant_tool_call import ChatCompletionAssistantToolCall
   from ..models.chat_completion_cached_content import ChatCompletionCachedContent
   from ..models.chat_completion_image_object import ChatCompletionImageObject
+  from ..models.chat_completion_reasoning_item import ChatCompletionReasoningItem
   from ..models.chat_completion_redacted_thinking_block import ChatCompletionRedactedThinkingBlock
   from ..models.chat_completion_text_object import ChatCompletionTextObject
   from ..models.chat_completion_thinking_block import ChatCompletionThinkingBlock
@@ -42,6 +43,7 @@ class ChatCompletionAssistantMessage:
             reasoning_content (None | str | Unset):
             cache_control (ChatCompletionCachedContent | Unset):
             thinking_blocks (list[ChatCompletionRedactedThinkingBlock | ChatCompletionThinkingBlock] | None | Unset):
+            reasoning_items (list[ChatCompletionReasoningItem] | None | Unset):
      """
 
     role: Literal['assistant']
@@ -52,6 +54,7 @@ class ChatCompletionAssistantMessage:
     reasoning_content: None | str | Unset = UNSET
     cache_control: ChatCompletionCachedContent | Unset = UNSET
     thinking_blocks: list[ChatCompletionRedactedThinkingBlock | ChatCompletionThinkingBlock] | None | Unset = UNSET
+    reasoning_items: list[ChatCompletionReasoningItem] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -62,6 +65,7 @@ class ChatCompletionAssistantMessage:
         from ..models.chat_completion_assistant_tool_call import ChatCompletionAssistantToolCall
         from ..models.chat_completion_cached_content import ChatCompletionCachedContent
         from ..models.chat_completion_image_object import ChatCompletionImageObject
+        from ..models.chat_completion_reasoning_item import ChatCompletionReasoningItem
         from ..models.chat_completion_redacted_thinking_block import ChatCompletionRedactedThinkingBlock
         from ..models.chat_completion_text_object import ChatCompletionTextObject
         from ..models.chat_completion_thinking_block import ChatCompletionThinkingBlock
@@ -145,6 +149,19 @@ class ChatCompletionAssistantMessage:
         else:
             thinking_blocks = self.thinking_blocks
 
+        reasoning_items: list[dict[str, Any]] | None | Unset
+        if isinstance(self.reasoning_items, Unset):
+            reasoning_items = UNSET
+        elif isinstance(self.reasoning_items, list):
+            reasoning_items = []
+            for reasoning_items_type_0_item_data in self.reasoning_items:
+                reasoning_items_type_0_item = reasoning_items_type_0_item_data.to_dict()
+                reasoning_items.append(reasoning_items_type_0_item)
+
+
+        else:
+            reasoning_items = self.reasoning_items
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -165,6 +182,8 @@ class ChatCompletionAssistantMessage:
             field_dict["cache_control"] = cache_control
         if thinking_blocks is not UNSET:
             field_dict["thinking_blocks"] = thinking_blocks
+        if reasoning_items is not UNSET:
+            field_dict["reasoning_items"] = reasoning_items
 
         return field_dict
 
@@ -175,6 +194,7 @@ class ChatCompletionAssistantMessage:
         from ..models.chat_completion_assistant_tool_call import ChatCompletionAssistantToolCall
         from ..models.chat_completion_cached_content import ChatCompletionCachedContent
         from ..models.chat_completion_image_object import ChatCompletionImageObject
+        from ..models.chat_completion_reasoning_item import ChatCompletionReasoningItem
         from ..models.chat_completion_redacted_thinking_block import ChatCompletionRedactedThinkingBlock
         from ..models.chat_completion_text_object import ChatCompletionTextObject
         from ..models.chat_completion_thinking_block import ChatCompletionThinkingBlock
@@ -363,6 +383,31 @@ class ChatCompletionAssistantMessage:
         thinking_blocks = _parse_thinking_blocks(d.pop("thinking_blocks", UNSET))
 
 
+        def _parse_reasoning_items(data: object) -> list[ChatCompletionReasoningItem] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                reasoning_items_type_0 = []
+                _reasoning_items_type_0 = data
+                for reasoning_items_type_0_item_data in (_reasoning_items_type_0):
+                    reasoning_items_type_0_item = ChatCompletionReasoningItem.from_dict(reasoning_items_type_0_item_data)
+
+
+
+                    reasoning_items_type_0.append(reasoning_items_type_0_item)
+
+                return reasoning_items_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[ChatCompletionReasoningItem] | None | Unset, data)
+
+        reasoning_items = _parse_reasoning_items(d.pop("reasoning_items", UNSET))
+
+
         chat_completion_assistant_message = cls(
             role=role,
             content=content,
@@ -372,6 +417,7 @@ class ChatCompletionAssistantMessage:
             reasoning_content=reasoning_content,
             cache_control=cache_control,
             thinking_blocks=thinking_blocks,
+            reasoning_items=reasoning_items,
         )
 
 

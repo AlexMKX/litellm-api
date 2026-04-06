@@ -10,6 +10,8 @@ from .. import types
 
 from ..types import UNSET, Unset
 
+from ..types import File, FileTypes
+from io import BytesIO
 
 
 
@@ -24,11 +26,11 @@ T = TypeVar("T", bound="BodyVideoCreateCharacterV1VideosCharactersPost")
 class BodyVideoCreateCharacterV1VideosCharactersPost:
     """ 
         Attributes:
-            video (str):
+            video (File):
             name (str):
      """
 
-    video: str
+    video: File
     name: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -37,7 +39,8 @@ class BodyVideoCreateCharacterV1VideosCharactersPost:
 
 
     def to_dict(self) -> dict[str, Any]:
-        video = self.video
+        video = self.video.to_tuple()
+
 
         name = self.name
 
@@ -55,7 +58,7 @@ class BodyVideoCreateCharacterV1VideosCharactersPost:
     def to_multipart(self) -> types.RequestFiles:
         files: types.RequestFiles = []
 
-        files.append(("video", (None, str(self.video).encode(), "text/plain")))
+        files.append(("video", self.video.to_tuple()))
 
 
 
@@ -75,7 +78,12 @@ class BodyVideoCreateCharacterV1VideosCharactersPost:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        video = d.pop("video")
+        video = File(
+             payload = BytesIO(d.pop("video"))
+        )
+
+
+
 
         name = d.pop("name")
 

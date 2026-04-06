@@ -5,31 +5,31 @@ from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-import json
-from .. import types
 
 from ..types import UNSET, Unset
 
-from ..types import File, FileTypes
-from io import BytesIO
+from ..types import UNSET, Unset
+from typing import Literal, cast
 
 
 
 
 
 
-T = TypeVar("T", bound="BodyUploadLogoUploadLogoPost")
+T = TypeVar("T", bound="ChatCompletionReasoningSummaryTextBlock")
 
 
 
 @_attrs_define
-class BodyUploadLogoUploadLogoPost:
+class ChatCompletionReasoningSummaryTextBlock:
     """ 
         Attributes:
-            file (File):
+            type_ (Literal['summary_text']):
+            text (str | Unset):
      """
 
-    file: File
+    type_: Literal['summary_text']
+    text: str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -37,52 +37,40 @@ class BodyUploadLogoUploadLogoPost:
 
 
     def to_dict(self) -> dict[str, Any]:
-        file = self.file.to_tuple()
+        type_ = self.type_
 
+        text = self.text
 
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
-            "file": file,
+            "type": type_,
         })
+        if text is not UNSET:
+            field_dict["text"] = text
 
         return field_dict
 
-
-    def to_multipart(self) -> types.RequestFiles:
-        files: types.RequestFiles = []
-
-        files.append(("file", self.file.to_tuple()))
-
-
-
-
-        for prop_name, prop in self.additional_properties.items():
-            files.append((prop_name, (None, str(prop).encode(), "text/plain")))
-
-
-
-        return files
 
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        file = File(
-             payload = BytesIO(d.pop("file"))
+        type_ = cast(Literal['summary_text'] , d.pop("type"))
+        if type_ != 'summary_text':
+            raise ValueError(f"type must match const 'summary_text', got '{type_}'")
+
+        text = d.pop("text", UNSET)
+
+        chat_completion_reasoning_summary_text_block = cls(
+            type_=type_,
+            text=text,
         )
 
 
-
-
-        body_upload_logo_upload_logo_post = cls(
-            file=file,
-        )
-
-
-        body_upload_logo_upload_logo_post.additional_properties = d
-        return body_upload_logo_upload_logo_post
+        chat_completion_reasoning_summary_text_block.additional_properties = d
+        return chat_completion_reasoning_summary_text_block
 
     @property
     def additional_keys(self) -> list[str]:

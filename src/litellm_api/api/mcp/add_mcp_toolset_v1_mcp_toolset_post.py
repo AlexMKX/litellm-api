@@ -8,39 +8,48 @@ from ...client import AuthenticatedClient, Client
 from ...types import Response, UNSET
 from ... import errors
 
-from ...models.guardrail_submission_item import GuardrailSubmissionItem
 from ...models.http_validation_error import HTTPValidationError
+from ...models.new_mcp_toolset_request import NewMCPToolsetRequest
+from ...types import UNSET, Unset
 from typing import cast
 
 
 
 def _get_kwargs(
-    guardrail_id: str,
+    *,
+    body: NewMCPToolsetRequest,
+    litellm_changed_by: None | str | Unset = UNSET,
 
 ) -> dict[str, Any]:
-    
+    headers: dict[str, Any] = {}
+    if not isinstance(litellm_changed_by, Unset):
+        headers["litellm-changed-by"] = litellm_changed_by
+
+
 
     
 
     
 
     _kwargs: dict[str, Any] = {
-        "method": "get",
-        "url": "/guardrails/submissions/{guardrail_id}".format(guardrail_id=quote(str(guardrail_id), safe=""),),
+        "method": "post",
+        "url": "/v1/mcp/toolset",
     }
 
+    _kwargs["json"] = body.to_dict()
 
+
+    headers["Content-Type"] = "application/json"
+
+    _kwargs["headers"] = headers
     return _kwargs
 
 
 
-def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> GuardrailSubmissionItem | HTTPValidationError | None:
-    if response.status_code == 200:
-        response_200 = GuardrailSubmissionItem.from_dict(response.json())
-
-
-
-        return response_200
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Any | HTTPValidationError | None:
+    if response.status_code == 201:
+        response_201 = response.json()
+        return response_201
 
     if response.status_code == 422:
         response_422 = HTTPValidationError.from_dict(response.json())
@@ -55,7 +64,7 @@ def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Res
         return None
 
 
-def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[GuardrailSubmissionItem | HTTPValidationError]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Any | HTTPValidationError]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -65,30 +74,32 @@ def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Res
 
 
 def sync_detailed(
-    guardrail_id: str,
     *,
     client: AuthenticatedClient,
+    body: NewMCPToolsetRequest,
+    litellm_changed_by: None | str | Unset = UNSET,
 
-) -> Response[GuardrailSubmissionItem | HTTPValidationError]:
-    """ Get Guardrail Submission
+) -> Response[Any | HTTPValidationError]:
+    """ Add Mcp Toolset
 
-     Get a single guardrail submission by id. Non-admins may only access submissions for teams they
-    belong to.
+     Create a new MCP toolset (admin only)
 
     Args:
-        guardrail_id (str):
+        litellm_changed_by (None | str | Unset):
+        body (NewMCPToolsetRequest):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[GuardrailSubmissionItem | HTTPValidationError]
+        Response[Any | HTTPValidationError]
      """
 
 
     kwargs = _get_kwargs(
-        guardrail_id=guardrail_id,
+        body=body,
+litellm_changed_by=litellm_changed_by,
 
     )
 
@@ -99,59 +110,63 @@ def sync_detailed(
     return _build_response(client=client, response=response)
 
 def sync(
-    guardrail_id: str,
     *,
     client: AuthenticatedClient,
+    body: NewMCPToolsetRequest,
+    litellm_changed_by: None | str | Unset = UNSET,
 
-) -> GuardrailSubmissionItem | HTTPValidationError | None:
-    """ Get Guardrail Submission
+) -> Any | HTTPValidationError | None:
+    """ Add Mcp Toolset
 
-     Get a single guardrail submission by id. Non-admins may only access submissions for teams they
-    belong to.
+     Create a new MCP toolset (admin only)
 
     Args:
-        guardrail_id (str):
+        litellm_changed_by (None | str | Unset):
+        body (NewMCPToolsetRequest):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        GuardrailSubmissionItem | HTTPValidationError
+        Any | HTTPValidationError
      """
 
 
     return sync_detailed(
-        guardrail_id=guardrail_id,
-client=client,
+        client=client,
+body=body,
+litellm_changed_by=litellm_changed_by,
 
     ).parsed
 
 async def asyncio_detailed(
-    guardrail_id: str,
     *,
     client: AuthenticatedClient,
+    body: NewMCPToolsetRequest,
+    litellm_changed_by: None | str | Unset = UNSET,
 
-) -> Response[GuardrailSubmissionItem | HTTPValidationError]:
-    """ Get Guardrail Submission
+) -> Response[Any | HTTPValidationError]:
+    """ Add Mcp Toolset
 
-     Get a single guardrail submission by id. Non-admins may only access submissions for teams they
-    belong to.
+     Create a new MCP toolset (admin only)
 
     Args:
-        guardrail_id (str):
+        litellm_changed_by (None | str | Unset):
+        body (NewMCPToolsetRequest):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[GuardrailSubmissionItem | HTTPValidationError]
+        Response[Any | HTTPValidationError]
      """
 
 
     kwargs = _get_kwargs(
-        guardrail_id=guardrail_id,
+        body=body,
+litellm_changed_by=litellm_changed_by,
 
     )
 
@@ -162,30 +177,32 @@ async def asyncio_detailed(
     return _build_response(client=client, response=response)
 
 async def asyncio(
-    guardrail_id: str,
     *,
     client: AuthenticatedClient,
+    body: NewMCPToolsetRequest,
+    litellm_changed_by: None | str | Unset = UNSET,
 
-) -> GuardrailSubmissionItem | HTTPValidationError | None:
-    """ Get Guardrail Submission
+) -> Any | HTTPValidationError | None:
+    """ Add Mcp Toolset
 
-     Get a single guardrail submission by id. Non-admins may only access submissions for teams they
-    belong to.
+     Create a new MCP toolset (admin only)
 
     Args:
-        guardrail_id (str):
+        litellm_changed_by (None | str | Unset):
+        body (NewMCPToolsetRequest):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        GuardrailSubmissionItem | HTTPValidationError
+        Any | HTTPValidationError
      """
 
 
     return (await asyncio_detailed(
-        guardrail_id=guardrail_id,
-client=client,
+        client=client,
+body=body,
+litellm_changed_by=litellm_changed_by,
 
     )).parsed

@@ -8,14 +8,13 @@ from ...client import AuthenticatedClient, Client
 from ...types import Response, UNSET
 from ... import errors
 
-from ...models.guardrail_submission_item import GuardrailSubmissionItem
 from ...models.http_validation_error import HTTPValidationError
 from typing import cast
 
 
 
 def _get_kwargs(
-    guardrail_id: str,
+    toolset_id: str,
 
 ) -> dict[str, Any]:
     
@@ -26,7 +25,7 @@ def _get_kwargs(
 
     _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": "/guardrails/submissions/{guardrail_id}".format(guardrail_id=quote(str(guardrail_id), safe=""),),
+        "url": "/v1/mcp/toolset/{toolset_id}".format(toolset_id=quote(str(toolset_id), safe=""),),
     }
 
 
@@ -34,12 +33,9 @@ def _get_kwargs(
 
 
 
-def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> GuardrailSubmissionItem | HTTPValidationError | None:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Any | HTTPValidationError | None:
     if response.status_code == 200:
-        response_200 = GuardrailSubmissionItem.from_dict(response.json())
-
-
-
+        response_200 = response.json()
         return response_200
 
     if response.status_code == 422:
@@ -55,7 +51,7 @@ def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Res
         return None
 
 
-def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[GuardrailSubmissionItem | HTTPValidationError]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Any | HTTPValidationError]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -65,30 +61,29 @@ def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Res
 
 
 def sync_detailed(
-    guardrail_id: str,
+    toolset_id: str,
     *,
     client: AuthenticatedClient,
 
-) -> Response[GuardrailSubmissionItem | HTTPValidationError]:
-    """ Get Guardrail Submission
+) -> Response[Any | HTTPValidationError]:
+    """ Fetch Mcp Toolset
 
-     Get a single guardrail submission by id. Non-admins may only access submissions for teams they
-    belong to.
+     Get a specific MCP toolset by ID
 
     Args:
-        guardrail_id (str):
+        toolset_id (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[GuardrailSubmissionItem | HTTPValidationError]
+        Response[Any | HTTPValidationError]
      """
 
 
     kwargs = _get_kwargs(
-        guardrail_id=guardrail_id,
+        toolset_id=toolset_id,
 
     )
 
@@ -99,59 +94,57 @@ def sync_detailed(
     return _build_response(client=client, response=response)
 
 def sync(
-    guardrail_id: str,
+    toolset_id: str,
     *,
     client: AuthenticatedClient,
 
-) -> GuardrailSubmissionItem | HTTPValidationError | None:
-    """ Get Guardrail Submission
+) -> Any | HTTPValidationError | None:
+    """ Fetch Mcp Toolset
 
-     Get a single guardrail submission by id. Non-admins may only access submissions for teams they
-    belong to.
+     Get a specific MCP toolset by ID
 
     Args:
-        guardrail_id (str):
+        toolset_id (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        GuardrailSubmissionItem | HTTPValidationError
+        Any | HTTPValidationError
      """
 
 
     return sync_detailed(
-        guardrail_id=guardrail_id,
+        toolset_id=toolset_id,
 client=client,
 
     ).parsed
 
 async def asyncio_detailed(
-    guardrail_id: str,
+    toolset_id: str,
     *,
     client: AuthenticatedClient,
 
-) -> Response[GuardrailSubmissionItem | HTTPValidationError]:
-    """ Get Guardrail Submission
+) -> Response[Any | HTTPValidationError]:
+    """ Fetch Mcp Toolset
 
-     Get a single guardrail submission by id. Non-admins may only access submissions for teams they
-    belong to.
+     Get a specific MCP toolset by ID
 
     Args:
-        guardrail_id (str):
+        toolset_id (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[GuardrailSubmissionItem | HTTPValidationError]
+        Response[Any | HTTPValidationError]
      """
 
 
     kwargs = _get_kwargs(
-        guardrail_id=guardrail_id,
+        toolset_id=toolset_id,
 
     )
 
@@ -162,30 +155,29 @@ async def asyncio_detailed(
     return _build_response(client=client, response=response)
 
 async def asyncio(
-    guardrail_id: str,
+    toolset_id: str,
     *,
     client: AuthenticatedClient,
 
-) -> GuardrailSubmissionItem | HTTPValidationError | None:
-    """ Get Guardrail Submission
+) -> Any | HTTPValidationError | None:
+    """ Fetch Mcp Toolset
 
-     Get a single guardrail submission by id. Non-admins may only access submissions for teams they
-    belong to.
+     Get a specific MCP toolset by ID
 
     Args:
-        guardrail_id (str):
+        toolset_id (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        GuardrailSubmissionItem | HTTPValidationError
+        Any | HTTPValidationError
      """
 
 
     return (await asyncio_detailed(
-        guardrail_id=guardrail_id,
+        toolset_id=toolset_id,
 client=client,
 
     )).parsed

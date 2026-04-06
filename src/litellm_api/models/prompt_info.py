@@ -9,6 +9,8 @@ from attrs import field as _attrs_field
 from ..types import UNSET, Unset
 
 from ..models.prompt_info_prompt_type import PromptInfoPromptType
+from ..types import UNSET, Unset
+from typing import cast
 
 
 
@@ -24,9 +26,11 @@ class PromptInfo:
     """ 
         Attributes:
             prompt_type (PromptInfoPromptType):
+            environment (None | str | Unset):  Default: 'development'.
      """
 
     prompt_type: PromptInfoPromptType
+    environment: None | str | Unset = 'development'
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -36,12 +40,20 @@ class PromptInfo:
     def to_dict(self) -> dict[str, Any]:
         prompt_type = self.prompt_type.value
 
+        environment: None | str | Unset
+        if isinstance(self.environment, Unset):
+            environment = UNSET
+        else:
+            environment = self.environment
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
             "prompt_type": prompt_type,
         })
+        if environment is not UNSET:
+            field_dict["environment"] = environment
 
         return field_dict
 
@@ -55,8 +67,19 @@ class PromptInfo:
 
 
 
+        def _parse_environment(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        environment = _parse_environment(d.pop("environment", UNSET))
+
+
         prompt_info = cls(
             prompt_type=prompt_type,
+            environment=environment,
         )
 
 
