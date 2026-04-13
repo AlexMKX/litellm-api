@@ -94,6 +94,8 @@ from .bulk_team_member_add_response_updated_team_type_0 import BulkTeamMemberAdd
 from .bulk_update_key_request import BulkUpdateKeyRequest
 from .bulk_update_key_request_item import BulkUpdateKeyRequestItem
 from .bulk_update_key_response import BulkUpdateKeyResponse
+from .bulk_update_team_member_permissions_request import BulkUpdateTeamMemberPermissionsRequest
+from .bulk_update_team_member_permissions_response import BulkUpdateTeamMemberPermissionsResponse
 from .bulk_update_user_request import BulkUpdateUserRequest
 from .bulk_update_user_response import BulkUpdateUserResponse
 from .cache_ping_response import CachePingResponse
@@ -927,6 +929,8 @@ __all__ = (
     "BulkUpdateKeyRequest",
     "BulkUpdateKeyRequestItem",
     "BulkUpdateKeyResponse",
+    "BulkUpdateTeamMemberPermissionsRequest",
+    "BulkUpdateTeamMemberPermissionsResponse",
     "BulkUpdateUserRequest",
     "BulkUpdateUserResponse",
     "CachePingResponse",
