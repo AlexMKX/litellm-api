@@ -118,6 +118,8 @@ def sync_detailed(
     - object_permission: Optional[LiteLLM_ObjectPermissionBase] - organization-specific object
     permission. Example - {\"vector_stores\": [\"vector_store_1\", \"vector_store_2\"]}. IF null or {}
     then no object permission.
+    - allowed_models: Optional[List[str]] - List of models the organization is allowed to access. If not
+    set, defaults to the models field.
     Case 1: Create new org **without** a budget_id
 
     ```bash
@@ -215,6 +217,8 @@ def sync(
     - object_permission: Optional[LiteLLM_ObjectPermissionBase] - organization-specific object
     permission. Example - {\"vector_stores\": [\"vector_store_1\", \"vector_store_2\"]}. IF null or {}
     then no object permission.
+    - allowed_models: Optional[List[str]] - List of models the organization is allowed to access. If not
+    set, defaults to the models field.
     Case 1: Create new org **without** a budget_id
 
     ```bash
@@ -307,6 +311,8 @@ async def asyncio_detailed(
     - object_permission: Optional[LiteLLM_ObjectPermissionBase] - organization-specific object
     permission. Example - {\"vector_stores\": [\"vector_store_1\", \"vector_store_2\"]}. IF null or {}
     then no object permission.
+    - allowed_models: Optional[List[str]] - List of models the organization is allowed to access. If not
+    set, defaults to the models field.
     Case 1: Create new org **without** a budget_id
 
     ```bash
@@ -404,6 +410,8 @@ async def asyncio(
     - object_permission: Optional[LiteLLM_ObjectPermissionBase] - organization-specific object
     permission. Example - {\"vector_stores\": [\"vector_store_1\", \"vector_store_2\"]}. IF null or {}
     then no object permission.
+    - allowed_models: Optional[List[str]] - List of models the organization is allowed to access. If not
+    set, defaults to the models field.
     Case 1: Create new org **without** a budget_id
 
     ```bash

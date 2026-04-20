@@ -14,6 +14,7 @@ from typing import cast
 import datetime
 
 if TYPE_CHECKING:
+  from ..models.budget_limit_entry import BudgetLimitEntry
   from ..models.lite_llm_model_table import LiteLLMModelTable
   from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
   from ..models.member import Member
@@ -46,10 +47,12 @@ class TeamListItem:
             max_budget (float | None | Unset):
             soft_budget (float | None | Unset):
             budget_duration (None | str | Unset):
+            budget_limits (list[BudgetLimitEntry] | None | Unset):
             models (list[Any] | Unset):
             blocked (bool | Unset):  Default: False.
             router_settings (None | TeamListItemRouterSettingsType0 | Unset):
             access_group_ids (list[str] | None | Unset):
+            default_team_member_models (list[str] | None | Unset):
             spend (float | None | Unset):
             max_parallel_requests (int | None | Unset):
             budget_reset_at (datetime.datetime | None | Unset):
@@ -78,10 +81,12 @@ class TeamListItem:
     max_budget: float | None | Unset = UNSET
     soft_budget: float | None | Unset = UNSET
     budget_duration: None | str | Unset = UNSET
+    budget_limits: list[BudgetLimitEntry] | None | Unset = UNSET
     models: list[Any] | Unset = UNSET
     blocked: bool | Unset = False
     router_settings: None | TeamListItemRouterSettingsType0 | Unset = UNSET
     access_group_ids: list[str] | None | Unset = UNSET
+    default_team_member_models: list[str] | None | Unset = UNSET
     spend: float | None | Unset = UNSET
     max_parallel_requests: int | None | Unset = UNSET
     budget_reset_at: datetime.datetime | None | Unset = UNSET
@@ -102,6 +107,7 @@ class TeamListItem:
 
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.budget_limit_entry import BudgetLimitEntry
         from ..models.lite_llm_model_table import LiteLLMModelTable
         from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
         from ..models.member import Member
@@ -190,6 +196,19 @@ class TeamListItem:
         else:
             budget_duration = self.budget_duration
 
+        budget_limits: list[dict[str, Any]] | None | Unset
+        if isinstance(self.budget_limits, Unset):
+            budget_limits = UNSET
+        elif isinstance(self.budget_limits, list):
+            budget_limits = []
+            for budget_limits_type_0_item_data in self.budget_limits:
+                budget_limits_type_0_item = budget_limits_type_0_item_data.to_dict()
+                budget_limits.append(budget_limits_type_0_item)
+
+
+        else:
+            budget_limits = self.budget_limits
+
         models: list[Any] | Unset = UNSET
         if not isinstance(self.models, Unset):
             models = self.models
@@ -215,6 +234,16 @@ class TeamListItem:
 
         else:
             access_group_ids = self.access_group_ids
+
+        default_team_member_models: list[str] | None | Unset
+        if isinstance(self.default_team_member_models, Unset):
+            default_team_member_models = UNSET
+        elif isinstance(self.default_team_member_models, list):
+            default_team_member_models = self.default_team_member_models
+
+
+        else:
+            default_team_member_models = self.default_team_member_models
 
         spend: float | None | Unset
         if isinstance(self.spend, Unset):
@@ -342,6 +371,8 @@ class TeamListItem:
             field_dict["soft_budget"] = soft_budget
         if budget_duration is not UNSET:
             field_dict["budget_duration"] = budget_duration
+        if budget_limits is not UNSET:
+            field_dict["budget_limits"] = budget_limits
         if models is not UNSET:
             field_dict["models"] = models
         if blocked is not UNSET:
@@ -350,6 +381,8 @@ class TeamListItem:
             field_dict["router_settings"] = router_settings
         if access_group_ids is not UNSET:
             field_dict["access_group_ids"] = access_group_ids
+        if default_team_member_models is not UNSET:
+            field_dict["default_team_member_models"] = default_team_member_models
         if spend is not UNSET:
             field_dict["spend"] = spend
         if max_parallel_requests is not UNSET:
@@ -383,6 +416,7 @@ class TeamListItem:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.budget_limit_entry import BudgetLimitEntry
         from ..models.lite_llm_model_table import LiteLLMModelTable
         from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
         from ..models.member import Member
@@ -517,6 +551,31 @@ class TeamListItem:
         budget_duration = _parse_budget_duration(d.pop("budget_duration", UNSET))
 
 
+        def _parse_budget_limits(data: object) -> list[BudgetLimitEntry] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                budget_limits_type_0 = []
+                _budget_limits_type_0 = data
+                for budget_limits_type_0_item_data in (_budget_limits_type_0):
+                    budget_limits_type_0_item = BudgetLimitEntry.from_dict(budget_limits_type_0_item_data)
+
+
+
+                    budget_limits_type_0.append(budget_limits_type_0_item)
+
+                return budget_limits_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[BudgetLimitEntry] | None | Unset, data)
+
+        budget_limits = _parse_budget_limits(d.pop("budget_limits", UNSET))
+
+
         models = cast(list[Any], d.pop("models", UNSET))
 
 
@@ -558,6 +617,24 @@ class TeamListItem:
             return cast(list[str] | None | Unset, data)
 
         access_group_ids = _parse_access_group_ids(d.pop("access_group_ids", UNSET))
+
+
+        def _parse_default_team_member_models(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                default_team_member_models_type_0 = cast(list[str], data)
+
+                return default_team_member_models_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        default_team_member_models = _parse_default_team_member_models(d.pop("default_team_member_models", UNSET))
 
 
         def _parse_spend(data: object) -> float | None | Unset:
@@ -770,10 +847,12 @@ class TeamListItem:
             max_budget=max_budget,
             soft_budget=soft_budget,
             budget_duration=budget_duration,
+            budget_limits=budget_limits,
             models=models,
             blocked=blocked,
             router_settings=router_settings,
             access_group_ids=access_group_ids,
+            default_team_member_models=default_team_member_models,
             spend=spend,
             max_parallel_requests=max_parallel_requests,
             budget_reset_at=budget_reset_at,

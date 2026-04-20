@@ -40,6 +40,8 @@ class PluginListItem:
             homepage (None | str | Unset):
             keywords (list[str] | None | Unset):
             category (None | str | Unset):
+            domain (None | str | Unset):
+            namespace (None | str | Unset):
      """
 
     id: str
@@ -54,6 +56,8 @@ class PluginListItem:
     homepage: None | str | Unset = UNSET
     keywords: list[str] | None | Unset = UNSET
     category: None | str | Unset = UNSET
+    domain: None | str | Unset = UNSET
+    namespace: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -113,6 +117,18 @@ class PluginListItem:
         else:
             category = self.category
 
+        domain: None | str | Unset
+        if isinstance(self.domain, Unset):
+            domain = UNSET
+        else:
+            domain = self.domain
+
+        namespace: None | str | Unset
+        if isinstance(self.namespace, Unset):
+            namespace = UNSET
+        else:
+            namespace = self.namespace
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -134,6 +150,10 @@ class PluginListItem:
             field_dict["keywords"] = keywords
         if category is not UNSET:
             field_dict["category"] = category
+        if domain is not UNSET:
+            field_dict["domain"] = domain
+        if namespace is not UNSET:
+            field_dict["namespace"] = namespace
 
         return field_dict
 
@@ -245,6 +265,26 @@ class PluginListItem:
         category = _parse_category(d.pop("category", UNSET))
 
 
+        def _parse_domain(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        domain = _parse_domain(d.pop("domain", UNSET))
+
+
+        def _parse_namespace(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        namespace = _parse_namespace(d.pop("namespace", UNSET))
+
+
         plugin_list_item = cls(
             id=id,
             name=name,
@@ -258,6 +298,8 @@ class PluginListItem:
             homepage=homepage,
             keywords=keywords,
             category=category,
+            domain=domain,
+            namespace=namespace,
         )
 
 

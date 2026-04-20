@@ -39,6 +39,7 @@ class NewOrganizationRequest:
             rpm_limit (int | None | Unset):
             model_max_budget (NewOrganizationRequestModelMaxBudgetType0 | None | Unset):
             budget_duration (None | str | Unset):
+            allowed_models (list[str] | None | Unset):
             organization_id (None | str | Unset):
             models (list[Any] | Unset):
             metadata (NewOrganizationRequestMetadataType0 | None | Unset):
@@ -56,6 +57,7 @@ class NewOrganizationRequest:
     rpm_limit: int | None | Unset = UNSET
     model_max_budget: NewOrganizationRequestModelMaxBudgetType0 | None | Unset = UNSET
     budget_duration: None | str | Unset = UNSET
+    allowed_models: list[str] | None | Unset = UNSET
     organization_id: None | str | Unset = UNSET
     models: list[Any] | Unset = UNSET
     metadata: NewOrganizationRequestMetadataType0 | None | Unset = UNSET
@@ -126,6 +128,16 @@ class NewOrganizationRequest:
         else:
             budget_duration = self.budget_duration
 
+        allowed_models: list[str] | None | Unset
+        if isinstance(self.allowed_models, Unset):
+            allowed_models = UNSET
+        elif isinstance(self.allowed_models, list):
+            allowed_models = self.allowed_models
+
+
+        else:
+            allowed_models = self.allowed_models
+
         organization_id: None | str | Unset
         if isinstance(self.organization_id, Unset):
             organization_id = UNSET
@@ -192,6 +204,8 @@ class NewOrganizationRequest:
             field_dict["model_max_budget"] = model_max_budget
         if budget_duration is not UNSET:
             field_dict["budget_duration"] = budget_duration
+        if allowed_models is not UNSET:
+            field_dict["allowed_models"] = allowed_models
         if organization_id is not UNSET:
             field_dict["organization_id"] = organization_id
         if models is not UNSET:
@@ -309,6 +323,24 @@ class NewOrganizationRequest:
         budget_duration = _parse_budget_duration(d.pop("budget_duration", UNSET))
 
 
+        def _parse_allowed_models(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                allowed_models_type_0 = cast(list[str], data)
+
+                return allowed_models_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        allowed_models = _parse_allowed_models(d.pop("allowed_models", UNSET))
+
+
         def _parse_organization_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -412,6 +444,7 @@ class NewOrganizationRequest:
             rpm_limit=rpm_limit,
             model_max_budget=model_max_budget,
             budget_duration=budget_duration,
+            allowed_models=allowed_models,
             organization_id=organization_id,
             models=models,
             metadata=metadata,

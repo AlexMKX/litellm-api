@@ -38,6 +38,7 @@ class LiteLLMParams:
             output_cost_per_token (float | None | Unset):
             input_cost_per_second (float | None | Unset):
             output_cost_per_second (float | None | Unset):
+            output_cost_per_second_1080p (float | None | Unset):
             input_cost_per_pixel (float | None | Unset):
             output_cost_per_pixel (float | None | Unset):
             input_cost_per_token_flex (float | None | Unset):
@@ -135,6 +136,7 @@ class LiteLLMParams:
     output_cost_per_token: float | None | Unset = UNSET
     input_cost_per_second: float | None | Unset = UNSET
     output_cost_per_second: float | None | Unset = UNSET
+    output_cost_per_second_1080p: float | None | Unset = UNSET
     input_cost_per_pixel: float | None | Unset = UNSET
     output_cost_per_pixel: float | None | Unset = UNSET
     input_cost_per_token_flex: float | None | Unset = UNSET
@@ -264,6 +266,12 @@ class LiteLLMParams:
             output_cost_per_second = UNSET
         else:
             output_cost_per_second = self.output_cost_per_second
+
+        output_cost_per_second_1080p: float | None | Unset
+        if isinstance(self.output_cost_per_second_1080p, Unset):
+            output_cost_per_second_1080p = UNSET
+        else:
+            output_cost_per_second_1080p = self.output_cost_per_second_1080p
 
         input_cost_per_pixel: float | None | Unset
         if isinstance(self.input_cost_per_pixel, Unset):
@@ -855,6 +863,8 @@ class LiteLLMParams:
             field_dict["input_cost_per_second"] = input_cost_per_second
         if output_cost_per_second is not UNSET:
             field_dict["output_cost_per_second"] = output_cost_per_second
+        if output_cost_per_second_1080p is not UNSET:
+            field_dict["output_cost_per_second_1080p"] = output_cost_per_second_1080p
         if input_cost_per_pixel is not UNSET:
             field_dict["input_cost_per_pixel"] = input_cost_per_pixel
         if output_cost_per_pixel is not UNSET:
@@ -1090,6 +1100,16 @@ class LiteLLMParams:
             return cast(float | None | Unset, data)
 
         output_cost_per_second = _parse_output_cost_per_second(d.pop("output_cost_per_second", UNSET))
+
+
+        def _parse_output_cost_per_second_1080p(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        output_cost_per_second_1080p = _parse_output_cost_per_second_1080p(d.pop("output_cost_per_second_1080p", UNSET))
 
 
         def _parse_input_cost_per_pixel(data: object) -> float | None | Unset:
@@ -2105,6 +2125,7 @@ class LiteLLMParams:
             output_cost_per_token=output_cost_per_token,
             input_cost_per_second=input_cost_per_second,
             output_cost_per_second=output_cost_per_second,
+            output_cost_per_second_1080p=output_cost_per_second_1080p,
             input_cost_per_pixel=input_cost_per_pixel,
             output_cost_per_pixel=output_cost_per_pixel,
             input_cost_per_token_flex=input_cost_per_token_flex,

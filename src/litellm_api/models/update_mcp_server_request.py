@@ -49,6 +49,7 @@ class UpdateMCPServerRequest:
             tool_name_to_description (None | Unset | UpdateMCPServerRequestToolNameToDescriptionType0):
             extra_headers (list[str] | None | Unset):
             static_headers (None | Unset | UpdateMCPServerRequestStaticHeadersType0):
+            instructions (None | str | Unset):
             command (None | str | Unset):
             args (list[str] | Unset):
             env (UpdateMCPServerRequestEnv | Unset):
@@ -79,6 +80,7 @@ class UpdateMCPServerRequest:
     tool_name_to_description: None | Unset | UpdateMCPServerRequestToolNameToDescriptionType0 = UNSET
     extra_headers: list[str] | None | Unset = UNSET
     static_headers: None | Unset | UpdateMCPServerRequestStaticHeadersType0 = UNSET
+    instructions: None | str | Unset = UNSET
     command: None | str | Unset = UNSET
     args: list[str] | Unset = UNSET
     env: UpdateMCPServerRequestEnv | Unset = UNSET
@@ -215,6 +217,12 @@ class UpdateMCPServerRequest:
         else:
             static_headers = self.static_headers
 
+        instructions: None | str | Unset
+        if isinstance(self.instructions, Unset):
+            instructions = UNSET
+        else:
+            instructions = self.instructions
+
         command: None | str | Unset
         if isinstance(self.command, Unset):
             command = UNSET
@@ -309,6 +317,8 @@ class UpdateMCPServerRequest:
             field_dict["extra_headers"] = extra_headers
         if static_headers is not UNSET:
             field_dict["static_headers"] = static_headers
+        if instructions is not UNSET:
+            field_dict["instructions"] = instructions
         if command is not UNSET:
             field_dict["command"] = command
         if args is not UNSET:
@@ -568,6 +578,16 @@ class UpdateMCPServerRequest:
         static_headers = _parse_static_headers(d.pop("static_headers", UNSET))
 
 
+        def _parse_instructions(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        instructions = _parse_instructions(d.pop("instructions", UNSET))
+
+
         def _parse_command(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -667,6 +687,7 @@ class UpdateMCPServerRequest:
             tool_name_to_description=tool_name_to_description,
             extra_headers=extra_headers,
             static_headers=static_headers,
+            instructions=instructions,
             command=command,
             args=args,
             env=env,

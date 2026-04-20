@@ -85,6 +85,7 @@ from .breakdown_metrics_models import BreakdownMetricsModels
 from .breakdown_metrics_providers import BreakdownMetricsProviders
 from .budget_config import BudgetConfig
 from .budget_delete_request import BudgetDeleteRequest
+from .budget_limit_entry import BudgetLimitEntry
 from .budget_new_request import BudgetNewRequest
 from .budget_new_request_model_max_budget_type_0 import BudgetNewRequestModelMaxBudgetType0
 from .budget_request import BudgetRequest
@@ -323,6 +324,7 @@ from .lite_llm_deleted_team_table_metadata_type_0 import LiteLLMDeletedTeamTable
 from .lite_llm_deleted_team_table_router_settings_type_0 import LiteLLMDeletedTeamTableRouterSettingsType0
 from .lite_llm_deleted_verification_token import LiteLLMDeletedVerificationToken
 from .lite_llm_deleted_verification_token_aliases import LiteLLMDeletedVerificationTokenAliases
+from .lite_llm_deleted_verification_token_budget_limits_type_0_item import LiteLLMDeletedVerificationTokenBudgetLimitsType0Item
 from .lite_llm_deleted_verification_token_config import LiteLLMDeletedVerificationTokenConfig
 from .lite_llm_deleted_verification_token_litellm_budget_table_type_0 import LiteLLMDeletedVerificationTokenLitellmBudgetTableType0
 from .lite_llm_deleted_verification_token_metadata import LiteLLMDeletedVerificationTokenMetadata
@@ -375,6 +377,7 @@ from .lite_llm_tool_table_row_input_policy import LiteLLMToolTableRowInputPolicy
 from .lite_llm_tool_table_row_output_policy import LiteLLMToolTableRowOutputPolicy
 from .lite_llm_verification_token import LiteLLMVerificationToken
 from .lite_llm_verification_token_aliases import LiteLLMVerificationTokenAliases
+from .lite_llm_verification_token_budget_limits_type_0_item import LiteLLMVerificationTokenBudgetLimitsType0Item
 from .lite_llm_verification_token_config import LiteLLMVerificationTokenConfig
 from .lite_llm_verification_token_litellm_budget_table_type_0 import LiteLLMVerificationTokenLitellmBudgetTableType0
 from .lite_llm_verification_token_metadata import LiteLLMVerificationTokenMetadata
@@ -796,6 +799,7 @@ from .usage_overview_row import UsageOverviewRow
 from .user_api_key_auth import UserAPIKeyAuth
 from .user_api_key_auth_aliases import UserAPIKeyAuthAliases
 from .user_api_key_auth_allowed_model_region_type_0 import UserAPIKeyAuthAllowedModelRegionType0
+from .user_api_key_auth_budget_limits_type_0_item import UserAPIKeyAuthBudgetLimitsType0Item
 from .user_api_key_auth_config import UserAPIKeyAuthConfig
 from .user_api_key_auth_end_user_model_max_budget_type_0 import UserAPIKeyAuthEndUserModelMaxBudgetType0
 from .user_api_key_auth_jwt_claims_type_0 import UserAPIKeyAuthJwtClaimsType0
@@ -920,6 +924,7 @@ __all__ = (
     "BreakdownMetricsProviders",
     "BudgetConfig",
     "BudgetDeleteRequest",
+    "BudgetLimitEntry",
     "BudgetNewRequest",
     "BudgetNewRequestModelMaxBudgetType0",
     "BudgetRequest",
@@ -1158,6 +1163,7 @@ __all__ = (
     "LiteLLMDeletedTeamTableRouterSettingsType0",
     "LiteLLMDeletedVerificationToken",
     "LiteLLMDeletedVerificationTokenAliases",
+    "LiteLLMDeletedVerificationTokenBudgetLimitsType0Item",
     "LiteLLMDeletedVerificationTokenConfig",
     "LiteLLMDeletedVerificationTokenLitellmBudgetTableType0",
     "LiteLLMDeletedVerificationTokenMetadata",
@@ -1238,6 +1244,7 @@ __all__ = (
     "LitellmUserRoles",
     "LiteLLMVerificationToken",
     "LiteLLMVerificationTokenAliases",
+    "LiteLLMVerificationTokenBudgetLimitsType0Item",
     "LiteLLMVerificationTokenConfig",
     "LiteLLMVerificationTokenLitellmBudgetTableType0",
     "LiteLLMVerificationTokenMetadata",
@@ -1631,6 +1638,7 @@ __all__ = (
     "UserAPIKeyAuth",
     "UserAPIKeyAuthAliases",
     "UserAPIKeyAuthAllowedModelRegionType0",
+    "UserAPIKeyAuthBudgetLimitsType0Item",
     "UserAPIKeyAuthConfig",
     "UserAPIKeyAuthEndUserModelMaxBudgetType0",
     "UserAPIKeyAuthJwtClaimsType0",

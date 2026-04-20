@@ -15,6 +15,7 @@ import datetime
 
 if TYPE_CHECKING:
   from ..models.lite_llm_deleted_verification_token_aliases import LiteLLMDeletedVerificationTokenAliases
+  from ..models.lite_llm_deleted_verification_token_budget_limits_type_0_item import LiteLLMDeletedVerificationTokenBudgetLimitsType0Item
   from ..models.lite_llm_deleted_verification_token_config import LiteLLMDeletedVerificationTokenConfig
   from ..models.lite_llm_deleted_verification_token_litellm_budget_table_type_0 import LiteLLMDeletedVerificationTokenLitellmBudgetTableType0
   from ..models.lite_llm_deleted_verification_token_metadata import LiteLLMDeletedVerificationTokenMetadata
@@ -80,6 +81,7 @@ class LiteLLMDeletedVerificationToken:
             last_rotation_at (datetime.datetime | None | Unset):
             key_rotation_at (datetime.datetime | None | Unset):
             router_settings (LiteLLMDeletedVerificationTokenRouterSettingsType0 | None | Unset):
+            budget_limits (list[LiteLLMDeletedVerificationTokenBudgetLimitsType0Item] | None | Unset):
             id (None | str | Unset):
             deleted_at (datetime.datetime | None | Unset):
             deleted_by (None | str | Unset):
@@ -129,6 +131,7 @@ class LiteLLMDeletedVerificationToken:
     last_rotation_at: datetime.datetime | None | Unset = UNSET
     key_rotation_at: datetime.datetime | None | Unset = UNSET
     router_settings: LiteLLMDeletedVerificationTokenRouterSettingsType0 | None | Unset = UNSET
+    budget_limits: list[LiteLLMDeletedVerificationTokenBudgetLimitsType0Item] | None | Unset = UNSET
     id: None | str | Unset = UNSET
     deleted_at: datetime.datetime | None | Unset = UNSET
     deleted_by: None | str | Unset = UNSET
@@ -142,6 +145,7 @@ class LiteLLMDeletedVerificationToken:
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.lite_llm_deleted_verification_token_aliases import LiteLLMDeletedVerificationTokenAliases
+        from ..models.lite_llm_deleted_verification_token_budget_limits_type_0_item import LiteLLMDeletedVerificationTokenBudgetLimitsType0Item
         from ..models.lite_llm_deleted_verification_token_config import LiteLLMDeletedVerificationTokenConfig
         from ..models.lite_llm_deleted_verification_token_litellm_budget_table_type_0 import LiteLLMDeletedVerificationTokenLitellmBudgetTableType0
         from ..models.lite_llm_deleted_verification_token_metadata import LiteLLMDeletedVerificationTokenMetadata
@@ -414,6 +418,19 @@ class LiteLLMDeletedVerificationToken:
         else:
             router_settings = self.router_settings
 
+        budget_limits: list[dict[str, Any]] | None | Unset
+        if isinstance(self.budget_limits, Unset):
+            budget_limits = UNSET
+        elif isinstance(self.budget_limits, list):
+            budget_limits = []
+            for budget_limits_type_0_item_data in self.budget_limits:
+                budget_limits_type_0_item = budget_limits_type_0_item_data.to_dict()
+                budget_limits.append(budget_limits_type_0_item)
+
+
+        else:
+            budget_limits = self.budget_limits
+
         id: None | str | Unset
         if isinstance(self.id, Unset):
             id = UNSET
@@ -535,6 +552,8 @@ class LiteLLMDeletedVerificationToken:
             field_dict["key_rotation_at"] = key_rotation_at
         if router_settings is not UNSET:
             field_dict["router_settings"] = router_settings
+        if budget_limits is not UNSET:
+            field_dict["budget_limits"] = budget_limits
         if id is not UNSET:
             field_dict["id"] = id
         if deleted_at is not UNSET:
@@ -553,6 +572,7 @@ class LiteLLMDeletedVerificationToken:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.lite_llm_deleted_verification_token_aliases import LiteLLMDeletedVerificationTokenAliases
+        from ..models.lite_llm_deleted_verification_token_budget_limits_type_0_item import LiteLLMDeletedVerificationTokenBudgetLimitsType0Item
         from ..models.lite_llm_deleted_verification_token_config import LiteLLMDeletedVerificationTokenConfig
         from ..models.lite_llm_deleted_verification_token_litellm_budget_table_type_0 import LiteLLMDeletedVerificationTokenLitellmBudgetTableType0
         from ..models.lite_llm_deleted_verification_token_metadata import LiteLLMDeletedVerificationTokenMetadata
@@ -1083,6 +1103,31 @@ class LiteLLMDeletedVerificationToken:
         router_settings = _parse_router_settings(d.pop("router_settings", UNSET))
 
 
+        def _parse_budget_limits(data: object) -> list[LiteLLMDeletedVerificationTokenBudgetLimitsType0Item] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                budget_limits_type_0 = []
+                _budget_limits_type_0 = data
+                for budget_limits_type_0_item_data in (_budget_limits_type_0):
+                    budget_limits_type_0_item = LiteLLMDeletedVerificationTokenBudgetLimitsType0Item.from_dict(budget_limits_type_0_item_data)
+
+
+
+                    budget_limits_type_0.append(budget_limits_type_0_item)
+
+                return budget_limits_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[LiteLLMDeletedVerificationTokenBudgetLimitsType0Item] | None | Unset, data)
+
+        budget_limits = _parse_budget_limits(d.pop("budget_limits", UNSET))
+
+
         def _parse_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -1186,6 +1231,7 @@ class LiteLLMDeletedVerificationToken:
             last_rotation_at=last_rotation_at,
             key_rotation_at=key_rotation_at,
             router_settings=router_settings,
+            budget_limits=budget_limits,
             id=id,
             deleted_at=deleted_at,
             deleted_by=deleted_by,

@@ -76,7 +76,7 @@ def sync_detailed(
 ) -> Response[Any | HTTPValidationError]:
     r""" Unblock Team
 
-     Blocks all calls from keys with this team id.
+     Unblocks a previously blocked team, re-enabling calls from keys with this team id.
 
     Parameters:
     - team_id: str - Required. The unique identifier of the team to unblock.
@@ -120,7 +120,7 @@ def sync(
 ) -> Any | HTTPValidationError | None:
     r""" Unblock Team
 
-     Blocks all calls from keys with this team id.
+     Unblocks a previously blocked team, re-enabling calls from keys with this team id.
 
     Parameters:
     - team_id: str - Required. The unique identifier of the team to unblock.
@@ -159,7 +159,7 @@ async def asyncio_detailed(
 ) -> Response[Any | HTTPValidationError]:
     r""" Unblock Team
 
-     Blocks all calls from keys with this team id.
+     Unblocks a previously blocked team, re-enabling calls from keys with this team id.
 
     Parameters:
     - team_id: str - Required. The unique identifier of the team to unblock.
@@ -203,7 +203,7 @@ async def asyncio(
 ) -> Any | HTTPValidationError | None:
     r""" Unblock Team
 
-     Blocks all calls from keys with this team id.
+     Unblocks a previously blocked team, re-enabling calls from keys with this team id.
 
     Parameters:
     - team_id: str - Required. The unique identifier of the team to unblock.

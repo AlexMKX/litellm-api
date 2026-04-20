@@ -42,6 +42,8 @@ class RegisterPluginRequest:
             homepage (None | str | Unset): Plugin homepage URL
             keywords (list[str] | None | Unset): Search keywords
             category (None | str | Unset): Plugin category
+            domain (None | str | Unset): Skill domain (e.g., 'Productivity')
+            namespace (None | str | Unset): Skill namespace within domain (e.g., 'workflows')
      """
 
     name: str
@@ -52,6 +54,8 @@ class RegisterPluginRequest:
     homepage: None | str | Unset = UNSET
     keywords: list[str] | None | Unset = UNSET
     category: None | str | Unset = UNSET
+    domain: None | str | Unset = UNSET
+    namespace: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -107,6 +111,18 @@ class RegisterPluginRequest:
         else:
             category = self.category
 
+        domain: None | str | Unset
+        if isinstance(self.domain, Unset):
+            domain = UNSET
+        else:
+            domain = self.domain
+
+        namespace: None | str | Unset
+        if isinstance(self.namespace, Unset):
+            namespace = UNSET
+        else:
+            namespace = self.namespace
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -126,6 +142,10 @@ class RegisterPluginRequest:
             field_dict["keywords"] = keywords
         if category is not UNSET:
             field_dict["category"] = category
+        if domain is not UNSET:
+            field_dict["domain"] = domain
+        if namespace is not UNSET:
+            field_dict["namespace"] = namespace
 
         return field_dict
 
@@ -221,6 +241,26 @@ class RegisterPluginRequest:
         category = _parse_category(d.pop("category", UNSET))
 
 
+        def _parse_domain(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        domain = _parse_domain(d.pop("domain", UNSET))
+
+
+        def _parse_namespace(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        namespace = _parse_namespace(d.pop("namespace", UNSET))
+
+
         register_plugin_request = cls(
             name=name,
             source=source,
@@ -230,6 +270,8 @@ class RegisterPluginRequest:
             homepage=homepage,
             keywords=keywords,
             category=category,
+            domain=domain,
+            namespace=namespace,
         )
 
 

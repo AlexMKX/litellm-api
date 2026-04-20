@@ -32,6 +32,8 @@ class TeamMemberUpdateRequest:
             role (None | TeamMemberUpdateRequestRoleType0 | Unset):
             tpm_limit (int | None | Unset): Tokens per minute limit for this team member
             rpm_limit (int | None | Unset): Requests per minute limit for this team member
+            allowed_models (list[str] | None | Unset): List of models this team member can access. Pass an empty list to
+                remove per-member model restrictions.
      """
 
     team_id: str
@@ -41,6 +43,7 @@ class TeamMemberUpdateRequest:
     role: None | TeamMemberUpdateRequestRoleType0 | Unset = UNSET
     tpm_limit: int | None | Unset = UNSET
     rpm_limit: int | None | Unset = UNSET
+    allowed_models: list[str] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -88,6 +91,16 @@ class TeamMemberUpdateRequest:
         else:
             rpm_limit = self.rpm_limit
 
+        allowed_models: list[str] | None | Unset
+        if isinstance(self.allowed_models, Unset):
+            allowed_models = UNSET
+        elif isinstance(self.allowed_models, list):
+            allowed_models = self.allowed_models
+
+
+        else:
+            allowed_models = self.allowed_models
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -106,6 +119,8 @@ class TeamMemberUpdateRequest:
             field_dict["tpm_limit"] = tpm_limit
         if rpm_limit is not UNSET:
             field_dict["rpm_limit"] = rpm_limit
+        if allowed_models is not UNSET:
+            field_dict["allowed_models"] = allowed_models
 
         return field_dict
 
@@ -186,6 +201,24 @@ class TeamMemberUpdateRequest:
         rpm_limit = _parse_rpm_limit(d.pop("rpm_limit", UNSET))
 
 
+        def _parse_allowed_models(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                allowed_models_type_0 = cast(list[str], data)
+
+                return allowed_models_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        allowed_models = _parse_allowed_models(d.pop("allowed_models", UNSET))
+
+
         team_member_update_request = cls(
             team_id=team_id,
             user_id=user_id,
@@ -194,6 +227,7 @@ class TeamMemberUpdateRequest:
             role=role,
             tpm_limit=tpm_limit,
             rpm_limit=rpm_limit,
+            allowed_models=allowed_models,
         )
 
 

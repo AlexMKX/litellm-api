@@ -47,6 +47,10 @@ class BaseLitellmParams:
             experimental_use_latest_role_message_only (bool | None | Unset): When True, guardrails only receive the latest
                 message for the relevant role (e.g., newest user input pre-call, newest assistant output post-call) Default:
                 False.
+            skip_system_message_in_guardrail (bool | None | Unset): When True, unified guardrails skip system-role messages
+                when building evaluation inputs (texts and structured_messages). When False, system messages are included even
+                if litellm_settings sets a global skip. When None, use the global litellm.skip_system_message_in_guardrail
+                setting.
             category_thresholds (LakeraCategoryThresholds | None | Unset): Threshold configuration for Lakera guardrail
                 categories
             detect_secrets_config (BaseLitellmParamsDetectSecretsConfigType0 | None | Unset): Configuration for detect-
@@ -95,6 +99,7 @@ class BaseLitellmParams:
     api_key: None | str | Unset = UNSET
     api_base: None | str | Unset = UNSET
     experimental_use_latest_role_message_only: bool | None | Unset = False
+    skip_system_message_in_guardrail: bool | None | Unset = UNSET
     category_thresholds: LakeraCategoryThresholds | None | Unset = UNSET
     detect_secrets_config: BaseLitellmParamsDetectSecretsConfigType0 | None | Unset = UNSET
     guard_name: None | str | Unset = UNSET
@@ -210,6 +215,12 @@ class BaseLitellmParams:
             experimental_use_latest_role_message_only = UNSET
         else:
             experimental_use_latest_role_message_only = self.experimental_use_latest_role_message_only
+
+        skip_system_message_in_guardrail: bool | None | Unset
+        if isinstance(self.skip_system_message_in_guardrail, Unset):
+            skip_system_message_in_guardrail = UNSET
+        else:
+            skip_system_message_in_guardrail = self.skip_system_message_in_guardrail
 
         category_thresholds: dict[str, Any] | None | Unset
         if isinstance(self.category_thresholds, Unset):
@@ -379,6 +390,8 @@ class BaseLitellmParams:
             field_dict["api_base"] = api_base
         if experimental_use_latest_role_message_only is not UNSET:
             field_dict["experimental_use_latest_role_message_only"] = experimental_use_latest_role_message_only
+        if skip_system_message_in_guardrail is not UNSET:
+            field_dict["skip_system_message_in_guardrail"] = skip_system_message_in_guardrail
         if category_thresholds is not UNSET:
             field_dict["category_thresholds"] = category_thresholds
         if detect_secrets_config is not UNSET:
@@ -580,6 +593,16 @@ class BaseLitellmParams:
             return cast(bool | None | Unset, data)
 
         experimental_use_latest_role_message_only = _parse_experimental_use_latest_role_message_only(d.pop("experimental_use_latest_role_message_only", UNSET))
+
+
+        def _parse_skip_system_message_in_guardrail(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        skip_system_message_in_guardrail = _parse_skip_system_message_in_guardrail(d.pop("skip_system_message_in_guardrail", UNSET))
 
 
         def _parse_category_thresholds(data: object) -> LakeraCategoryThresholds | None | Unset:
@@ -861,6 +884,7 @@ class BaseLitellmParams:
             api_key=api_key,
             api_base=api_base,
             experimental_use_latest_role_message_only=experimental_use_latest_role_message_only,
+            skip_system_message_in_guardrail=skip_system_message_in_guardrail,
             category_thresholds=category_thresholds,
             detect_secrets_config=detect_secrets_config,
             guard_name=guard_name,

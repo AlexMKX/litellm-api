@@ -8,6 +8,7 @@ class KeyManagementRoutes(str, Enum):
     VALUE_12 = "/key/list"
     VALUE_13 = "/key/aliases"
     VALUE_14 = "/team/daily/activity"
+    VALUE_15 = "/spend/logs"
     VALUE_2 = "/key/delete"
     VALUE_3 = "/key/regenerate"
     VALUE_4 = "/key/service-account/generate"

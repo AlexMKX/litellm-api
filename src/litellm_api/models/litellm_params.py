@@ -53,6 +53,11 @@ class LitellmParams:
             mode (list[str] | Mode | str): When to apply the guardrail (pre_call, post_call, during_call, logging_only)
             optional_params (GraySwanGuardrailConfigModelOptionalParams | None | Unset): Optional parameters for the
                 guardrail
+            api_base (None | str | Unset): Base URL for the Lakera AI API
+            api_id (None | str | Unset): The Hiddenlayer API Id for the Hiddenlayer API. If not provided, the
+                `HIDDENLAYER_CLIENT_ID` environment variable is checked or https://api.hiddenlayer.ai is used.
+            api_key (None | str | Unset): API key for the Lakera AI service
+            version (int | None | Unset): Hiddenlayer guardrail version to use. Default: 2.
             blocked_languages (list[str] | None | Unset): Language tags to block (e.g. python, javascript, bash). Empty or
                 None = block all fenced code blocks.
             action (LitellmParamsAction | Unset): 'block' raises an error; 'mask' replaces the code block with a
@@ -62,8 +67,6 @@ class LitellmParams:
             detect_execution_intent (bool | Unset): When True, block only when user intent is to run/execute; allow when
                 intent is explain/refactor/don't run. Also block text-only execution requests (e.g. 'run `ls`', 'read
                 /etc/passwd'). Default: True.
-            api_key (None | str | Unset): API key for the Lakera AI service
-            api_base (None | str | Unset): Base URL for the Lakera AI API
             evaluation_id (None | str | Unset): Pre-configured evaluation ID from Qualifire dashboard. When provided, uses
                 invoke_evaluation() instead of evaluate().
             prompt_injections (bool | None | Unset): Enable prompt injection detection. Default check if no evaluation_id
@@ -106,6 +109,10 @@ class LitellmParams:
             experimental_use_latest_role_message_only (bool | None | Unset): When True, guardrails only receive the latest
                 message for the relevant role (e.g., newest user input pre-call, newest assistant output post-call) Default:
                 False.
+            skip_system_message_in_guardrail (bool | None | Unset): When True, unified guardrails skip system-role messages
+                when building evaluation inputs (texts and structured_messages). When False, system messages are included even
+                if litellm_settings sets a global skip. When None, use the global litellm.skip_system_message_in_guardrail
+                setting.
             category_thresholds (LakeraCategoryThresholds | None | Unset): Threshold configuration for Lakera guardrail
                 categories
             detect_secrets_config (LitellmParamsDetectSecretsConfigType0 | None | Unset): Configuration for detect-secrets
@@ -161,6 +168,8 @@ class LitellmParams:
                 LitellmParamsDefaultAction.DENY.
             on_disallowed_action (LitellmParamsOnDisallowedAction | Unset): Choose whether disallowed tools block the
                 request or get rewritten out of the payload Default: LitellmParamsOnDisallowedAction.BLOCK.
+            block_on_error (bool | None | Unset): Whether to block the request when the PromptGuard API is unreachable.
+                Defaults to true (fail-closed). Set to false for fail-open behaviour.
             use_v2 (bool | None | Unset): If True and guardrail='noma', route to the new Noma v2 implementation instead of
                 the legacy implementation. Default: False.
             application_id (None | str | Unset): Application ID for Noma Security. Defaults to 'litellm' if not provided
@@ -223,12 +232,14 @@ class LitellmParams:
     guardrail: str
     mode: list[str] | Mode | str
     optional_params: GraySwanGuardrailConfigModelOptionalParams | None | Unset = UNSET
+    api_base: None | str | Unset = UNSET
+    api_id: None | str | Unset = UNSET
+    api_key: None | str | Unset = UNSET
+    version: int | None | Unset = 2
     blocked_languages: list[str] | None | Unset = UNSET
     action: LitellmParamsAction | Unset = LitellmParamsAction.BLOCK
     confidence_threshold: float | Unset = 0.5
     detect_execution_intent: bool | Unset = True
-    api_key: None | str | Unset = UNSET
-    api_base: None | str | Unset = UNSET
     evaluation_id: None | str | Unset = UNSET
     prompt_injections: bool | None | Unset = UNSET
     hallucinations_check: bool | None | Unset = UNSET
@@ -255,6 +266,7 @@ class LitellmParams:
     pattern_redaction_format: None | str | Unset = UNSET
     keyword_redaction_tag: None | str | Unset = UNSET
     experimental_use_latest_role_message_only: bool | None | Unset = False
+    skip_system_message_in_guardrail: bool | None | Unset = UNSET
     category_thresholds: LakeraCategoryThresholds | None | Unset = UNSET
     detect_secrets_config: LitellmParamsDetectSecretsConfigType0 | None | Unset = UNSET
     guard_name: None | str | Unset = UNSET
@@ -293,6 +305,7 @@ class LitellmParams:
     rules: list[ToolPermissionRule] | None | Unset = UNSET
     default_action: LitellmParamsDefaultAction | Unset = LitellmParamsDefaultAction.DENY
     on_disallowed_action: LitellmParamsOnDisallowedAction | Unset = LitellmParamsOnDisallowedAction.BLOCK
+    block_on_error: bool | None | Unset = UNSET
     use_v2: bool | None | Unset = False
     application_id: None | str | Unset = UNSET
     monitor_mode: bool | None | Unset = UNSET
@@ -376,6 +389,30 @@ class LitellmParams:
         else:
             optional_params = self.optional_params
 
+        api_base: None | str | Unset
+        if isinstance(self.api_base, Unset):
+            api_base = UNSET
+        else:
+            api_base = self.api_base
+
+        api_id: None | str | Unset
+        if isinstance(self.api_id, Unset):
+            api_id = UNSET
+        else:
+            api_id = self.api_id
+
+        api_key: None | str | Unset
+        if isinstance(self.api_key, Unset):
+            api_key = UNSET
+        else:
+            api_key = self.api_key
+
+        version: int | None | Unset
+        if isinstance(self.version, Unset):
+            version = UNSET
+        else:
+            version = self.version
+
         blocked_languages: list[str] | None | Unset
         if isinstance(self.blocked_languages, Unset):
             blocked_languages = UNSET
@@ -394,18 +431,6 @@ class LitellmParams:
         confidence_threshold = self.confidence_threshold
 
         detect_execution_intent = self.detect_execution_intent
-
-        api_key: None | str | Unset
-        if isinstance(self.api_key, Unset):
-            api_key = UNSET
-        else:
-            api_key = self.api_key
-
-        api_base: None | str | Unset
-        if isinstance(self.api_base, Unset):
-            api_base = UNSET
-        else:
-            api_base = self.api_base
 
         evaluation_id: None | str | Unset
         if isinstance(self.evaluation_id, Unset):
@@ -591,6 +616,12 @@ class LitellmParams:
             experimental_use_latest_role_message_only = UNSET
         else:
             experimental_use_latest_role_message_only = self.experimental_use_latest_role_message_only
+
+        skip_system_message_in_guardrail: bool | None | Unset
+        if isinstance(self.skip_system_message_in_guardrail, Unset):
+            skip_system_message_in_guardrail = UNSET
+        else:
+            skip_system_message_in_guardrail = self.skip_system_message_in_guardrail
 
         category_thresholds: dict[str, Any] | None | Unset
         if isinstance(self.category_thresholds, Unset):
@@ -839,6 +870,12 @@ class LitellmParams:
         if not isinstance(self.on_disallowed_action, Unset):
             on_disallowed_action = self.on_disallowed_action.value
 
+
+        block_on_error: bool | None | Unset
+        if isinstance(self.block_on_error, Unset):
+            block_on_error = UNSET
+        else:
+            block_on_error = self.block_on_error
 
         use_v2: bool | None | Unset
         if isinstance(self.use_v2, Unset):
@@ -1116,6 +1153,14 @@ class LitellmParams:
         })
         if optional_params is not UNSET:
             field_dict["optional_params"] = optional_params
+        if api_base is not UNSET:
+            field_dict["api_base"] = api_base
+        if api_id is not UNSET:
+            field_dict["api_id"] = api_id
+        if api_key is not UNSET:
+            field_dict["api_key"] = api_key
+        if version is not UNSET:
+            field_dict["version"] = version
         if blocked_languages is not UNSET:
             field_dict["blocked_languages"] = blocked_languages
         if action is not UNSET:
@@ -1124,10 +1169,6 @@ class LitellmParams:
             field_dict["confidence_threshold"] = confidence_threshold
         if detect_execution_intent is not UNSET:
             field_dict["detect_execution_intent"] = detect_execution_intent
-        if api_key is not UNSET:
-            field_dict["api_key"] = api_key
-        if api_base is not UNSET:
-            field_dict["api_base"] = api_base
         if evaluation_id is not UNSET:
             field_dict["evaluation_id"] = evaluation_id
         if prompt_injections is not UNSET:
@@ -1180,6 +1221,8 @@ class LitellmParams:
             field_dict["keyword_redaction_tag"] = keyword_redaction_tag
         if experimental_use_latest_role_message_only is not UNSET:
             field_dict["experimental_use_latest_role_message_only"] = experimental_use_latest_role_message_only
+        if skip_system_message_in_guardrail is not UNSET:
+            field_dict["skip_system_message_in_guardrail"] = skip_system_message_in_guardrail
         if category_thresholds is not UNSET:
             field_dict["category_thresholds"] = category_thresholds
         if detect_secrets_config is not UNSET:
@@ -1256,6 +1299,8 @@ class LitellmParams:
             field_dict["default_action"] = default_action
         if on_disallowed_action is not UNSET:
             field_dict["on_disallowed_action"] = on_disallowed_action
+        if block_on_error is not UNSET:
+            field_dict["block_on_error"] = block_on_error
         if use_v2 is not UNSET:
             field_dict["use_v2"] = use_v2
         if application_id is not UNSET:
@@ -1407,6 +1452,46 @@ class LitellmParams:
         optional_params = _parse_optional_params(d.pop("optional_params", UNSET))
 
 
+        def _parse_api_base(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        api_base = _parse_api_base(d.pop("api_base", UNSET))
+
+
+        def _parse_api_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        api_id = _parse_api_id(d.pop("api_id", UNSET))
+
+
+        def _parse_api_key(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        api_key = _parse_api_key(d.pop("api_key", UNSET))
+
+
+        def _parse_version(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        version = _parse_version(d.pop("version", UNSET))
+
+
         def _parse_blocked_languages(data: object) -> list[str] | None | Unset:
             if data is None:
                 return data
@@ -1438,26 +1523,6 @@ class LitellmParams:
         confidence_threshold = d.pop("confidence_threshold", UNSET)
 
         detect_execution_intent = d.pop("detect_execution_intent", UNSET)
-
-        def _parse_api_key(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        api_key = _parse_api_key(d.pop("api_key", UNSET))
-
-
-        def _parse_api_base(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        api_base = _parse_api_base(d.pop("api_base", UNSET))
-
 
         def _parse_evaluation_id(data: object) -> None | str | Unset:
             if data is None:
@@ -1790,6 +1855,16 @@ class LitellmParams:
             return cast(bool | None | Unset, data)
 
         experimental_use_latest_role_message_only = _parse_experimental_use_latest_role_message_only(d.pop("experimental_use_latest_role_message_only", UNSET))
+
+
+        def _parse_skip_system_message_in_guardrail(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        skip_system_message_in_guardrail = _parse_skip_system_message_in_guardrail(d.pop("skip_system_message_in_guardrail", UNSET))
 
 
         def _parse_category_thresholds(data: object) -> LakeraCategoryThresholds | None | Unset:
@@ -2253,6 +2328,16 @@ class LitellmParams:
             on_disallowed_action = LitellmParamsOnDisallowedAction(_on_disallowed_action)
 
 
+
+
+        def _parse_block_on_error(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        block_on_error = _parse_block_on_error(d.pop("block_on_error", UNSET))
 
 
         def _parse_use_v2(data: object) -> bool | None | Unset:
@@ -2745,12 +2830,14 @@ class LitellmParams:
             guardrail=guardrail,
             mode=mode,
             optional_params=optional_params,
+            api_base=api_base,
+            api_id=api_id,
+            api_key=api_key,
+            version=version,
             blocked_languages=blocked_languages,
             action=action,
             confidence_threshold=confidence_threshold,
             detect_execution_intent=detect_execution_intent,
-            api_key=api_key,
-            api_base=api_base,
             evaluation_id=evaluation_id,
             prompt_injections=prompt_injections,
             hallucinations_check=hallucinations_check,
@@ -2777,6 +2864,7 @@ class LitellmParams:
             pattern_redaction_format=pattern_redaction_format,
             keyword_redaction_tag=keyword_redaction_tag,
             experimental_use_latest_role_message_only=experimental_use_latest_role_message_only,
+            skip_system_message_in_guardrail=skip_system_message_in_guardrail,
             category_thresholds=category_thresholds,
             detect_secrets_config=detect_secrets_config,
             guard_name=guard_name,
@@ -2815,6 +2903,7 @@ class LitellmParams:
             rules=rules,
             default_action=default_action,
             on_disallowed_action=on_disallowed_action,
+            block_on_error=block_on_error,
             use_v2=use_v2,
             application_id=application_id,
             monitor_mode=monitor_mode,

@@ -47,6 +47,7 @@ class LiteLLMMCPServerTable:
             spec_path (None | str | Unset):
             auth_type (LiteLLMMCPServerTableAuthTypeType0 | None | Unset):
             credentials (MCPCredentials | None | Unset):
+            instructions (None | str | Unset):
             created_at (datetime.datetime | None | Unset):
             created_by (None | str | Unset):
             updated_at (datetime.datetime | None | Unset):
@@ -92,6 +93,7 @@ class LiteLLMMCPServerTable:
     spec_path: None | str | Unset = UNSET
     auth_type: LiteLLMMCPServerTableAuthTypeType0 | None | Unset = UNSET
     credentials: MCPCredentials | None | Unset = UNSET
+    instructions: None | str | Unset = UNSET
     created_at: datetime.datetime | None | Unset = UNSET
     created_by: None | str | Unset = UNSET
     updated_at: datetime.datetime | None | Unset = UNSET
@@ -188,6 +190,12 @@ class LiteLLMMCPServerTable:
             credentials = self.credentials.to_dict()
         else:
             credentials = self.credentials
+
+        instructions: None | str | Unset
+        if isinstance(self.instructions, Unset):
+            instructions = UNSET
+        else:
+            instructions = self.instructions
 
         created_at: None | str | Unset
         if isinstance(self.created_at, Unset):
@@ -417,6 +425,8 @@ class LiteLLMMCPServerTable:
             field_dict["auth_type"] = auth_type
         if credentials is not UNSET:
             field_dict["credentials"] = credentials
+        if instructions is not UNSET:
+            field_dict["instructions"] = instructions
         if created_at is not UNSET:
             field_dict["created_at"] = created_at
         if created_by is not UNSET:
@@ -593,6 +603,16 @@ class LiteLLMMCPServerTable:
             return cast(MCPCredentials | None | Unset, data)
 
         credentials = _parse_credentials(d.pop("credentials", UNSET))
+
+
+        def _parse_instructions(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        instructions = _parse_instructions(d.pop("instructions", UNSET))
 
 
         def _parse_created_at(data: object) -> datetime.datetime | None | Unset:
@@ -978,6 +998,7 @@ class LiteLLMMCPServerTable:
             spec_path=spec_path,
             auth_type=auth_type,
             credentials=credentials,
+            instructions=instructions,
             created_at=created_at,
             created_by=created_by,
             updated_at=updated_at,

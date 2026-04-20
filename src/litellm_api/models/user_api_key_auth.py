@@ -19,6 +19,7 @@ if TYPE_CHECKING:
   from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
   from ..models.member import Member
   from ..models.user_api_key_auth_aliases import UserAPIKeyAuthAliases
+  from ..models.user_api_key_auth_budget_limits_type_0_item import UserAPIKeyAuthBudgetLimitsType0Item
   from ..models.user_api_key_auth_config import UserAPIKeyAuthConfig
   from ..models.user_api_key_auth_end_user_model_max_budget_type_0 import UserAPIKeyAuthEndUserModelMaxBudgetType0
   from ..models.user_api_key_auth_jwt_claims_type_0 import UserAPIKeyAuthJwtClaimsType0
@@ -90,6 +91,7 @@ class UserAPIKeyAuth:
             last_rotation_at (datetime.datetime | None | Unset):
             key_rotation_at (datetime.datetime | None | Unset):
             router_settings (None | Unset | UserAPIKeyAuthRouterSettingsType0):
+            budget_limits (list[UserAPIKeyAuthBudgetLimitsType0Item] | None | Unset):
             team_spend (float | None | Unset):
             team_alias (None | str | Unset):
             team_tpm_limit (int | None | Unset):
@@ -111,6 +113,7 @@ class UserAPIKeyAuth:
             end_user_rpm_limit (int | None | Unset):
             end_user_max_budget (float | None | Unset):
             end_user_model_max_budget (None | Unset | UserAPIKeyAuthEndUserModelMaxBudgetType0):
+            organization_alias (None | str | Unset):
             organization_max_budget (float | None | Unset):
             organization_tpm_limit (int | None | Unset):
             organization_rpm_limit (int | None | Unset):
@@ -178,6 +181,7 @@ class UserAPIKeyAuth:
     last_rotation_at: datetime.datetime | None | Unset = UNSET
     key_rotation_at: datetime.datetime | None | Unset = UNSET
     router_settings: None | Unset | UserAPIKeyAuthRouterSettingsType0 = UNSET
+    budget_limits: list[UserAPIKeyAuthBudgetLimitsType0Item] | None | Unset = UNSET
     team_spend: float | None | Unset = UNSET
     team_alias: None | str | Unset = UNSET
     team_tpm_limit: int | None | Unset = UNSET
@@ -199,6 +203,7 @@ class UserAPIKeyAuth:
     end_user_rpm_limit: int | None | Unset = UNSET
     end_user_max_budget: float | None | Unset = UNSET
     end_user_model_max_budget: None | Unset | UserAPIKeyAuthEndUserModelMaxBudgetType0 = UNSET
+    organization_alias: None | str | Unset = UNSET
     organization_max_budget: float | None | Unset = UNSET
     organization_tpm_limit: int | None | Unset = UNSET
     organization_rpm_limit: int | None | Unset = UNSET
@@ -232,6 +237,7 @@ class UserAPIKeyAuth:
         from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
         from ..models.member import Member
         from ..models.user_api_key_auth_aliases import UserAPIKeyAuthAliases
+        from ..models.user_api_key_auth_budget_limits_type_0_item import UserAPIKeyAuthBudgetLimitsType0Item
         from ..models.user_api_key_auth_config import UserAPIKeyAuthConfig
         from ..models.user_api_key_auth_end_user_model_max_budget_type_0 import UserAPIKeyAuthEndUserModelMaxBudgetType0
         from ..models.user_api_key_auth_jwt_claims_type_0 import UserAPIKeyAuthJwtClaimsType0
@@ -511,6 +517,19 @@ class UserAPIKeyAuth:
         else:
             router_settings = self.router_settings
 
+        budget_limits: list[dict[str, Any]] | None | Unset
+        if isinstance(self.budget_limits, Unset):
+            budget_limits = UNSET
+        elif isinstance(self.budget_limits, list):
+            budget_limits = []
+            for budget_limits_type_0_item_data in self.budget_limits:
+                budget_limits_type_0_item = budget_limits_type_0_item_data.to_dict()
+                budget_limits.append(budget_limits_type_0_item)
+
+
+        else:
+            budget_limits = self.budget_limits
+
         team_spend: float | None | Unset
         if isinstance(self.team_spend, Unset):
             team_spend = UNSET
@@ -640,6 +659,12 @@ class UserAPIKeyAuth:
             end_user_model_max_budget = self.end_user_model_max_budget.to_dict()
         else:
             end_user_model_max_budget = self.end_user_model_max_budget
+
+        organization_alias: None | str | Unset
+        if isinstance(self.organization_alias, Unset):
+            organization_alias = UNSET
+        else:
+            organization_alias = self.organization_alias
 
         organization_max_budget: float | None | Unset
         if isinstance(self.organization_max_budget, Unset):
@@ -884,6 +909,8 @@ class UserAPIKeyAuth:
             field_dict["key_rotation_at"] = key_rotation_at
         if router_settings is not UNSET:
             field_dict["router_settings"] = router_settings
+        if budget_limits is not UNSET:
+            field_dict["budget_limits"] = budget_limits
         if team_spend is not UNSET:
             field_dict["team_spend"] = team_spend
         if team_alias is not UNSET:
@@ -926,6 +953,8 @@ class UserAPIKeyAuth:
             field_dict["end_user_max_budget"] = end_user_max_budget
         if end_user_model_max_budget is not UNSET:
             field_dict["end_user_model_max_budget"] = end_user_model_max_budget
+        if organization_alias is not UNSET:
+            field_dict["organization_alias"] = organization_alias
         if organization_max_budget is not UNSET:
             field_dict["organization_max_budget"] = organization_max_budget
         if organization_tpm_limit is not UNSET:
@@ -982,6 +1011,7 @@ class UserAPIKeyAuth:
         from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
         from ..models.member import Member
         from ..models.user_api_key_auth_aliases import UserAPIKeyAuthAliases
+        from ..models.user_api_key_auth_budget_limits_type_0_item import UserAPIKeyAuthBudgetLimitsType0Item
         from ..models.user_api_key_auth_config import UserAPIKeyAuthConfig
         from ..models.user_api_key_auth_end_user_model_max_budget_type_0 import UserAPIKeyAuthEndUserModelMaxBudgetType0
         from ..models.user_api_key_auth_jwt_claims_type_0 import UserAPIKeyAuthJwtClaimsType0
@@ -1519,6 +1549,31 @@ class UserAPIKeyAuth:
         router_settings = _parse_router_settings(d.pop("router_settings", UNSET))
 
 
+        def _parse_budget_limits(data: object) -> list[UserAPIKeyAuthBudgetLimitsType0Item] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                budget_limits_type_0 = []
+                _budget_limits_type_0 = data
+                for budget_limits_type_0_item_data in (_budget_limits_type_0):
+                    budget_limits_type_0_item = UserAPIKeyAuthBudgetLimitsType0Item.from_dict(budget_limits_type_0_item_data)
+
+
+
+                    budget_limits_type_0.append(budget_limits_type_0_item)
+
+                return budget_limits_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[UserAPIKeyAuthBudgetLimitsType0Item] | None | Unset, data)
+
+        budget_limits = _parse_budget_limits(d.pop("budget_limits", UNSET))
+
+
         def _parse_team_spend(data: object) -> float | None | Unset:
             if data is None:
                 return data
@@ -1752,6 +1807,16 @@ class UserAPIKeyAuth:
             return cast(None | Unset | UserAPIKeyAuthEndUserModelMaxBudgetType0, data)
 
         end_user_model_max_budget = _parse_end_user_model_max_budget(d.pop("end_user_model_max_budget", UNSET))
+
+
+        def _parse_organization_alias(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        organization_alias = _parse_organization_alias(d.pop("organization_alias", UNSET))
 
 
         def _parse_organization_max_budget(data: object) -> float | None | Unset:
@@ -2107,6 +2172,7 @@ class UserAPIKeyAuth:
             last_rotation_at=last_rotation_at,
             key_rotation_at=key_rotation_at,
             router_settings=router_settings,
+            budget_limits=budget_limits,
             team_spend=team_spend,
             team_alias=team_alias,
             team_tpm_limit=team_tpm_limit,
@@ -2128,6 +2194,7 @@ class UserAPIKeyAuth:
             end_user_rpm_limit=end_user_rpm_limit,
             end_user_max_budget=end_user_max_budget,
             end_user_model_max_budget=end_user_model_max_budget,
+            organization_alias=organization_alias,
             organization_max_budget=organization_max_budget,
             organization_tpm_limit=organization_tpm_limit,
             organization_rpm_limit=organization_rpm_limit,

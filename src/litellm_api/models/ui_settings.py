@@ -33,8 +33,14 @@ class UISettings:
                 can see in the UI sidebar. If not set, all pages are visible based on role permissions.
             require_auth_for_public_ai_hub (bool | Unset): If true, requires authentication for accessing the public AI Hub.
                 Default: False.
-            forward_client_headers_to_llm_api (bool | Unset): If enabled, forwards client headers (e.g. Authorization) to
-                the LLM API. Required for Claude Code with Max subscription. Default: False.
+            forward_client_headers_to_llm_api (bool | Unset): Forwards client headers (Authorization, anthropic-beta, and
+                x-* custom headers) to the upstream LLM. Enable for Claude Code with a Max subscription (forwards the OAuth
+                token) or to pass custom/tracing headers through to the provider. Independent of the BYOK toggle — enable only
+                the one(s) you need. Default: False.
+            forward_llm_provider_auth_headers (bool | Unset): Forwards provider auth headers (x-api-key, x-goog-api-key,
+                api-key, ocp-apim-subscription-key) to the upstream LLM, overriding any deployment-configured key for that
+                request. Enable for Claude Code BYOK (clients bring their own API key). Independent of the client-headers toggle
+                — enable only the one(s) you need. Default: False.
             enable_projects_ui (bool | Unset): If enabled, shows the Projects feature in the UI sidebar and the project
                 field in key management. Default: False.
             disable_agents_for_internal_users (bool | Unset): If true, internal users cannot access agent management
@@ -56,6 +62,7 @@ class UISettings:
     enabled_ui_pages_internal_users: list[str] | None | Unset = UNSET
     require_auth_for_public_ai_hub: bool | Unset = False
     forward_client_headers_to_llm_api: bool | Unset = False
+    forward_llm_provider_auth_headers: bool | Unset = False
     enable_projects_ui: bool | Unset = False
     disable_agents_for_internal_users: bool | Unset = False
     allow_agents_for_team_admins: bool | Unset = False
@@ -88,6 +95,8 @@ class UISettings:
 
         forward_client_headers_to_llm_api = self.forward_client_headers_to_llm_api
 
+        forward_llm_provider_auth_headers = self.forward_llm_provider_auth_headers
+
         enable_projects_ui = self.enable_projects_ui
 
         disable_agents_for_internal_users = self.disable_agents_for_internal_users
@@ -117,6 +126,8 @@ class UISettings:
             field_dict["require_auth_for_public_ai_hub"] = require_auth_for_public_ai_hub
         if forward_client_headers_to_llm_api is not UNSET:
             field_dict["forward_client_headers_to_llm_api"] = forward_client_headers_to_llm_api
+        if forward_llm_provider_auth_headers is not UNSET:
+            field_dict["forward_llm_provider_auth_headers"] = forward_llm_provider_auth_headers
         if enable_projects_ui is not UNSET:
             field_dict["enable_projects_ui"] = enable_projects_ui
         if disable_agents_for_internal_users is not UNSET:
@@ -165,6 +176,8 @@ class UISettings:
 
         forward_client_headers_to_llm_api = d.pop("forward_client_headers_to_llm_api", UNSET)
 
+        forward_llm_provider_auth_headers = d.pop("forward_llm_provider_auth_headers", UNSET)
+
         enable_projects_ui = d.pop("enable_projects_ui", UNSET)
 
         disable_agents_for_internal_users = d.pop("disable_agents_for_internal_users", UNSET)
@@ -185,6 +198,7 @@ class UISettings:
             enabled_ui_pages_internal_users=enabled_ui_pages_internal_users,
             require_auth_for_public_ai_hub=require_auth_for_public_ai_hub,
             forward_client_headers_to_llm_api=forward_client_headers_to_llm_api,
+            forward_llm_provider_auth_headers=forward_llm_provider_auth_headers,
             enable_projects_ui=enable_projects_ui,
             disable_agents_for_internal_users=disable_agents_for_internal_users,
             allow_agents_for_team_admins=allow_agents_for_team_admins,

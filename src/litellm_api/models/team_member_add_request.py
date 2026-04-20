@@ -44,11 +44,14 @@ class TeamMemberAddRequest:
             team_id (str): The ID of the team to add the member to
             max_budget_in_team (float | None | Unset): Maximum budget allocated to this user within the team. If not set,
                 user has unlimited budget within team limits
+            allowed_models (list[str] | None | Unset): List of models this team member can access. If not set, inherits the
+                team's default_team_member_models or all team models.
      """
 
     member: list[Member] | Member
     team_id: str
     max_budget_in_team: float | None | Unset = UNSET
+    allowed_models: list[str] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -77,6 +80,16 @@ class TeamMemberAddRequest:
         else:
             max_budget_in_team = self.max_budget_in_team
 
+        allowed_models: list[str] | None | Unset
+        if isinstance(self.allowed_models, Unset):
+            allowed_models = UNSET
+        elif isinstance(self.allowed_models, list):
+            allowed_models = self.allowed_models
+
+
+        else:
+            allowed_models = self.allowed_models
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -86,6 +99,8 @@ class TeamMemberAddRequest:
         })
         if max_budget_in_team is not UNSET:
             field_dict["max_budget_in_team"] = max_budget_in_team
+        if allowed_models is not UNSET:
+            field_dict["allowed_models"] = allowed_models
 
         return field_dict
 
@@ -134,10 +149,29 @@ class TeamMemberAddRequest:
         max_budget_in_team = _parse_max_budget_in_team(d.pop("max_budget_in_team", UNSET))
 
 
+        def _parse_allowed_models(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                allowed_models_type_0 = cast(list[str], data)
+
+                return allowed_models_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        allowed_models = _parse_allowed_models(d.pop("allowed_models", UNSET))
+
+
         team_member_add_request = cls(
             member=member,
             team_id=team_id,
             max_budget_in_team=max_budget_in_team,
+            allowed_models=allowed_models,
         )
 
 

@@ -40,6 +40,7 @@ class UpdateProjectRequest:
             rpm_limit (int | None | Unset):
             model_max_budget (None | Unset | UpdateProjectRequestModelMaxBudgetType0):
             budget_duration (None | str | Unset):
+            allowed_models (list[str] | None | Unset):
             project_alias (None | str | Unset):
             description (None | str | Unset):
             team_id (None | str | Unset):
@@ -63,6 +64,7 @@ class UpdateProjectRequest:
     rpm_limit: int | None | Unset = UNSET
     model_max_budget: None | Unset | UpdateProjectRequestModelMaxBudgetType0 = UNSET
     budget_duration: None | str | Unset = UNSET
+    allowed_models: list[str] | None | Unset = UNSET
     project_alias: None | str | Unset = UNSET
     description: None | str | Unset = UNSET
     team_id: None | str | Unset = UNSET
@@ -138,6 +140,16 @@ class UpdateProjectRequest:
             budget_duration = UNSET
         else:
             budget_duration = self.budget_duration
+
+        allowed_models: list[str] | None | Unset
+        if isinstance(self.allowed_models, Unset):
+            allowed_models = UNSET
+        elif isinstance(self.allowed_models, list):
+            allowed_models = self.allowed_models
+
+
+        else:
+            allowed_models = self.allowed_models
 
         project_alias: None | str | Unset
         if isinstance(self.project_alias, Unset):
@@ -257,6 +269,8 @@ class UpdateProjectRequest:
             field_dict["model_max_budget"] = model_max_budget
         if budget_duration is not UNSET:
             field_dict["budget_duration"] = budget_duration
+        if allowed_models is not UNSET:
+            field_dict["allowed_models"] = allowed_models
         if project_alias is not UNSET:
             field_dict["project_alias"] = project_alias
         if description is not UNSET:
@@ -384,6 +398,24 @@ class UpdateProjectRequest:
             return cast(None | str | Unset, data)
 
         budget_duration = _parse_budget_duration(d.pop("budget_duration", UNSET))
+
+
+        def _parse_allowed_models(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                allowed_models_type_0 = cast(list[str], data)
+
+                return allowed_models_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        allowed_models = _parse_allowed_models(d.pop("allowed_models", UNSET))
 
 
         def _parse_project_alias(data: object) -> None | str | Unset:
@@ -588,6 +620,7 @@ class UpdateProjectRequest:
             rpm_limit=rpm_limit,
             model_max_budget=model_max_budget,
             budget_duration=budget_duration,
+            allowed_models=allowed_models,
             project_alias=project_alias,
             description=description,
             team_id=team_id,

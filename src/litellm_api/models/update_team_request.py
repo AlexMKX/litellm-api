@@ -13,6 +13,7 @@ from typing import cast
 
 if TYPE_CHECKING:
   from ..models.allowed_vector_store_index_item import AllowedVectorStoreIndexItem
+  from ..models.budget_limit_entry import BudgetLimitEntry
   from ..models.lite_llm_object_permission_base import LiteLLMObjectPermissionBase
   from ..models.update_team_request_enforced_batch_output_expires_after_type_0 import UpdateTeamRequestEnforcedBatchOutputExpiresAfterType0
   from ..models.update_team_request_enforced_file_expires_after_type_0 import UpdateTeamRequestEnforcedFileExpiresAfterType0
@@ -80,6 +81,8 @@ class UpdateTeamRequest:
             enforced_file_expires_after (None | Unset | UpdateTeamRequestEnforcedFileExpiresAfterType0):
             router_settings (None | Unset | UpdateTeamRequestRouterSettingsType0):
             access_group_ids (list[str] | None | Unset):
+            budget_limits (list[BudgetLimitEntry] | None | Unset):
+            default_team_member_models (list[str] | None | Unset):
      """
 
     team_id: str
@@ -113,6 +116,8 @@ class UpdateTeamRequest:
     enforced_file_expires_after: None | Unset | UpdateTeamRequestEnforcedFileExpiresAfterType0 = UNSET
     router_settings: None | Unset | UpdateTeamRequestRouterSettingsType0 = UNSET
     access_group_ids: list[str] | None | Unset = UNSET
+    budget_limits: list[BudgetLimitEntry] | None | Unset = UNSET
+    default_team_member_models: list[str] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -121,6 +126,7 @@ class UpdateTeamRequest:
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.allowed_vector_store_index_item import AllowedVectorStoreIndexItem
+        from ..models.budget_limit_entry import BudgetLimitEntry
         from ..models.lite_llm_object_permission_base import LiteLLMObjectPermissionBase
         from ..models.update_team_request_enforced_batch_output_expires_after_type_0 import UpdateTeamRequestEnforcedBatchOutputExpiresAfterType0
         from ..models.update_team_request_enforced_file_expires_after_type_0 import UpdateTeamRequestEnforcedFileExpiresAfterType0
@@ -365,6 +371,29 @@ class UpdateTeamRequest:
         else:
             access_group_ids = self.access_group_ids
 
+        budget_limits: list[dict[str, Any]] | None | Unset
+        if isinstance(self.budget_limits, Unset):
+            budget_limits = UNSET
+        elif isinstance(self.budget_limits, list):
+            budget_limits = []
+            for budget_limits_type_0_item_data in self.budget_limits:
+                budget_limits_type_0_item = budget_limits_type_0_item_data.to_dict()
+                budget_limits.append(budget_limits_type_0_item)
+
+
+        else:
+            budget_limits = self.budget_limits
+
+        default_team_member_models: list[str] | None | Unset
+        if isinstance(self.default_team_member_models, Unset):
+            default_team_member_models = UNSET
+        elif isinstance(self.default_team_member_models, list):
+            default_team_member_models = self.default_team_member_models
+
+
+        else:
+            default_team_member_models = self.default_team_member_models
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -431,6 +460,10 @@ class UpdateTeamRequest:
             field_dict["router_settings"] = router_settings
         if access_group_ids is not UNSET:
             field_dict["access_group_ids"] = access_group_ids
+        if budget_limits is not UNSET:
+            field_dict["budget_limits"] = budget_limits
+        if default_team_member_models is not UNSET:
+            field_dict["default_team_member_models"] = default_team_member_models
 
         return field_dict
 
@@ -439,6 +472,7 @@ class UpdateTeamRequest:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.allowed_vector_store_index_item import AllowedVectorStoreIndexItem
+        from ..models.budget_limit_entry import BudgetLimitEntry
         from ..models.lite_llm_object_permission_base import LiteLLMObjectPermissionBase
         from ..models.update_team_request_enforced_batch_output_expires_after_type_0 import UpdateTeamRequestEnforcedBatchOutputExpiresAfterType0
         from ..models.update_team_request_enforced_file_expires_after_type_0 import UpdateTeamRequestEnforcedFileExpiresAfterType0
@@ -912,6 +946,49 @@ class UpdateTeamRequest:
         access_group_ids = _parse_access_group_ids(d.pop("access_group_ids", UNSET))
 
 
+        def _parse_budget_limits(data: object) -> list[BudgetLimitEntry] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                budget_limits_type_0 = []
+                _budget_limits_type_0 = data
+                for budget_limits_type_0_item_data in (_budget_limits_type_0):
+                    budget_limits_type_0_item = BudgetLimitEntry.from_dict(budget_limits_type_0_item_data)
+
+
+
+                    budget_limits_type_0.append(budget_limits_type_0_item)
+
+                return budget_limits_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[BudgetLimitEntry] | None | Unset, data)
+
+        budget_limits = _parse_budget_limits(d.pop("budget_limits", UNSET))
+
+
+        def _parse_default_team_member_models(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                default_team_member_models_type_0 = cast(list[str], data)
+
+                return default_team_member_models_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        default_team_member_models = _parse_default_team_member_models(d.pop("default_team_member_models", UNSET))
+
+
         update_team_request = cls(
             team_id=team_id,
             team_alias=team_alias,
@@ -944,6 +1021,8 @@ class UpdateTeamRequest:
             enforced_file_expires_after=enforced_file_expires_after,
             router_settings=router_settings,
             access_group_ids=access_group_ids,
+            budget_limits=budget_limits,
+            default_team_member_models=default_team_member_models,
         )
 
 
