@@ -9,14 +9,15 @@ from ...types import Response, UNSET
 from ... import errors
 
 from ...models.http_validation_error import HTTPValidationError
-from ...models.update_ui_settings_update_ui_settings_patch_settings_body import UpdateUiSettingsUpdateUiSettingsPatchSettingsBody
+from ...models.lite_llm_memory_row import LiteLLMMemoryRow
+from ...models.memory_create_request import MemoryCreateRequest
 from typing import cast
 
 
 
 def _get_kwargs(
     *,
-    body: UpdateUiSettingsUpdateUiSettingsPatchSettingsBody,
+    body: MemoryCreateRequest,
 
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
@@ -27,8 +28,8 @@ def _get_kwargs(
     
 
     _kwargs: dict[str, Any] = {
-        "method": "patch",
-        "url": "/update/ui_settings",
+        "method": "post",
+        "url": "/v1/memory",
     }
 
     _kwargs["json"] = body.to_dict()
@@ -41,9 +42,12 @@ def _get_kwargs(
 
 
 
-def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Any | HTTPValidationError | None:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> HTTPValidationError | LiteLLMMemoryRow | None:
     if response.status_code == 200:
-        response_200 = response.json()
+        response_200 = LiteLLMMemoryRow.from_dict(response.json())
+
+
+
         return response_200
 
     if response.status_code == 422:
@@ -59,7 +63,7 @@ def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Res
         return None
 
 
-def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Any | HTTPValidationError]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[HTTPValidationError | LiteLLMMemoryRow]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -71,23 +75,22 @@ def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Res
 def sync_detailed(
     *,
     client: AuthenticatedClient,
-    body: UpdateUiSettingsUpdateUiSettingsPatchSettingsBody,
+    body: MemoryCreateRequest,
 
-) -> Response[Any | HTTPValidationError]:
-    """ Update Ui Settings
+) -> Response[HTTPValidationError | LiteLLMMemoryRow]:
+    """ Create Memory
 
-     Update UI-specific configuration flags.
-    Only proxy admins are allowed to modify these settings.
+     Create a new memory entry for the caller (or, for admins, any scope).
 
     Args:
-        body (UpdateUiSettingsUpdateUiSettingsPatchSettingsBody):
+        body (MemoryCreateRequest):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | HTTPValidationError]
+        Response[HTTPValidationError | LiteLLMMemoryRow]
      """
 
 
@@ -105,23 +108,22 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient,
-    body: UpdateUiSettingsUpdateUiSettingsPatchSettingsBody,
+    body: MemoryCreateRequest,
 
-) -> Any | HTTPValidationError | None:
-    """ Update Ui Settings
+) -> HTTPValidationError | LiteLLMMemoryRow | None:
+    """ Create Memory
 
-     Update UI-specific configuration flags.
-    Only proxy admins are allowed to modify these settings.
+     Create a new memory entry for the caller (or, for admins, any scope).
 
     Args:
-        body (UpdateUiSettingsUpdateUiSettingsPatchSettingsBody):
+        body (MemoryCreateRequest):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | HTTPValidationError
+        HTTPValidationError | LiteLLMMemoryRow
      """
 
 
@@ -134,23 +136,22 @@ body=body,
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
-    body: UpdateUiSettingsUpdateUiSettingsPatchSettingsBody,
+    body: MemoryCreateRequest,
 
-) -> Response[Any | HTTPValidationError]:
-    """ Update Ui Settings
+) -> Response[HTTPValidationError | LiteLLMMemoryRow]:
+    """ Create Memory
 
-     Update UI-specific configuration flags.
-    Only proxy admins are allowed to modify these settings.
+     Create a new memory entry for the caller (or, for admins, any scope).
 
     Args:
-        body (UpdateUiSettingsUpdateUiSettingsPatchSettingsBody):
+        body (MemoryCreateRequest):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | HTTPValidationError]
+        Response[HTTPValidationError | LiteLLMMemoryRow]
      """
 
 
@@ -168,23 +169,22 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient,
-    body: UpdateUiSettingsUpdateUiSettingsPatchSettingsBody,
+    body: MemoryCreateRequest,
 
-) -> Any | HTTPValidationError | None:
-    """ Update Ui Settings
+) -> HTTPValidationError | LiteLLMMemoryRow | None:
+    """ Create Memory
 
-     Update UI-specific configuration flags.
-    Only proxy admins are allowed to modify these settings.
+     Create a new memory entry for the caller (or, for admins, any scope).
 
     Args:
-        body (UpdateUiSettingsUpdateUiSettingsPatchSettingsBody):
+        body (MemoryCreateRequest):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | HTTPValidationError
+        HTTPValidationError | LiteLLMMemoryRow
      """
 
 

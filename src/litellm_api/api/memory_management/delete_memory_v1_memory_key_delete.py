@@ -9,41 +9,37 @@ from ...types import Response, UNSET
 from ... import errors
 
 from ...models.http_validation_error import HTTPValidationError
-from ...models.update_ui_settings_update_ui_settings_patch_settings_body import UpdateUiSettingsUpdateUiSettingsPatchSettingsBody
+from ...models.memory_delete_response import MemoryDeleteResponse
 from typing import cast
 
 
 
 def _get_kwargs(
-    *,
-    body: UpdateUiSettingsUpdateUiSettingsPatchSettingsBody,
+    key: str,
 
 ) -> dict[str, Any]:
-    headers: dict[str, Any] = {}
-
+    
 
     
 
     
 
     _kwargs: dict[str, Any] = {
-        "method": "patch",
-        "url": "/update/ui_settings",
+        "method": "delete",
+        "url": "/v1/memory/{key}".format(key=quote(str(key), safe=""),),
     }
 
-    _kwargs["json"] = body.to_dict()
 
-
-    headers["Content-Type"] = "application/json"
-
-    _kwargs["headers"] = headers
     return _kwargs
 
 
 
-def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Any | HTTPValidationError | None:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> HTTPValidationError | MemoryDeleteResponse | None:
     if response.status_code == 200:
-        response_200 = response.json()
+        response_200 = MemoryDeleteResponse.from_dict(response.json())
+
+
+
         return response_200
 
     if response.status_code == 422:
@@ -59,7 +55,7 @@ def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Res
         return None
 
 
-def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Any | HTTPValidationError]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[HTTPValidationError | MemoryDeleteResponse]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -69,30 +65,29 @@ def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Res
 
 
 def sync_detailed(
+    key: str,
     *,
     client: AuthenticatedClient,
-    body: UpdateUiSettingsUpdateUiSettingsPatchSettingsBody,
 
-) -> Response[Any | HTTPValidationError]:
-    """ Update Ui Settings
+) -> Response[HTTPValidationError | MemoryDeleteResponse]:
+    """ Delete Memory
 
-     Update UI-specific configuration flags.
-    Only proxy admins are allowed to modify these settings.
+     Delete a memory entry by key, scoped to the caller.
 
     Args:
-        body (UpdateUiSettingsUpdateUiSettingsPatchSettingsBody):
+        key (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | HTTPValidationError]
+        Response[HTTPValidationError | MemoryDeleteResponse]
      """
 
 
     kwargs = _get_kwargs(
-        body=body,
+        key=key,
 
     )
 
@@ -103,59 +98,57 @@ def sync_detailed(
     return _build_response(client=client, response=response)
 
 def sync(
+    key: str,
     *,
     client: AuthenticatedClient,
-    body: UpdateUiSettingsUpdateUiSettingsPatchSettingsBody,
 
-) -> Any | HTTPValidationError | None:
-    """ Update Ui Settings
+) -> HTTPValidationError | MemoryDeleteResponse | None:
+    """ Delete Memory
 
-     Update UI-specific configuration flags.
-    Only proxy admins are allowed to modify these settings.
+     Delete a memory entry by key, scoped to the caller.
 
     Args:
-        body (UpdateUiSettingsUpdateUiSettingsPatchSettingsBody):
+        key (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | HTTPValidationError
+        HTTPValidationError | MemoryDeleteResponse
      """
 
 
     return sync_detailed(
-        client=client,
-body=body,
+        key=key,
+client=client,
 
     ).parsed
 
 async def asyncio_detailed(
+    key: str,
     *,
     client: AuthenticatedClient,
-    body: UpdateUiSettingsUpdateUiSettingsPatchSettingsBody,
 
-) -> Response[Any | HTTPValidationError]:
-    """ Update Ui Settings
+) -> Response[HTTPValidationError | MemoryDeleteResponse]:
+    """ Delete Memory
 
-     Update UI-specific configuration flags.
-    Only proxy admins are allowed to modify these settings.
+     Delete a memory entry by key, scoped to the caller.
 
     Args:
-        body (UpdateUiSettingsUpdateUiSettingsPatchSettingsBody):
+        key (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | HTTPValidationError]
+        Response[HTTPValidationError | MemoryDeleteResponse]
      """
 
 
     kwargs = _get_kwargs(
-        body=body,
+        key=key,
 
     )
 
@@ -166,30 +159,29 @@ async def asyncio_detailed(
     return _build_response(client=client, response=response)
 
 async def asyncio(
+    key: str,
     *,
     client: AuthenticatedClient,
-    body: UpdateUiSettingsUpdateUiSettingsPatchSettingsBody,
 
-) -> Any | HTTPValidationError | None:
-    """ Update Ui Settings
+) -> HTTPValidationError | MemoryDeleteResponse | None:
+    """ Delete Memory
 
-     Update UI-specific configuration flags.
-    Only proxy admins are allowed to modify these settings.
+     Delete a memory entry by key, scoped to the caller.
 
     Args:
-        body (UpdateUiSettingsUpdateUiSettingsPatchSettingsBody):
+        key (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | HTTPValidationError
+        HTTPValidationError | MemoryDeleteResponse
      """
 
 
     return (await asyncio_detailed(
-        client=client,
-body=body,
+        key=key,
+client=client,
 
     )).parsed

@@ -263,8 +263,8 @@ def sync_detailed(
         end_user (None | str | Unset): Filter logs by end user
         error_code (None | str | Unset): Filter logs by error code (e.g., '404', '500')
         error_message (None | str | Unset): Filter logs by error message (partial string match)
-        sort_by (str | Unset): Sort logs by field: spend, total_tokens, startTime, or endTime
-            Default: 'startTime'.
+        sort_by (str | Unset): Sort logs by field: spend, total_tokens, startTime, endTime,
+            request_duration_ms, model, or ttft_ms Default: 'startTime'.
         sort_order (None | str | Unset): Sort order: asc or desc Default: 'desc'.
 
     Raises:
@@ -361,8 +361,8 @@ def sync(
         end_user (None | str | Unset): Filter logs by end user
         error_code (None | str | Unset): Filter logs by error code (e.g., '404', '500')
         error_message (None | str | Unset): Filter logs by error message (partial string match)
-        sort_by (str | Unset): Sort logs by field: spend, total_tokens, startTime, or endTime
-            Default: 'startTime'.
+        sort_by (str | Unset): Sort logs by field: spend, total_tokens, startTime, endTime,
+            request_duration_ms, model, or ttft_ms Default: 'startTime'.
         sort_order (None | str | Unset): Sort order: asc or desc Default: 'desc'.
 
     Raises:
@@ -454,8 +454,8 @@ async def asyncio_detailed(
         end_user (None | str | Unset): Filter logs by end user
         error_code (None | str | Unset): Filter logs by error code (e.g., '404', '500')
         error_message (None | str | Unset): Filter logs by error message (partial string match)
-        sort_by (str | Unset): Sort logs by field: spend, total_tokens, startTime, or endTime
-            Default: 'startTime'.
+        sort_by (str | Unset): Sort logs by field: spend, total_tokens, startTime, endTime,
+            request_duration_ms, model, or ttft_ms Default: 'startTime'.
         sort_order (None | str | Unset): Sort order: asc or desc Default: 'desc'.
 
     Raises:
@@ -552,8 +552,8 @@ async def asyncio(
         end_user (None | str | Unset): Filter logs by end user
         error_code (None | str | Unset): Filter logs by error code (e.g., '404', '500')
         error_message (None | str | Unset): Filter logs by error message (partial string match)
-        sort_by (str | Unset): Sort logs by field: spend, total_tokens, startTime, or endTime
-            Default: 'startTime'.
+        sort_by (str | Unset): Sort logs by field: spend, total_tokens, startTime, endTime,
+            request_duration_ms, model, or ttft_ms Default: 'startTime'.
         sort_order (None | str | Unset): Sort order: asc or desc Default: 'desc'.
 
     Raises:

@@ -12,6 +12,8 @@ from ..models.pii_entity_type import PiiEntityType
 from ..types import UNSET, Unset
 from typing import cast
 
+if TYPE_CHECKING:
+  from ..models.apply_guardrail_request_messages_type_0_item import ApplyGuardrailRequestMessagesType0Item
 
 
 
@@ -29,12 +31,16 @@ class ApplyGuardrailRequest:
             text (str):
             language (None | str | Unset):
             entities (list[PiiEntityType] | None | Unset):
+            input_type (str | Unset):  Default: 'request'.
+            messages (list[ApplyGuardrailRequestMessagesType0Item] | None | Unset):
      """
 
     guardrail_name: str
     text: str
     language: None | str | Unset = UNSET
     entities: list[PiiEntityType] | None | Unset = UNSET
+    input_type: str | Unset = 'request'
+    messages: list[ApplyGuardrailRequestMessagesType0Item] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -42,6 +48,7 @@ class ApplyGuardrailRequest:
 
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.apply_guardrail_request_messages_type_0_item import ApplyGuardrailRequestMessagesType0Item
         guardrail_name = self.guardrail_name
 
         text = self.text
@@ -65,6 +72,21 @@ class ApplyGuardrailRequest:
         else:
             entities = self.entities
 
+        input_type = self.input_type
+
+        messages: list[dict[str, Any]] | None | Unset
+        if isinstance(self.messages, Unset):
+            messages = UNSET
+        elif isinstance(self.messages, list):
+            messages = []
+            for messages_type_0_item_data in self.messages:
+                messages_type_0_item = messages_type_0_item_data.to_dict()
+                messages.append(messages_type_0_item)
+
+
+        else:
+            messages = self.messages
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -76,6 +98,10 @@ class ApplyGuardrailRequest:
             field_dict["language"] = language
         if entities is not UNSET:
             field_dict["entities"] = entities
+        if input_type is not UNSET:
+            field_dict["input_type"] = input_type
+        if messages is not UNSET:
+            field_dict["messages"] = messages
 
         return field_dict
 
@@ -83,6 +109,7 @@ class ApplyGuardrailRequest:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.apply_guardrail_request_messages_type_0_item import ApplyGuardrailRequestMessagesType0Item
         d = dict(src_dict)
         guardrail_name = d.pop("guardrail_name")
 
@@ -123,11 +150,40 @@ class ApplyGuardrailRequest:
         entities = _parse_entities(d.pop("entities", UNSET))
 
 
+        input_type = d.pop("input_type", UNSET)
+
+        def _parse_messages(data: object) -> list[ApplyGuardrailRequestMessagesType0Item] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                messages_type_0 = []
+                _messages_type_0 = data
+                for messages_type_0_item_data in (_messages_type_0):
+                    messages_type_0_item = ApplyGuardrailRequestMessagesType0Item.from_dict(messages_type_0_item_data)
+
+
+
+                    messages_type_0.append(messages_type_0_item)
+
+                return messages_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[ApplyGuardrailRequestMessagesType0Item] | None | Unset, data)
+
+        messages = _parse_messages(d.pop("messages", UNSET))
+
+
         apply_guardrail_request = cls(
             guardrail_name=guardrail_name,
             text=text,
             language=language,
             entities=entities,
+            input_type=input_type,
+            messages=messages,
         )
 
 

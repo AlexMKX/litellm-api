@@ -136,6 +136,7 @@ class UserAPIKeyAuth:
             user (Any | None | Unset):
             created_by_user (Any | None | Unset):
             end_user_object_permission (LiteLLMObjectPermissionTable | None | Unset):
+            team_object_permission (LiteLLMObjectPermissionTable | None | Unset):
             jwt_claims (None | Unset | UserAPIKeyAuthJwtClaimsType0):
      """
 
@@ -226,6 +227,7 @@ class UserAPIKeyAuth:
     user: Any | None | Unset = UNSET
     created_by_user: Any | None | Unset = UNSET
     end_user_object_permission: LiteLLMObjectPermissionTable | None | Unset = UNSET
+    team_object_permission: LiteLLMObjectPermissionTable | None | Unset = UNSET
     jwt_claims: None | Unset | UserAPIKeyAuthJwtClaimsType0 = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -812,6 +814,14 @@ class UserAPIKeyAuth:
         else:
             end_user_object_permission = self.end_user_object_permission
 
+        team_object_permission: dict[str, Any] | None | Unset
+        if isinstance(self.team_object_permission, Unset):
+            team_object_permission = UNSET
+        elif isinstance(self.team_object_permission, LiteLLMObjectPermissionTable):
+            team_object_permission = self.team_object_permission.to_dict()
+        else:
+            team_object_permission = self.team_object_permission
+
         jwt_claims: dict[str, Any] | None | Unset
         if isinstance(self.jwt_claims, Unset):
             jwt_claims = UNSET
@@ -999,6 +1009,8 @@ class UserAPIKeyAuth:
             field_dict["created_by_user"] = created_by_user
         if end_user_object_permission is not UNSET:
             field_dict["end_user_object_permission"] = end_user_object_permission
+        if team_object_permission is not UNSET:
+            field_dict["team_object_permission"] = team_object_permission
         if jwt_claims is not UNSET:
             field_dict["jwt_claims"] = jwt_claims
 
@@ -2109,6 +2121,26 @@ class UserAPIKeyAuth:
         end_user_object_permission = _parse_end_user_object_permission(d.pop("end_user_object_permission", UNSET))
 
 
+        def _parse_team_object_permission(data: object) -> LiteLLMObjectPermissionTable | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                team_object_permission_type_0 = LiteLLMObjectPermissionTable.from_dict(data)
+
+
+
+                return team_object_permission_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(LiteLLMObjectPermissionTable | None | Unset, data)
+
+        team_object_permission = _parse_team_object_permission(d.pop("team_object_permission", UNSET))
+
+
         def _parse_jwt_claims(data: object) -> None | Unset | UserAPIKeyAuthJwtClaimsType0:
             if data is None:
                 return data
@@ -2217,6 +2249,7 @@ class UserAPIKeyAuth:
             user=user,
             created_by_user=created_by_user,
             end_user_object_permission=end_user_object_permission,
+            team_object_permission=team_object_permission,
             jwt_claims=jwt_claims,
         )
 

@@ -13,8 +13,10 @@ from typing import cast
 
 if TYPE_CHECKING:
   from ..models.configurable_clientside_params_custom_auth import ConfigurableClientsideParamsCustomAuth
+  from ..models.lite_llm_params_adaptive_router_config_type_0 import LiteLLMParamsAdaptiveRouterConfigType0
   from ..models.lite_llm_params_complexity_router_config_type_0 import LiteLLMParamsComplexityRouterConfigType0
   from ..models.lite_llm_params_model_info_type_0 import LiteLLMParamsModelInfoType0
+  from ..models.lite_llm_params_quality_router_config_type_0 import LiteLLMParamsQualityRouterConfigType0
   from ..models.lite_llm_params_search_context_cost_per_query_type_0 import LiteLLMParamsSearchContextCostPerQueryType0
   from ..models.lite_llm_params_tiered_pricing_type_0_item import LiteLLMParamsTieredPricingType0Item
   from ..models.lite_llm_params_vertex_credentials_type_1 import LiteLLMParamsVertexCredentialsType1
@@ -113,6 +115,7 @@ class LiteLLMParams:
             budget_duration (None | str | Unset):
             use_in_pass_through (bool | None | Unset):  Default: False.
             use_litellm_proxy (bool | None | Unset):  Default: False.
+            use_chat_completions_api (bool | None | Unset):
             merge_reasoning_content_in_choices (bool | None | Unset):  Default: False.
             model_info (LiteLLMParamsModelInfoType0 | None | Unset):
             mock_response (Any | ModelResponse | None | str | Unset):
@@ -124,6 +127,10 @@ class LiteLLMParams:
             auto_router_embedding_model (None | str | Unset):
             complexity_router_config (LiteLLMParamsComplexityRouterConfigType0 | None | Unset):
             complexity_router_default_model (None | str | Unset):
+            adaptive_router_default_model (None | str | Unset):
+            adaptive_router_config (LiteLLMParamsAdaptiveRouterConfigType0 | None | Unset):
+            quality_router_config (LiteLLMParamsQualityRouterConfigType0 | None | Unset):
+            quality_router_default_model (None | str | Unset):
             s3_bucket_name (None | str | Unset):
             s3_encryption_key_id (None | str | Unset):
             gcs_bucket_name (None | str | Unset):
@@ -211,6 +218,7 @@ class LiteLLMParams:
     budget_duration: None | str | Unset = UNSET
     use_in_pass_through: bool | None | Unset = False
     use_litellm_proxy: bool | None | Unset = False
+    use_chat_completions_api: bool | None | Unset = UNSET
     merge_reasoning_content_in_choices: bool | None | Unset = False
     model_info: LiteLLMParamsModelInfoType0 | None | Unset = UNSET
     mock_response: Any | ModelResponse | None | str | Unset = UNSET
@@ -222,6 +230,10 @@ class LiteLLMParams:
     auto_router_embedding_model: None | str | Unset = UNSET
     complexity_router_config: LiteLLMParamsComplexityRouterConfigType0 | None | Unset = UNSET
     complexity_router_default_model: None | str | Unset = UNSET
+    adaptive_router_default_model: None | str | Unset = UNSET
+    adaptive_router_config: LiteLLMParamsAdaptiveRouterConfigType0 | None | Unset = UNSET
+    quality_router_config: LiteLLMParamsQualityRouterConfigType0 | None | Unset = UNSET
+    quality_router_default_model: None | str | Unset = UNSET
     s3_bucket_name: None | str | Unset = UNSET
     s3_encryption_key_id: None | str | Unset = UNSET
     gcs_bucket_name: None | str | Unset = UNSET
@@ -235,8 +247,10 @@ class LiteLLMParams:
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.configurable_clientside_params_custom_auth import ConfigurableClientsideParamsCustomAuth
+        from ..models.lite_llm_params_adaptive_router_config_type_0 import LiteLLMParamsAdaptiveRouterConfigType0
         from ..models.lite_llm_params_complexity_router_config_type_0 import LiteLLMParamsComplexityRouterConfigType0
         from ..models.lite_llm_params_model_info_type_0 import LiteLLMParamsModelInfoType0
+        from ..models.lite_llm_params_quality_router_config_type_0 import LiteLLMParamsQualityRouterConfigType0
         from ..models.lite_llm_params_search_context_cost_per_query_type_0 import LiteLLMParamsSearchContextCostPerQueryType0
         from ..models.lite_llm_params_tiered_pricing_type_0_item import LiteLLMParamsTieredPricingType0Item
         from ..models.lite_llm_params_vertex_credentials_type_1 import LiteLLMParamsVertexCredentialsType1
@@ -739,6 +753,12 @@ class LiteLLMParams:
         else:
             use_litellm_proxy = self.use_litellm_proxy
 
+        use_chat_completions_api: bool | None | Unset
+        if isinstance(self.use_chat_completions_api, Unset):
+            use_chat_completions_api = UNSET
+        else:
+            use_chat_completions_api = self.use_chat_completions_api
+
         merge_reasoning_content_in_choices: bool | None | Unset
         if isinstance(self.merge_reasoning_content_in_choices, Unset):
             merge_reasoning_content_in_choices = UNSET
@@ -818,6 +838,34 @@ class LiteLLMParams:
             complexity_router_default_model = UNSET
         else:
             complexity_router_default_model = self.complexity_router_default_model
+
+        adaptive_router_default_model: None | str | Unset
+        if isinstance(self.adaptive_router_default_model, Unset):
+            adaptive_router_default_model = UNSET
+        else:
+            adaptive_router_default_model = self.adaptive_router_default_model
+
+        adaptive_router_config: dict[str, Any] | None | Unset
+        if isinstance(self.adaptive_router_config, Unset):
+            adaptive_router_config = UNSET
+        elif isinstance(self.adaptive_router_config, LiteLLMParamsAdaptiveRouterConfigType0):
+            adaptive_router_config = self.adaptive_router_config.to_dict()
+        else:
+            adaptive_router_config = self.adaptive_router_config
+
+        quality_router_config: dict[str, Any] | None | Unset
+        if isinstance(self.quality_router_config, Unset):
+            quality_router_config = UNSET
+        elif isinstance(self.quality_router_config, LiteLLMParamsQualityRouterConfigType0):
+            quality_router_config = self.quality_router_config.to_dict()
+        else:
+            quality_router_config = self.quality_router_config
+
+        quality_router_default_model: None | str | Unset
+        if isinstance(self.quality_router_default_model, Unset):
+            quality_router_default_model = UNSET
+        else:
+            quality_router_default_model = self.quality_router_default_model
 
         s3_bucket_name: None | str | Unset
         if isinstance(self.s3_bucket_name, Unset):
@@ -1013,6 +1061,8 @@ class LiteLLMParams:
             field_dict["use_in_pass_through"] = use_in_pass_through
         if use_litellm_proxy is not UNSET:
             field_dict["use_litellm_proxy"] = use_litellm_proxy
+        if use_chat_completions_api is not UNSET:
+            field_dict["use_chat_completions_api"] = use_chat_completions_api
         if merge_reasoning_content_in_choices is not UNSET:
             field_dict["merge_reasoning_content_in_choices"] = merge_reasoning_content_in_choices
         if model_info is not UNSET:
@@ -1035,6 +1085,14 @@ class LiteLLMParams:
             field_dict["complexity_router_config"] = complexity_router_config
         if complexity_router_default_model is not UNSET:
             field_dict["complexity_router_default_model"] = complexity_router_default_model
+        if adaptive_router_default_model is not UNSET:
+            field_dict["adaptive_router_default_model"] = adaptive_router_default_model
+        if adaptive_router_config is not UNSET:
+            field_dict["adaptive_router_config"] = adaptive_router_config
+        if quality_router_config is not UNSET:
+            field_dict["quality_router_config"] = quality_router_config
+        if quality_router_default_model is not UNSET:
+            field_dict["quality_router_default_model"] = quality_router_default_model
         if s3_bucket_name is not UNSET:
             field_dict["s3_bucket_name"] = s3_bucket_name
         if s3_encryption_key_id is not UNSET:
@@ -1053,8 +1111,10 @@ class LiteLLMParams:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.configurable_clientside_params_custom_auth import ConfigurableClientsideParamsCustomAuth
+        from ..models.lite_llm_params_adaptive_router_config_type_0 import LiteLLMParamsAdaptiveRouterConfigType0
         from ..models.lite_llm_params_complexity_router_config_type_0 import LiteLLMParamsComplexityRouterConfigType0
         from ..models.lite_llm_params_model_info_type_0 import LiteLLMParamsModelInfoType0
+        from ..models.lite_llm_params_quality_router_config_type_0 import LiteLLMParamsQualityRouterConfigType0
         from ..models.lite_llm_params_search_context_cost_per_query_type_0 import LiteLLMParamsSearchContextCostPerQueryType0
         from ..models.lite_llm_params_tiered_pricing_type_0_item import LiteLLMParamsTieredPricingType0Item
         from ..models.lite_llm_params_vertex_credentials_type_1 import LiteLLMParamsVertexCredentialsType1
@@ -1913,6 +1973,16 @@ class LiteLLMParams:
         use_litellm_proxy = _parse_use_litellm_proxy(d.pop("use_litellm_proxy", UNSET))
 
 
+        def _parse_use_chat_completions_api(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        use_chat_completions_api = _parse_use_chat_completions_api(d.pop("use_chat_completions_api", UNSET))
+
+
         def _parse_merge_reasoning_content_in_choices(data: object) -> bool | None | Unset:
             if data is None:
                 return data
@@ -2069,6 +2139,66 @@ class LiteLLMParams:
         complexity_router_default_model = _parse_complexity_router_default_model(d.pop("complexity_router_default_model", UNSET))
 
 
+        def _parse_adaptive_router_default_model(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        adaptive_router_default_model = _parse_adaptive_router_default_model(d.pop("adaptive_router_default_model", UNSET))
+
+
+        def _parse_adaptive_router_config(data: object) -> LiteLLMParamsAdaptiveRouterConfigType0 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                adaptive_router_config_type_0 = LiteLLMParamsAdaptiveRouterConfigType0.from_dict(data)
+
+
+
+                return adaptive_router_config_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(LiteLLMParamsAdaptiveRouterConfigType0 | None | Unset, data)
+
+        adaptive_router_config = _parse_adaptive_router_config(d.pop("adaptive_router_config", UNSET))
+
+
+        def _parse_quality_router_config(data: object) -> LiteLLMParamsQualityRouterConfigType0 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                quality_router_config_type_0 = LiteLLMParamsQualityRouterConfigType0.from_dict(data)
+
+
+
+                return quality_router_config_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(LiteLLMParamsQualityRouterConfigType0 | None | Unset, data)
+
+        quality_router_config = _parse_quality_router_config(d.pop("quality_router_config", UNSET))
+
+
+        def _parse_quality_router_default_model(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        quality_router_default_model = _parse_quality_router_default_model(d.pop("quality_router_default_model", UNSET))
+
+
         def _parse_s3_bucket_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -2200,6 +2330,7 @@ class LiteLLMParams:
             budget_duration=budget_duration,
             use_in_pass_through=use_in_pass_through,
             use_litellm_proxy=use_litellm_proxy,
+            use_chat_completions_api=use_chat_completions_api,
             merge_reasoning_content_in_choices=merge_reasoning_content_in_choices,
             model_info=model_info,
             mock_response=mock_response,
@@ -2211,6 +2342,10 @@ class LiteLLMParams:
             auto_router_embedding_model=auto_router_embedding_model,
             complexity_router_config=complexity_router_config,
             complexity_router_default_model=complexity_router_default_model,
+            adaptive_router_default_model=adaptive_router_default_model,
+            adaptive_router_config=adaptive_router_config,
+            quality_router_config=quality_router_config,
+            quality_router_default_model=quality_router_default_model,
             s3_bucket_name=s3_bucket_name,
             s3_encryption_key_id=s3_encryption_key_id,
             gcs_bucket_name=gcs_bucket_name,

@@ -41,6 +41,7 @@ from .allowed_vector_store_index_item_index_permissions_item import AllowedVecto
 from .api_key_security_scheme import APIKeySecurityScheme
 from .api_key_security_scheme_in import APIKeySecuritySchemeIn
 from .apply_guardrail_request import ApplyGuardrailRequest
+from .apply_guardrail_request_messages_type_0_item import ApplyGuardrailRequestMessagesType0Item
 from .apply_guardrail_response import ApplyGuardrailResponse
 from .attachment_impact_response import AttachmentImpactResponse
 from .audit_log_response import AuditLogResponse
@@ -318,6 +319,8 @@ from .list_skills_response import ListSkillsResponse
 from .list_tool_rest_api_mcp_rest_tools_list_get_response_list_tool_rest_api_mcp_rest_tools_list_get import ListToolRestApiMcpRestToolsListGetResponseListToolRestApiMcpRestToolsListGet
 from .list_tools_v1_tool_list_get_input_policy_type_0 import ListToolsV1ToolListGetInputPolicyType0
 from .lite_llm_budget_table import LiteLLMBudgetTable
+from .lite_llm_budget_table_full import LiteLLMBudgetTableFull
+from .lite_llm_budget_table_full_model_max_budget_type_0 import LiteLLMBudgetTableFullModelMaxBudgetType0
 from .lite_llm_budget_table_model_max_budget_type_0 import LiteLLMBudgetTableModelMaxBudgetType0
 from .lite_llm_deleted_team_table import LiteLLMDeletedTeamTable
 from .lite_llm_deleted_team_table_metadata_type_0 import LiteLLMDeletedTeamTableMetadataType0
@@ -344,6 +347,7 @@ from .lite_llm_managed_vector_store_vector_store_metadata_type_0 import LiteLLMM
 from .lite_llm_managed_vector_stores_table import LiteLLMManagedVectorStoresTable
 from .lite_llm_managed_vector_stores_table_litellm_params_type_0 import LiteLLMManagedVectorStoresTableLitellmParamsType0
 from .lite_llm_managed_vector_stores_table_vector_store_metadata_type_0 import LiteLLMManagedVectorStoresTableVectorStoreMetadataType0
+from .lite_llm_memory_row import LiteLLMMemoryRow
 from .lite_llm_model_table import LiteLLMModelTable
 from .lite_llm_model_table_model_aliases_type_0 import LiteLLMModelTableModelAliasesType0
 from .lite_llm_object_permission_base import LiteLLMObjectPermissionBase
@@ -354,8 +358,10 @@ from .lite_llm_organization_membership_table import LiteLLMOrganizationMembershi
 from .lite_llm_organization_table_with_members import LiteLLMOrganizationTableWithMembers
 from .lite_llm_organization_table_with_members_metadata_type_0 import LiteLLMOrganizationTableWithMembersMetadataType0
 from .lite_llm_params import LiteLLMParams
+from .lite_llm_params_adaptive_router_config_type_0 import LiteLLMParamsAdaptiveRouterConfigType0
 from .lite_llm_params_complexity_router_config_type_0 import LiteLLMParamsComplexityRouterConfigType0
 from .lite_llm_params_model_info_type_0 import LiteLLMParamsModelInfoType0
+from .lite_llm_params_quality_router_config_type_0 import LiteLLMParamsQualityRouterConfigType0
 from .lite_llm_params_search_context_cost_per_query_type_0 import LiteLLMParamsSearchContextCostPerQueryType0
 from .lite_llm_params_tiered_pricing_type_0_item import LiteLLMParamsTieredPricingType0Item
 from .lite_llm_params_vertex_credentials_type_1 import LiteLLMParamsVertexCredentialsType1
@@ -435,6 +441,10 @@ from .mcpo_auth_user_credential_request import MCPOAuthUserCredentialRequest
 from .mcpo_auth_user_credential_status import MCPOAuthUserCredentialStatus
 from .member import Member
 from .member_role import MemberRole
+from .memory_create_request import MemoryCreateRequest
+from .memory_delete_response import MemoryDeleteResponse
+from .memory_list_response import MemoryListResponse
+from .memory_update_request import MemoryUpdateRequest
 from .message import Message
 from .message_provider_specific_fields_type_0 import MessageProviderSpecificFieldsType0
 from .message_role import MessageRole
@@ -686,6 +696,7 @@ from .team_member_add_result import TeamMemberAddResult
 from .team_member_add_result_updated_team_membership_type_0 import TeamMemberAddResultUpdatedTeamMembershipType0
 from .team_member_add_result_updated_user_type_0 import TeamMemberAddResultUpdatedUserType0
 from .team_member_delete_request import TeamMemberDeleteRequest
+from .team_member_info_response import TeamMemberInfoResponse
 from .team_member_update_request import TeamMemberUpdateRequest
 from .team_member_update_request_role_type_0 import TeamMemberUpdateRequestRoleType0
 from .team_member_update_response import TeamMemberUpdateResponse
@@ -735,7 +746,6 @@ from .top_logprob import TopLogprob
 from .transform_request_body import TransformRequestBody
 from .transform_request_body_request_body import TransformRequestBodyRequestBody
 from .ui_discovery_endpoints import UiDiscoveryEndpoints
-from .ui_settings import UISettings
 from .ui_settings_response import UISettingsResponse
 from .ui_settings_response_field_schema import UISettingsResponseFieldSchema
 from .ui_settings_response_values import UISettingsResponseValues
@@ -753,8 +763,10 @@ from .update_deployment import UpdateDeployment
 from .update_guardrail_request import UpdateGuardrailRequest
 from .update_jwt_key_mapping_request import UpdateJWTKeyMappingRequest
 from .update_lite_llm_params import UpdateLiteLLMParams
+from .update_lite_llm_params_adaptive_router_config_type_0 import UpdateLiteLLMParamsAdaptiveRouterConfigType0
 from .update_lite_llm_params_complexity_router_config_type_0 import UpdateLiteLLMParamsComplexityRouterConfigType0
 from .update_lite_llm_params_model_info_type_0 import UpdateLiteLLMParamsModelInfoType0
+from .update_lite_llm_params_quality_router_config_type_0 import UpdateLiteLLMParamsQualityRouterConfigType0
 from .update_lite_llm_params_search_context_cost_per_query_type_0 import UpdateLiteLLMParamsSearchContextCostPerQueryType0
 from .update_lite_llm_params_tiered_pricing_type_0_item import UpdateLiteLLMParamsTieredPricingType0Item
 from .update_lite_llm_params_vertex_credentials_type_1 import UpdateLiteLLMParamsVertexCredentialsType1
@@ -785,6 +797,7 @@ from .update_team_request_model_rpm_limit_type_0 import UpdateTeamRequestModelRp
 from .update_team_request_model_tpm_limit_type_0 import UpdateTeamRequestModelTpmLimitType0
 from .update_team_request_router_settings_type_0 import UpdateTeamRequestRouterSettingsType0
 from .update_team_request_secret_manager_settings_type_0 import UpdateTeamRequestSecretManagerSettingsType0
+from .update_ui_settings_update_ui_settings_patch_settings_body import UpdateUiSettingsUpdateUiSettingsPatchSettingsBody
 from .update_useful_links_request import UpdateUsefulLinksRequest
 from .update_useful_links_request_useful_links import UpdateUsefulLinksRequestUsefulLinks
 from .update_useful_links_request_useful_links_additional_property_type_1 import UpdateUsefulLinksRequestUsefulLinksAdditionalPropertyType1
@@ -880,6 +893,7 @@ __all__ = (
     "APIKeySecurityScheme",
     "APIKeySecuritySchemeIn",
     "ApplyGuardrailRequest",
+    "ApplyGuardrailRequestMessagesType0Item",
     "ApplyGuardrailResponse",
     "AttachmentImpactResponse",
     "AuditLogResponse",
@@ -1157,6 +1171,8 @@ __all__ = (
     "ListToolRestApiMcpRestToolsListGetResponseListToolRestApiMcpRestToolsListGet",
     "ListToolsV1ToolListGetInputPolicyType0",
     "LiteLLMBudgetTable",
+    "LiteLLMBudgetTableFull",
+    "LiteLLMBudgetTableFullModelMaxBudgetType0",
     "LiteLLMBudgetTableModelMaxBudgetType0",
     "LiteLLMDeletedTeamTable",
     "LiteLLMDeletedTeamTableMetadataType0",
@@ -1193,6 +1209,7 @@ __all__ = (
     "LiteLLMMCPServerTableToolNameToDescriptionType0",
     "LiteLLMMCPServerTableToolNameToDisplayNameType0",
     "LiteLLMMCPServerTableTransport",
+    "LiteLLMMemoryRow",
     "LiteLLMModelTable",
     "LiteLLMModelTableModelAliasesType0",
     "LiteLLMObjectPermissionBase",
@@ -1205,6 +1222,7 @@ __all__ = (
     "LiteLLMParams",
     "LitellmParams",
     "LitellmParamsAction",
+    "LiteLLMParamsAdaptiveRouterConfigType0",
     "LitellmParamsAdditionalProviderSpecificParamsType0",
     "LiteLLMParamsComplexityRouterConfigType0",
     "LitellmParamsConfigType0",
@@ -1221,6 +1239,7 @@ __all__ = (
     "LitellmParamsPresidioFilterScopeType0",
     "LitellmParamsPresidioRunOnType0",
     "LitellmParamsPresidioScoreThresholdsType0",
+    "LiteLLMParamsQualityRouterConfigType0",
     "LiteLLMParamsSearchContextCostPerQueryType0",
     "LiteLLMParamsTieredPricingType0Item",
     "LitellmParamsUnreachableFallback",
@@ -1274,6 +1293,10 @@ __all__ = (
     "MCPUserCredentialResponse",
     "Member",
     "MemberRole",
+    "MemoryCreateRequest",
+    "MemoryDeleteResponse",
+    "MemoryListResponse",
+    "MemoryUpdateRequest",
     "Message",
     "MessageProviderSpecificFieldsType0",
     "MessageRole",
@@ -1525,6 +1548,7 @@ __all__ = (
     "TeamMemberAddResultUpdatedTeamMembershipType0",
     "TeamMemberAddResultUpdatedUserType0",
     "TeamMemberDeleteRequest",
+    "TeamMemberInfoResponse",
     "TeamMemberUpdateRequest",
     "TeamMemberUpdateRequestRoleType0",
     "TeamMemberUpdateResponse",
@@ -1574,7 +1598,6 @@ __all__ = (
     "TransformRequestBody",
     "TransformRequestBodyRequestBody",
     "UiDiscoveryEndpoints",
-    "UISettings",
     "UISettingsResponse",
     "UISettingsResponseFieldSchema",
     "UISettingsResponseValues",
@@ -1592,8 +1615,10 @@ __all__ = (
     "UpdateGuardrailRequest",
     "UpdateJWTKeyMappingRequest",
     "UpdateLiteLLMParams",
+    "UpdateLiteLLMParamsAdaptiveRouterConfigType0",
     "UpdateLiteLLMParamsComplexityRouterConfigType0",
     "UpdateLiteLLMParamsModelInfoType0",
+    "UpdateLiteLLMParamsQualityRouterConfigType0",
     "UpdateLiteLLMParamsSearchContextCostPerQueryType0",
     "UpdateLiteLLMParamsTieredPricingType0Item",
     "UpdateLiteLLMParamsVertexCredentialsType1",
@@ -1624,6 +1649,7 @@ __all__ = (
     "UpdateTeamRequestModelTpmLimitType0",
     "UpdateTeamRequestRouterSettingsType0",
     "UpdateTeamRequestSecretManagerSettingsType0",
+    "UpdateUiSettingsUpdateUiSettingsPatchSettingsBody",
     "UpdateUsefulLinksRequest",
     "UpdateUsefulLinksRequestUsefulLinks",
     "UpdateUsefulLinksRequestUsefulLinksAdditionalPropertyType1",

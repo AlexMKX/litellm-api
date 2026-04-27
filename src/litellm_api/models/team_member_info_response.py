@@ -19,13 +19,14 @@ if TYPE_CHECKING:
 
 
 
-T = TypeVar("T", bound="LiteLLMTeamMembership")
+T = TypeVar("T", bound="TeamMemberInfoResponse")
 
 
 
 @_attrs_define
-class LiteLLMTeamMembership:
-    """ 
+class TeamMemberInfoResponse:
+    """ Response for GET /team/{team_id}/members/me — caller's own membership row.
+
         Attributes:
             user_id (str):
             team_id (str):
@@ -33,6 +34,9 @@ class LiteLLMTeamMembership:
             budget_id (None | str | Unset):
             spend (float | None | Unset):  Default: 0.0.
             total_spend (float | None | Unset):  Default: 0.0.
+            role (None | str | Unset):
+            user_email (None | str | Unset):
+            team_alias (None | str | Unset):
      """
 
     user_id: str
@@ -41,6 +45,9 @@ class LiteLLMTeamMembership:
     budget_id: None | str | Unset = UNSET
     spend: float | None | Unset = 0.0
     total_spend: float | None | Unset = 0.0
+    role: None | str | Unset = UNSET
+    user_email: None | str | Unset = UNSET
+    team_alias: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -80,6 +87,24 @@ class LiteLLMTeamMembership:
         else:
             total_spend = self.total_spend
 
+        role: None | str | Unset
+        if isinstance(self.role, Unset):
+            role = UNSET
+        else:
+            role = self.role
+
+        user_email: None | str | Unset
+        if isinstance(self.user_email, Unset):
+            user_email = UNSET
+        else:
+            user_email = self.user_email
+
+        team_alias: None | str | Unset
+        if isinstance(self.team_alias, Unset):
+            team_alias = UNSET
+        else:
+            team_alias = self.team_alias
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -94,6 +119,12 @@ class LiteLLMTeamMembership:
             field_dict["spend"] = spend
         if total_spend is not UNSET:
             field_dict["total_spend"] = total_spend
+        if role is not UNSET:
+            field_dict["role"] = role
+        if user_email is not UNSET:
+            field_dict["user_email"] = user_email
+        if team_alias is not UNSET:
+            field_dict["team_alias"] = team_alias
 
         return field_dict
 
@@ -166,18 +197,51 @@ class LiteLLMTeamMembership:
         total_spend = _parse_total_spend(d.pop("total_spend", UNSET))
 
 
-        lite_llm_team_membership = cls(
+        def _parse_role(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        role = _parse_role(d.pop("role", UNSET))
+
+
+        def _parse_user_email(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        user_email = _parse_user_email(d.pop("user_email", UNSET))
+
+
+        def _parse_team_alias(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        team_alias = _parse_team_alias(d.pop("team_alias", UNSET))
+
+
+        team_member_info_response = cls(
             user_id=user_id,
             team_id=team_id,
             litellm_budget_table=litellm_budget_table,
             budget_id=budget_id,
             spend=spend,
             total_spend=total_spend,
+            role=role,
+            user_email=user_email,
+            team_alias=team_alias,
         )
 
 
-        lite_llm_team_membership.additional_properties = d
-        return lite_llm_team_membership
+        team_member_info_response.additional_properties = d
+        return team_member_info_response
 
     @property
     def additional_keys(self) -> list[str]:

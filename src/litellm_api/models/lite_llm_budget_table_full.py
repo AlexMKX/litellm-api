@@ -9,48 +9,50 @@ from attrs import field as _attrs_field
 from ..types import UNSET, Unset
 
 from ..types import UNSET, Unset
+from dateutil.parser import isoparse
 from typing import cast
+import datetime
 
 if TYPE_CHECKING:
-  from ..models.lite_llm_budget_table_model_max_budget_type_0 import LiteLLMBudgetTableModelMaxBudgetType0
+  from ..models.lite_llm_budget_table_full_model_max_budget_type_0 import LiteLLMBudgetTableFullModelMaxBudgetType0
 
 
 
 
 
-T = TypeVar("T", bound="LiteLLMBudgetTable")
+T = TypeVar("T", bound="LiteLLMBudgetTableFull")
 
 
 
 @_attrs_define
-class LiteLLMBudgetTable:
-    """ Represents user-controllable params for a LiteLLM_BudgetTable record.
-
-    Budget-write paths use `model_fields.keys()` on this class as an allowlist
-    for user input. Keep server-managed fields (e.g. `budget_reset_at`) on
-    `LiteLLM_BudgetTableFull` so they aren't user-settable.
+class LiteLLMBudgetTableFull:
+    """ LiteLLM_BudgetTable + server-managed fields returned on API responses.
 
         Attributes:
+            created_at (datetime.datetime):
             budget_id (None | str | Unset):
             soft_budget (float | None | Unset):
             max_budget (float | None | Unset):
             max_parallel_requests (int | None | Unset):
             tpm_limit (int | None | Unset):
             rpm_limit (int | None | Unset):
-            model_max_budget (LiteLLMBudgetTableModelMaxBudgetType0 | None | Unset):
+            model_max_budget (LiteLLMBudgetTableFullModelMaxBudgetType0 | None | Unset):
             budget_duration (None | str | Unset):
             allowed_models (list[str] | None | Unset):
+            budget_reset_at (datetime.datetime | None | Unset):
      """
 
+    created_at: datetime.datetime
     budget_id: None | str | Unset = UNSET
     soft_budget: float | None | Unset = UNSET
     max_budget: float | None | Unset = UNSET
     max_parallel_requests: int | None | Unset = UNSET
     tpm_limit: int | None | Unset = UNSET
     rpm_limit: int | None | Unset = UNSET
-    model_max_budget: LiteLLMBudgetTableModelMaxBudgetType0 | None | Unset = UNSET
+    model_max_budget: LiteLLMBudgetTableFullModelMaxBudgetType0 | None | Unset = UNSET
     budget_duration: None | str | Unset = UNSET
     allowed_models: list[str] | None | Unset = UNSET
+    budget_reset_at: datetime.datetime | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -58,7 +60,9 @@ class LiteLLMBudgetTable:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.lite_llm_budget_table_model_max_budget_type_0 import LiteLLMBudgetTableModelMaxBudgetType0
+        from ..models.lite_llm_budget_table_full_model_max_budget_type_0 import LiteLLMBudgetTableFullModelMaxBudgetType0
+        created_at = self.created_at.isoformat()
+
         budget_id: None | str | Unset
         if isinstance(self.budget_id, Unset):
             budget_id = UNSET
@@ -98,7 +102,7 @@ class LiteLLMBudgetTable:
         model_max_budget: dict[str, Any] | None | Unset
         if isinstance(self.model_max_budget, Unset):
             model_max_budget = UNSET
-        elif isinstance(self.model_max_budget, LiteLLMBudgetTableModelMaxBudgetType0):
+        elif isinstance(self.model_max_budget, LiteLLMBudgetTableFullModelMaxBudgetType0):
             model_max_budget = self.model_max_budget.to_dict()
         else:
             model_max_budget = self.model_max_budget
@@ -119,10 +123,19 @@ class LiteLLMBudgetTable:
         else:
             allowed_models = self.allowed_models
 
+        budget_reset_at: None | str | Unset
+        if isinstance(self.budget_reset_at, Unset):
+            budget_reset_at = UNSET
+        elif isinstance(self.budget_reset_at, datetime.datetime):
+            budget_reset_at = self.budget_reset_at.isoformat()
+        else:
+            budget_reset_at = self.budget_reset_at
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
+            "created_at": created_at,
         })
         if budget_id is not UNSET:
             field_dict["budget_id"] = budget_id
@@ -142,6 +155,8 @@ class LiteLLMBudgetTable:
             field_dict["budget_duration"] = budget_duration
         if allowed_models is not UNSET:
             field_dict["allowed_models"] = allowed_models
+        if budget_reset_at is not UNSET:
+            field_dict["budget_reset_at"] = budget_reset_at
 
         return field_dict
 
@@ -149,8 +164,13 @@ class LiteLLMBudgetTable:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.lite_llm_budget_table_model_max_budget_type_0 import LiteLLMBudgetTableModelMaxBudgetType0
+        from ..models.lite_llm_budget_table_full_model_max_budget_type_0 import LiteLLMBudgetTableFullModelMaxBudgetType0
         d = dict(src_dict)
+        created_at = isoparse(d.pop("created_at"))
+
+
+
+
         def _parse_budget_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -211,7 +231,7 @@ class LiteLLMBudgetTable:
         rpm_limit = _parse_rpm_limit(d.pop("rpm_limit", UNSET))
 
 
-        def _parse_model_max_budget(data: object) -> LiteLLMBudgetTableModelMaxBudgetType0 | None | Unset:
+        def _parse_model_max_budget(data: object) -> LiteLLMBudgetTableFullModelMaxBudgetType0 | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -219,14 +239,14 @@ class LiteLLMBudgetTable:
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                model_max_budget_type_0 = LiteLLMBudgetTableModelMaxBudgetType0.from_dict(data)
+                model_max_budget_type_0 = LiteLLMBudgetTableFullModelMaxBudgetType0.from_dict(data)
 
 
 
                 return model_max_budget_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(LiteLLMBudgetTableModelMaxBudgetType0 | None | Unset, data)
+            return cast(LiteLLMBudgetTableFullModelMaxBudgetType0 | None | Unset, data)
 
         model_max_budget = _parse_model_max_budget(d.pop("model_max_budget", UNSET))
 
@@ -259,7 +279,28 @@ class LiteLLMBudgetTable:
         allowed_models = _parse_allowed_models(d.pop("allowed_models", UNSET))
 
 
-        lite_llm_budget_table = cls(
+        def _parse_budget_reset_at(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                budget_reset_at_type_0 = isoparse(data)
+
+
+
+                return budget_reset_at_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        budget_reset_at = _parse_budget_reset_at(d.pop("budget_reset_at", UNSET))
+
+
+        lite_llm_budget_table_full = cls(
+            created_at=created_at,
             budget_id=budget_id,
             soft_budget=soft_budget,
             max_budget=max_budget,
@@ -269,11 +310,12 @@ class LiteLLMBudgetTable:
             model_max_budget=model_max_budget,
             budget_duration=budget_duration,
             allowed_models=allowed_models,
+            budget_reset_at=budget_reset_at,
         )
 
 
-        lite_llm_budget_table.additional_properties = d
-        return lite_llm_budget_table
+        lite_llm_budget_table_full.additional_properties = d
+        return lite_llm_budget_table_full
 
     @property
     def additional_keys(self) -> list[str]:
