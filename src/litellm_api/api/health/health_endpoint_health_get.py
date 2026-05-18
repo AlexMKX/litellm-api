@@ -106,6 +106,10 @@ def sync_detailed(
     ```
     else, the health checks will be run on models when /health is called.
 
+    To skip deployments that set ``model_info.disable_background_health_check: true``
+    on ``GET /health`` as well as in the background loop, set
+    ``general_settings.health_check_skip_disabled_background_models: true``.
+
     Args:
         model (None | str | Unset): Specify the model name (optional)
         model_id (None | str | Unset): Specify the model ID (optional)
@@ -155,6 +159,10 @@ def sync(
     ```
     else, the health checks will be run on models when /health is called.
 
+    To skip deployments that set ``model_info.disable_background_health_check: true``
+    on ``GET /health`` as well as in the background loop, set
+    ``general_settings.health_check_skip_disabled_background_models: true``.
+
     Args:
         model (None | str | Unset): Specify the model name (optional)
         model_id (None | str | Unset): Specify the model ID (optional)
@@ -198,6 +206,10 @@ async def asyncio_detailed(
         background_health_checks: True
     ```
     else, the health checks will be run on models when /health is called.
+
+    To skip deployments that set ``model_info.disable_background_health_check: true``
+    on ``GET /health`` as well as in the background loop, set
+    ``general_settings.health_check_skip_disabled_background_models: true``.
 
     Args:
         model (None | str | Unset): Specify the model name (optional)
@@ -247,6 +259,10 @@ async def asyncio(
         background_health_checks: True
     ```
     else, the health checks will be run on models when /health is called.
+
+    To skip deployments that set ``model_info.disable_background_health_check: true``
+    on ``GET /health`` as well as in the background loop, set
+    ``general_settings.health_check_skip_disabled_background_models: true``.
 
     Args:
         model (None | str | Unset): Specify the model name (optional)

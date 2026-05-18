@@ -8,6 +8,7 @@ class MCPPublicServerAuthTypeType0(str, Enum):
     BEARER_TOKEN = "bearer_token"
     NONE = "none"
     OAUTH2 = "oauth2"
+    OAUTH2_TOKEN_EXCHANGE = "oauth2_token_exchange"
     TOKEN = "token"
 
     def __str__(self) -> str:

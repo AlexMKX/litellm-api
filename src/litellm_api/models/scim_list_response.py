@@ -27,18 +27,18 @@ T = TypeVar("T", bound="SCIMListResponse")
 class SCIMListResponse:
     """ 
         Attributes:
-            total_results (int):
             resources (list[SCIMGroup] | list[SCIMUser]):
+            total_results (int):
+            items_per_page (int | None | Unset):  Default: 10.
             schemas (list[str] | Unset):
             start_index (int | None | Unset):  Default: 1.
-            items_per_page (int | None | Unset):  Default: 10.
      """
 
-    total_results: int
     resources: list[SCIMGroup] | list[SCIMUser]
+    total_results: int
+    items_per_page: int | None | Unset = 10
     schemas: list[str] | Unset = UNSET
     start_index: int | None | Unset = 1
-    items_per_page: int | None | Unset = 10
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -48,8 +48,6 @@ class SCIMListResponse:
     def to_dict(self) -> dict[str, Any]:
         from ..models.scim_group import SCIMGroup
         from ..models.scim_user import SCIMUser
-        total_results = self.total_results
-
         resources: list[dict[str, Any]]
         if isinstance(self.resources, list):
             resources = []
@@ -67,6 +65,14 @@ class SCIMListResponse:
 
 
 
+        total_results = self.total_results
+
+        items_per_page: int | None | Unset
+        if isinstance(self.items_per_page, Unset):
+            items_per_page = UNSET
+        else:
+            items_per_page = self.items_per_page
+
         schemas: list[str] | Unset = UNSET
         if not isinstance(self.schemas, Unset):
             schemas = self.schemas
@@ -79,25 +85,19 @@ class SCIMListResponse:
         else:
             start_index = self.start_index
 
-        items_per_page: int | None | Unset
-        if isinstance(self.items_per_page, Unset):
-            items_per_page = UNSET
-        else:
-            items_per_page = self.items_per_page
-
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
-            "totalResults": total_results,
             "Resources": resources,
+            "totalResults": total_results,
         })
+        if items_per_page is not UNSET:
+            field_dict["itemsPerPage"] = items_per_page
         if schemas is not UNSET:
             field_dict["schemas"] = schemas
         if start_index is not UNSET:
             field_dict["startIndex"] = start_index
-        if items_per_page is not UNSET:
-            field_dict["itemsPerPage"] = items_per_page
 
         return field_dict
 
@@ -108,8 +108,6 @@ class SCIMListResponse:
         from ..models.scim_group import SCIMGroup
         from ..models.scim_user import SCIMUser
         d = dict(src_dict)
-        total_results = d.pop("totalResults")
-
         def _parse_resources(data: object) -> list[SCIMGroup] | list[SCIMUser]:
             try:
                 if not isinstance(data, list):
@@ -142,6 +140,18 @@ class SCIMListResponse:
         resources = _parse_resources(d.pop("Resources"))
 
 
+        total_results = d.pop("totalResults")
+
+        def _parse_items_per_page(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        items_per_page = _parse_items_per_page(d.pop("itemsPerPage", UNSET))
+
+
         schemas = cast(list[str], d.pop("schemas", UNSET))
 
 
@@ -155,22 +165,12 @@ class SCIMListResponse:
         start_index = _parse_start_index(d.pop("startIndex", UNSET))
 
 
-        def _parse_items_per_page(data: object) -> int | None | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(int | None | Unset, data)
-
-        items_per_page = _parse_items_per_page(d.pop("itemsPerPage", UNSET))
-
-
         scim_list_response = cls(
-            total_results=total_results,
             resources=resources,
+            total_results=total_results,
+            items_per_page=items_per_page,
             schemas=schemas,
             start_index=start_index,
-            items_per_page=items_per_page,
         )
 
 

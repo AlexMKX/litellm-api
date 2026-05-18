@@ -28,13 +28,13 @@ class PolicyVersionListResponse:
 
         Attributes:
             policy_name (str): Name of the policy.
-            versions (list[PolicyDBResponse] | Unset): All versions ordered by version_number desc.
             total_count (int | Unset): Total number of versions. Default: 0.
+            versions (list[PolicyDBResponse] | Unset): All versions ordered by version_number desc.
      """
 
     policy_name: str
-    versions: list[PolicyDBResponse] | Unset = UNSET
     total_count: int | Unset = 0
+    versions: list[PolicyDBResponse] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -45,6 +45,8 @@ class PolicyVersionListResponse:
         from ..models.policy_db_response import PolicyDBResponse
         policy_name = self.policy_name
 
+        total_count = self.total_count
+
         versions: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.versions, Unset):
             versions = []
@@ -54,18 +56,16 @@ class PolicyVersionListResponse:
 
 
 
-        total_count = self.total_count
-
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
             "policy_name": policy_name,
         })
-        if versions is not UNSET:
-            field_dict["versions"] = versions
         if total_count is not UNSET:
             field_dict["total_count"] = total_count
+        if versions is not UNSET:
+            field_dict["versions"] = versions
 
         return field_dict
 
@@ -76,6 +76,8 @@ class PolicyVersionListResponse:
         from ..models.policy_db_response import PolicyDBResponse
         d = dict(src_dict)
         policy_name = d.pop("policy_name")
+
+        total_count = d.pop("total_count", UNSET)
 
         _versions = d.pop("versions", UNSET)
         versions: list[PolicyDBResponse] | Unset = UNSET
@@ -89,12 +91,10 @@ class PolicyVersionListResponse:
                 versions.append(versions_item)
 
 
-        total_count = d.pop("total_count", UNSET)
-
         policy_version_list_response = cls(
             policy_name=policy_name,
-            versions=versions,
             total_count=total_count,
+            versions=versions,
         )
 
 

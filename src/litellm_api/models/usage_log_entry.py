@@ -23,26 +23,26 @@ T = TypeVar("T", bound="UsageLogEntry")
 class UsageLogEntry:
     """ 
         Attributes:
-            id (str):
-            timestamp (str):
             action (str):
-            score (float | None):
+            id (str):
+            input_snippet (None | str):
             latency_ms (float | None):
             model (None | str):
-            input_snippet (None | str):
             output_snippet (None | str):
             reason (None | str):
+            score (float | None):
+            timestamp (str):
      """
 
-    id: str
-    timestamp: str
     action: str
-    score: float | None
+    id: str
+    input_snippet: None | str
     latency_ms: float | None
     model: None | str
-    input_snippet: None | str
     output_snippet: None | str
     reason: None | str
+    score: float | None
+    timestamp: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -50,14 +50,12 @@ class UsageLogEntry:
 
 
     def to_dict(self) -> dict[str, Any]:
-        id = self.id
-
-        timestamp = self.timestamp
-
         action = self.action
 
-        score: float | None
-        score = self.score
+        id = self.id
+
+        input_snippet: None | str
+        input_snippet = self.input_snippet
 
         latency_ms: float | None
         latency_ms = self.latency_ms
@@ -65,28 +63,30 @@ class UsageLogEntry:
         model: None | str
         model = self.model
 
-        input_snippet: None | str
-        input_snippet = self.input_snippet
-
         output_snippet: None | str
         output_snippet = self.output_snippet
 
         reason: None | str
         reason = self.reason
 
+        score: float | None
+        score = self.score
+
+        timestamp = self.timestamp
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
-            "id": id,
-            "timestamp": timestamp,
             "action": action,
-            "score": score,
+            "id": id,
+            "input_snippet": input_snippet,
             "latency_ms": latency_ms,
             "model": model,
-            "input_snippet": input_snippet,
             "output_snippet": output_snippet,
             "reason": reason,
+            "score": score,
+            "timestamp": timestamp,
         })
 
         return field_dict
@@ -96,18 +96,16 @@ class UsageLogEntry:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        id = d.pop("id")
-
-        timestamp = d.pop("timestamp")
-
         action = d.pop("action")
 
-        def _parse_score(data: object) -> float | None:
+        id = d.pop("id")
+
+        def _parse_input_snippet(data: object) -> None | str:
             if data is None:
                 return data
-            return cast(float | None, data)
+            return cast(None | str, data)
 
-        score = _parse_score(d.pop("score"))
+        input_snippet = _parse_input_snippet(d.pop("input_snippet"))
 
 
         def _parse_latency_ms(data: object) -> float | None:
@@ -126,14 +124,6 @@ class UsageLogEntry:
         model = _parse_model(d.pop("model"))
 
 
-        def _parse_input_snippet(data: object) -> None | str:
-            if data is None:
-                return data
-            return cast(None | str, data)
-
-        input_snippet = _parse_input_snippet(d.pop("input_snippet"))
-
-
         def _parse_output_snippet(data: object) -> None | str:
             if data is None:
                 return data
@@ -150,16 +140,26 @@ class UsageLogEntry:
         reason = _parse_reason(d.pop("reason"))
 
 
+        def _parse_score(data: object) -> float | None:
+            if data is None:
+                return data
+            return cast(float | None, data)
+
+        score = _parse_score(d.pop("score"))
+
+
+        timestamp = d.pop("timestamp")
+
         usage_log_entry = cls(
-            id=id,
-            timestamp=timestamp,
             action=action,
-            score=score,
+            id=id,
+            input_snippet=input_snippet,
             latency_ms=latency_ms,
             model=model,
-            input_snippet=input_snippet,
             output_snippet=output_snippet,
             reason=reason,
+            score=score,
+            timestamp=timestamp,
         )
 
 

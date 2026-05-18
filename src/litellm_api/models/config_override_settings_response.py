@@ -28,13 +28,13 @@ class ConfigOverrideSettingsResponse:
 
         Attributes:
             config_type (str): The type of config override
-            values (ConfigOverrideSettingsResponseValues): Current configuration values (sensitive fields decrypted)
             field_schema (ConfigOverrideSettingsResponseFieldSchema): Schema information for UI rendering
+            values (ConfigOverrideSettingsResponseValues): Current configuration values (sensitive fields decrypted)
      """
 
     config_type: str
-    values: ConfigOverrideSettingsResponseValues
     field_schema: ConfigOverrideSettingsResponseFieldSchema
+    values: ConfigOverrideSettingsResponseValues
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -46,17 +46,17 @@ class ConfigOverrideSettingsResponse:
         from ..models.config_override_settings_response_values import ConfigOverrideSettingsResponseValues
         config_type = self.config_type
 
-        values = self.values.to_dict()
-
         field_schema = self.field_schema.to_dict()
+
+        values = self.values.to_dict()
 
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
             "config_type": config_type,
-            "values": values,
             "field_schema": field_schema,
+            "values": values,
         })
 
         return field_dict
@@ -70,20 +70,20 @@ class ConfigOverrideSettingsResponse:
         d = dict(src_dict)
         config_type = d.pop("config_type")
 
-        values = ConfigOverrideSettingsResponseValues.from_dict(d.pop("values"))
-
-
-
-
         field_schema = ConfigOverrideSettingsResponseFieldSchema.from_dict(d.pop("field_schema"))
+
+
+
+
+        values = ConfigOverrideSettingsResponseValues.from_dict(d.pop("values"))
 
 
 
 
         config_override_settings_response = cls(
             config_type=config_type,
-            values=values,
             field_schema=field_schema,
+            values=values,
         )
 
 

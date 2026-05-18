@@ -26,15 +26,15 @@ class VantageSettingsView:
 
         Attributes:
             api_key_masked (None | str | Unset): Masked API key showing only first 4 and last 4 characters
+            base_url (None | str | Unset): Vantage API base URL
             integration_token_masked (None | str | Unset): Masked integration token showing only first 4 and last 4
                 characters
-            base_url (None | str | Unset): Vantage API base URL
             status (None | str | Unset): Configuration status
      """
 
     api_key_masked: None | str | Unset = UNSET
-    integration_token_masked: None | str | Unset = UNSET
     base_url: None | str | Unset = UNSET
+    integration_token_masked: None | str | Unset = UNSET
     status: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -49,17 +49,17 @@ class VantageSettingsView:
         else:
             api_key_masked = self.api_key_masked
 
-        integration_token_masked: None | str | Unset
-        if isinstance(self.integration_token_masked, Unset):
-            integration_token_masked = UNSET
-        else:
-            integration_token_masked = self.integration_token_masked
-
         base_url: None | str | Unset
         if isinstance(self.base_url, Unset):
             base_url = UNSET
         else:
             base_url = self.base_url
+
+        integration_token_masked: None | str | Unset
+        if isinstance(self.integration_token_masked, Unset):
+            integration_token_masked = UNSET
+        else:
+            integration_token_masked = self.integration_token_masked
 
         status: None | str | Unset
         if isinstance(self.status, Unset):
@@ -74,10 +74,10 @@ class VantageSettingsView:
         })
         if api_key_masked is not UNSET:
             field_dict["api_key_masked"] = api_key_masked
-        if integration_token_masked is not UNSET:
-            field_dict["integration_token_masked"] = integration_token_masked
         if base_url is not UNSET:
             field_dict["base_url"] = base_url
+        if integration_token_masked is not UNSET:
+            field_dict["integration_token_masked"] = integration_token_masked
         if status is not UNSET:
             field_dict["status"] = status
 
@@ -98,16 +98,6 @@ class VantageSettingsView:
         api_key_masked = _parse_api_key_masked(d.pop("api_key_masked", UNSET))
 
 
-        def _parse_integration_token_masked(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        integration_token_masked = _parse_integration_token_masked(d.pop("integration_token_masked", UNSET))
-
-
         def _parse_base_url(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -116,6 +106,16 @@ class VantageSettingsView:
             return cast(None | str | Unset, data)
 
         base_url = _parse_base_url(d.pop("base_url", UNSET))
+
+
+        def _parse_integration_token_masked(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        integration_token_masked = _parse_integration_token_masked(d.pop("integration_token_masked", UNSET))
 
 
         def _parse_status(data: object) -> None | str | Unset:
@@ -130,8 +130,8 @@ class VantageSettingsView:
 
         vantage_settings_view = cls(
             api_key_masked=api_key_masked,
-            integration_token_masked=integration_token_masked,
             base_url=base_url,
+            integration_token_masked=integration_token_masked,
             status=status,
         )
 

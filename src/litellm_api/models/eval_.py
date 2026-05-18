@@ -29,24 +29,24 @@ class Eval:
     """ Represents an evaluation from the OpenAI Evals API
 
         Attributes:
-            id (str):
             created_at (int):
             data_source_config (EvalDataSourceConfig):
+            id (str):
             testing_criteria (list[EvalTestingCriteriaItem]):
+            metadata (EvalMetadataType0 | None | Unset):
+            name (None | str | Unset):
             object_ (str | Unset):  Default: 'eval'.
             updated_at (int | None | Unset):
-            name (None | str | Unset):
-            metadata (EvalMetadataType0 | None | Unset):
      """
 
-    id: str
     created_at: int
     data_source_config: EvalDataSourceConfig
+    id: str
     testing_criteria: list[EvalTestingCriteriaItem]
+    metadata: EvalMetadataType0 | None | Unset = UNSET
+    name: None | str | Unset = UNSET
     object_: str | Unset = 'eval'
     updated_at: int | None | Unset = UNSET
-    name: None | str | Unset = UNSET
-    metadata: EvalMetadataType0 | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -57,11 +57,11 @@ class Eval:
         from ..models.eval_data_source_config import EvalDataSourceConfig
         from ..models.eval_metadata_type_0 import EvalMetadataType0
         from ..models.eval_testing_criteria_item import EvalTestingCriteriaItem
-        id = self.id
-
         created_at = self.created_at
 
         data_source_config = self.data_source_config.to_dict()
+
+        id = self.id
 
         testing_criteria = []
         for testing_criteria_item_data in self.testing_criteria:
@@ -69,20 +69,6 @@ class Eval:
             testing_criteria.append(testing_criteria_item)
 
 
-
-        object_ = self.object_
-
-        updated_at: int | None | Unset
-        if isinstance(self.updated_at, Unset):
-            updated_at = UNSET
-        else:
-            updated_at = self.updated_at
-
-        name: None | str | Unset
-        if isinstance(self.name, Unset):
-            name = UNSET
-        else:
-            name = self.name
 
         metadata: dict[str, Any] | None | Unset
         if isinstance(self.metadata, Unset):
@@ -92,23 +78,37 @@ class Eval:
         else:
             metadata = self.metadata
 
+        name: None | str | Unset
+        if isinstance(self.name, Unset):
+            name = UNSET
+        else:
+            name = self.name
+
+        object_ = self.object_
+
+        updated_at: int | None | Unset
+        if isinstance(self.updated_at, Unset):
+            updated_at = UNSET
+        else:
+            updated_at = self.updated_at
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
-            "id": id,
             "created_at": created_at,
             "data_source_config": data_source_config,
+            "id": id,
             "testing_criteria": testing_criteria,
         })
+        if metadata is not UNSET:
+            field_dict["metadata"] = metadata
+        if name is not UNSET:
+            field_dict["name"] = name
         if object_ is not UNSET:
             field_dict["object"] = object_
         if updated_at is not UNSET:
             field_dict["updated_at"] = updated_at
-        if name is not UNSET:
-            field_dict["name"] = name
-        if metadata is not UNSET:
-            field_dict["metadata"] = metadata
 
         return field_dict
 
@@ -120,14 +120,14 @@ class Eval:
         from ..models.eval_metadata_type_0 import EvalMetadataType0
         from ..models.eval_testing_criteria_item import EvalTestingCriteriaItem
         d = dict(src_dict)
-        id = d.pop("id")
-
         created_at = d.pop("created_at")
 
         data_source_config = EvalDataSourceConfig.from_dict(d.pop("data_source_config"))
 
 
 
+
+        id = d.pop("id")
 
         testing_criteria = []
         _testing_criteria = d.pop("testing_criteria")
@@ -137,28 +137,6 @@ class Eval:
 
 
             testing_criteria.append(testing_criteria_item)
-
-
-        object_ = d.pop("object", UNSET)
-
-        def _parse_updated_at(data: object) -> int | None | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(int | None | Unset, data)
-
-        updated_at = _parse_updated_at(d.pop("updated_at", UNSET))
-
-
-        def _parse_name(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        name = _parse_name(d.pop("name", UNSET))
 
 
         def _parse_metadata(data: object) -> EvalMetadataType0 | None | Unset:
@@ -181,15 +159,37 @@ class Eval:
         metadata = _parse_metadata(d.pop("metadata", UNSET))
 
 
+        def _parse_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        name = _parse_name(d.pop("name", UNSET))
+
+
+        object_ = d.pop("object", UNSET)
+
+        def _parse_updated_at(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        updated_at = _parse_updated_at(d.pop("updated_at", UNSET))
+
+
         eval_ = cls(
-            id=id,
             created_at=created_at,
             data_source_config=data_source_config,
+            id=id,
             testing_criteria=testing_criteria,
+            metadata=metadata,
+            name=name,
             object_=object_,
             updated_at=updated_at,
-            name=name,
-            metadata=metadata,
         )
 
 

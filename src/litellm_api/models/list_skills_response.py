@@ -28,13 +28,13 @@ class ListSkillsResponse:
 
         Attributes:
             data (list[Skill]):
-            next_page (None | str | Unset):
             has_more (bool | Unset):  Default: False.
+            next_page (None | str | Unset):
      """
 
     data: list[Skill]
-    next_page: None | str | Unset = UNSET
     has_more: bool | Unset = False
+    next_page: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -50,13 +50,13 @@ class ListSkillsResponse:
 
 
 
+        has_more = self.has_more
+
         next_page: None | str | Unset
         if isinstance(self.next_page, Unset):
             next_page = UNSET
         else:
             next_page = self.next_page
-
-        has_more = self.has_more
 
 
         field_dict: dict[str, Any] = {}
@@ -64,10 +64,10 @@ class ListSkillsResponse:
         field_dict.update({
             "data": data,
         })
-        if next_page is not UNSET:
-            field_dict["next_page"] = next_page
         if has_more is not UNSET:
             field_dict["has_more"] = has_more
+        if next_page is not UNSET:
+            field_dict["next_page"] = next_page
 
         return field_dict
 
@@ -87,6 +87,8 @@ class ListSkillsResponse:
             data.append(data_item)
 
 
+        has_more = d.pop("has_more", UNSET)
+
         def _parse_next_page(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -97,12 +99,10 @@ class ListSkillsResponse:
         next_page = _parse_next_page(d.pop("next_page", UNSET))
 
 
-        has_more = d.pop("has_more", UNSET)
-
         list_skills_response = cls(
             data=data,
-            next_page=next_page,
             has_more=has_more,
+            next_page=next_page,
         )
 
 

@@ -27,13 +27,13 @@ class PerTestingCriteriaResult:
     """ Results for a specific testing criteria
 
         Attributes:
-            testing_criteria_index (int):
             result_counts (ResultCounts): Result counts for a run
+            testing_criteria_index (int):
             average_score (float | None | Unset):
      """
 
-    testing_criteria_index: int
     result_counts: ResultCounts
+    testing_criteria_index: int
     average_score: float | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -43,9 +43,9 @@ class PerTestingCriteriaResult:
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.result_counts import ResultCounts
-        testing_criteria_index = self.testing_criteria_index
-
         result_counts = self.result_counts.to_dict()
+
+        testing_criteria_index = self.testing_criteria_index
 
         average_score: float | None | Unset
         if isinstance(self.average_score, Unset):
@@ -57,8 +57,8 @@ class PerTestingCriteriaResult:
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
-            "testing_criteria_index": testing_criteria_index,
             "result_counts": result_counts,
+            "testing_criteria_index": testing_criteria_index,
         })
         if average_score is not UNSET:
             field_dict["average_score"] = average_score
@@ -71,12 +71,12 @@ class PerTestingCriteriaResult:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.result_counts import ResultCounts
         d = dict(src_dict)
-        testing_criteria_index = d.pop("testing_criteria_index")
-
         result_counts = ResultCounts.from_dict(d.pop("result_counts"))
 
 
 
+
+        testing_criteria_index = d.pop("testing_criteria_index")
 
         def _parse_average_score(data: object) -> float | None | Unset:
             if data is None:
@@ -89,8 +89,8 @@ class PerTestingCriteriaResult:
 
 
         per_testing_criteria_result = cls(
-            testing_criteria_index=testing_criteria_index,
             result_counts=result_counts,
+            testing_criteria_index=testing_criteria_index,
             average_score=average_score,
         )
 

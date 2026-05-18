@@ -32,42 +32,42 @@ class Run:
     """ Represents a run from the OpenAI Evals API
 
         Attributes:
-            id (str):
             created_at (int):
-            status (RunStatus):
             data_source (RunDataSource):
             eval_id (str):
-            object_ (str | Unset):  Default: 'eval.run'.
-            name (None | str | Unset):
-            started_at (int | None | Unset):
+            id (str):
+            status (RunStatus):
             completed_at (int | None | Unset):
+            error (None | RunErrorType0 | Unset):
+            metadata (None | RunMetadataType0 | Unset):
             model (None | str | Unset):
+            name (None | str | Unset):
+            object_ (str | Unset):  Default: 'eval.run'.
             per_model_usage (Any | None | Unset):
             per_testing_criteria_results (list[PerTestingCriteriaResult] | None | Unset):
             report_url (None | str | Unset):
             result_counts (None | RunResultCountsType0 | Unset):
             shared_with_openai (bool | None | Unset):
-            metadata (None | RunMetadataType0 | Unset):
-            error (None | RunErrorType0 | Unset):
+            started_at (int | None | Unset):
      """
 
-    id: str
     created_at: int
-    status: RunStatus
     data_source: RunDataSource
     eval_id: str
-    object_: str | Unset = 'eval.run'
-    name: None | str | Unset = UNSET
-    started_at: int | None | Unset = UNSET
+    id: str
+    status: RunStatus
     completed_at: int | None | Unset = UNSET
+    error: None | RunErrorType0 | Unset = UNSET
+    metadata: None | RunMetadataType0 | Unset = UNSET
     model: None | str | Unset = UNSET
+    name: None | str | Unset = UNSET
+    object_: str | Unset = 'eval.run'
     per_model_usage: Any | None | Unset = UNSET
     per_testing_criteria_results: list[PerTestingCriteriaResult] | None | Unset = UNSET
     report_url: None | str | Unset = UNSET
     result_counts: None | RunResultCountsType0 | Unset = UNSET
     shared_with_openai: bool | None | Unset = UNSET
-    metadata: None | RunMetadataType0 | Unset = UNSET
-    error: None | RunErrorType0 | Unset = UNSET
+    started_at: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -80,29 +80,15 @@ class Run:
         from ..models.run_error_type_0 import RunErrorType0
         from ..models.run_metadata_type_0 import RunMetadataType0
         from ..models.run_result_counts_type_0 import RunResultCountsType0
-        id = self.id
-
         created_at = self.created_at
-
-        status = self.status.value
 
         data_source = self.data_source.to_dict()
 
         eval_id = self.eval_id
 
-        object_ = self.object_
+        id = self.id
 
-        name: None | str | Unset
-        if isinstance(self.name, Unset):
-            name = UNSET
-        else:
-            name = self.name
-
-        started_at: int | None | Unset
-        if isinstance(self.started_at, Unset):
-            started_at = UNSET
-        else:
-            started_at = self.started_at
+        status = self.status.value
 
         completed_at: int | None | Unset
         if isinstance(self.completed_at, Unset):
@@ -110,11 +96,35 @@ class Run:
         else:
             completed_at = self.completed_at
 
+        error: dict[str, Any] | None | Unset
+        if isinstance(self.error, Unset):
+            error = UNSET
+        elif isinstance(self.error, RunErrorType0):
+            error = self.error.to_dict()
+        else:
+            error = self.error
+
+        metadata: dict[str, Any] | None | Unset
+        if isinstance(self.metadata, Unset):
+            metadata = UNSET
+        elif isinstance(self.metadata, RunMetadataType0):
+            metadata = self.metadata.to_dict()
+        else:
+            metadata = self.metadata
+
         model: None | str | Unset
         if isinstance(self.model, Unset):
             model = UNSET
         else:
             model = self.model
+
+        name: None | str | Unset
+        if isinstance(self.name, Unset):
+            name = UNSET
+        else:
+            name = self.name
+
+        object_ = self.object_
 
         per_model_usage: Any | None | Unset
         if isinstance(self.per_model_usage, Unset):
@@ -155,42 +165,34 @@ class Run:
         else:
             shared_with_openai = self.shared_with_openai
 
-        metadata: dict[str, Any] | None | Unset
-        if isinstance(self.metadata, Unset):
-            metadata = UNSET
-        elif isinstance(self.metadata, RunMetadataType0):
-            metadata = self.metadata.to_dict()
+        started_at: int | None | Unset
+        if isinstance(self.started_at, Unset):
+            started_at = UNSET
         else:
-            metadata = self.metadata
-
-        error: dict[str, Any] | None | Unset
-        if isinstance(self.error, Unset):
-            error = UNSET
-        elif isinstance(self.error, RunErrorType0):
-            error = self.error.to_dict()
-        else:
-            error = self.error
+            started_at = self.started_at
 
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
-            "id": id,
             "created_at": created_at,
-            "status": status,
             "data_source": data_source,
             "eval_id": eval_id,
+            "id": id,
+            "status": status,
         })
-        if object_ is not UNSET:
-            field_dict["object"] = object_
-        if name is not UNSET:
-            field_dict["name"] = name
-        if started_at is not UNSET:
-            field_dict["started_at"] = started_at
         if completed_at is not UNSET:
             field_dict["completed_at"] = completed_at
+        if error is not UNSET:
+            field_dict["error"] = error
+        if metadata is not UNSET:
+            field_dict["metadata"] = metadata
         if model is not UNSET:
             field_dict["model"] = model
+        if name is not UNSET:
+            field_dict["name"] = name
+        if object_ is not UNSET:
+            field_dict["object"] = object_
         if per_model_usage is not UNSET:
             field_dict["per_model_usage"] = per_model_usage
         if per_testing_criteria_results is not UNSET:
@@ -201,10 +203,8 @@ class Run:
             field_dict["result_counts"] = result_counts
         if shared_with_openai is not UNSET:
             field_dict["shared_with_openai"] = shared_with_openai
-        if metadata is not UNSET:
-            field_dict["metadata"] = metadata
-        if error is not UNSET:
-            field_dict["error"] = error
+        if started_at is not UNSET:
+            field_dict["started_at"] = started_at
 
         return field_dict
 
@@ -218,14 +218,7 @@ class Run:
         from ..models.run_metadata_type_0 import RunMetadataType0
         from ..models.run_result_counts_type_0 import RunResultCountsType0
         d = dict(src_dict)
-        id = d.pop("id")
-
         created_at = d.pop("created_at")
-
-        status = RunStatus(d.pop("status"))
-
-
-
 
         data_source = RunDataSource.from_dict(d.pop("data_source"))
 
@@ -234,26 +227,11 @@ class Run:
 
         eval_id = d.pop("eval_id")
 
-        object_ = d.pop("object", UNSET)
+        id = d.pop("id")
 
-        def _parse_name(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        name = _parse_name(d.pop("name", UNSET))
+        status = RunStatus(d.pop("status"))
 
 
-        def _parse_started_at(data: object) -> int | None | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(int | None | Unset, data)
-
-        started_at = _parse_started_at(d.pop("started_at", UNSET))
 
 
         def _parse_completed_at(data: object) -> int | None | Unset:
@@ -266,6 +244,46 @@ class Run:
         completed_at = _parse_completed_at(d.pop("completed_at", UNSET))
 
 
+        def _parse_error(data: object) -> None | RunErrorType0 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                error_type_0 = RunErrorType0.from_dict(data)
+
+
+
+                return error_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | RunErrorType0 | Unset, data)
+
+        error = _parse_error(d.pop("error", UNSET))
+
+
+        def _parse_metadata(data: object) -> None | RunMetadataType0 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                metadata_type_0 = RunMetadataType0.from_dict(data)
+
+
+
+                return metadata_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | RunMetadataType0 | Unset, data)
+
+        metadata = _parse_metadata(d.pop("metadata", UNSET))
+
+
         def _parse_model(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -275,6 +293,18 @@ class Run:
 
         model = _parse_model(d.pop("model", UNSET))
 
+
+        def _parse_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        name = _parse_name(d.pop("name", UNSET))
+
+
+        object_ = d.pop("object", UNSET)
 
         def _parse_per_model_usage(data: object) -> Any | None | Unset:
             if data is None:
@@ -351,64 +381,34 @@ class Run:
         shared_with_openai = _parse_shared_with_openai(d.pop("shared_with_openai", UNSET))
 
 
-        def _parse_metadata(data: object) -> None | RunMetadataType0 | Unset:
+        def _parse_started_at(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            try:
-                if not isinstance(data, dict):
-                    raise TypeError()
-                metadata_type_0 = RunMetadataType0.from_dict(data)
+            return cast(int | None | Unset, data)
 
-
-
-                return metadata_type_0
-            except (TypeError, ValueError, AttributeError, KeyError):
-                pass
-            return cast(None | RunMetadataType0 | Unset, data)
-
-        metadata = _parse_metadata(d.pop("metadata", UNSET))
-
-
-        def _parse_error(data: object) -> None | RunErrorType0 | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            try:
-                if not isinstance(data, dict):
-                    raise TypeError()
-                error_type_0 = RunErrorType0.from_dict(data)
-
-
-
-                return error_type_0
-            except (TypeError, ValueError, AttributeError, KeyError):
-                pass
-            return cast(None | RunErrorType0 | Unset, data)
-
-        error = _parse_error(d.pop("error", UNSET))
+        started_at = _parse_started_at(d.pop("started_at", UNSET))
 
 
         run = cls(
-            id=id,
             created_at=created_at,
-            status=status,
             data_source=data_source,
             eval_id=eval_id,
-            object_=object_,
-            name=name,
-            started_at=started_at,
+            id=id,
+            status=status,
             completed_at=completed_at,
+            error=error,
+            metadata=metadata,
             model=model,
+            name=name,
+            object_=object_,
             per_model_usage=per_model_usage,
             per_testing_criteria_results=per_testing_criteria_results,
             report_url=report_url,
             result_counts=result_counts,
             shared_with_openai=shared_with_openai,
-            metadata=metadata,
-            error=error,
+            started_at=started_at,
         )
 
 

@@ -35,6 +35,7 @@ class LiteLLMObjectPermissionBase:
             agents (list[str] | None | Unset):
             agent_access_groups (list[str] | None | Unset):
             models (list[str] | None | Unset):
+            search_tools (list[str] | None | Unset):
      """
 
     mcp_servers: list[str] | None | Unset = UNSET
@@ -46,6 +47,7 @@ class LiteLLMObjectPermissionBase:
     agents: list[str] | None | Unset = UNSET
     agent_access_groups: list[str] | None | Unset = UNSET
     models: list[str] | None | Unset = UNSET
+    search_tools: list[str] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -142,6 +144,16 @@ class LiteLLMObjectPermissionBase:
         else:
             models = self.models
 
+        search_tools: list[str] | None | Unset
+        if isinstance(self.search_tools, Unset):
+            search_tools = UNSET
+        elif isinstance(self.search_tools, list):
+            search_tools = self.search_tools
+
+
+        else:
+            search_tools = self.search_tools
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -165,6 +177,8 @@ class LiteLLMObjectPermissionBase:
             field_dict["agent_access_groups"] = agent_access_groups
         if models is not UNSET:
             field_dict["models"] = models
+        if search_tools is not UNSET:
+            field_dict["search_tools"] = search_tools
 
         return field_dict
 
@@ -338,6 +352,24 @@ class LiteLLMObjectPermissionBase:
         models = _parse_models(d.pop("models", UNSET))
 
 
+        def _parse_search_tools(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                search_tools_type_0 = cast(list[str], data)
+
+                return search_tools_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        search_tools = _parse_search_tools(d.pop("search_tools", UNSET))
+
+
         lite_llm_object_permission_base = cls(
             mcp_servers=mcp_servers,
             mcp_access_groups=mcp_access_groups,
@@ -348,6 +380,7 @@ class LiteLLMObjectPermissionBase:
             agents=agents,
             agent_access_groups=agent_access_groups,
             models=models,
+            search_tools=search_tools,
         )
 
 

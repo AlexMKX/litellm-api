@@ -136,6 +136,8 @@ class LiteLLMParams:
             gcs_bucket_name (None | str | Unset):
             vector_store_id (None | str | Unset):
             milvus_text_field (None | str | Unset):
+            milvus_db_name (None | str | Unset):
+            milvus_partition_names (list[str] | None | Unset):
      """
 
     model: str
@@ -239,6 +241,8 @@ class LiteLLMParams:
     gcs_bucket_name: None | str | Unset = UNSET
     vector_store_id: None | str | Unset = UNSET
     milvus_text_field: None | str | Unset = UNSET
+    milvus_db_name: None | str | Unset = UNSET
+    milvus_partition_names: list[str] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -897,6 +901,22 @@ class LiteLLMParams:
         else:
             milvus_text_field = self.milvus_text_field
 
+        milvus_db_name: None | str | Unset
+        if isinstance(self.milvus_db_name, Unset):
+            milvus_db_name = UNSET
+        else:
+            milvus_db_name = self.milvus_db_name
+
+        milvus_partition_names: list[str] | None | Unset
+        if isinstance(self.milvus_partition_names, Unset):
+            milvus_partition_names = UNSET
+        elif isinstance(self.milvus_partition_names, list):
+            milvus_partition_names = self.milvus_partition_names
+
+
+        else:
+            milvus_partition_names = self.milvus_partition_names
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -1103,6 +1123,10 @@ class LiteLLMParams:
             field_dict["vector_store_id"] = vector_store_id
         if milvus_text_field is not UNSET:
             field_dict["milvus_text_field"] = milvus_text_field
+        if milvus_db_name is not UNSET:
+            field_dict["milvus_db_name"] = milvus_db_name
+        if milvus_partition_names is not UNSET:
+            field_dict["milvus_partition_names"] = milvus_partition_names
 
         return field_dict
 
@@ -2249,6 +2273,34 @@ class LiteLLMParams:
         milvus_text_field = _parse_milvus_text_field(d.pop("milvus_text_field", UNSET))
 
 
+        def _parse_milvus_db_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        milvus_db_name = _parse_milvus_db_name(d.pop("milvus_db_name", UNSET))
+
+
+        def _parse_milvus_partition_names(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                milvus_partition_names_type_0 = cast(list[str], data)
+
+                return milvus_partition_names_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        milvus_partition_names = _parse_milvus_partition_names(d.pop("milvus_partition_names", UNSET))
+
+
         lite_llm_params = cls(
             model=model,
             input_cost_per_token=input_cost_per_token,
@@ -2351,6 +2403,8 @@ class LiteLLMParams:
             gcs_bucket_name=gcs_bucket_name,
             vector_store_id=vector_store_id,
             milvus_text_field=milvus_text_field,
+            milvus_db_name=milvus_db_name,
+            milvus_partition_names=milvus_partition_names,
         )
 
 

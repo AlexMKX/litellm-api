@@ -21,6 +21,7 @@ def _get_kwargs(
     organization_id: None | str | Unset = UNSET,
     team_id: None | str | Unset = UNSET,
     team_alias: None | str | Unset = UNSET,
+    search: None | str | Unset = UNSET,
     page: int | Unset = 1,
     page_size: int | Unset = 10,
     sort_by: None | str | Unset = UNSET,
@@ -61,6 +62,13 @@ def _get_kwargs(
     else:
         json_team_alias = team_alias
     params["team_alias"] = json_team_alias
+
+    json_search: None | str | Unset
+    if isinstance(search, Unset):
+        json_search = UNSET
+    else:
+        json_search = search
+    params["search"] = json_search
 
     params["page"] = page
 
@@ -134,6 +142,7 @@ def sync_detailed(
     organization_id: None | str | Unset = UNSET,
     team_id: None | str | Unset = UNSET,
     team_alias: None | str | Unset = UNSET,
+    search: None | str | Unset = UNSET,
     page: int | Unset = 1,
     page_size: int | Unset = 10,
     sort_by: None | str | Unset = UNSET,
@@ -172,6 +181,8 @@ def sync_detailed(
         team_id (None | str | Unset): Only return teams which this 'team_id' belongs to
         team_alias (None | str | Unset): Only return teams which this 'team_alias' belongs to.
             Supports partial matching.
+        search (None | str | Unset): Combined search: matches teams whose 'team_id' equals the
+            value OR whose 'team_alias' contains it (case-insensitive).
         page (int | Unset): Page number for pagination Default: 1.
         page_size (int | Unset): Number of teams per page Default: 10.
         sort_by (None | str | Unset): Column to sort by (e.g. 'team_id', 'team_alias',
@@ -193,6 +204,7 @@ def sync_detailed(
 organization_id=organization_id,
 team_id=team_id,
 team_alias=team_alias,
+search=search,
 page=page,
 page_size=page_size,
 sort_by=sort_by,
@@ -214,6 +226,7 @@ def sync(
     organization_id: None | str | Unset = UNSET,
     team_id: None | str | Unset = UNSET,
     team_alias: None | str | Unset = UNSET,
+    search: None | str | Unset = UNSET,
     page: int | Unset = 1,
     page_size: int | Unset = 10,
     sort_by: None | str | Unset = UNSET,
@@ -252,6 +265,8 @@ def sync(
         team_id (None | str | Unset): Only return teams which this 'team_id' belongs to
         team_alias (None | str | Unset): Only return teams which this 'team_alias' belongs to.
             Supports partial matching.
+        search (None | str | Unset): Combined search: matches teams whose 'team_id' equals the
+            value OR whose 'team_alias' contains it (case-insensitive).
         page (int | Unset): Page number for pagination Default: 1.
         page_size (int | Unset): Number of teams per page Default: 10.
         sort_by (None | str | Unset): Column to sort by (e.g. 'team_id', 'team_alias',
@@ -274,6 +289,7 @@ user_id=user_id,
 organization_id=organization_id,
 team_id=team_id,
 team_alias=team_alias,
+search=search,
 page=page,
 page_size=page_size,
 sort_by=sort_by,
@@ -289,6 +305,7 @@ async def asyncio_detailed(
     organization_id: None | str | Unset = UNSET,
     team_id: None | str | Unset = UNSET,
     team_alias: None | str | Unset = UNSET,
+    search: None | str | Unset = UNSET,
     page: int | Unset = 1,
     page_size: int | Unset = 10,
     sort_by: None | str | Unset = UNSET,
@@ -327,6 +344,8 @@ async def asyncio_detailed(
         team_id (None | str | Unset): Only return teams which this 'team_id' belongs to
         team_alias (None | str | Unset): Only return teams which this 'team_alias' belongs to.
             Supports partial matching.
+        search (None | str | Unset): Combined search: matches teams whose 'team_id' equals the
+            value OR whose 'team_alias' contains it (case-insensitive).
         page (int | Unset): Page number for pagination Default: 1.
         page_size (int | Unset): Number of teams per page Default: 10.
         sort_by (None | str | Unset): Column to sort by (e.g. 'team_id', 'team_alias',
@@ -348,6 +367,7 @@ async def asyncio_detailed(
 organization_id=organization_id,
 team_id=team_id,
 team_alias=team_alias,
+search=search,
 page=page,
 page_size=page_size,
 sort_by=sort_by,
@@ -369,6 +389,7 @@ async def asyncio(
     organization_id: None | str | Unset = UNSET,
     team_id: None | str | Unset = UNSET,
     team_alias: None | str | Unset = UNSET,
+    search: None | str | Unset = UNSET,
     page: int | Unset = 1,
     page_size: int | Unset = 10,
     sort_by: None | str | Unset = UNSET,
@@ -407,6 +428,8 @@ async def asyncio(
         team_id (None | str | Unset): Only return teams which this 'team_id' belongs to
         team_alias (None | str | Unset): Only return teams which this 'team_alias' belongs to.
             Supports partial matching.
+        search (None | str | Unset): Combined search: matches teams whose 'team_id' equals the
+            value OR whose 'team_alias' contains it (case-insensitive).
         page (int | Unset): Page number for pagination Default: 1.
         page_size (int | Unset): Number of teams per page Default: 10.
         sort_by (None | str | Unset): Column to sort by (e.g. 'team_id', 'team_alias',
@@ -429,6 +452,7 @@ user_id=user_id,
 organization_id=organization_id,
 team_id=team_id,
 team_alias=team_alias,
+search=search,
 page=page,
 page_size=page_size,
 sort_by=sort_by,

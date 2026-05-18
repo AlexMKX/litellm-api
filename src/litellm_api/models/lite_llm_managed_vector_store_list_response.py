@@ -28,17 +28,17 @@ class LiteLLMManagedVectorStoreListResponse:
     """ Response format for listing vector stores
 
         Attributes:
-            object_ (Literal['list'] | Unset):
-            data (list[LiteLLMManagedVectorStore] | Unset):
-            total_count (int | None | Unset):
             current_page (int | None | Unset):
+            data (list[LiteLLMManagedVectorStore] | Unset):
+            object_ (Literal['list'] | Unset):
+            total_count (int | None | Unset):
             total_pages (int | None | Unset):
      """
 
-    object_: Literal['list'] | Unset = UNSET
-    data: list[LiteLLMManagedVectorStore] | Unset = UNSET
-    total_count: int | None | Unset = UNSET
     current_page: int | None | Unset = UNSET
+    data: list[LiteLLMManagedVectorStore] | Unset = UNSET
+    object_: Literal['list'] | Unset = UNSET
+    total_count: int | None | Unset = UNSET
     total_pages: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -48,7 +48,11 @@ class LiteLLMManagedVectorStoreListResponse:
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.lite_llm_managed_vector_store import LiteLLMManagedVectorStore
-        object_ = self.object_
+        current_page: int | None | Unset
+        if isinstance(self.current_page, Unset):
+            current_page = UNSET
+        else:
+            current_page = self.current_page
 
         data: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.data, Unset):
@@ -59,17 +63,13 @@ class LiteLLMManagedVectorStoreListResponse:
 
 
 
+        object_ = self.object_
+
         total_count: int | None | Unset
         if isinstance(self.total_count, Unset):
             total_count = UNSET
         else:
             total_count = self.total_count
-
-        current_page: int | None | Unset
-        if isinstance(self.current_page, Unset):
-            current_page = UNSET
-        else:
-            current_page = self.current_page
 
         total_pages: int | None | Unset
         if isinstance(self.total_pages, Unset):
@@ -82,14 +82,14 @@ class LiteLLMManagedVectorStoreListResponse:
         field_dict.update(self.additional_properties)
         field_dict.update({
         })
-        if object_ is not UNSET:
-            field_dict["object"] = object_
-        if data is not UNSET:
-            field_dict["data"] = data
-        if total_count is not UNSET:
-            field_dict["total_count"] = total_count
         if current_page is not UNSET:
             field_dict["current_page"] = current_page
+        if data is not UNSET:
+            field_dict["data"] = data
+        if object_ is not UNSET:
+            field_dict["object"] = object_
+        if total_count is not UNSET:
+            field_dict["total_count"] = total_count
         if total_pages is not UNSET:
             field_dict["total_pages"] = total_pages
 
@@ -101,9 +101,15 @@ class LiteLLMManagedVectorStoreListResponse:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.lite_llm_managed_vector_store import LiteLLMManagedVectorStore
         d = dict(src_dict)
-        object_ = cast(Literal['list'] | Unset , d.pop("object", UNSET))
-        if object_ != 'list'and not isinstance(object_, Unset):
-            raise ValueError(f"object must match const 'list', got '{object_}'")
+        def _parse_current_page(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        current_page = _parse_current_page(d.pop("current_page", UNSET))
+
 
         _data = d.pop("data", UNSET)
         data: list[LiteLLMManagedVectorStore] | Unset = UNSET
@@ -117,6 +123,10 @@ class LiteLLMManagedVectorStoreListResponse:
                 data.append(data_item)
 
 
+        object_ = cast(Literal['list'] | Unset , d.pop("object", UNSET))
+        if object_ != 'list'and not isinstance(object_, Unset):
+            raise ValueError(f"object must match const 'list', got '{object_}'")
+
         def _parse_total_count(data: object) -> int | None | Unset:
             if data is None:
                 return data
@@ -125,16 +135,6 @@ class LiteLLMManagedVectorStoreListResponse:
             return cast(int | None | Unset, data)
 
         total_count = _parse_total_count(d.pop("total_count", UNSET))
-
-
-        def _parse_current_page(data: object) -> int | None | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(int | None | Unset, data)
-
-        current_page = _parse_current_page(d.pop("current_page", UNSET))
 
 
         def _parse_total_pages(data: object) -> int | None | Unset:
@@ -148,10 +148,10 @@ class LiteLLMManagedVectorStoreListResponse:
 
 
         lite_llm_managed_vector_store_list_response = cls(
-            object_=object_,
-            data=data,
-            total_count=total_count,
             current_page=current_page,
+            data=data,
+            object_=object_,
+            total_count=total_count,
             total_pages=total_pages,
         )
 

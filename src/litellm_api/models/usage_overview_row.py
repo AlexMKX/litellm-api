@@ -23,28 +23,28 @@ T = TypeVar("T", bound="UsageOverviewRow")
 class UsageOverviewRow:
     """ 
         Attributes:
+            avg_latency (float | None):
+            avg_score (float | None):
+            fail_rate (float):
             id (str):
             name (str):
-            type_ (str):
             provider (str):
             requests_evaluated (int):
-            fail_rate (float):
-            avg_score (float | None):
-            avg_latency (float | None):
             status (str):
             trend (str):
+            type_ (str):
      """
 
+    avg_latency: float | None
+    avg_score: float | None
+    fail_rate: float
     id: str
     name: str
-    type_: str
     provider: str
     requests_evaluated: int
-    fail_rate: float
-    avg_score: float | None
-    avg_latency: float | None
     status: str
     trend: str
+    type_: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -52,42 +52,42 @@ class UsageOverviewRow:
 
 
     def to_dict(self) -> dict[str, Any]:
+        avg_latency: float | None
+        avg_latency = self.avg_latency
+
+        avg_score: float | None
+        avg_score = self.avg_score
+
+        fail_rate = self.fail_rate
+
         id = self.id
 
         name = self.name
-
-        type_ = self.type_
 
         provider = self.provider
 
         requests_evaluated = self.requests_evaluated
 
-        fail_rate = self.fail_rate
-
-        avg_score: float | None
-        avg_score = self.avg_score
-
-        avg_latency: float | None
-        avg_latency = self.avg_latency
-
         status = self.status
 
         trend = self.trend
+
+        type_ = self.type_
 
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
+            "avgLatency": avg_latency,
+            "avgScore": avg_score,
+            "failRate": fail_rate,
             "id": id,
             "name": name,
-            "type": type_,
             "provider": provider,
             "requestsEvaluated": requests_evaluated,
-            "failRate": fail_rate,
-            "avgScore": avg_score,
-            "avgLatency": avg_latency,
             "status": status,
             "trend": trend,
+            "type": type_,
         })
 
         return field_dict
@@ -97,17 +97,13 @@ class UsageOverviewRow:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        id = d.pop("id")
+        def _parse_avg_latency(data: object) -> float | None:
+            if data is None:
+                return data
+            return cast(float | None, data)
 
-        name = d.pop("name")
+        avg_latency = _parse_avg_latency(d.pop("avgLatency"))
 
-        type_ = d.pop("type")
-
-        provider = d.pop("provider")
-
-        requests_evaluated = d.pop("requestsEvaluated")
-
-        fail_rate = d.pop("failRate")
 
         def _parse_avg_score(data: object) -> float | None:
             if data is None:
@@ -117,29 +113,33 @@ class UsageOverviewRow:
         avg_score = _parse_avg_score(d.pop("avgScore"))
 
 
-        def _parse_avg_latency(data: object) -> float | None:
-            if data is None:
-                return data
-            return cast(float | None, data)
+        fail_rate = d.pop("failRate")
 
-        avg_latency = _parse_avg_latency(d.pop("avgLatency"))
+        id = d.pop("id")
 
+        name = d.pop("name")
+
+        provider = d.pop("provider")
+
+        requests_evaluated = d.pop("requestsEvaluated")
 
         status = d.pop("status")
 
         trend = d.pop("trend")
 
+        type_ = d.pop("type")
+
         usage_overview_row = cls(
+            avg_latency=avg_latency,
+            avg_score=avg_score,
+            fail_rate=fail_rate,
             id=id,
             name=name,
-            type_=type_,
             provider=provider,
             requests_evaluated=requests_evaluated,
-            fail_rate=fail_rate,
-            avg_score=avg_score,
-            avg_latency=avg_latency,
             status=status,
             trend=trend,
+            type_=type_,
         )
 
 

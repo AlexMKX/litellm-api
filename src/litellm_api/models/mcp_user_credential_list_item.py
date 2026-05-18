@@ -25,22 +25,22 @@ class MCPUserCredentialListItem:
     """ One entry in the /user-credentials list.
 
         Attributes:
-            server_id (str):
             credential_type (str):
             has_credential (bool):
-            server_name (None | str | Unset):
+            server_id (str):
             alias (None | str | Unset):
-            expires_at (None | str | Unset):
             connected_at (None | str | Unset):
+            expires_at (None | str | Unset):
+            server_name (None | str | Unset):
      """
 
-    server_id: str
     credential_type: str
     has_credential: bool
-    server_name: None | str | Unset = UNSET
+    server_id: str
     alias: None | str | Unset = UNSET
-    expires_at: None | str | Unset = UNSET
     connected_at: None | str | Unset = UNSET
+    expires_at: None | str | Unset = UNSET
+    server_name: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -48,17 +48,11 @@ class MCPUserCredentialListItem:
 
 
     def to_dict(self) -> dict[str, Any]:
-        server_id = self.server_id
-
         credential_type = self.credential_type
 
         has_credential = self.has_credential
 
-        server_name: None | str | Unset
-        if isinstance(self.server_name, Unset):
-            server_name = UNSET
-        else:
-            server_name = self.server_name
+        server_id = self.server_id
 
         alias: None | str | Unset
         if isinstance(self.alias, Unset):
@@ -66,34 +60,40 @@ class MCPUserCredentialListItem:
         else:
             alias = self.alias
 
-        expires_at: None | str | Unset
-        if isinstance(self.expires_at, Unset):
-            expires_at = UNSET
-        else:
-            expires_at = self.expires_at
-
         connected_at: None | str | Unset
         if isinstance(self.connected_at, Unset):
             connected_at = UNSET
         else:
             connected_at = self.connected_at
 
+        expires_at: None | str | Unset
+        if isinstance(self.expires_at, Unset):
+            expires_at = UNSET
+        else:
+            expires_at = self.expires_at
+
+        server_name: None | str | Unset
+        if isinstance(self.server_name, Unset):
+            server_name = UNSET
+        else:
+            server_name = self.server_name
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
-            "server_id": server_id,
             "credential_type": credential_type,
             "has_credential": has_credential,
+            "server_id": server_id,
         })
-        if server_name is not UNSET:
-            field_dict["server_name"] = server_name
         if alias is not UNSET:
             field_dict["alias"] = alias
-        if expires_at is not UNSET:
-            field_dict["expires_at"] = expires_at
         if connected_at is not UNSET:
             field_dict["connected_at"] = connected_at
+        if expires_at is not UNSET:
+            field_dict["expires_at"] = expires_at
+        if server_name is not UNSET:
+            field_dict["server_name"] = server_name
 
         return field_dict
 
@@ -102,21 +102,11 @@ class MCPUserCredentialListItem:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        server_id = d.pop("server_id")
-
         credential_type = d.pop("credential_type")
 
         has_credential = d.pop("has_credential")
 
-        def _parse_server_name(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        server_name = _parse_server_name(d.pop("server_name", UNSET))
-
+        server_id = d.pop("server_id")
 
         def _parse_alias(data: object) -> None | str | Unset:
             if data is None:
@@ -126,16 +116,6 @@ class MCPUserCredentialListItem:
             return cast(None | str | Unset, data)
 
         alias = _parse_alias(d.pop("alias", UNSET))
-
-
-        def _parse_expires_at(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        expires_at = _parse_expires_at(d.pop("expires_at", UNSET))
 
 
         def _parse_connected_at(data: object) -> None | str | Unset:
@@ -148,14 +128,34 @@ class MCPUserCredentialListItem:
         connected_at = _parse_connected_at(d.pop("connected_at", UNSET))
 
 
+        def _parse_expires_at(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        expires_at = _parse_expires_at(d.pop("expires_at", UNSET))
+
+
+        def _parse_server_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        server_name = _parse_server_name(d.pop("server_name", UNSET))
+
+
         mcp_user_credential_list_item = cls(
-            server_id=server_id,
             credential_type=credential_type,
             has_credential=has_credential,
-            server_name=server_name,
+            server_id=server_id,
             alias=alias,
-            expires_at=expires_at,
             connected_at=connected_at,
+            expires_at=expires_at,
+            server_name=server_name,
         )
 
 

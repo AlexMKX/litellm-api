@@ -22,16 +22,16 @@ T = TypeVar("T", bound="GuardrailTestResultEntry")
 class GuardrailTestResultEntry:
     """ 
         Attributes:
-            guardrail_name (str):
             action (str):
-            output_text (str):
             details (str):
+            guardrail_name (str):
+            output_text (str):
      """
 
-    guardrail_name: str
     action: str
-    output_text: str
     details: str
+    guardrail_name: str
+    output_text: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -39,22 +39,22 @@ class GuardrailTestResultEntry:
 
 
     def to_dict(self) -> dict[str, Any]:
-        guardrail_name = self.guardrail_name
-
         action = self.action
 
-        output_text = self.output_text
-
         details = self.details
+
+        guardrail_name = self.guardrail_name
+
+        output_text = self.output_text
 
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
-            "guardrail_name": guardrail_name,
             "action": action,
-            "output_text": output_text,
             "details": details,
+            "guardrail_name": guardrail_name,
+            "output_text": output_text,
         })
 
         return field_dict
@@ -64,19 +64,19 @@ class GuardrailTestResultEntry:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        guardrail_name = d.pop("guardrail_name")
-
         action = d.pop("action")
-
-        output_text = d.pop("output_text")
 
         details = d.pop("details")
 
+        guardrail_name = d.pop("guardrail_name")
+
+        output_text = d.pop("output_text")
+
         guardrail_test_result_entry = cls(
-            guardrail_name=guardrail_name,
             action=action,
-            output_text=output_text,
             details=details,
+            guardrail_name=guardrail_name,
+            output_text=output_text,
         )
 
 

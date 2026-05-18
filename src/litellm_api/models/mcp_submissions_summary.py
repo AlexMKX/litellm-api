@@ -25,18 +25,18 @@ T = TypeVar("T", bound="MCPSubmissionsSummary")
 class MCPSubmissionsSummary:
     """ 
         Attributes:
-            total (int):
-            pending_review (int):
             active (int):
-            rejected (int):
             items (list[LiteLLMMCPServerTable]):
+            pending_review (int):
+            rejected (int):
+            total (int):
      """
 
-    total: int
-    pending_review: int
     active: int
-    rejected: int
     items: list[LiteLLMMCPServerTable]
+    pending_review: int
+    rejected: int
+    total: int
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -45,13 +45,7 @@ class MCPSubmissionsSummary:
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.lite_llmmcp_server_table import LiteLLMMCPServerTable
-        total = self.total
-
-        pending_review = self.pending_review
-
         active = self.active
-
-        rejected = self.rejected
 
         items = []
         for items_item_data in self.items:
@@ -60,15 +54,21 @@ class MCPSubmissionsSummary:
 
 
 
+        pending_review = self.pending_review
+
+        rejected = self.rejected
+
+        total = self.total
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
-            "total": total,
-            "pending_review": pending_review,
             "active": active,
-            "rejected": rejected,
             "items": items,
+            "pending_review": pending_review,
+            "rejected": rejected,
+            "total": total,
         })
 
         return field_dict
@@ -79,13 +79,7 @@ class MCPSubmissionsSummary:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.lite_llmmcp_server_table import LiteLLMMCPServerTable
         d = dict(src_dict)
-        total = d.pop("total")
-
-        pending_review = d.pop("pending_review")
-
         active = d.pop("active")
-
-        rejected = d.pop("rejected")
 
         items = []
         _items = d.pop("items")
@@ -97,12 +91,18 @@ class MCPSubmissionsSummary:
             items.append(items_item)
 
 
+        pending_review = d.pop("pending_review")
+
+        rejected = d.pop("rejected")
+
+        total = d.pop("total")
+
         mcp_submissions_summary = cls(
-            total=total,
-            pending_review=pending_review,
             active=active,
-            rejected=rejected,
             items=items,
+            pending_review=pending_review,
+            rejected=rejected,
+            total=total,
         )
 
 

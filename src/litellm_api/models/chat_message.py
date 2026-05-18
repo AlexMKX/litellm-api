@@ -23,12 +23,12 @@ T = TypeVar("T", bound="ChatMessage")
 class ChatMessage:
     """ 
         Attributes:
-            role (ChatMessageRole):
             content (str):
+            role (ChatMessageRole):
      """
 
-    role: ChatMessageRole
     content: str
+    role: ChatMessageRole
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -36,16 +36,16 @@ class ChatMessage:
 
 
     def to_dict(self) -> dict[str, Any]:
-        role = self.role.value
-
         content = self.content
+
+        role = self.role.value
 
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
-            "role": role,
             "content": content,
+            "role": role,
         })
 
         return field_dict
@@ -55,16 +55,16 @@ class ChatMessage:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
+        content = d.pop("content")
+
         role = ChatMessageRole(d.pop("role"))
 
 
 
 
-        content = d.pop("content")
-
         chat_message = cls(
-            role=role,
             content=content,
+            role=role,
         )
 
 

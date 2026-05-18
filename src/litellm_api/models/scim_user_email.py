@@ -25,13 +25,13 @@ class SCIMUserEmail:
     """ 
         Attributes:
             value (str):
-            type_ (None | str | Unset):
             primary (bool | None | Unset):
+            type_ (None | str | Unset):
      """
 
     value: str
-    type_: None | str | Unset = UNSET
     primary: bool | None | Unset = UNSET
+    type_: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -41,17 +41,17 @@ class SCIMUserEmail:
     def to_dict(self) -> dict[str, Any]:
         value = self.value
 
-        type_: None | str | Unset
-        if isinstance(self.type_, Unset):
-            type_ = UNSET
-        else:
-            type_ = self.type_
-
         primary: bool | None | Unset
         if isinstance(self.primary, Unset):
             primary = UNSET
         else:
             primary = self.primary
+
+        type_: None | str | Unset
+        if isinstance(self.type_, Unset):
+            type_ = UNSET
+        else:
+            type_ = self.type_
 
 
         field_dict: dict[str, Any] = {}
@@ -59,10 +59,10 @@ class SCIMUserEmail:
         field_dict.update({
             "value": value,
         })
-        if type_ is not UNSET:
-            field_dict["type"] = type_
         if primary is not UNSET:
             field_dict["primary"] = primary
+        if type_ is not UNSET:
+            field_dict["type"] = type_
 
         return field_dict
 
@@ -72,16 +72,6 @@ class SCIMUserEmail:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
         value = d.pop("value")
-
-        def _parse_type_(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        type_ = _parse_type_(d.pop("type", UNSET))
-
 
         def _parse_primary(data: object) -> bool | None | Unset:
             if data is None:
@@ -93,10 +83,20 @@ class SCIMUserEmail:
         primary = _parse_primary(d.pop("primary", UNSET))
 
 
+        def _parse_type_(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        type_ = _parse_type_(d.pop("type", UNSET))
+
+
         scim_user_email = cls(
             value=value,
-            type_=type_,
             primary=primary,
+            type_=type_,
         )
 
 

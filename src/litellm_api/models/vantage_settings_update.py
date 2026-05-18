@@ -26,13 +26,13 @@ class VantageSettingsUpdate:
 
         Attributes:
             api_key (None | str | Unset): New Vantage API key for authentication
-            integration_token (None | str | Unset): New Vantage integration token
             base_url (None | str | Unset): New Vantage API base URL
+            integration_token (None | str | Unset): New Vantage integration token
      """
 
     api_key: None | str | Unset = UNSET
-    integration_token: None | str | Unset = UNSET
     base_url: None | str | Unset = UNSET
+    integration_token: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -46,17 +46,17 @@ class VantageSettingsUpdate:
         else:
             api_key = self.api_key
 
-        integration_token: None | str | Unset
-        if isinstance(self.integration_token, Unset):
-            integration_token = UNSET
-        else:
-            integration_token = self.integration_token
-
         base_url: None | str | Unset
         if isinstance(self.base_url, Unset):
             base_url = UNSET
         else:
             base_url = self.base_url
+
+        integration_token: None | str | Unset
+        if isinstance(self.integration_token, Unset):
+            integration_token = UNSET
+        else:
+            integration_token = self.integration_token
 
 
         field_dict: dict[str, Any] = {}
@@ -65,10 +65,10 @@ class VantageSettingsUpdate:
         })
         if api_key is not UNSET:
             field_dict["api_key"] = api_key
-        if integration_token is not UNSET:
-            field_dict["integration_token"] = integration_token
         if base_url is not UNSET:
             field_dict["base_url"] = base_url
+        if integration_token is not UNSET:
+            field_dict["integration_token"] = integration_token
 
         return field_dict
 
@@ -87,16 +87,6 @@ class VantageSettingsUpdate:
         api_key = _parse_api_key(d.pop("api_key", UNSET))
 
 
-        def _parse_integration_token(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        integration_token = _parse_integration_token(d.pop("integration_token", UNSET))
-
-
         def _parse_base_url(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -107,10 +97,20 @@ class VantageSettingsUpdate:
         base_url = _parse_base_url(d.pop("base_url", UNSET))
 
 
+        def _parse_integration_token(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        integration_token = _parse_integration_token(d.pop("integration_token", UNSET))
+
+
         vantage_settings_update = cls(
             api_key=api_key,
-            integration_token=integration_token,
             base_url=base_url,
+            integration_token=integration_token,
         )
 
 

@@ -29,21 +29,21 @@ class ToolPolicyOverrideRow:
         Attributes:
             override_id (str):
             tool_name (str):
-            team_id (None | str | Unset):
-            key_hash (None | str | Unset):
+            created_at (datetime.datetime | None | Unset):
             input_policy (ToolPolicyOverrideRowInputPolicy | Unset):  Default: ToolPolicyOverrideRowInputPolicy.BLOCKED.
             key_alias (None | str | Unset):
-            created_at (datetime.datetime | None | Unset):
+            key_hash (None | str | Unset):
+            team_id (None | str | Unset):
             updated_at (datetime.datetime | None | Unset):
      """
 
     override_id: str
     tool_name: str
-    team_id: None | str | Unset = UNSET
-    key_hash: None | str | Unset = UNSET
+    created_at: datetime.datetime | None | Unset = UNSET
     input_policy: ToolPolicyOverrideRowInputPolicy | Unset = ToolPolicyOverrideRowInputPolicy.BLOCKED
     key_alias: None | str | Unset = UNSET
-    created_at: datetime.datetime | None | Unset = UNSET
+    key_hash: None | str | Unset = UNSET
+    team_id: None | str | Unset = UNSET
     updated_at: datetime.datetime | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -56,17 +56,13 @@ class ToolPolicyOverrideRow:
 
         tool_name = self.tool_name
 
-        team_id: None | str | Unset
-        if isinstance(self.team_id, Unset):
-            team_id = UNSET
+        created_at: None | str | Unset
+        if isinstance(self.created_at, Unset):
+            created_at = UNSET
+        elif isinstance(self.created_at, datetime.datetime):
+            created_at = self.created_at.isoformat()
         else:
-            team_id = self.team_id
-
-        key_hash: None | str | Unset
-        if isinstance(self.key_hash, Unset):
-            key_hash = UNSET
-        else:
-            key_hash = self.key_hash
+            created_at = self.created_at
 
         input_policy: str | Unset = UNSET
         if not isinstance(self.input_policy, Unset):
@@ -79,13 +75,17 @@ class ToolPolicyOverrideRow:
         else:
             key_alias = self.key_alias
 
-        created_at: None | str | Unset
-        if isinstance(self.created_at, Unset):
-            created_at = UNSET
-        elif isinstance(self.created_at, datetime.datetime):
-            created_at = self.created_at.isoformat()
+        key_hash: None | str | Unset
+        if isinstance(self.key_hash, Unset):
+            key_hash = UNSET
         else:
-            created_at = self.created_at
+            key_hash = self.key_hash
+
+        team_id: None | str | Unset
+        if isinstance(self.team_id, Unset):
+            team_id = UNSET
+        else:
+            team_id = self.team_id
 
         updated_at: None | str | Unset
         if isinstance(self.updated_at, Unset):
@@ -102,16 +102,16 @@ class ToolPolicyOverrideRow:
             "override_id": override_id,
             "tool_name": tool_name,
         })
-        if team_id is not UNSET:
-            field_dict["team_id"] = team_id
-        if key_hash is not UNSET:
-            field_dict["key_hash"] = key_hash
+        if created_at is not UNSET:
+            field_dict["created_at"] = created_at
         if input_policy is not UNSET:
             field_dict["input_policy"] = input_policy
         if key_alias is not UNSET:
             field_dict["key_alias"] = key_alias
-        if created_at is not UNSET:
-            field_dict["created_at"] = created_at
+        if key_hash is not UNSET:
+            field_dict["key_hash"] = key_hash
+        if team_id is not UNSET:
+            field_dict["team_id"] = team_id
         if updated_at is not UNSET:
             field_dict["updated_at"] = updated_at
 
@@ -126,24 +126,24 @@ class ToolPolicyOverrideRow:
 
         tool_name = d.pop("tool_name")
 
-        def _parse_team_id(data: object) -> None | str | Unset:
+        def _parse_created_at(data: object) -> datetime.datetime | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(None | str | Unset, data)
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                created_at_type_0 = isoparse(data)
 
-        team_id = _parse_team_id(d.pop("team_id", UNSET))
 
 
-        def _parse_key_hash(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
+                return created_at_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
 
-        key_hash = _parse_key_hash(d.pop("key_hash", UNSET))
+        created_at = _parse_created_at(d.pop("created_at", UNSET))
 
 
         _input_policy = d.pop("input_policy", UNSET)
@@ -166,24 +166,24 @@ class ToolPolicyOverrideRow:
         key_alias = _parse_key_alias(d.pop("key_alias", UNSET))
 
 
-        def _parse_created_at(data: object) -> datetime.datetime | None | Unset:
+        def _parse_key_hash(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            try:
-                if not isinstance(data, str):
-                    raise TypeError()
-                created_at_type_0 = isoparse(data)
+            return cast(None | str | Unset, data)
+
+        key_hash = _parse_key_hash(d.pop("key_hash", UNSET))
 
 
+        def _parse_team_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-                return created_at_type_0
-            except (TypeError, ValueError, AttributeError, KeyError):
-                pass
-            return cast(datetime.datetime | None | Unset, data)
-
-        created_at = _parse_created_at(d.pop("created_at", UNSET))
+        team_id = _parse_team_id(d.pop("team_id", UNSET))
 
 
         def _parse_updated_at(data: object) -> datetime.datetime | None | Unset:
@@ -209,11 +209,11 @@ class ToolPolicyOverrideRow:
         tool_policy_override_row = cls(
             override_id=override_id,
             tool_name=tool_name,
-            team_id=team_id,
-            key_hash=key_hash,
+            created_at=created_at,
             input_policy=input_policy,
             key_alias=key_alias,
-            created_at=created_at,
+            key_hash=key_hash,
+            team_id=team_id,
             updated_at=updated_at,
         )
 

@@ -42,8 +42,9 @@ class PassThroughGenericEndpoint:
                 image/base/2.3 will be forwarded to the target endpoint. Default: False.
             cost_per_request (float | Unset): The USD cost per request to the target endpoint. This is used to calculate the
                 cost of the request to the target endpoint. Default: 0.0.
-            auth (bool | Unset): Whether authentication is required for the pass-through endpoint. If True, requests to the
-                endpoint will require a valid LiteLLM API key. Default: False.
+            auth (bool | Unset): Whether authentication is required for the pass-through endpoint. Defaults to True so a
+                pass-through silently created without an explicit value still requires a valid LiteLLM API key — set to False
+                only if the endpoint is meant to be a public forwarder (e.g. an unauthenticated webhook target). Default: True.
             guardrails (None | PassThroughGenericEndpointGuardrailsType0 | Unset): Guardrails configuration for this
                 passthrough endpoint. Dict keys are guardrail names, values are optional settings for field targeting. When set,
                 all org/team/key level guardrails will also execute. Defaults to None (no guardrails execute).
@@ -61,7 +62,7 @@ class PassThroughGenericEndpoint:
     default_query_params: PassThroughGenericEndpointDefaultQueryParams | Unset = UNSET
     include_subpath: bool | Unset = False
     cost_per_request: float | Unset = 0.0
-    auth: bool | Unset = False
+    auth: bool | Unset = True
     guardrails: None | PassThroughGenericEndpointGuardrailsType0 | Unset = UNSET
     is_from_config: bool | Unset = False
     methods: list[str] | None | Unset = UNSET

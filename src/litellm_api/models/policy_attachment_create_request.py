@@ -26,19 +26,19 @@ class PolicyAttachmentCreateRequest:
 
         Attributes:
             policy_name (str): Name of the policy to attach.
-            scope (None | str | Unset): Use '*' for global scope (applies to all requests).
-            teams (list[str] | None | Unset): Team aliases or patterns this attachment applies to.
             keys (list[str] | None | Unset): Key aliases or patterns this attachment applies to.
             models (list[str] | None | Unset): Model names or patterns this attachment applies to.
+            scope (None | str | Unset): Use '*' for global scope (applies to all requests).
             tags (list[str] | None | Unset): Tag patterns this attachment applies to. Supports wildcards (e.g., health-*).
+            teams (list[str] | None | Unset): Team aliases or patterns this attachment applies to.
      """
 
     policy_name: str
-    scope: None | str | Unset = UNSET
-    teams: list[str] | None | Unset = UNSET
     keys: list[str] | None | Unset = UNSET
     models: list[str] | None | Unset = UNSET
+    scope: None | str | Unset = UNSET
     tags: list[str] | None | Unset = UNSET
+    teams: list[str] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -47,22 +47,6 @@ class PolicyAttachmentCreateRequest:
 
     def to_dict(self) -> dict[str, Any]:
         policy_name = self.policy_name
-
-        scope: None | str | Unset
-        if isinstance(self.scope, Unset):
-            scope = UNSET
-        else:
-            scope = self.scope
-
-        teams: list[str] | None | Unset
-        if isinstance(self.teams, Unset):
-            teams = UNSET
-        elif isinstance(self.teams, list):
-            teams = self.teams
-
-
-        else:
-            teams = self.teams
 
         keys: list[str] | None | Unset
         if isinstance(self.keys, Unset):
@@ -84,6 +68,12 @@ class PolicyAttachmentCreateRequest:
         else:
             models = self.models
 
+        scope: None | str | Unset
+        if isinstance(self.scope, Unset):
+            scope = UNSET
+        else:
+            scope = self.scope
+
         tags: list[str] | None | Unset
         if isinstance(self.tags, Unset):
             tags = UNSET
@@ -94,22 +84,32 @@ class PolicyAttachmentCreateRequest:
         else:
             tags = self.tags
 
+        teams: list[str] | None | Unset
+        if isinstance(self.teams, Unset):
+            teams = UNSET
+        elif isinstance(self.teams, list):
+            teams = self.teams
+
+
+        else:
+            teams = self.teams
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
             "policy_name": policy_name,
         })
-        if scope is not UNSET:
-            field_dict["scope"] = scope
-        if teams is not UNSET:
-            field_dict["teams"] = teams
         if keys is not UNSET:
             field_dict["keys"] = keys
         if models is not UNSET:
             field_dict["models"] = models
+        if scope is not UNSET:
+            field_dict["scope"] = scope
         if tags is not UNSET:
             field_dict["tags"] = tags
+        if teams is not UNSET:
+            field_dict["teams"] = teams
 
         return field_dict
 
@@ -119,34 +119,6 @@ class PolicyAttachmentCreateRequest:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
         policy_name = d.pop("policy_name")
-
-        def _parse_scope(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        scope = _parse_scope(d.pop("scope", UNSET))
-
-
-        def _parse_teams(data: object) -> list[str] | None | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            try:
-                if not isinstance(data, list):
-                    raise TypeError()
-                teams_type_0 = cast(list[str], data)
-
-                return teams_type_0
-            except (TypeError, ValueError, AttributeError, KeyError):
-                pass
-            return cast(list[str] | None | Unset, data)
-
-        teams = _parse_teams(d.pop("teams", UNSET))
-
 
         def _parse_keys(data: object) -> list[str] | None | Unset:
             if data is None:
@@ -184,6 +156,16 @@ class PolicyAttachmentCreateRequest:
         models = _parse_models(d.pop("models", UNSET))
 
 
+        def _parse_scope(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        scope = _parse_scope(d.pop("scope", UNSET))
+
+
         def _parse_tags(data: object) -> list[str] | None | Unset:
             if data is None:
                 return data
@@ -202,13 +184,31 @@ class PolicyAttachmentCreateRequest:
         tags = _parse_tags(d.pop("tags", UNSET))
 
 
+        def _parse_teams(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                teams_type_0 = cast(list[str], data)
+
+                return teams_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        teams = _parse_teams(d.pop("teams", UNSET))
+
+
         policy_attachment_create_request = cls(
             policy_name=policy_name,
-            scope=scope,
-            teams=teams,
             keys=keys,
             models=models,
+            scope=scope,
             tags=tags,
+            teams=teams,
         )
 
 

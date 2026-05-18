@@ -22,12 +22,12 @@ T = TypeVar("T", bound="MCPUserCredentialResponse")
 class MCPUserCredentialResponse:
     """ 
         Attributes:
-            server_id (str):
             has_credential (bool):
+            server_id (str):
      """
 
-    server_id: str
     has_credential: bool
+    server_id: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -35,16 +35,16 @@ class MCPUserCredentialResponse:
 
 
     def to_dict(self) -> dict[str, Any]:
-        server_id = self.server_id
-
         has_credential = self.has_credential
+
+        server_id = self.server_id
 
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
-            "server_id": server_id,
             "has_credential": has_credential,
+            "server_id": server_id,
         })
 
         return field_dict
@@ -54,13 +54,13 @@ class MCPUserCredentialResponse:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        server_id = d.pop("server_id")
-
         has_credential = d.pop("has_credential")
 
+        server_id = d.pop("server_id")
+
         mcp_user_credential_response = cls(
-            server_id=server_id,
             has_credential=has_credential,
+            server_id=server_id,
         )
 
 

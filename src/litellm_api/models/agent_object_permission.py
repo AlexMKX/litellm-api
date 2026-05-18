@@ -26,18 +26,18 @@ T = TypeVar("T", bound="AgentObjectPermission")
 class AgentObjectPermission:
     """ 
         Attributes:
-            mcp_servers (list[str] | None | Unset):
+            agents (list[str] | None | Unset):
             mcp_access_groups (list[str] | None | Unset):
+            mcp_servers (list[str] | None | Unset):
             mcp_tool_permissions (AgentObjectPermissionMcpToolPermissionsType0 | None | Unset):
             models (list[str] | None | Unset):
-            agents (list[str] | None | Unset):
      """
 
-    mcp_servers: list[str] | None | Unset = UNSET
+    agents: list[str] | None | Unset = UNSET
     mcp_access_groups: list[str] | None | Unset = UNSET
+    mcp_servers: list[str] | None | Unset = UNSET
     mcp_tool_permissions: AgentObjectPermissionMcpToolPermissionsType0 | None | Unset = UNSET
     models: list[str] | None | Unset = UNSET
-    agents: list[str] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -46,15 +46,15 @@ class AgentObjectPermission:
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.agent_object_permission_mcp_tool_permissions_type_0 import AgentObjectPermissionMcpToolPermissionsType0
-        mcp_servers: list[str] | None | Unset
-        if isinstance(self.mcp_servers, Unset):
-            mcp_servers = UNSET
-        elif isinstance(self.mcp_servers, list):
-            mcp_servers = self.mcp_servers
+        agents: list[str] | None | Unset
+        if isinstance(self.agents, Unset):
+            agents = UNSET
+        elif isinstance(self.agents, list):
+            agents = self.agents
 
 
         else:
-            mcp_servers = self.mcp_servers
+            agents = self.agents
 
         mcp_access_groups: list[str] | None | Unset
         if isinstance(self.mcp_access_groups, Unset):
@@ -65,6 +65,16 @@ class AgentObjectPermission:
 
         else:
             mcp_access_groups = self.mcp_access_groups
+
+        mcp_servers: list[str] | None | Unset
+        if isinstance(self.mcp_servers, Unset):
+            mcp_servers = UNSET
+        elif isinstance(self.mcp_servers, list):
+            mcp_servers = self.mcp_servers
+
+
+        else:
+            mcp_servers = self.mcp_servers
 
         mcp_tool_permissions: dict[str, Any] | None | Unset
         if isinstance(self.mcp_tool_permissions, Unset):
@@ -84,31 +94,21 @@ class AgentObjectPermission:
         else:
             models = self.models
 
-        agents: list[str] | None | Unset
-        if isinstance(self.agents, Unset):
-            agents = UNSET
-        elif isinstance(self.agents, list):
-            agents = self.agents
-
-
-        else:
-            agents = self.agents
-
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
         })
-        if mcp_servers is not UNSET:
-            field_dict["mcp_servers"] = mcp_servers
+        if agents is not UNSET:
+            field_dict["agents"] = agents
         if mcp_access_groups is not UNSET:
             field_dict["mcp_access_groups"] = mcp_access_groups
+        if mcp_servers is not UNSET:
+            field_dict["mcp_servers"] = mcp_servers
         if mcp_tool_permissions is not UNSET:
             field_dict["mcp_tool_permissions"] = mcp_tool_permissions
         if models is not UNSET:
             field_dict["models"] = models
-        if agents is not UNSET:
-            field_dict["agents"] = agents
 
         return field_dict
 
@@ -118,7 +118,7 @@ class AgentObjectPermission:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.agent_object_permission_mcp_tool_permissions_type_0 import AgentObjectPermissionMcpToolPermissionsType0
         d = dict(src_dict)
-        def _parse_mcp_servers(data: object) -> list[str] | None | Unset:
+        def _parse_agents(data: object) -> list[str] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -126,14 +126,14 @@ class AgentObjectPermission:
             try:
                 if not isinstance(data, list):
                     raise TypeError()
-                mcp_servers_type_0 = cast(list[str], data)
+                agents_type_0 = cast(list[str], data)
 
-                return mcp_servers_type_0
+                return agents_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(list[str] | None | Unset, data)
 
-        mcp_servers = _parse_mcp_servers(d.pop("mcp_servers", UNSET))
+        agents = _parse_agents(d.pop("agents", UNSET))
 
 
         def _parse_mcp_access_groups(data: object) -> list[str] | None | Unset:
@@ -152,6 +152,24 @@ class AgentObjectPermission:
             return cast(list[str] | None | Unset, data)
 
         mcp_access_groups = _parse_mcp_access_groups(d.pop("mcp_access_groups", UNSET))
+
+
+        def _parse_mcp_servers(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                mcp_servers_type_0 = cast(list[str], data)
+
+                return mcp_servers_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        mcp_servers = _parse_mcp_servers(d.pop("mcp_servers", UNSET))
 
 
         def _parse_mcp_tool_permissions(data: object) -> AgentObjectPermissionMcpToolPermissionsType0 | None | Unset:
@@ -192,30 +210,12 @@ class AgentObjectPermission:
         models = _parse_models(d.pop("models", UNSET))
 
 
-        def _parse_agents(data: object) -> list[str] | None | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            try:
-                if not isinstance(data, list):
-                    raise TypeError()
-                agents_type_0 = cast(list[str], data)
-
-                return agents_type_0
-            except (TypeError, ValueError, AttributeError, KeyError):
-                pass
-            return cast(list[str] | None | Unset, data)
-
-        agents = _parse_agents(d.pop("agents", UNSET))
-
-
         agent_object_permission = cls(
-            mcp_servers=mcp_servers,
+            agents=agents,
             mcp_access_groups=mcp_access_groups,
+            mcp_servers=mcp_servers,
             mcp_tool_permissions=mcp_tool_permissions,
             models=models,
-            agents=agents,
         )
 
 

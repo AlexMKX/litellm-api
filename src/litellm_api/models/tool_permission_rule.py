@@ -28,19 +28,19 @@ class ToolPermissionRule:
     """ A rule defining permission for a specific tool or tool pattern
 
         Attributes:
-            id (str): Unique identifier for the rule
             decision (ToolPermissionRuleDecision): Whether to allow or deny this tool usage
-            tool_name (None | str | Unset): Regex pattern applied to the tool's function name
-            tool_type (None | str | Unset): Regex pattern applied to the tool type (e.g., function)
+            id (str): Unique identifier for the rule
             allowed_param_patterns (None | ToolPermissionRuleAllowedParamPatternsType0 | Unset): Optional regex map
                 enforcing nested parameter values using dot/[] paths
+            tool_name (None | str | Unset): Regex pattern applied to the tool's function name
+            tool_type (None | str | Unset): Regex pattern applied to the tool type (e.g., function)
      """
 
-    id: str
     decision: ToolPermissionRuleDecision
+    id: str
+    allowed_param_patterns: None | ToolPermissionRuleAllowedParamPatternsType0 | Unset = UNSET
     tool_name: None | str | Unset = UNSET
     tool_type: None | str | Unset = UNSET
-    allowed_param_patterns: None | ToolPermissionRuleAllowedParamPatternsType0 | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -49,9 +49,17 @@ class ToolPermissionRule:
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.tool_permission_rule_allowed_param_patterns_type_0 import ToolPermissionRuleAllowedParamPatternsType0
+        decision = self.decision.value
+
         id = self.id
 
-        decision = self.decision.value
+        allowed_param_patterns: dict[str, Any] | None | Unset
+        if isinstance(self.allowed_param_patterns, Unset):
+            allowed_param_patterns = UNSET
+        elif isinstance(self.allowed_param_patterns, ToolPermissionRuleAllowedParamPatternsType0):
+            allowed_param_patterns = self.allowed_param_patterns.to_dict()
+        else:
+            allowed_param_patterns = self.allowed_param_patterns
 
         tool_name: None | str | Unset
         if isinstance(self.tool_name, Unset):
@@ -65,27 +73,19 @@ class ToolPermissionRule:
         else:
             tool_type = self.tool_type
 
-        allowed_param_patterns: dict[str, Any] | None | Unset
-        if isinstance(self.allowed_param_patterns, Unset):
-            allowed_param_patterns = UNSET
-        elif isinstance(self.allowed_param_patterns, ToolPermissionRuleAllowedParamPatternsType0):
-            allowed_param_patterns = self.allowed_param_patterns.to_dict()
-        else:
-            allowed_param_patterns = self.allowed_param_patterns
-
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
-            "id": id,
             "decision": decision,
+            "id": id,
         })
+        if allowed_param_patterns is not UNSET:
+            field_dict["allowed_param_patterns"] = allowed_param_patterns
         if tool_name is not UNSET:
             field_dict["tool_name"] = tool_name
         if tool_type is not UNSET:
             field_dict["tool_type"] = tool_type
-        if allowed_param_patterns is not UNSET:
-            field_dict["allowed_param_patterns"] = allowed_param_patterns
 
         return field_dict
 
@@ -95,11 +95,31 @@ class ToolPermissionRule:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.tool_permission_rule_allowed_param_patterns_type_0 import ToolPermissionRuleAllowedParamPatternsType0
         d = dict(src_dict)
-        id = d.pop("id")
-
         decision = ToolPermissionRuleDecision(d.pop("decision"))
 
 
+
+
+        id = d.pop("id")
+
+        def _parse_allowed_param_patterns(data: object) -> None | ToolPermissionRuleAllowedParamPatternsType0 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                allowed_param_patterns_type_0 = ToolPermissionRuleAllowedParamPatternsType0.from_dict(data)
+
+
+
+                return allowed_param_patterns_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | ToolPermissionRuleAllowedParamPatternsType0 | Unset, data)
+
+        allowed_param_patterns = _parse_allowed_param_patterns(d.pop("allowed_param_patterns", UNSET))
 
 
         def _parse_tool_name(data: object) -> None | str | Unset:
@@ -122,32 +142,12 @@ class ToolPermissionRule:
         tool_type = _parse_tool_type(d.pop("tool_type", UNSET))
 
 
-        def _parse_allowed_param_patterns(data: object) -> None | ToolPermissionRuleAllowedParamPatternsType0 | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            try:
-                if not isinstance(data, dict):
-                    raise TypeError()
-                allowed_param_patterns_type_0 = ToolPermissionRuleAllowedParamPatternsType0.from_dict(data)
-
-
-
-                return allowed_param_patterns_type_0
-            except (TypeError, ValueError, AttributeError, KeyError):
-                pass
-            return cast(None | ToolPermissionRuleAllowedParamPatternsType0 | Unset, data)
-
-        allowed_param_patterns = _parse_allowed_param_patterns(d.pop("allowed_param_patterns", UNSET))
-
-
         tool_permission_rule = cls(
-            id=id,
             decision=decision,
+            id=id,
+            allowed_param_patterns=allowed_param_patterns,
             tool_name=tool_name,
             tool_type=tool_type,
-            allowed_param_patterns=allowed_param_patterns,
         )
 
 

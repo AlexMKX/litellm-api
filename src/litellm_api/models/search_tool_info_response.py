@@ -28,22 +28,22 @@ class SearchToolInfoResponse:
     """ Response model for search tool information.
 
         Attributes:
-            search_tool_id (None | str | Unset):
-            search_tool_name (str | Unset):
-            litellm_params (SearchToolInfoResponseLitellmParams | Unset):
-            search_tool_info (None | SearchToolInfoResponseSearchToolInfoType0 | Unset):
             created_at (None | str | Unset):
-            updated_at (None | str | Unset):
             is_from_config (bool | None | Unset):
+            litellm_params (SearchToolInfoResponseLitellmParams | Unset):
+            search_tool_id (None | str | Unset):
+            search_tool_info (None | SearchToolInfoResponseSearchToolInfoType0 | Unset):
+            search_tool_name (str | Unset):
+            updated_at (None | str | Unset):
      """
 
-    search_tool_id: None | str | Unset = UNSET
-    search_tool_name: str | Unset = UNSET
-    litellm_params: SearchToolInfoResponseLitellmParams | Unset = UNSET
-    search_tool_info: None | SearchToolInfoResponseSearchToolInfoType0 | Unset = UNSET
     created_at: None | str | Unset = UNSET
-    updated_at: None | str | Unset = UNSET
     is_from_config: bool | None | Unset = UNSET
+    litellm_params: SearchToolInfoResponseLitellmParams | Unset = UNSET
+    search_tool_id: None | str | Unset = UNSET
+    search_tool_info: None | SearchToolInfoResponseSearchToolInfoType0 | Unset = UNSET
+    search_tool_name: str | Unset = UNSET
+    updated_at: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -53,17 +53,27 @@ class SearchToolInfoResponse:
     def to_dict(self) -> dict[str, Any]:
         from ..models.search_tool_info_response_litellm_params import SearchToolInfoResponseLitellmParams
         from ..models.search_tool_info_response_search_tool_info_type_0 import SearchToolInfoResponseSearchToolInfoType0
+        created_at: None | str | Unset
+        if isinstance(self.created_at, Unset):
+            created_at = UNSET
+        else:
+            created_at = self.created_at
+
+        is_from_config: bool | None | Unset
+        if isinstance(self.is_from_config, Unset):
+            is_from_config = UNSET
+        else:
+            is_from_config = self.is_from_config
+
+        litellm_params: dict[str, Any] | Unset = UNSET
+        if not isinstance(self.litellm_params, Unset):
+            litellm_params = self.litellm_params.to_dict()
+
         search_tool_id: None | str | Unset
         if isinstance(self.search_tool_id, Unset):
             search_tool_id = UNSET
         else:
             search_tool_id = self.search_tool_id
-
-        search_tool_name = self.search_tool_name
-
-        litellm_params: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.litellm_params, Unset):
-            litellm_params = self.litellm_params.to_dict()
 
         search_tool_info: dict[str, Any] | None | Unset
         if isinstance(self.search_tool_info, Unset):
@@ -73,11 +83,7 @@ class SearchToolInfoResponse:
         else:
             search_tool_info = self.search_tool_info
 
-        created_at: None | str | Unset
-        if isinstance(self.created_at, Unset):
-            created_at = UNSET
-        else:
-            created_at = self.created_at
+        search_tool_name = self.search_tool_name
 
         updated_at: None | str | Unset
         if isinstance(self.updated_at, Unset):
@@ -85,31 +91,25 @@ class SearchToolInfoResponse:
         else:
             updated_at = self.updated_at
 
-        is_from_config: bool | None | Unset
-        if isinstance(self.is_from_config, Unset):
-            is_from_config = UNSET
-        else:
-            is_from_config = self.is_from_config
-
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
         })
-        if search_tool_id is not UNSET:
-            field_dict["search_tool_id"] = search_tool_id
-        if search_tool_name is not UNSET:
-            field_dict["search_tool_name"] = search_tool_name
-        if litellm_params is not UNSET:
-            field_dict["litellm_params"] = litellm_params
-        if search_tool_info is not UNSET:
-            field_dict["search_tool_info"] = search_tool_info
         if created_at is not UNSET:
             field_dict["created_at"] = created_at
-        if updated_at is not UNSET:
-            field_dict["updated_at"] = updated_at
         if is_from_config is not UNSET:
             field_dict["is_from_config"] = is_from_config
+        if litellm_params is not UNSET:
+            field_dict["litellm_params"] = litellm_params
+        if search_tool_id is not UNSET:
+            field_dict["search_tool_id"] = search_tool_id
+        if search_tool_info is not UNSET:
+            field_dict["search_tool_info"] = search_tool_info
+        if search_tool_name is not UNSET:
+            field_dict["search_tool_name"] = search_tool_name
+        if updated_at is not UNSET:
+            field_dict["updated_at"] = updated_at
 
         return field_dict
 
@@ -120,17 +120,25 @@ class SearchToolInfoResponse:
         from ..models.search_tool_info_response_litellm_params import SearchToolInfoResponseLitellmParams
         from ..models.search_tool_info_response_search_tool_info_type_0 import SearchToolInfoResponseSearchToolInfoType0
         d = dict(src_dict)
-        def _parse_search_tool_id(data: object) -> None | str | Unset:
+        def _parse_created_at(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             return cast(None | str | Unset, data)
 
-        search_tool_id = _parse_search_tool_id(d.pop("search_tool_id", UNSET))
+        created_at = _parse_created_at(d.pop("created_at", UNSET))
 
 
-        search_tool_name = d.pop("search_tool_name", UNSET)
+        def _parse_is_from_config(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        is_from_config = _parse_is_from_config(d.pop("is_from_config", UNSET))
+
 
         _litellm_params = d.pop("litellm_params", UNSET)
         litellm_params: SearchToolInfoResponseLitellmParams | Unset
@@ -140,6 +148,16 @@ class SearchToolInfoResponse:
             litellm_params = SearchToolInfoResponseLitellmParams.from_dict(_litellm_params)
 
 
+
+
+        def _parse_search_tool_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        search_tool_id = _parse_search_tool_id(d.pop("search_tool_id", UNSET))
 
 
         def _parse_search_tool_info(data: object) -> None | SearchToolInfoResponseSearchToolInfoType0 | Unset:
@@ -162,15 +180,7 @@ class SearchToolInfoResponse:
         search_tool_info = _parse_search_tool_info(d.pop("search_tool_info", UNSET))
 
 
-        def _parse_created_at(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        created_at = _parse_created_at(d.pop("created_at", UNSET))
-
+        search_tool_name = d.pop("search_tool_name", UNSET)
 
         def _parse_updated_at(data: object) -> None | str | Unset:
             if data is None:
@@ -182,24 +192,14 @@ class SearchToolInfoResponse:
         updated_at = _parse_updated_at(d.pop("updated_at", UNSET))
 
 
-        def _parse_is_from_config(data: object) -> bool | None | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(bool | None | Unset, data)
-
-        is_from_config = _parse_is_from_config(d.pop("is_from_config", UNSET))
-
-
         search_tool_info_response = cls(
-            search_tool_id=search_tool_id,
-            search_tool_name=search_tool_name,
-            litellm_params=litellm_params,
-            search_tool_info=search_tool_info,
             created_at=created_at,
-            updated_at=updated_at,
             is_from_config=is_from_config,
+            litellm_params=litellm_params,
+            search_tool_id=search_tool_id,
+            search_tool_info=search_tool_info,
+            search_tool_name=search_tool_name,
+            updated_at=updated_at,
         )
 
 

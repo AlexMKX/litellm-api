@@ -25,18 +25,18 @@ class MCPOAuthUserCredentialStatus:
     """ Describes whether the calling user has a stored OAuth credential.
 
         Attributes:
-            server_id (str):
             has_credential (bool):
+            server_id (str):
+            connected_at (None | str | Unset):
             expires_at (None | str | Unset):
             is_expired (bool | Unset):  Default: False.
-            connected_at (None | str | Unset):
      """
 
-    server_id: str
     has_credential: bool
+    server_id: str
+    connected_at: None | str | Unset = UNSET
     expires_at: None | str | Unset = UNSET
     is_expired: bool | Unset = False
-    connected_at: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -44,9 +44,15 @@ class MCPOAuthUserCredentialStatus:
 
 
     def to_dict(self) -> dict[str, Any]:
+        has_credential = self.has_credential
+
         server_id = self.server_id
 
-        has_credential = self.has_credential
+        connected_at: None | str | Unset
+        if isinstance(self.connected_at, Unset):
+            connected_at = UNSET
+        else:
+            connected_at = self.connected_at
 
         expires_at: None | str | Unset
         if isinstance(self.expires_at, Unset):
@@ -56,25 +62,19 @@ class MCPOAuthUserCredentialStatus:
 
         is_expired = self.is_expired
 
-        connected_at: None | str | Unset
-        if isinstance(self.connected_at, Unset):
-            connected_at = UNSET
-        else:
-            connected_at = self.connected_at
-
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
-            "server_id": server_id,
             "has_credential": has_credential,
+            "server_id": server_id,
         })
+        if connected_at is not UNSET:
+            field_dict["connected_at"] = connected_at
         if expires_at is not UNSET:
             field_dict["expires_at"] = expires_at
         if is_expired is not UNSET:
             field_dict["is_expired"] = is_expired
-        if connected_at is not UNSET:
-            field_dict["connected_at"] = connected_at
 
         return field_dict
 
@@ -83,9 +83,19 @@ class MCPOAuthUserCredentialStatus:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
+        has_credential = d.pop("has_credential")
+
         server_id = d.pop("server_id")
 
-        has_credential = d.pop("has_credential")
+        def _parse_connected_at(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        connected_at = _parse_connected_at(d.pop("connected_at", UNSET))
+
 
         def _parse_expires_at(data: object) -> None | str | Unset:
             if data is None:
@@ -99,22 +109,12 @@ class MCPOAuthUserCredentialStatus:
 
         is_expired = d.pop("is_expired", UNSET)
 
-        def _parse_connected_at(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        connected_at = _parse_connected_at(d.pop("connected_at", UNSET))
-
-
         mcpo_auth_user_credential_status = cls(
-            server_id=server_id,
             has_credential=has_credential,
+            server_id=server_id,
+            connected_at=connected_at,
             expires_at=expires_at,
             is_expired=is_expired,
-            connected_at=connected_at,
         )
 
 

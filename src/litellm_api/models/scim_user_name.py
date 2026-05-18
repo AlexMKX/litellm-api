@@ -25,19 +25,19 @@ class SCIMUserName:
     """ 
         Attributes:
             family_name (None | str | Unset):
-            given_name (None | str | Unset):
             formatted (None | str | Unset):
-            middle_name (None | str | Unset):
+            given_name (None | str | Unset):
             honorific_prefix (None | str | Unset):
             honorific_suffix (None | str | Unset):
+            middle_name (None | str | Unset):
      """
 
     family_name: None | str | Unset = UNSET
-    given_name: None | str | Unset = UNSET
     formatted: None | str | Unset = UNSET
-    middle_name: None | str | Unset = UNSET
+    given_name: None | str | Unset = UNSET
     honorific_prefix: None | str | Unset = UNSET
     honorific_suffix: None | str | Unset = UNSET
+    middle_name: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -51,23 +51,17 @@ class SCIMUserName:
         else:
             family_name = self.family_name
 
-        given_name: None | str | Unset
-        if isinstance(self.given_name, Unset):
-            given_name = UNSET
-        else:
-            given_name = self.given_name
-
         formatted: None | str | Unset
         if isinstance(self.formatted, Unset):
             formatted = UNSET
         else:
             formatted = self.formatted
 
-        middle_name: None | str | Unset
-        if isinstance(self.middle_name, Unset):
-            middle_name = UNSET
+        given_name: None | str | Unset
+        if isinstance(self.given_name, Unset):
+            given_name = UNSET
         else:
-            middle_name = self.middle_name
+            given_name = self.given_name
 
         honorific_prefix: None | str | Unset
         if isinstance(self.honorific_prefix, Unset):
@@ -81,6 +75,12 @@ class SCIMUserName:
         else:
             honorific_suffix = self.honorific_suffix
 
+        middle_name: None | str | Unset
+        if isinstance(self.middle_name, Unset):
+            middle_name = UNSET
+        else:
+            middle_name = self.middle_name
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -88,16 +88,16 @@ class SCIMUserName:
         })
         if family_name is not UNSET:
             field_dict["familyName"] = family_name
-        if given_name is not UNSET:
-            field_dict["givenName"] = given_name
         if formatted is not UNSET:
             field_dict["formatted"] = formatted
-        if middle_name is not UNSET:
-            field_dict["middleName"] = middle_name
+        if given_name is not UNSET:
+            field_dict["givenName"] = given_name
         if honorific_prefix is not UNSET:
             field_dict["honorificPrefix"] = honorific_prefix
         if honorific_suffix is not UNSET:
             field_dict["honorificSuffix"] = honorific_suffix
+        if middle_name is not UNSET:
+            field_dict["middleName"] = middle_name
 
         return field_dict
 
@@ -116,16 +116,6 @@ class SCIMUserName:
         family_name = _parse_family_name(d.pop("familyName", UNSET))
 
 
-        def _parse_given_name(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        given_name = _parse_given_name(d.pop("givenName", UNSET))
-
-
         def _parse_formatted(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -136,14 +126,14 @@ class SCIMUserName:
         formatted = _parse_formatted(d.pop("formatted", UNSET))
 
 
-        def _parse_middle_name(data: object) -> None | str | Unset:
+        def _parse_given_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             return cast(None | str | Unset, data)
 
-        middle_name = _parse_middle_name(d.pop("middleName", UNSET))
+        given_name = _parse_given_name(d.pop("givenName", UNSET))
 
 
         def _parse_honorific_prefix(data: object) -> None | str | Unset:
@@ -166,13 +156,23 @@ class SCIMUserName:
         honorific_suffix = _parse_honorific_suffix(d.pop("honorificSuffix", UNSET))
 
 
+        def _parse_middle_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        middle_name = _parse_middle_name(d.pop("middleName", UNSET))
+
+
         scim_user_name = cls(
             family_name=family_name,
-            given_name=given_name,
             formatted=formatted,
-            middle_name=middle_name,
+            given_name=given_name,
             honorific_prefix=honorific_prefix,
             honorific_suffix=honorific_suffix,
+            middle_name=middle_name,
         )
 
 

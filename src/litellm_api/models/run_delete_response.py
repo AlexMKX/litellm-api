@@ -26,13 +26,13 @@ class RunDeleteResponse:
 
         Attributes:
             run_id (str):
-            object_ (None | str | Unset):  Default: 'eval.run.deleted'.
             deleted (bool | None | Unset):  Default: True.
+            object_ (None | str | Unset):  Default: 'eval.run.deleted'.
      """
 
     run_id: str
-    object_: None | str | Unset = 'eval.run.deleted'
     deleted: bool | None | Unset = True
+    object_: None | str | Unset = 'eval.run.deleted'
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -42,17 +42,17 @@ class RunDeleteResponse:
     def to_dict(self) -> dict[str, Any]:
         run_id = self.run_id
 
-        object_: None | str | Unset
-        if isinstance(self.object_, Unset):
-            object_ = UNSET
-        else:
-            object_ = self.object_
-
         deleted: bool | None | Unset
         if isinstance(self.deleted, Unset):
             deleted = UNSET
         else:
             deleted = self.deleted
+
+        object_: None | str | Unset
+        if isinstance(self.object_, Unset):
+            object_ = UNSET
+        else:
+            object_ = self.object_
 
 
         field_dict: dict[str, Any] = {}
@@ -60,10 +60,10 @@ class RunDeleteResponse:
         field_dict.update({
             "run_id": run_id,
         })
-        if object_ is not UNSET:
-            field_dict["object"] = object_
         if deleted is not UNSET:
             field_dict["deleted"] = deleted
+        if object_ is not UNSET:
+            field_dict["object"] = object_
 
         return field_dict
 
@@ -73,16 +73,6 @@ class RunDeleteResponse:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
         run_id = d.pop("run_id")
-
-        def _parse_object_(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        object_ = _parse_object_(d.pop("object", UNSET))
-
 
         def _parse_deleted(data: object) -> bool | None | Unset:
             if data is None:
@@ -94,10 +84,20 @@ class RunDeleteResponse:
         deleted = _parse_deleted(d.pop("deleted", UNSET))
 
 
+        def _parse_object_(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        object_ = _parse_object_(d.pop("object", UNSET))
+
+
         run_delete_response = cls(
             run_id=run_id,
-            object_=object_,
             deleted=deleted,
+            object_=object_,
         )
 
 

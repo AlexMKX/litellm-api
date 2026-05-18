@@ -23,12 +23,12 @@ T = TypeVar("T", bound="LakeraCategoryThresholds")
 class LakeraCategoryThresholds:
     """ 
         Attributes:
-            prompt_injection (float | Unset):
             jailbreak (float | Unset):
+            prompt_injection (float | Unset):
      """
 
-    prompt_injection: float | Unset = UNSET
     jailbreak: float | Unset = UNSET
+    prompt_injection: float | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -36,19 +36,19 @@ class LakeraCategoryThresholds:
 
 
     def to_dict(self) -> dict[str, Any]:
-        prompt_injection = self.prompt_injection
-
         jailbreak = self.jailbreak
+
+        prompt_injection = self.prompt_injection
 
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
         })
-        if prompt_injection is not UNSET:
-            field_dict["prompt_injection"] = prompt_injection
         if jailbreak is not UNSET:
             field_dict["jailbreak"] = jailbreak
+        if prompt_injection is not UNSET:
+            field_dict["prompt_injection"] = prompt_injection
 
         return field_dict
 
@@ -57,13 +57,13 @@ class LakeraCategoryThresholds:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        prompt_injection = d.pop("prompt_injection", UNSET)
-
         jailbreak = d.pop("jailbreak", UNSET)
 
+        prompt_injection = d.pop("prompt_injection", UNSET)
+
         lakera_category_thresholds = cls(
-            prompt_injection=prompt_injection,
             jailbreak=jailbreak,
+            prompt_injection=prompt_injection,
         )
 
 

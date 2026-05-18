@@ -29,21 +29,21 @@ class PolicyCreateRequest:
 
         Attributes:
             policy_name (str): Unique name for the policy.
-            inherit (None | str | Unset): Name of parent policy to inherit from.
+            condition (None | PolicyConditionRequest | Unset): Condition for when this policy applies.
             description (None | str | Unset): Human-readable description of the policy.
             guardrails_add (list[str] | None | Unset): List of guardrail names to add.
             guardrails_remove (list[str] | None | Unset): List of guardrail names to remove (from inherited).
-            condition (None | PolicyConditionRequest | Unset): Condition for when this policy applies.
+            inherit (None | str | Unset): Name of parent policy to inherit from.
             pipeline (None | PolicyCreateRequestPipelineType0 | Unset): Optional guardrail pipeline for ordered execution.
                 Contains 'mode' and 'steps'.
      """
 
     policy_name: str
-    inherit: None | str | Unset = UNSET
+    condition: None | PolicyConditionRequest | Unset = UNSET
     description: None | str | Unset = UNSET
     guardrails_add: list[str] | None | Unset = UNSET
     guardrails_remove: list[str] | None | Unset = UNSET
-    condition: None | PolicyConditionRequest | Unset = UNSET
+    inherit: None | str | Unset = UNSET
     pipeline: None | PolicyCreateRequestPipelineType0 | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -56,11 +56,13 @@ class PolicyCreateRequest:
         from ..models.policy_create_request_pipeline_type_0 import PolicyCreateRequestPipelineType0
         policy_name = self.policy_name
 
-        inherit: None | str | Unset
-        if isinstance(self.inherit, Unset):
-            inherit = UNSET
+        condition: dict[str, Any] | None | Unset
+        if isinstance(self.condition, Unset):
+            condition = UNSET
+        elif isinstance(self.condition, PolicyConditionRequest):
+            condition = self.condition.to_dict()
         else:
-            inherit = self.inherit
+            condition = self.condition
 
         description: None | str | Unset
         if isinstance(self.description, Unset):
@@ -88,13 +90,11 @@ class PolicyCreateRequest:
         else:
             guardrails_remove = self.guardrails_remove
 
-        condition: dict[str, Any] | None | Unset
-        if isinstance(self.condition, Unset):
-            condition = UNSET
-        elif isinstance(self.condition, PolicyConditionRequest):
-            condition = self.condition.to_dict()
+        inherit: None | str | Unset
+        if isinstance(self.inherit, Unset):
+            inherit = UNSET
         else:
-            condition = self.condition
+            inherit = self.inherit
 
         pipeline: dict[str, Any] | None | Unset
         if isinstance(self.pipeline, Unset):
@@ -110,16 +110,16 @@ class PolicyCreateRequest:
         field_dict.update({
             "policy_name": policy_name,
         })
-        if inherit is not UNSET:
-            field_dict["inherit"] = inherit
+        if condition is not UNSET:
+            field_dict["condition"] = condition
         if description is not UNSET:
             field_dict["description"] = description
         if guardrails_add is not UNSET:
             field_dict["guardrails_add"] = guardrails_add
         if guardrails_remove is not UNSET:
             field_dict["guardrails_remove"] = guardrails_remove
-        if condition is not UNSET:
-            field_dict["condition"] = condition
+        if inherit is not UNSET:
+            field_dict["inherit"] = inherit
         if pipeline is not UNSET:
             field_dict["pipeline"] = pipeline
 
@@ -134,14 +134,24 @@ class PolicyCreateRequest:
         d = dict(src_dict)
         policy_name = d.pop("policy_name")
 
-        def _parse_inherit(data: object) -> None | str | Unset:
+        def _parse_condition(data: object) -> None | PolicyConditionRequest | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(None | str | Unset, data)
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                condition_type_0 = PolicyConditionRequest.from_dict(data)
 
-        inherit = _parse_inherit(d.pop("inherit", UNSET))
+
+
+                return condition_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | PolicyConditionRequest | Unset, data)
+
+        condition = _parse_condition(d.pop("condition", UNSET))
 
 
         def _parse_description(data: object) -> None | str | Unset:
@@ -190,24 +200,14 @@ class PolicyCreateRequest:
         guardrails_remove = _parse_guardrails_remove(d.pop("guardrails_remove", UNSET))
 
 
-        def _parse_condition(data: object) -> None | PolicyConditionRequest | Unset:
+        def _parse_inherit(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            try:
-                if not isinstance(data, dict):
-                    raise TypeError()
-                condition_type_0 = PolicyConditionRequest.from_dict(data)
+            return cast(None | str | Unset, data)
 
-
-
-                return condition_type_0
-            except (TypeError, ValueError, AttributeError, KeyError):
-                pass
-            return cast(None | PolicyConditionRequest | Unset, data)
-
-        condition = _parse_condition(d.pop("condition", UNSET))
+        inherit = _parse_inherit(d.pop("inherit", UNSET))
 
 
         def _parse_pipeline(data: object) -> None | PolicyCreateRequestPipelineType0 | Unset:
@@ -232,11 +232,11 @@ class PolicyCreateRequest:
 
         policy_create_request = cls(
             policy_name=policy_name,
-            inherit=inherit,
+            condition=condition,
             description=description,
             guardrails_add=guardrails_add,
             guardrails_remove=guardrails_remove,
-            condition=condition,
+            inherit=inherit,
             pipeline=pipeline,
         )
 

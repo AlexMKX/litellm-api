@@ -28,17 +28,17 @@ class PolicySummaryItem:
     """ Summary of a single policy for list endpoint.
 
         Attributes:
-            scope (PolicyScopeResponse): Scope configuration for a policy.
             guardrails (PolicyGuardrailsResponse): Guardrails configuration for a policy.
-            resolved_guardrails (list[str]):
             inheritance_chain (list[str]):
+            resolved_guardrails (list[str]):
+            scope (PolicyScopeResponse): Scope configuration for a policy.
             inherit (None | str | Unset):
      """
 
-    scope: PolicyScopeResponse
     guardrails: PolicyGuardrailsResponse
-    resolved_guardrails: list[str]
     inheritance_chain: list[str]
+    resolved_guardrails: list[str]
+    scope: PolicyScopeResponse
     inherit: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -49,17 +49,17 @@ class PolicySummaryItem:
     def to_dict(self) -> dict[str, Any]:
         from ..models.policy_guardrails_response import PolicyGuardrailsResponse
         from ..models.policy_scope_response import PolicyScopeResponse
-        scope = self.scope.to_dict()
-
         guardrails = self.guardrails.to_dict()
+
+        inheritance_chain = self.inheritance_chain
+
+
 
         resolved_guardrails = self.resolved_guardrails
 
 
 
-        inheritance_chain = self.inheritance_chain
-
-
+        scope = self.scope.to_dict()
 
         inherit: None | str | Unset
         if isinstance(self.inherit, Unset):
@@ -71,10 +71,10 @@ class PolicySummaryItem:
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
-            "scope": scope,
             "guardrails": guardrails,
-            "resolved_guardrails": resolved_guardrails,
             "inheritance_chain": inheritance_chain,
+            "resolved_guardrails": resolved_guardrails,
+            "scope": scope,
         })
         if inherit is not UNSET:
             field_dict["inherit"] = inherit
@@ -88,20 +88,20 @@ class PolicySummaryItem:
         from ..models.policy_guardrails_response import PolicyGuardrailsResponse
         from ..models.policy_scope_response import PolicyScopeResponse
         d = dict(src_dict)
-        scope = PolicyScopeResponse.from_dict(d.pop("scope"))
-
-
-
-
         guardrails = PolicyGuardrailsResponse.from_dict(d.pop("guardrails"))
 
 
 
 
+        inheritance_chain = cast(list[str], d.pop("inheritance_chain"))
+
+
         resolved_guardrails = cast(list[str], d.pop("resolved_guardrails"))
 
 
-        inheritance_chain = cast(list[str], d.pop("inheritance_chain"))
+        scope = PolicyScopeResponse.from_dict(d.pop("scope"))
+
+
 
 
         def _parse_inherit(data: object) -> None | str | Unset:
@@ -115,10 +115,10 @@ class PolicySummaryItem:
 
 
         policy_summary_item = cls(
-            scope=scope,
             guardrails=guardrails,
-            resolved_guardrails=resolved_guardrails,
             inheritance_chain=inheritance_chain,
+            resolved_guardrails=resolved_guardrails,
+            scope=scope,
             inherit=inherit,
         )
 

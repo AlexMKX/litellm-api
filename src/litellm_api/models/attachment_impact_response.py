@@ -27,18 +27,18 @@ class AttachmentImpactResponse:
         Attributes:
             affected_keys_count (int | Unset): Number of keys that would be affected (named + unnamed). Default: 0.
             affected_teams_count (int | Unset): Number of teams that would be affected (named + unnamed). Default: 0.
-            unnamed_keys_count (int | Unset): Number of affected keys without an alias. Default: 0.
-            unnamed_teams_count (int | Unset): Number of affected teams without an alias. Default: 0.
             sample_keys (list[str] | Unset): Sample of affected key aliases (up to 10).
             sample_teams (list[str] | Unset): Sample of affected team aliases (up to 10).
+            unnamed_keys_count (int | Unset): Number of affected keys without an alias. Default: 0.
+            unnamed_teams_count (int | Unset): Number of affected teams without an alias. Default: 0.
      """
 
     affected_keys_count: int | Unset = 0
     affected_teams_count: int | Unset = 0
-    unnamed_keys_count: int | Unset = 0
-    unnamed_teams_count: int | Unset = 0
     sample_keys: list[str] | Unset = UNSET
     sample_teams: list[str] | Unset = UNSET
+    unnamed_keys_count: int | Unset = 0
+    unnamed_teams_count: int | Unset = 0
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -49,10 +49,6 @@ class AttachmentImpactResponse:
         affected_keys_count = self.affected_keys_count
 
         affected_teams_count = self.affected_teams_count
-
-        unnamed_keys_count = self.unnamed_keys_count
-
-        unnamed_teams_count = self.unnamed_teams_count
 
         sample_keys: list[str] | Unset = UNSET
         if not isinstance(self.sample_keys, Unset):
@@ -66,6 +62,10 @@ class AttachmentImpactResponse:
 
 
 
+        unnamed_keys_count = self.unnamed_keys_count
+
+        unnamed_teams_count = self.unnamed_teams_count
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -75,14 +75,14 @@ class AttachmentImpactResponse:
             field_dict["affected_keys_count"] = affected_keys_count
         if affected_teams_count is not UNSET:
             field_dict["affected_teams_count"] = affected_teams_count
-        if unnamed_keys_count is not UNSET:
-            field_dict["unnamed_keys_count"] = unnamed_keys_count
-        if unnamed_teams_count is not UNSET:
-            field_dict["unnamed_teams_count"] = unnamed_teams_count
         if sample_keys is not UNSET:
             field_dict["sample_keys"] = sample_keys
         if sample_teams is not UNSET:
             field_dict["sample_teams"] = sample_teams
+        if unnamed_keys_count is not UNSET:
+            field_dict["unnamed_keys_count"] = unnamed_keys_count
+        if unnamed_teams_count is not UNSET:
+            field_dict["unnamed_teams_count"] = unnamed_teams_count
 
         return field_dict
 
@@ -95,23 +95,23 @@ class AttachmentImpactResponse:
 
         affected_teams_count = d.pop("affected_teams_count", UNSET)
 
-        unnamed_keys_count = d.pop("unnamed_keys_count", UNSET)
-
-        unnamed_teams_count = d.pop("unnamed_teams_count", UNSET)
-
         sample_keys = cast(list[str], d.pop("sample_keys", UNSET))
 
 
         sample_teams = cast(list[str], d.pop("sample_teams", UNSET))
 
 
+        unnamed_keys_count = d.pop("unnamed_keys_count", UNSET)
+
+        unnamed_teams_count = d.pop("unnamed_teams_count", UNSET)
+
         attachment_impact_response = cls(
             affected_keys_count=affected_keys_count,
             affected_teams_count=affected_teams_count,
-            unnamed_keys_count=unnamed_keys_count,
-            unnamed_teams_count=unnamed_teams_count,
             sample_keys=sample_keys,
             sample_teams=sample_teams,
+            unnamed_keys_count=unnamed_keys_count,
+            unnamed_teams_count=unnamed_teams_count,
         )
 
 

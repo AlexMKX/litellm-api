@@ -65,7 +65,7 @@ def sync_detailed(
      View current Vantage settings.
 
     Returns the current Vantage configuration with the API key masked for security.
-    Only admin users can view Vantage settings.
+    Only admin users (Proxy Admin or Admin Viewer) can view Vantage settings.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -96,7 +96,7 @@ def sync(
      View current Vantage settings.
 
     Returns the current Vantage configuration with the API key masked for security.
-    Only admin users can view Vantage settings.
+    Only admin users (Proxy Admin or Admin Viewer) can view Vantage settings.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -122,7 +122,7 @@ async def asyncio_detailed(
      View current Vantage settings.
 
     Returns the current Vantage configuration with the API key masked for security.
-    Only admin users can view Vantage settings.
+    Only admin users (Proxy Admin or Admin Viewer) can view Vantage settings.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -153,7 +153,7 @@ async def asyncio(
      View current Vantage settings.
 
     Returns the current Vantage configuration with the API key masked for security.
-    Only admin users can view Vantage settings.
+    Only admin users (Proxy Admin or Admin Viewer) can view Vantage settings.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.

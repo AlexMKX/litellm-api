@@ -25,15 +25,15 @@ class ResultCounts:
 
         Attributes:
             total (int):
-            passed (int | Unset):  Default: 0.
-            failed (int | Unset):  Default: 0.
             error (int | Unset):  Default: 0.
+            failed (int | Unset):  Default: 0.
+            passed (int | Unset):  Default: 0.
      """
 
     total: int
-    passed: int | Unset = 0
-    failed: int | Unset = 0
     error: int | Unset = 0
+    failed: int | Unset = 0
+    passed: int | Unset = 0
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -43,11 +43,11 @@ class ResultCounts:
     def to_dict(self) -> dict[str, Any]:
         total = self.total
 
-        passed = self.passed
+        error = self.error
 
         failed = self.failed
 
-        error = self.error
+        passed = self.passed
 
 
         field_dict: dict[str, Any] = {}
@@ -55,12 +55,12 @@ class ResultCounts:
         field_dict.update({
             "total": total,
         })
-        if passed is not UNSET:
-            field_dict["passed"] = passed
-        if failed is not UNSET:
-            field_dict["failed"] = failed
         if error is not UNSET:
             field_dict["error"] = error
+        if failed is not UNSET:
+            field_dict["failed"] = failed
+        if passed is not UNSET:
+            field_dict["passed"] = passed
 
         return field_dict
 
@@ -71,17 +71,17 @@ class ResultCounts:
         d = dict(src_dict)
         total = d.pop("total")
 
-        passed = d.pop("passed", UNSET)
+        error = d.pop("error", UNSET)
 
         failed = d.pop("failed", UNSET)
 
-        error = d.pop("error", UNSET)
+        passed = d.pop("passed", UNSET)
 
         result_counts = cls(
             total=total,
-            passed=passed,
-            failed=failed,
             error=error,
+            failed=failed,
+            passed=passed,
         )
 
 

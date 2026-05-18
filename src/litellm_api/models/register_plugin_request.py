@@ -36,26 +36,26 @@ class RegisterPluginRequest:
                 - GitHub: {'source': 'github', 'repo': 'org/repo'}
                 - Git URL: {'source': 'url', 'url': 'https://github.com/org/repo.git'}
                 - Git Subdir: {'source': 'git-subdir', 'url': 'https://github.com/org/repo.git', 'path': 'plugins/plugin-name'}
-            version (None | str | Unset): Semantic version Default: '1.0.0'.
-            description (None | str | Unset): Plugin description
             author (None | PluginAuthor | Unset): Plugin author
+            category (None | str | Unset): Plugin category
+            description (None | str | Unset): Plugin description
+            domain (None | str | Unset): Skill domain (e.g., 'Productivity')
             homepage (None | str | Unset): Plugin homepage URL
             keywords (list[str] | None | Unset): Search keywords
-            category (None | str | Unset): Plugin category
-            domain (None | str | Unset): Skill domain (e.g., 'Productivity')
             namespace (None | str | Unset): Skill namespace within domain (e.g., 'workflows')
+            version (None | str | Unset): Semantic version Default: '1.0.0'.
      """
 
     name: str
     source: RegisterPluginRequestSource
-    version: None | str | Unset = '1.0.0'
-    description: None | str | Unset = UNSET
     author: None | PluginAuthor | Unset = UNSET
+    category: None | str | Unset = UNSET
+    description: None | str | Unset = UNSET
+    domain: None | str | Unset = UNSET
     homepage: None | str | Unset = UNSET
     keywords: list[str] | None | Unset = UNSET
-    category: None | str | Unset = UNSET
-    domain: None | str | Unset = UNSET
     namespace: None | str | Unset = UNSET
+    version: None | str | Unset = '1.0.0'
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -69,18 +69,6 @@ class RegisterPluginRequest:
 
         source = self.source.to_dict()
 
-        version: None | str | Unset
-        if isinstance(self.version, Unset):
-            version = UNSET
-        else:
-            version = self.version
-
-        description: None | str | Unset
-        if isinstance(self.description, Unset):
-            description = UNSET
-        else:
-            description = self.description
-
         author: dict[str, Any] | None | Unset
         if isinstance(self.author, Unset):
             author = UNSET
@@ -88,6 +76,24 @@ class RegisterPluginRequest:
             author = self.author.to_dict()
         else:
             author = self.author
+
+        category: None | str | Unset
+        if isinstance(self.category, Unset):
+            category = UNSET
+        else:
+            category = self.category
+
+        description: None | str | Unset
+        if isinstance(self.description, Unset):
+            description = UNSET
+        else:
+            description = self.description
+
+        domain: None | str | Unset
+        if isinstance(self.domain, Unset):
+            domain = UNSET
+        else:
+            domain = self.domain
 
         homepage: None | str | Unset
         if isinstance(self.homepage, Unset):
@@ -105,23 +111,17 @@ class RegisterPluginRequest:
         else:
             keywords = self.keywords
 
-        category: None | str | Unset
-        if isinstance(self.category, Unset):
-            category = UNSET
-        else:
-            category = self.category
-
-        domain: None | str | Unset
-        if isinstance(self.domain, Unset):
-            domain = UNSET
-        else:
-            domain = self.domain
-
         namespace: None | str | Unset
         if isinstance(self.namespace, Unset):
             namespace = UNSET
         else:
             namespace = self.namespace
+
+        version: None | str | Unset
+        if isinstance(self.version, Unset):
+            version = UNSET
+        else:
+            version = self.version
 
 
         field_dict: dict[str, Any] = {}
@@ -130,22 +130,22 @@ class RegisterPluginRequest:
             "name": name,
             "source": source,
         })
-        if version is not UNSET:
-            field_dict["version"] = version
-        if description is not UNSET:
-            field_dict["description"] = description
         if author is not UNSET:
             field_dict["author"] = author
+        if category is not UNSET:
+            field_dict["category"] = category
+        if description is not UNSET:
+            field_dict["description"] = description
+        if domain is not UNSET:
+            field_dict["domain"] = domain
         if homepage is not UNSET:
             field_dict["homepage"] = homepage
         if keywords is not UNSET:
             field_dict["keywords"] = keywords
-        if category is not UNSET:
-            field_dict["category"] = category
-        if domain is not UNSET:
-            field_dict["domain"] = domain
         if namespace is not UNSET:
             field_dict["namespace"] = namespace
+        if version is not UNSET:
+            field_dict["version"] = version
 
         return field_dict
 
@@ -161,26 +161,6 @@ class RegisterPluginRequest:
         source = RegisterPluginRequestSource.from_dict(d.pop("source"))
 
 
-
-
-        def _parse_version(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        version = _parse_version(d.pop("version", UNSET))
-
-
-        def _parse_description(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        description = _parse_description(d.pop("description", UNSET))
 
 
         def _parse_author(data: object) -> None | PluginAuthor | Unset:
@@ -201,6 +181,36 @@ class RegisterPluginRequest:
             return cast(None | PluginAuthor | Unset, data)
 
         author = _parse_author(d.pop("author", UNSET))
+
+
+        def _parse_category(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        category = _parse_category(d.pop("category", UNSET))
+
+
+        def _parse_description(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        description = _parse_description(d.pop("description", UNSET))
+
+
+        def _parse_domain(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        domain = _parse_domain(d.pop("domain", UNSET))
 
 
         def _parse_homepage(data: object) -> None | str | Unset:
@@ -231,26 +241,6 @@ class RegisterPluginRequest:
         keywords = _parse_keywords(d.pop("keywords", UNSET))
 
 
-        def _parse_category(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        category = _parse_category(d.pop("category", UNSET))
-
-
-        def _parse_domain(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        domain = _parse_domain(d.pop("domain", UNSET))
-
-
         def _parse_namespace(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -261,17 +251,27 @@ class RegisterPluginRequest:
         namespace = _parse_namespace(d.pop("namespace", UNSET))
 
 
+        def _parse_version(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        version = _parse_version(d.pop("version", UNSET))
+
+
         register_plugin_request = cls(
             name=name,
             source=source,
-            version=version,
-            description=description,
             author=author,
+            category=category,
+            description=description,
+            domain=domain,
             homepage=homepage,
             keywords=keywords,
-            category=category,
-            domain=domain,
             namespace=namespace,
+            version=version,
         )
 
 

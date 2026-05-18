@@ -31,19 +31,19 @@ class Guardrail:
         Attributes:
             guardrail_name (str):
             litellm_params (LitellmParams):
+            created_at (datetime.datetime | None | Unset):
             guardrail_id (None | str | Unset):
             guardrail_info (GuardrailGuardrailInfoType0 | None | Unset):
             policy_template (None | str | Unset):
-            created_at (datetime.datetime | None | Unset):
             updated_at (datetime.datetime | None | Unset):
      """
 
     guardrail_name: str
     litellm_params: LitellmParams
+    created_at: datetime.datetime | None | Unset = UNSET
     guardrail_id: None | str | Unset = UNSET
     guardrail_info: GuardrailGuardrailInfoType0 | None | Unset = UNSET
     policy_template: None | str | Unset = UNSET
-    created_at: datetime.datetime | None | Unset = UNSET
     updated_at: datetime.datetime | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -57,6 +57,14 @@ class Guardrail:
         guardrail_name = self.guardrail_name
 
         litellm_params = self.litellm_params.to_dict()
+
+        created_at: None | str | Unset
+        if isinstance(self.created_at, Unset):
+            created_at = UNSET
+        elif isinstance(self.created_at, datetime.datetime):
+            created_at = self.created_at.isoformat()
+        else:
+            created_at = self.created_at
 
         guardrail_id: None | str | Unset
         if isinstance(self.guardrail_id, Unset):
@@ -78,14 +86,6 @@ class Guardrail:
         else:
             policy_template = self.policy_template
 
-        created_at: None | str | Unset
-        if isinstance(self.created_at, Unset):
-            created_at = UNSET
-        elif isinstance(self.created_at, datetime.datetime):
-            created_at = self.created_at.isoformat()
-        else:
-            created_at = self.created_at
-
         updated_at: None | str | Unset
         if isinstance(self.updated_at, Unset):
             updated_at = UNSET
@@ -101,14 +101,14 @@ class Guardrail:
             "guardrail_name": guardrail_name,
             "litellm_params": litellm_params,
         })
+        if created_at is not UNSET:
+            field_dict["created_at"] = created_at
         if guardrail_id is not UNSET:
             field_dict["guardrail_id"] = guardrail_id
         if guardrail_info is not UNSET:
             field_dict["guardrail_info"] = guardrail_info
         if policy_template is not UNSET:
             field_dict["policy_template"] = policy_template
-        if created_at is not UNSET:
-            field_dict["created_at"] = created_at
         if updated_at is not UNSET:
             field_dict["updated_at"] = updated_at
 
@@ -126,6 +126,26 @@ class Guardrail:
         litellm_params = LitellmParams.from_dict(d.pop("litellm_params"))
 
 
+
+
+        def _parse_created_at(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                created_at_type_0 = isoparse(data)
+
+
+
+                return created_at_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        created_at = _parse_created_at(d.pop("created_at", UNSET))
 
 
         def _parse_guardrail_id(data: object) -> None | str | Unset:
@@ -168,26 +188,6 @@ class Guardrail:
         policy_template = _parse_policy_template(d.pop("policy_template", UNSET))
 
 
-        def _parse_created_at(data: object) -> datetime.datetime | None | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            try:
-                if not isinstance(data, str):
-                    raise TypeError()
-                created_at_type_0 = isoparse(data)
-
-
-
-                return created_at_type_0
-            except (TypeError, ValueError, AttributeError, KeyError):
-                pass
-            return cast(datetime.datetime | None | Unset, data)
-
-        created_at = _parse_created_at(d.pop("created_at", UNSET))
-
-
         def _parse_updated_at(data: object) -> datetime.datetime | None | Unset:
             if data is None:
                 return data
@@ -211,10 +211,10 @@ class Guardrail:
         guardrail = cls(
             guardrail_name=guardrail_name,
             litellm_params=litellm_params,
+            created_at=created_at,
             guardrail_id=guardrail_id,
             guardrail_info=guardrail_info,
             policy_template=policy_template,
-            created_at=created_at,
             updated_at=updated_at,
         )
 

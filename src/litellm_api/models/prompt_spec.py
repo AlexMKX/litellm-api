@@ -29,24 +29,24 @@ T = TypeVar("T", bound="PromptSpec")
 class PromptSpec:
     """ 
         Attributes:
-            prompt_id (str):
             litellm_params (PromptLiteLLMParams):
+            prompt_id (str):
             prompt_info (PromptInfo):
             created_at (datetime.datetime | None | Unset):
+            created_by (None | str | Unset):
+            environment (None | str | Unset):  Default: 'development'.
             updated_at (datetime.datetime | None | Unset):
             version (int | None | Unset):
-            environment (None | str | Unset):  Default: 'development'.
-            created_by (None | str | Unset):
      """
 
-    prompt_id: str
     litellm_params: PromptLiteLLMParams
+    prompt_id: str
     prompt_info: PromptInfo
     created_at: datetime.datetime | None | Unset = UNSET
+    created_by: None | str | Unset = UNSET
+    environment: None | str | Unset = 'development'
     updated_at: datetime.datetime | None | Unset = UNSET
     version: int | None | Unset = UNSET
-    environment: None | str | Unset = 'development'
-    created_by: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -56,9 +56,9 @@ class PromptSpec:
     def to_dict(self) -> dict[str, Any]:
         from ..models.prompt_info import PromptInfo
         from ..models.prompt_lite_llm_params import PromptLiteLLMParams
-        prompt_id = self.prompt_id
-
         litellm_params = self.litellm_params.to_dict()
+
+        prompt_id = self.prompt_id
 
         prompt_info = self.prompt_info.to_dict()
 
@@ -69,6 +69,18 @@ class PromptSpec:
             created_at = self.created_at.isoformat()
         else:
             created_at = self.created_at
+
+        created_by: None | str | Unset
+        if isinstance(self.created_by, Unset):
+            created_by = UNSET
+        else:
+            created_by = self.created_by
+
+        environment: None | str | Unset
+        if isinstance(self.environment, Unset):
+            environment = UNSET
+        else:
+            environment = self.environment
 
         updated_at: None | str | Unset
         if isinstance(self.updated_at, Unset):
@@ -84,36 +96,24 @@ class PromptSpec:
         else:
             version = self.version
 
-        environment: None | str | Unset
-        if isinstance(self.environment, Unset):
-            environment = UNSET
-        else:
-            environment = self.environment
-
-        created_by: None | str | Unset
-        if isinstance(self.created_by, Unset):
-            created_by = UNSET
-        else:
-            created_by = self.created_by
-
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
-            "prompt_id": prompt_id,
             "litellm_params": litellm_params,
+            "prompt_id": prompt_id,
             "prompt_info": prompt_info,
         })
         if created_at is not UNSET:
             field_dict["created_at"] = created_at
+        if created_by is not UNSET:
+            field_dict["created_by"] = created_by
+        if environment is not UNSET:
+            field_dict["environment"] = environment
         if updated_at is not UNSET:
             field_dict["updated_at"] = updated_at
         if version is not UNSET:
             field_dict["version"] = version
-        if environment is not UNSET:
-            field_dict["environment"] = environment
-        if created_by is not UNSET:
-            field_dict["created_by"] = created_by
 
         return field_dict
 
@@ -124,12 +124,12 @@ class PromptSpec:
         from ..models.prompt_info import PromptInfo
         from ..models.prompt_lite_llm_params import PromptLiteLLMParams
         d = dict(src_dict)
-        prompt_id = d.pop("prompt_id")
-
         litellm_params = PromptLiteLLMParams.from_dict(d.pop("litellm_params"))
 
 
 
+
+        prompt_id = d.pop("prompt_id")
 
         prompt_info = PromptInfo.from_dict(d.pop("prompt_info"))
 
@@ -154,6 +154,26 @@ class PromptSpec:
             return cast(datetime.datetime | None | Unset, data)
 
         created_at = _parse_created_at(d.pop("created_at", UNSET))
+
+
+        def _parse_created_by(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        created_by = _parse_created_by(d.pop("created_by", UNSET))
+
+
+        def _parse_environment(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        environment = _parse_environment(d.pop("environment", UNSET))
 
 
         def _parse_updated_at(data: object) -> datetime.datetime | None | Unset:
@@ -186,35 +206,15 @@ class PromptSpec:
         version = _parse_version(d.pop("version", UNSET))
 
 
-        def _parse_environment(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        environment = _parse_environment(d.pop("environment", UNSET))
-
-
-        def _parse_created_by(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        created_by = _parse_created_by(d.pop("created_by", UNSET))
-
-
         prompt_spec = cls(
-            prompt_id=prompt_id,
             litellm_params=litellm_params,
+            prompt_id=prompt_id,
             prompt_info=prompt_info,
             created_at=created_at,
+            created_by=created_by,
+            environment=environment,
             updated_at=updated_at,
             version=version,
-            environment=environment,
-            created_by=created_by,
         )
 
 

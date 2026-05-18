@@ -27,15 +27,15 @@ class UpdateMCPToolsetRequest:
     """ 
         Attributes:
             toolset_id (str):
-            toolset_name (None | str | Unset):
             description (None | str | Unset):
             tools (list[MCPToolsetTool] | None | Unset):
+            toolset_name (None | str | Unset):
      """
 
     toolset_id: str
-    toolset_name: None | str | Unset = UNSET
     description: None | str | Unset = UNSET
     tools: list[MCPToolsetTool] | None | Unset = UNSET
+    toolset_name: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -45,12 +45,6 @@ class UpdateMCPToolsetRequest:
     def to_dict(self) -> dict[str, Any]:
         from ..models.mcp_toolset_tool import MCPToolsetTool
         toolset_id = self.toolset_id
-
-        toolset_name: None | str | Unset
-        if isinstance(self.toolset_name, Unset):
-            toolset_name = UNSET
-        else:
-            toolset_name = self.toolset_name
 
         description: None | str | Unset
         if isinstance(self.description, Unset):
@@ -71,18 +65,24 @@ class UpdateMCPToolsetRequest:
         else:
             tools = self.tools
 
+        toolset_name: None | str | Unset
+        if isinstance(self.toolset_name, Unset):
+            toolset_name = UNSET
+        else:
+            toolset_name = self.toolset_name
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
             "toolset_id": toolset_id,
         })
-        if toolset_name is not UNSET:
-            field_dict["toolset_name"] = toolset_name
         if description is not UNSET:
             field_dict["description"] = description
         if tools is not UNSET:
             field_dict["tools"] = tools
+        if toolset_name is not UNSET:
+            field_dict["toolset_name"] = toolset_name
 
         return field_dict
 
@@ -93,16 +93,6 @@ class UpdateMCPToolsetRequest:
         from ..models.mcp_toolset_tool import MCPToolsetTool
         d = dict(src_dict)
         toolset_id = d.pop("toolset_id")
-
-        def _parse_toolset_name(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        toolset_name = _parse_toolset_name(d.pop("toolset_name", UNSET))
-
 
         def _parse_description(data: object) -> None | str | Unset:
             if data is None:
@@ -139,11 +129,21 @@ class UpdateMCPToolsetRequest:
         tools = _parse_tools(d.pop("tools", UNSET))
 
 
+        def _parse_toolset_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        toolset_name = _parse_toolset_name(d.pop("toolset_name", UNSET))
+
+
         update_mcp_toolset_request = cls(
             toolset_id=toolset_id,
-            toolset_name=toolset_name,
             description=description,
             tools=tools,
+            toolset_name=toolset_name,
         )
 
 

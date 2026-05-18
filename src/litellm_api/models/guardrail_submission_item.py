@@ -32,30 +32,30 @@ class GuardrailSubmissionItem:
             guardrail_id (str):
             guardrail_name (str):
             status (str):
-            team_id (None | str | Unset):
-            team_guardrail (bool | Unset):  Default: False.
-            litellm_params (GuardrailSubmissionItemLitellmParamsType0 | None | Unset):
-            guardrail_info (GuardrailSubmissionItemGuardrailInfoType0 | None | Unset):
-            submitted_by_user_id (None | str | Unset):
-            submitted_by_email (None | str | Unset):
-            submitted_at (datetime.datetime | None | Unset):
-            reviewed_at (datetime.datetime | None | Unset):
             created_at (datetime.datetime | None | Unset):
+            guardrail_info (GuardrailSubmissionItemGuardrailInfoType0 | None | Unset):
+            litellm_params (GuardrailSubmissionItemLitellmParamsType0 | None | Unset):
+            reviewed_at (datetime.datetime | None | Unset):
+            submitted_at (datetime.datetime | None | Unset):
+            submitted_by_email (None | str | Unset):
+            submitted_by_user_id (None | str | Unset):
+            team_guardrail (bool | Unset):  Default: False.
+            team_id (None | str | Unset):
             updated_at (datetime.datetime | None | Unset):
      """
 
     guardrail_id: str
     guardrail_name: str
     status: str
-    team_id: None | str | Unset = UNSET
-    team_guardrail: bool | Unset = False
-    litellm_params: GuardrailSubmissionItemLitellmParamsType0 | None | Unset = UNSET
-    guardrail_info: GuardrailSubmissionItemGuardrailInfoType0 | None | Unset = UNSET
-    submitted_by_user_id: None | str | Unset = UNSET
-    submitted_by_email: None | str | Unset = UNSET
-    submitted_at: datetime.datetime | None | Unset = UNSET
-    reviewed_at: datetime.datetime | None | Unset = UNSET
     created_at: datetime.datetime | None | Unset = UNSET
+    guardrail_info: GuardrailSubmissionItemGuardrailInfoType0 | None | Unset = UNSET
+    litellm_params: GuardrailSubmissionItemLitellmParamsType0 | None | Unset = UNSET
+    reviewed_at: datetime.datetime | None | Unset = UNSET
+    submitted_at: datetime.datetime | None | Unset = UNSET
+    submitted_by_email: None | str | Unset = UNSET
+    submitted_by_user_id: None | str | Unset = UNSET
+    team_guardrail: bool | Unset = False
+    team_id: None | str | Unset = UNSET
     updated_at: datetime.datetime | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -72,21 +72,13 @@ class GuardrailSubmissionItem:
 
         status = self.status
 
-        team_id: None | str | Unset
-        if isinstance(self.team_id, Unset):
-            team_id = UNSET
+        created_at: None | str | Unset
+        if isinstance(self.created_at, Unset):
+            created_at = UNSET
+        elif isinstance(self.created_at, datetime.datetime):
+            created_at = self.created_at.isoformat()
         else:
-            team_id = self.team_id
-
-        team_guardrail = self.team_guardrail
-
-        litellm_params: dict[str, Any] | None | Unset
-        if isinstance(self.litellm_params, Unset):
-            litellm_params = UNSET
-        elif isinstance(self.litellm_params, GuardrailSubmissionItemLitellmParamsType0):
-            litellm_params = self.litellm_params.to_dict()
-        else:
-            litellm_params = self.litellm_params
+            created_at = self.created_at
 
         guardrail_info: dict[str, Any] | None | Unset
         if isinstance(self.guardrail_info, Unset):
@@ -96,25 +88,13 @@ class GuardrailSubmissionItem:
         else:
             guardrail_info = self.guardrail_info
 
-        submitted_by_user_id: None | str | Unset
-        if isinstance(self.submitted_by_user_id, Unset):
-            submitted_by_user_id = UNSET
+        litellm_params: dict[str, Any] | None | Unset
+        if isinstance(self.litellm_params, Unset):
+            litellm_params = UNSET
+        elif isinstance(self.litellm_params, GuardrailSubmissionItemLitellmParamsType0):
+            litellm_params = self.litellm_params.to_dict()
         else:
-            submitted_by_user_id = self.submitted_by_user_id
-
-        submitted_by_email: None | str | Unset
-        if isinstance(self.submitted_by_email, Unset):
-            submitted_by_email = UNSET
-        else:
-            submitted_by_email = self.submitted_by_email
-
-        submitted_at: None | str | Unset
-        if isinstance(self.submitted_at, Unset):
-            submitted_at = UNSET
-        elif isinstance(self.submitted_at, datetime.datetime):
-            submitted_at = self.submitted_at.isoformat()
-        else:
-            submitted_at = self.submitted_at
+            litellm_params = self.litellm_params
 
         reviewed_at: None | str | Unset
         if isinstance(self.reviewed_at, Unset):
@@ -124,13 +104,33 @@ class GuardrailSubmissionItem:
         else:
             reviewed_at = self.reviewed_at
 
-        created_at: None | str | Unset
-        if isinstance(self.created_at, Unset):
-            created_at = UNSET
-        elif isinstance(self.created_at, datetime.datetime):
-            created_at = self.created_at.isoformat()
+        submitted_at: None | str | Unset
+        if isinstance(self.submitted_at, Unset):
+            submitted_at = UNSET
+        elif isinstance(self.submitted_at, datetime.datetime):
+            submitted_at = self.submitted_at.isoformat()
         else:
-            created_at = self.created_at
+            submitted_at = self.submitted_at
+
+        submitted_by_email: None | str | Unset
+        if isinstance(self.submitted_by_email, Unset):
+            submitted_by_email = UNSET
+        else:
+            submitted_by_email = self.submitted_by_email
+
+        submitted_by_user_id: None | str | Unset
+        if isinstance(self.submitted_by_user_id, Unset):
+            submitted_by_user_id = UNSET
+        else:
+            submitted_by_user_id = self.submitted_by_user_id
+
+        team_guardrail = self.team_guardrail
+
+        team_id: None | str | Unset
+        if isinstance(self.team_id, Unset):
+            team_id = UNSET
+        else:
+            team_id = self.team_id
 
         updated_at: None | str | Unset
         if isinstance(self.updated_at, Unset):
@@ -148,24 +148,24 @@ class GuardrailSubmissionItem:
             "guardrail_name": guardrail_name,
             "status": status,
         })
-        if team_id is not UNSET:
-            field_dict["team_id"] = team_id
-        if team_guardrail is not UNSET:
-            field_dict["team_guardrail"] = team_guardrail
-        if litellm_params is not UNSET:
-            field_dict["litellm_params"] = litellm_params
-        if guardrail_info is not UNSET:
-            field_dict["guardrail_info"] = guardrail_info
-        if submitted_by_user_id is not UNSET:
-            field_dict["submitted_by_user_id"] = submitted_by_user_id
-        if submitted_by_email is not UNSET:
-            field_dict["submitted_by_email"] = submitted_by_email
-        if submitted_at is not UNSET:
-            field_dict["submitted_at"] = submitted_at
-        if reviewed_at is not UNSET:
-            field_dict["reviewed_at"] = reviewed_at
         if created_at is not UNSET:
             field_dict["created_at"] = created_at
+        if guardrail_info is not UNSET:
+            field_dict["guardrail_info"] = guardrail_info
+        if litellm_params is not UNSET:
+            field_dict["litellm_params"] = litellm_params
+        if reviewed_at is not UNSET:
+            field_dict["reviewed_at"] = reviewed_at
+        if submitted_at is not UNSET:
+            field_dict["submitted_at"] = submitted_at
+        if submitted_by_email is not UNSET:
+            field_dict["submitted_by_email"] = submitted_by_email
+        if submitted_by_user_id is not UNSET:
+            field_dict["submitted_by_user_id"] = submitted_by_user_id
+        if team_guardrail is not UNSET:
+            field_dict["team_guardrail"] = team_guardrail
+        if team_id is not UNSET:
+            field_dict["team_id"] = team_id
         if updated_at is not UNSET:
             field_dict["updated_at"] = updated_at
 
@@ -184,36 +184,24 @@ class GuardrailSubmissionItem:
 
         status = d.pop("status")
 
-        def _parse_team_id(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        team_id = _parse_team_id(d.pop("team_id", UNSET))
-
-
-        team_guardrail = d.pop("team_guardrail", UNSET)
-
-        def _parse_litellm_params(data: object) -> GuardrailSubmissionItemLitellmParamsType0 | None | Unset:
+        def _parse_created_at(data: object) -> datetime.datetime | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, dict):
+                if not isinstance(data, str):
                     raise TypeError()
-                litellm_params_type_0 = GuardrailSubmissionItemLitellmParamsType0.from_dict(data)
+                created_at_type_0 = isoparse(data)
 
 
 
-                return litellm_params_type_0
+                return created_at_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(GuardrailSubmissionItemLitellmParamsType0 | None | Unset, data)
+            return cast(datetime.datetime | None | Unset, data)
 
-        litellm_params = _parse_litellm_params(d.pop("litellm_params", UNSET))
+        created_at = _parse_created_at(d.pop("created_at", UNSET))
 
 
         def _parse_guardrail_info(data: object) -> GuardrailSubmissionItemGuardrailInfoType0 | None | Unset:
@@ -236,44 +224,24 @@ class GuardrailSubmissionItem:
         guardrail_info = _parse_guardrail_info(d.pop("guardrail_info", UNSET))
 
 
-        def _parse_submitted_by_user_id(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        submitted_by_user_id = _parse_submitted_by_user_id(d.pop("submitted_by_user_id", UNSET))
-
-
-        def _parse_submitted_by_email(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        submitted_by_email = _parse_submitted_by_email(d.pop("submitted_by_email", UNSET))
-
-
-        def _parse_submitted_at(data: object) -> datetime.datetime | None | Unset:
+        def _parse_litellm_params(data: object) -> GuardrailSubmissionItemLitellmParamsType0 | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             try:
-                if not isinstance(data, str):
+                if not isinstance(data, dict):
                     raise TypeError()
-                submitted_at_type_0 = isoparse(data)
+                litellm_params_type_0 = GuardrailSubmissionItemLitellmParamsType0.from_dict(data)
 
 
 
-                return submitted_at_type_0
+                return litellm_params_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(datetime.datetime | None | Unset, data)
+            return cast(GuardrailSubmissionItemLitellmParamsType0 | None | Unset, data)
 
-        submitted_at = _parse_submitted_at(d.pop("submitted_at", UNSET))
+        litellm_params = _parse_litellm_params(d.pop("litellm_params", UNSET))
 
 
         def _parse_reviewed_at(data: object) -> datetime.datetime | None | Unset:
@@ -296,7 +264,7 @@ class GuardrailSubmissionItem:
         reviewed_at = _parse_reviewed_at(d.pop("reviewed_at", UNSET))
 
 
-        def _parse_created_at(data: object) -> datetime.datetime | None | Unset:
+        def _parse_submitted_at(data: object) -> datetime.datetime | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -304,16 +272,48 @@ class GuardrailSubmissionItem:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                created_at_type_0 = isoparse(data)
+                submitted_at_type_0 = isoparse(data)
 
 
 
-                return created_at_type_0
+                return submitted_at_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.datetime | None | Unset, data)
 
-        created_at = _parse_created_at(d.pop("created_at", UNSET))
+        submitted_at = _parse_submitted_at(d.pop("submitted_at", UNSET))
+
+
+        def _parse_submitted_by_email(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        submitted_by_email = _parse_submitted_by_email(d.pop("submitted_by_email", UNSET))
+
+
+        def _parse_submitted_by_user_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        submitted_by_user_id = _parse_submitted_by_user_id(d.pop("submitted_by_user_id", UNSET))
+
+
+        team_guardrail = d.pop("team_guardrail", UNSET)
+
+        def _parse_team_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        team_id = _parse_team_id(d.pop("team_id", UNSET))
 
 
         def _parse_updated_at(data: object) -> datetime.datetime | None | Unset:
@@ -340,15 +340,15 @@ class GuardrailSubmissionItem:
             guardrail_id=guardrail_id,
             guardrail_name=guardrail_name,
             status=status,
-            team_id=team_id,
-            team_guardrail=team_guardrail,
-            litellm_params=litellm_params,
-            guardrail_info=guardrail_info,
-            submitted_by_user_id=submitted_by_user_id,
-            submitted_by_email=submitted_by_email,
-            submitted_at=submitted_at,
-            reviewed_at=reviewed_at,
             created_at=created_at,
+            guardrail_info=guardrail_info,
+            litellm_params=litellm_params,
+            reviewed_at=reviewed_at,
+            submitted_at=submitted_at,
+            submitted_by_email=submitted_by_email,
+            submitted_by_user_id=submitted_by_user_id,
+            team_guardrail=team_guardrail,
+            team_id=team_id,
             updated_at=updated_at,
         )
 

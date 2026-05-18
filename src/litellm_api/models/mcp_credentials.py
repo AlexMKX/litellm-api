@@ -25,29 +25,29 @@ class MCPCredentials:
     """ 
         Attributes:
             auth_value (None | str | Unset):
+            aws_access_key_id (None | str | Unset):
+            aws_region_name (None | str | Unset):
+            aws_role_name (None | str | Unset):
+            aws_secret_access_key (None | str | Unset):
+            aws_service_name (None | str | Unset):
+            aws_session_name (None | str | Unset):
+            aws_session_token (None | str | Unset):
             client_id (None | str | Unset):
             client_secret (None | str | Unset):
             scopes (list[str] | None | Unset):
-            aws_access_key_id (None | str | Unset):
-            aws_secret_access_key (None | str | Unset):
-            aws_session_token (None | str | Unset):
-            aws_region_name (None | str | Unset):
-            aws_service_name (None | str | Unset):
-            aws_role_name (None | str | Unset):
-            aws_session_name (None | str | Unset):
      """
 
     auth_value: None | str | Unset = UNSET
+    aws_access_key_id: None | str | Unset = UNSET
+    aws_region_name: None | str | Unset = UNSET
+    aws_role_name: None | str | Unset = UNSET
+    aws_secret_access_key: None | str | Unset = UNSET
+    aws_service_name: None | str | Unset = UNSET
+    aws_session_name: None | str | Unset = UNSET
+    aws_session_token: None | str | Unset = UNSET
     client_id: None | str | Unset = UNSET
     client_secret: None | str | Unset = UNSET
     scopes: list[str] | None | Unset = UNSET
-    aws_access_key_id: None | str | Unset = UNSET
-    aws_secret_access_key: None | str | Unset = UNSET
-    aws_session_token: None | str | Unset = UNSET
-    aws_region_name: None | str | Unset = UNSET
-    aws_service_name: None | str | Unset = UNSET
-    aws_role_name: None | str | Unset = UNSET
-    aws_session_name: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -60,6 +60,48 @@ class MCPCredentials:
             auth_value = UNSET
         else:
             auth_value = self.auth_value
+
+        aws_access_key_id: None | str | Unset
+        if isinstance(self.aws_access_key_id, Unset):
+            aws_access_key_id = UNSET
+        else:
+            aws_access_key_id = self.aws_access_key_id
+
+        aws_region_name: None | str | Unset
+        if isinstance(self.aws_region_name, Unset):
+            aws_region_name = UNSET
+        else:
+            aws_region_name = self.aws_region_name
+
+        aws_role_name: None | str | Unset
+        if isinstance(self.aws_role_name, Unset):
+            aws_role_name = UNSET
+        else:
+            aws_role_name = self.aws_role_name
+
+        aws_secret_access_key: None | str | Unset
+        if isinstance(self.aws_secret_access_key, Unset):
+            aws_secret_access_key = UNSET
+        else:
+            aws_secret_access_key = self.aws_secret_access_key
+
+        aws_service_name: None | str | Unset
+        if isinstance(self.aws_service_name, Unset):
+            aws_service_name = UNSET
+        else:
+            aws_service_name = self.aws_service_name
+
+        aws_session_name: None | str | Unset
+        if isinstance(self.aws_session_name, Unset):
+            aws_session_name = UNSET
+        else:
+            aws_session_name = self.aws_session_name
+
+        aws_session_token: None | str | Unset
+        if isinstance(self.aws_session_token, Unset):
+            aws_session_token = UNSET
+        else:
+            aws_session_token = self.aws_session_token
 
         client_id: None | str | Unset
         if isinstance(self.client_id, Unset):
@@ -83,48 +125,6 @@ class MCPCredentials:
         else:
             scopes = self.scopes
 
-        aws_access_key_id: None | str | Unset
-        if isinstance(self.aws_access_key_id, Unset):
-            aws_access_key_id = UNSET
-        else:
-            aws_access_key_id = self.aws_access_key_id
-
-        aws_secret_access_key: None | str | Unset
-        if isinstance(self.aws_secret_access_key, Unset):
-            aws_secret_access_key = UNSET
-        else:
-            aws_secret_access_key = self.aws_secret_access_key
-
-        aws_session_token: None | str | Unset
-        if isinstance(self.aws_session_token, Unset):
-            aws_session_token = UNSET
-        else:
-            aws_session_token = self.aws_session_token
-
-        aws_region_name: None | str | Unset
-        if isinstance(self.aws_region_name, Unset):
-            aws_region_name = UNSET
-        else:
-            aws_region_name = self.aws_region_name
-
-        aws_service_name: None | str | Unset
-        if isinstance(self.aws_service_name, Unset):
-            aws_service_name = UNSET
-        else:
-            aws_service_name = self.aws_service_name
-
-        aws_role_name: None | str | Unset
-        if isinstance(self.aws_role_name, Unset):
-            aws_role_name = UNSET
-        else:
-            aws_role_name = self.aws_role_name
-
-        aws_session_name: None | str | Unset
-        if isinstance(self.aws_session_name, Unset):
-            aws_session_name = UNSET
-        else:
-            aws_session_name = self.aws_session_name
-
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -132,26 +132,26 @@ class MCPCredentials:
         })
         if auth_value is not UNSET:
             field_dict["auth_value"] = auth_value
+        if aws_access_key_id is not UNSET:
+            field_dict["aws_access_key_id"] = aws_access_key_id
+        if aws_region_name is not UNSET:
+            field_dict["aws_region_name"] = aws_region_name
+        if aws_role_name is not UNSET:
+            field_dict["aws_role_name"] = aws_role_name
+        if aws_secret_access_key is not UNSET:
+            field_dict["aws_secret_access_key"] = aws_secret_access_key
+        if aws_service_name is not UNSET:
+            field_dict["aws_service_name"] = aws_service_name
+        if aws_session_name is not UNSET:
+            field_dict["aws_session_name"] = aws_session_name
+        if aws_session_token is not UNSET:
+            field_dict["aws_session_token"] = aws_session_token
         if client_id is not UNSET:
             field_dict["client_id"] = client_id
         if client_secret is not UNSET:
             field_dict["client_secret"] = client_secret
         if scopes is not UNSET:
             field_dict["scopes"] = scopes
-        if aws_access_key_id is not UNSET:
-            field_dict["aws_access_key_id"] = aws_access_key_id
-        if aws_secret_access_key is not UNSET:
-            field_dict["aws_secret_access_key"] = aws_secret_access_key
-        if aws_session_token is not UNSET:
-            field_dict["aws_session_token"] = aws_session_token
-        if aws_region_name is not UNSET:
-            field_dict["aws_region_name"] = aws_region_name
-        if aws_service_name is not UNSET:
-            field_dict["aws_service_name"] = aws_service_name
-        if aws_role_name is not UNSET:
-            field_dict["aws_role_name"] = aws_role_name
-        if aws_session_name is not UNSET:
-            field_dict["aws_session_name"] = aws_session_name
 
         return field_dict
 
@@ -168,6 +168,76 @@ class MCPCredentials:
             return cast(None | str | Unset, data)
 
         auth_value = _parse_auth_value(d.pop("auth_value", UNSET))
+
+
+        def _parse_aws_access_key_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        aws_access_key_id = _parse_aws_access_key_id(d.pop("aws_access_key_id", UNSET))
+
+
+        def _parse_aws_region_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        aws_region_name = _parse_aws_region_name(d.pop("aws_region_name", UNSET))
+
+
+        def _parse_aws_role_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        aws_role_name = _parse_aws_role_name(d.pop("aws_role_name", UNSET))
+
+
+        def _parse_aws_secret_access_key(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        aws_secret_access_key = _parse_aws_secret_access_key(d.pop("aws_secret_access_key", UNSET))
+
+
+        def _parse_aws_service_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        aws_service_name = _parse_aws_service_name(d.pop("aws_service_name", UNSET))
+
+
+        def _parse_aws_session_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        aws_session_name = _parse_aws_session_name(d.pop("aws_session_name", UNSET))
+
+
+        def _parse_aws_session_token(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        aws_session_token = _parse_aws_session_token(d.pop("aws_session_token", UNSET))
 
 
         def _parse_client_id(data: object) -> None | str | Unset:
@@ -208,88 +278,18 @@ class MCPCredentials:
         scopes = _parse_scopes(d.pop("scopes", UNSET))
 
 
-        def _parse_aws_access_key_id(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        aws_access_key_id = _parse_aws_access_key_id(d.pop("aws_access_key_id", UNSET))
-
-
-        def _parse_aws_secret_access_key(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        aws_secret_access_key = _parse_aws_secret_access_key(d.pop("aws_secret_access_key", UNSET))
-
-
-        def _parse_aws_session_token(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        aws_session_token = _parse_aws_session_token(d.pop("aws_session_token", UNSET))
-
-
-        def _parse_aws_region_name(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        aws_region_name = _parse_aws_region_name(d.pop("aws_region_name", UNSET))
-
-
-        def _parse_aws_service_name(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        aws_service_name = _parse_aws_service_name(d.pop("aws_service_name", UNSET))
-
-
-        def _parse_aws_role_name(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        aws_role_name = _parse_aws_role_name(d.pop("aws_role_name", UNSET))
-
-
-        def _parse_aws_session_name(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        aws_session_name = _parse_aws_session_name(d.pop("aws_session_name", UNSET))
-
-
         mcp_credentials = cls(
             auth_value=auth_value,
+            aws_access_key_id=aws_access_key_id,
+            aws_region_name=aws_region_name,
+            aws_role_name=aws_role_name,
+            aws_secret_access_key=aws_secret_access_key,
+            aws_service_name=aws_service_name,
+            aws_session_name=aws_session_name,
+            aws_session_token=aws_session_token,
             client_id=client_id,
             client_secret=client_secret,
             scopes=scopes,
-            aws_access_key_id=aws_access_key_id,
-            aws_secret_access_key=aws_secret_access_key,
-            aws_session_token=aws_session_token,
-            aws_region_name=aws_region_name,
-            aws_service_name=aws_service_name,
-            aws_role_name=aws_role_name,
-            aws_session_name=aws_session_name,
         )
 
 

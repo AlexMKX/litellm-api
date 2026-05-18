@@ -31,19 +31,19 @@ class ContentFilterCategoryConfig:
                   category_file: "/path/to/custom_file.yaml"  # optional override
 
         Attributes:
-            category (str): The category to detect
             action (ContentFilterCategoryConfigAction): The action to take when the category is detected
+            category (str): The category to detect
+            category_file (None | str | Unset): Optional override. Use your own category file instead of the default one.
             enabled (bool | Unset): Whether the category is enabled Default: True.
             severity_threshold (ContentFilterCategoryConfigSeverityThreshold | Unset): The severity threshold to detect the
                 category Default: ContentFilterCategoryConfigSeverityThreshold.MEDIUM.
-            category_file (None | str | Unset): Optional override. Use your own category file instead of the default one.
      """
 
-    category: str
     action: ContentFilterCategoryConfigAction
+    category: str
+    category_file: None | str | Unset = UNSET
     enabled: bool | Unset = True
     severity_threshold: ContentFilterCategoryConfigSeverityThreshold | Unset = ContentFilterCategoryConfigSeverityThreshold.MEDIUM
-    category_file: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -51,9 +51,15 @@ class ContentFilterCategoryConfig:
 
 
     def to_dict(self) -> dict[str, Any]:
+        action = self.action.value
+
         category = self.category
 
-        action = self.action.value
+        category_file: None | str | Unset
+        if isinstance(self.category_file, Unset):
+            category_file = UNSET
+        else:
+            category_file = self.category_file
 
         enabled = self.enabled
 
@@ -62,25 +68,19 @@ class ContentFilterCategoryConfig:
             severity_threshold = self.severity_threshold.value
 
 
-        category_file: None | str | Unset
-        if isinstance(self.category_file, Unset):
-            category_file = UNSET
-        else:
-            category_file = self.category_file
-
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
-            "category": category,
             "action": action,
+            "category": category,
         })
+        if category_file is not UNSET:
+            field_dict["category_file"] = category_file
         if enabled is not UNSET:
             field_dict["enabled"] = enabled
         if severity_threshold is not UNSET:
             field_dict["severity_threshold"] = severity_threshold
-        if category_file is not UNSET:
-            field_dict["category_file"] = category_file
 
         return field_dict
 
@@ -89,11 +89,21 @@ class ContentFilterCategoryConfig:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        category = d.pop("category")
-
         action = ContentFilterCategoryConfigAction(d.pop("action"))
 
 
+
+
+        category = d.pop("category")
+
+        def _parse_category_file(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        category_file = _parse_category_file(d.pop("category_file", UNSET))
 
 
         enabled = d.pop("enabled", UNSET)
@@ -108,22 +118,12 @@ class ContentFilterCategoryConfig:
 
 
 
-        def _parse_category_file(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        category_file = _parse_category_file(d.pop("category_file", UNSET))
-
-
         content_filter_category_config = cls(
-            category=category,
             action=action,
+            category=category,
+            category_file=category_file,
             enabled=enabled,
             severity_threshold=severity_threshold,
-            category_file=category_file,
         )
 
 

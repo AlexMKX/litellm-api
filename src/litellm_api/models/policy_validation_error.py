@@ -26,16 +26,16 @@ class PolicyValidationError:
     """ Represents a validation error or warning for a policy.
 
         Attributes:
-            policy_name (str): Name of the policy with the issue.
             error_type (PolicyValidationErrorType): Types of validation errors that can occur.
             message (str): Human-readable error message.
+            policy_name (str): Name of the policy with the issue.
             field (None | str | Unset): Specific field that caused the error (e.g., 'guardrails.add', 'scope.teams').
             value (None | str | Unset): The invalid value that caused the error.
      """
 
-    policy_name: str
     error_type: PolicyValidationErrorType
     message: str
+    policy_name: str
     field: None | str | Unset = UNSET
     value: None | str | Unset = UNSET
 
@@ -44,11 +44,11 @@ class PolicyValidationError:
 
 
     def to_dict(self) -> dict[str, Any]:
-        policy_name = self.policy_name
-
         error_type = self.error_type.value
 
         message = self.message
+
+        policy_name = self.policy_name
 
         field: None | str | Unset
         if isinstance(self.field, Unset):
@@ -66,9 +66,9 @@ class PolicyValidationError:
         field_dict: dict[str, Any] = {}
 
         field_dict.update({
-            "policy_name": policy_name,
             "error_type": error_type,
             "message": message,
+            "policy_name": policy_name,
         })
         if field is not UNSET:
             field_dict["field"] = field
@@ -82,14 +82,14 @@ class PolicyValidationError:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        policy_name = d.pop("policy_name")
-
         error_type = PolicyValidationErrorType(d.pop("error_type"))
 
 
 
 
         message = d.pop("message")
+
+        policy_name = d.pop("policy_name")
 
         def _parse_field(data: object) -> None | str | Unset:
             if data is None:
@@ -112,9 +112,9 @@ class PolicyValidationError:
 
 
         policy_validation_error = cls(
-            policy_name=policy_name,
             error_type=error_type,
             message=message,
+            policy_name=policy_name,
             field=field,
             value=value,
         )

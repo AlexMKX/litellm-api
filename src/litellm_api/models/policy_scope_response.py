@@ -25,16 +25,16 @@ class PolicyScopeResponse:
     """ Scope configuration for a policy.
 
         Attributes:
-            teams (list[str] | Unset):
             keys (list[str] | Unset):
             models (list[str] | Unset):
             tags (list[str] | Unset):
+            teams (list[str] | Unset):
      """
 
-    teams: list[str] | Unset = UNSET
     keys: list[str] | Unset = UNSET
     models: list[str] | Unset = UNSET
     tags: list[str] | Unset = UNSET
+    teams: list[str] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -42,12 +42,6 @@ class PolicyScopeResponse:
 
 
     def to_dict(self) -> dict[str, Any]:
-        teams: list[str] | Unset = UNSET
-        if not isinstance(self.teams, Unset):
-            teams = self.teams
-
-
-
         keys: list[str] | Unset = UNSET
         if not isinstance(self.keys, Unset):
             keys = self.keys
@@ -66,19 +60,25 @@ class PolicyScopeResponse:
 
 
 
+        teams: list[str] | Unset = UNSET
+        if not isinstance(self.teams, Unset):
+            teams = self.teams
+
+
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
         })
-        if teams is not UNSET:
-            field_dict["teams"] = teams
         if keys is not UNSET:
             field_dict["keys"] = keys
         if models is not UNSET:
             field_dict["models"] = models
         if tags is not UNSET:
             field_dict["tags"] = tags
+        if teams is not UNSET:
+            field_dict["teams"] = teams
 
         return field_dict
 
@@ -87,9 +87,6 @@ class PolicyScopeResponse:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        teams = cast(list[str], d.pop("teams", UNSET))
-
-
         keys = cast(list[str], d.pop("keys", UNSET))
 
 
@@ -99,11 +96,14 @@ class PolicyScopeResponse:
         tags = cast(list[str], d.pop("tags", UNSET))
 
 
+        teams = cast(list[str], d.pop("teams", UNSET))
+
+
         policy_scope_response = cls(
-            teams=teams,
             keys=keys,
             models=models,
             tags=tags,
+            teams=teams,
         )
 
 

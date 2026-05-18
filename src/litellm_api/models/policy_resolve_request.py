@@ -25,16 +25,16 @@ class PolicyResolveRequest:
     """ Request body for resolving effective policies/guardrails for a context.
 
         Attributes:
-            team_alias (None | str | Unset): Team alias to resolve for.
             key_alias (None | str | Unset): Key alias to resolve for.
             model (None | str | Unset): Model name to resolve for.
             tags (list[str] | None | Unset): Tags to resolve for.
+            team_alias (None | str | Unset): Team alias to resolve for.
      """
 
-    team_alias: None | str | Unset = UNSET
     key_alias: None | str | Unset = UNSET
     model: None | str | Unset = UNSET
     tags: list[str] | None | Unset = UNSET
+    team_alias: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -42,12 +42,6 @@ class PolicyResolveRequest:
 
 
     def to_dict(self) -> dict[str, Any]:
-        team_alias: None | str | Unset
-        if isinstance(self.team_alias, Unset):
-            team_alias = UNSET
-        else:
-            team_alias = self.team_alias
-
         key_alias: None | str | Unset
         if isinstance(self.key_alias, Unset):
             key_alias = UNSET
@@ -70,19 +64,25 @@ class PolicyResolveRequest:
         else:
             tags = self.tags
 
+        team_alias: None | str | Unset
+        if isinstance(self.team_alias, Unset):
+            team_alias = UNSET
+        else:
+            team_alias = self.team_alias
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
         })
-        if team_alias is not UNSET:
-            field_dict["team_alias"] = team_alias
         if key_alias is not UNSET:
             field_dict["key_alias"] = key_alias
         if model is not UNSET:
             field_dict["model"] = model
         if tags is not UNSET:
             field_dict["tags"] = tags
+        if team_alias is not UNSET:
+            field_dict["team_alias"] = team_alias
 
         return field_dict
 
@@ -91,16 +91,6 @@ class PolicyResolveRequest:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        def _parse_team_alias(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        team_alias = _parse_team_alias(d.pop("team_alias", UNSET))
-
-
         def _parse_key_alias(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -139,11 +129,21 @@ class PolicyResolveRequest:
         tags = _parse_tags(d.pop("tags", UNSET))
 
 
+        def _parse_team_alias(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        team_alias = _parse_team_alias(d.pop("team_alias", UNSET))
+
+
         policy_resolve_request = cls(
-            team_alias=team_alias,
             key_alias=key_alias,
             model=model,
             tags=tags,
+            team_alias=team_alias,
         )
 
 

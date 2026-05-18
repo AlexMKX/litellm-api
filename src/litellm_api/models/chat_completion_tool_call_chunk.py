@@ -26,16 +26,16 @@ T = TypeVar("T", bound="ChatCompletionToolCallChunk")
 class ChatCompletionToolCallChunk:
     """ 
         Attributes:
-            id (None | str):
-            type_ (Literal['function']):
             function (ChatCompletionToolCallFunctionChunk):
+            id (None | str):
             index (int):
+            type_ (Literal['function']):
      """
 
-    id: None | str
-    type_: Literal['function']
     function: ChatCompletionToolCallFunctionChunk
+    id: None | str
     index: int
+    type_: Literal['function']
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -44,23 +44,23 @@ class ChatCompletionToolCallChunk:
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.chat_completion_tool_call_function_chunk import ChatCompletionToolCallFunctionChunk
+        function = self.function.to_dict()
+
         id: None | str
         id = self.id
 
-        type_ = self.type_
-
-        function = self.function.to_dict()
-
         index = self.index
+
+        type_ = self.type_
 
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
-            "id": id,
-            "type": type_,
             "function": function,
+            "id": id,
             "index": index,
+            "type": type_,
         })
 
         return field_dict
@@ -71,6 +71,11 @@ class ChatCompletionToolCallChunk:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.chat_completion_tool_call_function_chunk import ChatCompletionToolCallFunctionChunk
         d = dict(src_dict)
+        function = ChatCompletionToolCallFunctionChunk.from_dict(d.pop("function"))
+
+
+
+
         def _parse_id(data: object) -> None | str:
             if data is None:
                 return data
@@ -79,22 +84,17 @@ class ChatCompletionToolCallChunk:
         id = _parse_id(d.pop("id"))
 
 
+        index = d.pop("index")
+
         type_ = cast(Literal['function'] , d.pop("type"))
         if type_ != 'function':
             raise ValueError(f"type must match const 'function', got '{type_}'")
 
-        function = ChatCompletionToolCallFunctionChunk.from_dict(d.pop("function"))
-
-
-
-
-        index = d.pop("index")
-
         chat_completion_tool_call_chunk = cls(
-            id=id,
-            type_=type_,
             function=function,
+            id=id,
             index=index,
+            type_=type_,
         )
 
 

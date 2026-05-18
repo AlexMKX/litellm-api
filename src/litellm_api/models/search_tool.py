@@ -41,19 +41,19 @@ class SearchTool:
         }
 
         Attributes:
-            search_tool_name (str):
             litellm_params (SearchToolLiteLLMParams): LiteLLM params for search tools configuration.
+            search_tool_name (str):
+            created_at (None | str | Unset):
             search_tool_id (None | str | Unset):
             search_tool_info (None | SearchToolSearchToolInfoType0 | Unset):
-            created_at (None | str | Unset):
             updated_at (None | str | Unset):
      """
 
-    search_tool_name: str
     litellm_params: SearchToolLiteLLMParams
+    search_tool_name: str
+    created_at: None | str | Unset = UNSET
     search_tool_id: None | str | Unset = UNSET
     search_tool_info: None | SearchToolSearchToolInfoType0 | Unset = UNSET
-    created_at: None | str | Unset = UNSET
     updated_at: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -64,9 +64,15 @@ class SearchTool:
     def to_dict(self) -> dict[str, Any]:
         from ..models.search_tool_lite_llm_params import SearchToolLiteLLMParams
         from ..models.search_tool_search_tool_info_type_0 import SearchToolSearchToolInfoType0
+        litellm_params = self.litellm_params.to_dict()
+
         search_tool_name = self.search_tool_name
 
-        litellm_params = self.litellm_params.to_dict()
+        created_at: None | str | Unset
+        if isinstance(self.created_at, Unset):
+            created_at = UNSET
+        else:
+            created_at = self.created_at
 
         search_tool_id: None | str | Unset
         if isinstance(self.search_tool_id, Unset):
@@ -82,12 +88,6 @@ class SearchTool:
         else:
             search_tool_info = self.search_tool_info
 
-        created_at: None | str | Unset
-        if isinstance(self.created_at, Unset):
-            created_at = UNSET
-        else:
-            created_at = self.created_at
-
         updated_at: None | str | Unset
         if isinstance(self.updated_at, Unset):
             updated_at = UNSET
@@ -98,15 +98,15 @@ class SearchTool:
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
-            "search_tool_name": search_tool_name,
             "litellm_params": litellm_params,
+            "search_tool_name": search_tool_name,
         })
+        if created_at is not UNSET:
+            field_dict["created_at"] = created_at
         if search_tool_id is not UNSET:
             field_dict["search_tool_id"] = search_tool_id
         if search_tool_info is not UNSET:
             field_dict["search_tool_info"] = search_tool_info
-        if created_at is not UNSET:
-            field_dict["created_at"] = created_at
         if updated_at is not UNSET:
             field_dict["updated_at"] = updated_at
 
@@ -119,11 +119,21 @@ class SearchTool:
         from ..models.search_tool_lite_llm_params import SearchToolLiteLLMParams
         from ..models.search_tool_search_tool_info_type_0 import SearchToolSearchToolInfoType0
         d = dict(src_dict)
-        search_tool_name = d.pop("search_tool_name")
-
         litellm_params = SearchToolLiteLLMParams.from_dict(d.pop("litellm_params"))
 
 
+
+
+        search_tool_name = d.pop("search_tool_name")
+
+        def _parse_created_at(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        created_at = _parse_created_at(d.pop("created_at", UNSET))
 
 
         def _parse_search_tool_id(data: object) -> None | str | Unset:
@@ -156,16 +166,6 @@ class SearchTool:
         search_tool_info = _parse_search_tool_info(d.pop("search_tool_info", UNSET))
 
 
-        def _parse_created_at(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        created_at = _parse_created_at(d.pop("created_at", UNSET))
-
-
         def _parse_updated_at(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -177,11 +177,11 @@ class SearchTool:
 
 
         search_tool = cls(
-            search_tool_name=search_tool_name,
             litellm_params=litellm_params,
+            search_tool_name=search_tool_name,
+            created_at=created_at,
             search_tool_id=search_tool_id,
             search_tool_info=search_tool_info,
-            created_at=created_at,
             updated_at=updated_at,
         )
 

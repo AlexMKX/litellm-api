@@ -28,30 +28,30 @@ T = TypeVar("T", bound="LiteLLMManagedVectorStoresTable")
 class LiteLLMManagedVectorStoresTable:
     """ 
         Attributes:
-            vector_store_id (str):
-            custom_llm_provider (str):
-            vector_store_name (None | str):
-            vector_store_description (None | str):
-            vector_store_metadata (LiteLLMManagedVectorStoresTableVectorStoreMetadataType0 | None):
             created_at (datetime.datetime | None):
-            updated_at (datetime.datetime | None):
+            custom_llm_provider (str):
             litellm_credential_name (None | str):
             litellm_params (LiteLLMManagedVectorStoresTableLitellmParamsType0 | None):
             team_id (None | str):
+            updated_at (datetime.datetime | None):
             user_id (None | str):
+            vector_store_description (None | str):
+            vector_store_id (str):
+            vector_store_metadata (LiteLLMManagedVectorStoresTableVectorStoreMetadataType0 | None):
+            vector_store_name (None | str):
      """
 
-    vector_store_id: str
-    custom_llm_provider: str
-    vector_store_name: None | str
-    vector_store_description: None | str
-    vector_store_metadata: LiteLLMManagedVectorStoresTableVectorStoreMetadataType0 | None
     created_at: datetime.datetime | None
-    updated_at: datetime.datetime | None
+    custom_llm_provider: str
     litellm_credential_name: None | str
     litellm_params: LiteLLMManagedVectorStoresTableLitellmParamsType0 | None
     team_id: None | str
+    updated_at: datetime.datetime | None
     user_id: None | str
+    vector_store_description: None | str
+    vector_store_id: str
+    vector_store_metadata: LiteLLMManagedVectorStoresTableVectorStoreMetadataType0 | None
+    vector_store_name: None | str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -61,33 +61,13 @@ class LiteLLMManagedVectorStoresTable:
     def to_dict(self) -> dict[str, Any]:
         from ..models.lite_llm_managed_vector_stores_table_litellm_params_type_0 import LiteLLMManagedVectorStoresTableLitellmParamsType0
         from ..models.lite_llm_managed_vector_stores_table_vector_store_metadata_type_0 import LiteLLMManagedVectorStoresTableVectorStoreMetadataType0
-        vector_store_id = self.vector_store_id
-
-        custom_llm_provider = self.custom_llm_provider
-
-        vector_store_name: None | str
-        vector_store_name = self.vector_store_name
-
-        vector_store_description: None | str
-        vector_store_description = self.vector_store_description
-
-        vector_store_metadata: dict[str, Any] | None
-        if isinstance(self.vector_store_metadata, LiteLLMManagedVectorStoresTableVectorStoreMetadataType0):
-            vector_store_metadata = self.vector_store_metadata.to_dict()
-        else:
-            vector_store_metadata = self.vector_store_metadata
-
         created_at: None | str
         if isinstance(self.created_at, datetime.datetime):
             created_at = self.created_at.isoformat()
         else:
             created_at = self.created_at
 
-        updated_at: None | str
-        if isinstance(self.updated_at, datetime.datetime):
-            updated_at = self.updated_at.isoformat()
-        else:
-            updated_at = self.updated_at
+        custom_llm_provider = self.custom_llm_provider
 
         litellm_credential_name: None | str
         litellm_credential_name = self.litellm_credential_name
@@ -101,24 +81,44 @@ class LiteLLMManagedVectorStoresTable:
         team_id: None | str
         team_id = self.team_id
 
+        updated_at: None | str
+        if isinstance(self.updated_at, datetime.datetime):
+            updated_at = self.updated_at.isoformat()
+        else:
+            updated_at = self.updated_at
+
         user_id: None | str
         user_id = self.user_id
+
+        vector_store_description: None | str
+        vector_store_description = self.vector_store_description
+
+        vector_store_id = self.vector_store_id
+
+        vector_store_metadata: dict[str, Any] | None
+        if isinstance(self.vector_store_metadata, LiteLLMManagedVectorStoresTableVectorStoreMetadataType0):
+            vector_store_metadata = self.vector_store_metadata.to_dict()
+        else:
+            vector_store_metadata = self.vector_store_metadata
+
+        vector_store_name: None | str
+        vector_store_name = self.vector_store_name
 
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
-            "vector_store_id": vector_store_id,
-            "custom_llm_provider": custom_llm_provider,
-            "vector_store_name": vector_store_name,
-            "vector_store_description": vector_store_description,
-            "vector_store_metadata": vector_store_metadata,
             "created_at": created_at,
-            "updated_at": updated_at,
+            "custom_llm_provider": custom_llm_provider,
             "litellm_credential_name": litellm_credential_name,
             "litellm_params": litellm_params,
             "team_id": team_id,
+            "updated_at": updated_at,
             "user_id": user_id,
+            "vector_store_description": vector_store_description,
+            "vector_store_id": vector_store_id,
+            "vector_store_metadata": vector_store_metadata,
+            "vector_store_name": vector_store_name,
         })
 
         return field_dict
@@ -130,44 +130,6 @@ class LiteLLMManagedVectorStoresTable:
         from ..models.lite_llm_managed_vector_stores_table_litellm_params_type_0 import LiteLLMManagedVectorStoresTableLitellmParamsType0
         from ..models.lite_llm_managed_vector_stores_table_vector_store_metadata_type_0 import LiteLLMManagedVectorStoresTableVectorStoreMetadataType0
         d = dict(src_dict)
-        vector_store_id = d.pop("vector_store_id")
-
-        custom_llm_provider = d.pop("custom_llm_provider")
-
-        def _parse_vector_store_name(data: object) -> None | str:
-            if data is None:
-                return data
-            return cast(None | str, data)
-
-        vector_store_name = _parse_vector_store_name(d.pop("vector_store_name"))
-
-
-        def _parse_vector_store_description(data: object) -> None | str:
-            if data is None:
-                return data
-            return cast(None | str, data)
-
-        vector_store_description = _parse_vector_store_description(d.pop("vector_store_description"))
-
-
-        def _parse_vector_store_metadata(data: object) -> LiteLLMManagedVectorStoresTableVectorStoreMetadataType0 | None:
-            if data is None:
-                return data
-            try:
-                if not isinstance(data, dict):
-                    raise TypeError()
-                vector_store_metadata_type_0 = LiteLLMManagedVectorStoresTableVectorStoreMetadataType0.from_dict(data)
-
-
-
-                return vector_store_metadata_type_0
-            except (TypeError, ValueError, AttributeError, KeyError):
-                pass
-            return cast(LiteLLMManagedVectorStoresTableVectorStoreMetadataType0 | None, data)
-
-        vector_store_metadata = _parse_vector_store_metadata(d.pop("vector_store_metadata"))
-
-
         def _parse_created_at(data: object) -> datetime.datetime | None:
             if data is None:
                 return data
@@ -186,23 +148,7 @@ class LiteLLMManagedVectorStoresTable:
         created_at = _parse_created_at(d.pop("created_at"))
 
 
-        def _parse_updated_at(data: object) -> datetime.datetime | None:
-            if data is None:
-                return data
-            try:
-                if not isinstance(data, str):
-                    raise TypeError()
-                updated_at_type_0 = isoparse(data)
-
-
-
-                return updated_at_type_0
-            except (TypeError, ValueError, AttributeError, KeyError):
-                pass
-            return cast(datetime.datetime | None, data)
-
-        updated_at = _parse_updated_at(d.pop("updated_at"))
-
+        custom_llm_provider = d.pop("custom_llm_provider")
 
         def _parse_litellm_credential_name(data: object) -> None | str:
             if data is None:
@@ -238,6 +184,24 @@ class LiteLLMManagedVectorStoresTable:
         team_id = _parse_team_id(d.pop("team_id"))
 
 
+        def _parse_updated_at(data: object) -> datetime.datetime | None:
+            if data is None:
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                updated_at_type_0 = isoparse(data)
+
+
+
+                return updated_at_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None, data)
+
+        updated_at = _parse_updated_at(d.pop("updated_at"))
+
+
         def _parse_user_id(data: object) -> None | str:
             if data is None:
                 return data
@@ -246,18 +210,54 @@ class LiteLLMManagedVectorStoresTable:
         user_id = _parse_user_id(d.pop("user_id"))
 
 
+        def _parse_vector_store_description(data: object) -> None | str:
+            if data is None:
+                return data
+            return cast(None | str, data)
+
+        vector_store_description = _parse_vector_store_description(d.pop("vector_store_description"))
+
+
+        vector_store_id = d.pop("vector_store_id")
+
+        def _parse_vector_store_metadata(data: object) -> LiteLLMManagedVectorStoresTableVectorStoreMetadataType0 | None:
+            if data is None:
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                vector_store_metadata_type_0 = LiteLLMManagedVectorStoresTableVectorStoreMetadataType0.from_dict(data)
+
+
+
+                return vector_store_metadata_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(LiteLLMManagedVectorStoresTableVectorStoreMetadataType0 | None, data)
+
+        vector_store_metadata = _parse_vector_store_metadata(d.pop("vector_store_metadata"))
+
+
+        def _parse_vector_store_name(data: object) -> None | str:
+            if data is None:
+                return data
+            return cast(None | str, data)
+
+        vector_store_name = _parse_vector_store_name(d.pop("vector_store_name"))
+
+
         lite_llm_managed_vector_stores_table = cls(
-            vector_store_id=vector_store_id,
-            custom_llm_provider=custom_llm_provider,
-            vector_store_name=vector_store_name,
-            vector_store_description=vector_store_description,
-            vector_store_metadata=vector_store_metadata,
             created_at=created_at,
-            updated_at=updated_at,
+            custom_llm_provider=custom_llm_provider,
             litellm_credential_name=litellm_credential_name,
             litellm_params=litellm_params,
             team_id=team_id,
+            updated_at=updated_at,
             user_id=user_id,
+            vector_store_description=vector_store_description,
+            vector_store_id=vector_store_id,
+            vector_store_metadata=vector_store_metadata,
+            vector_store_name=vector_store_name,
         )
 
 

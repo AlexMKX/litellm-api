@@ -28,35 +28,35 @@ class PluginListItem:
     """ Plugin item in list responses.
 
         Attributes:
+            created_at (None | str):
+            description (None | str):
+            enabled (bool):
             id (str):
             name (str):
-            version (None | str):
-            description (None | str):
             source (PluginListItemSource):
-            enabled (bool):
-            created_at (None | str):
             updated_at (None | str):
+            version (None | str):
             author (None | PluginAuthor | Unset):
-            homepage (None | str | Unset):
-            keywords (list[str] | None | Unset):
             category (None | str | Unset):
             domain (None | str | Unset):
+            homepage (None | str | Unset):
+            keywords (list[str] | None | Unset):
             namespace (None | str | Unset):
      """
 
+    created_at: None | str
+    description: None | str
+    enabled: bool
     id: str
     name: str
-    version: None | str
-    description: None | str
     source: PluginListItemSource
-    enabled: bool
-    created_at: None | str
     updated_at: None | str
+    version: None | str
     author: None | PluginAuthor | Unset = UNSET
-    homepage: None | str | Unset = UNSET
-    keywords: list[str] | None | Unset = UNSET
     category: None | str | Unset = UNSET
     domain: None | str | Unset = UNSET
+    homepage: None | str | Unset = UNSET
+    keywords: list[str] | None | Unset = UNSET
     namespace: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -67,25 +67,25 @@ class PluginListItem:
     def to_dict(self) -> dict[str, Any]:
         from ..models.plugin_author import PluginAuthor
         from ..models.plugin_list_item_source import PluginListItemSource
-        id = self.id
-
-        name = self.name
-
-        version: None | str
-        version = self.version
+        created_at: None | str
+        created_at = self.created_at
 
         description: None | str
         description = self.description
 
-        source = self.source.to_dict()
-
         enabled = self.enabled
 
-        created_at: None | str
-        created_at = self.created_at
+        id = self.id
+
+        name = self.name
+
+        source = self.source.to_dict()
 
         updated_at: None | str
         updated_at = self.updated_at
+
+        version: None | str
+        version = self.version
 
         author: dict[str, Any] | None | Unset
         if isinstance(self.author, Unset):
@@ -94,6 +94,18 @@ class PluginListItem:
             author = self.author.to_dict()
         else:
             author = self.author
+
+        category: None | str | Unset
+        if isinstance(self.category, Unset):
+            category = UNSET
+        else:
+            category = self.category
+
+        domain: None | str | Unset
+        if isinstance(self.domain, Unset):
+            domain = UNSET
+        else:
+            domain = self.domain
 
         homepage: None | str | Unset
         if isinstance(self.homepage, Unset):
@@ -111,18 +123,6 @@ class PluginListItem:
         else:
             keywords = self.keywords
 
-        category: None | str | Unset
-        if isinstance(self.category, Unset):
-            category = UNSET
-        else:
-            category = self.category
-
-        domain: None | str | Unset
-        if isinstance(self.domain, Unset):
-            domain = UNSET
-        else:
-            domain = self.domain
-
         namespace: None | str | Unset
         if isinstance(self.namespace, Unset):
             namespace = UNSET
@@ -133,25 +133,25 @@ class PluginListItem:
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
+            "created_at": created_at,
+            "description": description,
+            "enabled": enabled,
             "id": id,
             "name": name,
-            "version": version,
-            "description": description,
             "source": source,
-            "enabled": enabled,
-            "created_at": created_at,
             "updated_at": updated_at,
+            "version": version,
         })
         if author is not UNSET:
             field_dict["author"] = author
-        if homepage is not UNSET:
-            field_dict["homepage"] = homepage
-        if keywords is not UNSET:
-            field_dict["keywords"] = keywords
         if category is not UNSET:
             field_dict["category"] = category
         if domain is not UNSET:
             field_dict["domain"] = domain
+        if homepage is not UNSET:
+            field_dict["homepage"] = homepage
+        if keywords is not UNSET:
+            field_dict["keywords"] = keywords
         if namespace is not UNSET:
             field_dict["namespace"] = namespace
 
@@ -164,16 +164,12 @@ class PluginListItem:
         from ..models.plugin_author import PluginAuthor
         from ..models.plugin_list_item_source import PluginListItemSource
         d = dict(src_dict)
-        id = d.pop("id")
-
-        name = d.pop("name")
-
-        def _parse_version(data: object) -> None | str:
+        def _parse_created_at(data: object) -> None | str:
             if data is None:
                 return data
             return cast(None | str, data)
 
-        version = _parse_version(d.pop("version"))
+        created_at = _parse_created_at(d.pop("created_at"))
 
 
         def _parse_description(data: object) -> None | str:
@@ -184,19 +180,15 @@ class PluginListItem:
         description = _parse_description(d.pop("description"))
 
 
+        enabled = d.pop("enabled")
+
+        id = d.pop("id")
+
+        name = d.pop("name")
+
         source = PluginListItemSource.from_dict(d.pop("source"))
 
 
-
-
-        enabled = d.pop("enabled")
-
-        def _parse_created_at(data: object) -> None | str:
-            if data is None:
-                return data
-            return cast(None | str, data)
-
-        created_at = _parse_created_at(d.pop("created_at"))
 
 
         def _parse_updated_at(data: object) -> None | str:
@@ -205,6 +197,14 @@ class PluginListItem:
             return cast(None | str, data)
 
         updated_at = _parse_updated_at(d.pop("updated_at"))
+
+
+        def _parse_version(data: object) -> None | str:
+            if data is None:
+                return data
+            return cast(None | str, data)
+
+        version = _parse_version(d.pop("version"))
 
 
         def _parse_author(data: object) -> None | PluginAuthor | Unset:
@@ -225,6 +225,26 @@ class PluginListItem:
             return cast(None | PluginAuthor | Unset, data)
 
         author = _parse_author(d.pop("author", UNSET))
+
+
+        def _parse_category(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        category = _parse_category(d.pop("category", UNSET))
+
+
+        def _parse_domain(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        domain = _parse_domain(d.pop("domain", UNSET))
 
 
         def _parse_homepage(data: object) -> None | str | Unset:
@@ -255,26 +275,6 @@ class PluginListItem:
         keywords = _parse_keywords(d.pop("keywords", UNSET))
 
 
-        def _parse_category(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        category = _parse_category(d.pop("category", UNSET))
-
-
-        def _parse_domain(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        domain = _parse_domain(d.pop("domain", UNSET))
-
-
         def _parse_namespace(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -286,19 +286,19 @@ class PluginListItem:
 
 
         plugin_list_item = cls(
+            created_at=created_at,
+            description=description,
+            enabled=enabled,
             id=id,
             name=name,
-            version=version,
-            description=description,
             source=source,
-            enabled=enabled,
-            created_at=created_at,
             updated_at=updated_at,
+            version=version,
             author=author,
-            homepage=homepage,
-            keywords=keywords,
             category=category,
             domain=domain,
+            homepage=homepage,
+            keywords=keywords,
             namespace=namespace,
         )
 

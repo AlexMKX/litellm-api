@@ -8,6 +8,8 @@ from ...client import AuthenticatedClient, Client
 from ...types import Response, UNSET
 from ... import errors
 
+from ...models.agent_card import AgentCard
+from typing import cast
 
 
 
@@ -30,14 +32,26 @@ def _get_kwargs(
 
 
 
-def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Any | None:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> list[AgentCard] | None:
+    if response.status_code == 200:
+        response_200 = []
+        _response_200 = response.json()
+        for response_200_item_data in (_response_200):
+            response_200_item = AgentCard.from_dict(response_200_item_data)
+
+
+
+            response_200.append(response_200_item)
+
+        return response_200
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
         return None
 
 
-def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Any]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[list[AgentCard]]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -48,9 +62,9 @@ def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Res
 
 def sync_detailed(
     *,
-    client: AuthenticatedClient,
+    client: AuthenticatedClient | Client,
 
-) -> Response[Any]:
+) -> Response[list[AgentCard]]:
     """ Get Agents
 
     Raises:
@@ -58,7 +72,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any]
+        Response[list[AgentCard]]
      """
 
 
@@ -72,12 +86,11 @@ def sync_detailed(
 
     return _build_response(client=client, response=response)
 
-
-async def asyncio_detailed(
+def sync(
     *,
-    client: AuthenticatedClient,
+    client: AuthenticatedClient | Client,
 
-) -> Response[Any]:
+) -> list[AgentCard] | None:
     """ Get Agents
 
     Raises:
@@ -85,7 +98,28 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any]
+        list[AgentCard]
+     """
+
+
+    return sync_detailed(
+        client=client,
+
+    ).parsed
+
+async def asyncio_detailed(
+    *,
+    client: AuthenticatedClient | Client,
+
+) -> Response[list[AgentCard]]:
+    """ Get Agents
+
+    Raises:
+        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
+        httpx.TimeoutException: If the request takes longer than Client.timeout.
+
+    Returns:
+        Response[list[AgentCard]]
      """
 
 
@@ -99,3 +133,23 @@ async def asyncio_detailed(
 
     return _build_response(client=client, response=response)
 
+async def asyncio(
+    *,
+    client: AuthenticatedClient | Client,
+
+) -> list[AgentCard] | None:
+    """ Get Agents
+
+    Raises:
+        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
+        httpx.TimeoutException: If the request takes longer than Client.timeout.
+
+    Returns:
+        list[AgentCard]
+     """
+
+
+    return (await asyncio_detailed(
+        client=client,
+
+    )).parsed

@@ -26,13 +26,13 @@ class BlockedWord:
     """ Represents a blocked word with its action and optional description
 
         Attributes:
-            keyword (str): The keyword to block or mask
             action (ContentFilterAction): Action to take when content filter detects a match
+            keyword (str): The keyword to block or mask
             description (None | str | Unset): Optional description explaining why this keyword is sensitive
      """
 
-    keyword: str
     action: ContentFilterAction
+    keyword: str
     description: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -41,9 +41,9 @@ class BlockedWord:
 
 
     def to_dict(self) -> dict[str, Any]:
-        keyword = self.keyword
-
         action = self.action.value
+
+        keyword = self.keyword
 
         description: None | str | Unset
         if isinstance(self.description, Unset):
@@ -55,8 +55,8 @@ class BlockedWord:
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
-            "keyword": keyword,
             "action": action,
+            "keyword": keyword,
         })
         if description is not UNSET:
             field_dict["description"] = description
@@ -68,12 +68,12 @@ class BlockedWord:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        keyword = d.pop("keyword")
-
         action = ContentFilterAction(d.pop("action"))
 
 
 
+
+        keyword = d.pop("keyword")
 
         def _parse_description(data: object) -> None | str | Unset:
             if data is None:
@@ -86,8 +86,8 @@ class BlockedWord:
 
 
         blocked_word = cls(
-            keyword=keyword,
             action=action,
+            keyword=keyword,
             description=description,
         )
 

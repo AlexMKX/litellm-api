@@ -27,14 +27,14 @@ T = TypeVar("T", bound="PatchGuardrailRequest")
 class PatchGuardrailRequest:
     """ 
         Attributes:
+            guardrail_info (None | PatchGuardrailRequestGuardrailInfoType0 | Unset):
             guardrail_name (None | str | Unset):
             litellm_params (BaseLitellmParams | None | Unset):
-            guardrail_info (None | PatchGuardrailRequestGuardrailInfoType0 | Unset):
      """
 
+    guardrail_info: None | PatchGuardrailRequestGuardrailInfoType0 | Unset = UNSET
     guardrail_name: None | str | Unset = UNSET
     litellm_params: BaseLitellmParams | None | Unset = UNSET
-    guardrail_info: None | PatchGuardrailRequestGuardrailInfoType0 | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -44,6 +44,14 @@ class PatchGuardrailRequest:
     def to_dict(self) -> dict[str, Any]:
         from ..models.base_litellm_params import BaseLitellmParams
         from ..models.patch_guardrail_request_guardrail_info_type_0 import PatchGuardrailRequestGuardrailInfoType0
+        guardrail_info: dict[str, Any] | None | Unset
+        if isinstance(self.guardrail_info, Unset):
+            guardrail_info = UNSET
+        elif isinstance(self.guardrail_info, PatchGuardrailRequestGuardrailInfoType0):
+            guardrail_info = self.guardrail_info.to_dict()
+        else:
+            guardrail_info = self.guardrail_info
+
         guardrail_name: None | str | Unset
         if isinstance(self.guardrail_name, Unset):
             guardrail_name = UNSET
@@ -58,25 +66,17 @@ class PatchGuardrailRequest:
         else:
             litellm_params = self.litellm_params
 
-        guardrail_info: dict[str, Any] | None | Unset
-        if isinstance(self.guardrail_info, Unset):
-            guardrail_info = UNSET
-        elif isinstance(self.guardrail_info, PatchGuardrailRequestGuardrailInfoType0):
-            guardrail_info = self.guardrail_info.to_dict()
-        else:
-            guardrail_info = self.guardrail_info
-
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
         })
+        if guardrail_info is not UNSET:
+            field_dict["guardrail_info"] = guardrail_info
         if guardrail_name is not UNSET:
             field_dict["guardrail_name"] = guardrail_name
         if litellm_params is not UNSET:
             field_dict["litellm_params"] = litellm_params
-        if guardrail_info is not UNSET:
-            field_dict["guardrail_info"] = guardrail_info
 
         return field_dict
 
@@ -87,6 +87,26 @@ class PatchGuardrailRequest:
         from ..models.base_litellm_params import BaseLitellmParams
         from ..models.patch_guardrail_request_guardrail_info_type_0 import PatchGuardrailRequestGuardrailInfoType0
         d = dict(src_dict)
+        def _parse_guardrail_info(data: object) -> None | PatchGuardrailRequestGuardrailInfoType0 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                guardrail_info_type_0 = PatchGuardrailRequestGuardrailInfoType0.from_dict(data)
+
+
+
+                return guardrail_info_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | PatchGuardrailRequestGuardrailInfoType0 | Unset, data)
+
+        guardrail_info = _parse_guardrail_info(d.pop("guardrail_info", UNSET))
+
+
         def _parse_guardrail_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -117,30 +137,10 @@ class PatchGuardrailRequest:
         litellm_params = _parse_litellm_params(d.pop("litellm_params", UNSET))
 
 
-        def _parse_guardrail_info(data: object) -> None | PatchGuardrailRequestGuardrailInfoType0 | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            try:
-                if not isinstance(data, dict):
-                    raise TypeError()
-                guardrail_info_type_0 = PatchGuardrailRequestGuardrailInfoType0.from_dict(data)
-
-
-
-                return guardrail_info_type_0
-            except (TypeError, ValueError, AttributeError, KeyError):
-                pass
-            return cast(None | PatchGuardrailRequestGuardrailInfoType0 | Unset, data)
-
-        guardrail_info = _parse_guardrail_info(d.pop("guardrail_info", UNSET))
-
-
         patch_guardrail_request = cls(
+            guardrail_info=guardrail_info,
             guardrail_name=guardrail_name,
             litellm_params=litellm_params,
-            guardrail_info=guardrail_info,
         )
 
 

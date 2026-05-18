@@ -25,13 +25,13 @@ class PolicyMatchDetail:
     """ Details about why a specific policy matched.
 
         Attributes:
-            policy_name (str): Name of the matched policy.
             matched_via (str): How the policy was matched (e.g., 'tag:healthcare', 'team:health-team', 'scope:*').
+            policy_name (str): Name of the matched policy.
             guardrails_added (list[str] | Unset): Guardrails this policy contributes.
      """
 
-    policy_name: str
     matched_via: str
+    policy_name: str
     guardrails_added: list[str] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -40,9 +40,9 @@ class PolicyMatchDetail:
 
 
     def to_dict(self) -> dict[str, Any]:
-        policy_name = self.policy_name
-
         matched_via = self.matched_via
+
+        policy_name = self.policy_name
 
         guardrails_added: list[str] | Unset = UNSET
         if not isinstance(self.guardrails_added, Unset):
@@ -54,8 +54,8 @@ class PolicyMatchDetail:
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
-            "policy_name": policy_name,
             "matched_via": matched_via,
+            "policy_name": policy_name,
         })
         if guardrails_added is not UNSET:
             field_dict["guardrails_added"] = guardrails_added
@@ -67,16 +67,16 @@ class PolicyMatchDetail:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        policy_name = d.pop("policy_name")
-
         matched_via = d.pop("matched_via")
+
+        policy_name = d.pop("policy_name")
 
         guardrails_added = cast(list[str], d.pop("guardrails_added", UNSET))
 
 
         policy_match_detail = cls(
-            policy_name=policy_name,
             matched_via=matched_via,
+            policy_name=policy_name,
             guardrails_added=guardrails_added,
         )
 

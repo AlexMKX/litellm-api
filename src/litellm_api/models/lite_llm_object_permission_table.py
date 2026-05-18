@@ -36,6 +36,7 @@ class LiteLLMObjectPermissionTable:
             agent_access_groups (list[str] | None | Unset):
             mcp_toolsets (list[str] | None | Unset):
             blocked_tools (list[str] | None | Unset):
+            search_tools (list[str] | None | Unset):
      """
 
     object_permission_id: str
@@ -47,6 +48,7 @@ class LiteLLMObjectPermissionTable:
     agent_access_groups: list[str] | None | Unset = UNSET
     mcp_toolsets: list[str] | None | Unset = UNSET
     blocked_tools: list[str] | None | Unset = UNSET
+    search_tools: list[str] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -135,6 +137,16 @@ class LiteLLMObjectPermissionTable:
         else:
             blocked_tools = self.blocked_tools
 
+        search_tools: list[str] | None | Unset
+        if isinstance(self.search_tools, Unset):
+            search_tools = UNSET
+        elif isinstance(self.search_tools, list):
+            search_tools = self.search_tools
+
+
+        else:
+            search_tools = self.search_tools
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -157,6 +169,8 @@ class LiteLLMObjectPermissionTable:
             field_dict["mcp_toolsets"] = mcp_toolsets
         if blocked_tools is not UNSET:
             field_dict["blocked_tools"] = blocked_tools
+        if search_tools is not UNSET:
+            field_dict["search_tools"] = search_tools
 
         return field_dict
 
@@ -314,6 +328,24 @@ class LiteLLMObjectPermissionTable:
         blocked_tools = _parse_blocked_tools(d.pop("blocked_tools", UNSET))
 
 
+        def _parse_search_tools(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                search_tools_type_0 = cast(list[str], data)
+
+                return search_tools_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        search_tools = _parse_search_tools(d.pop("search_tools", UNSET))
+
+
         lite_llm_object_permission_table = cls(
             object_permission_id=object_permission_id,
             mcp_servers=mcp_servers,
@@ -324,6 +356,7 @@ class LiteLLMObjectPermissionTable:
             agent_access_groups=agent_access_groups,
             mcp_toolsets=mcp_toolsets,
             blocked_tools=blocked_tools,
+            search_tools=search_tools,
         )
 
 

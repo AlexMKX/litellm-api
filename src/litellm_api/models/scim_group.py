@@ -27,20 +27,20 @@ T = TypeVar("T", bound="SCIMGroup")
 class SCIMGroup:
     """ 
         Attributes:
-            schemas (list[str]):
             display_name (str):
-            id (None | str | Unset):
+            schemas (list[str]):
             external_id (None | str | Unset):
-            meta (None | SCIMGroupMetaType0 | Unset):
+            id (None | str | Unset):
             members (list[SCIMMember] | None | Unset):
+            meta (None | SCIMGroupMetaType0 | Unset):
      """
 
-    schemas: list[str]
     display_name: str
-    id: None | str | Unset = UNSET
+    schemas: list[str]
     external_id: None | str | Unset = UNSET
-    meta: None | SCIMGroupMetaType0 | Unset = UNSET
+    id: None | str | Unset = UNSET
     members: list[SCIMMember] | None | Unset = UNSET
+    meta: None | SCIMGroupMetaType0 | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -50,17 +50,11 @@ class SCIMGroup:
     def to_dict(self) -> dict[str, Any]:
         from ..models.scim_group_meta_type_0 import SCIMGroupMetaType0
         from ..models.scim_member import SCIMMember
+        display_name = self.display_name
+
         schemas = self.schemas
 
 
-
-        display_name = self.display_name
-
-        id: None | str | Unset
-        if isinstance(self.id, Unset):
-            id = UNSET
-        else:
-            id = self.id
 
         external_id: None | str | Unset
         if isinstance(self.external_id, Unset):
@@ -68,13 +62,11 @@ class SCIMGroup:
         else:
             external_id = self.external_id
 
-        meta: dict[str, Any] | None | Unset
-        if isinstance(self.meta, Unset):
-            meta = UNSET
-        elif isinstance(self.meta, SCIMGroupMetaType0):
-            meta = self.meta.to_dict()
+        id: None | str | Unset
+        if isinstance(self.id, Unset):
+            id = UNSET
         else:
-            meta = self.meta
+            id = self.id
 
         members: list[dict[str, Any]] | None | Unset
         if isinstance(self.members, Unset):
@@ -89,21 +81,29 @@ class SCIMGroup:
         else:
             members = self.members
 
+        meta: dict[str, Any] | None | Unset
+        if isinstance(self.meta, Unset):
+            meta = UNSET
+        elif isinstance(self.meta, SCIMGroupMetaType0):
+            meta = self.meta.to_dict()
+        else:
+            meta = self.meta
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
-            "schemas": schemas,
             "displayName": display_name,
+            "schemas": schemas,
         })
-        if id is not UNSET:
-            field_dict["id"] = id
         if external_id is not UNSET:
             field_dict["externalId"] = external_id
-        if meta is not UNSET:
-            field_dict["meta"] = meta
+        if id is not UNSET:
+            field_dict["id"] = id
         if members is not UNSET:
             field_dict["members"] = members
+        if meta is not UNSET:
+            field_dict["meta"] = meta
 
         return field_dict
 
@@ -114,19 +114,9 @@ class SCIMGroup:
         from ..models.scim_group_meta_type_0 import SCIMGroupMetaType0
         from ..models.scim_member import SCIMMember
         d = dict(src_dict)
-        schemas = cast(list[str], d.pop("schemas"))
-
-
         display_name = d.pop("displayName")
 
-        def _parse_id(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        id = _parse_id(d.pop("id", UNSET))
+        schemas = cast(list[str], d.pop("schemas"))
 
 
         def _parse_external_id(data: object) -> None | str | Unset:
@@ -139,24 +129,14 @@ class SCIMGroup:
         external_id = _parse_external_id(d.pop("externalId", UNSET))
 
 
-        def _parse_meta(data: object) -> None | SCIMGroupMetaType0 | Unset:
+        def _parse_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            try:
-                if not isinstance(data, dict):
-                    raise TypeError()
-                meta_type_0 = SCIMGroupMetaType0.from_dict(data)
+            return cast(None | str | Unset, data)
 
-
-
-                return meta_type_0
-            except (TypeError, ValueError, AttributeError, KeyError):
-                pass
-            return cast(None | SCIMGroupMetaType0 | Unset, data)
-
-        meta = _parse_meta(d.pop("meta", UNSET))
+        id = _parse_id(d.pop("id", UNSET))
 
 
         def _parse_members(data: object) -> list[SCIMMember] | None | Unset:
@@ -184,13 +164,33 @@ class SCIMGroup:
         members = _parse_members(d.pop("members", UNSET))
 
 
+        def _parse_meta(data: object) -> None | SCIMGroupMetaType0 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                meta_type_0 = SCIMGroupMetaType0.from_dict(data)
+
+
+
+                return meta_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | SCIMGroupMetaType0 | Unset, data)
+
+        meta = _parse_meta(d.pop("meta", UNSET))
+
+
         scim_group = cls(
-            schemas=schemas,
             display_name=display_name,
-            id=id,
+            schemas=schemas,
             external_id=external_id,
-            meta=meta,
+            id=id,
             members=members,
+            meta=meta,
         )
 
 

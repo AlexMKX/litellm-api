@@ -26,18 +26,18 @@ T = TypeVar("T", bound="UsageOverviewResponse")
 class UsageOverviewResponse:
     """ 
         Attributes:
-            rows (list[UsageOverviewRow]):
             chart (list[UsageOverviewResponseChartItem]):
-            total_requests (int):
-            total_blocked (int):
             pass_rate (float):
+            rows (list[UsageOverviewRow]):
+            total_blocked (int):
+            total_requests (int):
      """
 
-    rows: list[UsageOverviewRow]
     chart: list[UsageOverviewResponseChartItem]
-    total_requests: int
-    total_blocked: int
     pass_rate: float
+    rows: list[UsageOverviewRow]
+    total_blocked: int
+    total_requests: int
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -47,13 +47,6 @@ class UsageOverviewResponse:
     def to_dict(self) -> dict[str, Any]:
         from ..models.usage_overview_response_chart_item import UsageOverviewResponseChartItem
         from ..models.usage_overview_row import UsageOverviewRow
-        rows = []
-        for rows_item_data in self.rows:
-            rows_item = rows_item_data.to_dict()
-            rows.append(rows_item)
-
-
-
         chart = []
         for chart_item_data in self.chart:
             chart_item = chart_item_data.to_dict()
@@ -61,21 +54,28 @@ class UsageOverviewResponse:
 
 
 
-        total_requests = self.total_requests
+        pass_rate = self.pass_rate
+
+        rows = []
+        for rows_item_data in self.rows:
+            rows_item = rows_item_data.to_dict()
+            rows.append(rows_item)
+
+
 
         total_blocked = self.total_blocked
 
-        pass_rate = self.pass_rate
+        total_requests = self.total_requests
 
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
-            "rows": rows,
             "chart": chart,
-            "totalRequests": total_requests,
-            "totalBlocked": total_blocked,
             "passRate": pass_rate,
+            "rows": rows,
+            "totalBlocked": total_blocked,
+            "totalRequests": total_requests,
         })
 
         return field_dict
@@ -87,16 +87,6 @@ class UsageOverviewResponse:
         from ..models.usage_overview_response_chart_item import UsageOverviewResponseChartItem
         from ..models.usage_overview_row import UsageOverviewRow
         d = dict(src_dict)
-        rows = []
-        _rows = d.pop("rows")
-        for rows_item_data in (_rows):
-            rows_item = UsageOverviewRow.from_dict(rows_item_data)
-
-
-
-            rows.append(rows_item)
-
-
         chart = []
         _chart = d.pop("chart")
         for chart_item_data in (_chart):
@@ -107,18 +97,28 @@ class UsageOverviewResponse:
             chart.append(chart_item)
 
 
-        total_requests = d.pop("totalRequests")
+        pass_rate = d.pop("passRate")
+
+        rows = []
+        _rows = d.pop("rows")
+        for rows_item_data in (_rows):
+            rows_item = UsageOverviewRow.from_dict(rows_item_data)
+
+
+
+            rows.append(rows_item)
+
 
         total_blocked = d.pop("totalBlocked")
 
-        pass_rate = d.pop("passRate")
+        total_requests = d.pop("totalRequests")
 
         usage_overview_response = cls(
-            rows=rows,
             chart=chart,
-            total_requests=total_requests,
-            total_blocked=total_blocked,
             pass_rate=pass_rate,
+            rows=rows,
+            total_blocked=total_blocked,
+            total_requests=total_requests,
         )
 
 

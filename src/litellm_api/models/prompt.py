@@ -27,13 +27,13 @@ T = TypeVar("T", bound="Prompt")
 class Prompt:
     """ 
         Attributes:
-            prompt_id (str):
             litellm_params (PromptLiteLLMParams):
+            prompt_id (str):
             prompt_info (None | PromptInfo | Unset):
      """
 
-    prompt_id: str
     litellm_params: PromptLiteLLMParams
+    prompt_id: str
     prompt_info: None | PromptInfo | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -44,9 +44,9 @@ class Prompt:
     def to_dict(self) -> dict[str, Any]:
         from ..models.prompt_info import PromptInfo
         from ..models.prompt_lite_llm_params import PromptLiteLLMParams
-        prompt_id = self.prompt_id
-
         litellm_params = self.litellm_params.to_dict()
+
+        prompt_id = self.prompt_id
 
         prompt_info: dict[str, Any] | None | Unset
         if isinstance(self.prompt_info, Unset):
@@ -60,8 +60,8 @@ class Prompt:
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
-            "prompt_id": prompt_id,
             "litellm_params": litellm_params,
+            "prompt_id": prompt_id,
         })
         if prompt_info is not UNSET:
             field_dict["prompt_info"] = prompt_info
@@ -75,12 +75,12 @@ class Prompt:
         from ..models.prompt_info import PromptInfo
         from ..models.prompt_lite_llm_params import PromptLiteLLMParams
         d = dict(src_dict)
-        prompt_id = d.pop("prompt_id")
-
         litellm_params = PromptLiteLLMParams.from_dict(d.pop("litellm_params"))
 
 
 
+
+        prompt_id = d.pop("prompt_id")
 
         def _parse_prompt_info(data: object) -> None | PromptInfo | Unset:
             if data is None:
@@ -103,8 +103,8 @@ class Prompt:
 
 
         prompt = cls(
-            prompt_id=prompt_id,
             litellm_params=litellm_params,
+            prompt_id=prompt_id,
             prompt_info=prompt_info,
         )
 

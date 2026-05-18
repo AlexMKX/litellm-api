@@ -25,15 +25,15 @@ class UpdateJWTKeyMappingRequest:
     """ 
         Attributes:
             id (str):
-            key (None | str | Unset):
             description (None | str | Unset):
             is_active (bool | None | Unset):
+            key (None | str | Unset):
      """
 
     id: str
-    key: None | str | Unset = UNSET
     description: None | str | Unset = UNSET
     is_active: bool | None | Unset = UNSET
+    key: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -42,12 +42,6 @@ class UpdateJWTKeyMappingRequest:
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
-
-        key: None | str | Unset
-        if isinstance(self.key, Unset):
-            key = UNSET
-        else:
-            key = self.key
 
         description: None | str | Unset
         if isinstance(self.description, Unset):
@@ -61,18 +55,24 @@ class UpdateJWTKeyMappingRequest:
         else:
             is_active = self.is_active
 
+        key: None | str | Unset
+        if isinstance(self.key, Unset):
+            key = UNSET
+        else:
+            key = self.key
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
             "id": id,
         })
-        if key is not UNSET:
-            field_dict["key"] = key
         if description is not UNSET:
             field_dict["description"] = description
         if is_active is not UNSET:
             field_dict["is_active"] = is_active
+        if key is not UNSET:
+            field_dict["key"] = key
 
         return field_dict
 
@@ -82,16 +82,6 @@ class UpdateJWTKeyMappingRequest:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
         id = d.pop("id")
-
-        def _parse_key(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        key = _parse_key(d.pop("key", UNSET))
-
 
         def _parse_description(data: object) -> None | str | Unset:
             if data is None:
@@ -113,11 +103,21 @@ class UpdateJWTKeyMappingRequest:
         is_active = _parse_is_active(d.pop("is_active", UNSET))
 
 
+        def _parse_key(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        key = _parse_key(d.pop("key", UNSET))
+
+
         update_jwt_key_mapping_request = cls(
             id=id,
-            key=key,
             description=description,
             is_active=is_active,
+            key=key,
         )
 
 

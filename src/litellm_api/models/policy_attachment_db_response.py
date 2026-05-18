@@ -29,27 +29,27 @@ class PolicyAttachmentDBResponse:
         Attributes:
             attachment_id (str): Unique ID of the attachment.
             policy_name (str): Name of the attached policy.
-            scope (None | str | Unset): Scope of the attachment.
-            teams (list[str] | Unset): Team patterns.
+            created_at (datetime.datetime | None | Unset): When the attachment was created.
+            created_by (None | str | Unset): Who created the attachment.
             keys (list[str] | Unset): Key patterns.
             models (list[str] | Unset): Model patterns.
+            scope (None | str | Unset): Scope of the attachment.
             tags (list[str] | Unset): Tag patterns.
-            created_at (datetime.datetime | None | Unset): When the attachment was created.
+            teams (list[str] | Unset): Team patterns.
             updated_at (datetime.datetime | None | Unset): When the attachment was last updated.
-            created_by (None | str | Unset): Who created the attachment.
             updated_by (None | str | Unset): Who last updated the attachment.
      """
 
     attachment_id: str
     policy_name: str
-    scope: None | str | Unset = UNSET
-    teams: list[str] | Unset = UNSET
+    created_at: datetime.datetime | None | Unset = UNSET
+    created_by: None | str | Unset = UNSET
     keys: list[str] | Unset = UNSET
     models: list[str] | Unset = UNSET
+    scope: None | str | Unset = UNSET
     tags: list[str] | Unset = UNSET
-    created_at: datetime.datetime | None | Unset = UNSET
+    teams: list[str] | Unset = UNSET
     updated_at: datetime.datetime | None | Unset = UNSET
-    created_by: None | str | Unset = UNSET
     updated_by: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -62,17 +62,19 @@ class PolicyAttachmentDBResponse:
 
         policy_name = self.policy_name
 
-        scope: None | str | Unset
-        if isinstance(self.scope, Unset):
-            scope = UNSET
+        created_at: None | str | Unset
+        if isinstance(self.created_at, Unset):
+            created_at = UNSET
+        elif isinstance(self.created_at, datetime.datetime):
+            created_at = self.created_at.isoformat()
         else:
-            scope = self.scope
+            created_at = self.created_at
 
-        teams: list[str] | Unset = UNSET
-        if not isinstance(self.teams, Unset):
-            teams = self.teams
-
-
+        created_by: None | str | Unset
+        if isinstance(self.created_by, Unset):
+            created_by = UNSET
+        else:
+            created_by = self.created_by
 
         keys: list[str] | Unset = UNSET
         if not isinstance(self.keys, Unset):
@@ -86,19 +88,23 @@ class PolicyAttachmentDBResponse:
 
 
 
+        scope: None | str | Unset
+        if isinstance(self.scope, Unset):
+            scope = UNSET
+        else:
+            scope = self.scope
+
         tags: list[str] | Unset = UNSET
         if not isinstance(self.tags, Unset):
             tags = self.tags
 
 
 
-        created_at: None | str | Unset
-        if isinstance(self.created_at, Unset):
-            created_at = UNSET
-        elif isinstance(self.created_at, datetime.datetime):
-            created_at = self.created_at.isoformat()
-        else:
-            created_at = self.created_at
+        teams: list[str] | Unset = UNSET
+        if not isinstance(self.teams, Unset):
+            teams = self.teams
+
+
 
         updated_at: None | str | Unset
         if isinstance(self.updated_at, Unset):
@@ -107,12 +113,6 @@ class PolicyAttachmentDBResponse:
             updated_at = self.updated_at.isoformat()
         else:
             updated_at = self.updated_at
-
-        created_by: None | str | Unset
-        if isinstance(self.created_by, Unset):
-            created_by = UNSET
-        else:
-            created_by = self.created_by
 
         updated_by: None | str | Unset
         if isinstance(self.updated_by, Unset):
@@ -127,22 +127,22 @@ class PolicyAttachmentDBResponse:
             "attachment_id": attachment_id,
             "policy_name": policy_name,
         })
-        if scope is not UNSET:
-            field_dict["scope"] = scope
-        if teams is not UNSET:
-            field_dict["teams"] = teams
+        if created_at is not UNSET:
+            field_dict["created_at"] = created_at
+        if created_by is not UNSET:
+            field_dict["created_by"] = created_by
         if keys is not UNSET:
             field_dict["keys"] = keys
         if models is not UNSET:
             field_dict["models"] = models
+        if scope is not UNSET:
+            field_dict["scope"] = scope
         if tags is not UNSET:
             field_dict["tags"] = tags
-        if created_at is not UNSET:
-            field_dict["created_at"] = created_at
+        if teams is not UNSET:
+            field_dict["teams"] = teams
         if updated_at is not UNSET:
             field_dict["updated_at"] = updated_at
-        if created_by is not UNSET:
-            field_dict["created_by"] = created_by
         if updated_by is not UNSET:
             field_dict["updated_by"] = updated_by
 
@@ -156,28 +156,6 @@ class PolicyAttachmentDBResponse:
         attachment_id = d.pop("attachment_id")
 
         policy_name = d.pop("policy_name")
-
-        def _parse_scope(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        scope = _parse_scope(d.pop("scope", UNSET))
-
-
-        teams = cast(list[str], d.pop("teams", UNSET))
-
-
-        keys = cast(list[str], d.pop("keys", UNSET))
-
-
-        models = cast(list[str], d.pop("models", UNSET))
-
-
-        tags = cast(list[str], d.pop("tags", UNSET))
-
 
         def _parse_created_at(data: object) -> datetime.datetime | None | Unset:
             if data is None:
@@ -197,6 +175,38 @@ class PolicyAttachmentDBResponse:
             return cast(datetime.datetime | None | Unset, data)
 
         created_at = _parse_created_at(d.pop("created_at", UNSET))
+
+
+        def _parse_created_by(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        created_by = _parse_created_by(d.pop("created_by", UNSET))
+
+
+        keys = cast(list[str], d.pop("keys", UNSET))
+
+
+        models = cast(list[str], d.pop("models", UNSET))
+
+
+        def _parse_scope(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        scope = _parse_scope(d.pop("scope", UNSET))
+
+
+        tags = cast(list[str], d.pop("tags", UNSET))
+
+
+        teams = cast(list[str], d.pop("teams", UNSET))
 
 
         def _parse_updated_at(data: object) -> datetime.datetime | None | Unset:
@@ -219,16 +229,6 @@ class PolicyAttachmentDBResponse:
         updated_at = _parse_updated_at(d.pop("updated_at", UNSET))
 
 
-        def _parse_created_by(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        created_by = _parse_created_by(d.pop("created_by", UNSET))
-
-
         def _parse_updated_by(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -242,14 +242,14 @@ class PolicyAttachmentDBResponse:
         policy_attachment_db_response = cls(
             attachment_id=attachment_id,
             policy_name=policy_name,
-            scope=scope,
-            teams=teams,
+            created_at=created_at,
+            created_by=created_by,
             keys=keys,
             models=models,
+            scope=scope,
             tags=tags,
-            created_at=created_at,
+            teams=teams,
             updated_at=updated_at,
-            created_by=created_by,
             updated_by=updated_by,
         )
 

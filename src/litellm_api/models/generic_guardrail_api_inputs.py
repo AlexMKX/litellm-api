@@ -34,22 +34,22 @@ T = TypeVar("T", bound="GenericGuardrailAPIInputs")
 class GenericGuardrailAPIInputs:
     """ 
         Attributes:
-            texts (list[str] | Unset):
             images (list[str] | Unset):
-            tools (list[ChatCompletionToolParam] | Unset):
-            tool_calls (list[ChatCompletionMessageToolCall] | list[ChatCompletionToolCallChunk] | Unset):
+            model (None | str | Unset):
             structured_messages (list[ChatCompletionAssistantMessage | ChatCompletionDeveloperMessage |
                 ChatCompletionFunctionMessage | ChatCompletionSystemMessage | ChatCompletionToolMessage |
                 ChatCompletionUserMessage] | Unset):
-            model (None | str | Unset):
+            texts (list[str] | Unset):
+            tool_calls (list[ChatCompletionMessageToolCall] | list[ChatCompletionToolCallChunk] | Unset):
+            tools (list[ChatCompletionToolParam] | Unset):
      """
 
-    texts: list[str] | Unset = UNSET
     images: list[str] | Unset = UNSET
-    tools: list[ChatCompletionToolParam] | Unset = UNSET
-    tool_calls: list[ChatCompletionMessageToolCall] | list[ChatCompletionToolCallChunk] | Unset = UNSET
-    structured_messages: list[ChatCompletionAssistantMessage | ChatCompletionDeveloperMessage | ChatCompletionFunctionMessage | ChatCompletionSystemMessage | ChatCompletionToolMessage | ChatCompletionUserMessage] | Unset = UNSET
     model: None | str | Unset = UNSET
+    structured_messages: list[ChatCompletionAssistantMessage | ChatCompletionDeveloperMessage | ChatCompletionFunctionMessage | ChatCompletionSystemMessage | ChatCompletionToolMessage | ChatCompletionUserMessage] | Unset = UNSET
+    texts: list[str] | Unset = UNSET
+    tool_calls: list[ChatCompletionMessageToolCall] | list[ChatCompletionToolCallChunk] | Unset = UNSET
+    tools: list[ChatCompletionToolParam] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -66,45 +66,17 @@ class GenericGuardrailAPIInputs:
         from ..models.chat_completion_tool_message import ChatCompletionToolMessage
         from ..models.chat_completion_tool_param import ChatCompletionToolParam
         from ..models.chat_completion_user_message import ChatCompletionUserMessage
-        texts: list[str] | Unset = UNSET
-        if not isinstance(self.texts, Unset):
-            texts = self.texts
-
-
-
         images: list[str] | Unset = UNSET
         if not isinstance(self.images, Unset):
             images = self.images
 
 
 
-        tools: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.tools, Unset):
-            tools = []
-            for tools_item_data in self.tools:
-                tools_item = tools_item_data.to_dict()
-                tools.append(tools_item)
-
-
-
-        tool_calls: list[dict[str, Any]] | Unset
-        if isinstance(self.tool_calls, Unset):
-            tool_calls = UNSET
-        elif isinstance(self.tool_calls, list):
-            tool_calls = []
-            for tool_calls_type_0_item_data in self.tool_calls:
-                tool_calls_type_0_item = tool_calls_type_0_item_data.to_dict()
-                tool_calls.append(tool_calls_type_0_item)
-
-
+        model: None | str | Unset
+        if isinstance(self.model, Unset):
+            model = UNSET
         else:
-            tool_calls = []
-            for tool_calls_type_1_item_data in self.tool_calls:
-                tool_calls_type_1_item = tool_calls_type_1_item_data.to_dict()
-                tool_calls.append(tool_calls_type_1_item)
-
-
-
+            model = self.model
 
         structured_messages: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.structured_messages, Unset):
@@ -128,29 +100,57 @@ class GenericGuardrailAPIInputs:
 
 
 
-        model: None | str | Unset
-        if isinstance(self.model, Unset):
-            model = UNSET
+        texts: list[str] | Unset = UNSET
+        if not isinstance(self.texts, Unset):
+            texts = self.texts
+
+
+
+        tool_calls: list[dict[str, Any]] | Unset
+        if isinstance(self.tool_calls, Unset):
+            tool_calls = UNSET
+        elif isinstance(self.tool_calls, list):
+            tool_calls = []
+            for tool_calls_type_0_item_data in self.tool_calls:
+                tool_calls_type_0_item = tool_calls_type_0_item_data.to_dict()
+                tool_calls.append(tool_calls_type_0_item)
+
+
         else:
-            model = self.model
+            tool_calls = []
+            for tool_calls_type_1_item_data in self.tool_calls:
+                tool_calls_type_1_item = tool_calls_type_1_item_data.to_dict()
+                tool_calls.append(tool_calls_type_1_item)
+
+
+
+
+        tools: list[dict[str, Any]] | Unset = UNSET
+        if not isinstance(self.tools, Unset):
+            tools = []
+            for tools_item_data in self.tools:
+                tools_item = tools_item_data.to_dict()
+                tools.append(tools_item)
+
+
 
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
         })
-        if texts is not UNSET:
-            field_dict["texts"] = texts
         if images is not UNSET:
             field_dict["images"] = images
-        if tools is not UNSET:
-            field_dict["tools"] = tools
-        if tool_calls is not UNSET:
-            field_dict["tool_calls"] = tool_calls
-        if structured_messages is not UNSET:
-            field_dict["structured_messages"] = structured_messages
         if model is not UNSET:
             field_dict["model"] = model
+        if structured_messages is not UNSET:
+            field_dict["structured_messages"] = structured_messages
+        if texts is not UNSET:
+            field_dict["texts"] = texts
+        if tool_calls is not UNSET:
+            field_dict["tool_calls"] = tool_calls
+        if tools is not UNSET:
+            field_dict["tools"] = tools
 
         return field_dict
 
@@ -168,56 +168,17 @@ class GenericGuardrailAPIInputs:
         from ..models.chat_completion_tool_param import ChatCompletionToolParam
         from ..models.chat_completion_user_message import ChatCompletionUserMessage
         d = dict(src_dict)
-        texts = cast(list[str], d.pop("texts", UNSET))
-
-
         images = cast(list[str], d.pop("images", UNSET))
 
 
-        _tools = d.pop("tools", UNSET)
-        tools: list[ChatCompletionToolParam] | Unset = UNSET
-        if _tools is not UNSET:
-            tools = []
-            for tools_item_data in _tools:
-                tools_item = ChatCompletionToolParam.from_dict(tools_item_data)
-
-
-
-                tools.append(tools_item)
-
-
-        def _parse_tool_calls(data: object) -> list[ChatCompletionMessageToolCall] | list[ChatCompletionToolCallChunk] | Unset:
+        def _parse_model(data: object) -> None | str | Unset:
+            if data is None:
+                return data
             if isinstance(data, Unset):
                 return data
-            try:
-                if not isinstance(data, list):
-                    raise TypeError()
-                tool_calls_type_0 = []
-                _tool_calls_type_0 = data
-                for tool_calls_type_0_item_data in (_tool_calls_type_0):
-                    tool_calls_type_0_item = ChatCompletionToolCallChunk.from_dict(tool_calls_type_0_item_data)
+            return cast(None | str | Unset, data)
 
-
-
-                    tool_calls_type_0.append(tool_calls_type_0_item)
-
-                return tool_calls_type_0
-            except (TypeError, ValueError, AttributeError, KeyError):
-                pass
-            if not isinstance(data, list):
-                raise TypeError()
-            tool_calls_type_1 = []
-            _tool_calls_type_1 = data
-            for tool_calls_type_1_item_data in (_tool_calls_type_1):
-                tool_calls_type_1_item = ChatCompletionMessageToolCall.from_dict(tool_calls_type_1_item_data)
-
-
-
-                tool_calls_type_1.append(tool_calls_type_1_item)
-
-            return tool_calls_type_1
-
-        tool_calls = _parse_tool_calls(d.pop("tool_calls", UNSET))
+        model = _parse_model(d.pop("model", UNSET))
 
 
         _structured_messages = d.pop("structured_messages", UNSET)
@@ -289,23 +250,62 @@ class GenericGuardrailAPIInputs:
                 structured_messages.append(structured_messages_item)
 
 
-        def _parse_model(data: object) -> None | str | Unset:
-            if data is None:
-                return data
+        texts = cast(list[str], d.pop("texts", UNSET))
+
+
+        def _parse_tool_calls(data: object) -> list[ChatCompletionMessageToolCall] | list[ChatCompletionToolCallChunk] | Unset:
             if isinstance(data, Unset):
                 return data
-            return cast(None | str | Unset, data)
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                tool_calls_type_0 = []
+                _tool_calls_type_0 = data
+                for tool_calls_type_0_item_data in (_tool_calls_type_0):
+                    tool_calls_type_0_item = ChatCompletionToolCallChunk.from_dict(tool_calls_type_0_item_data)
 
-        model = _parse_model(d.pop("model", UNSET))
+
+
+                    tool_calls_type_0.append(tool_calls_type_0_item)
+
+                return tool_calls_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            if not isinstance(data, list):
+                raise TypeError()
+            tool_calls_type_1 = []
+            _tool_calls_type_1 = data
+            for tool_calls_type_1_item_data in (_tool_calls_type_1):
+                tool_calls_type_1_item = ChatCompletionMessageToolCall.from_dict(tool_calls_type_1_item_data)
+
+
+
+                tool_calls_type_1.append(tool_calls_type_1_item)
+
+            return tool_calls_type_1
+
+        tool_calls = _parse_tool_calls(d.pop("tool_calls", UNSET))
+
+
+        _tools = d.pop("tools", UNSET)
+        tools: list[ChatCompletionToolParam] | Unset = UNSET
+        if _tools is not UNSET:
+            tools = []
+            for tools_item_data in _tools:
+                tools_item = ChatCompletionToolParam.from_dict(tools_item_data)
+
+
+
+                tools.append(tools_item)
 
 
         generic_guardrail_api_inputs = cls(
-            texts=texts,
             images=images,
-            tools=tools,
-            tool_calls=tool_calls,
-            structured_messages=structured_messages,
             model=model,
+            structured_messages=structured_messages,
+            texts=texts,
+            tool_calls=tool_calls,
+            tools=tools,
         )
 
 

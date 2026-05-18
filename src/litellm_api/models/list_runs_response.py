@@ -28,17 +28,17 @@ class ListRunsResponse:
 
         Attributes:
             data (list[Run]):
-            object_ (str | Unset):  Default: 'list'.
             first_id (None | str | Unset):
-            last_id (None | str | Unset):
             has_more (bool | Unset):  Default: False.
+            last_id (None | str | Unset):
+            object_ (str | Unset):  Default: 'list'.
      """
 
     data: list[Run]
-    object_: str | Unset = 'list'
     first_id: None | str | Unset = UNSET
-    last_id: None | str | Unset = UNSET
     has_more: bool | Unset = False
+    last_id: None | str | Unset = UNSET
+    object_: str | Unset = 'list'
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -54,13 +54,13 @@ class ListRunsResponse:
 
 
 
-        object_ = self.object_
-
         first_id: None | str | Unset
         if isinstance(self.first_id, Unset):
             first_id = UNSET
         else:
             first_id = self.first_id
+
+        has_more = self.has_more
 
         last_id: None | str | Unset
         if isinstance(self.last_id, Unset):
@@ -68,7 +68,7 @@ class ListRunsResponse:
         else:
             last_id = self.last_id
 
-        has_more = self.has_more
+        object_ = self.object_
 
 
         field_dict: dict[str, Any] = {}
@@ -76,14 +76,14 @@ class ListRunsResponse:
         field_dict.update({
             "data": data,
         })
-        if object_ is not UNSET:
-            field_dict["object"] = object_
         if first_id is not UNSET:
             field_dict["first_id"] = first_id
-        if last_id is not UNSET:
-            field_dict["last_id"] = last_id
         if has_more is not UNSET:
             field_dict["has_more"] = has_more
+        if last_id is not UNSET:
+            field_dict["last_id"] = last_id
+        if object_ is not UNSET:
+            field_dict["object"] = object_
 
         return field_dict
 
@@ -103,8 +103,6 @@ class ListRunsResponse:
             data.append(data_item)
 
 
-        object_ = d.pop("object", UNSET)
-
         def _parse_first_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -114,6 +112,8 @@ class ListRunsResponse:
 
         first_id = _parse_first_id(d.pop("first_id", UNSET))
 
+
+        has_more = d.pop("has_more", UNSET)
 
         def _parse_last_id(data: object) -> None | str | Unset:
             if data is None:
@@ -125,14 +125,14 @@ class ListRunsResponse:
         last_id = _parse_last_id(d.pop("last_id", UNSET))
 
 
-        has_more = d.pop("has_more", UNSET)
+        object_ = d.pop("object", UNSET)
 
         list_runs_response = cls(
             data=data,
-            object_=object_,
             first_id=first_id,
-            last_id=last_id,
             has_more=has_more,
+            last_id=last_id,
+            object_=object_,
         )
 
 

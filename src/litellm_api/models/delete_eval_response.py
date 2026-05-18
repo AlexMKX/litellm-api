@@ -24,13 +24,13 @@ class DeleteEvalResponse:
     """ Response from deleting an evaluation
 
         Attributes:
-            eval_id (str):
             deleted (bool):
+            eval_id (str):
             object_ (str | Unset):  Default: 'eval.deleted'.
      """
 
-    eval_id: str
     deleted: bool
+    eval_id: str
     object_: str | Unset = 'eval.deleted'
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -39,9 +39,9 @@ class DeleteEvalResponse:
 
 
     def to_dict(self) -> dict[str, Any]:
-        eval_id = self.eval_id
-
         deleted = self.deleted
+
+        eval_id = self.eval_id
 
         object_ = self.object_
 
@@ -49,8 +49,8 @@ class DeleteEvalResponse:
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
-            "eval_id": eval_id,
             "deleted": deleted,
+            "eval_id": eval_id,
         })
         if object_ is not UNSET:
             field_dict["object"] = object_
@@ -62,15 +62,15 @@ class DeleteEvalResponse:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        eval_id = d.pop("eval_id")
-
         deleted = d.pop("deleted")
+
+        eval_id = d.pop("eval_id")
 
         object_ = d.pop("object", UNSET)
 
         delete_eval_response = cls(
-            eval_id=eval_id,
             deleted=deleted,
+            eval_id=eval_id,
             object_=object_,
         )
 

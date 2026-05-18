@@ -22,16 +22,16 @@ T = TypeVar("T", bound="GuardrailSubmissionSummary")
 class GuardrailSubmissionSummary:
     """ 
         Attributes:
-            total (int):
-            pending_review (int):
             active (int):
+            pending_review (int):
             rejected (int):
+            total (int):
      """
 
-    total: int
-    pending_review: int
     active: int
+    pending_review: int
     rejected: int
+    total: int
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -39,22 +39,22 @@ class GuardrailSubmissionSummary:
 
 
     def to_dict(self) -> dict[str, Any]:
-        total = self.total
+        active = self.active
 
         pending_review = self.pending_review
 
-        active = self.active
-
         rejected = self.rejected
+
+        total = self.total
 
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
-            "total": total,
-            "pending_review": pending_review,
             "active": active,
+            "pending_review": pending_review,
             "rejected": rejected,
+            "total": total,
         })
 
         return field_dict
@@ -64,19 +64,19 @@ class GuardrailSubmissionSummary:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        total = d.pop("total")
+        active = d.pop("active")
 
         pending_review = d.pop("pending_review")
 
-        active = d.pop("active")
-
         rejected = d.pop("rejected")
 
+        total = d.pop("total")
+
         guardrail_submission_summary = cls(
-            total=total,
-            pending_review=pending_review,
             active=active,
+            pending_review=pending_review,
             rejected=rejected,
+            total=total,
         )
 
 

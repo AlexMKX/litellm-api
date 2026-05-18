@@ -51,12 +51,16 @@ def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Res
 
 def sync_detailed(
     *,
-    client: AuthenticatedClient,
+    client: AuthenticatedClient | Client,
 
 ) -> Response[Any]:
-    """ Health Readiness
+    r""" Health Readiness
 
-     Unprotected endpoint for checking if worker can receive requests
+     Public readiness probe. Returns a low-detail payload safe to expose to
+    unauthenticated load balancers — `status` plus `db` so orchestrators and
+    external probes can distinguish \"healthy\" from \"DB unreachable\" without a
+    credential. Admins can opt into the legacy detailed payload with
+    general_settings.allow_public_health_readiness_details.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -80,12 +84,16 @@ def sync_detailed(
 
 async def asyncio_detailed(
     *,
-    client: AuthenticatedClient,
+    client: AuthenticatedClient | Client,
 
 ) -> Response[Any]:
-    """ Health Readiness
+    r""" Health Readiness
 
-     Unprotected endpoint for checking if worker can receive requests
+     Public readiness probe. Returns a low-detail payload safe to expose to
+    unauthenticated load balancers — `status` plus `db` so orchestrators and
+    external probes can distinguish \"healthy\" from \"DB unreachable\" without a
+    credential. Admins can opt into the legacy detailed payload with
+    general_settings.allow_public_health_readiness_details.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.

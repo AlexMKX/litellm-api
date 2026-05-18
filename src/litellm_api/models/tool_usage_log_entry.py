@@ -27,18 +27,18 @@ class ToolUsageLogEntry:
         Attributes:
             id (str):
             timestamp (str):
+            input_snippet (None | str | Unset):
             model (None | str | Unset):
             spend (float | None | Unset):
             total_tokens (int | None | Unset):
-            input_snippet (None | str | Unset):
      """
 
     id: str
     timestamp: str
+    input_snippet: None | str | Unset = UNSET
     model: None | str | Unset = UNSET
     spend: float | None | Unset = UNSET
     total_tokens: int | None | Unset = UNSET
-    input_snippet: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -49,6 +49,12 @@ class ToolUsageLogEntry:
         id = self.id
 
         timestamp = self.timestamp
+
+        input_snippet: None | str | Unset
+        if isinstance(self.input_snippet, Unset):
+            input_snippet = UNSET
+        else:
+            input_snippet = self.input_snippet
 
         model: None | str | Unset
         if isinstance(self.model, Unset):
@@ -68,12 +74,6 @@ class ToolUsageLogEntry:
         else:
             total_tokens = self.total_tokens
 
-        input_snippet: None | str | Unset
-        if isinstance(self.input_snippet, Unset):
-            input_snippet = UNSET
-        else:
-            input_snippet = self.input_snippet
-
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -81,14 +81,14 @@ class ToolUsageLogEntry:
             "id": id,
             "timestamp": timestamp,
         })
+        if input_snippet is not UNSET:
+            field_dict["input_snippet"] = input_snippet
         if model is not UNSET:
             field_dict["model"] = model
         if spend is not UNSET:
             field_dict["spend"] = spend
         if total_tokens is not UNSET:
             field_dict["total_tokens"] = total_tokens
-        if input_snippet is not UNSET:
-            field_dict["input_snippet"] = input_snippet
 
         return field_dict
 
@@ -100,6 +100,16 @@ class ToolUsageLogEntry:
         id = d.pop("id")
 
         timestamp = d.pop("timestamp")
+
+        def _parse_input_snippet(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        input_snippet = _parse_input_snippet(d.pop("input_snippet", UNSET))
+
 
         def _parse_model(data: object) -> None | str | Unset:
             if data is None:
@@ -131,23 +141,13 @@ class ToolUsageLogEntry:
         total_tokens = _parse_total_tokens(d.pop("total_tokens", UNSET))
 
 
-        def _parse_input_snippet(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        input_snippet = _parse_input_snippet(d.pop("input_snippet", UNSET))
-
-
         tool_usage_log_entry = cls(
             id=id,
             timestamp=timestamp,
+            input_snippet=input_snippet,
             model=model,
             spend=spend,
             total_tokens=total_tokens,
-            input_snippet=input_snippet,
         )
 
 

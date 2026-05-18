@@ -28,13 +28,13 @@ T = TypeVar("T", bound="ChatCompletionToolParam")
 class ChatCompletionToolParam:
     """ 
         Attributes:
-            type_ (Literal['function'] | str):
             function (ChatCompletionToolParamFunctionChunk):
+            type_ (Literal['function'] | str):
             cache_control (ChatCompletionCachedContent | Unset):
      """
 
-    type_: Literal['function'] | str
     function: ChatCompletionToolParamFunctionChunk
+    type_: Literal['function'] | str
     cache_control: ChatCompletionCachedContent | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -45,10 +45,10 @@ class ChatCompletionToolParam:
     def to_dict(self) -> dict[str, Any]:
         from ..models.chat_completion_cached_content import ChatCompletionCachedContent
         from ..models.chat_completion_tool_param_function_chunk import ChatCompletionToolParamFunctionChunk
+        function = self.function.to_dict()
+
         type_: Literal['function'] | str
         type_ = self.type_
-
-        function = self.function.to_dict()
 
         cache_control: dict[str, Any] | Unset = UNSET
         if not isinstance(self.cache_control, Unset):
@@ -58,8 +58,8 @@ class ChatCompletionToolParam:
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
-            "type": type_,
             "function": function,
+            "type": type_,
         })
         if cache_control is not UNSET:
             field_dict["cache_control"] = cache_control
@@ -73,6 +73,11 @@ class ChatCompletionToolParam:
         from ..models.chat_completion_cached_content import ChatCompletionCachedContent
         from ..models.chat_completion_tool_param_function_chunk import ChatCompletionToolParamFunctionChunk
         d = dict(src_dict)
+        function = ChatCompletionToolParamFunctionChunk.from_dict(d.pop("function"))
+
+
+
+
         def _parse_type_(data: object) -> Literal['function'] | str:
             type_type_0 = cast(Literal['function'] , data)
             if type_type_0 != 'function':
@@ -81,11 +86,6 @@ class ChatCompletionToolParam:
             return cast(Literal['function'] | str, data)
 
         type_ = _parse_type_(d.pop("type"))
-
-
-        function = ChatCompletionToolParamFunctionChunk.from_dict(d.pop("function"))
-
-
 
 
         _cache_control = d.pop("cache_control", UNSET)
@@ -99,8 +99,8 @@ class ChatCompletionToolParam:
 
 
         chat_completion_tool_param = cls(
-            type_=type_,
             function=function,
+            type_=type_,
             cache_control=cache_control,
         )
 

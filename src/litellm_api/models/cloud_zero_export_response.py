@@ -30,16 +30,16 @@ class CloudZeroExportResponse:
         Attributes:
             message (str):
             status (str):
-            records_exported (int | None | Unset):
             dry_run_data (CloudZeroExportResponseDryRunDataType0 | None | Unset): Dry run data including usage data and CBF
                 transformed data
+            records_exported (int | None | Unset):
             summary (CloudZeroExportResponseSummaryType0 | None | Unset): Summary statistics for dry run
      """
 
     message: str
     status: str
-    records_exported: int | None | Unset = UNSET
     dry_run_data: CloudZeroExportResponseDryRunDataType0 | None | Unset = UNSET
+    records_exported: int | None | Unset = UNSET
     summary: CloudZeroExportResponseSummaryType0 | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -54,12 +54,6 @@ class CloudZeroExportResponse:
 
         status = self.status
 
-        records_exported: int | None | Unset
-        if isinstance(self.records_exported, Unset):
-            records_exported = UNSET
-        else:
-            records_exported = self.records_exported
-
         dry_run_data: dict[str, Any] | None | Unset
         if isinstance(self.dry_run_data, Unset):
             dry_run_data = UNSET
@@ -67,6 +61,12 @@ class CloudZeroExportResponse:
             dry_run_data = self.dry_run_data.to_dict()
         else:
             dry_run_data = self.dry_run_data
+
+        records_exported: int | None | Unset
+        if isinstance(self.records_exported, Unset):
+            records_exported = UNSET
+        else:
+            records_exported = self.records_exported
 
         summary: dict[str, Any] | None | Unset
         if isinstance(self.summary, Unset):
@@ -83,10 +83,10 @@ class CloudZeroExportResponse:
             "message": message,
             "status": status,
         })
-        if records_exported is not UNSET:
-            field_dict["records_exported"] = records_exported
         if dry_run_data is not UNSET:
             field_dict["dry_run_data"] = dry_run_data
+        if records_exported is not UNSET:
+            field_dict["records_exported"] = records_exported
         if summary is not UNSET:
             field_dict["summary"] = summary
 
@@ -102,16 +102,6 @@ class CloudZeroExportResponse:
         message = d.pop("message")
 
         status = d.pop("status")
-
-        def _parse_records_exported(data: object) -> int | None | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(int | None | Unset, data)
-
-        records_exported = _parse_records_exported(d.pop("records_exported", UNSET))
-
 
         def _parse_dry_run_data(data: object) -> CloudZeroExportResponseDryRunDataType0 | None | Unset:
             if data is None:
@@ -131,6 +121,16 @@ class CloudZeroExportResponse:
             return cast(CloudZeroExportResponseDryRunDataType0 | None | Unset, data)
 
         dry_run_data = _parse_dry_run_data(d.pop("dry_run_data", UNSET))
+
+
+        def _parse_records_exported(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        records_exported = _parse_records_exported(d.pop("records_exported", UNSET))
 
 
         def _parse_summary(data: object) -> CloudZeroExportResponseSummaryType0 | None | Unset:
@@ -156,8 +156,8 @@ class CloudZeroExportResponse:
         cloud_zero_export_response = cls(
             message=message,
             status=status,
-            records_exported=records_exported,
             dry_run_data=dry_run_data,
+            records_exported=records_exported,
             summary=summary,
         )
 

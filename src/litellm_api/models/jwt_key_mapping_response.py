@@ -26,25 +26,25 @@ T = TypeVar("T", bound="JWTKeyMappingResponse")
 class JWTKeyMappingResponse:
     """ 
         Attributes:
+            created_at (datetime.datetime):
             id (str):
+            is_active (bool):
             jwt_claim_name (str):
             jwt_claim_value (str):
-            is_active (bool):
-            created_at (datetime.datetime):
             updated_at (datetime.datetime):
-            description (None | str | Unset):
             created_by (None | str | Unset):
+            description (None | str | Unset):
             updated_by (None | str | Unset):
      """
 
+    created_at: datetime.datetime
     id: str
+    is_active: bool
     jwt_claim_name: str
     jwt_claim_value: str
-    is_active: bool
-    created_at: datetime.datetime
     updated_at: datetime.datetime
-    description: None | str | Unset = UNSET
     created_by: None | str | Unset = UNSET
+    description: None | str | Unset = UNSET
     updated_by: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -53,29 +53,29 @@ class JWTKeyMappingResponse:
 
 
     def to_dict(self) -> dict[str, Any]:
+        created_at = self.created_at.isoformat()
+
         id = self.id
+
+        is_active = self.is_active
 
         jwt_claim_name = self.jwt_claim_name
 
         jwt_claim_value = self.jwt_claim_value
 
-        is_active = self.is_active
-
-        created_at = self.created_at.isoformat()
-
         updated_at = self.updated_at.isoformat()
-
-        description: None | str | Unset
-        if isinstance(self.description, Unset):
-            description = UNSET
-        else:
-            description = self.description
 
         created_by: None | str | Unset
         if isinstance(self.created_by, Unset):
             created_by = UNSET
         else:
             created_by = self.created_by
+
+        description: None | str | Unset
+        if isinstance(self.description, Unset):
+            description = UNSET
+        else:
+            description = self.description
 
         updated_by: None | str | Unset
         if isinstance(self.updated_by, Unset):
@@ -87,17 +87,17 @@ class JWTKeyMappingResponse:
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
+            "created_at": created_at,
             "id": id,
+            "is_active": is_active,
             "jwt_claim_name": jwt_claim_name,
             "jwt_claim_value": jwt_claim_value,
-            "is_active": is_active,
-            "created_at": created_at,
             "updated_at": updated_at,
         })
-        if description is not UNSET:
-            field_dict["description"] = description
         if created_by is not UNSET:
             field_dict["created_by"] = created_by
+        if description is not UNSET:
+            field_dict["description"] = description
         if updated_by is not UNSET:
             field_dict["updated_by"] = updated_by
 
@@ -108,32 +108,22 @@ class JWTKeyMappingResponse:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        id = d.pop("id")
-
-        jwt_claim_name = d.pop("jwt_claim_name")
-
-        jwt_claim_value = d.pop("jwt_claim_value")
-
-        is_active = d.pop("is_active")
-
         created_at = isoparse(d.pop("created_at"))
 
 
 
 
+        id = d.pop("id")
+
+        is_active = d.pop("is_active")
+
+        jwt_claim_name = d.pop("jwt_claim_name")
+
+        jwt_claim_value = d.pop("jwt_claim_value")
+
         updated_at = isoparse(d.pop("updated_at"))
 
 
-
-
-        def _parse_description(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        description = _parse_description(d.pop("description", UNSET))
 
 
         def _parse_created_by(data: object) -> None | str | Unset:
@@ -144,6 +134,16 @@ class JWTKeyMappingResponse:
             return cast(None | str | Unset, data)
 
         created_by = _parse_created_by(d.pop("created_by", UNSET))
+
+
+        def _parse_description(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        description = _parse_description(d.pop("description", UNSET))
 
 
         def _parse_updated_by(data: object) -> None | str | Unset:
@@ -157,14 +157,14 @@ class JWTKeyMappingResponse:
 
 
         jwt_key_mapping_response = cls(
+            created_at=created_at,
             id=id,
+            is_active=is_active,
             jwt_claim_name=jwt_claim_name,
             jwt_claim_value=jwt_claim_value,
-            is_active=is_active,
-            created_at=created_at,
             updated_at=updated_at,
-            description=description,
             created_by=created_by,
+            description=description,
             updated_by=updated_by,
         )
 

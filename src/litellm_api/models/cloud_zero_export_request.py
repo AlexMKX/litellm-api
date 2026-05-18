@@ -27,16 +27,16 @@ class CloudZeroExportRequest:
     """ Request model for CloudZero export operations
 
         Attributes:
+            end_time_utc (datetime.datetime | None | Unset): End time for data export in UTC
             limit (int | None | Unset): Optional limit on number of records to export
             operation (str | Unset): CloudZero operation type (replace_hourly or sum) Default: 'replace_hourly'.
             start_time_utc (datetime.datetime | None | Unset): Start time for data export in UTC
-            end_time_utc (datetime.datetime | None | Unset): End time for data export in UTC
      """
 
+    end_time_utc: datetime.datetime | None | Unset = UNSET
     limit: int | None | Unset = UNSET
     operation: str | Unset = 'replace_hourly'
     start_time_utc: datetime.datetime | None | Unset = UNSET
-    end_time_utc: datetime.datetime | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -44,6 +44,14 @@ class CloudZeroExportRequest:
 
 
     def to_dict(self) -> dict[str, Any]:
+        end_time_utc: None | str | Unset
+        if isinstance(self.end_time_utc, Unset):
+            end_time_utc = UNSET
+        elif isinstance(self.end_time_utc, datetime.datetime):
+            end_time_utc = self.end_time_utc.isoformat()
+        else:
+            end_time_utc = self.end_time_utc
+
         limit: int | None | Unset
         if isinstance(self.limit, Unset):
             limit = UNSET
@@ -60,27 +68,19 @@ class CloudZeroExportRequest:
         else:
             start_time_utc = self.start_time_utc
 
-        end_time_utc: None | str | Unset
-        if isinstance(self.end_time_utc, Unset):
-            end_time_utc = UNSET
-        elif isinstance(self.end_time_utc, datetime.datetime):
-            end_time_utc = self.end_time_utc.isoformat()
-        else:
-            end_time_utc = self.end_time_utc
-
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
         })
+        if end_time_utc is not UNSET:
+            field_dict["end_time_utc"] = end_time_utc
         if limit is not UNSET:
             field_dict["limit"] = limit
         if operation is not UNSET:
             field_dict["operation"] = operation
         if start_time_utc is not UNSET:
             field_dict["start_time_utc"] = start_time_utc
-        if end_time_utc is not UNSET:
-            field_dict["end_time_utc"] = end_time_utc
 
         return field_dict
 
@@ -89,6 +89,26 @@ class CloudZeroExportRequest:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
+        def _parse_end_time_utc(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                end_time_utc_type_0 = isoparse(data)
+
+
+
+                return end_time_utc_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        end_time_utc = _parse_end_time_utc(d.pop("end_time_utc", UNSET))
+
+
         def _parse_limit(data: object) -> int | None | Unset:
             if data is None:
                 return data
@@ -121,31 +141,11 @@ class CloudZeroExportRequest:
         start_time_utc = _parse_start_time_utc(d.pop("start_time_utc", UNSET))
 
 
-        def _parse_end_time_utc(data: object) -> datetime.datetime | None | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            try:
-                if not isinstance(data, str):
-                    raise TypeError()
-                end_time_utc_type_0 = isoparse(data)
-
-
-
-                return end_time_utc_type_0
-            except (TypeError, ValueError, AttributeError, KeyError):
-                pass
-            return cast(datetime.datetime | None | Unset, data)
-
-        end_time_utc = _parse_end_time_utc(d.pop("end_time_utc", UNSET))
-
-
         cloud_zero_export_request = cls(
+            end_time_utc=end_time_utc,
             limit=limit,
             operation=operation,
             start_time_utc=start_time_utc,
-            end_time_utc=end_time_utc,
         )
 
 

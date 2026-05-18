@@ -26,14 +26,14 @@ class ComplianceResponse:
     """ Response from a compliance check endpoint.
 
         Attributes:
+            checks (list[ComplianceCheckResult]):
             compliant (bool):
             regulation (str):
-            checks (list[ComplianceCheckResult]):
      """
 
+    checks: list[ComplianceCheckResult]
     compliant: bool
     regulation: str
-    checks: list[ComplianceCheckResult]
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -42,10 +42,6 @@ class ComplianceResponse:
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.compliance_check_result import ComplianceCheckResult
-        compliant = self.compliant
-
-        regulation = self.regulation
-
         checks = []
         for checks_item_data in self.checks:
             checks_item = checks_item_data.to_dict()
@@ -53,13 +49,17 @@ class ComplianceResponse:
 
 
 
+        compliant = self.compliant
+
+        regulation = self.regulation
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
+            "checks": checks,
             "compliant": compliant,
             "regulation": regulation,
-            "checks": checks,
         })
 
         return field_dict
@@ -70,10 +70,6 @@ class ComplianceResponse:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.compliance_check_result import ComplianceCheckResult
         d = dict(src_dict)
-        compliant = d.pop("compliant")
-
-        regulation = d.pop("regulation")
-
         checks = []
         _checks = d.pop("checks")
         for checks_item_data in (_checks):
@@ -84,10 +80,14 @@ class ComplianceResponse:
             checks.append(checks_item)
 
 
+        compliant = d.pop("compliant")
+
+        regulation = d.pop("regulation")
+
         compliance_response = cls(
+            checks=checks,
             compliant=compliant,
             regulation=regulation,
-            checks=checks,
         )
 
 

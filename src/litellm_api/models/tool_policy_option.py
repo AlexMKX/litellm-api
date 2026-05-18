@@ -22,14 +22,14 @@ T = TypeVar("T", bound="ToolPolicyOption")
 class ToolPolicyOption:
     """ 
         Attributes:
-            value (str):
-            label (str):
             description (str):
+            label (str):
+            value (str):
      """
 
-    value: str
-    label: str
     description: str
+    label: str
+    value: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -37,19 +37,19 @@ class ToolPolicyOption:
 
 
     def to_dict(self) -> dict[str, Any]:
-        value = self.value
+        description = self.description
 
         label = self.label
 
-        description = self.description
+        value = self.value
 
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
-            "value": value,
-            "label": label,
             "description": description,
+            "label": label,
+            "value": value,
         })
 
         return field_dict
@@ -59,16 +59,16 @@ class ToolPolicyOption:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        value = d.pop("value")
+        description = d.pop("description")
 
         label = d.pop("label")
 
-        description = d.pop("description")
+        value = d.pop("value")
 
         tool_policy_option = cls(
-            value=value,
-            label=label,
             description=description,
+            label=label,
+            value=value,
         )
 
 

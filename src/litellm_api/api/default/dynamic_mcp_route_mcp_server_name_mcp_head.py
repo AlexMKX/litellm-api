@@ -24,7 +24,7 @@ def _get_kwargs(
     
 
     _kwargs: dict[str, Any] = {
-        "method": "patch",
+        "method": "head",
         "url": "/{mcp_server_name}/mcp".format(mcp_server_name=quote(str(mcp_server_name), safe=""),),
     }
 
@@ -68,7 +68,14 @@ def sync_detailed(
 ) -> Response[Any | HTTPValidationError]:
     """ Dynamic Mcp Route
 
-     Handle dynamic MCP server routes like /github_mcp/mcp and toolset routes like /devtooling-prod/mcp
+     Handle /{name}/mcp for MCP server aliases, toolsets, MCP access group tags, and comma-separated
+    lists.
+
+    Resolution order:
+    1. Registered MCP server alias / name
+    2. Comma-separated list (short-circuits before any DB call)
+    3. Toolset name (DB lookup, cached)
+    4. MCP access group tag (DB lookup, cached)
 
     Args:
         mcp_server_name (str):
@@ -101,7 +108,14 @@ def sync(
 ) -> Any | HTTPValidationError | None:
     """ Dynamic Mcp Route
 
-     Handle dynamic MCP server routes like /github_mcp/mcp and toolset routes like /devtooling-prod/mcp
+     Handle /{name}/mcp for MCP server aliases, toolsets, MCP access group tags, and comma-separated
+    lists.
+
+    Resolution order:
+    1. Registered MCP server alias / name
+    2. Comma-separated list (short-circuits before any DB call)
+    3. Toolset name (DB lookup, cached)
+    4. MCP access group tag (DB lookup, cached)
 
     Args:
         mcp_server_name (str):
@@ -129,7 +143,14 @@ async def asyncio_detailed(
 ) -> Response[Any | HTTPValidationError]:
     """ Dynamic Mcp Route
 
-     Handle dynamic MCP server routes like /github_mcp/mcp and toolset routes like /devtooling-prod/mcp
+     Handle /{name}/mcp for MCP server aliases, toolsets, MCP access group tags, and comma-separated
+    lists.
+
+    Resolution order:
+    1. Registered MCP server alias / name
+    2. Comma-separated list (short-circuits before any DB call)
+    3. Toolset name (DB lookup, cached)
+    4. MCP access group tag (DB lookup, cached)
 
     Args:
         mcp_server_name (str):
@@ -162,7 +183,14 @@ async def asyncio(
 ) -> Any | HTTPValidationError | None:
     """ Dynamic Mcp Route
 
-     Handle dynamic MCP server routes like /github_mcp/mcp and toolset routes like /devtooling-prod/mcp
+     Handle /{name}/mcp for MCP server aliases, toolsets, MCP access group tags, and comma-separated
+    lists.
+
+    Resolution order:
+    1. Registered MCP server alias / name
+    2. Comma-separated list (short-circuits before any DB call)
+    3. Toolset name (DB lookup, cached)
+    4. MCP access group tag (DB lookup, cached)
 
     Args:
         mcp_server_name (str):

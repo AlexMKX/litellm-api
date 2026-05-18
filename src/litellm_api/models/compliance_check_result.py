@@ -23,16 +23,16 @@ class ComplianceCheckResult:
     """ Result of a single compliance check.
 
         Attributes:
-            check_name (str):
             article (str):
-            passed (bool):
+            check_name (str):
             detail (str):
+            passed (bool):
      """
 
-    check_name: str
     article: str
-    passed: bool
+    check_name: str
     detail: str
+    passed: bool
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -40,22 +40,22 @@ class ComplianceCheckResult:
 
 
     def to_dict(self) -> dict[str, Any]:
-        check_name = self.check_name
-
         article = self.article
 
-        passed = self.passed
+        check_name = self.check_name
 
         detail = self.detail
+
+        passed = self.passed
 
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
-            "check_name": check_name,
             "article": article,
-            "passed": passed,
+            "check_name": check_name,
             "detail": detail,
+            "passed": passed,
         })
 
         return field_dict
@@ -65,19 +65,19 @@ class ComplianceCheckResult:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        check_name = d.pop("check_name")
-
         article = d.pop("article")
 
-        passed = d.pop("passed")
+        check_name = d.pop("check_name")
 
         detail = d.pop("detail")
 
+        passed = d.pop("passed")
+
         compliance_check_result = cls(
-            check_name=check_name,
             article=article,
-            passed=passed,
+            check_name=check_name,
             detail=detail,
+            passed=passed,
         )
 
 

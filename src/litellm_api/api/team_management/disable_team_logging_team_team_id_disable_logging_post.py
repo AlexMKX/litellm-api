@@ -9,15 +9,22 @@ from ...types import Response, UNSET
 from ... import errors
 
 from ...models.http_validation_error import HTTPValidationError
+from ...types import UNSET, Unset
 from typing import cast
 
 
 
 def _get_kwargs(
     team_id: str,
+    *,
+    litellm_changed_by: None | str | Unset = UNSET,
 
 ) -> dict[str, Any]:
-    
+    headers: dict[str, Any] = {}
+    if not isinstance(litellm_changed_by, Unset):
+        headers["litellm-changed-by"] = litellm_changed_by
+
+
 
     
 
@@ -29,6 +36,7 @@ def _get_kwargs(
     }
 
 
+    _kwargs["headers"] = headers
     return _kwargs
 
 
@@ -64,6 +72,7 @@ def sync_detailed(
     team_id: str,
     *,
     client: AuthenticatedClient,
+    litellm_changed_by: None | str | Unset = UNSET,
 
 ) -> Response[Any | HTTPValidationError]:
     """ Disable Team Logging
@@ -81,6 +90,9 @@ def sync_detailed(
 
     Args:
         team_id (str):
+        litellm_changed_by (None | str | Unset): The litellm-changed-by header enables tracking of
+            actions performed by authorized users on behalf of other users, providing an audit trail
+            for accountability
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -93,6 +105,7 @@ def sync_detailed(
 
     kwargs = _get_kwargs(
         team_id=team_id,
+litellm_changed_by=litellm_changed_by,
 
     )
 
@@ -106,6 +119,7 @@ def sync(
     team_id: str,
     *,
     client: AuthenticatedClient,
+    litellm_changed_by: None | str | Unset = UNSET,
 
 ) -> Any | HTTPValidationError | None:
     """ Disable Team Logging
@@ -123,6 +137,9 @@ def sync(
 
     Args:
         team_id (str):
+        litellm_changed_by (None | str | Unset): The litellm-changed-by header enables tracking of
+            actions performed by authorized users on behalf of other users, providing an audit trail
+            for accountability
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -136,6 +153,7 @@ def sync(
     return sync_detailed(
         team_id=team_id,
 client=client,
+litellm_changed_by=litellm_changed_by,
 
     ).parsed
 
@@ -143,6 +161,7 @@ async def asyncio_detailed(
     team_id: str,
     *,
     client: AuthenticatedClient,
+    litellm_changed_by: None | str | Unset = UNSET,
 
 ) -> Response[Any | HTTPValidationError]:
     """ Disable Team Logging
@@ -160,6 +179,9 @@ async def asyncio_detailed(
 
     Args:
         team_id (str):
+        litellm_changed_by (None | str | Unset): The litellm-changed-by header enables tracking of
+            actions performed by authorized users on behalf of other users, providing an audit trail
+            for accountability
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -172,6 +194,7 @@ async def asyncio_detailed(
 
     kwargs = _get_kwargs(
         team_id=team_id,
+litellm_changed_by=litellm_changed_by,
 
     )
 
@@ -185,6 +208,7 @@ async def asyncio(
     team_id: str,
     *,
     client: AuthenticatedClient,
+    litellm_changed_by: None | str | Unset = UNSET,
 
 ) -> Any | HTTPValidationError | None:
     """ Disable Team Logging
@@ -202,6 +226,9 @@ async def asyncio(
 
     Args:
         team_id (str):
+        litellm_changed_by (None | str | Unset): The litellm-changed-by header enables tracking of
+            actions performed by authorized users on behalf of other users, providing an audit trail
+            for accountability
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -215,5 +242,6 @@ async def asyncio(
     return (await asyncio_detailed(
         team_id=team_id,
 client=client,
+litellm_changed_by=litellm_changed_by,
 
     )).parsed

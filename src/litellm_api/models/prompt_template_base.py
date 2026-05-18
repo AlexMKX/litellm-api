@@ -26,13 +26,13 @@ T = TypeVar("T", bound="PromptTemplateBase")
 class PromptTemplateBase:
     """ 
         Attributes:
-            litellm_prompt_id (str):
             content (str):
+            litellm_prompt_id (str):
             metadata (None | PromptTemplateBaseMetadataType0 | Unset):
      """
 
-    litellm_prompt_id: str
     content: str
+    litellm_prompt_id: str
     metadata: None | PromptTemplateBaseMetadataType0 | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -42,9 +42,9 @@ class PromptTemplateBase:
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.prompt_template_base_metadata_type_0 import PromptTemplateBaseMetadataType0
-        litellm_prompt_id = self.litellm_prompt_id
-
         content = self.content
+
+        litellm_prompt_id = self.litellm_prompt_id
 
         metadata: dict[str, Any] | None | Unset
         if isinstance(self.metadata, Unset):
@@ -58,8 +58,8 @@ class PromptTemplateBase:
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
-            "litellm_prompt_id": litellm_prompt_id,
             "content": content,
+            "litellm_prompt_id": litellm_prompt_id,
         })
         if metadata is not UNSET:
             field_dict["metadata"] = metadata
@@ -72,9 +72,9 @@ class PromptTemplateBase:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.prompt_template_base_metadata_type_0 import PromptTemplateBaseMetadataType0
         d = dict(src_dict)
-        litellm_prompt_id = d.pop("litellm_prompt_id")
-
         content = d.pop("content")
+
+        litellm_prompt_id = d.pop("litellm_prompt_id")
 
         def _parse_metadata(data: object) -> None | PromptTemplateBaseMetadataType0 | Unset:
             if data is None:
@@ -97,8 +97,8 @@ class PromptTemplateBase:
 
 
         prompt_template_base = cls(
-            litellm_prompt_id=litellm_prompt_id,
             content=content,
+            litellm_prompt_id=litellm_prompt_id,
             metadata=metadata,
         )
 

@@ -24,7 +24,7 @@ def _get_kwargs(
     
 
     _kwargs: dict[str, Any] = {
-        "method": "patch",
+        "method": "head",
         "url": "/toolset/{toolset_name}/mcp".format(toolset_name=quote(str(toolset_name), safe=""),),
     }
 

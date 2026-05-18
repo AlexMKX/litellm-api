@@ -28,15 +28,15 @@ class TestCustomCodeGuardrailResponse:
 
         Attributes:
             success (bool):
-            result (None | TestCustomCodeGuardrailResponseResultType0 | Unset):
             error (None | str | Unset):
             error_type (None | str | Unset):
+            result (None | TestCustomCodeGuardrailResponseResultType0 | Unset):
      """
 
     success: bool
-    result: None | TestCustomCodeGuardrailResponseResultType0 | Unset = UNSET
     error: None | str | Unset = UNSET
     error_type: None | str | Unset = UNSET
+    result: None | TestCustomCodeGuardrailResponseResultType0 | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -46,14 +46,6 @@ class TestCustomCodeGuardrailResponse:
     def to_dict(self) -> dict[str, Any]:
         from ..models.test_custom_code_guardrail_response_result_type_0 import TestCustomCodeGuardrailResponseResultType0
         success = self.success
-
-        result: dict[str, Any] | None | Unset
-        if isinstance(self.result, Unset):
-            result = UNSET
-        elif isinstance(self.result, TestCustomCodeGuardrailResponseResultType0):
-            result = self.result.to_dict()
-        else:
-            result = self.result
 
         error: None | str | Unset
         if isinstance(self.error, Unset):
@@ -67,18 +59,26 @@ class TestCustomCodeGuardrailResponse:
         else:
             error_type = self.error_type
 
+        result: dict[str, Any] | None | Unset
+        if isinstance(self.result, Unset):
+            result = UNSET
+        elif isinstance(self.result, TestCustomCodeGuardrailResponseResultType0):
+            result = self.result.to_dict()
+        else:
+            result = self.result
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
             "success": success,
         })
-        if result is not UNSET:
-            field_dict["result"] = result
         if error is not UNSET:
             field_dict["error"] = error
         if error_type is not UNSET:
             field_dict["error_type"] = error_type
+        if result is not UNSET:
+            field_dict["result"] = result
 
         return field_dict
 
@@ -89,26 +89,6 @@ class TestCustomCodeGuardrailResponse:
         from ..models.test_custom_code_guardrail_response_result_type_0 import TestCustomCodeGuardrailResponseResultType0
         d = dict(src_dict)
         success = d.pop("success")
-
-        def _parse_result(data: object) -> None | TestCustomCodeGuardrailResponseResultType0 | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            try:
-                if not isinstance(data, dict):
-                    raise TypeError()
-                result_type_0 = TestCustomCodeGuardrailResponseResultType0.from_dict(data)
-
-
-
-                return result_type_0
-            except (TypeError, ValueError, AttributeError, KeyError):
-                pass
-            return cast(None | TestCustomCodeGuardrailResponseResultType0 | Unset, data)
-
-        result = _parse_result(d.pop("result", UNSET))
-
 
         def _parse_error(data: object) -> None | str | Unset:
             if data is None:
@@ -130,11 +110,31 @@ class TestCustomCodeGuardrailResponse:
         error_type = _parse_error_type(d.pop("error_type", UNSET))
 
 
+        def _parse_result(data: object) -> None | TestCustomCodeGuardrailResponseResultType0 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                result_type_0 = TestCustomCodeGuardrailResponseResultType0.from_dict(data)
+
+
+
+                return result_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | TestCustomCodeGuardrailResponseResultType0 | Unset, data)
+
+        result = _parse_result(d.pop("result", UNSET))
+
+
         test_custom_code_guardrail_response = cls(
             success=success,
-            result=result,
             error=error,
             error_type=error_type,
+            result=result,
         )
 
 

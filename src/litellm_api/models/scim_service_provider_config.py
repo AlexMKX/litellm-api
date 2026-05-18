@@ -28,26 +28,26 @@ T = TypeVar("T", bound="SCIMServiceProviderConfig")
 class SCIMServiceProviderConfig:
     """ 
         Attributes:
-            schemas (list[str] | Unset):
-            patch (SCIMFeature | Unset):
-            bulk (SCIMFeature | Unset):
-            filter_ (SCIMFeature | Unset):
-            change_password (SCIMFeature | Unset):
-            sort (SCIMFeature | Unset):
-            etag (SCIMFeature | Unset):
             authentication_schemes (list[SCIMServiceProviderConfigAuthenticationSchemesType0Item] | None | Unset):
+            bulk (SCIMFeature | Unset):
+            change_password (SCIMFeature | Unset):
+            etag (SCIMFeature | Unset):
+            filter_ (SCIMFeature | Unset):
             meta (None | SCIMServiceProviderConfigMetaType0 | Unset):
+            patch (SCIMFeature | Unset):
+            schemas (list[str] | Unset):
+            sort (SCIMFeature | Unset):
      """
 
-    schemas: list[str] | Unset = UNSET
-    patch: SCIMFeature | Unset = UNSET
-    bulk: SCIMFeature | Unset = UNSET
-    filter_: SCIMFeature | Unset = UNSET
-    change_password: SCIMFeature | Unset = UNSET
-    sort: SCIMFeature | Unset = UNSET
-    etag: SCIMFeature | Unset = UNSET
     authentication_schemes: list[SCIMServiceProviderConfigAuthenticationSchemesType0Item] | None | Unset = UNSET
+    bulk: SCIMFeature | Unset = UNSET
+    change_password: SCIMFeature | Unset = UNSET
+    etag: SCIMFeature | Unset = UNSET
+    filter_: SCIMFeature | Unset = UNSET
     meta: None | SCIMServiceProviderConfigMetaType0 | Unset = UNSET
+    patch: SCIMFeature | Unset = UNSET
+    schemas: list[str] | Unset = UNSET
+    sort: SCIMFeature | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -58,36 +58,6 @@ class SCIMServiceProviderConfig:
         from ..models.scim_feature import SCIMFeature
         from ..models.scim_service_provider_config_authentication_schemes_type_0_item import SCIMServiceProviderConfigAuthenticationSchemesType0Item
         from ..models.scim_service_provider_config_meta_type_0 import SCIMServiceProviderConfigMetaType0
-        schemas: list[str] | Unset = UNSET
-        if not isinstance(self.schemas, Unset):
-            schemas = self.schemas
-
-
-
-        patch: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.patch, Unset):
-            patch = self.patch.to_dict()
-
-        bulk: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.bulk, Unset):
-            bulk = self.bulk.to_dict()
-
-        filter_: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.filter_, Unset):
-            filter_ = self.filter_.to_dict()
-
-        change_password: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.change_password, Unset):
-            change_password = self.change_password.to_dict()
-
-        sort: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.sort, Unset):
-            sort = self.sort.to_dict()
-
-        etag: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.etag, Unset):
-            etag = self.etag.to_dict()
-
         authentication_schemes: list[dict[str, Any]] | None | Unset
         if isinstance(self.authentication_schemes, Unset):
             authentication_schemes = UNSET
@@ -101,6 +71,22 @@ class SCIMServiceProviderConfig:
         else:
             authentication_schemes = self.authentication_schemes
 
+        bulk: dict[str, Any] | Unset = UNSET
+        if not isinstance(self.bulk, Unset):
+            bulk = self.bulk.to_dict()
+
+        change_password: dict[str, Any] | Unset = UNSET
+        if not isinstance(self.change_password, Unset):
+            change_password = self.change_password.to_dict()
+
+        etag: dict[str, Any] | Unset = UNSET
+        if not isinstance(self.etag, Unset):
+            etag = self.etag.to_dict()
+
+        filter_: dict[str, Any] | Unset = UNSET
+        if not isinstance(self.filter_, Unset):
+            filter_ = self.filter_.to_dict()
+
         meta: dict[str, Any] | None | Unset
         if isinstance(self.meta, Unset):
             meta = UNSET
@@ -109,29 +95,43 @@ class SCIMServiceProviderConfig:
         else:
             meta = self.meta
 
+        patch: dict[str, Any] | Unset = UNSET
+        if not isinstance(self.patch, Unset):
+            patch = self.patch.to_dict()
+
+        schemas: list[str] | Unset = UNSET
+        if not isinstance(self.schemas, Unset):
+            schemas = self.schemas
+
+
+
+        sort: dict[str, Any] | Unset = UNSET
+        if not isinstance(self.sort, Unset):
+            sort = self.sort.to_dict()
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
         })
-        if schemas is not UNSET:
-            field_dict["schemas"] = schemas
-        if patch is not UNSET:
-            field_dict["patch"] = patch
-        if bulk is not UNSET:
-            field_dict["bulk"] = bulk
-        if filter_ is not UNSET:
-            field_dict["filter"] = filter_
-        if change_password is not UNSET:
-            field_dict["changePassword"] = change_password
-        if sort is not UNSET:
-            field_dict["sort"] = sort
-        if etag is not UNSET:
-            field_dict["etag"] = etag
         if authentication_schemes is not UNSET:
             field_dict["authenticationSchemes"] = authentication_schemes
+        if bulk is not UNSET:
+            field_dict["bulk"] = bulk
+        if change_password is not UNSET:
+            field_dict["changePassword"] = change_password
+        if etag is not UNSET:
+            field_dict["etag"] = etag
+        if filter_ is not UNSET:
+            field_dict["filter"] = filter_
         if meta is not UNSET:
             field_dict["meta"] = meta
+        if patch is not UNSET:
+            field_dict["patch"] = patch
+        if schemas is not UNSET:
+            field_dict["schemas"] = schemas
+        if sort is not UNSET:
+            field_dict["sort"] = sort
 
         return field_dict
 
@@ -143,69 +143,6 @@ class SCIMServiceProviderConfig:
         from ..models.scim_service_provider_config_authentication_schemes_type_0_item import SCIMServiceProviderConfigAuthenticationSchemesType0Item
         from ..models.scim_service_provider_config_meta_type_0 import SCIMServiceProviderConfigMetaType0
         d = dict(src_dict)
-        schemas = cast(list[str], d.pop("schemas", UNSET))
-
-
-        _patch = d.pop("patch", UNSET)
-        patch: SCIMFeature | Unset
-        if isinstance(_patch,  Unset):
-            patch = UNSET
-        else:
-            patch = SCIMFeature.from_dict(_patch)
-
-
-
-
-        _bulk = d.pop("bulk", UNSET)
-        bulk: SCIMFeature | Unset
-        if isinstance(_bulk,  Unset):
-            bulk = UNSET
-        else:
-            bulk = SCIMFeature.from_dict(_bulk)
-
-
-
-
-        _filter_ = d.pop("filter", UNSET)
-        filter_: SCIMFeature | Unset
-        if isinstance(_filter_,  Unset):
-            filter_ = UNSET
-        else:
-            filter_ = SCIMFeature.from_dict(_filter_)
-
-
-
-
-        _change_password = d.pop("changePassword", UNSET)
-        change_password: SCIMFeature | Unset
-        if isinstance(_change_password,  Unset):
-            change_password = UNSET
-        else:
-            change_password = SCIMFeature.from_dict(_change_password)
-
-
-
-
-        _sort = d.pop("sort", UNSET)
-        sort: SCIMFeature | Unset
-        if isinstance(_sort,  Unset):
-            sort = UNSET
-        else:
-            sort = SCIMFeature.from_dict(_sort)
-
-
-
-
-        _etag = d.pop("etag", UNSET)
-        etag: SCIMFeature | Unset
-        if isinstance(_etag,  Unset):
-            etag = UNSET
-        else:
-            etag = SCIMFeature.from_dict(_etag)
-
-
-
-
         def _parse_authentication_schemes(data: object) -> list[SCIMServiceProviderConfigAuthenticationSchemesType0Item] | None | Unset:
             if data is None:
                 return data
@@ -231,6 +168,46 @@ class SCIMServiceProviderConfig:
         authentication_schemes = _parse_authentication_schemes(d.pop("authenticationSchemes", UNSET))
 
 
+        _bulk = d.pop("bulk", UNSET)
+        bulk: SCIMFeature | Unset
+        if isinstance(_bulk,  Unset):
+            bulk = UNSET
+        else:
+            bulk = SCIMFeature.from_dict(_bulk)
+
+
+
+
+        _change_password = d.pop("changePassword", UNSET)
+        change_password: SCIMFeature | Unset
+        if isinstance(_change_password,  Unset):
+            change_password = UNSET
+        else:
+            change_password = SCIMFeature.from_dict(_change_password)
+
+
+
+
+        _etag = d.pop("etag", UNSET)
+        etag: SCIMFeature | Unset
+        if isinstance(_etag,  Unset):
+            etag = UNSET
+        else:
+            etag = SCIMFeature.from_dict(_etag)
+
+
+
+
+        _filter_ = d.pop("filter", UNSET)
+        filter_: SCIMFeature | Unset
+        if isinstance(_filter_,  Unset):
+            filter_ = UNSET
+        else:
+            filter_ = SCIMFeature.from_dict(_filter_)
+
+
+
+
         def _parse_meta(data: object) -> None | SCIMServiceProviderConfigMetaType0 | Unset:
             if data is None:
                 return data
@@ -251,16 +228,39 @@ class SCIMServiceProviderConfig:
         meta = _parse_meta(d.pop("meta", UNSET))
 
 
+        _patch = d.pop("patch", UNSET)
+        patch: SCIMFeature | Unset
+        if isinstance(_patch,  Unset):
+            patch = UNSET
+        else:
+            patch = SCIMFeature.from_dict(_patch)
+
+
+
+
+        schemas = cast(list[str], d.pop("schemas", UNSET))
+
+
+        _sort = d.pop("sort", UNSET)
+        sort: SCIMFeature | Unset
+        if isinstance(_sort,  Unset):
+            sort = UNSET
+        else:
+            sort = SCIMFeature.from_dict(_sort)
+
+
+
+
         scim_service_provider_config = cls(
-            schemas=schemas,
-            patch=patch,
-            bulk=bulk,
-            filter_=filter_,
-            change_password=change_password,
-            sort=sort,
-            etag=etag,
             authentication_schemes=authentication_schemes,
+            bulk=bulk,
+            change_password=change_password,
+            etag=etag,
+            filter_=filter_,
             meta=meta,
+            patch=patch,
+            schemas=schemas,
+            sort=sort,
         )
 
 

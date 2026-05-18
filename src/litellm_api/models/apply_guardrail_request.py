@@ -29,17 +29,17 @@ class ApplyGuardrailRequest:
         Attributes:
             guardrail_name (str):
             text (str):
-            language (None | str | Unset):
             entities (list[PiiEntityType] | None | Unset):
             input_type (str | Unset):  Default: 'request'.
+            language (None | str | Unset):
             messages (list[ApplyGuardrailRequestMessagesType0Item] | None | Unset):
      """
 
     guardrail_name: str
     text: str
-    language: None | str | Unset = UNSET
     entities: list[PiiEntityType] | None | Unset = UNSET
     input_type: str | Unset = 'request'
+    language: None | str | Unset = UNSET
     messages: list[ApplyGuardrailRequestMessagesType0Item] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -52,12 +52,6 @@ class ApplyGuardrailRequest:
         guardrail_name = self.guardrail_name
 
         text = self.text
-
-        language: None | str | Unset
-        if isinstance(self.language, Unset):
-            language = UNSET
-        else:
-            language = self.language
 
         entities: list[str] | None | Unset
         if isinstance(self.entities, Unset):
@@ -73,6 +67,12 @@ class ApplyGuardrailRequest:
             entities = self.entities
 
         input_type = self.input_type
+
+        language: None | str | Unset
+        if isinstance(self.language, Unset):
+            language = UNSET
+        else:
+            language = self.language
 
         messages: list[dict[str, Any]] | None | Unset
         if isinstance(self.messages, Unset):
@@ -94,12 +94,12 @@ class ApplyGuardrailRequest:
             "guardrail_name": guardrail_name,
             "text": text,
         })
-        if language is not UNSET:
-            field_dict["language"] = language
         if entities is not UNSET:
             field_dict["entities"] = entities
         if input_type is not UNSET:
             field_dict["input_type"] = input_type
+        if language is not UNSET:
+            field_dict["language"] = language
         if messages is not UNSET:
             field_dict["messages"] = messages
 
@@ -114,16 +114,6 @@ class ApplyGuardrailRequest:
         guardrail_name = d.pop("guardrail_name")
 
         text = d.pop("text")
-
-        def _parse_language(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        language = _parse_language(d.pop("language", UNSET))
-
 
         def _parse_entities(data: object) -> list[PiiEntityType] | None | Unset:
             if data is None:
@@ -151,6 +141,16 @@ class ApplyGuardrailRequest:
 
 
         input_type = d.pop("input_type", UNSET)
+
+        def _parse_language(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        language = _parse_language(d.pop("language", UNSET))
+
 
         def _parse_messages(data: object) -> list[ApplyGuardrailRequestMessagesType0Item] | None | Unset:
             if data is None:
@@ -180,9 +180,9 @@ class ApplyGuardrailRequest:
         apply_guardrail_request = cls(
             guardrail_name=guardrail_name,
             text=text,
-            language=language,
             entities=entities,
             input_type=input_type,
+            language=language,
             messages=messages,
         )
 

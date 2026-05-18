@@ -26,12 +26,12 @@ class ListPluginsResponse:
     """ Response from listing plugins.
 
         Attributes:
-            plugins (list[PluginListItem]):
             count (int):
+            plugins (list[PluginListItem]):
      """
 
-    plugins: list[PluginListItem]
     count: int
+    plugins: list[PluginListItem]
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -40,6 +40,8 @@ class ListPluginsResponse:
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.plugin_list_item import PluginListItem
+        count = self.count
+
         plugins = []
         for plugins_item_data in self.plugins:
             plugins_item = plugins_item_data.to_dict()
@@ -47,14 +49,12 @@ class ListPluginsResponse:
 
 
 
-        count = self.count
-
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({
-            "plugins": plugins,
             "count": count,
+            "plugins": plugins,
         })
 
         return field_dict
@@ -65,6 +65,8 @@ class ListPluginsResponse:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.plugin_list_item import PluginListItem
         d = dict(src_dict)
+        count = d.pop("count")
+
         plugins = []
         _plugins = d.pop("plugins")
         for plugins_item_data in (_plugins):
@@ -75,11 +77,9 @@ class ListPluginsResponse:
             plugins.append(plugins_item)
 
 
-        count = d.pop("count")
-
         list_plugins_response = cls(
-            plugins=plugins,
             count=count,
+            plugins=plugins,
         )
 
 
