@@ -10,7 +10,6 @@ from ..types import UNSET, Unset
 
 from ..models.new_customer_request_allowed_model_region_type_0 import NewCustomerRequestAllowedModelRegionType0
 from ..types import UNSET, Unset
-from dateutil.parser import isoparse
 from typing import cast
 import datetime
 
@@ -317,7 +316,7 @@ class NewCustomerRequest:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                budget_reset_at_type_0 = isoparse(data)
+                budget_reset_at_type_0 = datetime.datetime.fromisoformat(data)
 
 
 

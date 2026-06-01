@@ -11,7 +11,6 @@ from ..types import UNSET, Unset
 from ..models.lite_llm_tool_table_row_input_policy import LiteLLMToolTableRowInputPolicy
 from ..models.lite_llm_tool_table_row_output_policy import LiteLLMToolTableRowOutputPolicy
 from ..types import UNSET, Unset
-from dateutil.parser import isoparse
 from typing import cast
 import datetime
 
@@ -240,7 +239,7 @@ class LiteLLMToolTableRow:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                created_at_type_0 = isoparse(data)
+                created_at_type_0 = datetime.datetime.fromisoformat(data)
 
 
 
@@ -300,7 +299,7 @@ class LiteLLMToolTableRow:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                last_used_at_type_0 = isoparse(data)
+                last_used_at_type_0 = datetime.datetime.fromisoformat(data)
 
 
 
@@ -350,7 +349,7 @@ class LiteLLMToolTableRow:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                updated_at_type_0 = isoparse(data)
+                updated_at_type_0 = datetime.datetime.fromisoformat(data)
 
 
 

@@ -9,7 +9,6 @@ from attrs import field as _attrs_field
 from ..types import UNSET, Unset
 
 from ..types import UNSET, Unset
-from dateutil.parser import isoparse
 from typing import cast
 import datetime
 
@@ -73,7 +72,7 @@ class DailySpendData:
         from ..models.breakdown_metrics import BreakdownMetrics
         from ..models.spend_metrics import SpendMetrics
         d = dict(src_dict)
-        date = isoparse(d.pop("date")).date()
+        date = datetime.date.fromisoformat(d.pop("date"))
 
 
 

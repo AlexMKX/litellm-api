@@ -11,7 +11,6 @@ from ..types import UNSET, Unset
 from ..models.litellm_user_roles import LitellmUserRoles
 from ..models.user_api_key_auth_allowed_model_region_type_0 import UserAPIKeyAuthAllowedModelRegionType0
 from ..types import UNSET, Unset
-from dateutil.parser import isoparse
 from typing import cast
 import datetime
 
@@ -1090,7 +1089,7 @@ class UserAPIKeyAuth:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                expires_type_1 = isoparse(data)
+                expires_type_1 = datetime.datetime.fromisoformat(data)
 
 
 
@@ -1223,7 +1222,7 @@ class UserAPIKeyAuth:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                budget_reset_at_type_0 = isoparse(data)
+                budget_reset_at_type_0 = datetime.datetime.fromisoformat(data)
 
 
 
@@ -1351,7 +1350,7 @@ class UserAPIKeyAuth:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                created_at_type_0 = isoparse(data)
+                created_at_type_0 = datetime.datetime.fromisoformat(data)
 
 
 
@@ -1381,7 +1380,7 @@ class UserAPIKeyAuth:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                updated_at_type_0 = isoparse(data)
+                updated_at_type_0 = datetime.datetime.fromisoformat(data)
 
 
 
@@ -1411,7 +1410,7 @@ class UserAPIKeyAuth:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                last_active_type_0 = isoparse(data)
+                last_active_type_0 = datetime.datetime.fromisoformat(data)
 
 
 
@@ -1509,7 +1508,7 @@ class UserAPIKeyAuth:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                last_rotation_at_type_0 = isoparse(data)
+                last_rotation_at_type_0 = datetime.datetime.fromisoformat(data)
 
 
 
@@ -1529,7 +1528,7 @@ class UserAPIKeyAuth:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                key_rotation_at_type_0 = isoparse(data)
+                key_rotation_at_type_0 = datetime.datetime.fromisoformat(data)
 
 
 

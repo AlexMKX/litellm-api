@@ -9,7 +9,6 @@ from attrs import field as _attrs_field
 from ..types import UNSET, Unset
 
 from ..types import UNSET, Unset
-from dateutil.parser import isoparse
 from typing import cast
 import datetime
 
@@ -89,7 +88,7 @@ class RegisterGuardrailResponse:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                submitted_at_type_0 = isoparse(data)
+                submitted_at_type_0 = datetime.datetime.fromisoformat(data)
 
 
 

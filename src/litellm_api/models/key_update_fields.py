@@ -11,7 +11,6 @@ from ..types import UNSET, Unset
 from ..models.key_update_fields_rpm_limit_type_type_0 import KeyUpdateFieldsRpmLimitTypeType0
 from ..models.key_update_fields_tpm_limit_type_type_0 import KeyUpdateFieldsTpmLimitTypeType0
 from ..types import UNSET, Unset
-from dateutil.parser import isoparse
 from typing import cast
 import datetime
 
@@ -452,7 +451,7 @@ class KeyUpdateFields:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                temp_budget_expiry_type_0 = isoparse(data)
+                temp_budget_expiry_type_0 = datetime.datetime.fromisoformat(data)
 
 
 

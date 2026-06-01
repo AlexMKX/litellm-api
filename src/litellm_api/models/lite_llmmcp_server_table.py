@@ -12,7 +12,6 @@ from ..models.lite_llmmcp_server_table_auth_type_type_0 import LiteLLMMCPServerT
 from ..models.lite_llmmcp_server_table_status_type_0 import LiteLLMMCPServerTableStatusType0
 from ..models.lite_llmmcp_server_table_transport import LiteLLMMCPServerTableTransport
 from ..types import UNSET, Unset
-from dateutil.parser import isoparse
 from typing import cast
 import datetime
 
@@ -606,7 +605,7 @@ class LiteLLMMCPServerTable:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                created_at_type_0 = isoparse(data)
+                created_at_type_0 = datetime.datetime.fromisoformat(data)
 
 
 
@@ -711,7 +710,7 @@ class LiteLLMMCPServerTable:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                last_health_check_type_0 = isoparse(data)
+                last_health_check_type_0 = datetime.datetime.fromisoformat(data)
 
 
 
@@ -774,7 +773,7 @@ class LiteLLMMCPServerTable:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                reviewed_at_type_0 = isoparse(data)
+                reviewed_at_type_0 = datetime.datetime.fromisoformat(data)
 
 
 
@@ -864,7 +863,7 @@ class LiteLLMMCPServerTable:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                submitted_at_type_0 = isoparse(data)
+                submitted_at_type_0 = datetime.datetime.fromisoformat(data)
 
 
 
@@ -956,7 +955,7 @@ class LiteLLMMCPServerTable:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                updated_at_type_0 = isoparse(data)
+                updated_at_type_0 = datetime.datetime.fromisoformat(data)
 
 
 

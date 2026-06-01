@@ -9,7 +9,6 @@ from attrs import field as _attrs_field
 from ..types import UNSET, Unset
 
 from ..types import UNSET, Unset
-from dateutil.parser import isoparse
 from typing import cast
 import datetime
 
@@ -246,7 +245,7 @@ class LiteLLMSpendLogs:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                start_time_type_1 = isoparse(data)
+                start_time_type_1 = datetime.datetime.fromisoformat(data)
 
 
 
@@ -264,7 +263,7 @@ class LiteLLMSpendLogs:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                end_time_type_1 = isoparse(data)
+                end_time_type_1 = datetime.datetime.fromisoformat(data)
 
 
 

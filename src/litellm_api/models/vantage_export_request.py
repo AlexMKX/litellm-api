@@ -9,7 +9,6 @@ from attrs import field as _attrs_field
 from ..types import UNSET, Unset
 
 from ..types import UNSET, Unset
-from dateutil.parser import isoparse
 from typing import cast
 import datetime
 
@@ -91,7 +90,7 @@ class VantageExportRequest:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                end_time_utc_type_0 = isoparse(data)
+                end_time_utc_type_0 = datetime.datetime.fromisoformat(data)
 
 
 
@@ -121,7 +120,7 @@ class VantageExportRequest:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                start_time_utc_type_0 = isoparse(data)
+                start_time_utc_type_0 = datetime.datetime.fromisoformat(data)
 
 
 

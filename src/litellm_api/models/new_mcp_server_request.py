@@ -12,7 +12,6 @@ from ..models.new_mcp_server_request_auth_type_type_0 import NewMCPServerRequest
 from ..models.new_mcp_server_request_oauth_2_flow_type_0 import NewMCPServerRequestOauth2FlowType0
 from ..models.new_mcp_server_request_transport import NewMCPServerRequestTransport
 from ..types import UNSET, Unset
-from dateutil.parser import isoparse
 from typing import cast
 import datetime
 
@@ -699,7 +698,7 @@ class NewMCPServerRequest:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                submitted_at_type_0 = isoparse(data)
+                submitted_at_type_0 = datetime.datetime.fromisoformat(data)
 
 
 
