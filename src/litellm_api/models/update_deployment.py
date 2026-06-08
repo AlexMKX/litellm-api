@@ -30,11 +30,13 @@ class UpdateDeployment:
             model_name (None | str | Unset):
             litellm_params (None | Unset | UpdateLiteLLMParams):
             model_info (ModelInfo | None | Unset):
+            blocked (bool | None | Unset):
      """
 
     model_name: None | str | Unset = UNSET
     litellm_params: None | Unset | UpdateLiteLLMParams = UNSET
     model_info: ModelInfo | None | Unset = UNSET
+    blocked: bool | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -66,6 +68,12 @@ class UpdateDeployment:
         else:
             model_info = self.model_info
 
+        blocked: bool | None | Unset
+        if isinstance(self.blocked, Unset):
+            blocked = UNSET
+        else:
+            blocked = self.blocked
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -77,6 +85,8 @@ class UpdateDeployment:
             field_dict["litellm_params"] = litellm_params
         if model_info is not UNSET:
             field_dict["model_info"] = model_info
+        if blocked is not UNSET:
+            field_dict["blocked"] = blocked
 
         return field_dict
 
@@ -137,10 +147,21 @@ class UpdateDeployment:
         model_info = _parse_model_info(d.pop("model_info", UNSET))
 
 
+        def _parse_blocked(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        blocked = _parse_blocked(d.pop("blocked", UNSET))
+
+
         update_deployment = cls(
             model_name=model_name,
             litellm_params=litellm_params,
             model_info=model_info,
+            blocked=blocked,
         )
 
 

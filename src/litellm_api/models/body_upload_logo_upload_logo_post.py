@@ -10,8 +10,6 @@ from .. import types
 
 from ..types import UNSET, Unset
 
-from ..types import File, FileTypes
-from io import BytesIO
 
 
 
@@ -26,10 +24,10 @@ T = TypeVar("T", bound="BodyUploadLogoUploadLogoPost")
 class BodyUploadLogoUploadLogoPost:
     """ 
         Attributes:
-            file (File):
+            file (str):
      """
 
-    file: File
+    file: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -37,8 +35,7 @@ class BodyUploadLogoUploadLogoPost:
 
 
     def to_dict(self) -> dict[str, Any]:
-        file = self.file.to_tuple()
-
+        file = self.file
 
 
         field_dict: dict[str, Any] = {}
@@ -53,7 +50,7 @@ class BodyUploadLogoUploadLogoPost:
     def to_multipart(self) -> types.RequestFiles:
         files: types.RequestFiles = []
 
-        files.append(("file", self.file.to_tuple()))
+        files.append(("file", (None, str(self.file).encode(), "text/plain")))
 
 
 
@@ -69,12 +66,7 @@ class BodyUploadLogoUploadLogoPost:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        file = File(
-             payload = BytesIO(d.pop("file"))
-        )
-
-
-
+        file = d.pop("file")
 
         body_upload_logo_upload_logo_post = cls(
             file=file,

@@ -83,12 +83,11 @@ def sync_detailed(
 
     Example Request:
     ```bash
-    curl -X POST \"http://localhost:4000/agents\" \
+    curl -X POST \"http://localhost:4000/v1/agents\" \
         -H \"Authorization: Bearer <your_api_key>\" \
         -H \"Content-Type: application/json\" \
         -d '{
-            \"agent\": {
-                \"agent_name\": \"my-custom-agent\",
+            \"agent_name\": \"my-custom-agent\",
                 \"agent_card_params\": {
                     \"protocolVersion\": \"1.0\",
                     \"name\": \"Hello World Agent\",
@@ -112,8 +111,7 @@ def sync_detailed(
                 },
                 \"litellm_params\": {
                     \"make_public\": true
-                }
-            }
+           }
         }'
     ```
 
@@ -152,12 +150,11 @@ def sync(
 
     Example Request:
     ```bash
-    curl -X POST \"http://localhost:4000/agents\" \
+    curl -X POST \"http://localhost:4000/v1/agents\" \
         -H \"Authorization: Bearer <your_api_key>\" \
         -H \"Content-Type: application/json\" \
         -d '{
-            \"agent\": {
-                \"agent_name\": \"my-custom-agent\",
+            \"agent_name\": \"my-custom-agent\",
                 \"agent_card_params\": {
                     \"protocolVersion\": \"1.0\",
                     \"name\": \"Hello World Agent\",
@@ -181,8 +178,7 @@ def sync(
                 },
                 \"litellm_params\": {
                     \"make_public\": true
-                }
-            }
+           }
         }'
     ```
 
@@ -216,12 +212,11 @@ async def asyncio_detailed(
 
     Example Request:
     ```bash
-    curl -X POST \"http://localhost:4000/agents\" \
+    curl -X POST \"http://localhost:4000/v1/agents\" \
         -H \"Authorization: Bearer <your_api_key>\" \
         -H \"Content-Type: application/json\" \
         -d '{
-            \"agent\": {
-                \"agent_name\": \"my-custom-agent\",
+            \"agent_name\": \"my-custom-agent\",
                 \"agent_card_params\": {
                     \"protocolVersion\": \"1.0\",
                     \"name\": \"Hello World Agent\",
@@ -245,8 +240,7 @@ async def asyncio_detailed(
                 },
                 \"litellm_params\": {
                     \"make_public\": true
-                }
-            }
+           }
         }'
     ```
 
@@ -285,12 +279,11 @@ async def asyncio(
 
     Example Request:
     ```bash
-    curl -X POST \"http://localhost:4000/agents\" \
+    curl -X POST \"http://localhost:4000/v1/agents\" \
         -H \"Authorization: Bearer <your_api_key>\" \
         -H \"Content-Type: application/json\" \
         -d '{
-            \"agent\": {
-                \"agent_name\": \"my-custom-agent\",
+            \"agent_name\": \"my-custom-agent\",
                 \"agent_card_params\": {
                     \"protocolVersion\": \"1.0\",
                     \"name\": \"Hello World Agent\",
@@ -314,8 +307,7 @@ async def asyncio(
                 },
                 \"litellm_params\": {
                     \"make_public\": true
-                }
-            }
+           }
         }'
     ```
 

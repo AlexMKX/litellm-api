@@ -65,6 +65,7 @@ class NewTeamRequest:
             prompts (list[str] | None | Unset):
             object_permission (LiteLLMObjectPermissionBase | None | Unset):
             allowed_passthrough_routes (list[Any] | None | Unset):
+            disable_global_guardrails (bool | None | Unset):
             secret_manager_settings (NewTeamRequestSecretManagerSettingsType0 | None | Unset):
             model_rpm_limit (NewTeamRequestModelRpmLimitType0 | None | Unset):
             rpm_limit_type (NewTeamRequestRpmLimitTypeType0 | None | Unset):
@@ -106,6 +107,7 @@ class NewTeamRequest:
     prompts: list[str] | None | Unset = UNSET
     object_permission: LiteLLMObjectPermissionBase | None | Unset = UNSET
     allowed_passthrough_routes: list[Any] | None | Unset = UNSET
+    disable_global_guardrails: bool | None | Unset = UNSET
     secret_manager_settings: NewTeamRequestSecretManagerSettingsType0 | None | Unset = UNSET
     model_rpm_limit: NewTeamRequestModelRpmLimitType0 | None | Unset = UNSET
     rpm_limit_type: NewTeamRequestRpmLimitTypeType0 | None | Unset = UNSET
@@ -340,6 +342,12 @@ class NewTeamRequest:
         else:
             allowed_passthrough_routes = self.allowed_passthrough_routes
 
+        disable_global_guardrails: bool | None | Unset
+        if isinstance(self.disable_global_guardrails, Unset):
+            disable_global_guardrails = UNSET
+        else:
+            disable_global_guardrails = self.disable_global_guardrails
+
         secret_manager_settings: dict[str, Any] | None | Unset
         if isinstance(self.secret_manager_settings, Unset):
             secret_manager_settings = UNSET
@@ -496,6 +504,8 @@ class NewTeamRequest:
             field_dict["object_permission"] = object_permission
         if allowed_passthrough_routes is not UNSET:
             field_dict["allowed_passthrough_routes"] = allowed_passthrough_routes
+        if disable_global_guardrails is not UNSET:
+            field_dict["disable_global_guardrails"] = disable_global_guardrails
         if secret_manager_settings is not UNSET:
             field_dict["secret_manager_settings"] = secret_manager_settings
         if model_rpm_limit is not UNSET:
@@ -894,6 +904,16 @@ class NewTeamRequest:
         allowed_passthrough_routes = _parse_allowed_passthrough_routes(d.pop("allowed_passthrough_routes", UNSET))
 
 
+        def _parse_disable_global_guardrails(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        disable_global_guardrails = _parse_disable_global_guardrails(d.pop("disable_global_guardrails", UNSET))
+
+
         def _parse_secret_manager_settings(data: object) -> NewTeamRequestSecretManagerSettingsType0 | None | Unset:
             if data is None:
                 return data
@@ -1136,6 +1156,7 @@ class NewTeamRequest:
             prompts=prompts,
             object_permission=object_permission,
             allowed_passthrough_routes=allowed_passthrough_routes,
+            disable_global_guardrails=disable_global_guardrails,
             secret_manager_settings=secret_manager_settings,
             model_rpm_limit=model_rpm_limit,
             rpm_limit_type=rpm_limit_type,

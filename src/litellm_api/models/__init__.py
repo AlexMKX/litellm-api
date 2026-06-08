@@ -845,6 +845,7 @@ from .user_update_result import UserUpdateResult
 from .user_update_result_updated_user_type_0 import UserUpdateResultUpdatedUserType0
 from .validate_blocked_words_file_guardrails_validate_blocked_words_file_post_request import ValidateBlockedWordsFileGuardrailsValidateBlockedWordsFilePostRequest
 from .validation_error import ValidationError
+from .validation_error_context import ValidationErrorContext
 from .vantage_dry_run_request import VantageDryRunRequest
 from .vantage_export_request import VantageExportRequest
 from .vantage_export_response import VantageExportResponse
@@ -1716,6 +1717,7 @@ __all__ = (
     "UserUpdateResultUpdatedUserType0",
     "ValidateBlockedWordsFileGuardrailsValidateBlockedWordsFilePostRequest",
     "ValidationError",
+    "ValidationErrorContext",
     "VantageDryRunRequest",
     "VantageExportRequest",
     "VantageExportResponse",

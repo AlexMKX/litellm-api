@@ -5,8 +5,6 @@ from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-import json
-from .. import types
 
 from ..types import UNSET, Unset
 
@@ -16,18 +14,15 @@ from ..types import UNSET, Unset
 
 
 
-T = TypeVar("T", bound="BodyAudioTranscriptionsAudioTranscriptionsPost")
+T = TypeVar("T", bound="ValidationErrorContext")
 
 
 
 @_attrs_define
-class BodyAudioTranscriptionsAudioTranscriptionsPost:
+class ValidationErrorContext:
     """ 
-        Attributes:
-            file (str):
      """
 
-    file: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -35,46 +30,23 @@ class BodyAudioTranscriptionsAudioTranscriptionsPost:
 
 
     def to_dict(self) -> dict[str, Any]:
-        file = self.file
-
-
+        
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "file": file,
-        })
 
         return field_dict
 
-
-    def to_multipart(self) -> types.RequestFiles:
-        files: types.RequestFiles = []
-
-        files.append(("file", (None, str(self.file).encode(), "text/plain")))
-
-
-
-
-        for prop_name, prop in self.additional_properties.items():
-            files.append((prop_name, (None, str(prop).encode(), "text/plain")))
-
-
-
-        return files
 
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        file = d.pop("file")
-
-        body_audio_transcriptions_audio_transcriptions_post = cls(
-            file=file,
+        validation_error_context = cls(
         )
 
 
-        body_audio_transcriptions_audio_transcriptions_post.additional_properties = d
-        return body_audio_transcriptions_audio_transcriptions_post
+        validation_error_context.additional_properties = d
+        return validation_error_context
 
     @property
     def additional_keys(self) -> list[str]:

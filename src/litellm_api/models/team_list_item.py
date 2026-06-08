@@ -62,6 +62,7 @@ class TeamListItem:
             created_at (datetime.datetime | None | Unset):
             object_permission_id (None | str | Unset):
             members_count (int | Unset):  Default: 0.
+            keys_count (int | Unset):  Default: 0.
             access_group_models (list[str] | None | Unset):
             access_group_mcp_server_ids (list[str] | None | Unset):
             access_group_agent_ids (list[str] | None | Unset):
@@ -96,6 +97,7 @@ class TeamListItem:
     created_at: datetime.datetime | None | Unset = UNSET
     object_permission_id: None | str | Unset = UNSET
     members_count: int | Unset = 0
+    keys_count: int | Unset = 0
     access_group_models: list[str] | None | Unset = UNSET
     access_group_mcp_server_ids: list[str] | None | Unset = UNSET
     access_group_agent_ids: list[str] | None | Unset = UNSET
@@ -310,6 +312,8 @@ class TeamListItem:
 
         members_count = self.members_count
 
+        keys_count = self.keys_count
+
         access_group_models: list[str] | None | Unset
         if isinstance(self.access_group_models, Unset):
             access_group_models = UNSET
@@ -402,6 +406,8 @@ class TeamListItem:
             field_dict["object_permission_id"] = object_permission_id
         if members_count is not UNSET:
             field_dict["members_count"] = members_count
+        if keys_count is not UNSET:
+            field_dict["keys_count"] = keys_count
         if access_group_models is not UNSET:
             field_dict["access_group_models"] = access_group_models
         if access_group_mcp_server_ids is not UNSET:
@@ -778,6 +784,8 @@ class TeamListItem:
 
         members_count = d.pop("members_count", UNSET)
 
+        keys_count = d.pop("keys_count", UNSET)
+
         def _parse_access_group_models(data: object) -> list[str] | None | Unset:
             if data is None:
                 return data
@@ -862,6 +870,7 @@ class TeamListItem:
             created_at=created_at,
             object_permission_id=object_permission_id,
             members_count=members_count,
+            keys_count=keys_count,
             access_group_models=access_group_models,
             access_group_mcp_server_ids=access_group_mcp_server_ids,
             access_group_agent_ids=access_group_agent_ids,

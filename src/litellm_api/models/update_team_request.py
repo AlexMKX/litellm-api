@@ -66,6 +66,7 @@ class UpdateTeamRequest:
             guardrails (list[str] | None | Unset):
             policies (list[str] | None | Unset):
             object_permission (LiteLLMObjectPermissionBase | None | Unset):
+            disable_global_guardrails (bool | None | Unset):
             team_member_budget (float | None | Unset):
             team_member_budget_duration (None | str | Unset):
             team_member_rpm_limit (int | None | Unset):
@@ -101,6 +102,7 @@ class UpdateTeamRequest:
     guardrails: list[str] | None | Unset = UNSET
     policies: list[str] | None | Unset = UNSET
     object_permission: LiteLLMObjectPermissionBase | None | Unset = UNSET
+    disable_global_guardrails: bool | None | Unset = UNSET
     team_member_budget: float | None | Unset = UNSET
     team_member_budget_duration: None | str | Unset = UNSET
     team_member_rpm_limit: int | None | Unset = UNSET
@@ -249,6 +251,12 @@ class UpdateTeamRequest:
             object_permission = self.object_permission.to_dict()
         else:
             object_permission = self.object_permission
+
+        disable_global_guardrails: bool | None | Unset
+        if isinstance(self.disable_global_guardrails, Unset):
+            disable_global_guardrails = UNSET
+        else:
+            disable_global_guardrails = self.disable_global_guardrails
 
         team_member_budget: float | None | Unset
         if isinstance(self.team_member_budget, Unset):
@@ -430,6 +438,8 @@ class UpdateTeamRequest:
             field_dict["policies"] = policies
         if object_permission is not UNSET:
             field_dict["object_permission"] = object_permission
+        if disable_global_guardrails is not UNSET:
+            field_dict["disable_global_guardrails"] = disable_global_guardrails
         if team_member_budget is not UNSET:
             field_dict["team_member_budget"] = team_member_budget
         if team_member_budget_duration is not UNSET:
@@ -695,6 +705,16 @@ class UpdateTeamRequest:
             return cast(LiteLLMObjectPermissionBase | None | Unset, data)
 
         object_permission = _parse_object_permission(d.pop("object_permission", UNSET))
+
+
+        def _parse_disable_global_guardrails(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        disable_global_guardrails = _parse_disable_global_guardrails(d.pop("disable_global_guardrails", UNSET))
 
 
         def _parse_team_member_budget(data: object) -> float | None | Unset:
@@ -1006,6 +1026,7 @@ class UpdateTeamRequest:
             guardrails=guardrails,
             policies=policies,
             object_permission=object_permission,
+            disable_global_guardrails=disable_global_guardrails,
             team_member_budget=team_member_budget,
             team_member_budget_duration=team_member_budget_duration,
             team_member_rpm_limit=team_member_rpm_limit,

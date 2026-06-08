@@ -36,6 +36,7 @@ class ModelInfo:
             tier (ModelInfoTierType0 | None | Unset):
             team_id (None | str | Unset):
             team_public_model_name (None | str | Unset):
+            blocked (bool | None | Unset):
      """
 
     id: None | str
@@ -48,6 +49,7 @@ class ModelInfo:
     tier: ModelInfoTierType0 | None | Unset = UNSET
     team_id: None | str | Unset = UNSET
     team_public_model_name: None | str | Unset = UNSET
+    blocked: bool | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -114,6 +116,12 @@ class ModelInfo:
         else:
             team_public_model_name = self.team_public_model_name
 
+        blocked: bool | None | Unset
+        if isinstance(self.blocked, Unset):
+            blocked = UNSET
+        else:
+            blocked = self.blocked
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -138,6 +146,8 @@ class ModelInfo:
             field_dict["team_id"] = team_id
         if team_public_model_name is not UNSET:
             field_dict["team_public_model_name"] = team_public_model_name
+        if blocked is not UNSET:
+            field_dict["blocked"] = blocked
 
         return field_dict
 
@@ -266,6 +276,16 @@ class ModelInfo:
         team_public_model_name = _parse_team_public_model_name(d.pop("team_public_model_name", UNSET))
 
 
+        def _parse_blocked(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        blocked = _parse_blocked(d.pop("blocked", UNSET))
+
+
         model_info = cls(
             id=id,
             db_model=db_model,
@@ -277,6 +297,7 @@ class ModelInfo:
             tier=tier,
             team_id=team_id,
             team_public_model_name=team_public_model_name,
+            blocked=blocked,
         )
 
 

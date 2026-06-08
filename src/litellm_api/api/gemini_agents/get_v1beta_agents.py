@@ -22,7 +22,7 @@ def _get_kwargs(
 
     _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": "/vertex_ai/live",
+        "url": "/v1beta/agents",
     }
 
 
@@ -31,7 +31,7 @@ def _get_kwargs(
 
 
 def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Any | None:
-    if response.status_code == 101:
+    if response.status_code == 200:
         return None
 
     if client.raise_on_unexpected_status:
@@ -54,9 +54,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
 
 ) -> Response[Any]:
-    """ WebSocket: vertex_ai_live_passthrough_endpoint
-
-     WebSocket connection endpoint
+    """ gemini_agents
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -83,9 +81,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
 
 ) -> Response[Any]:
-    """ WebSocket: vertex_ai_live_passthrough_endpoint
-
-     WebSocket connection endpoint
+    """ gemini_agents
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.

@@ -12,26 +12,17 @@ from ... import errors
 
 
 def _get_kwargs(
-    *,
-    model: str,
-
+    
 ) -> dict[str, Any]:
     
 
     
 
-    params: dict[str, Any] = {}
-
-    params["model"] = model
-
-
-    params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
-
+    
 
     _kwargs: dict[str, Any] = {
         "method": "get",
         "url": "/responses",
-        "params": params,
     }
 
 
@@ -61,15 +52,11 @@ def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Res
 def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
-    model: str,
 
 ) -> Response[Any]:
     """ WebSocket: responses_websocket_endpoint
 
      WebSocket connection endpoint
-
-    Args:
-        model (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -81,8 +68,7 @@ def sync_detailed(
 
 
     kwargs = _get_kwargs(
-        model=model,
-
+        
     )
 
     response = client.get_httpx_client().request(
@@ -95,15 +81,11 @@ def sync_detailed(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
-    model: str,
 
 ) -> Response[Any]:
     """ WebSocket: responses_websocket_endpoint
 
      WebSocket connection endpoint
-
-    Args:
-        model (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -115,8 +97,7 @@ async def asyncio_detailed(
 
 
     kwargs = _get_kwargs(
-        model=model,
-
+        
     )
 
     response = await client.get_async_httpx_client().request(
