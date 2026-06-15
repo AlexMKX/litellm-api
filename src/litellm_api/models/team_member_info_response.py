@@ -30,10 +30,10 @@ class TeamMemberInfoResponse:
         Attributes:
             user_id (str):
             team_id (str):
-            litellm_budget_table (LiteLLMBudgetTable | LiteLLMBudgetTableFull | None):
             budget_id (None | str | Unset):
             spend (float | None | Unset):  Default: 0.0.
             total_spend (float | None | Unset):  Default: 0.0.
+            litellm_budget_table (LiteLLMBudgetTable | LiteLLMBudgetTableFull | None | Unset):
             role (None | str | Unset):
             user_email (None | str | Unset):
             team_alias (None | str | Unset):
@@ -41,10 +41,10 @@ class TeamMemberInfoResponse:
 
     user_id: str
     team_id: str
-    litellm_budget_table: LiteLLMBudgetTable | LiteLLMBudgetTableFull | None
     budget_id: None | str | Unset = UNSET
     spend: float | None | Unset = 0.0
     total_spend: float | None | Unset = 0.0
+    litellm_budget_table: LiteLLMBudgetTable | LiteLLMBudgetTableFull | None | Unset = UNSET
     role: None | str | Unset = UNSET
     user_email: None | str | Unset = UNSET
     team_alias: None | str | Unset = UNSET
@@ -60,14 +60,6 @@ class TeamMemberInfoResponse:
         user_id = self.user_id
 
         team_id = self.team_id
-
-        litellm_budget_table: dict[str, Any] | None
-        if isinstance(self.litellm_budget_table, LiteLLMBudgetTableFull):
-            litellm_budget_table = self.litellm_budget_table.to_dict()
-        elif isinstance(self.litellm_budget_table, LiteLLMBudgetTable):
-            litellm_budget_table = self.litellm_budget_table.to_dict()
-        else:
-            litellm_budget_table = self.litellm_budget_table
 
         budget_id: None | str | Unset
         if isinstance(self.budget_id, Unset):
@@ -86,6 +78,16 @@ class TeamMemberInfoResponse:
             total_spend = UNSET
         else:
             total_spend = self.total_spend
+
+        litellm_budget_table: dict[str, Any] | None | Unset
+        if isinstance(self.litellm_budget_table, Unset):
+            litellm_budget_table = UNSET
+        elif isinstance(self.litellm_budget_table, LiteLLMBudgetTableFull):
+            litellm_budget_table = self.litellm_budget_table.to_dict()
+        elif isinstance(self.litellm_budget_table, LiteLLMBudgetTable):
+            litellm_budget_table = self.litellm_budget_table.to_dict()
+        else:
+            litellm_budget_table = self.litellm_budget_table
 
         role: None | str | Unset
         if isinstance(self.role, Unset):
@@ -111,7 +113,6 @@ class TeamMemberInfoResponse:
         field_dict.update({
             "user_id": user_id,
             "team_id": team_id,
-            "litellm_budget_table": litellm_budget_table,
         })
         if budget_id is not UNSET:
             field_dict["budget_id"] = budget_id
@@ -119,6 +120,8 @@ class TeamMemberInfoResponse:
             field_dict["spend"] = spend
         if total_spend is not UNSET:
             field_dict["total_spend"] = total_spend
+        if litellm_budget_table is not UNSET:
+            field_dict["litellm_budget_table"] = litellm_budget_table
         if role is not UNSET:
             field_dict["role"] = role
         if user_email is not UNSET:
@@ -138,34 +141,6 @@ class TeamMemberInfoResponse:
         user_id = d.pop("user_id")
 
         team_id = d.pop("team_id")
-
-        def _parse_litellm_budget_table(data: object) -> LiteLLMBudgetTable | LiteLLMBudgetTableFull | None:
-            if data is None:
-                return data
-            try:
-                if not isinstance(data, dict):
-                    raise TypeError()
-                litellm_budget_table_type_0 = LiteLLMBudgetTableFull.from_dict(data)
-
-
-
-                return litellm_budget_table_type_0
-            except (TypeError, ValueError, AttributeError, KeyError):
-                pass
-            try:
-                if not isinstance(data, dict):
-                    raise TypeError()
-                litellm_budget_table_type_1 = LiteLLMBudgetTable.from_dict(data)
-
-
-
-                return litellm_budget_table_type_1
-            except (TypeError, ValueError, AttributeError, KeyError):
-                pass
-            return cast(LiteLLMBudgetTable | LiteLLMBudgetTableFull | None, data)
-
-        litellm_budget_table = _parse_litellm_budget_table(d.pop("litellm_budget_table"))
-
 
         def _parse_budget_id(data: object) -> None | str | Unset:
             if data is None:
@@ -195,6 +170,36 @@ class TeamMemberInfoResponse:
             return cast(float | None | Unset, data)
 
         total_spend = _parse_total_spend(d.pop("total_spend", UNSET))
+
+
+        def _parse_litellm_budget_table(data: object) -> LiteLLMBudgetTable | LiteLLMBudgetTableFull | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                litellm_budget_table_type_0 = LiteLLMBudgetTableFull.from_dict(data)
+
+
+
+                return litellm_budget_table_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                litellm_budget_table_type_1 = LiteLLMBudgetTable.from_dict(data)
+
+
+
+                return litellm_budget_table_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(LiteLLMBudgetTable | LiteLLMBudgetTableFull | None | Unset, data)
+
+        litellm_budget_table = _parse_litellm_budget_table(d.pop("litellm_budget_table", UNSET))
 
 
         def _parse_role(data: object) -> None | str | Unset:
@@ -230,10 +235,10 @@ class TeamMemberInfoResponse:
         team_member_info_response = cls(
             user_id=user_id,
             team_id=team_id,
-            litellm_budget_table=litellm_budget_table,
             budget_id=budget_id,
             spend=spend,
             total_spend=total_spend,
+            litellm_budget_table=litellm_budget_table,
             role=role,
             user_email=user_email,
             team_alias=team_alias,

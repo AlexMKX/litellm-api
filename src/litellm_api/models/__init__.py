@@ -500,6 +500,7 @@ from .new_project_response_model_tpm_limit_type_0 import NewProjectResponseModel
 from .new_team_request import NewTeamRequest
 from .new_team_request_enforced_batch_output_expires_after_type_0 import NewTeamRequestEnforcedBatchOutputExpiresAfterType0
 from .new_team_request_enforced_file_expires_after_type_0 import NewTeamRequestEnforcedFileExpiresAfterType0
+from .new_team_request_mcp_rpm_limit_type_0 import NewTeamRequestMcpRpmLimitType0
 from .new_team_request_metadata_type_0 import NewTeamRequestMetadataType0
 from .new_team_request_model_aliases_type_0 import NewTeamRequestModelAliasesType0
 from .new_team_request_model_rpm_limit_type_0 import NewTeamRequestModelRpmLimitType0
@@ -800,6 +801,7 @@ from .update_team_member_permissions_request import UpdateTeamMemberPermissionsR
 from .update_team_request import UpdateTeamRequest
 from .update_team_request_enforced_batch_output_expires_after_type_0 import UpdateTeamRequestEnforcedBatchOutputExpiresAfterType0
 from .update_team_request_enforced_file_expires_after_type_0 import UpdateTeamRequestEnforcedFileExpiresAfterType0
+from .update_team_request_mcp_rpm_limit_type_0 import UpdateTeamRequestMcpRpmLimitType0
 from .update_team_request_metadata_type_0 import UpdateTeamRequestMetadataType0
 from .update_team_request_model_aliases_type_0 import UpdateTeamRequestModelAliasesType0
 from .update_team_request_model_rpm_limit_type_0 import UpdateTeamRequestModelRpmLimitType0
@@ -1372,6 +1374,7 @@ __all__ = (
     "NewTeamRequest",
     "NewTeamRequestEnforcedBatchOutputExpiresAfterType0",
     "NewTeamRequestEnforcedFileExpiresAfterType0",
+    "NewTeamRequestMcpRpmLimitType0",
     "NewTeamRequestMetadataType0",
     "NewTeamRequestModelAliasesType0",
     "NewTeamRequestModelRpmLimitType0",
@@ -1672,6 +1675,7 @@ __all__ = (
     "UpdateTeamRequest",
     "UpdateTeamRequestEnforcedBatchOutputExpiresAfterType0",
     "UpdateTeamRequestEnforcedFileExpiresAfterType0",
+    "UpdateTeamRequestMcpRpmLimitType0",
     "UpdateTeamRequestMetadataType0",
     "UpdateTeamRequestModelAliasesType0",
     "UpdateTeamRequestModelRpmLimitType0",

@@ -17,6 +17,7 @@ if TYPE_CHECKING:
   from ..models.lite_llm_object_permission_base import LiteLLMObjectPermissionBase
   from ..models.update_team_request_enforced_batch_output_expires_after_type_0 import UpdateTeamRequestEnforcedBatchOutputExpiresAfterType0
   from ..models.update_team_request_enforced_file_expires_after_type_0 import UpdateTeamRequestEnforcedFileExpiresAfterType0
+  from ..models.update_team_request_mcp_rpm_limit_type_0 import UpdateTeamRequestMcpRpmLimitType0
   from ..models.update_team_request_metadata_type_0 import UpdateTeamRequestMetadataType0
   from ..models.update_team_request_model_aliases_type_0 import UpdateTeamRequestModelAliasesType0
   from ..models.update_team_request_model_rpm_limit_type_0 import UpdateTeamRequestModelRpmLimitType0
@@ -77,6 +78,7 @@ class UpdateTeamRequest:
             prompts (list[str] | None | Unset):
             model_rpm_limit (None | Unset | UpdateTeamRequestModelRpmLimitType0):
             model_tpm_limit (None | Unset | UpdateTeamRequestModelTpmLimitType0):
+            mcp_rpm_limit (None | Unset | UpdateTeamRequestMcpRpmLimitType0):
             allowed_vector_store_indexes (list[AllowedVectorStoreIndexItem] | None | Unset):
             enforced_batch_output_expires_after (None | Unset | UpdateTeamRequestEnforcedBatchOutputExpiresAfterType0):
             enforced_file_expires_after (None | Unset | UpdateTeamRequestEnforcedFileExpiresAfterType0):
@@ -113,6 +115,7 @@ class UpdateTeamRequest:
     prompts: list[str] | None | Unset = UNSET
     model_rpm_limit: None | Unset | UpdateTeamRequestModelRpmLimitType0 = UNSET
     model_tpm_limit: None | Unset | UpdateTeamRequestModelTpmLimitType0 = UNSET
+    mcp_rpm_limit: None | Unset | UpdateTeamRequestMcpRpmLimitType0 = UNSET
     allowed_vector_store_indexes: list[AllowedVectorStoreIndexItem] | None | Unset = UNSET
     enforced_batch_output_expires_after: None | Unset | UpdateTeamRequestEnforcedBatchOutputExpiresAfterType0 = UNSET
     enforced_file_expires_after: None | Unset | UpdateTeamRequestEnforcedFileExpiresAfterType0 = UNSET
@@ -132,6 +135,7 @@ class UpdateTeamRequest:
         from ..models.lite_llm_object_permission_base import LiteLLMObjectPermissionBase
         from ..models.update_team_request_enforced_batch_output_expires_after_type_0 import UpdateTeamRequestEnforcedBatchOutputExpiresAfterType0
         from ..models.update_team_request_enforced_file_expires_after_type_0 import UpdateTeamRequestEnforcedFileExpiresAfterType0
+        from ..models.update_team_request_mcp_rpm_limit_type_0 import UpdateTeamRequestMcpRpmLimitType0
         from ..models.update_team_request_metadata_type_0 import UpdateTeamRequestMetadataType0
         from ..models.update_team_request_model_aliases_type_0 import UpdateTeamRequestModelAliasesType0
         from ..models.update_team_request_model_rpm_limit_type_0 import UpdateTeamRequestModelRpmLimitType0
@@ -332,6 +336,14 @@ class UpdateTeamRequest:
         else:
             model_tpm_limit = self.model_tpm_limit
 
+        mcp_rpm_limit: dict[str, Any] | None | Unset
+        if isinstance(self.mcp_rpm_limit, Unset):
+            mcp_rpm_limit = UNSET
+        elif isinstance(self.mcp_rpm_limit, UpdateTeamRequestMcpRpmLimitType0):
+            mcp_rpm_limit = self.mcp_rpm_limit.to_dict()
+        else:
+            mcp_rpm_limit = self.mcp_rpm_limit
+
         allowed_vector_store_indexes: list[dict[str, Any]] | None | Unset
         if isinstance(self.allowed_vector_store_indexes, Unset):
             allowed_vector_store_indexes = UNSET
@@ -460,6 +472,8 @@ class UpdateTeamRequest:
             field_dict["model_rpm_limit"] = model_rpm_limit
         if model_tpm_limit is not UNSET:
             field_dict["model_tpm_limit"] = model_tpm_limit
+        if mcp_rpm_limit is not UNSET:
+            field_dict["mcp_rpm_limit"] = mcp_rpm_limit
         if allowed_vector_store_indexes is not UNSET:
             field_dict["allowed_vector_store_indexes"] = allowed_vector_store_indexes
         if enforced_batch_output_expires_after is not UNSET:
@@ -486,6 +500,7 @@ class UpdateTeamRequest:
         from ..models.lite_llm_object_permission_base import LiteLLMObjectPermissionBase
         from ..models.update_team_request_enforced_batch_output_expires_after_type_0 import UpdateTeamRequestEnforcedBatchOutputExpiresAfterType0
         from ..models.update_team_request_enforced_file_expires_after_type_0 import UpdateTeamRequestEnforcedFileExpiresAfterType0
+        from ..models.update_team_request_mcp_rpm_limit_type_0 import UpdateTeamRequestMcpRpmLimitType0
         from ..models.update_team_request_metadata_type_0 import UpdateTeamRequestMetadataType0
         from ..models.update_team_request_model_aliases_type_0 import UpdateTeamRequestModelAliasesType0
         from ..models.update_team_request_model_rpm_limit_type_0 import UpdateTeamRequestModelRpmLimitType0
@@ -863,6 +878,26 @@ class UpdateTeamRequest:
         model_tpm_limit = _parse_model_tpm_limit(d.pop("model_tpm_limit", UNSET))
 
 
+        def _parse_mcp_rpm_limit(data: object) -> None | Unset | UpdateTeamRequestMcpRpmLimitType0:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                mcp_rpm_limit_type_0 = UpdateTeamRequestMcpRpmLimitType0.from_dict(data)
+
+
+
+                return mcp_rpm_limit_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UpdateTeamRequestMcpRpmLimitType0, data)
+
+        mcp_rpm_limit = _parse_mcp_rpm_limit(d.pop("mcp_rpm_limit", UNSET))
+
+
         def _parse_allowed_vector_store_indexes(data: object) -> list[AllowedVectorStoreIndexItem] | None | Unset:
             if data is None:
                 return data
@@ -1037,6 +1072,7 @@ class UpdateTeamRequest:
             prompts=prompts,
             model_rpm_limit=model_rpm_limit,
             model_tpm_limit=model_tpm_limit,
+            mcp_rpm_limit=mcp_rpm_limit,
             allowed_vector_store_indexes=allowed_vector_store_indexes,
             enforced_batch_output_expires_after=enforced_batch_output_expires_after,
             enforced_file_expires_after=enforced_file_expires_after,

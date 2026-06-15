@@ -56,7 +56,10 @@ def sync_detailed(
 ) -> Response[Any]:
     """ Health Liveliness
 
-     Unprotected endpoint for checking if worker is alive
+     Unprotected endpoint for checking if worker is alive.
+
+    Returns 503 once graceful shutdown has begun so Kubernetes stops counting
+    the draining pod as live and terminates it on schedule.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -85,7 +88,10 @@ async def asyncio_detailed(
 ) -> Response[Any]:
     """ Health Liveliness
 
-     Unprotected endpoint for checking if worker is alive
+     Unprotected endpoint for checking if worker is alive.
+
+    Returns 503 once graceful shutdown has begun so Kubernetes stops counting
+    the draining pod as live and terminates it on schedule.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.

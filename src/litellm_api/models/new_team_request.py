@@ -20,6 +20,7 @@ if TYPE_CHECKING:
   from ..models.member import Member
   from ..models.new_team_request_enforced_batch_output_expires_after_type_0 import NewTeamRequestEnforcedBatchOutputExpiresAfterType0
   from ..models.new_team_request_enforced_file_expires_after_type_0 import NewTeamRequestEnforcedFileExpiresAfterType0
+  from ..models.new_team_request_mcp_rpm_limit_type_0 import NewTeamRequestMcpRpmLimitType0
   from ..models.new_team_request_metadata_type_0 import NewTeamRequestMetadataType0
   from ..models.new_team_request_model_aliases_type_0 import NewTeamRequestModelAliasesType0
   from ..models.new_team_request_model_rpm_limit_type_0 import NewTeamRequestModelRpmLimitType0
@@ -71,6 +72,7 @@ class NewTeamRequest:
             rpm_limit_type (NewTeamRequestRpmLimitTypeType0 | None | Unset):
             tpm_limit_type (NewTeamRequestTpmLimitTypeType0 | None | Unset):
             model_tpm_limit (NewTeamRequestModelTpmLimitType0 | None | Unset):
+            mcp_rpm_limit (NewTeamRequestMcpRpmLimitType0 | None | Unset):
             team_member_budget (float | None | Unset):
             team_member_rpm_limit (int | None | Unset):
             team_member_tpm_limit (int | None | Unset):
@@ -113,6 +115,7 @@ class NewTeamRequest:
     rpm_limit_type: NewTeamRequestRpmLimitTypeType0 | None | Unset = UNSET
     tpm_limit_type: NewTeamRequestTpmLimitTypeType0 | None | Unset = UNSET
     model_tpm_limit: NewTeamRequestModelTpmLimitType0 | None | Unset = UNSET
+    mcp_rpm_limit: NewTeamRequestMcpRpmLimitType0 | None | Unset = UNSET
     team_member_budget: float | None | Unset = UNSET
     team_member_rpm_limit: int | None | Unset = UNSET
     team_member_tpm_limit: int | None | Unset = UNSET
@@ -134,6 +137,7 @@ class NewTeamRequest:
         from ..models.member import Member
         from ..models.new_team_request_enforced_batch_output_expires_after_type_0 import NewTeamRequestEnforcedBatchOutputExpiresAfterType0
         from ..models.new_team_request_enforced_file_expires_after_type_0 import NewTeamRequestEnforcedFileExpiresAfterType0
+        from ..models.new_team_request_mcp_rpm_limit_type_0 import NewTeamRequestMcpRpmLimitType0
         from ..models.new_team_request_metadata_type_0 import NewTeamRequestMetadataType0
         from ..models.new_team_request_model_aliases_type_0 import NewTeamRequestModelAliasesType0
         from ..models.new_team_request_model_rpm_limit_type_0 import NewTeamRequestModelRpmLimitType0
@@ -388,6 +392,14 @@ class NewTeamRequest:
         else:
             model_tpm_limit = self.model_tpm_limit
 
+        mcp_rpm_limit: dict[str, Any] | None | Unset
+        if isinstance(self.mcp_rpm_limit, Unset):
+            mcp_rpm_limit = UNSET
+        elif isinstance(self.mcp_rpm_limit, NewTeamRequestMcpRpmLimitType0):
+            mcp_rpm_limit = self.mcp_rpm_limit.to_dict()
+        else:
+            mcp_rpm_limit = self.mcp_rpm_limit
+
         team_member_budget: float | None | Unset
         if isinstance(self.team_member_budget, Unset):
             team_member_budget = UNSET
@@ -516,6 +528,8 @@ class NewTeamRequest:
             field_dict["tpm_limit_type"] = tpm_limit_type
         if model_tpm_limit is not UNSET:
             field_dict["model_tpm_limit"] = model_tpm_limit
+        if mcp_rpm_limit is not UNSET:
+            field_dict["mcp_rpm_limit"] = mcp_rpm_limit
         if team_member_budget is not UNSET:
             field_dict["team_member_budget"] = team_member_budget
         if team_member_rpm_limit is not UNSET:
@@ -545,6 +559,7 @@ class NewTeamRequest:
         from ..models.member import Member
         from ..models.new_team_request_enforced_batch_output_expires_after_type_0 import NewTeamRequestEnforcedBatchOutputExpiresAfterType0
         from ..models.new_team_request_enforced_file_expires_after_type_0 import NewTeamRequestEnforcedFileExpiresAfterType0
+        from ..models.new_team_request_mcp_rpm_limit_type_0 import NewTeamRequestMcpRpmLimitType0
         from ..models.new_team_request_metadata_type_0 import NewTeamRequestMetadataType0
         from ..models.new_team_request_model_aliases_type_0 import NewTeamRequestModelAliasesType0
         from ..models.new_team_request_model_rpm_limit_type_0 import NewTeamRequestModelRpmLimitType0
@@ -1014,6 +1029,26 @@ class NewTeamRequest:
         model_tpm_limit = _parse_model_tpm_limit(d.pop("model_tpm_limit", UNSET))
 
 
+        def _parse_mcp_rpm_limit(data: object) -> NewTeamRequestMcpRpmLimitType0 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                mcp_rpm_limit_type_0 = NewTeamRequestMcpRpmLimitType0.from_dict(data)
+
+
+
+                return mcp_rpm_limit_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(NewTeamRequestMcpRpmLimitType0 | None | Unset, data)
+
+        mcp_rpm_limit = _parse_mcp_rpm_limit(d.pop("mcp_rpm_limit", UNSET))
+
+
         def _parse_team_member_budget(data: object) -> float | None | Unset:
             if data is None:
                 return data
@@ -1162,6 +1197,7 @@ class NewTeamRequest:
             rpm_limit_type=rpm_limit_type,
             tpm_limit_type=tpm_limit_type,
             model_tpm_limit=model_tpm_limit,
+            mcp_rpm_limit=mcp_rpm_limit,
             team_member_budget=team_member_budget,
             team_member_rpm_limit=team_member_rpm_limit,
             team_member_tpm_limit=team_member_tpm_limit,

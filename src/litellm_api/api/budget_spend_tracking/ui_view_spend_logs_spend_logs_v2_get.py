@@ -30,6 +30,7 @@ def _get_kwargs(
     status_filter: None | str | Unset = UNSET,
     model: None | str | Unset = UNSET,
     model_id: None | str | Unset = UNSET,
+    model_group: None | str | Unset = UNSET,
     key_alias: None | str | Unset = UNSET,
     end_user: None | str | Unset = UNSET,
     error_code: None | str | Unset = UNSET,
@@ -124,6 +125,13 @@ def _get_kwargs(
     else:
         json_model_id = model_id
     params["model_id"] = json_model_id
+
+    json_model_group: None | str | Unset
+    if isinstance(model_group, Unset):
+        json_model_group = UNSET
+    else:
+        json_model_group = model_group
+    params["model_group"] = json_model_group
 
     json_key_alias: None | str | Unset
     if isinstance(key_alias, Unset):
@@ -223,6 +231,7 @@ def sync_detailed(
     status_filter: None | str | Unset = UNSET,
     model: None | str | Unset = UNSET,
     model_id: None | str | Unset = UNSET,
+    model_group: None | str | Unset = UNSET,
     key_alias: None | str | Unset = UNSET,
     end_user: None | str | Unset = UNSET,
     error_code: None | str | Unset = UNSET,
@@ -259,6 +268,7 @@ def sync_detailed(
         status_filter (None | str | Unset): Filter logs by status (e.g., success, failure)
         model (None | str | Unset): Filter logs by model
         model_id (None | str | Unset): Filter logs by model ID (litellm model deployment id)
+        model_group (None | str | Unset): Filter logs by model group
         key_alias (None | str | Unset): Filter logs by key alias
         end_user (None | str | Unset): Filter logs by end user
         error_code (None | str | Unset): Filter logs by error code (e.g., '404', '500')
@@ -290,6 +300,7 @@ page_size=page_size,
 status_filter=status_filter,
 model=model,
 model_id=model_id,
+model_group=model_group,
 key_alias=key_alias,
 end_user=end_user,
 error_code=error_code,
@@ -321,6 +332,7 @@ def sync(
     status_filter: None | str | Unset = UNSET,
     model: None | str | Unset = UNSET,
     model_id: None | str | Unset = UNSET,
+    model_group: None | str | Unset = UNSET,
     key_alias: None | str | Unset = UNSET,
     end_user: None | str | Unset = UNSET,
     error_code: None | str | Unset = UNSET,
@@ -357,6 +369,7 @@ def sync(
         status_filter (None | str | Unset): Filter logs by status (e.g., success, failure)
         model (None | str | Unset): Filter logs by model
         model_id (None | str | Unset): Filter logs by model ID (litellm model deployment id)
+        model_group (None | str | Unset): Filter logs by model group
         key_alias (None | str | Unset): Filter logs by key alias
         end_user (None | str | Unset): Filter logs by end user
         error_code (None | str | Unset): Filter logs by error code (e.g., '404', '500')
@@ -389,6 +402,7 @@ page_size=page_size,
 status_filter=status_filter,
 model=model,
 model_id=model_id,
+model_group=model_group,
 key_alias=key_alias,
 end_user=end_user,
 error_code=error_code,
@@ -414,6 +428,7 @@ async def asyncio_detailed(
     status_filter: None | str | Unset = UNSET,
     model: None | str | Unset = UNSET,
     model_id: None | str | Unset = UNSET,
+    model_group: None | str | Unset = UNSET,
     key_alias: None | str | Unset = UNSET,
     end_user: None | str | Unset = UNSET,
     error_code: None | str | Unset = UNSET,
@@ -450,6 +465,7 @@ async def asyncio_detailed(
         status_filter (None | str | Unset): Filter logs by status (e.g., success, failure)
         model (None | str | Unset): Filter logs by model
         model_id (None | str | Unset): Filter logs by model ID (litellm model deployment id)
+        model_group (None | str | Unset): Filter logs by model group
         key_alias (None | str | Unset): Filter logs by key alias
         end_user (None | str | Unset): Filter logs by end user
         error_code (None | str | Unset): Filter logs by error code (e.g., '404', '500')
@@ -481,6 +497,7 @@ page_size=page_size,
 status_filter=status_filter,
 model=model,
 model_id=model_id,
+model_group=model_group,
 key_alias=key_alias,
 end_user=end_user,
 error_code=error_code,
@@ -512,6 +529,7 @@ async def asyncio(
     status_filter: None | str | Unset = UNSET,
     model: None | str | Unset = UNSET,
     model_id: None | str | Unset = UNSET,
+    model_group: None | str | Unset = UNSET,
     key_alias: None | str | Unset = UNSET,
     end_user: None | str | Unset = UNSET,
     error_code: None | str | Unset = UNSET,
@@ -548,6 +566,7 @@ async def asyncio(
         status_filter (None | str | Unset): Filter logs by status (e.g., success, failure)
         model (None | str | Unset): Filter logs by model
         model_id (None | str | Unset): Filter logs by model ID (litellm model deployment id)
+        model_group (None | str | Unset): Filter logs by model group
         key_alias (None | str | Unset): Filter logs by key alias
         end_user (None | str | Unset): Filter logs by end user
         error_code (None | str | Unset): Filter logs by error code (e.g., '404', '500')
@@ -580,6 +599,7 @@ page_size=page_size,
 status_filter=status_filter,
 model=model,
 model_id=model_id,
+model_group=model_group,
 key_alias=key_alias,
 end_user=end_user,
 error_code=error_code,
