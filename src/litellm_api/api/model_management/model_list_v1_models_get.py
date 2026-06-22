@@ -23,6 +23,7 @@ def _get_kwargs(
     include_metadata: bool | None | Unset = False,
     fallback_type: None | str | Unset = UNSET,
     scope: None | str | Unset = UNSET,
+    healthy_only: bool | None | Unset = False,
 
 ) -> dict[str, Any]:
     
@@ -80,6 +81,13 @@ def _get_kwargs(
         json_scope = scope
     params["scope"] = json_scope
 
+    json_healthy_only: bool | None | Unset
+    if isinstance(healthy_only, Unset):
+        json_healthy_only = UNSET
+    else:
+        json_healthy_only = healthy_only
+    params["healthy_only"] = json_healthy_only
+
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
@@ -132,6 +140,7 @@ def sync_detailed(
     include_metadata: bool | None | Unset = False,
     fallback_type: None | str | Unset = UNSET,
     scope: None | str | Unset = UNSET,
+    healthy_only: bool | None | Unset = False,
 
 ) -> Response[Any | HTTPValidationError]:
     r""" Model List
@@ -147,6 +156,15 @@ def sync_detailed(
     - scope: Optional scope parameter. Currently only accepts \"expand\".
              When scope=expand is passed, proxy admins, team admins, and org admins
              will receive all proxy models as if they are a proxy admin.
+    - healthy_only: When true, hide models whose backing deployments are all marked
+                    unhealthy by background health checks. Requires
+                    `background_health_checks: true` in general_settings; without
+                    health state the listing is returned unfiltered (fail open).
+                    Models expanded from wildcard routes (e.g. `openai/*`) are not
+                    filtered, and nothing is hidden when `allowed_fails_policy` is
+                    configured (cooldown remains the sole exclusion mechanism).
+                    Hiding is presentation-only: a hidden model can still be
+                    called directly.
 
     Args:
         return_wildcard_routes (bool | None | Unset):  Default: False.
@@ -156,6 +174,7 @@ def sync_detailed(
         include_metadata (bool | None | Unset):  Default: False.
         fallback_type (None | str | Unset):
         scope (None | str | Unset):
+        healthy_only (bool | None | Unset):  Default: False.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -174,6 +193,7 @@ only_model_access_groups=only_model_access_groups,
 include_metadata=include_metadata,
 fallback_type=fallback_type,
 scope=scope,
+healthy_only=healthy_only,
 
     )
 
@@ -193,6 +213,7 @@ def sync(
     include_metadata: bool | None | Unset = False,
     fallback_type: None | str | Unset = UNSET,
     scope: None | str | Unset = UNSET,
+    healthy_only: bool | None | Unset = False,
 
 ) -> Any | HTTPValidationError | None:
     r""" Model List
@@ -208,6 +229,15 @@ def sync(
     - scope: Optional scope parameter. Currently only accepts \"expand\".
              When scope=expand is passed, proxy admins, team admins, and org admins
              will receive all proxy models as if they are a proxy admin.
+    - healthy_only: When true, hide models whose backing deployments are all marked
+                    unhealthy by background health checks. Requires
+                    `background_health_checks: true` in general_settings; without
+                    health state the listing is returned unfiltered (fail open).
+                    Models expanded from wildcard routes (e.g. `openai/*`) are not
+                    filtered, and nothing is hidden when `allowed_fails_policy` is
+                    configured (cooldown remains the sole exclusion mechanism).
+                    Hiding is presentation-only: a hidden model can still be
+                    called directly.
 
     Args:
         return_wildcard_routes (bool | None | Unset):  Default: False.
@@ -217,6 +247,7 @@ def sync(
         include_metadata (bool | None | Unset):  Default: False.
         fallback_type (None | str | Unset):
         scope (None | str | Unset):
+        healthy_only (bool | None | Unset):  Default: False.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -236,6 +267,7 @@ only_model_access_groups=only_model_access_groups,
 include_metadata=include_metadata,
 fallback_type=fallback_type,
 scope=scope,
+healthy_only=healthy_only,
 
     ).parsed
 
@@ -249,6 +281,7 @@ async def asyncio_detailed(
     include_metadata: bool | None | Unset = False,
     fallback_type: None | str | Unset = UNSET,
     scope: None | str | Unset = UNSET,
+    healthy_only: bool | None | Unset = False,
 
 ) -> Response[Any | HTTPValidationError]:
     r""" Model List
@@ -264,6 +297,15 @@ async def asyncio_detailed(
     - scope: Optional scope parameter. Currently only accepts \"expand\".
              When scope=expand is passed, proxy admins, team admins, and org admins
              will receive all proxy models as if they are a proxy admin.
+    - healthy_only: When true, hide models whose backing deployments are all marked
+                    unhealthy by background health checks. Requires
+                    `background_health_checks: true` in general_settings; without
+                    health state the listing is returned unfiltered (fail open).
+                    Models expanded from wildcard routes (e.g. `openai/*`) are not
+                    filtered, and nothing is hidden when `allowed_fails_policy` is
+                    configured (cooldown remains the sole exclusion mechanism).
+                    Hiding is presentation-only: a hidden model can still be
+                    called directly.
 
     Args:
         return_wildcard_routes (bool | None | Unset):  Default: False.
@@ -273,6 +315,7 @@ async def asyncio_detailed(
         include_metadata (bool | None | Unset):  Default: False.
         fallback_type (None | str | Unset):
         scope (None | str | Unset):
+        healthy_only (bool | None | Unset):  Default: False.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -291,6 +334,7 @@ only_model_access_groups=only_model_access_groups,
 include_metadata=include_metadata,
 fallback_type=fallback_type,
 scope=scope,
+healthy_only=healthy_only,
 
     )
 
@@ -310,6 +354,7 @@ async def asyncio(
     include_metadata: bool | None | Unset = False,
     fallback_type: None | str | Unset = UNSET,
     scope: None | str | Unset = UNSET,
+    healthy_only: bool | None | Unset = False,
 
 ) -> Any | HTTPValidationError | None:
     r""" Model List
@@ -325,6 +370,15 @@ async def asyncio(
     - scope: Optional scope parameter. Currently only accepts \"expand\".
              When scope=expand is passed, proxy admins, team admins, and org admins
              will receive all proxy models as if they are a proxy admin.
+    - healthy_only: When true, hide models whose backing deployments are all marked
+                    unhealthy by background health checks. Requires
+                    `background_health_checks: true` in general_settings; without
+                    health state the listing is returned unfiltered (fail open).
+                    Models expanded from wildcard routes (e.g. `openai/*`) are not
+                    filtered, and nothing is hidden when `allowed_fails_policy` is
+                    configured (cooldown remains the sole exclusion mechanism).
+                    Hiding is presentation-only: a hidden model can still be
+                    called directly.
 
     Args:
         return_wildcard_routes (bool | None | Unset):  Default: False.
@@ -334,6 +388,7 @@ async def asyncio(
         include_metadata (bool | None | Unset):  Default: False.
         fallback_type (None | str | Unset):
         scope (None | str | Unset):
+        healthy_only (bool | None | Unset):  Default: False.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -353,5 +408,6 @@ only_model_access_groups=only_model_access_groups,
 include_metadata=include_metadata,
 fallback_type=fallback_type,
 scope=scope,
+healthy_only=healthy_only,
 
     )).parsed

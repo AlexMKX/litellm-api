@@ -17,6 +17,8 @@ from typing import cast
 def _get_kwargs(
     *,
     litellm_model_id: None | str | Unset = UNSET,
+    include_team_models: bool | None | Unset = False,
+    team_id: None | str | Unset = UNSET,
 
 ) -> dict[str, Any]:
     
@@ -31,6 +33,20 @@ def _get_kwargs(
     else:
         json_litellm_model_id = litellm_model_id
     params["litellm_model_id"] = json_litellm_model_id
+
+    json_include_team_models: bool | None | Unset
+    if isinstance(include_team_models, Unset):
+        json_include_team_models = UNSET
+    else:
+        json_include_team_models = include_team_models
+    params["include_team_models"] = json_include_team_models
+
+    json_team_id: None | str | Unset
+    if isinstance(team_id, Unset):
+        json_team_id = UNSET
+    else:
+        json_team_id = team_id
+    params["teamId"] = json_team_id
 
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
@@ -78,6 +94,8 @@ def sync_detailed(
     *,
     client: AuthenticatedClient,
     litellm_model_id: None | str | Unset = UNSET,
+    include_team_models: bool | None | Unset = False,
+    team_id: None | str | Unset = UNSET,
 
 ) -> Response[Any | HTTPValidationError]:
     r""" Model Info V1
@@ -91,6 +109,12 @@ def sync_detailed(
 
         - When litellm_model_id is passed, it will return the info for that specific model
         - When litellm_model_id is not passed, it will return the info for all models
+        - include_team_models: When true, filter to deployments the caller can use (same as
+    /v2/model/info).
+        - teamId: Filter to models accessible by the given team.
+
+    Each model in the list response includes `model_info.access_via_team_ids` and
+    `model_info.direct_access` when the proxy database is connected.
 
     Returns:
         Returns a dictionary containing information about each model.
@@ -118,6 +142,10 @@ def sync_detailed(
 
     Args:
         litellm_model_id (None | str | Unset):
+        include_team_models (bool | None | Unset): When true, filter to deployments the caller can
+            use via direct access or team membership. Default: False.
+        team_id (None | str | Unset): Filter models by team ID. Returns models with
+            direct_access=True or teamId in access_via_team_ids
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -130,6 +158,8 @@ def sync_detailed(
 
     kwargs = _get_kwargs(
         litellm_model_id=litellm_model_id,
+include_team_models=include_team_models,
+team_id=team_id,
 
     )
 
@@ -143,6 +173,8 @@ def sync(
     *,
     client: AuthenticatedClient,
     litellm_model_id: None | str | Unset = UNSET,
+    include_team_models: bool | None | Unset = False,
+    team_id: None | str | Unset = UNSET,
 
 ) -> Any | HTTPValidationError | None:
     r""" Model Info V1
@@ -156,6 +188,12 @@ def sync(
 
         - When litellm_model_id is passed, it will return the info for that specific model
         - When litellm_model_id is not passed, it will return the info for all models
+        - include_team_models: When true, filter to deployments the caller can use (same as
+    /v2/model/info).
+        - teamId: Filter to models accessible by the given team.
+
+    Each model in the list response includes `model_info.access_via_team_ids` and
+    `model_info.direct_access` when the proxy database is connected.
 
     Returns:
         Returns a dictionary containing information about each model.
@@ -183,6 +221,10 @@ def sync(
 
     Args:
         litellm_model_id (None | str | Unset):
+        include_team_models (bool | None | Unset): When true, filter to deployments the caller can
+            use via direct access or team membership. Default: False.
+        team_id (None | str | Unset): Filter models by team ID. Returns models with
+            direct_access=True or teamId in access_via_team_ids
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -196,6 +238,8 @@ def sync(
     return sync_detailed(
         client=client,
 litellm_model_id=litellm_model_id,
+include_team_models=include_team_models,
+team_id=team_id,
 
     ).parsed
 
@@ -203,6 +247,8 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
     litellm_model_id: None | str | Unset = UNSET,
+    include_team_models: bool | None | Unset = False,
+    team_id: None | str | Unset = UNSET,
 
 ) -> Response[Any | HTTPValidationError]:
     r""" Model Info V1
@@ -216,6 +262,12 @@ async def asyncio_detailed(
 
         - When litellm_model_id is passed, it will return the info for that specific model
         - When litellm_model_id is not passed, it will return the info for all models
+        - include_team_models: When true, filter to deployments the caller can use (same as
+    /v2/model/info).
+        - teamId: Filter to models accessible by the given team.
+
+    Each model in the list response includes `model_info.access_via_team_ids` and
+    `model_info.direct_access` when the proxy database is connected.
 
     Returns:
         Returns a dictionary containing information about each model.
@@ -243,6 +295,10 @@ async def asyncio_detailed(
 
     Args:
         litellm_model_id (None | str | Unset):
+        include_team_models (bool | None | Unset): When true, filter to deployments the caller can
+            use via direct access or team membership. Default: False.
+        team_id (None | str | Unset): Filter models by team ID. Returns models with
+            direct_access=True or teamId in access_via_team_ids
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -255,6 +311,8 @@ async def asyncio_detailed(
 
     kwargs = _get_kwargs(
         litellm_model_id=litellm_model_id,
+include_team_models=include_team_models,
+team_id=team_id,
 
     )
 
@@ -268,6 +326,8 @@ async def asyncio(
     *,
     client: AuthenticatedClient,
     litellm_model_id: None | str | Unset = UNSET,
+    include_team_models: bool | None | Unset = False,
+    team_id: None | str | Unset = UNSET,
 
 ) -> Any | HTTPValidationError | None:
     r""" Model Info V1
@@ -281,6 +341,12 @@ async def asyncio(
 
         - When litellm_model_id is passed, it will return the info for that specific model
         - When litellm_model_id is not passed, it will return the info for all models
+        - include_team_models: When true, filter to deployments the caller can use (same as
+    /v2/model/info).
+        - teamId: Filter to models accessible by the given team.
+
+    Each model in the list response includes `model_info.access_via_team_ids` and
+    `model_info.direct_access` when the proxy database is connected.
 
     Returns:
         Returns a dictionary containing information about each model.
@@ -308,6 +374,10 @@ async def asyncio(
 
     Args:
         litellm_model_id (None | str | Unset):
+        include_team_models (bool | None | Unset): When true, filter to deployments the caller can
+            use via direct access or team membership. Default: False.
+        team_id (None | str | Unset): Filter models by team ID. Returns models with
+            direct_access=True or teamId in access_via_team_ids
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -321,5 +391,7 @@ async def asyncio(
     return (await asyncio_detailed(
         client=client,
 litellm_model_id=litellm_model_id,
+include_team_models=include_team_models,
+team_id=team_id,
 
     )).parsed
