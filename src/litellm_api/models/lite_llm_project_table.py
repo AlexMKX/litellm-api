@@ -34,8 +34,6 @@ class LiteLLMProjectTable:
 
         Attributes:
             project_id (str):
-            created_by (str):
-            updated_by (str):
             project_alias (None | str | Unset):
             description (None | str | Unset):
             team_id (None | str | Unset):
@@ -48,6 +46,8 @@ class LiteLLMProjectTable:
             model_tpm_limit (LiteLLMProjectTableModelTpmLimitType0 | None | Unset):
             blocked (bool | Unset):  Default: False.
             object_permission_id (None | str | Unset):
+            created_by (None | str | Unset):
+            updated_by (None | str | Unset):
             created_at (datetime.datetime | None | Unset):
             updated_at (datetime.datetime | None | Unset):
             litellm_budget_table (LiteLLMBudgetTable | None | Unset):
@@ -55,8 +55,6 @@ class LiteLLMProjectTable:
      """
 
     project_id: str
-    created_by: str
-    updated_by: str
     project_alias: None | str | Unset = UNSET
     description: None | str | Unset = UNSET
     team_id: None | str | Unset = UNSET
@@ -69,6 +67,8 @@ class LiteLLMProjectTable:
     model_tpm_limit: LiteLLMProjectTableModelTpmLimitType0 | None | Unset = UNSET
     blocked: bool | Unset = False
     object_permission_id: None | str | Unset = UNSET
+    created_by: None | str | Unset = UNSET
+    updated_by: None | str | Unset = UNSET
     created_at: datetime.datetime | None | Unset = UNSET
     updated_at: datetime.datetime | None | Unset = UNSET
     litellm_budget_table: LiteLLMBudgetTable | None | Unset = UNSET
@@ -87,10 +87,6 @@ class LiteLLMProjectTable:
         from ..models.lite_llm_project_table_model_spend_type_0 import LiteLLMProjectTableModelSpendType0
         from ..models.lite_llm_project_table_model_tpm_limit_type_0 import LiteLLMProjectTableModelTpmLimitType0
         project_id = self.project_id
-
-        created_by = self.created_by
-
-        updated_by = self.updated_by
 
         project_alias: None | str | Unset
         if isinstance(self.project_alias, Unset):
@@ -164,6 +160,18 @@ class LiteLLMProjectTable:
         else:
             object_permission_id = self.object_permission_id
 
+        created_by: None | str | Unset
+        if isinstance(self.created_by, Unset):
+            created_by = UNSET
+        else:
+            created_by = self.created_by
+
+        updated_by: None | str | Unset
+        if isinstance(self.updated_by, Unset):
+            updated_by = UNSET
+        else:
+            updated_by = self.updated_by
+
         created_at: None | str | Unset
         if isinstance(self.created_at, Unset):
             created_at = UNSET
@@ -201,8 +209,6 @@ class LiteLLMProjectTable:
         field_dict.update(self.additional_properties)
         field_dict.update({
             "project_id": project_id,
-            "created_by": created_by,
-            "updated_by": updated_by,
         })
         if project_alias is not UNSET:
             field_dict["project_alias"] = project_alias
@@ -228,6 +234,10 @@ class LiteLLMProjectTable:
             field_dict["blocked"] = blocked
         if object_permission_id is not UNSET:
             field_dict["object_permission_id"] = object_permission_id
+        if created_by is not UNSET:
+            field_dict["created_by"] = created_by
+        if updated_by is not UNSET:
+            field_dict["updated_by"] = updated_by
         if created_at is not UNSET:
             field_dict["created_at"] = created_at
         if updated_at is not UNSET:
@@ -251,10 +261,6 @@ class LiteLLMProjectTable:
         from ..models.lite_llm_project_table_model_tpm_limit_type_0 import LiteLLMProjectTableModelTpmLimitType0
         d = dict(src_dict)
         project_id = d.pop("project_id")
-
-        created_by = d.pop("created_by")
-
-        updated_by = d.pop("updated_by")
 
         def _parse_project_alias(data: object) -> None | str | Unset:
             if data is None:
@@ -393,6 +399,26 @@ class LiteLLMProjectTable:
         object_permission_id = _parse_object_permission_id(d.pop("object_permission_id", UNSET))
 
 
+        def _parse_created_by(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        created_by = _parse_created_by(d.pop("created_by", UNSET))
+
+
+        def _parse_updated_by(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        updated_by = _parse_updated_by(d.pop("updated_by", UNSET))
+
+
         def _parse_created_at(data: object) -> datetime.datetime | None | Unset:
             if data is None:
                 return data
@@ -475,8 +501,6 @@ class LiteLLMProjectTable:
 
         lite_llm_project_table = cls(
             project_id=project_id,
-            created_by=created_by,
-            updated_by=updated_by,
             project_alias=project_alias,
             description=description,
             team_id=team_id,
@@ -489,6 +513,8 @@ class LiteLLMProjectTable:
             model_tpm_limit=model_tpm_limit,
             blocked=blocked,
             object_permission_id=object_permission_id,
+            created_by=created_by,
+            updated_by=updated_by,
             created_at=created_at,
             updated_at=updated_at,
             litellm_budget_table=litellm_budget_table,

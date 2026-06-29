@@ -8,8 +8,6 @@ from ...client import AuthenticatedClient, Client
 from ...types import Response, UNSET
 from ... import errors
 
-from ...models.lite_llm_organization_table_with_members import LiteLLMOrganizationTableWithMembers
-from typing import cast
 
 
 
@@ -32,21 +30,14 @@ def _get_kwargs(
 
 
 
-def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> LiteLLMOrganizationTableWithMembers | None:
-    if response.status_code == 200:
-        response_200 = LiteLLMOrganizationTableWithMembers.from_dict(response.json())
-
-
-
-        return response_200
-
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Any | None:
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
         return None
 
 
-def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[LiteLLMOrganizationTableWithMembers]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Any]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -59,7 +50,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient,
 
-) -> Response[LiteLLMOrganizationTableWithMembers]:
+) -> Response[Any]:
     """ Update Organization
 
      Update an organization
@@ -69,7 +60,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[LiteLLMOrganizationTableWithMembers]
+        Response[Any]
      """
 
 
@@ -83,34 +74,12 @@ def sync_detailed(
 
     return _build_response(client=client, response=response)
 
-def sync(
-    *,
-    client: AuthenticatedClient,
-
-) -> LiteLLMOrganizationTableWithMembers | None:
-    """ Update Organization
-
-     Update an organization
-
-    Raises:
-        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
-        httpx.TimeoutException: If the request takes longer than Client.timeout.
-
-    Returns:
-        LiteLLMOrganizationTableWithMembers
-     """
-
-
-    return sync_detailed(
-        client=client,
-
-    ).parsed
 
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
 
-) -> Response[LiteLLMOrganizationTableWithMembers]:
+) -> Response[Any]:
     """ Update Organization
 
      Update an organization
@@ -120,7 +89,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[LiteLLMOrganizationTableWithMembers]
+        Response[Any]
      """
 
 
@@ -134,25 +103,3 @@ async def asyncio_detailed(
 
     return _build_response(client=client, response=response)
 
-async def asyncio(
-    *,
-    client: AuthenticatedClient,
-
-) -> LiteLLMOrganizationTableWithMembers | None:
-    """ Update Organization
-
-     Update an organization
-
-    Raises:
-        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
-        httpx.TimeoutException: If the request takes longer than Client.timeout.
-
-    Returns:
-        LiteLLMOrganizationTableWithMembers
-     """
-
-
-    return (await asyncio_detailed(
-        client=client,
-
-    )).parsed

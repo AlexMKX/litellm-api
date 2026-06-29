@@ -14,12 +14,12 @@ from ..types import UNSET, Unset
 
 
 
-T = TypeVar("T", bound="LiteLLMTeamTableMetadataType0")
+T = TypeVar("T", bound="LiteLLMProxyModelTableModelInfoType0")
 
 
 
 @_attrs_define
-class LiteLLMTeamTableMetadataType0:
+class LiteLLMProxyModelTableModelInfoType0:
     """ 
      """
 
@@ -41,12 +41,12 @@ class LiteLLMTeamTableMetadataType0:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        lite_llm_team_table_metadata_type_0 = cls(
+        lite_llm_proxy_model_table_model_info_type_0 = cls(
         )
 
 
-        lite_llm_team_table_metadata_type_0.additional_properties = d
-        return lite_llm_team_table_metadata_type_0
+        lite_llm_proxy_model_table_model_info_type_0.additional_properties = d
+        return lite_llm_proxy_model_table_model_info_type_0
 
     @property
     def additional_keys(self) -> list[str]:

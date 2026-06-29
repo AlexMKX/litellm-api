@@ -53,6 +53,8 @@ class LiteLLMParams:
             cache_read_input_token_cost_flex (float | None | Unset):
             cache_read_input_token_cost_priority (float | None | Unset):
             cache_read_input_token_cost_above_200k_tokens (float | None | Unset):
+            cache_read_input_token_cost_above_200k_tokens_priority (float | None | Unset):
+            cache_read_input_token_cost_above_272k_tokens_priority (float | None | Unset):
             cache_read_input_audio_token_cost (float | None | Unset):
             input_cost_per_character (float | None | Unset):
             input_cost_per_character_above_128k_tokens (float | None | Unset):
@@ -60,6 +62,8 @@ class LiteLLMParams:
             input_cost_per_token_cache_hit (float | None | Unset):
             input_cost_per_token_above_128k_tokens (float | None | Unset):
             input_cost_per_token_above_200k_tokens (float | None | Unset):
+            input_cost_per_token_above_200k_tokens_priority (float | None | Unset):
+            input_cost_per_token_above_272k_tokens_priority (float | None | Unset):
             input_cost_per_query (float | None | Unset):
             input_cost_per_image (float | None | Unset):
             input_cost_per_image_above_128k_tokens (float | None | Unset):
@@ -77,6 +81,8 @@ class LiteLLMParams:
             output_cost_per_audio_token (float | None | Unset):
             output_cost_per_token_above_128k_tokens (float | None | Unset):
             output_cost_per_token_above_200k_tokens (float | None | Unset):
+            output_cost_per_token_above_200k_tokens_priority (float | None | Unset):
+            output_cost_per_token_above_272k_tokens_priority (float | None | Unset):
             output_cost_per_character_above_128k_tokens (float | None | Unset):
             output_cost_per_image (float | None | Unset):
             output_cost_per_image_token (float | None | Unset):
@@ -89,6 +95,7 @@ class LiteLLMParams:
             api_key (None | str | Unset):
             api_base (None | str | Unset):
             api_version (None | str | Unset):
+            azure_ad_token (None | str | Unset):
             vertex_project (None | str | Unset):
             vertex_location (None | str | Unset):
             vertex_credentials (LiteLLMParamsVertexCredentialsType1 | None | str | Unset):
@@ -97,6 +104,8 @@ class LiteLLMParams:
             aws_secret_access_key (None | str | Unset):
             aws_region_name (None | str | Unset):
             aws_bedrock_runtime_endpoint (None | str | Unset):
+            aws_bedrock_project_id (None | str | Unset):
+            s3_bucket_name (None | str | Unset):
             watsonx_region_name (None | str | Unset):
             custom_llm_provider (None | str | Unset):
             tpm (int | None | Unset):
@@ -116,6 +125,8 @@ class LiteLLMParams:
             use_in_pass_through (bool | None | Unset):  Default: False.
             use_litellm_proxy (bool | None | Unset):  Default: False.
             use_chat_completions_api (bool | None | Unset):
+            use_xai_oauth (bool | None | Unset): Use stored xAI OAuth credentials when no xAI API key is configured.
+                Default: False.
             merge_reasoning_content_in_choices (bool | None | Unset):  Default: False.
             model_info (LiteLLMParamsModelInfoType0 | None | Unset):
             mock_response (Any | ModelResponse | None | str | Unset):
@@ -131,7 +142,6 @@ class LiteLLMParams:
             adaptive_router_config (LiteLLMParamsAdaptiveRouterConfigType0 | None | Unset):
             quality_router_config (LiteLLMParamsQualityRouterConfigType0 | None | Unset):
             quality_router_default_model (None | str | Unset):
-            s3_bucket_name (None | str | Unset):
             s3_encryption_key_id (None | str | Unset):
             gcs_bucket_name (None | str | Unset):
             vector_store_id (None | str | Unset):
@@ -158,6 +168,8 @@ class LiteLLMParams:
     cache_read_input_token_cost_flex: float | None | Unset = UNSET
     cache_read_input_token_cost_priority: float | None | Unset = UNSET
     cache_read_input_token_cost_above_200k_tokens: float | None | Unset = UNSET
+    cache_read_input_token_cost_above_200k_tokens_priority: float | None | Unset = UNSET
+    cache_read_input_token_cost_above_272k_tokens_priority: float | None | Unset = UNSET
     cache_read_input_audio_token_cost: float | None | Unset = UNSET
     input_cost_per_character: float | None | Unset = UNSET
     input_cost_per_character_above_128k_tokens: float | None | Unset = UNSET
@@ -165,6 +177,8 @@ class LiteLLMParams:
     input_cost_per_token_cache_hit: float | None | Unset = UNSET
     input_cost_per_token_above_128k_tokens: float | None | Unset = UNSET
     input_cost_per_token_above_200k_tokens: float | None | Unset = UNSET
+    input_cost_per_token_above_200k_tokens_priority: float | None | Unset = UNSET
+    input_cost_per_token_above_272k_tokens_priority: float | None | Unset = UNSET
     input_cost_per_query: float | None | Unset = UNSET
     input_cost_per_image: float | None | Unset = UNSET
     input_cost_per_image_above_128k_tokens: float | None | Unset = UNSET
@@ -182,6 +196,8 @@ class LiteLLMParams:
     output_cost_per_audio_token: float | None | Unset = UNSET
     output_cost_per_token_above_128k_tokens: float | None | Unset = UNSET
     output_cost_per_token_above_200k_tokens: float | None | Unset = UNSET
+    output_cost_per_token_above_200k_tokens_priority: float | None | Unset = UNSET
+    output_cost_per_token_above_272k_tokens_priority: float | None | Unset = UNSET
     output_cost_per_character_above_128k_tokens: float | None | Unset = UNSET
     output_cost_per_image: float | None | Unset = UNSET
     output_cost_per_image_token: float | None | Unset = UNSET
@@ -194,6 +210,7 @@ class LiteLLMParams:
     api_key: None | str | Unset = UNSET
     api_base: None | str | Unset = UNSET
     api_version: None | str | Unset = UNSET
+    azure_ad_token: None | str | Unset = UNSET
     vertex_project: None | str | Unset = UNSET
     vertex_location: None | str | Unset = UNSET
     vertex_credentials: LiteLLMParamsVertexCredentialsType1 | None | str | Unset = UNSET
@@ -202,6 +219,8 @@ class LiteLLMParams:
     aws_secret_access_key: None | str | Unset = UNSET
     aws_region_name: None | str | Unset = UNSET
     aws_bedrock_runtime_endpoint: None | str | Unset = UNSET
+    aws_bedrock_project_id: None | str | Unset = UNSET
+    s3_bucket_name: None | str | Unset = UNSET
     watsonx_region_name: None | str | Unset = UNSET
     custom_llm_provider: None | str | Unset = UNSET
     tpm: int | None | Unset = UNSET
@@ -221,6 +240,7 @@ class LiteLLMParams:
     use_in_pass_through: bool | None | Unset = False
     use_litellm_proxy: bool | None | Unset = False
     use_chat_completions_api: bool | None | Unset = UNSET
+    use_xai_oauth: bool | None | Unset = False
     merge_reasoning_content_in_choices: bool | None | Unset = False
     model_info: LiteLLMParamsModelInfoType0 | None | Unset = UNSET
     mock_response: Any | ModelResponse | None | str | Unset = UNSET
@@ -236,7 +256,6 @@ class LiteLLMParams:
     adaptive_router_config: LiteLLMParamsAdaptiveRouterConfigType0 | None | Unset = UNSET
     quality_router_config: LiteLLMParamsQualityRouterConfigType0 | None | Unset = UNSET
     quality_router_default_model: None | str | Unset = UNSET
-    s3_bucket_name: None | str | Unset = UNSET
     s3_encryption_key_id: None | str | Unset = UNSET
     gcs_bucket_name: None | str | Unset = UNSET
     vector_store_id: None | str | Unset = UNSET
@@ -363,6 +382,18 @@ class LiteLLMParams:
         else:
             cache_read_input_token_cost_above_200k_tokens = self.cache_read_input_token_cost_above_200k_tokens
 
+        cache_read_input_token_cost_above_200k_tokens_priority: float | None | Unset
+        if isinstance(self.cache_read_input_token_cost_above_200k_tokens_priority, Unset):
+            cache_read_input_token_cost_above_200k_tokens_priority = UNSET
+        else:
+            cache_read_input_token_cost_above_200k_tokens_priority = self.cache_read_input_token_cost_above_200k_tokens_priority
+
+        cache_read_input_token_cost_above_272k_tokens_priority: float | None | Unset
+        if isinstance(self.cache_read_input_token_cost_above_272k_tokens_priority, Unset):
+            cache_read_input_token_cost_above_272k_tokens_priority = UNSET
+        else:
+            cache_read_input_token_cost_above_272k_tokens_priority = self.cache_read_input_token_cost_above_272k_tokens_priority
+
         cache_read_input_audio_token_cost: float | None | Unset
         if isinstance(self.cache_read_input_audio_token_cost, Unset):
             cache_read_input_audio_token_cost = UNSET
@@ -404,6 +435,18 @@ class LiteLLMParams:
             input_cost_per_token_above_200k_tokens = UNSET
         else:
             input_cost_per_token_above_200k_tokens = self.input_cost_per_token_above_200k_tokens
+
+        input_cost_per_token_above_200k_tokens_priority: float | None | Unset
+        if isinstance(self.input_cost_per_token_above_200k_tokens_priority, Unset):
+            input_cost_per_token_above_200k_tokens_priority = UNSET
+        else:
+            input_cost_per_token_above_200k_tokens_priority = self.input_cost_per_token_above_200k_tokens_priority
+
+        input_cost_per_token_above_272k_tokens_priority: float | None | Unset
+        if isinstance(self.input_cost_per_token_above_272k_tokens_priority, Unset):
+            input_cost_per_token_above_272k_tokens_priority = UNSET
+        else:
+            input_cost_per_token_above_272k_tokens_priority = self.input_cost_per_token_above_272k_tokens_priority
 
         input_cost_per_query: float | None | Unset
         if isinstance(self.input_cost_per_query, Unset):
@@ -507,6 +550,18 @@ class LiteLLMParams:
         else:
             output_cost_per_token_above_200k_tokens = self.output_cost_per_token_above_200k_tokens
 
+        output_cost_per_token_above_200k_tokens_priority: float | None | Unset
+        if isinstance(self.output_cost_per_token_above_200k_tokens_priority, Unset):
+            output_cost_per_token_above_200k_tokens_priority = UNSET
+        else:
+            output_cost_per_token_above_200k_tokens_priority = self.output_cost_per_token_above_200k_tokens_priority
+
+        output_cost_per_token_above_272k_tokens_priority: float | None | Unset
+        if isinstance(self.output_cost_per_token_above_272k_tokens_priority, Unset):
+            output_cost_per_token_above_272k_tokens_priority = UNSET
+        else:
+            output_cost_per_token_above_272k_tokens_priority = self.output_cost_per_token_above_272k_tokens_priority
+
         output_cost_per_character_above_128k_tokens: float | None | Unset
         if isinstance(self.output_cost_per_character_above_128k_tokens, Unset):
             output_cost_per_character_above_128k_tokens = UNSET
@@ -588,6 +643,12 @@ class LiteLLMParams:
         else:
             api_version = self.api_version
 
+        azure_ad_token: None | str | Unset
+        if isinstance(self.azure_ad_token, Unset):
+            azure_ad_token = UNSET
+        else:
+            azure_ad_token = self.azure_ad_token
+
         vertex_project: None | str | Unset
         if isinstance(self.vertex_project, Unset):
             vertex_project = UNSET
@@ -637,6 +698,18 @@ class LiteLLMParams:
             aws_bedrock_runtime_endpoint = UNSET
         else:
             aws_bedrock_runtime_endpoint = self.aws_bedrock_runtime_endpoint
+
+        aws_bedrock_project_id: None | str | Unset
+        if isinstance(self.aws_bedrock_project_id, Unset):
+            aws_bedrock_project_id = UNSET
+        else:
+            aws_bedrock_project_id = self.aws_bedrock_project_id
+
+        s3_bucket_name: None | str | Unset
+        if isinstance(self.s3_bucket_name, Unset):
+            s3_bucket_name = UNSET
+        else:
+            s3_bucket_name = self.s3_bucket_name
 
         watsonx_region_name: None | str | Unset
         if isinstance(self.watsonx_region_name, Unset):
@@ -763,6 +836,12 @@ class LiteLLMParams:
         else:
             use_chat_completions_api = self.use_chat_completions_api
 
+        use_xai_oauth: bool | None | Unset
+        if isinstance(self.use_xai_oauth, Unset):
+            use_xai_oauth = UNSET
+        else:
+            use_xai_oauth = self.use_xai_oauth
+
         merge_reasoning_content_in_choices: bool | None | Unset
         if isinstance(self.merge_reasoning_content_in_choices, Unset):
             merge_reasoning_content_in_choices = UNSET
@@ -871,12 +950,6 @@ class LiteLLMParams:
         else:
             quality_router_default_model = self.quality_router_default_model
 
-        s3_bucket_name: None | str | Unset
-        if isinstance(self.s3_bucket_name, Unset):
-            s3_bucket_name = UNSET
-        else:
-            s3_bucket_name = self.s3_bucket_name
-
         s3_encryption_key_id: None | str | Unset
         if isinstance(self.s3_encryption_key_id, Unset):
             s3_encryption_key_id = UNSET
@@ -957,6 +1030,10 @@ class LiteLLMParams:
             field_dict["cache_read_input_token_cost_priority"] = cache_read_input_token_cost_priority
         if cache_read_input_token_cost_above_200k_tokens is not UNSET:
             field_dict["cache_read_input_token_cost_above_200k_tokens"] = cache_read_input_token_cost_above_200k_tokens
+        if cache_read_input_token_cost_above_200k_tokens_priority is not UNSET:
+            field_dict["cache_read_input_token_cost_above_200k_tokens_priority"] = cache_read_input_token_cost_above_200k_tokens_priority
+        if cache_read_input_token_cost_above_272k_tokens_priority is not UNSET:
+            field_dict["cache_read_input_token_cost_above_272k_tokens_priority"] = cache_read_input_token_cost_above_272k_tokens_priority
         if cache_read_input_audio_token_cost is not UNSET:
             field_dict["cache_read_input_audio_token_cost"] = cache_read_input_audio_token_cost
         if input_cost_per_character is not UNSET:
@@ -971,6 +1048,10 @@ class LiteLLMParams:
             field_dict["input_cost_per_token_above_128k_tokens"] = input_cost_per_token_above_128k_tokens
         if input_cost_per_token_above_200k_tokens is not UNSET:
             field_dict["input_cost_per_token_above_200k_tokens"] = input_cost_per_token_above_200k_tokens
+        if input_cost_per_token_above_200k_tokens_priority is not UNSET:
+            field_dict["input_cost_per_token_above_200k_tokens_priority"] = input_cost_per_token_above_200k_tokens_priority
+        if input_cost_per_token_above_272k_tokens_priority is not UNSET:
+            field_dict["input_cost_per_token_above_272k_tokens_priority"] = input_cost_per_token_above_272k_tokens_priority
         if input_cost_per_query is not UNSET:
             field_dict["input_cost_per_query"] = input_cost_per_query
         if input_cost_per_image is not UNSET:
@@ -1005,6 +1086,10 @@ class LiteLLMParams:
             field_dict["output_cost_per_token_above_128k_tokens"] = output_cost_per_token_above_128k_tokens
         if output_cost_per_token_above_200k_tokens is not UNSET:
             field_dict["output_cost_per_token_above_200k_tokens"] = output_cost_per_token_above_200k_tokens
+        if output_cost_per_token_above_200k_tokens_priority is not UNSET:
+            field_dict["output_cost_per_token_above_200k_tokens_priority"] = output_cost_per_token_above_200k_tokens_priority
+        if output_cost_per_token_above_272k_tokens_priority is not UNSET:
+            field_dict["output_cost_per_token_above_272k_tokens_priority"] = output_cost_per_token_above_272k_tokens_priority
         if output_cost_per_character_above_128k_tokens is not UNSET:
             field_dict["output_cost_per_character_above_128k_tokens"] = output_cost_per_character_above_128k_tokens
         if output_cost_per_image is not UNSET:
@@ -1029,6 +1114,8 @@ class LiteLLMParams:
             field_dict["api_base"] = api_base
         if api_version is not UNSET:
             field_dict["api_version"] = api_version
+        if azure_ad_token is not UNSET:
+            field_dict["azure_ad_token"] = azure_ad_token
         if vertex_project is not UNSET:
             field_dict["vertex_project"] = vertex_project
         if vertex_location is not UNSET:
@@ -1045,6 +1132,10 @@ class LiteLLMParams:
             field_dict["aws_region_name"] = aws_region_name
         if aws_bedrock_runtime_endpoint is not UNSET:
             field_dict["aws_bedrock_runtime_endpoint"] = aws_bedrock_runtime_endpoint
+        if aws_bedrock_project_id is not UNSET:
+            field_dict["aws_bedrock_project_id"] = aws_bedrock_project_id
+        if s3_bucket_name is not UNSET:
+            field_dict["s3_bucket_name"] = s3_bucket_name
         if watsonx_region_name is not UNSET:
             field_dict["watsonx_region_name"] = watsonx_region_name
         if custom_llm_provider is not UNSET:
@@ -1083,6 +1174,8 @@ class LiteLLMParams:
             field_dict["use_litellm_proxy"] = use_litellm_proxy
         if use_chat_completions_api is not UNSET:
             field_dict["use_chat_completions_api"] = use_chat_completions_api
+        if use_xai_oauth is not UNSET:
+            field_dict["use_xai_oauth"] = use_xai_oauth
         if merge_reasoning_content_in_choices is not UNSET:
             field_dict["merge_reasoning_content_in_choices"] = merge_reasoning_content_in_choices
         if model_info is not UNSET:
@@ -1113,8 +1206,6 @@ class LiteLLMParams:
             field_dict["quality_router_config"] = quality_router_config
         if quality_router_default_model is not UNSET:
             field_dict["quality_router_default_model"] = quality_router_default_model
-        if s3_bucket_name is not UNSET:
-            field_dict["s3_bucket_name"] = s3_bucket_name
         if s3_encryption_key_id is not UNSET:
             field_dict["s3_encryption_key_id"] = s3_encryption_key_id
         if gcs_bucket_name is not UNSET:
@@ -1316,6 +1407,26 @@ class LiteLLMParams:
         cache_read_input_token_cost_above_200k_tokens = _parse_cache_read_input_token_cost_above_200k_tokens(d.pop("cache_read_input_token_cost_above_200k_tokens", UNSET))
 
 
+        def _parse_cache_read_input_token_cost_above_200k_tokens_priority(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        cache_read_input_token_cost_above_200k_tokens_priority = _parse_cache_read_input_token_cost_above_200k_tokens_priority(d.pop("cache_read_input_token_cost_above_200k_tokens_priority", UNSET))
+
+
+        def _parse_cache_read_input_token_cost_above_272k_tokens_priority(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        cache_read_input_token_cost_above_272k_tokens_priority = _parse_cache_read_input_token_cost_above_272k_tokens_priority(d.pop("cache_read_input_token_cost_above_272k_tokens_priority", UNSET))
+
+
         def _parse_cache_read_input_audio_token_cost(data: object) -> float | None | Unset:
             if data is None:
                 return data
@@ -1384,6 +1495,26 @@ class LiteLLMParams:
             return cast(float | None | Unset, data)
 
         input_cost_per_token_above_200k_tokens = _parse_input_cost_per_token_above_200k_tokens(d.pop("input_cost_per_token_above_200k_tokens", UNSET))
+
+
+        def _parse_input_cost_per_token_above_200k_tokens_priority(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        input_cost_per_token_above_200k_tokens_priority = _parse_input_cost_per_token_above_200k_tokens_priority(d.pop("input_cost_per_token_above_200k_tokens_priority", UNSET))
+
+
+        def _parse_input_cost_per_token_above_272k_tokens_priority(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        input_cost_per_token_above_272k_tokens_priority = _parse_input_cost_per_token_above_272k_tokens_priority(d.pop("input_cost_per_token_above_272k_tokens_priority", UNSET))
 
 
         def _parse_input_cost_per_query(data: object) -> float | None | Unset:
@@ -1556,6 +1687,26 @@ class LiteLLMParams:
         output_cost_per_token_above_200k_tokens = _parse_output_cost_per_token_above_200k_tokens(d.pop("output_cost_per_token_above_200k_tokens", UNSET))
 
 
+        def _parse_output_cost_per_token_above_200k_tokens_priority(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        output_cost_per_token_above_200k_tokens_priority = _parse_output_cost_per_token_above_200k_tokens_priority(d.pop("output_cost_per_token_above_200k_tokens_priority", UNSET))
+
+
+        def _parse_output_cost_per_token_above_272k_tokens_priority(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        output_cost_per_token_above_272k_tokens_priority = _parse_output_cost_per_token_above_272k_tokens_priority(d.pop("output_cost_per_token_above_272k_tokens_priority", UNSET))
+
+
         def _parse_output_cost_per_character_above_128k_tokens(data: object) -> float | None | Unset:
             if data is None:
                 return data
@@ -1701,6 +1852,16 @@ class LiteLLMParams:
         api_version = _parse_api_version(d.pop("api_version", UNSET))
 
 
+        def _parse_azure_ad_token(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        azure_ad_token = _parse_azure_ad_token(d.pop("azure_ad_token", UNSET))
+
+
         def _parse_vertex_project(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -1789,6 +1950,26 @@ class LiteLLMParams:
             return cast(None | str | Unset, data)
 
         aws_bedrock_runtime_endpoint = _parse_aws_bedrock_runtime_endpoint(d.pop("aws_bedrock_runtime_endpoint", UNSET))
+
+
+        def _parse_aws_bedrock_project_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        aws_bedrock_project_id = _parse_aws_bedrock_project_id(d.pop("aws_bedrock_project_id", UNSET))
+
+
+        def _parse_s3_bucket_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        s3_bucket_name = _parse_s3_bucket_name(d.pop("s3_bucket_name", UNSET))
 
 
         def _parse_watsonx_region_name(data: object) -> None | str | Unset:
@@ -2007,6 +2188,16 @@ class LiteLLMParams:
         use_chat_completions_api = _parse_use_chat_completions_api(d.pop("use_chat_completions_api", UNSET))
 
 
+        def _parse_use_xai_oauth(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        use_xai_oauth = _parse_use_xai_oauth(d.pop("use_xai_oauth", UNSET))
+
+
         def _parse_merge_reasoning_content_in_choices(data: object) -> bool | None | Unset:
             if data is None:
                 return data
@@ -2223,16 +2414,6 @@ class LiteLLMParams:
         quality_router_default_model = _parse_quality_router_default_model(d.pop("quality_router_default_model", UNSET))
 
 
-        def _parse_s3_bucket_name(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        s3_bucket_name = _parse_s3_bucket_name(d.pop("s3_bucket_name", UNSET))
-
-
         def _parse_s3_encryption_key_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -2320,6 +2501,8 @@ class LiteLLMParams:
             cache_read_input_token_cost_flex=cache_read_input_token_cost_flex,
             cache_read_input_token_cost_priority=cache_read_input_token_cost_priority,
             cache_read_input_token_cost_above_200k_tokens=cache_read_input_token_cost_above_200k_tokens,
+            cache_read_input_token_cost_above_200k_tokens_priority=cache_read_input_token_cost_above_200k_tokens_priority,
+            cache_read_input_token_cost_above_272k_tokens_priority=cache_read_input_token_cost_above_272k_tokens_priority,
             cache_read_input_audio_token_cost=cache_read_input_audio_token_cost,
             input_cost_per_character=input_cost_per_character,
             input_cost_per_character_above_128k_tokens=input_cost_per_character_above_128k_tokens,
@@ -2327,6 +2510,8 @@ class LiteLLMParams:
             input_cost_per_token_cache_hit=input_cost_per_token_cache_hit,
             input_cost_per_token_above_128k_tokens=input_cost_per_token_above_128k_tokens,
             input_cost_per_token_above_200k_tokens=input_cost_per_token_above_200k_tokens,
+            input_cost_per_token_above_200k_tokens_priority=input_cost_per_token_above_200k_tokens_priority,
+            input_cost_per_token_above_272k_tokens_priority=input_cost_per_token_above_272k_tokens_priority,
             input_cost_per_query=input_cost_per_query,
             input_cost_per_image=input_cost_per_image,
             input_cost_per_image_above_128k_tokens=input_cost_per_image_above_128k_tokens,
@@ -2344,6 +2529,8 @@ class LiteLLMParams:
             output_cost_per_audio_token=output_cost_per_audio_token,
             output_cost_per_token_above_128k_tokens=output_cost_per_token_above_128k_tokens,
             output_cost_per_token_above_200k_tokens=output_cost_per_token_above_200k_tokens,
+            output_cost_per_token_above_200k_tokens_priority=output_cost_per_token_above_200k_tokens_priority,
+            output_cost_per_token_above_272k_tokens_priority=output_cost_per_token_above_272k_tokens_priority,
             output_cost_per_character_above_128k_tokens=output_cost_per_character_above_128k_tokens,
             output_cost_per_image=output_cost_per_image,
             output_cost_per_image_token=output_cost_per_image_token,
@@ -2356,6 +2543,7 @@ class LiteLLMParams:
             api_key=api_key,
             api_base=api_base,
             api_version=api_version,
+            azure_ad_token=azure_ad_token,
             vertex_project=vertex_project,
             vertex_location=vertex_location,
             vertex_credentials=vertex_credentials,
@@ -2364,6 +2552,8 @@ class LiteLLMParams:
             aws_secret_access_key=aws_secret_access_key,
             aws_region_name=aws_region_name,
             aws_bedrock_runtime_endpoint=aws_bedrock_runtime_endpoint,
+            aws_bedrock_project_id=aws_bedrock_project_id,
+            s3_bucket_name=s3_bucket_name,
             watsonx_region_name=watsonx_region_name,
             custom_llm_provider=custom_llm_provider,
             tpm=tpm,
@@ -2383,6 +2573,7 @@ class LiteLLMParams:
             use_in_pass_through=use_in_pass_through,
             use_litellm_proxy=use_litellm_proxy,
             use_chat_completions_api=use_chat_completions_api,
+            use_xai_oauth=use_xai_oauth,
             merge_reasoning_content_in_choices=merge_reasoning_content_in_choices,
             model_info=model_info,
             mock_response=mock_response,
@@ -2398,7 +2589,6 @@ class LiteLLMParams:
             adaptive_router_config=adaptive_router_config,
             quality_router_config=quality_router_config,
             quality_router_default_model=quality_router_default_model,
-            s3_bucket_name=s3_bucket_name,
             s3_encryption_key_id=s3_encryption_key_id,
             gcs_bucket_name=gcs_bucket_name,
             vector_store_id=vector_store_id,

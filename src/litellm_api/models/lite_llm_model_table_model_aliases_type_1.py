@@ -14,12 +14,12 @@ from ..types import UNSET, Unset
 
 
 
-T = TypeVar("T", bound="LiteLLMDeletedTeamTableRouterSettingsType0")
+T = TypeVar("T", bound="LiteLLMModelTableModelAliasesType1")
 
 
 
 @_attrs_define
-class LiteLLMDeletedTeamTableRouterSettingsType0:
+class LiteLLMModelTableModelAliasesType1:
     """ 
      """
 
@@ -41,12 +41,12 @@ class LiteLLMDeletedTeamTableRouterSettingsType0:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        lite_llm_deleted_team_table_router_settings_type_0 = cls(
+        lite_llm_model_table_model_aliases_type_1 = cls(
         )
 
 
-        lite_llm_deleted_team_table_router_settings_type_0.additional_properties = d
-        return lite_llm_deleted_team_table_router_settings_type_0
+        lite_llm_model_table_model_aliases_type_1.additional_properties = d
+        return lite_llm_model_table_model_aliases_type_1
 
     @property
     def additional_keys(self) -> list[str]:

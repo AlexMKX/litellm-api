@@ -34,6 +34,7 @@ class LiteLLMObjectPermissionTable:
             vector_stores (list[str] | None | Unset):
             agents (list[str] | None | Unset):
             agent_access_groups (list[str] | None | Unset):
+            models (list[str] | None | Unset):
             mcp_toolsets (list[str] | None | Unset):
             blocked_tools (list[str] | None | Unset):
             search_tools (list[str] | None | Unset):
@@ -46,6 +47,7 @@ class LiteLLMObjectPermissionTable:
     vector_stores: list[str] | None | Unset = UNSET
     agents: list[str] | None | Unset = UNSET
     agent_access_groups: list[str] | None | Unset = UNSET
+    models: list[str] | None | Unset = UNSET
     mcp_toolsets: list[str] | None | Unset = UNSET
     blocked_tools: list[str] | None | Unset = UNSET
     search_tools: list[str] | None | Unset = UNSET
@@ -117,6 +119,16 @@ class LiteLLMObjectPermissionTable:
         else:
             agent_access_groups = self.agent_access_groups
 
+        models: list[str] | None | Unset
+        if isinstance(self.models, Unset):
+            models = UNSET
+        elif isinstance(self.models, list):
+            models = self.models
+
+
+        else:
+            models = self.models
+
         mcp_toolsets: list[str] | None | Unset
         if isinstance(self.mcp_toolsets, Unset):
             mcp_toolsets = UNSET
@@ -165,6 +177,8 @@ class LiteLLMObjectPermissionTable:
             field_dict["agents"] = agents
         if agent_access_groups is not UNSET:
             field_dict["agent_access_groups"] = agent_access_groups
+        if models is not UNSET:
+            field_dict["models"] = models
         if mcp_toolsets is not UNSET:
             field_dict["mcp_toolsets"] = mcp_toolsets
         if blocked_tools is not UNSET:
@@ -292,6 +306,24 @@ class LiteLLMObjectPermissionTable:
         agent_access_groups = _parse_agent_access_groups(d.pop("agent_access_groups", UNSET))
 
 
+        def _parse_models(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                models_type_0 = cast(list[str], data)
+
+                return models_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        models = _parse_models(d.pop("models", UNSET))
+
+
         def _parse_mcp_toolsets(data: object) -> list[str] | None | Unset:
             if data is None:
                 return data
@@ -354,6 +386,7 @@ class LiteLLMObjectPermissionTable:
             vector_stores=vector_stores,
             agents=agents,
             agent_access_groups=agent_access_groups,
+            models=models,
             mcp_toolsets=mcp_toolsets,
             blocked_tools=blocked_tools,
             search_tools=search_tools,

@@ -34,8 +34,6 @@ class NewProjectResponse:
 
         Attributes:
             project_id (str):
-            created_by (str):
-            updated_by (str):
             created_at (datetime.datetime):
             updated_at (datetime.datetime):
             project_alias (None | str | Unset):
@@ -50,13 +48,13 @@ class NewProjectResponse:
             model_tpm_limit (NewProjectResponseModelTpmLimitType0 | None | Unset):
             blocked (bool | Unset):  Default: False.
             object_permission_id (None | str | Unset):
+            created_by (None | str | Unset):
+            updated_by (None | str | Unset):
             litellm_budget_table (LiteLLMBudgetTable | None | Unset):
             object_permission (LiteLLMObjectPermissionTable | None | Unset):
      """
 
     project_id: str
-    created_by: str
-    updated_by: str
     created_at: datetime.datetime
     updated_at: datetime.datetime
     project_alias: None | str | Unset = UNSET
@@ -71,6 +69,8 @@ class NewProjectResponse:
     model_tpm_limit: NewProjectResponseModelTpmLimitType0 | None | Unset = UNSET
     blocked: bool | Unset = False
     object_permission_id: None | str | Unset = UNSET
+    created_by: None | str | Unset = UNSET
+    updated_by: None | str | Unset = UNSET
     litellm_budget_table: LiteLLMBudgetTable | None | Unset = UNSET
     object_permission: LiteLLMObjectPermissionTable | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -87,10 +87,6 @@ class NewProjectResponse:
         from ..models.new_project_response_model_spend_type_0 import NewProjectResponseModelSpendType0
         from ..models.new_project_response_model_tpm_limit_type_0 import NewProjectResponseModelTpmLimitType0
         project_id = self.project_id
-
-        created_by = self.created_by
-
-        updated_by = self.updated_by
 
         created_at = self.created_at.isoformat()
 
@@ -168,6 +164,18 @@ class NewProjectResponse:
         else:
             object_permission_id = self.object_permission_id
 
+        created_by: None | str | Unset
+        if isinstance(self.created_by, Unset):
+            created_by = UNSET
+        else:
+            created_by = self.created_by
+
+        updated_by: None | str | Unset
+        if isinstance(self.updated_by, Unset):
+            updated_by = UNSET
+        else:
+            updated_by = self.updated_by
+
         litellm_budget_table: dict[str, Any] | None | Unset
         if isinstance(self.litellm_budget_table, Unset):
             litellm_budget_table = UNSET
@@ -189,8 +197,6 @@ class NewProjectResponse:
         field_dict.update(self.additional_properties)
         field_dict.update({
             "project_id": project_id,
-            "created_by": created_by,
-            "updated_by": updated_by,
             "created_at": created_at,
             "updated_at": updated_at,
         })
@@ -218,6 +224,10 @@ class NewProjectResponse:
             field_dict["blocked"] = blocked
         if object_permission_id is not UNSET:
             field_dict["object_permission_id"] = object_permission_id
+        if created_by is not UNSET:
+            field_dict["created_by"] = created_by
+        if updated_by is not UNSET:
+            field_dict["updated_by"] = updated_by
         if litellm_budget_table is not UNSET:
             field_dict["litellm_budget_table"] = litellm_budget_table
         if object_permission is not UNSET:
@@ -237,10 +247,6 @@ class NewProjectResponse:
         from ..models.new_project_response_model_tpm_limit_type_0 import NewProjectResponseModelTpmLimitType0
         d = dict(src_dict)
         project_id = d.pop("project_id")
-
-        created_by = d.pop("created_by")
-
-        updated_by = d.pop("updated_by")
 
         created_at = datetime.datetime.fromisoformat(d.pop("created_at"))
 
@@ -389,6 +395,26 @@ class NewProjectResponse:
         object_permission_id = _parse_object_permission_id(d.pop("object_permission_id", UNSET))
 
 
+        def _parse_created_by(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        created_by = _parse_created_by(d.pop("created_by", UNSET))
+
+
+        def _parse_updated_by(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        updated_by = _parse_updated_by(d.pop("updated_by", UNSET))
+
+
         def _parse_litellm_budget_table(data: object) -> LiteLLMBudgetTable | None | Unset:
             if data is None:
                 return data
@@ -431,8 +457,6 @@ class NewProjectResponse:
 
         new_project_response = cls(
             project_id=project_id,
-            created_by=created_by,
-            updated_by=updated_by,
             created_at=created_at,
             updated_at=updated_at,
             project_alias=project_alias,
@@ -447,6 +471,8 @@ class NewProjectResponse:
             model_tpm_limit=model_tpm_limit,
             blocked=blocked,
             object_permission_id=object_permission_id,
+            created_by=created_by,
+            updated_by=updated_by,
             litellm_budget_table=litellm_budget_table,
             object_permission=object_permission,
         )

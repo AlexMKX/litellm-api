@@ -14,15 +14,18 @@ from ..types import UNSET, Unset
 
 
 
-T = TypeVar("T", bound="LiteLLMOrganizationTableWithMembersMetadataType0")
+T = TypeVar("T", bound="BlockModelRequest")
 
 
 
 @_attrs_define
-class LiteLLMOrganizationTableWithMembersMetadataType0:
+class BlockModelRequest:
     """ 
+        Attributes:
+            model_id (str):
      """
 
+    model_id: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -30,9 +33,14 @@ class LiteLLMOrganizationTableWithMembersMetadataType0:
 
 
     def to_dict(self) -> dict[str, Any]:
-        
+        model_id = self.model_id
+
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
+        field_dict.update({
+            "model_id": model_id,
+        })
 
         return field_dict
 
@@ -41,12 +49,15 @@ class LiteLLMOrganizationTableWithMembersMetadataType0:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        lite_llm_organization_table_with_members_metadata_type_0 = cls(
+        model_id = d.pop("model_id")
+
+        block_model_request = cls(
+            model_id=model_id,
         )
 
 
-        lite_llm_organization_table_with_members_metadata_type_0.additional_properties = d
-        return lite_llm_organization_table_with_members_metadata_type_0
+        block_model_request.additional_properties = d
+        return block_model_request
 
     @property
     def additional_keys(self) -> list[str]:

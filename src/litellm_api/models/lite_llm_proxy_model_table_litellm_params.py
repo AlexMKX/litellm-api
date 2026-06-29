@@ -14,12 +14,12 @@ from ..types import UNSET, Unset
 
 
 
-T = TypeVar("T", bound="TeamListItemRouterSettingsType0")
+T = TypeVar("T", bound="LiteLLMProxyModelTableLitellmParams")
 
 
 
 @_attrs_define
-class TeamListItemRouterSettingsType0:
+class LiteLLMProxyModelTableLitellmParams:
     """ 
      """
 
@@ -41,12 +41,12 @@ class TeamListItemRouterSettingsType0:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        team_list_item_router_settings_type_0 = cls(
+        lite_llm_proxy_model_table_litellm_params = cls(
         )
 
 
-        team_list_item_router_settings_type_0.additional_properties = d
-        return team_list_item_router_settings_type_0
+        lite_llm_proxy_model_table_litellm_params.additional_properties = d
+        return lite_llm_proxy_model_table_litellm_params
 
     @property
     def additional_keys(self) -> list[str]:

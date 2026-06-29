@@ -32,6 +32,8 @@ class TeamMemberUpdateRequest:
             role (None | TeamMemberUpdateRequestRoleType0 | Unset):
             tpm_limit (int | None | Unset): Tokens per minute limit for this team member
             rpm_limit (int | None | Unset): Requests per minute limit for this team member
+            budget_duration (None | str | Unset): Duration after which this team member's budget resets (e.g. '1h', '24h',
+                '7d', '30d'). If not set, the budget never resets.
             allowed_models (list[str] | None | Unset): List of models this team member can access. Pass an empty list to
                 remove per-member model restrictions.
      """
@@ -43,6 +45,7 @@ class TeamMemberUpdateRequest:
     role: None | TeamMemberUpdateRequestRoleType0 | Unset = UNSET
     tpm_limit: int | None | Unset = UNSET
     rpm_limit: int | None | Unset = UNSET
+    budget_duration: None | str | Unset = UNSET
     allowed_models: list[str] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -91,6 +94,12 @@ class TeamMemberUpdateRequest:
         else:
             rpm_limit = self.rpm_limit
 
+        budget_duration: None | str | Unset
+        if isinstance(self.budget_duration, Unset):
+            budget_duration = UNSET
+        else:
+            budget_duration = self.budget_duration
+
         allowed_models: list[str] | None | Unset
         if isinstance(self.allowed_models, Unset):
             allowed_models = UNSET
@@ -119,6 +128,8 @@ class TeamMemberUpdateRequest:
             field_dict["tpm_limit"] = tpm_limit
         if rpm_limit is not UNSET:
             field_dict["rpm_limit"] = rpm_limit
+        if budget_duration is not UNSET:
+            field_dict["budget_duration"] = budget_duration
         if allowed_models is not UNSET:
             field_dict["allowed_models"] = allowed_models
 
@@ -201,6 +212,16 @@ class TeamMemberUpdateRequest:
         rpm_limit = _parse_rpm_limit(d.pop("rpm_limit", UNSET))
 
 
+        def _parse_budget_duration(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        budget_duration = _parse_budget_duration(d.pop("budget_duration", UNSET))
+
+
         def _parse_allowed_models(data: object) -> list[str] | None | Unset:
             if data is None:
                 return data
@@ -227,6 +248,7 @@ class TeamMemberUpdateRequest:
             role=role,
             tpm_limit=tpm_limit,
             rpm_limit=rpm_limit,
+            budget_duration=budget_duration,
             allowed_models=allowed_models,
         )
 

@@ -17,6 +17,7 @@ from typing import cast
 def _get_kwargs(
     *,
     team_id: str | Unset = UNSET,
+    key_limit: int | None | Unset = UNSET,
 
 ) -> dict[str, Any]:
     
@@ -26,6 +27,13 @@ def _get_kwargs(
     params: dict[str, Any] = {}
 
     params["team_id"] = team_id
+
+    json_key_limit: int | None | Unset
+    if isinstance(key_limit, Unset):
+        json_key_limit = UNSET
+    else:
+        json_key_limit = key_limit
+    params["key_limit"] = json_key_limit
 
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
@@ -73,6 +81,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient,
     team_id: str | Unset = UNSET,
+    key_limit: int | None | Unset = UNSET,
 
 ) -> Response[Any | HTTPValidationError]:
     """ Team Info
@@ -89,6 +98,7 @@ def sync_detailed(
 
     Args:
         team_id (str | Unset): Team ID in the request parameters
+        key_limit (int | None | Unset): Limit the number of keys returned
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -101,6 +111,7 @@ def sync_detailed(
 
     kwargs = _get_kwargs(
         team_id=team_id,
+key_limit=key_limit,
 
     )
 
@@ -114,6 +125,7 @@ def sync(
     *,
     client: AuthenticatedClient,
     team_id: str | Unset = UNSET,
+    key_limit: int | None | Unset = UNSET,
 
 ) -> Any | HTTPValidationError | None:
     """ Team Info
@@ -130,6 +142,7 @@ def sync(
 
     Args:
         team_id (str | Unset): Team ID in the request parameters
+        key_limit (int | None | Unset): Limit the number of keys returned
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -143,6 +156,7 @@ def sync(
     return sync_detailed(
         client=client,
 team_id=team_id,
+key_limit=key_limit,
 
     ).parsed
 
@@ -150,6 +164,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
     team_id: str | Unset = UNSET,
+    key_limit: int | None | Unset = UNSET,
 
 ) -> Response[Any | HTTPValidationError]:
     """ Team Info
@@ -166,6 +181,7 @@ async def asyncio_detailed(
 
     Args:
         team_id (str | Unset): Team ID in the request parameters
+        key_limit (int | None | Unset): Limit the number of keys returned
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -178,6 +194,7 @@ async def asyncio_detailed(
 
     kwargs = _get_kwargs(
         team_id=team_id,
+key_limit=key_limit,
 
     )
 
@@ -191,6 +208,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient,
     team_id: str | Unset = UNSET,
+    key_limit: int | None | Unset = UNSET,
 
 ) -> Any | HTTPValidationError | None:
     """ Team Info
@@ -207,6 +225,7 @@ async def asyncio(
 
     Args:
         team_id (str | Unset): Team ID in the request parameters
+        key_limit (int | None | Unset): Limit the number of keys returned
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -220,5 +239,6 @@ async def asyncio(
     return (await asyncio_detailed(
         client=client,
 team_id=team_id,
+key_limit=key_limit,
 
     )).parsed

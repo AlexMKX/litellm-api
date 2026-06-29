@@ -25,7 +25,7 @@ T = TypeVar("T", bound="LiteLLMOrganizationMembershipTable")
 
 @_attrs_define
 class LiteLLMOrganizationMembershipTable:
-    """ This is the table that track what organizations a user belongs to and users spend within the organization
+    """ Tracks which organizations a user belongs to and their spend within it.
 
         Attributes:
             user_id (str):

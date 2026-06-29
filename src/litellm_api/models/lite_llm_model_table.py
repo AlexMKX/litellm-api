@@ -12,7 +12,7 @@ from ..types import UNSET, Unset
 from typing import cast
 
 if TYPE_CHECKING:
-  from ..models.lite_llm_model_table_model_aliases_type_0 import LiteLLMModelTableModelAliasesType0
+  from ..models.lite_llm_model_table_model_aliases_type_1 import LiteLLMModelTableModelAliasesType1
   from ..models.lite_llm_team_table import LiteLLMTeamTable
 
 
@@ -30,14 +30,14 @@ class LiteLLMModelTable:
             created_by (str):
             updated_by (str):
             id (int | None | Unset):
-            model_aliases (LiteLLMModelTableModelAliasesType0 | None | str | Unset):
+            model_aliases (LiteLLMModelTableModelAliasesType1 | None | str | Unset):
             team (LiteLLMTeamTable | None | Unset):
      """
 
     created_by: str
     updated_by: str
     id: int | None | Unset = UNSET
-    model_aliases: LiteLLMModelTableModelAliasesType0 | None | str | Unset = UNSET
+    model_aliases: LiteLLMModelTableModelAliasesType1 | None | str | Unset = UNSET
     team: LiteLLMTeamTable | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -46,7 +46,7 @@ class LiteLLMModelTable:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.lite_llm_model_table_model_aliases_type_0 import LiteLLMModelTableModelAliasesType0
+        from ..models.lite_llm_model_table_model_aliases_type_1 import LiteLLMModelTableModelAliasesType1
         from ..models.lite_llm_team_table import LiteLLMTeamTable
         created_by = self.created_by
 
@@ -61,7 +61,7 @@ class LiteLLMModelTable:
         model_aliases: dict[str, Any] | None | str | Unset
         if isinstance(self.model_aliases, Unset):
             model_aliases = UNSET
-        elif isinstance(self.model_aliases, LiteLLMModelTableModelAliasesType0):
+        elif isinstance(self.model_aliases, LiteLLMModelTableModelAliasesType1):
             model_aliases = self.model_aliases.to_dict()
         else:
             model_aliases = self.model_aliases
@@ -94,7 +94,7 @@ class LiteLLMModelTable:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.lite_llm_model_table_model_aliases_type_0 import LiteLLMModelTableModelAliasesType0
+        from ..models.lite_llm_model_table_model_aliases_type_1 import LiteLLMModelTableModelAliasesType1
         from ..models.lite_llm_team_table import LiteLLMTeamTable
         d = dict(src_dict)
         created_by = d.pop("created_by")
@@ -111,7 +111,7 @@ class LiteLLMModelTable:
         id = _parse_id(d.pop("id", UNSET))
 
 
-        def _parse_model_aliases(data: object) -> LiteLLMModelTableModelAliasesType0 | None | str | Unset:
+        def _parse_model_aliases(data: object) -> LiteLLMModelTableModelAliasesType1 | None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -119,14 +119,14 @@ class LiteLLMModelTable:
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                model_aliases_type_0 = LiteLLMModelTableModelAliasesType0.from_dict(data)
+                model_aliases_type_1 = LiteLLMModelTableModelAliasesType1.from_dict(data)
 
 
 
-                return model_aliases_type_0
+                return model_aliases_type_1
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(LiteLLMModelTableModelAliasesType0 | None | str | Unset, data)
+            return cast(LiteLLMModelTableModelAliasesType1 | None | str | Unset, data)
 
         model_aliases = _parse_model_aliases(d.pop("model_aliases", UNSET))
 

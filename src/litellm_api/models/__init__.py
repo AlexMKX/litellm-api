@@ -54,6 +54,7 @@ from .base_litellm_params_on_violation_type_0 import BaseLitellmParamsOnViolatio
 from .base_litellm_params_unreachable_fallback import BaseLitellmParamsUnreachableFallback
 from .base_model import BaseModel
 from .block_key_request import BlockKeyRequest
+from .block_model_request import BlockModelRequest
 from .block_team_request import BlockTeamRequest
 from .block_users import BlockUsers
 from .blocked_word import BlockedWord
@@ -285,7 +286,6 @@ from .http_validation_error import HTTPValidationError
 from .hyperparameters import Hyperparameters
 from .image_url_list_item import ImageURLListItem
 from .image_url_object import ImageURLObject
-from .in_product_nudge_response import InProductNudgeResponse
 from .index_create_lite_llm_params import IndexCreateLiteLLMParams
 from .index_create_request import IndexCreateRequest
 from .index_create_request_index_info_type_0 import IndexCreateRequestIndexInfoType0
@@ -328,9 +328,6 @@ from .lite_llm_budget_table import LiteLLMBudgetTable
 from .lite_llm_budget_table_full import LiteLLMBudgetTableFull
 from .lite_llm_budget_table_full_model_max_budget_type_0 import LiteLLMBudgetTableFullModelMaxBudgetType0
 from .lite_llm_budget_table_model_max_budget_type_0 import LiteLLMBudgetTableModelMaxBudgetType0
-from .lite_llm_deleted_team_table import LiteLLMDeletedTeamTable
-from .lite_llm_deleted_team_table_metadata_type_0 import LiteLLMDeletedTeamTableMetadataType0
-from .lite_llm_deleted_team_table_router_settings_type_0 import LiteLLMDeletedTeamTableRouterSettingsType0
 from .lite_llm_deleted_verification_token import LiteLLMDeletedVerificationToken
 from .lite_llm_deleted_verification_token_aliases import LiteLLMDeletedVerificationTokenAliases
 from .lite_llm_deleted_verification_token_budget_limits_type_0_item import LiteLLMDeletedVerificationTokenBudgetLimitsType0Item
@@ -355,14 +352,12 @@ from .lite_llm_managed_vector_stores_table_litellm_params_type_0 import LiteLLMM
 from .lite_llm_managed_vector_stores_table_vector_store_metadata_type_0 import LiteLLMManagedVectorStoresTableVectorStoreMetadataType0
 from .lite_llm_memory_row import LiteLLMMemoryRow
 from .lite_llm_model_table import LiteLLMModelTable
-from .lite_llm_model_table_model_aliases_type_0 import LiteLLMModelTableModelAliasesType0
+from .lite_llm_model_table_model_aliases_type_1 import LiteLLMModelTableModelAliasesType1
 from .lite_llm_object_permission_base import LiteLLMObjectPermissionBase
 from .lite_llm_object_permission_base_mcp_tool_permissions_type_0 import LiteLLMObjectPermissionBaseMcpToolPermissionsType0
 from .lite_llm_object_permission_table import LiteLLMObjectPermissionTable
 from .lite_llm_object_permission_table_mcp_tool_permissions_type_0 import LiteLLMObjectPermissionTableMcpToolPermissionsType0
 from .lite_llm_organization_membership_table import LiteLLMOrganizationMembershipTable
-from .lite_llm_organization_table_with_members import LiteLLMOrganizationTableWithMembers
-from .lite_llm_organization_table_with_members_metadata_type_0 import LiteLLMOrganizationTableWithMembersMetadataType0
 from .lite_llm_params import LiteLLMParams
 from .lite_llm_params_adaptive_router_config_type_0 import LiteLLMParamsAdaptiveRouterConfigType0
 from .lite_llm_params_complexity_router_config_type_0 import LiteLLMParamsComplexityRouterConfigType0
@@ -376,13 +371,13 @@ from .lite_llm_project_table_metadata_type_0 import LiteLLMProjectTableMetadataT
 from .lite_llm_project_table_model_rpm_limit_type_0 import LiteLLMProjectTableModelRpmLimitType0
 from .lite_llm_project_table_model_spend_type_0 import LiteLLMProjectTableModelSpendType0
 from .lite_llm_project_table_model_tpm_limit_type_0 import LiteLLMProjectTableModelTpmLimitType0
+from .lite_llm_proxy_model_table import LiteLLMProxyModelTable
+from .lite_llm_proxy_model_table_litellm_params import LiteLLMProxyModelTableLitellmParams
+from .lite_llm_proxy_model_table_model_info_type_0 import LiteLLMProxyModelTableModelInfoType0
 from .lite_llm_spend_logs import LiteLLMSpendLogs
 from .lite_llm_spend_logs_messages_type_2 import LiteLLMSpendLogsMessagesType2
 from .lite_llm_spend_logs_response_type_2 import LiteLLMSpendLogsResponseType2
 from .lite_llm_team_membership import LiteLLMTeamMembership
-from .lite_llm_team_table import LiteLLMTeamTable
-from .lite_llm_team_table_metadata_type_0 import LiteLLMTeamTableMetadataType0
-from .lite_llm_team_table_router_settings_type_0 import LiteLLMTeamTableRouterSettingsType0
 from .lite_llm_tool_table_row import LiteLLMToolTableRow
 from .lite_llm_tool_table_row_assignments_type_0 import LiteLLMToolTableRowAssignmentsType0
 from .lite_llm_tool_table_row_input_policy import LiteLLMToolTableRowInputPolicy
@@ -485,8 +480,6 @@ from .new_organization_request_metadata_type_0 import NewOrganizationRequestMeta
 from .new_organization_request_model_max_budget_type_0 import NewOrganizationRequestModelMaxBudgetType0
 from .new_organization_request_model_rpm_limit_type_0 import NewOrganizationRequestModelRpmLimitType0
 from .new_organization_request_model_tpm_limit_type_0 import NewOrganizationRequestModelTpmLimitType0
-from .new_organization_response import NewOrganizationResponse
-from .new_organization_response_metadata_type_0 import NewOrganizationResponseMetadataType0
 from .new_project_request import NewProjectRequest
 from .new_project_request_metadata_type_0 import NewProjectRequestMetadataType0
 from .new_project_request_model_max_budget_type_0 import NewProjectRequestModelMaxBudgetType0
@@ -694,11 +687,6 @@ from .tag_summary_response import TagSummaryResponse
 from .tag_update_request import TagUpdateRequest
 from .tag_update_request_model_info_type_0 import TagUpdateRequestModelInfoType0
 from .tag_update_request_model_max_budget_type_0 import TagUpdateRequestModelMaxBudgetType0
-from .team_add_member_response_metadata_type_0 import TeamAddMemberResponseMetadataType0
-from .team_add_member_response_router_settings_type_0 import TeamAddMemberResponseRouterSettingsType0
-from .team_list_item import TeamListItem
-from .team_list_item_metadata_type_0 import TeamListItemMetadataType0
-from .team_list_item_router_settings_type_0 import TeamListItemRouterSettingsType0
 from .team_list_response import TeamListResponse
 from .team_mappings import TeamMappings
 from .team_member_add_request import TeamMemberAddRequest
@@ -929,6 +917,7 @@ __all__ = (
     "BaseModel",
     "BlockedWord",
     "BlockKeyRequest",
+    "BlockModelRequest",
     "BlockTeamRequest",
     "BlockUsers",
     "BlogPost",
@@ -1162,7 +1151,6 @@ __all__ = (
     "IndexCreateLiteLLMParams",
     "IndexCreateRequest",
     "IndexCreateRequestIndexInfoType0",
-    "InProductNudgeResponse",
     "InputAudio",
     "InputAudioFormat",
     "InternalUserSettingsResponse",
@@ -1202,9 +1190,6 @@ __all__ = (
     "LiteLLMBudgetTableFull",
     "LiteLLMBudgetTableFullModelMaxBudgetType0",
     "LiteLLMBudgetTableModelMaxBudgetType0",
-    "LiteLLMDeletedTeamTable",
-    "LiteLLMDeletedTeamTableMetadataType0",
-    "LiteLLMDeletedTeamTableRouterSettingsType0",
     "LiteLLMDeletedVerificationToken",
     "LiteLLMDeletedVerificationTokenAliases",
     "LiteLLMDeletedVerificationTokenBudgetLimitsType0Item",
@@ -1239,14 +1224,12 @@ __all__ = (
     "LiteLLMMCPServerTableTransport",
     "LiteLLMMemoryRow",
     "LiteLLMModelTable",
-    "LiteLLMModelTableModelAliasesType0",
+    "LiteLLMModelTableModelAliasesType1",
     "LiteLLMObjectPermissionBase",
     "LiteLLMObjectPermissionBaseMcpToolPermissionsType0",
     "LiteLLMObjectPermissionTable",
     "LiteLLMObjectPermissionTableMcpToolPermissionsType0",
     "LiteLLMOrganizationMembershipTable",
-    "LiteLLMOrganizationTableWithMembers",
-    "LiteLLMOrganizationTableWithMembersMetadataType0",
     "LiteLLMParams",
     "LitellmParams",
     "LitellmParamsAction",
@@ -1278,13 +1261,13 @@ __all__ = (
     "LiteLLMProjectTableModelRpmLimitType0",
     "LiteLLMProjectTableModelSpendType0",
     "LiteLLMProjectTableModelTpmLimitType0",
+    "LiteLLMProxyModelTable",
+    "LiteLLMProxyModelTableLitellmParams",
+    "LiteLLMProxyModelTableModelInfoType0",
     "LiteLLMSpendLogs",
     "LiteLLMSpendLogsMessagesType2",
     "LiteLLMSpendLogsResponseType2",
     "LiteLLMTeamMembership",
-    "LiteLLMTeamTable",
-    "LiteLLMTeamTableMetadataType0",
-    "LiteLLMTeamTableRouterSettingsType0",
     "LiteLLMToolTableRow",
     "LiteLLMToolTableRowAssignmentsType0",
     "LiteLLMToolTableRowInputPolicy",
@@ -1359,8 +1342,6 @@ __all__ = (
     "NewOrganizationRequestModelMaxBudgetType0",
     "NewOrganizationRequestModelRpmLimitType0",
     "NewOrganizationRequestModelTpmLimitType0",
-    "NewOrganizationResponse",
-    "NewOrganizationResponseMetadataType0",
     "NewProjectRequest",
     "NewProjectRequestMetadataType0",
     "NewProjectRequestModelMaxBudgetType0",
@@ -1568,11 +1549,6 @@ __all__ = (
     "TagUpdateRequest",
     "TagUpdateRequestModelInfoType0",
     "TagUpdateRequestModelMaxBudgetType0",
-    "TeamAddMemberResponseMetadataType0",
-    "TeamAddMemberResponseRouterSettingsType0",
-    "TeamListItem",
-    "TeamListItemMetadataType0",
-    "TeamListItemRouterSettingsType0",
     "TeamListResponse",
     "TeamMappings",
     "TeamMemberAddRequest",

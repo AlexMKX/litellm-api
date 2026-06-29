@@ -33,6 +33,7 @@ def _get_kwargs(
     status: None | str | Unset = UNSET,
     project_id: None | str | Unset = UNSET,
     access_group_id: None | str | Unset = UNSET,
+    substring_matching: bool | Unset = False,
 
 ) -> dict[str, Any]:
     
@@ -127,6 +128,8 @@ def _get_kwargs(
         json_access_group_id = access_group_id
     params["access_group_id"] = json_access_group_id
 
+    params["substring_matching"] = substring_matching
+
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
@@ -191,6 +194,7 @@ def sync_detailed(
     status: None | str | Unset = UNSET,
     project_id: None | str | Unset = UNSET,
     access_group_id: None | str | Unset = UNSET,
+    substring_matching: bool | Unset = False,
 
 ) -> Response[HTTPValidationError | KeyListResponseObject]:
     r""" List Keys
@@ -217,13 +221,13 @@ def sync_detailed(
     Args:
         page (int | Unset): Page number Default: 1.
         size (int | Unset): Page size Default: 10.
-        user_id (None | str | Unset): Filter keys by user ID. Supports partial matching
-            (substring, case-insensitive).
+        user_id (None | str | Unset): Filter keys by user ID. Exact match by default; set
+            substring_matching=true (admin only) for case-insensitive substring matching.
         team_id (None | str | Unset): Filter keys by team ID
         organization_id (None | str | Unset): Filter keys by organization ID
         key_hash (None | str | Unset): Filter keys by key hash
-        key_alias (None | str | Unset): Filter keys by key alias. Supports partial matching
-            (substring, case-insensitive).
+        key_alias (None | str | Unset): Filter keys by key alias. Exact match by default; set
+            substring_matching=true (admin only) for case-insensitive substring matching.
         return_full_object (bool | Unset): Return full key object Default: False.
         include_team_keys (bool | Unset): Include all keys for teams that user is an admin of.
             Default: False.
@@ -234,6 +238,10 @@ def sync_detailed(
         status (None | str | Unset): Filter by status (e.g. 'deleted')
         project_id (None | str | Unset): Filter keys by project ID
         access_group_id (None | str | Unset): Filter keys by access group ID
+        substring_matching (bool | Unset): If true (proxy admins only), match user_id/key_alias as
+            case-insensitive substrings instead of exact values. Defaults to false: /key/list matched
+            these exactly before substring search was added, and an exact user_id/key_alias filter
+            must never return another user's keys. Default: False.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -261,6 +269,7 @@ expand=expand,
 status=status,
 project_id=project_id,
 access_group_id=access_group_id,
+substring_matching=substring_matching,
 
     )
 
@@ -289,6 +298,7 @@ def sync(
     status: None | str | Unset = UNSET,
     project_id: None | str | Unset = UNSET,
     access_group_id: None | str | Unset = UNSET,
+    substring_matching: bool | Unset = False,
 
 ) -> HTTPValidationError | KeyListResponseObject | None:
     r""" List Keys
@@ -315,13 +325,13 @@ def sync(
     Args:
         page (int | Unset): Page number Default: 1.
         size (int | Unset): Page size Default: 10.
-        user_id (None | str | Unset): Filter keys by user ID. Supports partial matching
-            (substring, case-insensitive).
+        user_id (None | str | Unset): Filter keys by user ID. Exact match by default; set
+            substring_matching=true (admin only) for case-insensitive substring matching.
         team_id (None | str | Unset): Filter keys by team ID
         organization_id (None | str | Unset): Filter keys by organization ID
         key_hash (None | str | Unset): Filter keys by key hash
-        key_alias (None | str | Unset): Filter keys by key alias. Supports partial matching
-            (substring, case-insensitive).
+        key_alias (None | str | Unset): Filter keys by key alias. Exact match by default; set
+            substring_matching=true (admin only) for case-insensitive substring matching.
         return_full_object (bool | Unset): Return full key object Default: False.
         include_team_keys (bool | Unset): Include all keys for teams that user is an admin of.
             Default: False.
@@ -332,6 +342,10 @@ def sync(
         status (None | str | Unset): Filter by status (e.g. 'deleted')
         project_id (None | str | Unset): Filter keys by project ID
         access_group_id (None | str | Unset): Filter keys by access group ID
+        substring_matching (bool | Unset): If true (proxy admins only), match user_id/key_alias as
+            case-insensitive substrings instead of exact values. Defaults to false: /key/list matched
+            these exactly before substring search was added, and an exact user_id/key_alias filter
+            must never return another user's keys. Default: False.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -360,6 +374,7 @@ expand=expand,
 status=status,
 project_id=project_id,
 access_group_id=access_group_id,
+substring_matching=substring_matching,
 
     ).parsed
 
@@ -382,6 +397,7 @@ async def asyncio_detailed(
     status: None | str | Unset = UNSET,
     project_id: None | str | Unset = UNSET,
     access_group_id: None | str | Unset = UNSET,
+    substring_matching: bool | Unset = False,
 
 ) -> Response[HTTPValidationError | KeyListResponseObject]:
     r""" List Keys
@@ -408,13 +424,13 @@ async def asyncio_detailed(
     Args:
         page (int | Unset): Page number Default: 1.
         size (int | Unset): Page size Default: 10.
-        user_id (None | str | Unset): Filter keys by user ID. Supports partial matching
-            (substring, case-insensitive).
+        user_id (None | str | Unset): Filter keys by user ID. Exact match by default; set
+            substring_matching=true (admin only) for case-insensitive substring matching.
         team_id (None | str | Unset): Filter keys by team ID
         organization_id (None | str | Unset): Filter keys by organization ID
         key_hash (None | str | Unset): Filter keys by key hash
-        key_alias (None | str | Unset): Filter keys by key alias. Supports partial matching
-            (substring, case-insensitive).
+        key_alias (None | str | Unset): Filter keys by key alias. Exact match by default; set
+            substring_matching=true (admin only) for case-insensitive substring matching.
         return_full_object (bool | Unset): Return full key object Default: False.
         include_team_keys (bool | Unset): Include all keys for teams that user is an admin of.
             Default: False.
@@ -425,6 +441,10 @@ async def asyncio_detailed(
         status (None | str | Unset): Filter by status (e.g. 'deleted')
         project_id (None | str | Unset): Filter keys by project ID
         access_group_id (None | str | Unset): Filter keys by access group ID
+        substring_matching (bool | Unset): If true (proxy admins only), match user_id/key_alias as
+            case-insensitive substrings instead of exact values. Defaults to false: /key/list matched
+            these exactly before substring search was added, and an exact user_id/key_alias filter
+            must never return another user's keys. Default: False.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -452,6 +472,7 @@ expand=expand,
 status=status,
 project_id=project_id,
 access_group_id=access_group_id,
+substring_matching=substring_matching,
 
     )
 
@@ -480,6 +501,7 @@ async def asyncio(
     status: None | str | Unset = UNSET,
     project_id: None | str | Unset = UNSET,
     access_group_id: None | str | Unset = UNSET,
+    substring_matching: bool | Unset = False,
 
 ) -> HTTPValidationError | KeyListResponseObject | None:
     r""" List Keys
@@ -506,13 +528,13 @@ async def asyncio(
     Args:
         page (int | Unset): Page number Default: 1.
         size (int | Unset): Page size Default: 10.
-        user_id (None | str | Unset): Filter keys by user ID. Supports partial matching
-            (substring, case-insensitive).
+        user_id (None | str | Unset): Filter keys by user ID. Exact match by default; set
+            substring_matching=true (admin only) for case-insensitive substring matching.
         team_id (None | str | Unset): Filter keys by team ID
         organization_id (None | str | Unset): Filter keys by organization ID
         key_hash (None | str | Unset): Filter keys by key hash
-        key_alias (None | str | Unset): Filter keys by key alias. Supports partial matching
-            (substring, case-insensitive).
+        key_alias (None | str | Unset): Filter keys by key alias. Exact match by default; set
+            substring_matching=true (admin only) for case-insensitive substring matching.
         return_full_object (bool | Unset): Return full key object Default: False.
         include_team_keys (bool | Unset): Include all keys for teams that user is an admin of.
             Default: False.
@@ -523,6 +545,10 @@ async def asyncio(
         status (None | str | Unset): Filter by status (e.g. 'deleted')
         project_id (None | str | Unset): Filter keys by project ID
         access_group_id (None | str | Unset): Filter keys by access group ID
+        substring_matching (bool | Unset): If true (proxy admins only), match user_id/key_alias as
+            case-insensitive substrings instead of exact values. Defaults to false: /key/list matched
+            these exactly before substring search was added, and an exact user_id/key_alias filter
+            must never return another user's keys. Default: False.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -551,5 +577,6 @@ expand=expand,
 status=status,
 project_id=project_id,
 access_group_id=access_group_id,
+substring_matching=substring_matching,
 
     )).parsed

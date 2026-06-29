@@ -9,7 +9,6 @@ from ...types import Response, UNSET
 from ... import errors
 
 from ...models.http_validation_error import HTTPValidationError
-from ...models.lite_llm_team_table import LiteLLMTeamTable
 from ...models.update_team_member_permissions_request import UpdateTeamMemberPermissionsRequest
 from typing import cast
 
@@ -41,14 +40,7 @@ def _get_kwargs(
 
 
 
-def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> HTTPValidationError | LiteLLMTeamTable | None:
-    if response.status_code == 200:
-        response_200 = LiteLLMTeamTable.from_dict(response.json())
-
-
-
-        return response_200
-
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> HTTPValidationError | None:
     if response.status_code == 422:
         response_422 = HTTPValidationError.from_dict(response.json())
 
@@ -62,7 +54,7 @@ def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Res
         return None
 
 
-def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[HTTPValidationError | LiteLLMTeamTable]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[HTTPValidationError]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -76,7 +68,7 @@ def sync_detailed(
     client: AuthenticatedClient,
     body: UpdateTeamMemberPermissionsRequest,
 
-) -> Response[HTTPValidationError | LiteLLMTeamTable]:
+) -> Response[HTTPValidationError]:
     """ Update Team Member Permissions
 
      Update the team member permissions for a team
@@ -90,7 +82,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[HTTPValidationError | LiteLLMTeamTable]
+        Response[HTTPValidationError]
      """
 
 
@@ -110,7 +102,7 @@ def sync(
     client: AuthenticatedClient,
     body: UpdateTeamMemberPermissionsRequest,
 
-) -> HTTPValidationError | LiteLLMTeamTable | None:
+) -> HTTPValidationError | None:
     """ Update Team Member Permissions
 
      Update the team member permissions for a team
@@ -124,7 +116,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        HTTPValidationError | LiteLLMTeamTable
+        HTTPValidationError
      """
 
 
@@ -139,7 +131,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient,
     body: UpdateTeamMemberPermissionsRequest,
 
-) -> Response[HTTPValidationError | LiteLLMTeamTable]:
+) -> Response[HTTPValidationError]:
     """ Update Team Member Permissions
 
      Update the team member permissions for a team
@@ -153,7 +145,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[HTTPValidationError | LiteLLMTeamTable]
+        Response[HTTPValidationError]
      """
 
 
@@ -173,7 +165,7 @@ async def asyncio(
     client: AuthenticatedClient,
     body: UpdateTeamMemberPermissionsRequest,
 
-) -> HTTPValidationError | LiteLLMTeamTable | None:
+) -> HTTPValidationError | None:
     """ Update Team Member Permissions
 
      Update the team member permissions for a team
@@ -187,7 +179,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        HTTPValidationError | LiteLLMTeamTable
+        HTTPValidationError
      """
 
 

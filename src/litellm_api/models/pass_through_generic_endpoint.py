@@ -42,6 +42,8 @@ class PassThroughGenericEndpoint:
                 image/base/2.3 will be forwarded to the target endpoint. Default: False.
             cost_per_request (float | Unset): The USD cost per request to the target endpoint. This is used to calculate the
                 cost of the request to the target endpoint. Default: 0.0.
+            timeout (float | None | Unset): Upstream request timeout in seconds for this pass-through endpoint. If unset,
+                uses general_settings.pass_through_request_timeout (default 600).
             auth (bool | Unset): Whether authentication is required for the pass-through endpoint. Defaults to True so a
                 pass-through silently created without an explicit value still requires a valid LiteLLM API key — set to False
                 only if the endpoint is meant to be a public forwarder (e.g. an unauthenticated webhook target). Default: True.
@@ -62,6 +64,7 @@ class PassThroughGenericEndpoint:
     default_query_params: PassThroughGenericEndpointDefaultQueryParams | Unset = UNSET
     include_subpath: bool | Unset = False
     cost_per_request: float | Unset = 0.0
+    timeout: float | None | Unset = UNSET
     auth: bool | Unset = True
     guardrails: None | PassThroughGenericEndpointGuardrailsType0 | Unset = UNSET
     is_from_config: bool | Unset = False
@@ -97,6 +100,12 @@ class PassThroughGenericEndpoint:
         include_subpath = self.include_subpath
 
         cost_per_request = self.cost_per_request
+
+        timeout: float | None | Unset
+        if isinstance(self.timeout, Unset):
+            timeout = UNSET
+        else:
+            timeout = self.timeout
 
         auth = self.auth
 
@@ -137,6 +146,8 @@ class PassThroughGenericEndpoint:
             field_dict["include_subpath"] = include_subpath
         if cost_per_request is not UNSET:
             field_dict["cost_per_request"] = cost_per_request
+        if timeout is not UNSET:
+            field_dict["timeout"] = timeout
         if auth is not UNSET:
             field_dict["auth"] = auth
         if guardrails is not UNSET:
@@ -194,6 +205,16 @@ class PassThroughGenericEndpoint:
 
         cost_per_request = d.pop("cost_per_request", UNSET)
 
+        def _parse_timeout(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        timeout = _parse_timeout(d.pop("timeout", UNSET))
+
+
         auth = d.pop("auth", UNSET)
 
         def _parse_guardrails(data: object) -> None | PassThroughGenericEndpointGuardrailsType0 | Unset:
@@ -244,6 +265,7 @@ class PassThroughGenericEndpoint:
             default_query_params=default_query_params,
             include_subpath=include_subpath,
             cost_per_request=cost_per_request,
+            timeout=timeout,
             auth=auth,
             guardrails=guardrails,
             is_from_config=is_from_config,

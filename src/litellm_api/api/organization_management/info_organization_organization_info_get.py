@@ -9,7 +9,6 @@ from ...types import Response, UNSET
 from ... import errors
 
 from ...models.http_validation_error import HTTPValidationError
-from ...models.lite_llm_organization_table_with_members import LiteLLMOrganizationTableWithMembers
 from typing import cast
 
 
@@ -42,14 +41,7 @@ def _get_kwargs(
 
 
 
-def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> HTTPValidationError | LiteLLMOrganizationTableWithMembers | None:
-    if response.status_code == 200:
-        response_200 = LiteLLMOrganizationTableWithMembers.from_dict(response.json())
-
-
-
-        return response_200
-
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> HTTPValidationError | None:
     if response.status_code == 422:
         response_422 = HTTPValidationError.from_dict(response.json())
 
@@ -63,7 +55,7 @@ def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Res
         return None
 
 
-def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[HTTPValidationError | LiteLLMOrganizationTableWithMembers]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[HTTPValidationError]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -77,7 +69,7 @@ def sync_detailed(
     client: AuthenticatedClient,
     organization_id: str,
 
-) -> Response[HTTPValidationError | LiteLLMOrganizationTableWithMembers]:
+) -> Response[HTTPValidationError]:
     """ Info Organization
 
      Get the org specific information
@@ -90,7 +82,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[HTTPValidationError | LiteLLMOrganizationTableWithMembers]
+        Response[HTTPValidationError]
      """
 
 
@@ -110,7 +102,7 @@ def sync(
     client: AuthenticatedClient,
     organization_id: str,
 
-) -> HTTPValidationError | LiteLLMOrganizationTableWithMembers | None:
+) -> HTTPValidationError | None:
     """ Info Organization
 
      Get the org specific information
@@ -123,7 +115,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        HTTPValidationError | LiteLLMOrganizationTableWithMembers
+        HTTPValidationError
      """
 
 
@@ -138,7 +130,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient,
     organization_id: str,
 
-) -> Response[HTTPValidationError | LiteLLMOrganizationTableWithMembers]:
+) -> Response[HTTPValidationError]:
     """ Info Organization
 
      Get the org specific information
@@ -151,7 +143,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[HTTPValidationError | LiteLLMOrganizationTableWithMembers]
+        Response[HTTPValidationError]
      """
 
 
@@ -171,7 +163,7 @@ async def asyncio(
     client: AuthenticatedClient,
     organization_id: str,
 
-) -> HTTPValidationError | LiteLLMOrganizationTableWithMembers | None:
+) -> HTTPValidationError | None:
     """ Info Organization
 
      Get the org specific information
@@ -184,7 +176,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        HTTPValidationError | LiteLLMOrganizationTableWithMembers
+        HTTPValidationError
      """
 
 

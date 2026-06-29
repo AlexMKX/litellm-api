@@ -34,8 +34,7 @@ T = TypeVar("T", bound="LiteLLMDeletedVerificationToken")
 
 @_attrs_define
 class LiteLLMDeletedVerificationToken:
-    """ Recording of deleted keys for audit purposes. Mirrors LiteLLM_VerificationToken
-    plus metadata captured at deletion time.
+    """ Audit record for deleted keys; mirrors the token plus deletion metadata.
 
         Attributes:
             token (None | str | Unset):
@@ -65,6 +64,7 @@ class LiteLLMDeletedVerificationToken:
             soft_budget_cooldown (bool | Unset):  Default: False.
             blocked (bool | None | Unset):
             litellm_budget_table (LiteLLMDeletedVerificationTokenLitellmBudgetTableType0 | None | Unset):
+            budget_id (None | str | Unset):
             org_id (None | str | Unset):
             created_at (datetime.datetime | None | Unset):
             created_by (None | str | Unset):
@@ -115,6 +115,7 @@ class LiteLLMDeletedVerificationToken:
     soft_budget_cooldown: bool | Unset = False
     blocked: bool | None | Unset = UNSET
     litellm_budget_table: LiteLLMDeletedVerificationTokenLitellmBudgetTableType0 | None | Unset = UNSET
+    budget_id: None | str | Unset = UNSET
     org_id: None | str | Unset = UNSET
     created_at: datetime.datetime | None | Unset = UNSET
     created_by: None | str | Unset = UNSET
@@ -308,6 +309,12 @@ class LiteLLMDeletedVerificationToken:
             litellm_budget_table = self.litellm_budget_table.to_dict()
         else:
             litellm_budget_table = self.litellm_budget_table
+
+        budget_id: None | str | Unset
+        if isinstance(self.budget_id, Unset):
+            budget_id = UNSET
+        else:
+            budget_id = self.budget_id
 
         org_id: None | str | Unset
         if isinstance(self.org_id, Unset):
@@ -521,6 +528,8 @@ class LiteLLMDeletedVerificationToken:
             field_dict["blocked"] = blocked
         if litellm_budget_table is not UNSET:
             field_dict["litellm_budget_table"] = litellm_budget_table
+        if budget_id is not UNSET:
+            field_dict["budget_id"] = budget_id
         if org_id is not UNSET:
             field_dict["org_id"] = org_id
         if created_at is not UNSET:
@@ -874,6 +883,16 @@ class LiteLLMDeletedVerificationToken:
         litellm_budget_table = _parse_litellm_budget_table(d.pop("litellm_budget_table", UNSET))
 
 
+        def _parse_budget_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        budget_id = _parse_budget_id(d.pop("budget_id", UNSET))
+
+
         def _parse_org_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -1215,6 +1234,7 @@ class LiteLLMDeletedVerificationToken:
             soft_budget_cooldown=soft_budget_cooldown,
             blocked=blocked,
             litellm_budget_table=litellm_budget_table,
+            budget_id=budget_id,
             org_id=org_id,
             created_at=created_at,
             created_by=created_by,

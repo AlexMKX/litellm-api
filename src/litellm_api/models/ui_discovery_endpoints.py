@@ -31,6 +31,7 @@ class UiDiscoveryEndpoints:
             auto_redirect_to_sso (bool):
             admin_ui_disabled (bool):
             sso_configured (bool):
+            hide_default_credentials_hint (bool | Unset):  Default: False.
             is_control_plane (bool | Unset):  Default: False.
             workers (list[WorkerRegistryEntry] | Unset):
      """
@@ -40,6 +41,7 @@ class UiDiscoveryEndpoints:
     auto_redirect_to_sso: bool
     admin_ui_disabled: bool
     sso_configured: bool
+    hide_default_credentials_hint: bool | Unset = False
     is_control_plane: bool | Unset = False
     workers: list[WorkerRegistryEntry] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -60,6 +62,8 @@ class UiDiscoveryEndpoints:
         admin_ui_disabled = self.admin_ui_disabled
 
         sso_configured = self.sso_configured
+
+        hide_default_credentials_hint = self.hide_default_credentials_hint
 
         is_control_plane = self.is_control_plane
 
@@ -82,6 +86,8 @@ class UiDiscoveryEndpoints:
             "admin_ui_disabled": admin_ui_disabled,
             "sso_configured": sso_configured,
         })
+        if hide_default_credentials_hint is not UNSET:
+            field_dict["hide_default_credentials_hint"] = hide_default_credentials_hint
         if is_control_plane is not UNSET:
             field_dict["is_control_plane"] = is_control_plane
         if workers is not UNSET:
@@ -111,6 +117,8 @@ class UiDiscoveryEndpoints:
 
         sso_configured = d.pop("sso_configured")
 
+        hide_default_credentials_hint = d.pop("hide_default_credentials_hint", UNSET)
+
         is_control_plane = d.pop("is_control_plane", UNSET)
 
         _workers = d.pop("workers", UNSET)
@@ -131,6 +139,7 @@ class UiDiscoveryEndpoints:
             auto_redirect_to_sso=auto_redirect_to_sso,
             admin_ui_disabled=admin_ui_disabled,
             sso_configured=sso_configured,
+            hide_default_credentials_hint=hide_default_credentials_hint,
             is_control_plane=is_control_plane,
             workers=workers,
         )

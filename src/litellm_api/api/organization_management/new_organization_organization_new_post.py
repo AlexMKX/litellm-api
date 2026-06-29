@@ -10,7 +10,6 @@ from ... import errors
 
 from ...models.http_validation_error import HTTPValidationError
 from ...models.new_organization_request import NewOrganizationRequest
-from ...models.new_organization_response import NewOrganizationResponse
 from typing import cast
 
 
@@ -41,14 +40,7 @@ def _get_kwargs(
 
 
 
-def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> HTTPValidationError | NewOrganizationResponse | None:
-    if response.status_code == 200:
-        response_200 = NewOrganizationResponse.from_dict(response.json())
-
-
-
-        return response_200
-
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> HTTPValidationError | None:
     if response.status_code == 422:
         response_422 = HTTPValidationError.from_dict(response.json())
 
@@ -62,7 +54,7 @@ def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Res
         return None
 
 
-def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[HTTPValidationError | NewOrganizationResponse]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[HTTPValidationError]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -76,7 +68,7 @@ def sync_detailed(
     client: AuthenticatedClient,
     body: NewOrganizationRequest,
 
-) -> Response[HTTPValidationError | NewOrganizationResponse]:
+) -> Response[HTTPValidationError]:
     r""" New Organization
 
      Allow orgs to own teams
@@ -155,7 +147,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[HTTPValidationError | NewOrganizationResponse]
+        Response[HTTPValidationError]
      """
 
 
@@ -175,7 +167,7 @@ def sync(
     client: AuthenticatedClient,
     body: NewOrganizationRequest,
 
-) -> HTTPValidationError | NewOrganizationResponse | None:
+) -> HTTPValidationError | None:
     r""" New Organization
 
      Allow orgs to own teams
@@ -254,7 +246,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        HTTPValidationError | NewOrganizationResponse
+        HTTPValidationError
      """
 
 
@@ -269,7 +261,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient,
     body: NewOrganizationRequest,
 
-) -> Response[HTTPValidationError | NewOrganizationResponse]:
+) -> Response[HTTPValidationError]:
     r""" New Organization
 
      Allow orgs to own teams
@@ -348,7 +340,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[HTTPValidationError | NewOrganizationResponse]
+        Response[HTTPValidationError]
      """
 
 
@@ -368,7 +360,7 @@ async def asyncio(
     client: AuthenticatedClient,
     body: NewOrganizationRequest,
 
-) -> HTTPValidationError | NewOrganizationResponse | None:
+) -> HTTPValidationError | None:
     r""" New Organization
 
      Allow orgs to own teams
@@ -447,7 +439,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        HTTPValidationError | NewOrganizationResponse
+        HTTPValidationError
      """
 
 
