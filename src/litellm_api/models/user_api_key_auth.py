@@ -133,6 +133,7 @@ class UserAPIKeyAuth:
             user_spend (float | None | Unset):
             user_max_budget (float | None | Unset):
             request_route (None | str | Unset):
+            is_session_token (bool | Unset):  Default: False.
             user (Any | None | Unset):
             created_by_user (Any | None | Unset):
             end_user_object_permission (LiteLLMObjectPermissionTable | None | Unset):
@@ -225,6 +226,7 @@ class UserAPIKeyAuth:
     user_spend: float | None | Unset = UNSET
     user_max_budget: float | None | Unset = UNSET
     request_route: None | str | Unset = UNSET
+    is_session_token: bool | Unset = False
     user: Any | None | Unset = UNSET
     created_by_user: Any | None | Unset = UNSET
     end_user_object_permission: LiteLLMObjectPermissionTable | None | Unset = UNSET
@@ -801,6 +803,8 @@ class UserAPIKeyAuth:
         else:
             request_route = self.request_route
 
+        is_session_token = self.is_session_token
+
         user: Any | None | Unset
         if isinstance(self.user, Unset):
             user = UNSET
@@ -1012,6 +1016,8 @@ class UserAPIKeyAuth:
             field_dict["user_max_budget"] = user_max_budget
         if request_route is not UNSET:
             field_dict["request_route"] = request_route
+        if is_session_token is not UNSET:
+            field_dict["is_session_token"] = is_session_token
         if user is not UNSET:
             field_dict["user"] = user
         if created_by_user is not UNSET:
@@ -2100,6 +2106,8 @@ class UserAPIKeyAuth:
         request_route = _parse_request_route(d.pop("request_route", UNSET))
 
 
+        is_session_token = d.pop("is_session_token", UNSET)
+
         def _parse_user(data: object) -> Any | None | Unset:
             if data is None:
                 return data
@@ -2266,6 +2274,7 @@ class UserAPIKeyAuth:
             user_spend=user_spend,
             user_max_budget=user_max_budget,
             request_route=request_route,
+            is_session_token=is_session_token,
             user=user,
             created_by_user=created_by_user,
             end_user_object_permission=end_user_object_permission,

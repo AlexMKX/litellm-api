@@ -92,6 +92,19 @@ class LiteLLMParams:
             search_context_cost_per_query (LiteLLMParamsSearchContextCostPerQueryType0 | None | Unset):
             citation_cost_per_token (float | None | Unset):
             tiered_pricing (list[LiteLLMParamsTieredPricingType0Item] | None | Unset):
+            cache_read_input_token_cost_above_272k_tokens (float | None | Unset):
+            cache_read_input_token_cost_above_512k_tokens (float | None | Unset):
+            input_cost_per_image_token (float | None | Unset):
+            input_cost_per_token_above_272k_tokens (float | None | Unset):
+            input_cost_per_token_above_512k_tokens (float | None | Unset):
+            output_cost_per_token_above_272k_tokens (float | None | Unset):
+            output_cost_per_token_above_512k_tokens (float | None | Unset):
+            output_vector_size (int | None | Unset):
+            ocr_cost_per_page (float | None | Unset):
+            ocr_cost_per_credit (float | None | Unset):
+            annotation_cost_per_page (float | None | Unset):
+            regional_processing_uplift_multiplier_eu (float | None | Unset):
+            regional_processing_uplift_multiplier_us (float | None | Unset):
             api_key (None | str | Unset):
             api_base (None | str | Unset):
             api_version (None | str | Unset):
@@ -100,6 +113,7 @@ class LiteLLMParams:
             vertex_location (None | str | Unset):
             vertex_credentials (LiteLLMParamsVertexCredentialsType1 | None | str | Unset):
             region_name (None | str | Unset):
+            gcs_bucket_name (None | str | Unset):
             aws_access_key_id (None | str | Unset):
             aws_secret_access_key (None | str | Unset):
             aws_region_name (None | str | Unset):
@@ -143,7 +157,6 @@ class LiteLLMParams:
             quality_router_config (LiteLLMParamsQualityRouterConfigType0 | None | Unset):
             quality_router_default_model (None | str | Unset):
             s3_encryption_key_id (None | str | Unset):
-            gcs_bucket_name (None | str | Unset):
             vector_store_id (None | str | Unset):
             milvus_text_field (None | str | Unset):
             milvus_db_name (None | str | Unset):
@@ -207,6 +220,19 @@ class LiteLLMParams:
     search_context_cost_per_query: LiteLLMParamsSearchContextCostPerQueryType0 | None | Unset = UNSET
     citation_cost_per_token: float | None | Unset = UNSET
     tiered_pricing: list[LiteLLMParamsTieredPricingType0Item] | None | Unset = UNSET
+    cache_read_input_token_cost_above_272k_tokens: float | None | Unset = UNSET
+    cache_read_input_token_cost_above_512k_tokens: float | None | Unset = UNSET
+    input_cost_per_image_token: float | None | Unset = UNSET
+    input_cost_per_token_above_272k_tokens: float | None | Unset = UNSET
+    input_cost_per_token_above_512k_tokens: float | None | Unset = UNSET
+    output_cost_per_token_above_272k_tokens: float | None | Unset = UNSET
+    output_cost_per_token_above_512k_tokens: float | None | Unset = UNSET
+    output_vector_size: int | None | Unset = UNSET
+    ocr_cost_per_page: float | None | Unset = UNSET
+    ocr_cost_per_credit: float | None | Unset = UNSET
+    annotation_cost_per_page: float | None | Unset = UNSET
+    regional_processing_uplift_multiplier_eu: float | None | Unset = UNSET
+    regional_processing_uplift_multiplier_us: float | None | Unset = UNSET
     api_key: None | str | Unset = UNSET
     api_base: None | str | Unset = UNSET
     api_version: None | str | Unset = UNSET
@@ -215,6 +241,7 @@ class LiteLLMParams:
     vertex_location: None | str | Unset = UNSET
     vertex_credentials: LiteLLMParamsVertexCredentialsType1 | None | str | Unset = UNSET
     region_name: None | str | Unset = UNSET
+    gcs_bucket_name: None | str | Unset = UNSET
     aws_access_key_id: None | str | Unset = UNSET
     aws_secret_access_key: None | str | Unset = UNSET
     aws_region_name: None | str | Unset = UNSET
@@ -257,7 +284,6 @@ class LiteLLMParams:
     quality_router_config: LiteLLMParamsQualityRouterConfigType0 | None | Unset = UNSET
     quality_router_default_model: None | str | Unset = UNSET
     s3_encryption_key_id: None | str | Unset = UNSET
-    gcs_bucket_name: None | str | Unset = UNSET
     vector_store_id: None | str | Unset = UNSET
     milvus_text_field: None | str | Unset = UNSET
     milvus_db_name: None | str | Unset = UNSET
@@ -625,6 +651,84 @@ class LiteLLMParams:
         else:
             tiered_pricing = self.tiered_pricing
 
+        cache_read_input_token_cost_above_272k_tokens: float | None | Unset
+        if isinstance(self.cache_read_input_token_cost_above_272k_tokens, Unset):
+            cache_read_input_token_cost_above_272k_tokens = UNSET
+        else:
+            cache_read_input_token_cost_above_272k_tokens = self.cache_read_input_token_cost_above_272k_tokens
+
+        cache_read_input_token_cost_above_512k_tokens: float | None | Unset
+        if isinstance(self.cache_read_input_token_cost_above_512k_tokens, Unset):
+            cache_read_input_token_cost_above_512k_tokens = UNSET
+        else:
+            cache_read_input_token_cost_above_512k_tokens = self.cache_read_input_token_cost_above_512k_tokens
+
+        input_cost_per_image_token: float | None | Unset
+        if isinstance(self.input_cost_per_image_token, Unset):
+            input_cost_per_image_token = UNSET
+        else:
+            input_cost_per_image_token = self.input_cost_per_image_token
+
+        input_cost_per_token_above_272k_tokens: float | None | Unset
+        if isinstance(self.input_cost_per_token_above_272k_tokens, Unset):
+            input_cost_per_token_above_272k_tokens = UNSET
+        else:
+            input_cost_per_token_above_272k_tokens = self.input_cost_per_token_above_272k_tokens
+
+        input_cost_per_token_above_512k_tokens: float | None | Unset
+        if isinstance(self.input_cost_per_token_above_512k_tokens, Unset):
+            input_cost_per_token_above_512k_tokens = UNSET
+        else:
+            input_cost_per_token_above_512k_tokens = self.input_cost_per_token_above_512k_tokens
+
+        output_cost_per_token_above_272k_tokens: float | None | Unset
+        if isinstance(self.output_cost_per_token_above_272k_tokens, Unset):
+            output_cost_per_token_above_272k_tokens = UNSET
+        else:
+            output_cost_per_token_above_272k_tokens = self.output_cost_per_token_above_272k_tokens
+
+        output_cost_per_token_above_512k_tokens: float | None | Unset
+        if isinstance(self.output_cost_per_token_above_512k_tokens, Unset):
+            output_cost_per_token_above_512k_tokens = UNSET
+        else:
+            output_cost_per_token_above_512k_tokens = self.output_cost_per_token_above_512k_tokens
+
+        output_vector_size: int | None | Unset
+        if isinstance(self.output_vector_size, Unset):
+            output_vector_size = UNSET
+        else:
+            output_vector_size = self.output_vector_size
+
+        ocr_cost_per_page: float | None | Unset
+        if isinstance(self.ocr_cost_per_page, Unset):
+            ocr_cost_per_page = UNSET
+        else:
+            ocr_cost_per_page = self.ocr_cost_per_page
+
+        ocr_cost_per_credit: float | None | Unset
+        if isinstance(self.ocr_cost_per_credit, Unset):
+            ocr_cost_per_credit = UNSET
+        else:
+            ocr_cost_per_credit = self.ocr_cost_per_credit
+
+        annotation_cost_per_page: float | None | Unset
+        if isinstance(self.annotation_cost_per_page, Unset):
+            annotation_cost_per_page = UNSET
+        else:
+            annotation_cost_per_page = self.annotation_cost_per_page
+
+        regional_processing_uplift_multiplier_eu: float | None | Unset
+        if isinstance(self.regional_processing_uplift_multiplier_eu, Unset):
+            regional_processing_uplift_multiplier_eu = UNSET
+        else:
+            regional_processing_uplift_multiplier_eu = self.regional_processing_uplift_multiplier_eu
+
+        regional_processing_uplift_multiplier_us: float | None | Unset
+        if isinstance(self.regional_processing_uplift_multiplier_us, Unset):
+            regional_processing_uplift_multiplier_us = UNSET
+        else:
+            regional_processing_uplift_multiplier_us = self.regional_processing_uplift_multiplier_us
+
         api_key: None | str | Unset
         if isinstance(self.api_key, Unset):
             api_key = UNSET
@@ -674,6 +778,12 @@ class LiteLLMParams:
             region_name = UNSET
         else:
             region_name = self.region_name
+
+        gcs_bucket_name: None | str | Unset
+        if isinstance(self.gcs_bucket_name, Unset):
+            gcs_bucket_name = UNSET
+        else:
+            gcs_bucket_name = self.gcs_bucket_name
 
         aws_access_key_id: None | str | Unset
         if isinstance(self.aws_access_key_id, Unset):
@@ -956,12 +1066,6 @@ class LiteLLMParams:
         else:
             s3_encryption_key_id = self.s3_encryption_key_id
 
-        gcs_bucket_name: None | str | Unset
-        if isinstance(self.gcs_bucket_name, Unset):
-            gcs_bucket_name = UNSET
-        else:
-            gcs_bucket_name = self.gcs_bucket_name
-
         vector_store_id: None | str | Unset
         if isinstance(self.vector_store_id, Unset):
             vector_store_id = UNSET
@@ -1108,6 +1212,32 @@ class LiteLLMParams:
             field_dict["citation_cost_per_token"] = citation_cost_per_token
         if tiered_pricing is not UNSET:
             field_dict["tiered_pricing"] = tiered_pricing
+        if cache_read_input_token_cost_above_272k_tokens is not UNSET:
+            field_dict["cache_read_input_token_cost_above_272k_tokens"] = cache_read_input_token_cost_above_272k_tokens
+        if cache_read_input_token_cost_above_512k_tokens is not UNSET:
+            field_dict["cache_read_input_token_cost_above_512k_tokens"] = cache_read_input_token_cost_above_512k_tokens
+        if input_cost_per_image_token is not UNSET:
+            field_dict["input_cost_per_image_token"] = input_cost_per_image_token
+        if input_cost_per_token_above_272k_tokens is not UNSET:
+            field_dict["input_cost_per_token_above_272k_tokens"] = input_cost_per_token_above_272k_tokens
+        if input_cost_per_token_above_512k_tokens is not UNSET:
+            field_dict["input_cost_per_token_above_512k_tokens"] = input_cost_per_token_above_512k_tokens
+        if output_cost_per_token_above_272k_tokens is not UNSET:
+            field_dict["output_cost_per_token_above_272k_tokens"] = output_cost_per_token_above_272k_tokens
+        if output_cost_per_token_above_512k_tokens is not UNSET:
+            field_dict["output_cost_per_token_above_512k_tokens"] = output_cost_per_token_above_512k_tokens
+        if output_vector_size is not UNSET:
+            field_dict["output_vector_size"] = output_vector_size
+        if ocr_cost_per_page is not UNSET:
+            field_dict["ocr_cost_per_page"] = ocr_cost_per_page
+        if ocr_cost_per_credit is not UNSET:
+            field_dict["ocr_cost_per_credit"] = ocr_cost_per_credit
+        if annotation_cost_per_page is not UNSET:
+            field_dict["annotation_cost_per_page"] = annotation_cost_per_page
+        if regional_processing_uplift_multiplier_eu is not UNSET:
+            field_dict["regional_processing_uplift_multiplier_eu"] = regional_processing_uplift_multiplier_eu
+        if regional_processing_uplift_multiplier_us is not UNSET:
+            field_dict["regional_processing_uplift_multiplier_us"] = regional_processing_uplift_multiplier_us
         if api_key is not UNSET:
             field_dict["api_key"] = api_key
         if api_base is not UNSET:
@@ -1124,6 +1254,8 @@ class LiteLLMParams:
             field_dict["vertex_credentials"] = vertex_credentials
         if region_name is not UNSET:
             field_dict["region_name"] = region_name
+        if gcs_bucket_name is not UNSET:
+            field_dict["gcs_bucket_name"] = gcs_bucket_name
         if aws_access_key_id is not UNSET:
             field_dict["aws_access_key_id"] = aws_access_key_id
         if aws_secret_access_key is not UNSET:
@@ -1208,8 +1340,6 @@ class LiteLLMParams:
             field_dict["quality_router_default_model"] = quality_router_default_model
         if s3_encryption_key_id is not UNSET:
             field_dict["s3_encryption_key_id"] = s3_encryption_key_id
-        if gcs_bucket_name is not UNSET:
-            field_dict["gcs_bucket_name"] = gcs_bucket_name
         if vector_store_id is not UNSET:
             field_dict["vector_store_id"] = vector_store_id
         if milvus_text_field is not UNSET:
@@ -1822,6 +1952,136 @@ class LiteLLMParams:
         tiered_pricing = _parse_tiered_pricing(d.pop("tiered_pricing", UNSET))
 
 
+        def _parse_cache_read_input_token_cost_above_272k_tokens(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        cache_read_input_token_cost_above_272k_tokens = _parse_cache_read_input_token_cost_above_272k_tokens(d.pop("cache_read_input_token_cost_above_272k_tokens", UNSET))
+
+
+        def _parse_cache_read_input_token_cost_above_512k_tokens(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        cache_read_input_token_cost_above_512k_tokens = _parse_cache_read_input_token_cost_above_512k_tokens(d.pop("cache_read_input_token_cost_above_512k_tokens", UNSET))
+
+
+        def _parse_input_cost_per_image_token(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        input_cost_per_image_token = _parse_input_cost_per_image_token(d.pop("input_cost_per_image_token", UNSET))
+
+
+        def _parse_input_cost_per_token_above_272k_tokens(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        input_cost_per_token_above_272k_tokens = _parse_input_cost_per_token_above_272k_tokens(d.pop("input_cost_per_token_above_272k_tokens", UNSET))
+
+
+        def _parse_input_cost_per_token_above_512k_tokens(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        input_cost_per_token_above_512k_tokens = _parse_input_cost_per_token_above_512k_tokens(d.pop("input_cost_per_token_above_512k_tokens", UNSET))
+
+
+        def _parse_output_cost_per_token_above_272k_tokens(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        output_cost_per_token_above_272k_tokens = _parse_output_cost_per_token_above_272k_tokens(d.pop("output_cost_per_token_above_272k_tokens", UNSET))
+
+
+        def _parse_output_cost_per_token_above_512k_tokens(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        output_cost_per_token_above_512k_tokens = _parse_output_cost_per_token_above_512k_tokens(d.pop("output_cost_per_token_above_512k_tokens", UNSET))
+
+
+        def _parse_output_vector_size(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        output_vector_size = _parse_output_vector_size(d.pop("output_vector_size", UNSET))
+
+
+        def _parse_ocr_cost_per_page(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        ocr_cost_per_page = _parse_ocr_cost_per_page(d.pop("ocr_cost_per_page", UNSET))
+
+
+        def _parse_ocr_cost_per_credit(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        ocr_cost_per_credit = _parse_ocr_cost_per_credit(d.pop("ocr_cost_per_credit", UNSET))
+
+
+        def _parse_annotation_cost_per_page(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        annotation_cost_per_page = _parse_annotation_cost_per_page(d.pop("annotation_cost_per_page", UNSET))
+
+
+        def _parse_regional_processing_uplift_multiplier_eu(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        regional_processing_uplift_multiplier_eu = _parse_regional_processing_uplift_multiplier_eu(d.pop("regional_processing_uplift_multiplier_eu", UNSET))
+
+
+        def _parse_regional_processing_uplift_multiplier_us(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        regional_processing_uplift_multiplier_us = _parse_regional_processing_uplift_multiplier_us(d.pop("regional_processing_uplift_multiplier_us", UNSET))
+
+
         def _parse_api_key(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -1910,6 +2170,16 @@ class LiteLLMParams:
             return cast(None | str | Unset, data)
 
         region_name = _parse_region_name(d.pop("region_name", UNSET))
+
+
+        def _parse_gcs_bucket_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        gcs_bucket_name = _parse_gcs_bucket_name(d.pop("gcs_bucket_name", UNSET))
 
 
         def _parse_aws_access_key_id(data: object) -> None | str | Unset:
@@ -2424,16 +2694,6 @@ class LiteLLMParams:
         s3_encryption_key_id = _parse_s3_encryption_key_id(d.pop("s3_encryption_key_id", UNSET))
 
 
-        def _parse_gcs_bucket_name(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        gcs_bucket_name = _parse_gcs_bucket_name(d.pop("gcs_bucket_name", UNSET))
-
-
         def _parse_vector_store_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -2540,6 +2800,19 @@ class LiteLLMParams:
             search_context_cost_per_query=search_context_cost_per_query,
             citation_cost_per_token=citation_cost_per_token,
             tiered_pricing=tiered_pricing,
+            cache_read_input_token_cost_above_272k_tokens=cache_read_input_token_cost_above_272k_tokens,
+            cache_read_input_token_cost_above_512k_tokens=cache_read_input_token_cost_above_512k_tokens,
+            input_cost_per_image_token=input_cost_per_image_token,
+            input_cost_per_token_above_272k_tokens=input_cost_per_token_above_272k_tokens,
+            input_cost_per_token_above_512k_tokens=input_cost_per_token_above_512k_tokens,
+            output_cost_per_token_above_272k_tokens=output_cost_per_token_above_272k_tokens,
+            output_cost_per_token_above_512k_tokens=output_cost_per_token_above_512k_tokens,
+            output_vector_size=output_vector_size,
+            ocr_cost_per_page=ocr_cost_per_page,
+            ocr_cost_per_credit=ocr_cost_per_credit,
+            annotation_cost_per_page=annotation_cost_per_page,
+            regional_processing_uplift_multiplier_eu=regional_processing_uplift_multiplier_eu,
+            regional_processing_uplift_multiplier_us=regional_processing_uplift_multiplier_us,
             api_key=api_key,
             api_base=api_base,
             api_version=api_version,
@@ -2548,6 +2821,7 @@ class LiteLLMParams:
             vertex_location=vertex_location,
             vertex_credentials=vertex_credentials,
             region_name=region_name,
+            gcs_bucket_name=gcs_bucket_name,
             aws_access_key_id=aws_access_key_id,
             aws_secret_access_key=aws_secret_access_key,
             aws_region_name=aws_region_name,
@@ -2590,7 +2864,6 @@ class LiteLLMParams:
             quality_router_config=quality_router_config,
             quality_router_default_model=quality_router_default_model,
             s3_encryption_key_id=s3_encryption_key_id,
-            gcs_bucket_name=gcs_bucket_name,
             vector_store_id=vector_store_id,
             milvus_text_field=milvus_text_field,
             milvus_db_name=milvus_db_name,

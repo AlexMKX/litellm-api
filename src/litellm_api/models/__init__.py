@@ -113,6 +113,12 @@ from .cache_test_request_cache_settings import CacheTestRequestCacheSettings
 from .cache_test_response import CacheTestResponse
 from .calculate_spend_spend_calculate_post_response_200 import CalculateSpendSpendCalculatePostResponse200
 from .call_types import CallTypes
+from .callback_log_failure import CallbackLogFailure
+from .callback_log_record import CallbackLogRecord
+from .callback_log_record_standard_logging_payload import CallbackLogRecordStandardLoggingPayload
+from .callback_log_record_status import CallbackLogRecordStatus
+from .callback_logs_request import CallbackLogsRequest
+from .callback_logs_response import CallbackLogsResponse
 from .callbacks_by_type import CallbacksByType
 from .cancel_eval_response import CancelEvalResponse
 from .cancel_run_response import CancelRunResponse
@@ -317,6 +323,7 @@ from .list_evals_response import ListEvalsResponse
 from .list_fine_tuning_jobs_fine_tuning_jobs_get_custom_llm_provider_type_0 import ListFineTuningJobsFineTuningJobsGetCustomLlmProviderType0
 from .list_fine_tuning_jobs_v1_fine_tuning_jobs_get_custom_llm_provider_type_0 import ListFineTuningJobsV1FineTuningJobsGetCustomLlmProviderType0
 from .list_guardrail_submissions_response import ListGuardrailSubmissionsResponse
+from .list_plugins_api_plugins_get_response_200_item import ListPluginsApiPluginsGetResponse200Item
 from .list_plugins_response import ListPluginsResponse
 from .list_prompts_response import ListPromptsResponse
 from .list_runs_response import ListRunsResponse
@@ -538,6 +545,7 @@ from .pii_entity_type import PiiEntityType
 from .pipeline_test_request import PipelineTestRequest
 from .pipeline_test_request_pipeline import PipelineTestRequestPipeline
 from .pipeline_test_request_test_messages_item import PipelineTestRequestTestMessagesItem
+from .plugin_auth_token_api_plugins_auth_token_get_response_plugin_auth_token_api_plugins_auth_token_get import PluginAuthTokenApiPluginsAuthTokenGetResponsePluginAuthTokenApiPluginsAuthTokenGet
 from .plugin_author import PluginAuthor
 from .plugin_list_item import PluginListItem
 from .plugin_list_item_source import PluginListItemSource
@@ -623,6 +631,7 @@ from .response_lite_llm_managed_vector_store import ResponseLiteLLMManagedVector
 from .result_counts import ResultCounts
 from .retrieve_fine_tuning_job_fine_tuning_jobs_fine_tuning_job_id_get_custom_llm_provider_type_0 import RetrieveFineTuningJobFineTuningJobsFineTuningJobIdGetCustomLlmProviderType0
 from .retrieve_fine_tuning_job_v1_fine_tuning_jobs_fine_tuning_job_id_get_custom_llm_provider_type_0 import RetrieveFineTuningJobV1FineTuningJobsFineTuningJobIdGetCustomLlmProviderType0
+from .retry_policy import RetryPolicy
 from .role_mappings import RoleMappings
 from .role_mappings_roles import RoleMappingsRoles
 from .router_fields_response import RouterFieldsResponse
@@ -974,6 +983,12 @@ __all__ = (
     "CacheTestRequestCacheSettings",
     "CacheTestResponse",
     "CalculateSpendSpendCalculatePostResponse200",
+    "CallbackLogFailure",
+    "CallbackLogRecord",
+    "CallbackLogRecordStandardLoggingPayload",
+    "CallbackLogRecordStatus",
+    "CallbackLogsRequest",
+    "CallbackLogsResponse",
     "CallbacksByType",
     "CallTypes",
     "CancelEvalResponse",
@@ -1179,6 +1194,7 @@ __all__ = (
     "ListFineTuningJobsFineTuningJobsGetCustomLlmProviderType0",
     "ListFineTuningJobsV1FineTuningJobsGetCustomLlmProviderType0",
     "ListGuardrailSubmissionsResponse",
+    "ListPluginsApiPluginsGetResponse200Item",
     "ListPluginsResponse",
     "ListPromptsResponse",
     "ListRunsResponse",
@@ -1401,6 +1417,7 @@ __all__ = (
     "PipelineTestRequestPipeline",
     "PipelineTestRequestTestMessagesItem",
     "PluginAuthor",
+    "PluginAuthTokenApiPluginsAuthTokenGetResponsePluginAuthTokenApiPluginsAuthTokenGet",
     "PluginListItem",
     "PluginListItemSource",
     "PolicyAttachmentCreateRequest",
@@ -1485,6 +1502,7 @@ __all__ = (
     "ResultCounts",
     "RetrieveFineTuningJobFineTuningJobsFineTuningJobIdGetCustomLlmProviderType0",
     "RetrieveFineTuningJobV1FineTuningJobsFineTuningJobIdGetCustomLlmProviderType0",
+    "RetryPolicy",
     "RoleMappings",
     "RoleMappingsRoles",
     "RouterFieldsResponse",

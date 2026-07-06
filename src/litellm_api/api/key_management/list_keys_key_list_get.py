@@ -33,6 +33,7 @@ def _get_kwargs(
     status: None | str | Unset = UNSET,
     project_id: None | str | Unset = UNSET,
     access_group_id: None | str | Unset = UNSET,
+    agent_id: None | str | Unset = UNSET,
     substring_matching: bool | Unset = False,
 
 ) -> dict[str, Any]:
@@ -128,6 +129,13 @@ def _get_kwargs(
         json_access_group_id = access_group_id
     params["access_group_id"] = json_access_group_id
 
+    json_agent_id: None | str | Unset
+    if isinstance(agent_id, Unset):
+        json_agent_id = UNSET
+    else:
+        json_agent_id = agent_id
+    params["agent_id"] = json_agent_id
+
     params["substring_matching"] = substring_matching
 
 
@@ -194,6 +202,7 @@ def sync_detailed(
     status: None | str | Unset = UNSET,
     project_id: None | str | Unset = UNSET,
     access_group_id: None | str | Unset = UNSET,
+    agent_id: None | str | Unset = UNSET,
     substring_matching: bool | Unset = False,
 
 ) -> Response[HTTPValidationError | KeyListResponseObject]:
@@ -238,6 +247,7 @@ def sync_detailed(
         status (None | str | Unset): Filter by status (e.g. 'deleted')
         project_id (None | str | Unset): Filter keys by project ID
         access_group_id (None | str | Unset): Filter keys by access group ID
+        agent_id (None | str | Unset): Filter keys by agent ID
         substring_matching (bool | Unset): If true (proxy admins only), match user_id/key_alias as
             case-insensitive substrings instead of exact values. Defaults to false: /key/list matched
             these exactly before substring search was added, and an exact user_id/key_alias filter
@@ -269,6 +279,7 @@ expand=expand,
 status=status,
 project_id=project_id,
 access_group_id=access_group_id,
+agent_id=agent_id,
 substring_matching=substring_matching,
 
     )
@@ -298,6 +309,7 @@ def sync(
     status: None | str | Unset = UNSET,
     project_id: None | str | Unset = UNSET,
     access_group_id: None | str | Unset = UNSET,
+    agent_id: None | str | Unset = UNSET,
     substring_matching: bool | Unset = False,
 
 ) -> HTTPValidationError | KeyListResponseObject | None:
@@ -342,6 +354,7 @@ def sync(
         status (None | str | Unset): Filter by status (e.g. 'deleted')
         project_id (None | str | Unset): Filter keys by project ID
         access_group_id (None | str | Unset): Filter keys by access group ID
+        agent_id (None | str | Unset): Filter keys by agent ID
         substring_matching (bool | Unset): If true (proxy admins only), match user_id/key_alias as
             case-insensitive substrings instead of exact values. Defaults to false: /key/list matched
             these exactly before substring search was added, and an exact user_id/key_alias filter
@@ -374,6 +387,7 @@ expand=expand,
 status=status,
 project_id=project_id,
 access_group_id=access_group_id,
+agent_id=agent_id,
 substring_matching=substring_matching,
 
     ).parsed
@@ -397,6 +411,7 @@ async def asyncio_detailed(
     status: None | str | Unset = UNSET,
     project_id: None | str | Unset = UNSET,
     access_group_id: None | str | Unset = UNSET,
+    agent_id: None | str | Unset = UNSET,
     substring_matching: bool | Unset = False,
 
 ) -> Response[HTTPValidationError | KeyListResponseObject]:
@@ -441,6 +456,7 @@ async def asyncio_detailed(
         status (None | str | Unset): Filter by status (e.g. 'deleted')
         project_id (None | str | Unset): Filter keys by project ID
         access_group_id (None | str | Unset): Filter keys by access group ID
+        agent_id (None | str | Unset): Filter keys by agent ID
         substring_matching (bool | Unset): If true (proxy admins only), match user_id/key_alias as
             case-insensitive substrings instead of exact values. Defaults to false: /key/list matched
             these exactly before substring search was added, and an exact user_id/key_alias filter
@@ -472,6 +488,7 @@ expand=expand,
 status=status,
 project_id=project_id,
 access_group_id=access_group_id,
+agent_id=agent_id,
 substring_matching=substring_matching,
 
     )
@@ -501,6 +518,7 @@ async def asyncio(
     status: None | str | Unset = UNSET,
     project_id: None | str | Unset = UNSET,
     access_group_id: None | str | Unset = UNSET,
+    agent_id: None | str | Unset = UNSET,
     substring_matching: bool | Unset = False,
 
 ) -> HTTPValidationError | KeyListResponseObject | None:
@@ -545,6 +563,7 @@ async def asyncio(
         status (None | str | Unset): Filter by status (e.g. 'deleted')
         project_id (None | str | Unset): Filter keys by project ID
         access_group_id (None | str | Unset): Filter keys by access group ID
+        agent_id (None | str | Unset): Filter keys by agent ID
         substring_matching (bool | Unset): If true (proxy admins only), match user_id/key_alias as
             case-insensitive substrings instead of exact values. Defaults to false: /key/list matched
             these exactly before substring search was added, and an exact user_id/key_alias filter
@@ -577,6 +596,7 @@ expand=expand,
 status=status,
 project_id=project_id,
 access_group_id=access_group_id,
+agent_id=agent_id,
 substring_matching=substring_matching,
 
     )).parsed

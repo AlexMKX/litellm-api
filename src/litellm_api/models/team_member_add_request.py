@@ -44,6 +44,8 @@ class TeamMemberAddRequest:
             team_id (str): The ID of the team to add the member to
             max_budget_in_team (float | None | Unset): Maximum budget allocated to this user within the team. If not set,
                 user has unlimited budget within team limits
+            budget_duration (None | str | Unset): Duration after which this team member's budget resets (e.g. '1h', '24h',
+                '7d', '30d'). If not set, the budget never resets.
             allowed_models (list[str] | None | Unset): List of models this team member can access. If not set, inherits the
                 team's default_team_member_models or all team models.
      """
@@ -51,6 +53,7 @@ class TeamMemberAddRequest:
     member: list[Member] | Member
     team_id: str
     max_budget_in_team: float | None | Unset = UNSET
+    budget_duration: None | str | Unset = UNSET
     allowed_models: list[str] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -80,6 +83,12 @@ class TeamMemberAddRequest:
         else:
             max_budget_in_team = self.max_budget_in_team
 
+        budget_duration: None | str | Unset
+        if isinstance(self.budget_duration, Unset):
+            budget_duration = UNSET
+        else:
+            budget_duration = self.budget_duration
+
         allowed_models: list[str] | None | Unset
         if isinstance(self.allowed_models, Unset):
             allowed_models = UNSET
@@ -99,6 +108,8 @@ class TeamMemberAddRequest:
         })
         if max_budget_in_team is not UNSET:
             field_dict["max_budget_in_team"] = max_budget_in_team
+        if budget_duration is not UNSET:
+            field_dict["budget_duration"] = budget_duration
         if allowed_models is not UNSET:
             field_dict["allowed_models"] = allowed_models
 
@@ -149,6 +160,16 @@ class TeamMemberAddRequest:
         max_budget_in_team = _parse_max_budget_in_team(d.pop("max_budget_in_team", UNSET))
 
 
+        def _parse_budget_duration(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        budget_duration = _parse_budget_duration(d.pop("budget_duration", UNSET))
+
+
         def _parse_allowed_models(data: object) -> list[str] | None | Unset:
             if data is None:
                 return data
@@ -171,6 +192,7 @@ class TeamMemberAddRequest:
             member=member,
             team_id=team_id,
             max_budget_in_team=max_budget_in_team,
+            budget_duration=budget_duration,
             allowed_models=allowed_models,
         )
 

@@ -34,7 +34,6 @@ class MCPPublicServer:
             transport (MCPPublicServerTransport):
             alias (None | str | Unset):
             server_name (None | str | Unset):
-            url (None | str | Unset):
             spec_path (None | str | Unset):
             auth_type (MCPPublicServerAuthTypeType0 | None | Unset):
             mcp_info (MCPPublicServerMcpInfoType0 | None | Unset):
@@ -45,7 +44,6 @@ class MCPPublicServer:
     transport: MCPPublicServerTransport
     alias: None | str | Unset = UNSET
     server_name: None | str | Unset = UNSET
-    url: None | str | Unset = UNSET
     spec_path: None | str | Unset = UNSET
     auth_type: MCPPublicServerAuthTypeType0 | None | Unset = UNSET
     mcp_info: MCPPublicServerMcpInfoType0 | None | Unset = UNSET
@@ -74,12 +72,6 @@ class MCPPublicServer:
             server_name = UNSET
         else:
             server_name = self.server_name
-
-        url: None | str | Unset
-        if isinstance(self.url, Unset):
-            url = UNSET
-        else:
-            url = self.url
 
         spec_path: None | str | Unset
         if isinstance(self.spec_path, Unset):
@@ -115,8 +107,6 @@ class MCPPublicServer:
             field_dict["alias"] = alias
         if server_name is not UNSET:
             field_dict["server_name"] = server_name
-        if url is not UNSET:
-            field_dict["url"] = url
         if spec_path is not UNSET:
             field_dict["spec_path"] = spec_path
         if auth_type is not UNSET:
@@ -159,16 +149,6 @@ class MCPPublicServer:
             return cast(None | str | Unset, data)
 
         server_name = _parse_server_name(d.pop("server_name", UNSET))
-
-
-        def _parse_url(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        url = _parse_url(d.pop("url", UNSET))
 
 
         def _parse_spec_path(data: object) -> None | str | Unset:
@@ -227,7 +207,6 @@ class MCPPublicServer:
             transport=transport,
             alias=alias,
             server_name=server_name,
-            url=url,
             spec_path=spec_path,
             auth_type=auth_type,
             mcp_info=mcp_info,

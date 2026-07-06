@@ -28,14 +28,14 @@ T = TypeVar("T", bound="BodyTestModelConnectionHealthTestConnectionPost")
 class BodyTestModelConnectionHealthTestConnectionPost:
     """ 
         Attributes:
-            mode (BodyTestModelConnectionHealthTestConnectionPostModeType0 | None | Unset): The mode to test the model with
-                Default: BodyTestModelConnectionHealthTestConnectionPostModeType0.CHAT.
+            mode (BodyTestModelConnectionHealthTestConnectionPostModeType0 | None | Unset): The mode to test the model with.
+                If not provided, auto-detected from model capabilities.
             litellm_params (BodyTestModelConnectionHealthTestConnectionPostLitellmParams | Unset): Parameters for
                 litellm.completion, litellm.embedding for the health check
             model_info (BodyTestModelConnectionHealthTestConnectionPostModelInfo | Unset): Model info for the health check
      """
 
-    mode: BodyTestModelConnectionHealthTestConnectionPostModeType0 | None | Unset = BodyTestModelConnectionHealthTestConnectionPostModeType0.CHAT
+    mode: BodyTestModelConnectionHealthTestConnectionPostModeType0 | None | Unset = UNSET
     litellm_params: BodyTestModelConnectionHealthTestConnectionPostLitellmParams | Unset = UNSET
     model_info: BodyTestModelConnectionHealthTestConnectionPostModelInfo | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)

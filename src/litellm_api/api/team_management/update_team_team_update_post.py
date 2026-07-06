@@ -146,7 +146,8 @@ def sync_detailed(
     - secret_manager_settings: Optional[dict] - Secret manager settings for the team.
     [Docs](https://docs.litellm.ai/docs/secret_managers/overview)
     - router_settings: Optional[UpdateRouterConfig] - team-specific router settings. Example -
-    {\"model_group_retry_policy\": {\"max_retries\": 5}}. IF null or {} then no router settings.
+    {\"model_group_retry_policy\": {\"gpt-4\": {\"RateLimitErrorRetries\": 5}}}. IF null or {} then no
+    router settings.
     - access_group_ids: Optional[List[str]] - List of access group IDs to associate with the team.
     Access groups define which models the team can access. Example - [\"access_group_1\",
     \"access_group_2\"].
@@ -294,7 +295,8 @@ def sync(
     - secret_manager_settings: Optional[dict] - Secret manager settings for the team.
     [Docs](https://docs.litellm.ai/docs/secret_managers/overview)
     - router_settings: Optional[UpdateRouterConfig] - team-specific router settings. Example -
-    {\"model_group_retry_policy\": {\"max_retries\": 5}}. IF null or {} then no router settings.
+    {\"model_group_retry_policy\": {\"gpt-4\": {\"RateLimitErrorRetries\": 5}}}. IF null or {} then no
+    router settings.
     - access_group_ids: Optional[List[str]] - List of access group IDs to associate with the team.
     Access groups define which models the team can access. Example - [\"access_group_1\",
     \"access_group_2\"].
@@ -437,7 +439,8 @@ async def asyncio_detailed(
     - secret_manager_settings: Optional[dict] - Secret manager settings for the team.
     [Docs](https://docs.litellm.ai/docs/secret_managers/overview)
     - router_settings: Optional[UpdateRouterConfig] - team-specific router settings. Example -
-    {\"model_group_retry_policy\": {\"max_retries\": 5}}. IF null or {} then no router settings.
+    {\"model_group_retry_policy\": {\"gpt-4\": {\"RateLimitErrorRetries\": 5}}}. IF null or {} then no
+    router settings.
     - access_group_ids: Optional[List[str]] - List of access group IDs to associate with the team.
     Access groups define which models the team can access. Example - [\"access_group_1\",
     \"access_group_2\"].
@@ -585,7 +588,8 @@ async def asyncio(
     - secret_manager_settings: Optional[dict] - Secret manager settings for the team.
     [Docs](https://docs.litellm.ai/docs/secret_managers/overview)
     - router_settings: Optional[UpdateRouterConfig] - team-specific router settings. Example -
-    {\"model_group_retry_policy\": {\"max_retries\": 5}}. IF null or {} then no router settings.
+    {\"model_group_retry_policy\": {\"gpt-4\": {\"RateLimitErrorRetries\": 5}}}. IF null or {} then no
+    router settings.
     - access_group_ids: Optional[List[str]] - List of access group IDs to associate with the team.
     Access groups define which models the team can access. Example - [\"access_group_1\",
     \"access_group_2\"].
