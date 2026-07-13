@@ -8,15 +8,15 @@ from ...client import AuthenticatedClient, Client
 from ...types import Response, UNSET
 from ... import errors
 
-from ...models.customer_response import CustomerResponse
 from ...models.http_validation_error import HTTPValidationError
+from ...types import UNSET, Unset
 from typing import cast
 
 
 
 def _get_kwargs(
     *,
-    end_user_id: str,
+    dry_run: bool | Unset = False,
 
 ) -> dict[str, Any]:
     
@@ -25,15 +25,15 @@ def _get_kwargs(
 
     params: dict[str, Any] = {}
 
-    params["end_user_id"] = end_user_id
+    params["dry_run"] = dry_run
 
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
 
     _kwargs: dict[str, Any] = {
-        "method": "get",
-        "url": "/customer/info",
+        "method": "post",
+        "url": "/credentials/migrate-encryption",
         "params": params,
     }
 
@@ -42,12 +42,9 @@ def _get_kwargs(
 
 
 
-def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> CustomerResponse | HTTPValidationError | None:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Any | HTTPValidationError | None:
     if response.status_code == 200:
-        response_200 = CustomerResponse.from_dict(response.json())
-
-
-
+        response_200 = response.json()
         return response_200
 
     if response.status_code == 422:
@@ -63,7 +60,7 @@ def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Res
         return None
 
 
-def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[CustomerResponse | HTTPValidationError]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Any | HTTPValidationError]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -75,36 +72,32 @@ def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Res
 def sync_detailed(
     *,
     client: AuthenticatedClient,
-    end_user_id: str,
+    dry_run: bool | Unset = False,
 
-) -> Response[CustomerResponse | HTTPValidationError]:
-    """ End User Info
+) -> Response[Any | HTTPValidationError]:
+    """ Migrate Encryption Endpoint
 
-     Get information about an end-user. An `end_user` is a customer (external user) of the proxy.
+     Re-encrypt all at-rest credentials into the AES-256-GCM (``v2:gcm:``) format.
 
-    Parameters:
-    - end_user_id (str, required): The unique identifier for the end-user
-
-    Example curl:
-    ```
-    curl -X GET 'http://localhost:4000/customer/info?end_user_id=test-litellm-user-4'         -H
-    'Authorization: Bearer sk-1234'
-    ```
+    Admin only. Requires ``general_settings.encryption_algorithm: aes-256-gcm``.
+    Idempotent and resumable — re-running skips already-migrated values. Pass
+    ``dry_run=true`` for a non-mutating scan (equivalent to ``--check``).
 
     Args:
-        end_user_id (str): End User ID in the request parameters
+        dry_run (bool | Unset): If true, scan and report without writing any changes. Default:
+            False.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[CustomerResponse | HTTPValidationError]
+        Response[Any | HTTPValidationError]
      """
 
 
     kwargs = _get_kwargs(
-        end_user_id=end_user_id,
+        dry_run=dry_run,
 
     )
 
@@ -117,73 +110,65 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient,
-    end_user_id: str,
+    dry_run: bool | Unset = False,
 
-) -> CustomerResponse | HTTPValidationError | None:
-    """ End User Info
+) -> Any | HTTPValidationError | None:
+    """ Migrate Encryption Endpoint
 
-     Get information about an end-user. An `end_user` is a customer (external user) of the proxy.
+     Re-encrypt all at-rest credentials into the AES-256-GCM (``v2:gcm:``) format.
 
-    Parameters:
-    - end_user_id (str, required): The unique identifier for the end-user
-
-    Example curl:
-    ```
-    curl -X GET 'http://localhost:4000/customer/info?end_user_id=test-litellm-user-4'         -H
-    'Authorization: Bearer sk-1234'
-    ```
+    Admin only. Requires ``general_settings.encryption_algorithm: aes-256-gcm``.
+    Idempotent and resumable — re-running skips already-migrated values. Pass
+    ``dry_run=true`` for a non-mutating scan (equivalent to ``--check``).
 
     Args:
-        end_user_id (str): End User ID in the request parameters
+        dry_run (bool | Unset): If true, scan and report without writing any changes. Default:
+            False.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        CustomerResponse | HTTPValidationError
+        Any | HTTPValidationError
      """
 
 
     return sync_detailed(
         client=client,
-end_user_id=end_user_id,
+dry_run=dry_run,
 
     ).parsed
 
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
-    end_user_id: str,
+    dry_run: bool | Unset = False,
 
-) -> Response[CustomerResponse | HTTPValidationError]:
-    """ End User Info
+) -> Response[Any | HTTPValidationError]:
+    """ Migrate Encryption Endpoint
 
-     Get information about an end-user. An `end_user` is a customer (external user) of the proxy.
+     Re-encrypt all at-rest credentials into the AES-256-GCM (``v2:gcm:``) format.
 
-    Parameters:
-    - end_user_id (str, required): The unique identifier for the end-user
-
-    Example curl:
-    ```
-    curl -X GET 'http://localhost:4000/customer/info?end_user_id=test-litellm-user-4'         -H
-    'Authorization: Bearer sk-1234'
-    ```
+    Admin only. Requires ``general_settings.encryption_algorithm: aes-256-gcm``.
+    Idempotent and resumable — re-running skips already-migrated values. Pass
+    ``dry_run=true`` for a non-mutating scan (equivalent to ``--check``).
 
     Args:
-        end_user_id (str): End User ID in the request parameters
+        dry_run (bool | Unset): If true, scan and report without writing any changes. Default:
+            False.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[CustomerResponse | HTTPValidationError]
+        Response[Any | HTTPValidationError]
      """
 
 
     kwargs = _get_kwargs(
-        end_user_id=end_user_id,
+        dry_run=dry_run,
 
     )
 
@@ -196,36 +181,32 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient,
-    end_user_id: str,
+    dry_run: bool | Unset = False,
 
-) -> CustomerResponse | HTTPValidationError | None:
-    """ End User Info
+) -> Any | HTTPValidationError | None:
+    """ Migrate Encryption Endpoint
 
-     Get information about an end-user. An `end_user` is a customer (external user) of the proxy.
+     Re-encrypt all at-rest credentials into the AES-256-GCM (``v2:gcm:``) format.
 
-    Parameters:
-    - end_user_id (str, required): The unique identifier for the end-user
-
-    Example curl:
-    ```
-    curl -X GET 'http://localhost:4000/customer/info?end_user_id=test-litellm-user-4'         -H
-    'Authorization: Bearer sk-1234'
-    ```
+    Admin only. Requires ``general_settings.encryption_algorithm: aes-256-gcm``.
+    Idempotent and resumable — re-running skips already-migrated values. Pass
+    ``dry_run=true`` for a non-mutating scan (equivalent to ``--check``).
 
     Args:
-        end_user_id (str): End User ID in the request parameters
+        dry_run (bool | Unset): If true, scan and report without writing any changes. Default:
+            False.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        CustomerResponse | HTTPValidationError
+        Any | HTTPValidationError
      """
 
 
     return (await asyncio_detailed(
         client=client,
-end_user_id=end_user_id,
+dry_run=dry_run,
 
     )).parsed

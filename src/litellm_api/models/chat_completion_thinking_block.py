@@ -30,13 +30,13 @@ class ChatCompletionThinkingBlock:
         Attributes:
             type_ (Literal['thinking']):
             thinking (str | Unset):
-            signature (str | Unset):
+            signature (None | str | Unset):
             cache_control (ChatCompletionCachedContent | ChatCompletionThinkingBlockCacheControlType0 | None | Unset):
      """
 
     type_: Literal['thinking']
     thinking: str | Unset = UNSET
-    signature: str | Unset = UNSET
+    signature: None | str | Unset = UNSET
     cache_control: ChatCompletionCachedContent | ChatCompletionThinkingBlockCacheControlType0 | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -51,7 +51,11 @@ class ChatCompletionThinkingBlock:
 
         thinking = self.thinking
 
-        signature = self.signature
+        signature: None | str | Unset
+        if isinstance(self.signature, Unset):
+            signature = UNSET
+        else:
+            signature = self.signature
 
         cache_control: dict[str, Any] | None | Unset
         if isinstance(self.cache_control, Unset):
@@ -91,7 +95,15 @@ class ChatCompletionThinkingBlock:
 
         thinking = d.pop("thinking", UNSET)
 
-        signature = d.pop("signature", UNSET)
+        def _parse_signature(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        signature = _parse_signature(d.pop("signature", UNSET))
+
 
         def _parse_cache_control(data: object) -> ChatCompletionCachedContent | ChatCompletionThinkingBlockCacheControlType0 | None | Unset:
             if data is None:

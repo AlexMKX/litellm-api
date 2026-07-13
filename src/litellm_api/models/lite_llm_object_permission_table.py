@@ -38,6 +38,7 @@ class LiteLLMObjectPermissionTable:
             mcp_toolsets (list[str] | None | Unset):
             blocked_tools (list[str] | None | Unset):
             search_tools (list[str] | None | Unset):
+            mcp_tool_search_enabled (bool | None | Unset):
      """
 
     object_permission_id: str
@@ -51,6 +52,7 @@ class LiteLLMObjectPermissionTable:
     mcp_toolsets: list[str] | None | Unset = UNSET
     blocked_tools: list[str] | None | Unset = UNSET
     search_tools: list[str] | None | Unset = UNSET
+    mcp_tool_search_enabled: bool | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -159,6 +161,12 @@ class LiteLLMObjectPermissionTable:
         else:
             search_tools = self.search_tools
 
+        mcp_tool_search_enabled: bool | None | Unset
+        if isinstance(self.mcp_tool_search_enabled, Unset):
+            mcp_tool_search_enabled = UNSET
+        else:
+            mcp_tool_search_enabled = self.mcp_tool_search_enabled
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -185,6 +193,8 @@ class LiteLLMObjectPermissionTable:
             field_dict["blocked_tools"] = blocked_tools
         if search_tools is not UNSET:
             field_dict["search_tools"] = search_tools
+        if mcp_tool_search_enabled is not UNSET:
+            field_dict["mcp_tool_search_enabled"] = mcp_tool_search_enabled
 
         return field_dict
 
@@ -378,6 +388,16 @@ class LiteLLMObjectPermissionTable:
         search_tools = _parse_search_tools(d.pop("search_tools", UNSET))
 
 
+        def _parse_mcp_tool_search_enabled(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        mcp_tool_search_enabled = _parse_mcp_tool_search_enabled(d.pop("mcp_tool_search_enabled", UNSET))
+
+
         lite_llm_object_permission_table = cls(
             object_permission_id=object_permission_id,
             mcp_servers=mcp_servers,
@@ -390,6 +410,7 @@ class LiteLLMObjectPermissionTable:
             mcp_toolsets=mcp_toolsets,
             blocked_tools=blocked_tools,
             search_tools=search_tools,
+            mcp_tool_search_enabled=mcp_tool_search_enabled,
         )
 
 

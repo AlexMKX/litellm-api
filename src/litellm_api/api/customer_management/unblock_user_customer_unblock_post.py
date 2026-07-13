@@ -10,6 +10,7 @@ from ... import errors
 
 from ...models.block_users import BlockUsers
 from ...models.http_validation_error import HTTPValidationError
+from ...models.unblock_users_response import UnblockUsersResponse
 from typing import cast
 
 
@@ -40,9 +41,12 @@ def _get_kwargs(
 
 
 
-def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Any | HTTPValidationError | None:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> HTTPValidationError | UnblockUsersResponse | None:
     if response.status_code == 200:
-        response_200 = response.json()
+        response_200 = UnblockUsersResponse.from_dict(response.json())
+
+
+
         return response_200
 
     if response.status_code == 422:
@@ -58,7 +62,7 @@ def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Res
         return None
 
 
-def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Any | HTTPValidationError]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[HTTPValidationError | UnblockUsersResponse]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -72,7 +76,7 @@ def sync_detailed(
     client: AuthenticatedClient,
     body: BlockUsers,
 
-) -> Response[Any | HTTPValidationError]:
+) -> Response[HTTPValidationError | UnblockUsersResponse]:
     r""" Unblock User
 
      [BETA] Unblock calls with this user id
@@ -94,7 +98,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | HTTPValidationError]
+        Response[HTTPValidationError | UnblockUsersResponse]
      """
 
 
@@ -114,7 +118,7 @@ def sync(
     client: AuthenticatedClient,
     body: BlockUsers,
 
-) -> Any | HTTPValidationError | None:
+) -> HTTPValidationError | UnblockUsersResponse | None:
     r""" Unblock User
 
      [BETA] Unblock calls with this user id
@@ -136,7 +140,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | HTTPValidationError
+        HTTPValidationError | UnblockUsersResponse
      """
 
 
@@ -151,7 +155,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient,
     body: BlockUsers,
 
-) -> Response[Any | HTTPValidationError]:
+) -> Response[HTTPValidationError | UnblockUsersResponse]:
     r""" Unblock User
 
      [BETA] Unblock calls with this user id
@@ -173,7 +177,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | HTTPValidationError]
+        Response[HTTPValidationError | UnblockUsersResponse]
      """
 
 
@@ -193,7 +197,7 @@ async def asyncio(
     client: AuthenticatedClient,
     body: BlockUsers,
 
-) -> Any | HTTPValidationError | None:
+) -> HTTPValidationError | UnblockUsersResponse | None:
     r""" Unblock User
 
      [BETA] Unblock calls with this user id
@@ -215,7 +219,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | HTTPValidationError
+        HTTPValidationError | UnblockUsersResponse
      """
 
 

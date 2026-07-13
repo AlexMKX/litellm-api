@@ -8,34 +8,39 @@ from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..models.lite_llm_end_user_table_allowed_model_region_type_0 import LiteLLMEndUserTableAllowedModelRegionType0
+from ..models.customer_response_allowed_model_region_type_0 import CustomerResponseAllowedModelRegionType0
 from ..types import UNSET, Unset
 from typing import cast
 
 if TYPE_CHECKING:
-  from ..models.lite_llm_budget_table import LiteLLMBudgetTable
+  from ..models.lite_llm_budget_table_full import LiteLLMBudgetTableFull
   from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
 
 
 
 
 
-T = TypeVar("T", bound="LiteLLMEndUserTable")
+T = TypeVar("T", bound="CustomerResponse")
 
 
 
 @_attrs_define
-class LiteLLMEndUserTable:
-    """ 
+class CustomerResponse:
+    """ Customer object returned by the /customer read+write endpoints.
+
+    Nests the full budget response model so server-managed budget fields
+    (budget_reset_at, created_at) survive response_model filtering, rather than
+    the narrow write-allowlist shape LiteLLM_EndUserTable carries for internal use.
+
         Attributes:
             user_id (str):
             blocked (bool):
             alias (None | str | Unset):
             spend (float | Unset):  Default: 0.0.
-            allowed_model_region (LiteLLMEndUserTableAllowedModelRegionType0 | None | Unset):
+            allowed_model_region (CustomerResponseAllowedModelRegionType0 | None | Unset):
             default_model (None | str | Unset):
             budget_id (None | str | Unset):
-            litellm_budget_table (LiteLLMBudgetTable | None | Unset):
+            litellm_budget_table (LiteLLMBudgetTableFull | None | Unset):
             object_permission_id (None | str | Unset):
             object_permission (LiteLLMObjectPermissionTable | None | Unset):
      """
@@ -44,10 +49,10 @@ class LiteLLMEndUserTable:
     blocked: bool
     alias: None | str | Unset = UNSET
     spend: float | Unset = 0.0
-    allowed_model_region: LiteLLMEndUserTableAllowedModelRegionType0 | None | Unset = UNSET
+    allowed_model_region: CustomerResponseAllowedModelRegionType0 | None | Unset = UNSET
     default_model: None | str | Unset = UNSET
     budget_id: None | str | Unset = UNSET
-    litellm_budget_table: LiteLLMBudgetTable | None | Unset = UNSET
+    litellm_budget_table: LiteLLMBudgetTableFull | None | Unset = UNSET
     object_permission_id: None | str | Unset = UNSET
     object_permission: LiteLLMObjectPermissionTable | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -57,7 +62,7 @@ class LiteLLMEndUserTable:
 
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.lite_llm_budget_table import LiteLLMBudgetTable
+        from ..models.lite_llm_budget_table_full import LiteLLMBudgetTableFull
         from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
         user_id = self.user_id
 
@@ -74,7 +79,7 @@ class LiteLLMEndUserTable:
         allowed_model_region: None | str | Unset
         if isinstance(self.allowed_model_region, Unset):
             allowed_model_region = UNSET
-        elif isinstance(self.allowed_model_region, LiteLLMEndUserTableAllowedModelRegionType0):
+        elif isinstance(self.allowed_model_region, CustomerResponseAllowedModelRegionType0):
             allowed_model_region = self.allowed_model_region.value
         else:
             allowed_model_region = self.allowed_model_region
@@ -94,7 +99,7 @@ class LiteLLMEndUserTable:
         litellm_budget_table: dict[str, Any] | None | Unset
         if isinstance(self.litellm_budget_table, Unset):
             litellm_budget_table = UNSET
-        elif isinstance(self.litellm_budget_table, LiteLLMBudgetTable):
+        elif isinstance(self.litellm_budget_table, LiteLLMBudgetTableFull):
             litellm_budget_table = self.litellm_budget_table.to_dict()
         else:
             litellm_budget_table = self.litellm_budget_table
@@ -143,7 +148,7 @@ class LiteLLMEndUserTable:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.lite_llm_budget_table import LiteLLMBudgetTable
+        from ..models.lite_llm_budget_table_full import LiteLLMBudgetTableFull
         from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
         d = dict(src_dict)
         user_id = d.pop("user_id")
@@ -162,7 +167,7 @@ class LiteLLMEndUserTable:
 
         spend = d.pop("spend", UNSET)
 
-        def _parse_allowed_model_region(data: object) -> LiteLLMEndUserTableAllowedModelRegionType0 | None | Unset:
+        def _parse_allowed_model_region(data: object) -> CustomerResponseAllowedModelRegionType0 | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -170,14 +175,14 @@ class LiteLLMEndUserTable:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                allowed_model_region_type_0 = LiteLLMEndUserTableAllowedModelRegionType0(data)
+                allowed_model_region_type_0 = CustomerResponseAllowedModelRegionType0(data)
 
 
 
                 return allowed_model_region_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(LiteLLMEndUserTableAllowedModelRegionType0 | None | Unset, data)
+            return cast(CustomerResponseAllowedModelRegionType0 | None | Unset, data)
 
         allowed_model_region = _parse_allowed_model_region(d.pop("allowed_model_region", UNSET))
 
@@ -202,7 +207,7 @@ class LiteLLMEndUserTable:
         budget_id = _parse_budget_id(d.pop("budget_id", UNSET))
 
 
-        def _parse_litellm_budget_table(data: object) -> LiteLLMBudgetTable | None | Unset:
+        def _parse_litellm_budget_table(data: object) -> LiteLLMBudgetTableFull | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -210,14 +215,14 @@ class LiteLLMEndUserTable:
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                litellm_budget_table_type_0 = LiteLLMBudgetTable.from_dict(data)
+                litellm_budget_table_type_0 = LiteLLMBudgetTableFull.from_dict(data)
 
 
 
                 return litellm_budget_table_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(LiteLLMBudgetTable | None | Unset, data)
+            return cast(LiteLLMBudgetTableFull | None | Unset, data)
 
         litellm_budget_table = _parse_litellm_budget_table(d.pop("litellm_budget_table", UNSET))
 
@@ -252,7 +257,7 @@ class LiteLLMEndUserTable:
         object_permission = _parse_object_permission(d.pop("object_permission", UNSET))
 
 
-        lite_llm_end_user_table = cls(
+        customer_response = cls(
             user_id=user_id,
             blocked=blocked,
             alias=alias,
@@ -266,8 +271,8 @@ class LiteLLMEndUserTable:
         )
 
 
-        lite_llm_end_user_table.additional_properties = d
-        return lite_llm_end_user_table
+        customer_response.additional_properties = d
+        return customer_response
 
     @property
     def additional_keys(self) -> list[str]:

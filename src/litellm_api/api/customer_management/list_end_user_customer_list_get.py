@@ -8,7 +8,7 @@ from ...client import AuthenticatedClient, Client
 from ...types import Response, UNSET
 from ... import errors
 
-from ...models.lite_llm_end_user_table import LiteLLMEndUserTable
+from ...models.customer_response import CustomerResponse
 from typing import cast
 
 
@@ -32,12 +32,12 @@ def _get_kwargs(
 
 
 
-def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> list[LiteLLMEndUserTable] | None:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> list[CustomerResponse] | None:
     if response.status_code == 200:
         response_200 = []
         _response_200 = response.json()
         for response_200_item_data in (_response_200):
-            response_200_item = LiteLLMEndUserTable.from_dict(response_200_item_data)
+            response_200_item = CustomerResponse.from_dict(response_200_item_data)
 
 
 
@@ -51,7 +51,7 @@ def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Res
         return None
 
 
-def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[list[LiteLLMEndUserTable]]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[list[CustomerResponse]]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -64,7 +64,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient,
 
-) -> Response[list[LiteLLMEndUserTable]]:
+) -> Response[list[CustomerResponse]]:
     """ List End User
 
      [Admin-only] List all available customers
@@ -80,7 +80,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[list[LiteLLMEndUserTable]]
+        Response[list[CustomerResponse]]
      """
 
 
@@ -98,7 +98,7 @@ def sync(
     *,
     client: AuthenticatedClient,
 
-) -> list[LiteLLMEndUserTable] | None:
+) -> list[CustomerResponse] | None:
     """ List End User
 
      [Admin-only] List all available customers
@@ -114,7 +114,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        list[LiteLLMEndUserTable]
+        list[CustomerResponse]
      """
 
 
@@ -127,7 +127,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
 
-) -> Response[list[LiteLLMEndUserTable]]:
+) -> Response[list[CustomerResponse]]:
     """ List End User
 
      [Admin-only] List all available customers
@@ -143,7 +143,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[list[LiteLLMEndUserTable]]
+        Response[list[CustomerResponse]]
      """
 
 
@@ -161,7 +161,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient,
 
-) -> list[LiteLLMEndUserTable] | None:
+) -> list[CustomerResponse] | None:
     """ List End User
 
      [Admin-only] List all available customers
@@ -177,7 +177,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        list[LiteLLMEndUserTable]
+        list[CustomerResponse]
      """
 
 

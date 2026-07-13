@@ -36,6 +36,7 @@ class LiteLLMObjectPermissionBase:
             agent_access_groups (list[str] | None | Unset):
             models (list[str] | None | Unset):
             search_tools (list[str] | None | Unset):
+            mcp_tool_search_enabled (bool | None | Unset):
      """
 
     mcp_servers: list[str] | None | Unset = UNSET
@@ -48,6 +49,7 @@ class LiteLLMObjectPermissionBase:
     agent_access_groups: list[str] | None | Unset = UNSET
     models: list[str] | None | Unset = UNSET
     search_tools: list[str] | None | Unset = UNSET
+    mcp_tool_search_enabled: bool | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -154,6 +156,12 @@ class LiteLLMObjectPermissionBase:
         else:
             search_tools = self.search_tools
 
+        mcp_tool_search_enabled: bool | None | Unset
+        if isinstance(self.mcp_tool_search_enabled, Unset):
+            mcp_tool_search_enabled = UNSET
+        else:
+            mcp_tool_search_enabled = self.mcp_tool_search_enabled
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -179,6 +187,8 @@ class LiteLLMObjectPermissionBase:
             field_dict["models"] = models
         if search_tools is not UNSET:
             field_dict["search_tools"] = search_tools
+        if mcp_tool_search_enabled is not UNSET:
+            field_dict["mcp_tool_search_enabled"] = mcp_tool_search_enabled
 
         return field_dict
 
@@ -370,6 +380,16 @@ class LiteLLMObjectPermissionBase:
         search_tools = _parse_search_tools(d.pop("search_tools", UNSET))
 
 
+        def _parse_mcp_tool_search_enabled(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        mcp_tool_search_enabled = _parse_mcp_tool_search_enabled(d.pop("mcp_tool_search_enabled", UNSET))
+
+
         lite_llm_object_permission_base = cls(
             mcp_servers=mcp_servers,
             mcp_access_groups=mcp_access_groups,
@@ -381,6 +401,7 @@ class LiteLLMObjectPermissionBase:
             agent_access_groups=agent_access_groups,
             models=models,
             search_tools=search_tools,
+            mcp_tool_search_enabled=mcp_tool_search_enabled,
         )
 
 

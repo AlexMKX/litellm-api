@@ -18,6 +18,7 @@ if TYPE_CHECKING:
   from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
   from ..models.member import Member
   from ..models.user_api_key_auth_aliases import UserAPIKeyAuthAliases
+  from ..models.user_api_key_auth_budget_fallbacks import UserAPIKeyAuthBudgetFallbacks
   from ..models.user_api_key_auth_budget_limits_type_0_item import UserAPIKeyAuthBudgetLimitsType0Item
   from ..models.user_api_key_auth_config import UserAPIKeyAuthConfig
   from ..models.user_api_key_auth_end_user_model_max_budget_type_0 import UserAPIKeyAuthEndUserModelMaxBudgetType0
@@ -72,6 +73,7 @@ class UserAPIKeyAuth:
             permissions (UserAPIKeyAuthPermissions | Unset):
             model_spend (UserAPIKeyAuthModelSpend | Unset):
             model_max_budget (UserAPIKeyAuthModelMaxBudget | Unset):
+            budget_fallbacks (UserAPIKeyAuthBudgetFallbacks | Unset):
             soft_budget_cooldown (bool | Unset):  Default: False.
             blocked (bool | None | Unset):
             litellm_budget_table (None | Unset | UserAPIKeyAuthLitellmBudgetTableType0):
@@ -165,6 +167,7 @@ class UserAPIKeyAuth:
     permissions: UserAPIKeyAuthPermissions | Unset = UNSET
     model_spend: UserAPIKeyAuthModelSpend | Unset = UNSET
     model_max_budget: UserAPIKeyAuthModelMaxBudget | Unset = UNSET
+    budget_fallbacks: UserAPIKeyAuthBudgetFallbacks | Unset = UNSET
     soft_budget_cooldown: bool | Unset = False
     blocked: bool | None | Unset = UNSET
     litellm_budget_table: None | Unset | UserAPIKeyAuthLitellmBudgetTableType0 = UNSET
@@ -242,6 +245,7 @@ class UserAPIKeyAuth:
         from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
         from ..models.member import Member
         from ..models.user_api_key_auth_aliases import UserAPIKeyAuthAliases
+        from ..models.user_api_key_auth_budget_fallbacks import UserAPIKeyAuthBudgetFallbacks
         from ..models.user_api_key_auth_budget_limits_type_0_item import UserAPIKeyAuthBudgetLimitsType0Item
         from ..models.user_api_key_auth_config import UserAPIKeyAuthConfig
         from ..models.user_api_key_auth_end_user_model_max_budget_type_0 import UserAPIKeyAuthEndUserModelMaxBudgetType0
@@ -397,6 +401,10 @@ class UserAPIKeyAuth:
         model_max_budget: dict[str, Any] | Unset = UNSET
         if not isinstance(self.model_max_budget, Unset):
             model_max_budget = self.model_max_budget.to_dict()
+
+        budget_fallbacks: dict[str, Any] | Unset = UNSET
+        if not isinstance(self.budget_fallbacks, Unset):
+            budget_fallbacks = self.budget_fallbacks.to_dict()
 
         soft_budget_cooldown = self.soft_budget_cooldown
 
@@ -894,6 +902,8 @@ class UserAPIKeyAuth:
             field_dict["model_spend"] = model_spend
         if model_max_budget is not UNSET:
             field_dict["model_max_budget"] = model_max_budget
+        if budget_fallbacks is not UNSET:
+            field_dict["budget_fallbacks"] = budget_fallbacks
         if soft_budget_cooldown is not UNSET:
             field_dict["soft_budget_cooldown"] = soft_budget_cooldown
         if blocked is not UNSET:
@@ -1038,6 +1048,7 @@ class UserAPIKeyAuth:
         from ..models.lite_llm_object_permission_table import LiteLLMObjectPermissionTable
         from ..models.member import Member
         from ..models.user_api_key_auth_aliases import UserAPIKeyAuthAliases
+        from ..models.user_api_key_auth_budget_fallbacks import UserAPIKeyAuthBudgetFallbacks
         from ..models.user_api_key_auth_budget_limits_type_0_item import UserAPIKeyAuthBudgetLimitsType0Item
         from ..models.user_api_key_auth_config import UserAPIKeyAuthConfig
         from ..models.user_api_key_auth_end_user_model_max_budget_type_0 import UserAPIKeyAuthEndUserModelMaxBudgetType0
@@ -1312,6 +1323,16 @@ class UserAPIKeyAuth:
             model_max_budget = UNSET
         else:
             model_max_budget = UserAPIKeyAuthModelMaxBudget.from_dict(_model_max_budget)
+
+
+
+
+        _budget_fallbacks = d.pop("budget_fallbacks", UNSET)
+        budget_fallbacks: UserAPIKeyAuthBudgetFallbacks | Unset
+        if isinstance(_budget_fallbacks,  Unset):
+            budget_fallbacks = UNSET
+        else:
+            budget_fallbacks = UserAPIKeyAuthBudgetFallbacks.from_dict(_budget_fallbacks)
 
 
 
@@ -2213,6 +2234,7 @@ class UserAPIKeyAuth:
             permissions=permissions,
             model_spend=model_spend,
             model_max_budget=model_max_budget,
+            budget_fallbacks=budget_fallbacks,
             soft_budget_cooldown=soft_budget_cooldown,
             blocked=blocked,
             litellm_budget_table=litellm_budget_table,

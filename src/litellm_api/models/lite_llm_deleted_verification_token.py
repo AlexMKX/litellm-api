@@ -14,6 +14,7 @@ import datetime
 
 if TYPE_CHECKING:
   from ..models.lite_llm_deleted_verification_token_aliases import LiteLLMDeletedVerificationTokenAliases
+  from ..models.lite_llm_deleted_verification_token_budget_fallbacks import LiteLLMDeletedVerificationTokenBudgetFallbacks
   from ..models.lite_llm_deleted_verification_token_budget_limits_type_0_item import LiteLLMDeletedVerificationTokenBudgetLimitsType0Item
   from ..models.lite_llm_deleted_verification_token_config import LiteLLMDeletedVerificationTokenConfig
   from ..models.lite_llm_deleted_verification_token_litellm_budget_table_type_0 import LiteLLMDeletedVerificationTokenLitellmBudgetTableType0
@@ -61,6 +62,7 @@ class LiteLLMDeletedVerificationToken:
             permissions (LiteLLMDeletedVerificationTokenPermissions | Unset):
             model_spend (LiteLLMDeletedVerificationTokenModelSpend | Unset):
             model_max_budget (LiteLLMDeletedVerificationTokenModelMaxBudget | Unset):
+            budget_fallbacks (LiteLLMDeletedVerificationTokenBudgetFallbacks | Unset):
             soft_budget_cooldown (bool | Unset):  Default: False.
             blocked (bool | None | Unset):
             litellm_budget_table (LiteLLMDeletedVerificationTokenLitellmBudgetTableType0 | None | Unset):
@@ -112,6 +114,7 @@ class LiteLLMDeletedVerificationToken:
     permissions: LiteLLMDeletedVerificationTokenPermissions | Unset = UNSET
     model_spend: LiteLLMDeletedVerificationTokenModelSpend | Unset = UNSET
     model_max_budget: LiteLLMDeletedVerificationTokenModelMaxBudget | Unset = UNSET
+    budget_fallbacks: LiteLLMDeletedVerificationTokenBudgetFallbacks | Unset = UNSET
     soft_budget_cooldown: bool | Unset = False
     blocked: bool | None | Unset = UNSET
     litellm_budget_table: LiteLLMDeletedVerificationTokenLitellmBudgetTableType0 | None | Unset = UNSET
@@ -145,6 +148,7 @@ class LiteLLMDeletedVerificationToken:
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.lite_llm_deleted_verification_token_aliases import LiteLLMDeletedVerificationTokenAliases
+        from ..models.lite_llm_deleted_verification_token_budget_fallbacks import LiteLLMDeletedVerificationTokenBudgetFallbacks
         from ..models.lite_llm_deleted_verification_token_budget_limits_type_0_item import LiteLLMDeletedVerificationTokenBudgetLimitsType0Item
         from ..models.lite_llm_deleted_verification_token_config import LiteLLMDeletedVerificationTokenConfig
         from ..models.lite_llm_deleted_verification_token_litellm_budget_table_type_0 import LiteLLMDeletedVerificationTokenLitellmBudgetTableType0
@@ -293,6 +297,10 @@ class LiteLLMDeletedVerificationToken:
         model_max_budget: dict[str, Any] | Unset = UNSET
         if not isinstance(self.model_max_budget, Unset):
             model_max_budget = self.model_max_budget.to_dict()
+
+        budget_fallbacks: dict[str, Any] | Unset = UNSET
+        if not isinstance(self.budget_fallbacks, Unset):
+            budget_fallbacks = self.budget_fallbacks.to_dict()
 
         soft_budget_cooldown = self.soft_budget_cooldown
 
@@ -522,6 +530,8 @@ class LiteLLMDeletedVerificationToken:
             field_dict["model_spend"] = model_spend
         if model_max_budget is not UNSET:
             field_dict["model_max_budget"] = model_max_budget
+        if budget_fallbacks is not UNSET:
+            field_dict["budget_fallbacks"] = budget_fallbacks
         if soft_budget_cooldown is not UNSET:
             field_dict["soft_budget_cooldown"] = soft_budget_cooldown
         if blocked is not UNSET:
@@ -580,6 +590,7 @@ class LiteLLMDeletedVerificationToken:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.lite_llm_deleted_verification_token_aliases import LiteLLMDeletedVerificationTokenAliases
+        from ..models.lite_llm_deleted_verification_token_budget_fallbacks import LiteLLMDeletedVerificationTokenBudgetFallbacks
         from ..models.lite_llm_deleted_verification_token_budget_limits_type_0_item import LiteLLMDeletedVerificationTokenBudgetLimitsType0Item
         from ..models.lite_llm_deleted_verification_token_config import LiteLLMDeletedVerificationTokenConfig
         from ..models.lite_llm_deleted_verification_token_litellm_budget_table_type_0 import LiteLLMDeletedVerificationTokenLitellmBudgetTableType0
@@ -847,6 +858,16 @@ class LiteLLMDeletedVerificationToken:
             model_max_budget = UNSET
         else:
             model_max_budget = LiteLLMDeletedVerificationTokenModelMaxBudget.from_dict(_model_max_budget)
+
+
+
+
+        _budget_fallbacks = d.pop("budget_fallbacks", UNSET)
+        budget_fallbacks: LiteLLMDeletedVerificationTokenBudgetFallbacks | Unset
+        if isinstance(_budget_fallbacks,  Unset):
+            budget_fallbacks = UNSET
+        else:
+            budget_fallbacks = LiteLLMDeletedVerificationTokenBudgetFallbacks.from_dict(_budget_fallbacks)
 
 
 
@@ -1231,6 +1252,7 @@ class LiteLLMDeletedVerificationToken:
             permissions=permissions,
             model_spend=model_spend,
             model_max_budget=model_max_budget,
+            budget_fallbacks=budget_fallbacks,
             soft_budget_cooldown=soft_budget_cooldown,
             blocked=blocked,
             litellm_budget_table=litellm_budget_table,

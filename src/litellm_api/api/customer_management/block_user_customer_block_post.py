@@ -9,6 +9,7 @@ from ...types import Response, UNSET
 from ... import errors
 
 from ...models.block_users import BlockUsers
+from ...models.block_users_response import BlockUsersResponse
 from ...models.http_validation_error import HTTPValidationError
 from typing import cast
 
@@ -40,9 +41,12 @@ def _get_kwargs(
 
 
 
-def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Any | HTTPValidationError | None:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> BlockUsersResponse | HTTPValidationError | None:
     if response.status_code == 200:
-        response_200 = response.json()
+        response_200 = BlockUsersResponse.from_dict(response.json())
+
+
+
         return response_200
 
     if response.status_code == 422:
@@ -58,7 +62,7 @@ def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Res
         return None
 
 
-def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Any | HTTPValidationError]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[BlockUsersResponse | HTTPValidationError]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -72,7 +76,7 @@ def sync_detailed(
     client: AuthenticatedClient,
     body: BlockUsers,
 
-) -> Response[Any | HTTPValidationError]:
+) -> Response[BlockUsersResponse | HTTPValidationError]:
     r""" Block User
 
      [BETA] Reject calls with this end-user id
@@ -98,7 +102,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | HTTPValidationError]
+        Response[BlockUsersResponse | HTTPValidationError]
      """
 
 
@@ -118,7 +122,7 @@ def sync(
     client: AuthenticatedClient,
     body: BlockUsers,
 
-) -> Any | HTTPValidationError | None:
+) -> BlockUsersResponse | HTTPValidationError | None:
     r""" Block User
 
      [BETA] Reject calls with this end-user id
@@ -144,7 +148,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | HTTPValidationError
+        BlockUsersResponse | HTTPValidationError
      """
 
 
@@ -159,7 +163,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient,
     body: BlockUsers,
 
-) -> Response[Any | HTTPValidationError]:
+) -> Response[BlockUsersResponse | HTTPValidationError]:
     r""" Block User
 
      [BETA] Reject calls with this end-user id
@@ -185,7 +189,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | HTTPValidationError]
+        Response[BlockUsersResponse | HTTPValidationError]
      """
 
 
@@ -205,7 +209,7 @@ async def asyncio(
     client: AuthenticatedClient,
     body: BlockUsers,
 
-) -> Any | HTTPValidationError | None:
+) -> BlockUsersResponse | HTTPValidationError | None:
     r""" Block User
 
      [BETA] Reject calls with this end-user id
@@ -231,7 +235,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | HTTPValidationError
+        BlockUsersResponse | HTTPValidationError
      """
 
 

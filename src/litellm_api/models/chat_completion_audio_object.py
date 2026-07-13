@@ -8,11 +8,13 @@ from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
 from typing import cast
 from typing import Literal, cast
 
 if TYPE_CHECKING:
   from ..models.input_audio import InputAudio
+  from ..models.prompt_cache_breakpoint import PromptCacheBreakpoint
 
 
 
@@ -28,10 +30,15 @@ class ChatCompletionAudioObject:
         Attributes:
             input_audio (InputAudio):
             type_ (Literal['input_audio']):
+            prompt_cache_breakpoint (PromptCacheBreakpoint | Unset): Marks the exact end of a reusable prompt prefix.
+
+                The breakpoint inherits its TTL from the request's `prompt_cache_options.ttl`; the boundary is not rounded to a
+                token block.
      """
 
     input_audio: InputAudio
     type_: Literal['input_audio']
+    prompt_cache_breakpoint: PromptCacheBreakpoint | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
 
@@ -40,9 +47,14 @@ class ChatCompletionAudioObject:
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.input_audio import InputAudio
+        from ..models.prompt_cache_breakpoint import PromptCacheBreakpoint
         input_audio = self.input_audio.to_dict()
 
         type_ = self.type_
+
+        prompt_cache_breakpoint: dict[str, Any] | Unset = UNSET
+        if not isinstance(self.prompt_cache_breakpoint, Unset):
+            prompt_cache_breakpoint = self.prompt_cache_breakpoint.to_dict()
 
 
         field_dict: dict[str, Any] = {}
@@ -51,6 +63,8 @@ class ChatCompletionAudioObject:
             "input_audio": input_audio,
             "type": type_,
         })
+        if prompt_cache_breakpoint is not UNSET:
+            field_dict["prompt_cache_breakpoint"] = prompt_cache_breakpoint
 
         return field_dict
 
@@ -59,6 +73,7 @@ class ChatCompletionAudioObject:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.input_audio import InputAudio
+        from ..models.prompt_cache_breakpoint import PromptCacheBreakpoint
         d = dict(src_dict)
         input_audio = InputAudio.from_dict(d.pop("input_audio"))
 
@@ -69,9 +84,20 @@ class ChatCompletionAudioObject:
         if type_ != 'input_audio':
             raise ValueError(f"type must match const 'input_audio', got '{type_}'")
 
+        _prompt_cache_breakpoint = d.pop("prompt_cache_breakpoint", UNSET)
+        prompt_cache_breakpoint: PromptCacheBreakpoint | Unset
+        if isinstance(_prompt_cache_breakpoint,  Unset):
+            prompt_cache_breakpoint = UNSET
+        else:
+            prompt_cache_breakpoint = PromptCacheBreakpoint.from_dict(_prompt_cache_breakpoint)
+
+
+
+
         chat_completion_audio_object = cls(
             input_audio=input_audio,
             type_=type_,
+            prompt_cache_breakpoint=prompt_cache_breakpoint,
         )
 
 

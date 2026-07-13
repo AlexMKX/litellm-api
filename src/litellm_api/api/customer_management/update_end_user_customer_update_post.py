@@ -8,6 +8,7 @@ from ...client import AuthenticatedClient, Client
 from ...types import Response, UNSET
 from ... import errors
 
+from ...models.customer_response import CustomerResponse
 from ...models.http_validation_error import HTTPValidationError
 from ...models.update_customer_request import UpdateCustomerRequest
 from typing import cast
@@ -40,9 +41,12 @@ def _get_kwargs(
 
 
 
-def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Any | HTTPValidationError | None:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> CustomerResponse | HTTPValidationError | None:
     if response.status_code == 200:
-        response_200 = response.json()
+        response_200 = CustomerResponse.from_dict(response.json())
+
+
+
         return response_200
 
     if response.status_code == 422:
@@ -58,7 +62,7 @@ def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Res
         return None
 
 
-def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Any | HTTPValidationError]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[CustomerResponse | HTTPValidationError]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -72,7 +76,7 @@ def sync_detailed(
     client: AuthenticatedClient,
     body: UpdateCustomerRequest,
 
-) -> Response[Any | HTTPValidationError]:
+) -> Response[CustomerResponse | HTTPValidationError]:
     r""" Update End User
 
      Example curl
@@ -130,7 +134,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | HTTPValidationError]
+        Response[CustomerResponse | HTTPValidationError]
      """
 
 
@@ -150,7 +154,7 @@ def sync(
     client: AuthenticatedClient,
     body: UpdateCustomerRequest,
 
-) -> Any | HTTPValidationError | None:
+) -> CustomerResponse | HTTPValidationError | None:
     r""" Update End User
 
      Example curl
@@ -208,7 +212,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | HTTPValidationError
+        CustomerResponse | HTTPValidationError
      """
 
 
@@ -223,7 +227,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient,
     body: UpdateCustomerRequest,
 
-) -> Response[Any | HTTPValidationError]:
+) -> Response[CustomerResponse | HTTPValidationError]:
     r""" Update End User
 
      Example curl
@@ -281,7 +285,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | HTTPValidationError]
+        Response[CustomerResponse | HTTPValidationError]
      """
 
 
@@ -301,7 +305,7 @@ async def asyncio(
     client: AuthenticatedClient,
     body: UpdateCustomerRequest,
 
-) -> Any | HTTPValidationError | None:
+) -> CustomerResponse | HTTPValidationError | None:
     r""" Update End User
 
      Example curl
@@ -359,7 +363,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | HTTPValidationError
+        CustomerResponse | HTTPValidationError
      """
 
 
