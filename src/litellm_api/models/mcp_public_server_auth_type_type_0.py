@@ -9,7 +9,9 @@ class MCPPublicServerAuthTypeType0(str, Enum):
     NONE = "none"
     OAUTH2 = "oauth2"
     OAUTH2_TOKEN_EXCHANGE = "oauth2_token_exchange"
+    OAUTH_DELEGATE = "oauth_delegate"
     TOKEN = "token"
+    TRUE_PASSTHROUGH = "true_passthrough"
 
     def __str__(self) -> str:
         return str(self.value)

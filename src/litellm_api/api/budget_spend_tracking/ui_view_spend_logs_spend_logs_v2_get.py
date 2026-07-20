@@ -20,6 +20,7 @@ def _get_kwargs(
     api_key: None | str | Unset = UNSET,
     user_id: None | str | Unset = UNSET,
     request_id: None | str | Unset = UNSET,
+    session_id: None | str | Unset = UNSET,
     team_id: None | str | Unset = UNSET,
     min_spend: float | None | Unset = UNSET,
     max_spend: float | None | Unset = UNSET,
@@ -65,6 +66,13 @@ def _get_kwargs(
     else:
         json_request_id = request_id
     params["request_id"] = json_request_id
+
+    json_session_id: None | str | Unset
+    if isinstance(session_id, Unset):
+        json_session_id = UNSET
+    else:
+        json_session_id = session_id
+    params["session_id"] = json_session_id
 
     json_team_id: None | str | Unset
     if isinstance(team_id, Unset):
@@ -221,6 +229,7 @@ def sync_detailed(
     api_key: None | str | Unset = UNSET,
     user_id: None | str | Unset = UNSET,
     request_id: None | str | Unset = UNSET,
+    session_id: None | str | Unset = UNSET,
     team_id: None | str | Unset = UNSET,
     min_spend: float | None | Unset = UNSET,
     max_spend: float | None | Unset = UNSET,
@@ -257,6 +266,7 @@ def sync_detailed(
         api_key (None | str | Unset): Get spend logs based on api key
         user_id (None | str | Unset): Get spend logs based on user_id
         request_id (None | str | Unset): request_id to get spend logs for specific request_id
+        session_id (None | str | Unset): Filter spend logs by session_id (partial string match)
         team_id (None | str | Unset): Filter spend logs by team_id
         min_spend (float | None | Unset): Filter logs with spend greater than or equal to this
             value
@@ -290,6 +300,7 @@ def sync_detailed(
         api_key=api_key,
 user_id=user_id,
 request_id=request_id,
+session_id=session_id,
 team_id=team_id,
 min_spend=min_spend,
 max_spend=max_spend,
@@ -322,6 +333,7 @@ def sync(
     api_key: None | str | Unset = UNSET,
     user_id: None | str | Unset = UNSET,
     request_id: None | str | Unset = UNSET,
+    session_id: None | str | Unset = UNSET,
     team_id: None | str | Unset = UNSET,
     min_spend: float | None | Unset = UNSET,
     max_spend: float | None | Unset = UNSET,
@@ -358,6 +370,7 @@ def sync(
         api_key (None | str | Unset): Get spend logs based on api key
         user_id (None | str | Unset): Get spend logs based on user_id
         request_id (None | str | Unset): request_id to get spend logs for specific request_id
+        session_id (None | str | Unset): Filter spend logs by session_id (partial string match)
         team_id (None | str | Unset): Filter spend logs by team_id
         min_spend (float | None | Unset): Filter logs with spend greater than or equal to this
             value
@@ -392,6 +405,7 @@ def sync(
 api_key=api_key,
 user_id=user_id,
 request_id=request_id,
+session_id=session_id,
 team_id=team_id,
 min_spend=min_spend,
 max_spend=max_spend,
@@ -418,6 +432,7 @@ async def asyncio_detailed(
     api_key: None | str | Unset = UNSET,
     user_id: None | str | Unset = UNSET,
     request_id: None | str | Unset = UNSET,
+    session_id: None | str | Unset = UNSET,
     team_id: None | str | Unset = UNSET,
     min_spend: float | None | Unset = UNSET,
     max_spend: float | None | Unset = UNSET,
@@ -454,6 +469,7 @@ async def asyncio_detailed(
         api_key (None | str | Unset): Get spend logs based on api key
         user_id (None | str | Unset): Get spend logs based on user_id
         request_id (None | str | Unset): request_id to get spend logs for specific request_id
+        session_id (None | str | Unset): Filter spend logs by session_id (partial string match)
         team_id (None | str | Unset): Filter spend logs by team_id
         min_spend (float | None | Unset): Filter logs with spend greater than or equal to this
             value
@@ -487,6 +503,7 @@ async def asyncio_detailed(
         api_key=api_key,
 user_id=user_id,
 request_id=request_id,
+session_id=session_id,
 team_id=team_id,
 min_spend=min_spend,
 max_spend=max_spend,
@@ -519,6 +536,7 @@ async def asyncio(
     api_key: None | str | Unset = UNSET,
     user_id: None | str | Unset = UNSET,
     request_id: None | str | Unset = UNSET,
+    session_id: None | str | Unset = UNSET,
     team_id: None | str | Unset = UNSET,
     min_spend: float | None | Unset = UNSET,
     max_spend: float | None | Unset = UNSET,
@@ -555,6 +573,7 @@ async def asyncio(
         api_key (None | str | Unset): Get spend logs based on api key
         user_id (None | str | Unset): Get spend logs based on user_id
         request_id (None | str | Unset): request_id to get spend logs for specific request_id
+        session_id (None | str | Unset): Filter spend logs by session_id (partial string match)
         team_id (None | str | Unset): Filter spend logs by team_id
         min_spend (float | None | Unset): Filter logs with spend greater than or equal to this
             value
@@ -589,6 +608,7 @@ async def asyncio(
 api_key=api_key,
 user_id=user_id,
 request_id=request_id,
+session_id=session_id,
 team_id=team_id,
 min_spend=min_spend,
 max_spend=max_spend,

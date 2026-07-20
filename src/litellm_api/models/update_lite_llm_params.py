@@ -122,6 +122,8 @@ class UpdateLiteLLMParams:
             custom_llm_provider (None | str | Unset):
             tpm (int | None | Unset):
             rpm (int | None | Unset):
+            itpm (int | None | Unset):
+            otpm (int | None | Unset):
             timeout (float | None | str | Unset):
             stream_timeout (float | None | str | Unset):
             max_retries (int | None | Unset):
@@ -250,6 +252,8 @@ class UpdateLiteLLMParams:
     custom_llm_provider: None | str | Unset = UNSET
     tpm: int | None | Unset = UNSET
     rpm: int | None | Unset = UNSET
+    itpm: int | None | Unset = UNSET
+    otpm: int | None | Unset = UNSET
     timeout: float | None | str | Unset = UNSET
     stream_timeout: float | None | str | Unset = UNSET
     max_retries: int | None | Unset = UNSET
@@ -842,6 +846,18 @@ class UpdateLiteLLMParams:
         else:
             rpm = self.rpm
 
+        itpm: int | None | Unset
+        if isinstance(self.itpm, Unset):
+            itpm = UNSET
+        else:
+            itpm = self.itpm
+
+        otpm: int | None | Unset
+        if isinstance(self.otpm, Unset):
+            otpm = UNSET
+        else:
+            otpm = self.otpm
+
         timeout: float | None | str | Unset
         if isinstance(self.timeout, Unset):
             timeout = UNSET
@@ -1278,6 +1294,10 @@ class UpdateLiteLLMParams:
             field_dict["tpm"] = tpm
         if rpm is not UNSET:
             field_dict["rpm"] = rpm
+        if itpm is not UNSET:
+            field_dict["itpm"] = itpm
+        if otpm is not UNSET:
+            field_dict["otpm"] = otpm
         if timeout is not UNSET:
             field_dict["timeout"] = timeout
         if stream_timeout is not UNSET:
@@ -2284,6 +2304,26 @@ class UpdateLiteLLMParams:
         rpm = _parse_rpm(d.pop("rpm", UNSET))
 
 
+        def _parse_itpm(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        itpm = _parse_itpm(d.pop("itpm", UNSET))
+
+
+        def _parse_otpm(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        otpm = _parse_otpm(d.pop("otpm", UNSET))
+
+
         def _parse_timeout(data: object) -> float | None | str | Unset:
             if data is None:
                 return data
@@ -2843,6 +2883,8 @@ class UpdateLiteLLMParams:
             custom_llm_provider=custom_llm_provider,
             tpm=tpm,
             rpm=rpm,
+            itpm=itpm,
+            otpm=otpm,
             timeout=timeout,
             stream_timeout=stream_timeout,
             max_retries=max_retries,

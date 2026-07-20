@@ -35,6 +35,7 @@ def _get_kwargs(
     access_group_id: None | str | Unset = UNSET,
     agent_id: None | str | Unset = UNSET,
     substring_matching: bool | Unset = False,
+    expires: None | str | Unset = UNSET,
 
 ) -> dict[str, Any]:
     
@@ -138,6 +139,13 @@ def _get_kwargs(
 
     params["substring_matching"] = substring_matching
 
+    json_expires: None | str | Unset
+    if isinstance(expires, Unset):
+        json_expires = UNSET
+    else:
+        json_expires = expires
+    params["expires"] = json_expires
+
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
@@ -204,6 +212,7 @@ def sync_detailed(
     access_group_id: None | str | Unset = UNSET,
     agent_id: None | str | Unset = UNSET,
     substring_matching: bool | Unset = False,
+    expires: None | str | Unset = UNSET,
 
 ) -> Response[HTTPValidationError | KeyListResponseObject]:
     r""" List Keys
@@ -252,6 +261,9 @@ def sync_detailed(
             case-insensitive substrings instead of exact values. Defaults to false: /key/list matched
             these exactly before substring search was added, and an exact user_id/key_alias filter
             must never return another user's keys. Default: False.
+        expires (None | str | Unset): Filter keys by expiration. 'expired' returns keys whose
+            expires is in the past; 'active' returns keys that never expire or expire in the future.
+            Omit to return keys regardless of expiration.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -281,6 +293,7 @@ project_id=project_id,
 access_group_id=access_group_id,
 agent_id=agent_id,
 substring_matching=substring_matching,
+expires=expires,
 
     )
 
@@ -311,6 +324,7 @@ def sync(
     access_group_id: None | str | Unset = UNSET,
     agent_id: None | str | Unset = UNSET,
     substring_matching: bool | Unset = False,
+    expires: None | str | Unset = UNSET,
 
 ) -> HTTPValidationError | KeyListResponseObject | None:
     r""" List Keys
@@ -359,6 +373,9 @@ def sync(
             case-insensitive substrings instead of exact values. Defaults to false: /key/list matched
             these exactly before substring search was added, and an exact user_id/key_alias filter
             must never return another user's keys. Default: False.
+        expires (None | str | Unset): Filter keys by expiration. 'expired' returns keys whose
+            expires is in the past; 'active' returns keys that never expire or expire in the future.
+            Omit to return keys regardless of expiration.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -389,6 +406,7 @@ project_id=project_id,
 access_group_id=access_group_id,
 agent_id=agent_id,
 substring_matching=substring_matching,
+expires=expires,
 
     ).parsed
 
@@ -413,6 +431,7 @@ async def asyncio_detailed(
     access_group_id: None | str | Unset = UNSET,
     agent_id: None | str | Unset = UNSET,
     substring_matching: bool | Unset = False,
+    expires: None | str | Unset = UNSET,
 
 ) -> Response[HTTPValidationError | KeyListResponseObject]:
     r""" List Keys
@@ -461,6 +480,9 @@ async def asyncio_detailed(
             case-insensitive substrings instead of exact values. Defaults to false: /key/list matched
             these exactly before substring search was added, and an exact user_id/key_alias filter
             must never return another user's keys. Default: False.
+        expires (None | str | Unset): Filter keys by expiration. 'expired' returns keys whose
+            expires is in the past; 'active' returns keys that never expire or expire in the future.
+            Omit to return keys regardless of expiration.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -490,6 +512,7 @@ project_id=project_id,
 access_group_id=access_group_id,
 agent_id=agent_id,
 substring_matching=substring_matching,
+expires=expires,
 
     )
 
@@ -520,6 +543,7 @@ async def asyncio(
     access_group_id: None | str | Unset = UNSET,
     agent_id: None | str | Unset = UNSET,
     substring_matching: bool | Unset = False,
+    expires: None | str | Unset = UNSET,
 
 ) -> HTTPValidationError | KeyListResponseObject | None:
     r""" List Keys
@@ -568,6 +592,9 @@ async def asyncio(
             case-insensitive substrings instead of exact values. Defaults to false: /key/list matched
             these exactly before substring search was added, and an exact user_id/key_alias filter
             must never return another user's keys. Default: False.
+        expires (None | str | Unset): Filter keys by expiration. 'expired' returns keys whose
+            expires is in the past; 'active' returns keys that never expire or expire in the future.
+            Omit to return keys regardless of expiration.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -598,5 +625,6 @@ project_id=project_id,
 access_group_id=access_group_id,
 agent_id=agent_id,
 substring_matching=substring_matching,
+expires=expires,
 
     )).parsed
